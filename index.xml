@@ -2,41 +2,41 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>Hugo Init theme test</title>
-    <link>http://example.org/</link>
+    <link>https://sinotrade.github.io/</link>
     <description>Recent content on Hugo Init theme test</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
     <lastBuildDate>Wed, 12 Sep 2018 14:51:12 +0600</lastBuildDate>
     
-	<atom:link href="http://example.org/index.xml" rel="self" type="application/rss+xml" />
+	<atom:link href="https://sinotrade.github.io/index.xml" rel="self" type="application/rss+xml" />
     
     
     <item>
       <title>Are You Doing the Right Way</title>
-      <link>http://example.org/blog/are-you-doing-the-right-way/</link>
+      <link>https://sinotrade.github.io/blog/are-you-doing-the-right-way/</link>
       <pubDate>Wed, 12 Sep 2018 14:51:12 +0600</pubDate>
       
-      <guid>http://example.org/blog/are-you-doing-the-right-way/</guid>
+      <guid>https://sinotrade.github.io/blog/are-you-doing-the-right-way/</guid>
       <description>Praesent sapien massa, convallis a pellentesque nec, egestas non nisi. Vestibulum ante ipsum primis in faucibus orci luctus et ultrices posuere cubilia Curae; Donec velit neque, auctor sit amet aliquam vel, ullamcorper sit amet ligula. Vestibulum ac diam sit amet quam vehicula elementum sed sit amet dui. Mauris blandit aliquet elit, eget tincidunt nibh pulvinar a.
 Sed porttitor lectus nibh. Vestibulum ante ipsum primis in faucibus orci luctus et ultrices posuere cubilia Curae; Donec velit neque, auctor sit amet aliquam vel, ullamcorper sit amet ligula.</description>
     </item>
     
     <item>
       <title>Simple Post Title</title>
-      <link>http://example.org/blog/simple-post-title/</link>
+      <link>https://sinotrade.github.io/blog/simple-post-title/</link>
       <pubDate>Wed, 12 Sep 2018 14:39:16 +0600</pubDate>
       
-      <guid>http://example.org/blog/simple-post-title/</guid>
+      <guid>https://sinotrade.github.io/blog/simple-post-title/</guid>
       <description>Praesent sapien massa, convallis a pellentesque nec, egestas non nisi. Vestibulum ante ipsum primis in faucibus orci luctus et ultrices posuere cubilia Curae; Donec velit neque, auctor sit amet aliquam vel, ullamcorper sit amet ligula. Vestibulum ac diam sit amet quam vehicula elementum sed sit amet dui. Mauris blandit aliquet elit, eget tincidunt nibh pulvinar a.
 Sed porttitor lectus nibh. Vestibulum ante ipsum primis in faucibus orci luctus et ultrices posuere cubilia Curae; Donec velit neque, auctor sit amet aliquam vel, ullamcorper sit amet ligula.</description>
     </item>
     
     <item>
       <title>Simple Image Post</title>
-      <link>http://example.org/blog/simple-image-post/</link>
+      <link>https://sinotrade.github.io/blog/simple-image-post/</link>
       <pubDate>Wed, 12 Sep 2018 12:52:36 +0600</pubDate>
       
-      <guid>http://example.org/blog/simple-image-post/</guid>
+      <guid>https://sinotrade.github.io/blog/simple-image-post/</guid>
       <description>Praesent sapien massa, convallis a pellentesque nec, egestas non nisi. Vestibulum ante ipsum primis in faucibus orci luctus et ultrices posuere cubilia Curae; Donec velit neque, auctor sit amet aliquam vel, ullamcorper sit amet ligula. Vestibulum ac diam sit amet quam vehicula elementum sed sit amet dui. Mauris blandit aliquet elit, eget tincidunt nibh pulvinar a.
 Sed porttitor lectus nibh. Vestibulum ante ipsum primis in faucibus orci luctus et ultrices posuere cubilia Curae; Donec velit neque, auctor sit amet aliquam vel, ullamcorper sit amet ligula.</description>
     </item>
