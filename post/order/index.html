@@ -8,7 +8,7 @@
     <meta name="description" content="">
     <meta name="author" content="">
     <base href="https://sinotrade.github.io/">
-    <title>Third Post</title>
+    <title>Ordering</title>
 
     
     <link href="/css/bootstrap.min.css" rel="stylesheet">
@@ -104,15 +104,51 @@ body {
           <div>
             <hr class="section-heading-spacer">
             <div class="clearfix"></div>
-            <h2 class="section-heading">Third Post</h2>
-            <p>Third post
-Get help</p>
+            <h2 class="section-heading">Ordering</h2>
+            <p>開始下單的部分吧!首先我們會需要先製作出Order物件。</p>
 
-<ul>
-<li>Ask questions here &hellip;.</li>
-<li>Read this doc file</li>
-<li>Concat me twitter <a href="https://twitter.com/@ifnottrue">@ifnottrue</a></li>
-</ul>
+<blockquote>
+<p>input</p>
+
+<pre><code>api.Order?
+</code></pre>
+
+<p>output</p>
+
+<pre><code>Init signature: api.Order(product_id, product_type, opt_type, price, price_type, order_bs, order_type, octype, quantity, account)
+Docstring: 
+create order object
+product_id: str 
+    the product code
+product_type: {'F', 'O'}
+    - F: future
+    - O: option
+opt_type: {' ', 'C', 'P'}
+    the option type Call or Put, leave blank if place future order
+    - ' ': Future
+    - 'C': Call
+    - 'P': Put 
+price: float or int
+    order price
+price_type: {LMT, MKT, MKP}
+    - LMT: limit
+    - MKT: market
+    - MKP: market range
+order_bs: {'B', 'S'}, 
+    - 'B': buy
+    - 'S': sell
+order_type: {ROD, IOC, FOK}
+    - ROD: Rest of Day
+    - IOC: Immediate-or-Cancel
+    - FOK: Fill-or-Kill
+octype: {' ', '0', '1', '6'}, 
+    - ' ': auto
+    - '0': new position
+    - '1': close position
+    - '6': day trade
+quantity: int
+</code></pre>
+</blockquote>
 
         </div>
     </div>
@@ -126,7 +162,7 @@ Get help</p>
     <div class="container">
         <div class="row">
             <div class="col-md-8">
-                <p class="copyright text-muted small">Copyright &copy; Third Post All Rights Reserved</p>
+                <p class="copyright text-muted small">Copyright &copy; Ordering All Rights Reserved</p>
             </div>
             <div class="col-md-4">
 		Built with <a href="http://gohugo.io">Hugo</a> and the

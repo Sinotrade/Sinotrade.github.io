@@ -106,12 +106,22 @@ body {
                 <div>
                     <hr class="section-heading-spacer">
                     <div class="clearfix"></div>
-                    <h2 class="section-heading">First Post</h2>
-                    <p>First post
-Where you talk about how to install your project</p>
+                    <h2 class="section-heading">Installation</h2>
+                    
 
-<pre><code>brew install amazing-tool
+<h4 id="let-s-get-it">Let&rsquo;s get it</h4>
+
+<p>直接pip install起來，台灣應該沒有其他券商的api那麼方便了。</p>
+
+<pre><code>pip install shioaji
 </code></pre>
+
+<p>我們也準備好了docker image給各位直接使用，有需要那些其他的linux distribution歡迎在github上跟我們講。</p>
+
+<pre><code>docker run -it shioaji:latest bash
+</code></pre>
+
+<p>這邊沒有在使用docker的可以忽略，docker主要就是幫各位處理好各種環境問題，但是基本上大家應該pip install就可以開了</p>
 
                 </div>
             </div>
@@ -131,17 +141,160 @@ Where you talk about how to install your project</p>
                 <div>
                     <hr class="section-heading-spacer">
                     <div class="clearfix"></div>
-                    <h2 class="section-heading">Second Post</h2>
-                    <p>Second post
-Usage maybe?</p>
+                    <h2 class="section-heading">Initialization</h2>
+                    <p>上回我們pip install完了以後，接著我們就可以用python, ipython, jupyter notebook或jupyter lab等等之類開始接下來旅程。</p>
 
-<pre><code>DoSomething()
+<p>在這邊我們還需要一個條件，就是請先開好永豐金證券的帳戶，實體開戶或是直接<a href="http://www.sinotrade.com.tw/">線上開戶</a>。</p>
+
+<p>準備好永豐帳戶就讓我們開始吧!</p>
+
+<p>起手式import我們的api就像import tensorflow pandas等等一樣</p>
+
+<pre><code>import shioaji as sj
 </code></pre>
 
-<p>And the output would be:</p>
+<p>接著我們需要初始化Shioaji這個物件來開始接下來要做的事</p>
 
-<pre><code>Something
+<p>python有個很方便的方法可以看這個物件或涵式的文件，就是直接在function或object後面加上?</p>
+
+<blockquote>
+<p>input</p>
+
+<pre><code>sj.Shioaji?
 </code></pre>
+
+<p>output</p>
+
+<pre><code>Init signature: sj.Shioaji(backend='http', simulation=True, proxies={}, currency='NTD')
+Init docstring:
+initialize Shioaji to start trading
+backend: {http, socket}
+    use http or socket as backend currently only support http, socket backend coming soon.
+    - http: will support taiwan stock, future, and global stock
+    - socket: will support taiwan stock, future and global future
+simulation: bool
+    - False: to trading on real market (just use your Sinopac account to start trading)
+    - True: become simulation account(need to contract as to open simulation account)
+proxies: dict
+    specific the proxies of your https
+    {'https': 'your-proxy-url'}
+currency: {NTX, USX, NTD, USD, HKD, EUR, JPY, GBP}
+    set the default currency for display 
+</code></pre>
+</blockquote>
+
+<p>這邊我們選擇http為backend，並且關閉模擬模式，如果有需要使用模擬的客戶麻煩在gitter中聯絡我們，目前我們http比較完整socket會在近日釋出敬請期待。</p>
+
+<blockquote>
+<p>input</p>
+
+<pre><code>api = sj.Shioaji(backend='http', simulation=False)
+</code></pre>
+</blockquote>
+
+<p>接著我們要登入才有辦法開始使用api，登入帳號就是eleader的登入帳號密碼。</p>
+
+<blockquote>
+<p>input</p>
+
+<pre><code>api.login?
+</code></pre>
+
+<p>output</p>
+
+<pre><code>Signature: api.login(person_id, passwd)
+Docstring:
+login to trading server
+person_id: str
+    Same as your eleader, ileader login id(usually your person ID)
+passwd: str
+    the password of your eleader login password(not ca password)
+</code></pre>
+</blockquote>
+
+<p>登入後我們會預設抓出第一個期貨帳戶與證券戶作為預設帳戶</p>
+
+<blockquote>
+<p>input</p>
+
+<pre><code>api.login(person_id=person_id, passwd='2222')
+api.fut_account
+</code></pre>
+
+<p>output</p>
+
+<pre><code>{'account': '9104000',
+ 'username': '莊*芬',
+ 'datacount': 0,
+ 'accttype': 'F',
+ 'broker_id': 'F002000',
+ 'idno': 'SCCEIEFAJA'}
+</code></pre>
+</blockquote>
+
+<p>也可以列出我們所有帳戶，使用<code>api.set_default_account</code>將常用設為預設的帳戶</p>
+
+<blockquote>
+<p>input</p>
+
+<pre><code>api.list_accounts()
+</code></pre>
+
+<p>output</p>
+
+<pre><code>[{'account': '9104000',
+  'username': '莊*芬',
+  'datacount': 0,
+  'accttype': 'F',
+  'broker_id': 'F002000',
+  'idno': 'SCCEIEFAJA'},
+ {'account': '9802195',
+  'username': '莊*芬',
+  'datacount': 1,
+  'accttype': 'S',
+  'broker_id': '9A92',
+  'idno': 'SCCEIEFAJA'},
+ {'account': '09800762',
+  'username': 'n*m',
+  'datacount': 3,
+  'accttype': 'H',
+  'broker_id': '1300',
+  'idno': 'QCCAHIFFDH'}]
+</code></pre>
+</blockquote>
+
+<p>以上動作已經完成與下單無關的動作的初始化了，需要下單的話必須啟動憑證，若只是帳務相關等功能無需憑證。</p>
+
+<blockquote>
+<p>input</p>
+
+<pre><code>api.activate_ca?
+</code></pre>
+
+<p>output</p>
+
+<pre><code>Signature: api.activate_ca(ca_path, ca_passwd, person_id)
+Docstring:
+activate your ca for trading
+ca_path: str
+    the path of your ca, support both absloutely and relatively path, use same ca with eleader
+ca_passwd: str
+    password of your ca
+person_id: str
+    the ca belong which person ID
+</code></pre>
+
+<p>input</p>
+
+<pre><code>api.activate_ca(ca_path='../ca/Sinopac.pfx', ca_passwd='SCCEIEFAJA', person_id=person_id)
+</code></pre>
+
+<p>output</p>
+
+<pre><code>Ca Initial Done.
+0
+</code></pre>
+</blockquote>
 
                 </div>
             </div>
@@ -161,15 +314,51 @@ Usage maybe?</p>
                 <div>
                     <hr class="section-heading-spacer">
                     <div class="clearfix"></div>
-                    <h2 class="section-heading">Third Post</h2>
-                    <p>Third post
-Get help</p>
+                    <h2 class="section-heading">Ordering</h2>
+                    <p>開始下單的部分吧!首先我們會需要先製作出Order物件。</p>
 
-<ul>
-<li>Ask questions here &hellip;.</li>
-<li>Read this doc file</li>
-<li>Concat me twitter <a href="https://twitter.com/@ifnottrue">@ifnottrue</a></li>
-</ul>
+<blockquote>
+<p>input</p>
+
+<pre><code>api.Order?
+</code></pre>
+
+<p>output</p>
+
+<pre><code>Init signature: api.Order(product_id, product_type, opt_type, price, price_type, order_bs, order_type, octype, quantity, account)
+Docstring: 
+create order object
+product_id: str 
+    the product code
+product_type: {'F', 'O'}
+    - F: future
+    - O: option
+opt_type: {' ', 'C', 'P'}
+    the option type Call or Put, leave blank if place future order
+    - ' ': Future
+    - 'C': Call
+    - 'P': Put 
+price: float or int
+    order price
+price_type: {LMT, MKT, MKP}
+    - LMT: limit
+    - MKT: market
+    - MKP: market range
+order_bs: {'B', 'S'}, 
+    - 'B': buy
+    - 'S': sell
+order_type: {ROD, IOC, FOK}
+    - ROD: Rest of Day
+    - IOC: Immediate-or-Cancel
+    - FOK: Fill-or-Kill
+octype: {' ', '0', '1', '6'}, 
+    - ' ': auto
+    - '0': new position
+    - '1': close position
+    - '6': day trade
+quantity: int
+</code></pre>
+</blockquote>
 
                 </div>
             </div>

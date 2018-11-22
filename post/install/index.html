@@ -8,7 +8,7 @@
     <meta name="description" content="">
     <meta name="author" content="">
     <base href="https://sinotrade.github.io/">
-    <title>Third Post</title>
+    <title>Installation</title>
 
     
     <link href="/css/bootstrap.min.css" rel="stylesheet">
@@ -104,15 +104,22 @@ body {
           <div>
             <hr class="section-heading-spacer">
             <div class="clearfix"></div>
-            <h2 class="section-heading">Third Post</h2>
-            <p>Third post
-Get help</p>
+            <h2 class="section-heading">Installation</h2>
+            
 
-<ul>
-<li>Ask questions here &hellip;.</li>
-<li>Read this doc file</li>
-<li>Concat me twitter <a href="https://twitter.com/@ifnottrue">@ifnottrue</a></li>
-</ul>
+<h4 id="let-s-get-it">Let&rsquo;s get it</h4>
+
+<p>直接pip install起來，台灣應該沒有其他券商的api那麼方便了。</p>
+
+<pre><code>pip install shioaji
+</code></pre>
+
+<p>我們也準備好了docker image給各位直接使用，有需要那些其他的linux distribution歡迎在github上跟我們講。</p>
+
+<pre><code>docker run -it shioaji:latest bash
+</code></pre>
+
+<p>這邊沒有在使用docker的可以忽略，docker主要就是幫各位處理好各種環境問題，但是基本上大家應該pip install就可以開了</p>
 
         </div>
     </div>
@@ -126,7 +133,7 @@ Get help</p>
     <div class="container">
         <div class="row">
             <div class="col-md-8">
-                <p class="copyright text-muted small">Copyright &copy; Third Post All Rights Reserved</p>
+                <p class="copyright text-muted small">Copyright &copy; Installation All Rights Reserved</p>
             </div>
             <div class="col-md-4">
 		Built with <a href="http://gohugo.io">Hugo</a> and the

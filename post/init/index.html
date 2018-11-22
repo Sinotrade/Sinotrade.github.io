@@ -1,7 +1,6 @@
 <!DOCTYPE html>
 <html>
 <head>
-	<meta name="generator" content="Hugo 0.51" />
 
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -9,7 +8,7 @@
     <meta name="description" content="">
     <meta name="author" content="">
     <base href="https://sinotrade.github.io/">
-    <title>Shioaji</title>
+    <title>Initialization</title>
 
     
     <link href="/css/bootstrap.min.css" rel="stylesheet">
@@ -95,87 +94,18 @@ body {
     
 </nav>
 
-<section id="intro">
-	
-	<div class="intro-header">
-
-		<div class="container header-container">
-
-			<div class="row">
-				<div class="intro-image col-md-4"></div>
-				<div class="intro-message col-md-6">
-					<h1>Shioaji</h1>
-					<h3>Shioaji is sinopac provide the most pythonic api for trading the taiwan and global financial market. You can use your favorite Python packages such as numpy, scipy, pandas, pytorch or tensorflow to build your own trading model with intergrated the shioaji api on cross platform.</h3>
-
-					
-					
-					
-
-					<iframe class="github-btn" src="https://ghbtns.com/github-btn.html?user=Sinotrade&repo=Shioaji&type=star&count=true&size=large" frameborder="0" scrolling="0" width="160px" height="30px"></iframe>
-					
-
-					<hr class="intro-divider">
-				</div>
-			</div>
-
-		</div>
-		
-
-	</div>
-	
-</section>
 
 <section id="services">
+   <div class="content-section-a">
 
+      <div class="container">
 
- 
-    
-    <div class="content-section-a">
-    
-
-        <div class="container">
-
-            <div class="row">
-                <div>
-                    <hr class="section-heading-spacer">
-                    <div class="clearfix"></div>
-                    <h2 class="section-heading">Installation</h2>
-                    
-
-<h4 id="let-s-get-it">Let&rsquo;s get it</h4>
-
-<p>直接pip install起來，台灣應該沒有其他券商的api那麼方便了。</p>
-
-<pre><code>pip install shioaji
-</code></pre>
-
-<p>我們也準備好了docker image給各位直接使用，有需要那些其他的linux distribution歡迎在github上跟我們講。</p>
-
-<pre><code>docker run -it shioaji:latest bash
-</code></pre>
-
-<p>這邊沒有在使用docker的可以忽略，docker主要就是幫各位處理好各種環境問題，但是基本上大家應該pip install就可以開了</p>
-
-                </div>
-            </div>
-
-        </div>
-        
-
-    </div>
-
-    
-    <div class="content-section-b">
-    
-
-        <div class="container">
-
-            <div class="row">
-                <div>
-                    <hr class="section-heading-spacer">
-                    <div class="clearfix"></div>
-                    <h2 class="section-heading">Initialization</h2>
-                    <p>上回我們pip install完了以後，接著我們就可以用python, ipython, jupyter notebook或jupyter lab等等之類開始接下來旅程。</p>
+        <div class="row">
+          <div>
+            <hr class="section-heading-spacer">
+            <div class="clearfix"></div>
+            <h2 class="section-heading">Initialization</h2>
+            <p>上回我們pip install完了以後，接著我們就可以用python, ipython, jupyter notebook或jupyter lab等等之類開始接下來旅程。</p>
 
 <p>在這邊我們還需要一個條件，就是請先開好永豐金證券的帳戶，實體開戶或是直接<a href="http://www.sinotrade.com.tw/">線上開戶</a>。</p>
 
@@ -329,87 +259,19 @@ person_id: str
 </code></pre>
 </blockquote>
 
-                </div>
-            </div>
-
         </div>
-        
-
     </div>
 
-    
-    <div class="content-section-a">
-    
-
-        <div class="container">
-
-            <div class="row">
-                <div>
-                    <hr class="section-heading-spacer">
-                    <div class="clearfix"></div>
-                    <h2 class="section-heading">Ordering</h2>
-                    <p>開始下單的部分吧!首先我們會需要先製作出Order物件。</p>
-
-<blockquote>
-<p>input</p>
-
-<pre><code>api.Order?
-</code></pre>
-
-<p>output</p>
-
-<pre><code>Init signature: api.Order(product_id, product_type, opt_type, price, price_type, order_bs, order_type, octype, quantity, account)
-Docstring: 
-create order object
-product_id: str 
-    the product code
-product_type: {'F', 'O'}
-    - F: future
-    - O: option
-opt_type: {' ', 'C', 'P'}
-    the option type Call or Put, leave blank if place future order
-    - ' ': Future
-    - 'C': Call
-    - 'P': Put 
-price: float or int
-    order price
-price_type: {LMT, MKT, MKP}
-    - LMT: limit
-    - MKT: market
-    - MKP: market range
-order_bs: {'B', 'S'}, 
-    - 'B': buy
-    - 'S': sell
-order_type: {ROD, IOC, FOK}
-    - ROD: Rest of Day
-    - IOC: Immediate-or-Cancel
-    - FOK: Fill-or-Kill
-octype: {' ', '0', '1', '6'}, 
-    - ' ': auto
-    - '0': new position
-    - '1': close position
-    - '6': day trade
-quantity: int
-</code></pre>
-</blockquote>
-
-                </div>
-            </div>
-
-        </div>
-        
-
-    </div>
-
+</div>
+</div>
 
 </section>
-
 
 <footer>
     <div class="container">
         <div class="row">
             <div class="col-md-8">
-                <p class="copyright text-muted small">Copyright &copy; Shioaji All Rights Reserved</p>
+                <p class="copyright text-muted small">Copyright &copy; Initialization All Rights Reserved</p>
             </div>
             <div class="col-md-4">
 		Built with <a href="http://gohugo.io">Hugo</a> and the
