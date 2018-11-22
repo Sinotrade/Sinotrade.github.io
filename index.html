@@ -348,7 +348,9 @@ person_id: str
                     <hr class="section-heading-spacer">
                     <div class="clearfix"></div>
                     <h2 class="section-heading">Ordering</h2>
-                    <p>開始下單的部分吧!首先我們會需要先製作出Order物件。</p>
+                    <p>開始下單的部分吧!首先我們會需要先製作出Order一筆order物件，然後丟進api的place_order涵式中，這個涵式會回傳一個Trade物件包涵這筆單的狀態。</p>
+
+<p>Order物件需要帶入的參數部分依樣可以用?直接看到文件</p>
 
 <blockquote>
 <p>input</p>
@@ -377,7 +379,7 @@ price_type: {LMT, MKT, MKP}
     - LMT: limit
     - MKT: market
     - MKP: market range
-order_bs: {'B', 'S'}, 
+order_bs: {'B', 'S', 
     - 'B': buy
     - 'S': sell
 order_type: {ROD, IOC, FOK}
@@ -392,6 +394,187 @@ octype: {' ', '0', '1', '6'},
 quantity: int
 </code></pre>
 </blockquote>
+
+<p>接這我們有做一件方便大家開發的事，有兩個物件<code>api.Order_props</code>跟<code>api.Contracts</code>這兩個物件可以快速輔助開發的時候直接用tab自動補齊的方式找到Order物件中需要填入的欄位。</p>
+
+<blockquote>
+<p>input</p>
+
+<pre><code>api.Order_props.&lt;/tab&gt;
+api.Contracts.&lt;/tab&gt;
+</code></pre>
+
+<p>這邊我們以期貨為範例按tab鍵自動補齊可交易的合約</p>
+
+<pre><code>api.Contracts.Future.TXF.TXF201903
+</code></pre>
+
+<p>output</p>
+
+<pre><code>Contract
+    Code: TXFC9
+    Detail:
+        code: TXFC9
+        deliverymonth: 201903
+        poc: 
+        eprice: 0.0
+        ename: TXF
+        category: TXF
+        prod_kind: I
+        csname: 台指期貨
+        ostock: #001
+        basic: 0001.000000
+</code></pre>
+</blockquote>
+
+<p>知道使用方式後我們直接用自動補齊的方式幫我快速創建一筆Order，下面這個例子我們可以看到product_id就是用Contracts來填入，其他的參數在Order_props都有相對應的欄位可以幫我們免去用文件的選項輸入，當然也可以直接使用文件的選項直接填入。</p>
+
+<pre><code>sample_order = api.Order(product_id=api.Contracts.Future.TXF.TXF201903.code, 
+                         product_type=api.Order_props.product_type.Future, 
+                         opt_type=api.Order_props.opt_type.Future,
+                         price=9600,
+                         price_type=api.Order_props.price_type.LMT,
+                         order_bs=api.Order_props.order_bs.Buy,
+                         order_type=api.Order_props.order_type.ROD,
+                         octype=api.Order_props.octype.auto,
+                         quantity=5,
+                         account=api.fut_account,
+                        )
+</code></pre>
+
+<p>接著我們把order物件傳進<code>place_order</code>涵式中就會送出委託單了。</p>
+
+<blockquote>
+<p>input</p>
+
+<pre><code>trade = api.place_order(sample_order)
+trade
+</code></pre>
+
+<p>output</p>
+
+<pre><code>Trade
+    status: order_sent
+        status_code: 
+        errmsg: 
+        product_id: TXFC9
+        ordno: 
+        seqno: 702330
+        ord_bs: B
+        price: 9600
+        quantity: 5
+        price_type: LMT
+        account: {'account': '9104000', 'username': '莊*芬', 'datacount': 0, 'accttype': 'F', 'broker_id': 'F002000', 'idno': 'SCCEIEFAJA'}
+        msg:                                                             
+        trade_type: 01
+        octype:  
+        mttype: 0
+        composit: 00
+        ord_date: 20181119
+        preord_date: 20181119
+        ord_time: 15:45:48
+        ord_type: ROD
+        product_type: F
+        opt_type:  
+</code></pre>
+</blockquote>
+
+<p>拿到的Trade物件我們可以透過<code>update_status</code>涵式來看目前order的狀態</p>
+
+<blockquote>
+<p>input</p>
+
+<pre><code>trade.update_status(api.client)
+trade
+</code></pre>
+
+<p>output</p>
+
+<pre><code>Trade
+    status: order_sent
+        status_code: 0000
+        errmsg: 
+        product_id: TXFC9
+        ordno: kY012
+        seqno: 702330
+        ord_bs: B
+        price: 9600.0
+        quantity: 5
+        price_type: LMT
+        account: {'account': '9104000', 'username': '莊*芬', 'datacount': 0, 'accttype': 'F', 'broker_id': 'F002000', 'idno': 'SCCEIEFAJA'}
+        msg:                                                             
+        trade_type: 01
+        octype:  
+        mttype: 0
+        composit: 00
+        ord_date: 20181119
+        preord_date: 20181119
+        ord_time: 15:45:48
+        ord_type: ROD
+        product_type: F
+        opt_type:  
+</code></pre>
+</blockquote>
+
+<p>改價或改量的部分使用<code>api.update_order</code>涵式傳入Trade物件</p>
+
+<blockquote>
+<p>input</p>
+
+<pre><code>trade = api.update_order(trade, price=9800, qty=1)
+trade
+</code></pre>
+
+<p>output</p>
+
+<pre><code>Trade
+    status: order_sent
+        status_code: 0000
+        errmsg: 
+        product_id: TXFC9
+        ordno: kY012
+        seqno: 702330
+        ord_bs: B
+        price: 9800.0
+        quantity: 5
+        price_type: LMT
+        account: {'account': '9104000', 'username': '莊*芬', 'datacount': 0, 'accttype': 'F', 'broker_id': 'F002000', 'idno': 'SCCEIEFAJA'}
+        msg:                                                             
+        trade_type: 01
+        octype:  
+        mttype: 0
+        composit: 00
+        ord_date: 20181119
+        preord_date: 20181119
+        ord_time: 15:45:48
+        ord_type: ROD
+        product_type: F
+        opt_type:  
+</code></pre>
+</blockquote>
+
+<p>取消委託使用<code>api.cancel_order</code>涵式並傳入欲取消的trade物件，就不寫出範例code了。</p>
+
+                </div>
+            </div>
+
+        </div>
+        
+
+    </div>
+
+    
+    <div class="content-section-b">
+    
+
+        <div class="container">
+
+            <div class="row">
+                <div>
+                    <hr class="section-heading-spacer">
+                    <div class="clearfix"></div>
+                    <h2 class="section-heading">Account Info</h2>
+                    <p>下單ok後來看帳務部分，帳務部份我們為了各位方便的與python的ecosystem結合，我們製作了將帳務的部分做了快速地轉換，就可以快速地變成pandas的Dataframe方便各位與自己的機器學習或深度學習模型直接介接。</p>
 
                 </div>
             </div>
@@ -409,12 +592,7 @@ quantity: int
     <div class="container">
         <div class="row">
             <div class="col-md-8">
-                <p class="copyright text-muted small">Copyright &copy; Shioaji All Rights Reserved</p>
-            </div>
-            <div class="col-md-4">
-		Built with <a href="http://gohugo.io">Hugo</a> and the
-		<a href="https://github.com/swiftline/github-project-landing-page">Github project Page</a>
-		theme.
+                <p class="copyright text-muted small">Copyright &copy; Sinotrade All Rights Reserved</p>
             </div>
         </div>
     </div>

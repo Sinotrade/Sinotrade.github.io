@@ -45,10 +45,20 @@ Init signature: sj.Shioaji(backend=&#39;http&#39;, simulation=True, proxies={}, 
       <pubDate>Thu, 22 Nov 2018 11:29:00 +0800</pubDate>
       
       <guid>https://sinotrade.github.io/post/order/</guid>
-      <description>開始下單的部分吧!首先我們會需要先製作出Order物件。
+      <description>開始下單的部分吧!首先我們會需要先製作出Order一筆order物件，然後丟進api的place_order涵式中，這個涵式會回傳一個Trade物件包涵這筆單的狀態。
+Order物件需要帶入的參數部分依樣可以用?直接看到文件
  input
 api.Order?  output
-Init signature: api.Order(product_id, product_type, opt_type, price, price_type, order_bs, order_type, octype, quantity, account) Docstring: create order object product_id: str the product code product_type: {&#39;F&#39;, &#39;O&#39;} - F: future - O: option opt_type: {&#39; &#39;, &#39;C&#39;, &#39;P&#39;} the option type Call or Put, leave blank if place future order - &#39; &#39;: Future - &#39;C&#39;: Call - &#39;P&#39;: Put price: float or int order price price_type: {LMT, MKT, MKP} - LMT: limit - MKT: market - MKP: market range order_bs: {&#39;B&#39;, &#39;S&#39;}, - &#39;B&#39;: buy - &#39;S&#39;: sell order_type: {ROD, IOC, FOK} - ROD: Rest of Day - IOC: Immediate-or-Cancel - FOK: Fill-or-Kill octype: {&#39; &#39;, &#39;0&#39;, &#39;1&#39;, &#39;6&#39;}, - &#39; &#39;: auto - &#39;0&#39;: new position - &#39;1&#39;: close position - &#39;6&#39;: day trade quantity: int   </description>
+Init signature: api.Order(product_id, product_type, opt_type, price, price_type, order_bs, order_type, octype, quantity, account) Docstring: create order object product_id: str the product code product_type: {&#39;F&#39;, &#39;O&#39;} - F: future - O: option opt_type: {&#39; &#39;, &#39;C&#39;, &#39;P&#39;} the option type Call or Put, leave blank if place future order - &#39; &#39;: Future - &#39;C&#39;: Call - &#39;P&#39;: Put price: float or int order price price_type: {LMT, MKT, MKP} - LMT: limit - MKT: market - MKP: market range order_bs: {&#39;B&#39;, &#39;S&#39;, - &#39;B&#39;: buy - &#39;S&#39;: sell order_type: {ROD, IOC, FOK} - ROD: Rest of Day - IOC: Immediate-or-Cancel - FOK: Fill-or-Kill octype: {&#39; &#39;, &#39;0&#39;, &#39;1&#39;, &#39;6&#39;}, - &#39; &#39;: auto - &#39;0&#39;: new position - &#39;1&#39;: close position - &#39;6&#39;: day trade quantity: int   接這我們有做一件方便大家開發的事，有兩個物件api.</description>
+    </item>
+    
+    <item>
+      <title>Account Info</title>
+      <link>https://sinotrade.github.io/post/account/</link>
+      <pubDate>Thu, 22 Nov 2018 16:15:57 +0800</pubDate>
+      
+      <guid>https://sinotrade.github.io/post/account/</guid>
+      <description>下單ok後來看帳務部分，帳務部份我們為了各位方便的與python的ecosystem結合，我們製作了將帳務的部分做了快速地轉換，就可以快速地變成pandas的Dataframe方便各位與自己的機器學習或深度學習模型直接介接。</description>
     </item>
     
   </channel>
