@@ -68,7 +68,7 @@ Init signature: api.Order(product_id, product_type, opt_type, price, price_type,
       
       <guid>https://sinotrade.github.io/post/account/</guid>
       <description>account 下單ok後接著看帳務部分，帳務部份我們為了方便的與python的ecosystem結合，我們製作了將帳務的物件快速地轉換，就可以直接地變成pandas的Dataframe方便各位與自己的機器學習或深度學習模型直接介接。
- 權益數帳務 未平倉帳務 平倉損益  權益數帳務  input
+權益數帳務  input
 api.get_account_margin?  output
 Signature: api.get_account_margin(currency=&#39;NTD&#39;, margin_type=&#39;1&#39;, account={}) Docstring: query margin currency: {NTX, USX, NTD, USD, HKD, EUR, JPY, GBP} the margin calculate in which currency - NTX: 約當台幣 - USX: 約當美金 - NTD: 新台幣 - USD: 美元 - HKD: 港幣 - EUR: 歐元 - JPY: 日幣 - GBP: 英鎊 margin_type: {&#39;1&#39;, &#39;2&#39;} query margin type - 1 : 即時 - 2 : 風險  input</description>
     </item>
