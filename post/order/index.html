@@ -118,9 +118,15 @@ body {
             <hr class="section-heading-spacer">
             <div class="clearfix"></div>
             <h2 class="section-heading">Ordering</h2>
-            <p>開始下單的部分吧!首先我們會需要先製作出Order一筆order物件，然後丟進api的place_order涵式中，這個涵式會回傳一個Trade物件包涵這筆單的狀態。</p>
+            
 
-<p>Order物件需要帶入的參數部分依樣可以用?直接看到文件</p>
+<h3 id="order">order</h3>
+
+<p>開始下單的部分吧!首先我們會需要先製作出Order一筆order物件，然後丟進api的place_order函式中，這個函式會回傳一個Trade物件包涵這筆單的狀態。</p>
+
+<h3 id="order物件">Order物件</h3>
+
+<p>Order物件需要帶入的參數部分一樣可以用?直接看到文件</p>
 
 <blockquote>
 <p>input</p>
@@ -165,7 +171,7 @@ quantity: int
 </code></pre>
 </blockquote>
 
-<p>接這我們有做一件方便大家開發的事，有兩個物件<code>api.Order_props</code>跟<code>api.Contracts</code>這兩個物件可以快速輔助開發的時候直接用tab自動補齊的方式找到Order物件中需要填入的欄位。</p>
+<p>接著我們有做一件方便大家開發的事，有兩個物件<code>api.Order_props</code>跟<code>api.Contracts</code>這兩個物件可以快速輔助開發的時候直接用tab自動補齊的方式找到Order物件中需要填入的欄位。</p>
 
 <blockquote>
 <p>input</p>
@@ -212,7 +218,9 @@ api.Contracts.&lt;/tab&gt;
                         )
 </code></pre>
 
-<p>接著我們把order物件傳進<code>place_order</code>涵式中就會送出委託單了。</p>
+<h3 id="下單函式">下單函式</h3>
+
+<p>接著我們把order物件傳進<code>place_order</code>函式中就會送出委託單了。</p>
 
 <blockquote>
 <p>input</p>
@@ -249,7 +257,9 @@ trade
 </code></pre>
 </blockquote>
 
-<p>拿到的Trade物件我們可以透過<code>update_status</code>涵式來看目前order的狀態</p>
+<h3 id="trade物件">Trade物件</h3>
+
+<p>拿到的Trade物件我們可以透過<code>update_status</code>函式來看目前order的狀態</p>
 
 <blockquote>
 <p>input</p>
@@ -286,7 +296,7 @@ trade
 </code></pre>
 </blockquote>
 
-<p>改價或改量的部分使用<code>api.update_order</code>涵式傳入Trade物件</p>
+<p>改價或改量的部分使用<code>api.update_order</code>函式傳入Trade物件</p>
 
 <blockquote>
 <p>input</p>
@@ -323,7 +333,7 @@ trade
 </code></pre>
 </blockquote>
 
-<p>取消委託使用<code>api.cancel_order</code>涵式並傳入欲取消的trade物件，就不寫出範例code了。</p>
+<p>取消委託使用<code>api.cancel_order</code>函式並傳入欲取消的trade物件，就不寫出範例code了。</p>
 
         </div>
     </div>

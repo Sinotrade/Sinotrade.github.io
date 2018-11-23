@@ -6,10 +6,19 @@
     <description>Recent content on Shioaji</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
-    <lastBuildDate>Thu, 22 Nov 2018 10:45:13 +0800</lastBuildDate>
+    <lastBuildDate>Fri, 23 Nov 2018 11:14:38 +0800</lastBuildDate>
     
 	<atom:link href="https://sinotrade.github.io/index.xml" rel="self" type="application/rss+xml" />
     
+    
+    <item>
+      <title>Content</title>
+      <link>https://sinotrade.github.io/post/content/</link>
+      <pubDate>Fri, 23 Nov 2018 11:14:38 +0800</pubDate>
+      
+      <guid>https://sinotrade.github.io/post/content/</guid>
+      <description> 安裝  pip install docker  初始化  載入 初始api 登入 激活憑證  下單  Order物件 下單函式 Trade物件  帳務  權益數帳務 未平倉帳務 平倉損益   </description>
+    </item>
     
     <item>
       <title>Installation</title>
@@ -17,8 +26,8 @@
       <pubDate>Thu, 22 Nov 2018 10:45:13 +0800</pubDate>
       
       <guid>https://sinotrade.github.io/post/install/</guid>
-      <description>Let&amp;rsquo;s get it 直接pip install起來，台灣應該沒有其他券商的api那麼方便了。
-pip install shioaji  我們也準備好了docker image給各位直接使用，有需要那些其他的linux distribution歡迎在github上跟我們講。
+      <description>install Let&amp;rsquo;s get it pip install 直接pip install起來，台灣應該沒有其他券商的api那麼方便了。
+pip install shioaji  docker 我們也準備好了docker image給各位直接使用，有需要那些其他的linux distribution歡迎在github上跟我們講。
 docker run -it shioaji:latest bash  這邊沒有在使用docker的可以忽略，docker主要就是幫各位處理好各種環境問題，但是基本上大家應該pip install就可以開了</description>
     </item>
     
@@ -28,12 +37,12 @@ docker run -it shioaji:latest bash  這邊沒有在使用docker的可以忽略�
       <pubDate>Thu, 22 Nov 2018 10:58:18 +0800</pubDate>
       
       <guid>https://sinotrade.github.io/post/init/</guid>
-      <description>上回我們pip install完了以後，接著我們就可以用python, ipython, jupyter notebook或jupyter lab等等之類開始接下來旅程。
+      <description>init 上回我們pip install完了以後，接著我們就可以用python, ipython, jupyter notebook或jupyter lab等等之類開始接下來旅程。
 在這邊我們還需要一個條件，就是請先開好永豐金證券的帳戶，實體開戶或是直接線上開戶。
 準備好永豐帳戶就讓我們開始吧!
-起手式import我們的api就像import tensorflow pandas等等一樣
-import shioaji as sj  接著我們需要初始化Shioaji這個物件來開始接下來要做的事
-python有個很方便的方法可以看這個物件或涵式的文件，就是直接在function或object後面加上?
+載入 起手式import我們的api就像import tensorflow pandas等等一樣
+import shioaji as sj  初始api 接著我們需要初始化Shioaji這個物件來開始接下來要做的事
+python有個很方便的方法可以看這個物件或函式的文件，就是直接在function或object後面加上?
  input
 sj.Shioaji?  output
 Init signature: sj.Shioaji(backend=&#39;http&#39;, simulation=True, proxies={}, currency=&#39;NTD&#39;) Init docstring: initialize Shioaji to start trading backend: {http, socket} use http or socket as backend currently only support http, socket backend coming soon. - http: will support taiwan stock, future, and global stock - socket: will support taiwan stock, future and global future simulation: bool - False: to trading on real market (just use your Sinopac account to start trading) - True: become simulation account(need to contract as to open simulation account) proxies: dict specific the proxies of your https {&#39;https&#39;: &#39;your-proxy-url&#39;} currency: {NTX, USX, NTD, USD, HKD, EUR, JPY, GBP} set the default currency for display   這邊我們選擇http為backend，並且關閉模擬模式，如果有需要使用模擬的客戶麻煩在gitter中聯絡我們，目前我們http比較完整socket會在近日釋出敬請期待。</description>
@@ -45,11 +54,11 @@ Init signature: sj.Shioaji(backend=&#39;http&#39;, simulation=True, proxies={}, 
       <pubDate>Thu, 22 Nov 2018 11:29:00 +0800</pubDate>
       
       <guid>https://sinotrade.github.io/post/order/</guid>
-      <description>開始下單的部分吧!首先我們會需要先製作出Order一筆order物件，然後丟進api的place_order涵式中，這個涵式會回傳一個Trade物件包涵這筆單的狀態。
-Order物件需要帶入的參數部分依樣可以用?直接看到文件
+      <description>order 開始下單的部分吧!首先我們會需要先製作出Order一筆order物件，然後丟進api的place_order函式中，這個函式會回傳一個Trade物件包涵這筆單的狀態。
+Order物件 Order物件需要帶入的參數部分一樣可以用?直接看到文件
  input
 api.Order?  output
-Init signature: api.Order(product_id, product_type, opt_type, price, price_type, order_bs, order_type, octype, quantity, account) Docstring: create order object product_id: str the product code product_type: {&#39;F&#39;, &#39;O&#39;} - F: future - O: option opt_type: {&#39; &#39;, &#39;C&#39;, &#39;P&#39;} the option type Call or Put, leave blank if place future order - &#39; &#39;: Future - &#39;C&#39;: Call - &#39;P&#39;: Put price: float or int order price price_type: {LMT, MKT, MKP} - LMT: limit - MKT: market - MKP: market range order_bs: {&#39;B&#39;, &#39;S&#39;, - &#39;B&#39;: buy - &#39;S&#39;: sell order_type: {ROD, IOC, FOK} - ROD: Rest of Day - IOC: Immediate-or-Cancel - FOK: Fill-or-Kill octype: {&#39; &#39;, &#39;0&#39;, &#39;1&#39;, &#39;6&#39;}, - &#39; &#39;: auto - &#39;0&#39;: new position - &#39;1&#39;: close position - &#39;6&#39;: day trade quantity: int   接這我們有做一件方便大家開發的事，有兩個物件api.</description>
+Init signature: api.Order(product_id, product_type, opt_type, price, price_type, order_bs, order_type, octype, quantity, account) Docstring: create order object product_id: str the product code product_type: {&#39;F&#39;, &#39;O&#39;} - F: future - O: option opt_type: {&#39; &#39;, &#39;C&#39;, &#39;P&#39;} the option type Call or Put, leave blank if place future order - &#39; &#39;: Future - &#39;C&#39;: Call - &#39;P&#39;: Put price: float or int order price price_type: {LMT, MKT, MKP} - LMT: limit - MKT: market - MKP: market range order_bs: {&#39;B&#39;, &#39;S&#39;, - &#39;B&#39;: buy - &#39;S&#39;: sell order_type: {ROD, IOC, FOK} - ROD: Rest of Day - IOC: Immediate-or-Cancel - FOK: Fill-or-Kill octype: {&#39; &#39;, &#39;0&#39;, &#39;1&#39;, &#39;6&#39;}, - &#39; &#39;: auto - &#39;0&#39;: new position - &#39;1&#39;: close position - &#39;6&#39;: day trade quantity: int   接著我們有做一件方便大家開發的事，有兩個物件api.</description>
     </item>
     
     <item>
@@ -58,7 +67,10 @@ Init signature: api.Order(product_id, product_type, opt_type, price, price_type,
       <pubDate>Thu, 22 Nov 2018 16:15:57 +0800</pubDate>
       
       <guid>https://sinotrade.github.io/post/account/</guid>
-      <description>下單ok後來看帳務部分，帳務部份我們為了各位方便的與python的ecosystem結合，我們製作了將帳務的部分做了快速地轉換，就可以快速地變成pandas的Dataframe方便各位與自己的機器學習或深度學習模型直接介接。</description>
+      <description>account 下單ok後接著看帳務部分，帳務部份我們為了方便的與python的ecosystem結合，我們製作了將帳務的物件快速地轉換，就可以直接地變成pandas的Dataframe方便各位與自己的機器學習或深度學習模型直接介接。
+ 權益數帳務 未平倉帳務 平倉損益  權益數帳務  input
+api.get_account_margin?  output
+Signature: api.get_account_margin(currency=&#39;NTD&#39;, margin_type=&#39;1&#39;, account={}) Docstring: query margin currency: {NTX, USX, NTD, USD, HKD, EUR, JPY, GBP} the margin calculate in which currency - NTX: 約當台幣 - USX: 約當美金 - NTD: 新台幣 - USD: 美元 - HKD: 港幣 - EUR: 歐元 - JPY: 日幣 - GBP: 英鎊 margin_type: {&#39;1&#39;, &#39;2&#39;} query margin type - 1 : 即時 - 2 : 風險  input</description>
     </item>
     
   </channel>

@@ -118,20 +118,28 @@ body {
             <hr class="section-heading-spacer">
             <div class="clearfix"></div>
             <h2 class="section-heading">Initialization</h2>
-            <p>上回我們pip install完了以後，接著我們就可以用python, ipython, jupyter notebook或jupyter lab等等之類開始接下來旅程。</p>
+            
+
+<h3 id="init">init</h3>
+
+<p>上回我們pip install完了以後，接著我們就可以用python, ipython, jupyter notebook或jupyter lab等等之類開始接下來旅程。</p>
 
 <p>在這邊我們還需要一個條件，就是請先開好永豐金證券的帳戶，實體開戶或是直接<a href="http://www.sinotrade.com.tw/">線上開戶</a>。</p>
 
 <p>準備好永豐帳戶就讓我們開始吧!</p>
+
+<h3 id="載入">載入</h3>
 
 <p>起手式import我們的api就像import tensorflow pandas等等一樣</p>
 
 <pre><code>import shioaji as sj
 </code></pre>
 
+<h3 id="初始api">初始api</h3>
+
 <p>接著我們需要初始化Shioaji這個物件來開始接下來要做的事</p>
 
-<p>python有個很方便的方法可以看這個物件或涵式的文件，就是直接在function或object後面加上?</p>
+<p>python有個很方便的方法可以看這個物件或函式的文件，就是直接在function或object後面加上?</p>
 
 <blockquote>
 <p>input</p>
@@ -167,6 +175,8 @@ currency: {NTX, USX, NTD, USD, HKD, EUR, JPY, GBP}
 <pre><code>api = sj.Shioaji(backend='http', simulation=False)
 </code></pre>
 </blockquote>
+
+<h3 id="登入">登入</h3>
 
 <p>接著我們要登入才有辦法開始使用api，登入帳號就是eleader的登入帳號密碼。</p>
 
@@ -238,6 +248,8 @@ api.fut_account
   'idno': 'QCCAHIFFDH'}]
 </code></pre>
 </blockquote>
+
+<h3 id="激活憑證">激活憑證</h3>
 
 <p>以上動作已經完成與下單無關的動作的初始化了，需要下單的話必須啟動憑證，若只是帳務相關等功能無需憑證。</p>
 
