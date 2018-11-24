@@ -62,7 +62,7 @@ Init signature: api.Order(product_id, product_type, opt_type, price, price_type,
     </item>
     
     <item>
-      <title>Account Info</title>
+      <title>Account</title>
       <link>https://sinotrade.github.io/post/account/</link>
       <pubDate>Thu, 22 Nov 2018 16:15:57 +0800</pubDate>
       
