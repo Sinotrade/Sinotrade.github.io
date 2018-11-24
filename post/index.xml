@@ -12,11 +12,11 @@
     
     
     <item>
-      <title>Content</title>
-      <link>https://sinotrade.github.io/post/content/</link>
+      <title>Contents</title>
+      <link>https://sinotrade.github.io/post/contents/</link>
       <pubDate>Fri, 23 Nov 2018 11:14:38 +0800</pubDate>
       
-      <guid>https://sinotrade.github.io/post/content/</guid>
+      <guid>https://sinotrade.github.io/post/contents/</guid>
       <description> 安裝  pip install docker  初始化  載入 初始api 登入 激活憑證  下單  Order物件 下單函式 Trade物件  帳務  權益數帳務 未平倉帳務 平倉損益   </description>
     </item>
     
