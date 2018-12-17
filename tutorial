@@ -1,0 +1,1210 @@
+{
+ "cells": [
+  {
+   "cell_type": "code",
+   "execution_count": 39,
+   "metadata": {},
+   "outputs": [],
+   "source": [
+    "from datetime import date, timedelta\n",
+    "import pandas as pd"
+   ]
+  },
+  {
+   "cell_type": "markdown",
+   "metadata": {},
+   "source": [
+    "### Just import Our api to get start"
+   ]
+  },
+  {
+   "cell_type": "code",
+   "execution_count": 1,
+   "metadata": {},
+   "outputs": [],
+   "source": [
+    "import shioaji as sj"
+   ]
+  },
+  {
+   "cell_type": "markdown",
+   "metadata": {},
+   "source": [
+    "### Use Shioaji object to setup setting and login"
+   ]
+  },
+  {
+   "cell_type": "code",
+   "execution_count": 2,
+   "metadata": {},
+   "outputs": [],
+   "source": [
+    "api = sj.Shioaji(backend='http', simulation=True)"
+   ]
+  },
+  {
+   "cell_type": "code",
+   "execution_count": 3,
+   "metadata": {},
+   "outputs": [],
+   "source": [
+    "person_id = 'SCCEIEFAJA'"
+   ]
+  },
+  {
+   "cell_type": "code",
+   "execution_count": 4,
+   "metadata": {},
+   "outputs": [],
+   "source": [
+    "api.login(person_id=person_id, passwd='2222')"
+   ]
+  },
+  {
+   "cell_type": "code",
+   "execution_count": 5,
+   "metadata": {},
+   "outputs": [
+    {
+     "data": {
+      "text/plain": [
+       "{'account': '9104000',\n",
+       " 'username': '莊*芬',\n",
+       " 'datacount': 0,\n",
+       " 'accttype': 'F',\n",
+       " 'broker_id': 'F002000',\n",
+       " 'idno': 'SCCEIEFAJA'}"
+      ]
+     },
+     "execution_count": 5,
+     "metadata": {},
+     "output_type": "execute_result"
+    }
+   ],
+   "source": [
+    "api.fut_account"
+   ]
+  },
+  {
+   "cell_type": "markdown",
+   "metadata": {},
+   "source": [
+    "### List all your account"
+   ]
+  },
+  {
+   "cell_type": "code",
+   "execution_count": 6,
+   "metadata": {},
+   "outputs": [
+    {
+     "data": {
+      "text/plain": [
+       "[{'account': '9104000',\n",
+       "  'username': '莊*芬',\n",
+       "  'datacount': 0,\n",
+       "  'accttype': 'F',\n",
+       "  'broker_id': 'F002000',\n",
+       "  'idno': 'SCCEIEFAJA'},\n",
+       " {'account': '9802195',\n",
+       "  'username': '莊*芬',\n",
+       "  'datacount': 1,\n",
+       "  'accttype': 'S',\n",
+       "  'broker_id': '9A92',\n",
+       "  'idno': 'SCCEIEFAJA'},\n",
+       " {'account': '00010246',\n",
+       "  'username': '張*云',\n",
+       "  'datacount': 2,\n",
+       "  'accttype': 'H',\n",
+       "  'broker_id': '9A9r',\n",
+       "  'idno': 'SCCEIEFAJA'},\n",
+       " {'account': '09800762',\n",
+       "  'username': 'n*m',\n",
+       "  'datacount': 3,\n",
+       "  'accttype': 'H',\n",
+       "  'broker_id': '1300',\n",
+       "  'idno': 'QCCAHIFFDH'}]"
+      ]
+     },
+     "execution_count": 6,
+     "metadata": {},
+     "output_type": "execute_result"
+    }
+   ],
+   "source": [
+    "api.list_accounts()"
+   ]
+  },
+  {
+   "cell_type": "markdown",
+   "metadata": {},
+   "source": [
+    "### Set your default trading account"
+   ]
+  },
+  {
+   "cell_type": "code",
+   "execution_count": 7,
+   "metadata": {},
+   "outputs": [],
+   "source": [
+    "api.set_default_account(api.fut_account)"
+   ]
+  },
+  {
+   "cell_type": "markdown",
+   "metadata": {},
+   "source": [
+    "### Activate your cetifacation to start ordering"
+   ]
+  },
+  {
+   "cell_type": "code",
+   "execution_count": 8,
+   "metadata": {},
+   "outputs": [
+    {
+     "name": "stdout",
+     "output_type": "stream",
+     "text": [
+      "Ca Initial Done.\n"
+     ]
+    },
+    {
+     "data": {
+      "text/plain": [
+       "0"
+      ]
+     },
+     "execution_count": 8,
+     "metadata": {},
+     "output_type": "execute_result"
+    }
+   ],
+   "source": [
+    "api.activate_ca(ca_path='../ca/Sinopac.pfx', ca_passwd='SCCEIEFAJA', person_id=person_id)"
+   ]
+  },
+  {
+   "cell_type": "markdown",
+   "metadata": {},
+   "source": [
+    "### Making Order object to place order"
+   ]
+  },
+  {
+   "cell_type": "code",
+   "execution_count": 9,
+   "metadata": {},
+   "outputs": [
+    {
+     "data": {
+      "text/plain": [
+       "\u001b[0;31mInit signature:\u001b[0m \u001b[0mapi\u001b[0m\u001b[0;34m.\u001b[0m\u001b[0mOrder\u001b[0m\u001b[0;34m(\u001b[0m\u001b[0mproduct_id\u001b[0m\u001b[0;34m,\u001b[0m \u001b[0mproduct_type\u001b[0m\u001b[0;34m,\u001b[0m \u001b[0mopt_type\u001b[0m\u001b[0;34m,\u001b[0m \u001b[0mprice\u001b[0m\u001b[0;34m,\u001b[0m \u001b[0mprice_type\u001b[0m\u001b[0;34m,\u001b[0m \u001b[0morder_bs\u001b[0m\u001b[0;34m,\u001b[0m \u001b[0morder_type\u001b[0m\u001b[0;34m,\u001b[0m \u001b[0moctype\u001b[0m\u001b[0;34m,\u001b[0m \u001b[0mquantity\u001b[0m\u001b[0;34m,\u001b[0m \u001b[0maccount\u001b[0m\u001b[0;34m)\u001b[0m\u001b[0;34m\u001b[0m\u001b[0m\n",
+       "\u001b[0;31mDocstring:\u001b[0m      <no docstring>\n",
+       "\u001b[0;31mInit docstring:\u001b[0m\n",
+       "create order object\n",
+       "product_id: str \n",
+       "    the product code\n",
+       "product_type: {'F', 'O'}\n",
+       "    - F: future\n",
+       "    - O: option\n",
+       "opt_type: {' ', 'C', 'P'}\n",
+       "    the option type Call or Put, leave blank if place future order\n",
+       "    - ' ': Future\n",
+       "    - 'C': Call\n",
+       "    - 'P': Put \n",
+       "price: float or int\n",
+       "    order price\n",
+       "price_type: {LMT, MKT, MKP}\n",
+       "    - LMT: limit\n",
+       "    - MKT: market\n",
+       "    - MKP: market range\n",
+       "order_bs: {'B', 'S'}, \n",
+       "    - 'B': buy\n",
+       "    - 'S': sell\n",
+       "order_type: {ROD, IOC, FOK}\n",
+       "    - ROD: Rest of Day\n",
+       "    - IOC: Immediate-or-Cancel\n",
+       "    - FOK: Fill-or-Kill\n",
+       "octype: {' ', '0', '1', '6'}, \n",
+       "    - ' ': auto\n",
+       "    - '0': new position\n",
+       "    - '1': close position\n",
+       "    - '6': day trade\n",
+       "quantity: int\n",
+       "\u001b[0;31mFile:\u001b[0m           /mnt/d/yvictor/shioaji_http/shioaji/backend/http/order.py\n",
+       "\u001b[0;31mType:\u001b[0m           type\n"
+      ]
+     },
+     "metadata": {},
+     "output_type": "display_data"
+    }
+   ],
+   "source": [
+    "api.Order?"
+   ]
+  },
+  {
+   "cell_type": "markdown",
+   "metadata": {},
+   "source": [
+    "#### using tab to direct get all the Order properties with autocomplete"
+   ]
+  },
+  {
+   "cell_type": "code",
+   "execution_count": 11,
+   "metadata": {},
+   "outputs": [
+    {
+     "data": {
+      "text/plain": [
+       "shioaji.backend.http.order.Order_props"
+      ]
+     },
+     "execution_count": 11,
+     "metadata": {},
+     "output_type": "execute_result"
+    }
+   ],
+   "source": [
+    "api.Order_props."
+   ]
+  },
+  {
+   "cell_type": "markdown",
+   "metadata": {},
+   "source": [
+    "#### using tab to direct get avaliable trading product with Contracts"
+   ]
+  },
+  {
+   "cell_type": "code",
+   "execution_count": 12,
+   "metadata": {},
+   "outputs": [
+    {
+     "data": {
+      "text/plain": [
+       "Contract\n",
+       "    Code: TXFC9\n",
+       "    Detail:\n",
+       "        code: TXFC9\n",
+       "        deliverymonth: 201903\n",
+       "        poc: \n",
+       "        eprice: 0.0\n",
+       "        ename: TXF\n",
+       "        category: TXF\n",
+       "        prod_kind: I\n",
+       "        csname: 台指期貨\n",
+       "        ostock: #001\n",
+       "        basic: 0001.000000"
+      ]
+     },
+     "execution_count": 12,
+     "metadata": {},
+     "output_type": "execute_result"
+    }
+   ],
+   "source": [
+    "api.Contracts.Future.TXF.TXF201903"
+   ]
+  },
+  {
+   "cell_type": "code",
+   "execution_count": 13,
+   "metadata": {},
+   "outputs": [],
+   "source": [
+    "sample_order = api.Order(product_id=api.Contracts.Future.TXF.TXF201903.code, \n",
+    "                         product_type=api.Order_props.product_type.Future, \n",
+    "                         opt_type=api.Order_props.opt_type.Future,\n",
+    "                         price=9600,\n",
+    "                         price_type=api.Order_props.price_type.LMT,\n",
+    "                         order_bs=api.Order_props.order_bs.Buy,\n",
+    "                         order_type=api.Order_props.order_type.ROD,\n",
+    "                         octype=api.Order_props.octype.auto,\n",
+    "                         quantity=5,\n",
+    "                         account=api.fut_account,\n",
+    "                        )"
+   ]
+  },
+  {
+   "cell_type": "markdown",
+   "metadata": {},
+   "source": [
+    "just pass Order object to place_order fuction to place order then will get the Trade object return"
+   ]
+  },
+  {
+   "cell_type": "code",
+   "execution_count": 14,
+   "metadata": {},
+   "outputs": [],
+   "source": [
+    "trade = api.place_order(sample_order)"
+   ]
+  },
+  {
+   "cell_type": "code",
+   "execution_count": 15,
+   "metadata": {},
+   "outputs": [
+    {
+     "data": {
+      "text/plain": [
+       "Trade\n",
+       "    status: order_sent\n",
+       "        status_code: \n",
+       "        errmsg: \n",
+       "        product_id: TXFC9\n",
+       "        ordno: \n",
+       "        seqno: 702330\n",
+       "        ord_bs: B\n",
+       "        price: 9600\n",
+       "        quantity: 5\n",
+       "        price_type: LMT\n",
+       "        account: {'account': '9104000', 'username': '莊*芬', 'datacount': 0, 'accttype': 'F', 'broker_id': 'F002000', 'idno': 'SCCEIEFAJA'}\n",
+       "        msg:                                                             \n",
+       "        trade_type: 01\n",
+       "        octype:  \n",
+       "        mttype: 0\n",
+       "        composit: 00\n",
+       "        ord_date: 20181119\n",
+       "        preord_date: 20181119\n",
+       "        ord_time: 15:45:48\n",
+       "        ord_type: ROD\n",
+       "        product_type: F\n",
+       "        opt_type:  "
+      ]
+     },
+     "execution_count": 15,
+     "metadata": {},
+     "output_type": "execute_result"
+    }
+   ],
+   "source": [
+    "trade"
+   ]
+  },
+  {
+   "cell_type": "markdown",
+   "metadata": {},
+   "source": [
+    "### Update the trade object status to get the trade information"
+   ]
+  },
+  {
+   "cell_type": "code",
+   "execution_count": 16,
+   "metadata": {},
+   "outputs": [],
+   "source": [
+    "trade.update_status(api.client)"
+   ]
+  },
+  {
+   "cell_type": "code",
+   "execution_count": 17,
+   "metadata": {},
+   "outputs": [
+    {
+     "data": {
+      "text/plain": [
+       "Trade\n",
+       "    status: order_sent\n",
+       "        status_code: 0000\n",
+       "        errmsg: \n",
+       "        product_id: TXFC9\n",
+       "        ordno: kY012\n",
+       "        seqno: 702330\n",
+       "        ord_bs: B\n",
+       "        price: 9600.0\n",
+       "        quantity: 5\n",
+       "        price_type: LMT\n",
+       "        account: {'account': '9104000', 'username': '莊*芬', 'datacount': 0, 'accttype': 'F', 'broker_id': 'F002000', 'idno': 'SCCEIEFAJA'}\n",
+       "        msg:                                                             \n",
+       "        trade_type: 01\n",
+       "        octype:  \n",
+       "        mttype: 0\n",
+       "        composit: 00\n",
+       "        ord_date: 20181119\n",
+       "        preord_date: 20181119\n",
+       "        ord_time: 15:45:48\n",
+       "        ord_type: ROD\n",
+       "        product_type: F\n",
+       "        opt_type:  "
+      ]
+     },
+     "execution_count": 17,
+     "metadata": {},
+     "output_type": "execute_result"
+    }
+   ],
+   "source": [
+    "trade"
+   ]
+  },
+  {
+   "cell_type": "markdown",
+   "metadata": {},
+   "source": [
+    "### Modify price or qty of trade"
+   ]
+  },
+  {
+   "cell_type": "code",
+   "execution_count": 18,
+   "metadata": {},
+   "outputs": [],
+   "source": [
+    "trade = api.update_order(trade, price=9800, qty=1)"
+   ]
+  },
+  {
+   "cell_type": "code",
+   "execution_count": 19,
+   "metadata": {},
+   "outputs": [
+    {
+     "data": {
+      "text/plain": [
+       "Trade\n",
+       "    status: order_sent\n",
+       "        status_code: 0000\n",
+       "        errmsg: \n",
+       "        product_id: TXFC9\n",
+       "        ordno: kY012\n",
+       "        seqno: 702330\n",
+       "        ord_bs: B\n",
+       "        price: 9800.0\n",
+       "        quantity: 5\n",
+       "        price_type: LMT\n",
+       "        account: {'account': '9104000', 'username': '莊*芬', 'datacount': 0, 'accttype': 'F', 'broker_id': 'F002000', 'idno': 'SCCEIEFAJA'}\n",
+       "        msg:                                                             \n",
+       "        trade_type: 01\n",
+       "        octype:  \n",
+       "        mttype: 0\n",
+       "        composit: 00\n",
+       "        ord_date: 20181119\n",
+       "        preord_date: 20181119\n",
+       "        ord_time: 15:45:48\n",
+       "        ord_type: ROD\n",
+       "        product_type: F\n",
+       "        opt_type:  "
+      ]
+     },
+     "execution_count": 19,
+     "metadata": {},
+     "output_type": "execute_result"
+    }
+   ],
+   "source": [
+    "trade"
+   ]
+  },
+  {
+   "cell_type": "markdown",
+   "metadata": {},
+   "source": [
+    "### Account Margin"
+   ]
+  },
+  {
+   "cell_type": "code",
+   "execution_count": 44,
+   "metadata": {},
+   "outputs": [
+    {
+     "data": {
+      "text/plain": [
+       "\u001b[0;31mSignature:\u001b[0m \u001b[0mapi\u001b[0m\u001b[0;34m.\u001b[0m\u001b[0mget_account_margin\u001b[0m\u001b[0;34m(\u001b[0m\u001b[0mcurrency\u001b[0m\u001b[0;34m=\u001b[0m\u001b[0;34m'NTD'\u001b[0m\u001b[0;34m,\u001b[0m \u001b[0mmargin_type\u001b[0m\u001b[0;34m=\u001b[0m\u001b[0;34m'1'\u001b[0m\u001b[0;34m,\u001b[0m \u001b[0maccount\u001b[0m\u001b[0;34m=\u001b[0m\u001b[0;34m{\u001b[0m\u001b[0;34m}\u001b[0m\u001b[0;34m)\u001b[0m\u001b[0;34m\u001b[0m\u001b[0m\n",
+       "\u001b[0;31mDocstring:\u001b[0m\n",
+       "query margin    currency: {NTX, USX, NTD, USD, HKD, EUR, JPY, GBP}\n",
+       "the margin calculate in which currency\n",
+       "    - NTX: 約當台幣\n",
+       "    - USX: 約當美金\n",
+       "    - NTD: 新台幣\n",
+       "    - USD: 美元\n",
+       "    - HKD: 港幣\n",
+       "    - EUR: 歐元\n",
+       "    - JPY: 日幣\n",
+       "    - GBP: 英鎊\n",
+       "margin_type: {'1', '2'}\n",
+       "    query margin type\n",
+       "    - 1 : 即時\n",
+       "    - 2 : 風險\n",
+       "\u001b[0;31mFile:\u001b[0m      /mnt/d/yvictor/shioaji_http/shioaji/shioaji.py\n",
+       "\u001b[0;31mType:\u001b[0m      method\n"
+      ]
+     },
+     "metadata": {},
+     "output_type": "display_data"
+    }
+   ],
+   "source": [
+    "api.get_account_margin?"
+   ]
+  },
+  {
+   "cell_type": "code",
+   "execution_count": 21,
+   "metadata": {},
+   "outputs": [
+    {
+     "data": {
+      "text/plain": [
+       "AccountMargin\n",
+       "    Currency: NTD\n",
+       "    Account: F0020009104000\n",
+       "    Detail:\n",
+       "        OrderPSecurity: 207000.0\n",
+       "        ProfitAccCount: 207000.0\n",
+       "        FProfit: 0.0\n",
+       "        FMissConProfit: 0.0\n",
+       "        OMissConProfit: 0.0\n",
+       "        OColse: 0.0\n",
+       "        OMarketPrice: 0.0\n",
+       "        OTodayDiff: 0.0\n",
+       "        HandCharge: 0.0\n",
+       "        TradeTax: 0.0\n",
+       "        Security: 0.0\n",
+       "        StartSecurity: 0.0\n",
+       "        UpKeepSecurity: 0.0\n",
+       "        Statistics: 99999.0\n",
+       "        Flow: 999.0\n",
+       "        orderBid: 0.0\n",
+       "        orderAsk: 0.0\n",
+       "        Conclusionbid: 0.0\n",
+       "        Conclusionask: 0.0\n",
+       "        YesterdayBalance: 207000.0\n",
+       "        PayMoney: 0.0\n",
+       "        Equity: 207000.0\n",
+       "        Ogain: 0.0\n",
+       "        exrate: 1.0\n",
+       "        xgdamt: 0.0\n",
+       "        agtamt: 0.0\n",
+       "        YesterdayEquity: 207000.0\n",
+       "        Munet: 0.0\n",
+       "        Cashamt: 207000.0\n",
+       "        Bapamt: 0.0\n",
+       "        Sapamt: 0.0\n",
+       "        Adps: 0.0\n",
+       "        Adamt: 0.0\n",
+       "        Ybaln: 207000.0"
+      ]
+     },
+     "execution_count": 21,
+     "metadata": {},
+     "output_type": "execute_result"
+    }
+   ],
+   "source": [
+    "account_margin = api.get_account_margin()\n",
+    "account_margin"
+   ]
+  },
+  {
+   "cell_type": "markdown",
+   "metadata": {},
+   "source": [
+    "directly pass our AccountMargin object to pandas to using your model"
+   ]
+  },
+  {
+   "cell_type": "code",
+   "execution_count": 24,
+   "metadata": {},
+   "outputs": [
+    {
+     "data": {
+      "text/html": [
+       "<div>\n",
+       "<style scoped>\n",
+       "    .dataframe tbody tr th:only-of-type {\n",
+       "        vertical-align: middle;\n",
+       "    }\n",
+       "\n",
+       "    .dataframe tbody tr th {\n",
+       "        vertical-align: top;\n",
+       "    }\n",
+       "\n",
+       "    .dataframe thead th {\n",
+       "        text-align: right;\n",
+       "    }\n",
+       "</style>\n",
+       "<table border=\"1\" class=\"dataframe\">\n",
+       "  <thead>\n",
+       "    <tr style=\"text-align: right;\">\n",
+       "      <th></th>\n",
+       "      <th>Adamt</th>\n",
+       "      <th>Adps</th>\n",
+       "      <th>Bapamt</th>\n",
+       "      <th>Cashamt</th>\n",
+       "      <th>Conclusionask</th>\n",
+       "      <th>Conclusionbid</th>\n",
+       "      <th>Equity</th>\n",
+       "      <th>FMissConProfit</th>\n",
+       "      <th>FProfit</th>\n",
+       "      <th>Flow</th>\n",
+       "      <th>...</th>\n",
+       "      <th>TradeTax</th>\n",
+       "      <th>UpKeepSecurity</th>\n",
+       "      <th>Ybaln</th>\n",
+       "      <th>YesterdayBalance</th>\n",
+       "      <th>YesterdayEquity</th>\n",
+       "      <th>agtamt</th>\n",
+       "      <th>exrate</th>\n",
+       "      <th>orderAsk</th>\n",
+       "      <th>orderBid</th>\n",
+       "      <th>xgdamt</th>\n",
+       "    </tr>\n",
+       "  </thead>\n",
+       "  <tbody>\n",
+       "    <tr>\n",
+       "      <th>0</th>\n",
+       "      <td>0.0</td>\n",
+       "      <td>0.0</td>\n",
+       "      <td>0.0</td>\n",
+       "      <td>207000.0</td>\n",
+       "      <td>0.0</td>\n",
+       "      <td>0.0</td>\n",
+       "      <td>207000.0</td>\n",
+       "      <td>0.0</td>\n",
+       "      <td>0.0</td>\n",
+       "      <td>999.0</td>\n",
+       "      <td>...</td>\n",
+       "      <td>0.0</td>\n",
+       "      <td>0.0</td>\n",
+       "      <td>207000.0</td>\n",
+       "      <td>207000.0</td>\n",
+       "      <td>207000.0</td>\n",
+       "      <td>0.0</td>\n",
+       "      <td>1.0</td>\n",
+       "      <td>0.0</td>\n",
+       "      <td>0.0</td>\n",
+       "      <td>0.0</td>\n",
+       "    </tr>\n",
+       "  </tbody>\n",
+       "</table>\n",
+       "<p>1 rows × 34 columns</p>\n",
+       "</div>"
+      ],
+      "text/plain": [
+       "   Adamt  Adps  Bapamt   Cashamt  Conclusionask  Conclusionbid    Equity  \\\n",
+       "0    0.0   0.0     0.0  207000.0            0.0            0.0  207000.0   \n",
+       "\n",
+       "   FMissConProfit  FProfit   Flow   ...    TradeTax  UpKeepSecurity     Ybaln  \\\n",
+       "0             0.0      0.0  999.0   ...         0.0             0.0  207000.0   \n",
+       "\n",
+       "   YesterdayBalance  YesterdayEquity  agtamt  exrate  orderAsk  orderBid  \\\n",
+       "0          207000.0         207000.0     0.0     1.0       0.0       0.0   \n",
+       "\n",
+       "   xgdamt  \n",
+       "0     0.0  \n",
+       "\n",
+       "[1 rows x 34 columns]"
+      ]
+     },
+     "execution_count": 24,
+     "metadata": {},
+     "output_type": "execute_result"
+    }
+   ],
+   "source": [
+    "df_margin = pd.DataFrame([{**account_margin}])\n",
+    "df_margin"
+   ]
+  },
+  {
+   "cell_type": "markdown",
+   "metadata": {},
+   "source": [
+    "# Get Open Position"
+   ]
+  },
+  {
+   "cell_type": "code",
+   "execution_count": 28,
+   "metadata": {},
+   "outputs": [
+    {
+     "data": {
+      "text/plain": [
+       "\u001b[0;31mSignature:\u001b[0m \u001b[0mapi\u001b[0m\u001b[0;34m.\u001b[0m\u001b[0mget_account_openposition\u001b[0m\u001b[0;34m(\u001b[0m\u001b[0mproduct_type\u001b[0m\u001b[0;34m=\u001b[0m\u001b[0;34m'0'\u001b[0m\u001b[0;34m,\u001b[0m \u001b[0mquery_type\u001b[0m\u001b[0;34m=\u001b[0m\u001b[0;34m'0'\u001b[0m\u001b[0;34m,\u001b[0m \u001b[0maccount\u001b[0m\u001b[0;34m=\u001b[0m\u001b[0;34m{\u001b[0m\u001b[0;34m}\u001b[0m\u001b[0;34m)\u001b[0m\u001b[0;34m\u001b[0m\u001b[0m\n",
+       "\u001b[0;31mDocstring:\u001b[0m\n",
+       "query open position\n",
+       "product_type: {0, 1, 2, 3}\n",
+       "    filter product type of open position\n",
+       "    - 0: all\n",
+       "    - 1: future\n",
+       "    - 2: option\n",
+       "    - 3: usd base\n",
+       "query_type: {0, 1}\n",
+       "    query return with detail or summary\n",
+       "    - 0: detail\n",
+       "    - 1: summary\n",
+       "\u001b[0;31mFile:\u001b[0m      /mnt/d/yvictor/shioaji_http/shioaji/shioaji.py\n",
+       "\u001b[0;31mType:\u001b[0m      method\n"
+      ]
+     },
+     "metadata": {},
+     "output_type": "display_data"
+    }
+   ],
+   "source": [
+    "api.get_account_openposition?"
+   ]
+  },
+  {
+   "cell_type": "code",
+   "execution_count": 29,
+   "metadata": {},
+   "outputs": [
+    {
+     "data": {
+      "text/plain": [
+       "AccountOpenPosition"
+      ]
+     },
+     "execution_count": 29,
+     "metadata": {},
+     "output_type": "execute_result"
+    }
+   ],
+   "source": [
+    "positions = api.get_account_openposition(query_type='1', account=api.fut_account)\n",
+    "positions"
+   ]
+  },
+  {
+   "cell_type": "code",
+   "execution_count": 30,
+   "metadata": {},
+   "outputs": [
+    {
+     "data": {
+      "text/html": [
+       "<div>\n",
+       "<style scoped>\n",
+       "    .dataframe tbody tr th:only-of-type {\n",
+       "        vertical-align: middle;\n",
+       "    }\n",
+       "\n",
+       "    .dataframe tbody tr th {\n",
+       "        vertical-align: top;\n",
+       "    }\n",
+       "\n",
+       "    .dataframe thead th {\n",
+       "        text-align: right;\n",
+       "    }\n",
+       "</style>\n",
+       "<table border=\"1\" class=\"dataframe\">\n",
+       "  <thead>\n",
+       "    <tr style=\"text-align: right;\">\n",
+       "      <th></th>\n",
+       "      <th>Account</th>\n",
+       "      <th>Code</th>\n",
+       "      <th>CodeName</th>\n",
+       "      <th>ContractAverPrice</th>\n",
+       "      <th>Currency</th>\n",
+       "      <th>Date</th>\n",
+       "      <th>FlowProfitLoss</th>\n",
+       "      <th>MTAMT</th>\n",
+       "      <th>OTAMT</th>\n",
+       "      <th>OrderBS</th>\n",
+       "      <th>OrderNum</th>\n",
+       "      <th>OrderType</th>\n",
+       "      <th>RealPrice</th>\n",
+       "      <th>SettlePrice</th>\n",
+       "      <th>SettleProfitLoss</th>\n",
+       "      <th>StartSecurity</th>\n",
+       "      <th>UpKeepSecurity</th>\n",
+       "      <th>Volume</th>\n",
+       "      <th>paddingByte</th>\n",
+       "    </tr>\n",
+       "  </thead>\n",
+       "  <tbody>\n",
+       "    <tr>\n",
+       "      <th>0</th>\n",
+       "      <td>FF0020009104000</td>\n",
+       "      <td>TXFA9</td>\n",
+       "      <td>台指期貨 01</td>\n",
+       "      <td>9508.4137</td>\n",
+       "      <td>NTD</td>\n",
+       "      <td>00000000</td>\n",
+       "      <td>4795201.620000</td>\n",
+       "      <td>6438000.000000</td>\n",
+       "      <td>8352000.000000</td>\n",
+       "      <td>B</td>\n",
+       "      <td></td>\n",
+       "      <td></td>\n",
+       "      <td>9784.0</td>\n",
+       "      <td>9784.00</td>\n",
+       "      <td>4795201.620000</td>\n",
+       "      <td>8352000.000000</td>\n",
+       "      <td>6438000.000000</td>\n",
+       "      <td>87.000000</td>\n",
+       "      <td></td>\n",
+       "    </tr>\n",
+       "    <tr>\n",
+       "      <th>1</th>\n",
+       "      <td>FF0020009104000</td>\n",
+       "      <td>XJFF9</td>\n",
+       "      <td>日圓期貨 06</td>\n",
+       "      <td>80.0000</td>\n",
+       "      <td>JPY</td>\n",
+       "      <td>00000000</td>\n",
+       "      <td>31400.000000</td>\n",
+       "      <td>47000.000000</td>\n",
+       "      <td>61000.000000</td>\n",
+       "      <td>B</td>\n",
+       "      <td></td>\n",
+       "      <td></td>\n",
+       "      <td>0.0</td>\n",
+       "      <td>81.57</td>\n",
+       "      <td>31400.000000</td>\n",
+       "      <td>61000.000000</td>\n",
+       "      <td>47000.000000</td>\n",
+       "      <td>1.000000</td>\n",
+       "      <td></td>\n",
+       "    </tr>\n",
+       "    <tr>\n",
+       "      <th>2</th>\n",
+       "      <td>FF0020009104000</td>\n",
+       "      <td>TXO08000L8</td>\n",
+       "      <td>台指選擇權 8000 C 12</td>\n",
+       "      <td>1870.0000</td>\n",
+       "      <td>NTD</td>\n",
+       "      <td>00000000</td>\n",
+       "      <td>-14000.000000</td>\n",
+       "      <td>0.000000</td>\n",
+       "      <td>0.000000</td>\n",
+       "      <td>B</td>\n",
+       "      <td></td>\n",
+       "      <td></td>\n",
+       "      <td>1730.0</td>\n",
+       "      <td>1810.00</td>\n",
+       "      <td>-6000.000000</td>\n",
+       "      <td>0.000000</td>\n",
+       "      <td>0.000000</td>\n",
+       "      <td>2.000000</td>\n",
+       "      <td></td>\n",
+       "    </tr>\n",
+       "    <tr>\n",
+       "      <th>3</th>\n",
+       "      <td>FF0020009104000</td>\n",
+       "      <td>TXO09200L8</td>\n",
+       "      <td>台指選擇權 9200 C 12</td>\n",
+       "      <td>720.0000</td>\n",
+       "      <td>NTD</td>\n",
+       "      <td>00000000</td>\n",
+       "      <td>11250.000000</td>\n",
+       "      <td>147000.000000</td>\n",
+       "      <td>162000.000000</td>\n",
+       "      <td>S</td>\n",
+       "      <td></td>\n",
+       "      <td></td>\n",
+       "      <td>645.0</td>\n",
+       "      <td>660.00</td>\n",
+       "      <td>9000.000000</td>\n",
+       "      <td>162000.000000</td>\n",
+       "      <td>147000.000000</td>\n",
+       "      <td>3.000000</td>\n",
+       "      <td></td>\n",
+       "    </tr>\n",
+       "    <tr>\n",
+       "      <th>4</th>\n",
+       "      <td>FF0020009104000</td>\n",
+       "      <td>TXO09400X8</td>\n",
+       "      <td>台指選擇權 9400 P 12</td>\n",
+       "      <td>199.0000</td>\n",
+       "      <td>NTD</td>\n",
+       "      <td>00000000</td>\n",
+       "      <td>21200.000000</td>\n",
+       "      <td>57600.000000</td>\n",
+       "      <td>65600.000000</td>\n",
+       "      <td>S</td>\n",
+       "      <td></td>\n",
+       "      <td></td>\n",
+       "      <td>93.0</td>\n",
+       "      <td>93.00</td>\n",
+       "      <td>21200.000000</td>\n",
+       "      <td>65600.000000</td>\n",
+       "      <td>57600.000000</td>\n",
+       "      <td>4.000000</td>\n",
+       "      <td></td>\n",
+       "    </tr>\n",
+       "    <tr>\n",
+       "      <th>5</th>\n",
+       "      <td>FF0020009104000</td>\n",
+       "      <td>TXO10200L8</td>\n",
+       "      <td>台指選擇權 10200 C 12</td>\n",
+       "      <td>111.0000</td>\n",
+       "      <td>NTD</td>\n",
+       "      <td>00000000</td>\n",
+       "      <td>33550.000000</td>\n",
+       "      <td>125950.000000</td>\n",
+       "      <td>147950.000000</td>\n",
+       "      <td>S</td>\n",
+       "      <td></td>\n",
+       "      <td></td>\n",
+       "      <td>50.0</td>\n",
+       "      <td>50.00</td>\n",
+       "      <td>33550.000000</td>\n",
+       "      <td>147950.000000</td>\n",
+       "      <td>125950.000000</td>\n",
+       "      <td>11.000000</td>\n",
+       "      <td></td>\n",
+       "    </tr>\n",
+       "  </tbody>\n",
+       "</table>\n",
+       "</div>"
+      ],
+      "text/plain": [
+       "           Account        Code          CodeName  ContractAverPrice Currency  \\\n",
+       "0  FF0020009104000       TXFA9           台指期貨 01          9508.4137      NTD   \n",
+       "1  FF0020009104000       XJFF9           日圓期貨 06            80.0000      JPY   \n",
+       "2  FF0020009104000  TXO08000L8   台指選擇權 8000 C 12          1870.0000      NTD   \n",
+       "3  FF0020009104000  TXO09200L8   台指選擇權 9200 C 12           720.0000      NTD   \n",
+       "4  FF0020009104000  TXO09400X8   台指選擇權 9400 P 12           199.0000      NTD   \n",
+       "5  FF0020009104000  TXO10200L8  台指選擇權 10200 C 12           111.0000      NTD   \n",
+       "\n",
+       "       Date  FlowProfitLoss           MTAMT           OTAMT OrderBS OrderNum  \\\n",
+       "0  00000000  4795201.620000  6438000.000000  8352000.000000       B            \n",
+       "1  00000000    31400.000000    47000.000000    61000.000000       B            \n",
+       "2  00000000   -14000.000000        0.000000        0.000000       B            \n",
+       "3  00000000    11250.000000   147000.000000   162000.000000       S            \n",
+       "4  00000000    21200.000000    57600.000000    65600.000000       S            \n",
+       "5  00000000    33550.000000   125950.000000   147950.000000       S            \n",
+       "\n",
+       "  OrderType  RealPrice  SettlePrice SettleProfitLoss   StartSecurity  \\\n",
+       "0               9784.0      9784.00   4795201.620000  8352000.000000   \n",
+       "1                  0.0        81.57     31400.000000    61000.000000   \n",
+       "2               1730.0      1810.00     -6000.000000        0.000000   \n",
+       "3                645.0       660.00      9000.000000   162000.000000   \n",
+       "4                 93.0        93.00     21200.000000    65600.000000   \n",
+       "5                 50.0        50.00     33550.000000   147950.000000   \n",
+       "\n",
+       "   UpKeepSecurity     Volume paddingByte  \n",
+       "0  6438000.000000  87.000000              \n",
+       "1    47000.000000   1.000000              \n",
+       "2        0.000000   2.000000              \n",
+       "3   147000.000000   3.000000              \n",
+       "4    57600.000000   4.000000              \n",
+       "5   125950.000000  11.000000              "
+      ]
+     },
+     "execution_count": 30,
+     "metadata": {},
+     "output_type": "execute_result"
+    }
+   ],
+   "source": [
+    "df_positions = pd.DataFrame(positions.data())\n",
+    "df_positions"
+   ]
+  },
+  {
+   "cell_type": "markdown",
+   "metadata": {},
+   "source": [
+    "### Get Settle ProfitLoss"
+   ]
+  },
+  {
+   "cell_type": "code",
+   "execution_count": 31,
+   "metadata": {},
+   "outputs": [
+    {
+     "data": {
+      "text/plain": [
+       "\u001b[0;31mSignature:\u001b[0m \u001b[0mapi\u001b[0m\u001b[0;34m.\u001b[0m\u001b[0mget_account_settle_profitloss\u001b[0m\u001b[0;34m(\u001b[0m\u001b[0mproduct_type\u001b[0m\u001b[0;34m=\u001b[0m\u001b[0;34m'0'\u001b[0m\u001b[0;34m,\u001b[0m \u001b[0msummary\u001b[0m\u001b[0;34m=\u001b[0m\u001b[0;34m'Y'\u001b[0m\u001b[0;34m,\u001b[0m \u001b[0mstart_date\u001b[0m\u001b[0;34m=\u001b[0m\u001b[0;34m''\u001b[0m\u001b[0;34m,\u001b[0m \u001b[0mend_date\u001b[0m\u001b[0;34m=\u001b[0m\u001b[0;34m''\u001b[0m\u001b[0;34m,\u001b[0m \u001b[0mcurrency\u001b[0m\u001b[0;34m=\u001b[0m\u001b[0;34m''\u001b[0m\u001b[0;34m,\u001b[0m \u001b[0maccount\u001b[0m\u001b[0;34m=\u001b[0m\u001b[0;34m{\u001b[0m\u001b[0;34m}\u001b[0m\u001b[0;34m)\u001b[0m\u001b[0;34m\u001b[0m\u001b[0m\n",
+       "\u001b[0;31mDocstring:\u001b[0m\n",
+       "query settlement profit loss\n",
+       "product_type: {0, 1, 2}\n",
+       "    filter product type of open position\n",
+       "    - 0: all\n",
+       "    - 1: future\n",
+       "    - 2: option\n",
+       "summary: {Y, N}\n",
+       "    query return with detail or summary\n",
+       "    - Y: summary\n",
+       "    - N: detail\n",
+       "start_date: str\n",
+       "    the start date of query range format with %Y%m%d\n",
+       "    ex: 20180101\n",
+       "end_date: str\n",
+       "    the end date of query range format with %Y%m%d\n",
+       "    ex: 20180201\n",
+       "currency: {NTD, USD, HKD, EUR, CAD, BAS}\n",
+       "    the profit loss calculate in which currency\n",
+       "    - NTD: 新台幣\n",
+       "    - USD: 美元\n",
+       "    - HKD: 港幣\n",
+       "    - EUR: 歐元\n",
+       "    - CAD: 加幣 \n",
+       "    - BAS: 基幣\n",
+       "\u001b[0;31mFile:\u001b[0m      /mnt/d/yvictor/shioaji_http/shioaji/shioaji.py\n",
+       "\u001b[0;31mType:\u001b[0m      method\n"
+      ]
+     },
+     "metadata": {},
+     "output_type": "display_data"
+    }
+   ],
+   "source": [
+    "api.get_account_settle_profitloss?"
+   ]
+  },
+  {
+   "cell_type": "code",
+   "execution_count": 40,
+   "metadata": {},
+   "outputs": [
+    {
+     "data": {
+      "text/plain": [
+       "AccountSettleProfitLoss"
+      ]
+     },
+     "execution_count": 40,
+     "metadata": {},
+     "output_type": "execute_result"
+    }
+   ],
+   "source": [
+    "st_date = (date.today() - timedelta(days=60)).strftime('%Y%m%d')\n",
+    "settle_profitloss = api.get_account_settle_profitloss(summary='Y', start_date=st_date)\n",
+    "settle_profitloss"
+   ]
+  },
+  {
+   "cell_type": "code",
+   "execution_count": 41,
+   "metadata": {},
+   "outputs": [
+    {
+     "data": {
+      "text/html": [
+       "<div>\n",
+       "<style scoped>\n",
+       "    .dataframe tbody tr th:only-of-type {\n",
+       "        vertical-align: middle;\n",
+       "    }\n",
+       "\n",
+       "    .dataframe tbody tr th {\n",
+       "        vertical-align: top;\n",
+       "    }\n",
+       "\n",
+       "    .dataframe thead th {\n",
+       "        text-align: right;\n",
+       "    }\n",
+       "</style>\n",
+       "<table border=\"1\" class=\"dataframe\">\n",
+       "  <thead>\n",
+       "    <tr style=\"text-align: right;\">\n",
+       "      <th></th>\n",
+       "      <th>account</th>\n",
+       "      <th>averagePrice</th>\n",
+       "      <th>code</th>\n",
+       "      <th>codeName</th>\n",
+       "      <th>currency</th>\n",
+       "      <th>floatProfitLoss</th>\n",
+       "      <th>handCharge</th>\n",
+       "      <th>ord_bs</th>\n",
+       "      <th>ord_type</th>\n",
+       "      <th>ordno</th>\n",
+       "      <th>ordno_b</th>\n",
+       "      <th>settleAvgPrc</th>\n",
+       "      <th>settleDate</th>\n",
+       "      <th>settleVolume</th>\n",
+       "      <th>tFlag</th>\n",
+       "      <th>tdate</th>\n",
+       "      <th>tradeProfitLoss</th>\n",
+       "      <th>tradeTax</th>\n",
+       "      <th>unVolume</th>\n",
+       "      <th>volume</th>\n",
+       "    </tr>\n",
+       "  </thead>\n",
+       "  <tbody>\n",
+       "    <tr>\n",
+       "      <th>0</th>\n",
+       "      <td>F0020009104000</td>\n",
+       "      <td>9900.0</td>\n",
+       "      <td>TXFK8</td>\n",
+       "      <td>台指期貨 11</td>\n",
+       "      <td>NTD</td>\n",
+       "      <td>460.000000</td>\n",
+       "      <td>60.000000</td>\n",
+       "      <td>S</td>\n",
+       "      <td>00</td>\n",
+       "      <td>kY002</td>\n",
+       "      <td>kY003</td>\n",
+       "      <td>9897.0</td>\n",
+       "      <td>20181022</td>\n",
+       "      <td>1.000000</td>\n",
+       "      <td>1</td>\n",
+       "      <td>20181022</td>\n",
+       "      <td>600.000000</td>\n",
+       "      <td>80.000000</td>\n",
+       "      <td>0.000000</td>\n",
+       "      <td>1.000000</td>\n",
+       "    </tr>\n",
+       "  </tbody>\n",
+       "</table>\n",
+       "</div>"
+      ],
+      "text/plain": [
+       "          account  averagePrice   code codeName currency floatProfitLoss  \\\n",
+       "0  F0020009104000        9900.0  TXFK8  台指期貨 11      NTD      460.000000   \n",
+       "\n",
+       "  handCharge ord_bs ord_type  ordno ordno_b  settleAvgPrc settleDate  \\\n",
+       "0  60.000000      S       00  kY002   kY003        9897.0   20181022   \n",
+       "\n",
+       "  settleVolume tFlag     tdate tradeProfitLoss   tradeTax  unVolume    volume  \n",
+       "0     1.000000     1  20181022      600.000000  80.000000  0.000000  1.000000  "
+      ]
+     },
+     "execution_count": 41,
+     "metadata": {},
+     "output_type": "execute_result"
+    }
+   ],
+   "source": [
+    "df_profitloss = pd.DataFrame(settle_profitloss.data())\n",
+    "df_profitloss"
+   ]
+  },
+  {
+   "cell_type": "code",
+   "execution_count": null,
+   "metadata": {},
+   "outputs": [],
+   "source": []
+  }
+ ],
+ "metadata": {
+  "kernelspec": {
+   "display_name": "Python 3",
+   "language": "python",
+   "name": "python3"
+  },
+  "language_info": {
+   "codemirror_mode": {
+    "name": "ipython",
+    "version": 3
+   },
+   "file_extension": ".py",
+   "mimetype": "text/x-python",
+   "name": "python",
+   "nbconvert_exporter": "python",
+   "pygments_lexer": "ipython3",
+   "version": "3.6.2"
+  }
+ },
+ "nbformat": 4,
+ "nbformat_minor": 2
+}
