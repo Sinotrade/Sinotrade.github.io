@@ -28,7 +28,7 @@
       <guid>https://sinotrade.github.io/post/install/</guid>
       <description>install Let&amp;rsquo;s get it pip install 直接pip install起來，台灣應該沒有其他券商的api那麼方便了。
 pip install shioaji  docker 我們也準備好了docker image給各位直接使用，有需要那些其他的linux distribution歡迎在github上跟我們講。
-docker run -it shioaji:latest bash  這邊沒有在使用docker的可以忽略，docker主要就是幫各位處理好各種環境問題，但是基本上大家應該pip install就可以開了</description>
+docker run -it sinotrade/shioaji:latest bash  這邊沒有在使用docker的可以忽略，docker主要就是幫各位處理好各種環境問題，但是基本上大家應該pip install就可以開了</description>
     </item>
     
     <item>
