@@ -13293,7 +13293,7 @@ a.anchor-link {
 <div class="text_cell_render border-box-sizing rendered_html">
 <h3 id="Docker-Image">Docker Image<a class="anchor-link" href="#Docker-Image">&#182;</a></h3><p>simple run with interactive mode in docker</p>
 
-<pre><code>docker run -it sinotrade/shioaji:latest bash</code></pre>
+<pre><code>docker run -it sinotrade/shioaji:latest</code></pre>
 
 </div>
 </div>
@@ -13384,22 +13384,39 @@ a.anchor-link {
 
 <div class="output_text output_subarea ">
 <pre><span class="ansi-red-fg">Init signature:</span> sj<span class="ansi-blue-fg">.</span>Shioaji<span class="ansi-blue-fg">(</span>backend<span class="ansi-blue-fg">=</span><span class="ansi-blue-fg">&#39;http&#39;</span><span class="ansi-blue-fg">,</span> simulation<span class="ansi-blue-fg">=</span><span class="ansi-green-fg">True</span><span class="ansi-blue-fg">,</span> proxies<span class="ansi-blue-fg">=</span><span class="ansi-blue-fg">{</span><span class="ansi-blue-fg">}</span><span class="ansi-blue-fg">,</span> currency<span class="ansi-blue-fg">=</span><span class="ansi-blue-fg">&#39;NTD&#39;</span><span class="ansi-blue-fg">)</span>
-<span class="ansi-red-fg">Docstring:</span>      &lt;no docstring&gt;
+<span class="ansi-red-fg">Docstring:</span>     
+shioaji api 
+
+Functions:
+    login 
+    activate_ca
+    list_accounts
+    set_default_account
+    get_account_margin 
+    get_account_openposition
+    get_account_settle_profitloss
+    place_order
+    update_order
+    update_status
+    list_trades
+
+Objects:
+    Contracts
+    Order
 <span class="ansi-red-fg">Init docstring:</span>
 initialize Shioaji to start trading
-backend: {http, socket}
-    use http or socket as backend currently only support http, socket backend coming soon.
-    - http: will support taiwan stock, future, and global stock
-    - socket: will support taiwan stock, future and global future
-simulation: bool
-    - False: to trading on real market (just use your Sinopac account to start trading)
-    - True: become simulation account(need to contract as to open simulation account)
-proxies: dict
-    specific the proxies of your https
-    {&#39;https&#39;: &#39;your-proxy-url&#39;}
-currency: {NTX, USX, NTD, USD, HKD, EUR, JPY, GBP}
-    set the default currency for display 
-<span class="ansi-red-fg">File:</span>            
+
+Args:
+    backend (str): {http, socket} 
+        use http or socket as backend currently only support http, async socket backend coming soon.
+    simulation (bool): 
+        - False: to trading on real market (just use your Sinopac account to start trading)
+        - True: become simulation account(need to contract as to open simulation account)
+    proxies (dict): specific the proxies of your https
+        ex: {&#39;https&#39;: &#39;your-proxy-url&#39;}
+    currency (str): {NTX, USX, NTD, USD, HKD, EUR, JPY, GBP}
+        set the default currency for display 
+<span class="ansi-red-fg">File:</span>           shioaji/shioaji.py
 <span class="ansi-red-fg">Type:</span>           type
 </pre>
 </div>
@@ -13450,11 +13467,11 @@ currency: {NTX, USX, NTD, USD, HKD, EUR, JPY, GBP}
 <pre><span class="ansi-red-fg">Signature:</span> api<span class="ansi-blue-fg">.</span>login<span class="ansi-blue-fg">(</span>person_id<span class="ansi-blue-fg">,</span> passwd<span class="ansi-blue-fg">)</span>
 <span class="ansi-red-fg">Docstring:</span>
 login to trading server
-person_id: str
-    Same as your eleader, ileader login id(usually your person ID)
-passwd: str
-    the password of your eleader login password(not ca password)
-<span class="ansi-red-fg">File:</span>       
+
+Args:
+    person_id (str): Same as your eleader, ileader login id(usually your person ID)
+    passwd  (str): the password of your eleader login password(not ca password)
+<span class="ansi-red-fg">File:</span>      shioaji/shioaji.py
 <span class="ansi-red-fg">Type:</span>      method
 </pre>
 </div>
@@ -13515,12 +13532,7 @@ passwd: str
 
 
 <div class="output_text output_subarea output_execute_result">
-<pre>{&#39;idno&#39;: &#39;SCCEIEFAJA&#39;,
- &#39;accttype&#39;: &#39;F&#39;,
- &#39;datacount&#39;: 0,
- &#39;username&#39;: &#39;莊*芬&#39;,
- &#39;broker_id&#39;: &#39;F002000&#39;,
- &#39;account&#39;: &#39;9104000&#39;}</pre>
+<pre>FutureAccount(person_id=&#39;SCCEIEFAJA&#39;, broker_id=&#39;F002000&#39;, account_id=&#39;9104000&#39;, username=&#39;莊*芬&#39;)</pre>
 </div>
 
 </div>
@@ -13560,18 +13572,9 @@ passwd: str
 
 
 <div class="output_text output_subarea output_execute_result">
-<pre>[{&#39;idno&#39;: &#39;SCCEIEFAJA&#39;,
-  &#39;accttype&#39;: &#39;F&#39;,
-  &#39;datacount&#39;: 0,
-  &#39;username&#39;: &#39;莊*芬&#39;,
-  &#39;broker_id&#39;: &#39;F002000&#39;,
-  &#39;account&#39;: &#39;9104000&#39;},
- {&#39;idno&#39;: &#39;SCCEIEFAJA&#39;,
-  &#39;accttype&#39;: &#39;S&#39;,
-  &#39;datacount&#39;: 1,
-  &#39;username&#39;: &#39;莊*芬&#39;,
-  &#39;broker_id&#39;: &#39;9A92&#39;,
-  &#39;account&#39;: &#39;9802195&#39;}]</pre>
+<pre>[Account(account_type=&#39;H&#39;, person_id=&#39;QCCAHIFFDH&#39;, broker_id=&#39;1300&#39;, account_id=&#39;09800762&#39;, username=&#39;n*m&#39;),
+ FutureAccount(person_id=&#39;SCCEIEFAJA&#39;, broker_id=&#39;F002000&#39;, account_id=&#39;9104000&#39;, username=&#39;莊*芬&#39;),
+ StockAccount(person_id=&#39;SCCEIEFAJA&#39;, broker_id=&#39;9A92&#39;, account_id=&#39;9802195&#39;, username=&#39;莊*芬&#39;)]</pre>
 </div>
 
 </div>
@@ -13634,13 +13637,13 @@ passwd: str
 <pre><span class="ansi-red-fg">Signature:</span> api<span class="ansi-blue-fg">.</span>activate_ca<span class="ansi-blue-fg">(</span>ca_path<span class="ansi-blue-fg">,</span> ca_passwd<span class="ansi-blue-fg">,</span> person_id<span class="ansi-blue-fg">)</span>
 <span class="ansi-red-fg">Docstring:</span>
 activate your ca for trading
-ca_path: str
-    the path of your ca, support both absloutely and relatively path, use same ca with eleader
-ca_passwd: str
-    password of your ca
-person_id: str
-    the ca belong which person ID
-<span class="ansi-red-fg">File:</span>       
+
+Args: 
+    ca_path (str):
+        the path of your ca, support both absloutely and relatively path, use same ca with eleader
+    ca_passwd (str): password of your ca
+    person_id (str): the ca belong which person ID
+<span class="ansi-red-fg">File:</span>      shioaji/shioaji.py
 <span class="ansi-red-fg">Type:</span>      method
 </pre>
 </div>
@@ -13726,40 +13729,59 @@ person_id: str
 
 
 <div class="output_text output_subarea ">
-<pre><span class="ansi-red-fg">Init signature:</span> api<span class="ansi-blue-fg">.</span>Order<span class="ansi-blue-fg">(</span>product_id<span class="ansi-blue-fg">,</span> product_type<span class="ansi-blue-fg">,</span> opt_type<span class="ansi-blue-fg">,</span> price<span class="ansi-blue-fg">,</span> price_type<span class="ansi-blue-fg">,</span> order_bs<span class="ansi-blue-fg">,</span> order_type<span class="ansi-blue-fg">,</span> octype<span class="ansi-blue-fg">,</span> quantity<span class="ansi-blue-fg">,</span> account<span class="ansi-blue-fg">)</span>
-<span class="ansi-red-fg">Docstring:</span>      &lt;no docstring&gt;
+<pre><span class="ansi-red-fg">Init signature:</span> api<span class="ansi-blue-fg">.</span>Order<span class="ansi-blue-fg">(</span>action<span class="ansi-blue-fg">,</span> price_type<span class="ansi-blue-fg">,</span> order_type<span class="ansi-blue-fg">,</span> price<span class="ansi-blue-fg">,</span> quantity<span class="ansi-blue-fg">,</span> <span class="ansi-blue-fg">*</span>args<span class="ansi-blue-fg">,</span> <span class="ansi-blue-fg">**</span>kwargs<span class="ansi-blue-fg">)</span>
+<span class="ansi-red-fg">Docstring:</span>     
+The basic order object to place order
+
+Attributes:
+    product_id (str): the code of product that order to placing
+    action (srt): {B, S}, order action to buy or sell
+        - B: buy
+        - S: sell
+    price_type (str): {LMT, MKT, MKP}, pricing type of order
+        - LMT: limit
+        - MKT: market
+        - MKP: market range
+    order_type (str): {ROD, IOC, FOK}, the type of order
+        - ROD: Rest of Day
+        - IOC: Immediate-or-Cancel
+        - FOK: Fill-or-Kill
+    octype (str): {&#39; &#39;, &#39;0&#39;, &#39;1&#39;, &#39;6&#39;}, the type or order to open new position or close position 
+        - &#39; &#39;: auto
+        - &#39;0&#39;: new position
+        - &#39;1&#39;: close position
+        - &#39;6&#39;: day trade
+    price (float or int): the price of order
+    quantity (int): the quantity of order
+    account (:obj:Account): which account to place this order
+    ca (binary): the ca of this order
 <span class="ansi-red-fg">Init docstring:</span>
-create order object
-product_id: str 
-    the product code
-product_type: {&#39;F&#39;, &#39;O&#39;}
-    - F: future
-    - O: option
-opt_type: {&#39; &#39;, &#39;C&#39;, &#39;P&#39;}
-    the option type Call or Put, leave blank if place future order
-    - &#39; &#39;: Future
-    - &#39;C&#39;: Call
-    - &#39;P&#39;: Put 
-price: float or int
-    order price
-price_type: {LMT, MKT, MKP}
-    - LMT: limit
-    - MKT: market
-    - MKP: market range
-order_bs: {&#39;B&#39;, &#39;S&#39;}, 
-    - &#39;B&#39;: buy
-    - &#39;S&#39;: sell
-order_type: {ROD, IOC, FOK}
-    - ROD: Rest of Day
-    - IOC: Immediate-or-Cancel
-    - FOK: Fill-or-Kill
-octype: {&#39; &#39;, &#39;0&#39;, &#39;1&#39;, &#39;6&#39;}, 
-    - &#39; &#39;: auto
-    - &#39;0&#39;: new position
-    - &#39;1&#39;: close position
-    - &#39;6&#39;: day trade
-quantity: int
-<span class="ansi-red-fg">File:</span>           
+the __init__ method of order
+
+Args:
+    product_id (str, optional): the code of product that order to placing 
+                                if not provide will gen from contract when placing order 
+    action (srt): {B, S}, order action to buy or sell
+        - B: buy
+        - S: sell
+    price_type (str): {LMT, MKT, MKP}, pricing type of order
+        - LMT: limit
+        - MKT: market
+        - MKP: market range
+    order_type (str): {ROD, IOC, FOK}, the type of order
+        - ROD: Rest of Day
+        - IOC: Immediate-or-Cancel
+        - FOK: Fill-or-Kill
+    octype (str, optional): {&#39; &#39;, &#39;0&#39;, &#39;1&#39;, &#39;6&#39;}, the type or order 
+                            to open new position or close position 
+                            if not provide will become auto mode 
+        - &#39; &#39;: auto
+        - &#39;0&#39;: new position
+        - &#39;1&#39;: close position
+        - &#39;6&#39;: day trade
+    price (float or int): the price of order
+    quantity (int): the quantity of order
+<span class="ansi-red-fg">File:</span>           shioaji/order.py
 <span class="ansi-red-fg">Type:</span>           type
 </pre>
 </div>
@@ -13815,7 +13837,7 @@ quantity: int
 <div class="prompt input_prompt">In&nbsp;[14]:</div>
 <div class="inner_cell">
     <div class="input_area">
-<div class=" highlight hl-ipython3"><pre><span></span><span class="n">api</span><span class="o">.</span><span class="n">OrderProps</span><span class="o">.</span><span class="n">opt_type</span><span class="o">.</span><span class="n">Call</span>
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">api</span><span class="o">.</span><span class="n">OrderProps</span><span class="o">.</span><span class="n">order_type</span><span class="o">.</span><span class="n">IOC</span>
 </pre></div>
 
     </div>
@@ -13834,7 +13856,7 @@ quantity: int
 
 
 <div class="output_text output_subarea output_execute_result">
-<pre>&#39;C&#39;</pre>
+<pre>&#39;IOC&#39;</pre>
 </div>
 
 </div>
@@ -13849,13 +13871,13 @@ quantity: int
 <h4 id="using-tab-to-direct-get-avaliable-trading-product-with-Contracts">using tab to direct get avaliable trading product with Contracts<a class="anchor-link" href="#using-tab-to-direct-get-avaliable-trading-product-with-Contracts">&#182;</a></h4>
 </div>
 </div>
-</div><div class="fragment">
+</div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
 <div class="prompt input_prompt">In&nbsp;[15]:</div>
 <div class="inner_cell">
     <div class="input_area">
-<div class=" highlight hl-ipython3"><pre><span></span><span class="n">api</span><span class="o">.</span><span class="n">Contracts</span><span class="o">.</span><span class="n">Future</span><span class="o">.</span><span class="n">TXF</span><span class="o">.</span><span class="n">TXF201903</span>
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">api</span><span class="o">.</span><span class="n">Contracts</span>
 </pre></div>
 
     </div>
@@ -13874,19 +13896,7 @@ quantity: int
 
 
 <div class="output_text output_subarea output_execute_result">
-<pre>Contract
-    Code: TXFC9
-    Detail:
-        code: TXFC9
-        deliverymonth: 201903
-        poc: 
-        eprice: 0.0
-        ename: TXF
-        category: TXF
-        prod_kind: I
-        csname: 台指期貨
-        ostock: #001
-        basic: 0001.000000</pre>
+<pre>Contracts(Futures=(BRF, CAF, CBF, CCF, CDF, CEF, CFF, CGF, CHF, CJ1, CJF, CKF, CLF, CM1, CMF, CNF, CQF, CRF, CSF, CUF, CWF, CXF, CYF, CZ1, CZF, DC1, DCF, DDF, DE1, DEF, DF1, DFF, DGF, DHF, DJF, DKF, DLF, DN1, DNF, DOF, DP1, DPF, DQF, DSF, DUF, DVF, DWF, DX1, DXF, DYF, DZ1, DZF, EEF, EGF, EHF, EMF, EPF, ERF, ESF, EXF, EY1, EYF, FF1, FFF, FGF, FKF, FQF, FRF, FTF, FVF, FWF, FXF, FYF, FZF, GAF, GBF, GCF, GDF, GHF, GIF, GJF, GLF, GMF, GNF, GOF, GPF, GRF, GTF, GUF, GWF, GXF, GZF, HAF, HBF, HCF, HHF, HIF, HLF, HMF, HOF, HS1, HSF, HY1, HYF, I5F, IA1, IAF, IHF, IIF, IJF, IMF, IOF, IPF, IQF, IRF, ITF, IVF, IXF, IYF, IZF, JBF, JDF, JFF, JGF, JIF, JNF, JPF, JSF, JWF, JZF, KAF, KCF, KDF, KFF, KG1, KGF, KIF, KKF, KLF, KOF, KPF, KSF, KWF, LBF, LCF, LIF, LMF, LO1, LOF, LQF, LRF, LTF, LUF, LV1, LVF, LWF, LX1, LXF, LZF, MAF, MBF, MCF, MEF, MIF, MJF, MKF, ML1, MPF, MQF, MVF, MXF, MYF, NAF, NBF, NCF, NDF, NEF, NGF, NHF, NI1, NIF, NJF, NLF, NMF, NNF, NOF, NQF, NSF, NTF, NUF, NVF, NWF, NXF, NYF, NZF, OAF, OBF, OCF, ODF, OEF, OFF, OGF, OHF, OJF, OKF, OLF, OMF, ONF, OOF, OPF, OQF, ORF, OSF, OTF, OUF, OVF, OWF, OXF, OYF, OZF, PAF, PBF, RHF, RTF, SPF, T5F, TGF, TJF, TXF, UDF, XAF, XBF, XEF, XIF, XJF), Options=(CAO, CBA, CBO, CCO, CDO, CEO, CFO, CGA, CGO, CHO, CJA, CJO, CKO, CLA, CLO, CMA, CMO, CNO, CQO, CRO, CSO, CXO, CZA, CZO, DCO, DEA, DEO, DFA, DFO, DGO, DHA, DHO, DJO, DKA, DKO, DLO, DNA, DNO, DOO, DPO, DQO, DSO, DUO, DVO, DWO, DXA, DXO, GIA, GIO, GTO, GXO, HCO, IJA, IJO, LOA, LOO, NYA, NYO, NZO, OAO, OBO, OCO, OJO, OKO, OOO, OZA, OZO, RHO, RTO, TEO, TFO, TGO, TXO, XIO))</pre>
 </div>
 
 </div>
@@ -13894,69 +13904,79 @@ quantity: int
 </div>
 </div>
 
-</div></div><div class="fragment">
+</div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
 <div class="prompt input_prompt">In&nbsp;[16]:</div>
 <div class="inner_cell">
     <div class="input_area">
-<div class=" highlight hl-ipython3"><pre><span></span><span class="n">TXFR3</span> <span class="o">=</span> <span class="n">api</span><span class="o">.</span><span class="n">Contracts</span><span class="o">.</span><span class="n">Future</span><span class="o">.</span><span class="n">TXF</span><span class="o">.</span><span class="n">TXF201903</span>
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">api</span><span class="o">.</span><span class="n">Contracts</span><span class="o">.</span><span class="n">Futures</span>
 </pre></div>
 
     </div>
 </div>
 </div>
 
-</div></div></section><section>
+<div class="output_wrapper">
+<div class="output">
+
+
+<div class="output_area">
+
+    <div class="prompt output_prompt">Out[16]:</div>
+
+
+
+
+<div class="output_text output_subarea output_execute_result">
+<pre>(BRF, CAF, CBF, CCF, CDF, CEF, CFF, CGF, CHF, CJ1, CJF, CKF, CLF, CM1, CMF, CNF, CQF, CRF, CSF, CUF, CWF, CXF, CYF, CZ1, CZF, DC1, DCF, DDF, DE1, DEF, DF1, DFF, DGF, DHF, DJF, DKF, DLF, DN1, DNF, DOF, DP1, DPF, DQF, DSF, DUF, DVF, DWF, DX1, DXF, DYF, DZ1, DZF, EEF, EGF, EHF, EMF, EPF, ERF, ESF, EXF, EY1, EYF, FF1, FFF, FGF, FKF, FQF, FRF, FTF, FVF, FWF, FXF, FYF, FZF, GAF, GBF, GCF, GDF, GHF, GIF, GJF, GLF, GMF, GNF, GOF, GPF, GRF, GTF, GUF, GWF, GXF, GZF, HAF, HBF, HCF, HHF, HIF, HLF, HMF, HOF, HS1, HSF, HY1, HYF, I5F, IA1, IAF, IHF, IIF, IJF, IMF, IOF, IPF, IQF, IRF, ITF, IVF, IXF, IYF, IZF, JBF, JDF, JFF, JGF, JIF, JNF, JPF, JSF, JWF, JZF, KAF, KCF, KDF, KFF, KG1, KGF, KIF, KKF, KLF, KOF, KPF, KSF, KWF, LBF, LCF, LIF, LMF, LO1, LOF, LQF, LRF, LTF, LUF, LV1, LVF, LWF, LX1, LXF, LZF, MAF, MBF, MCF, MEF, MIF, MJF, MKF, ML1, MPF, MQF, MVF, MXF, MYF, NAF, NBF, NCF, NDF, NEF, NGF, NHF, NI1, NIF, NJF, NLF, NMF, NNF, NOF, NQF, NSF, NTF, NUF, NVF, NWF, NXF, NYF, NZF, OAF, OBF, OCF, ODF, OEF, OFF, OGF, OHF, OJF, OKF, OLF, OMF, ONF, OOF, OPF, OQF, ORF, OSF, OTF, OUF, OVF, OWF, OXF, OYF, OZF, PAF, PBF, RHF, RTF, SPF, T5F, TGF, TJF, TXF, UDF, XAF, XBF, XEF, XIF, XJF)</pre>
+</div>
+
+</div>
+
+</div>
+</div>
+
+</div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
 <div class="prompt input_prompt">In&nbsp;[17]:</div>
 <div class="inner_cell">
     <div class="input_area">
-<div class=" highlight hl-ipython3"><pre><span></span><span class="n">sample_order</span> <span class="o">=</span> <span class="n">api</span><span class="o">.</span><span class="n">Order</span><span class="p">(</span><span class="n">product_id</span><span class="o">=</span><span class="n">TXFR3</span><span class="o">.</span><span class="n">code</span><span class="p">,</span> 
-                         <span class="n">product_type</span><span class="o">=</span><span class="n">api</span><span class="o">.</span><span class="n">OrderProps</span><span class="o">.</span><span class="n">product_type</span><span class="o">.</span><span class="n">Future</span><span class="p">,</span> 
-                         <span class="n">opt_type</span><span class="o">=</span><span class="n">api</span><span class="o">.</span><span class="n">OrderProps</span><span class="o">.</span><span class="n">opt_type</span><span class="o">.</span><span class="n">Future</span><span class="p">,</span>
-                         <span class="n">price</span><span class="o">=</span><span class="mi">9600</span><span class="p">,</span>
-                         <span class="n">price_type</span><span class="o">=</span><span class="n">api</span><span class="o">.</span><span class="n">OrderProps</span><span class="o">.</span><span class="n">price_type</span><span class="o">.</span><span class="n">LMT</span><span class="p">,</span>
-                         <span class="n">order_bs</span><span class="o">=</span><span class="n">api</span><span class="o">.</span><span class="n">OrderProps</span><span class="o">.</span><span class="n">order_bs</span><span class="o">.</span><span class="n">Buy</span><span class="p">,</span>
-                         <span class="n">order_type</span><span class="o">=</span><span class="n">api</span><span class="o">.</span><span class="n">OrderProps</span><span class="o">.</span><span class="n">order_type</span><span class="o">.</span><span class="n">ROD</span><span class="p">,</span>
-                         <span class="n">octype</span><span class="o">=</span><span class="n">api</span><span class="o">.</span><span class="n">OrderProps</span><span class="o">.</span><span class="n">octype</span><span class="o">.</span><span class="n">auto</span><span class="p">,</span>
-                         <span class="n">quantity</span><span class="o">=</span><span class="mi">5</span><span class="p">,</span>
-                         <span class="n">account</span><span class="o">=</span><span class="n">api</span><span class="o">.</span><span class="n">fut_account</span><span class="p">,</span>
-                        <span class="p">)</span>
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">api</span><span class="o">.</span><span class="n">Contracts</span><span class="o">.</span><span class="n">Futures</span><span class="o">.</span><span class="n">TXF</span>
 </pre></div>
 
     </div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+
+<div class="output_area">
+
+    <div class="prompt output_prompt">Out[17]:</div>
+
+
+
+
+<div class="output_text output_subarea output_execute_result">
+<pre>TXF(TXF201903, TXF201906, TXF201809, TXF201810, TXF201811, TXF201812)</pre>
+</div>
+
+</div>
+
 </div>
 </div>
 
 </div><div class="fragment">
-<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
-</div><div class="inner_cell">
-<div class="text_cell_render border-box-sizing rendered_html">
-<h3 id="just-pass-Order-object-to-place_order-fuction-to-place-order-then-will-get-the-Trade-object-return">just pass Order object to place_order fuction to place order then will get the Trade object return<a class="anchor-link" href="#just-pass-Order-object-to-place_order-fuction-to-place-order-then-will-get-the-Trade-object-return">&#182;</a></h3>
-</div>
-</div>
-</div></div><div class="fragment">
-<div class="cell border-box-sizing code_cell rendered">
-<div class="input">
-<div class="prompt input_prompt">In&nbsp;[18]:</div>
-<div class="inner_cell">
-    <div class="input_area">
-<div class=" highlight hl-ipython3"><pre><span></span><span class="n">trade</span> <span class="o">=</span> <span class="n">api</span><span class="o">.</span><span class="n">place_order</span><span class="p">(</span><span class="n">TXFR3</span><span class="p">,</span> <span class="n">sample_order</span><span class="p">)</span>
-</pre></div>
-
-    </div>
-</div>
-</div>
-
-</div></div></section><section>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
 <div class="prompt input_prompt">In&nbsp;[19]:</div>
 <div class="inner_cell">
     <div class="input_area">
-<div class=" highlight hl-ipython3"><pre><span></span><span class="n">trade</span>
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">api</span><span class="o">.</span><span class="n">Contracts</span><span class="o">.</span><span class="n">Futures</span><span class="o">.</span><span class="n">TXF</span><span class="o">.</span><span class="n">TXF201903</span>
 </pre></div>
 
     </div>
@@ -13975,63 +13995,136 @@ quantity: int
 
 
 <div class="output_text output_subarea output_execute_result">
-<pre>Trade
-    status: order_sent
-        status_code: 
-        errmsg: 
-        product_id: TXFC9
-        ordno: 
-        seqno: 710435
-        ord_bs: B
-        price: 9600
-        quantity: 5
-        price_type: LMT
-        account: {&#39;idno&#39;: &#39;SCCEIEFAJA&#39;, &#39;accttype&#39;: &#39;F&#39;, &#39;datacount&#39;: 0, &#39;username&#39;: &#39;莊*芬&#39;, &#39;broker_id&#39;: &#39;F002000&#39;, &#39;account&#39;: &#39;9104000&#39;}
-        msg:                                                             
-        trade_type: 01
-        octype:  
-        mttype: 0
-        composit: 00
-        ord_date: 20181220
-        preord_date: 20181220
-        ord_time: 16:03:13
-        ord_type: ROD
-        product_type: F
-        opt_type:  </pre>
+<pre>Future(symbol=&#39;TXF201903&#39;, code=&#39;TXFC9&#39;, name=&#39;台指期貨&#39;, category=&#39;TXF&#39;, delivery_month=&#39;201903&#39;, underlying_kind=&#39;I&#39;, underlying_code=&#39;#001&#39;, unit=1.0)</pre>
 </div>
 
 </div>
 
-</div>
-</div>
-
-</div></section><section>
-<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
-</div><div class="inner_cell">
-<div class="text_cell_render border-box-sizing rendered_html">
-<h3 id="Update-the-trade-object-status-to-get-the-trade-information">Update the trade object status to get the trade information<a class="anchor-link" href="#Update-the-trade-object-status-to-get-the-trade-information">&#182;</a></h3>
-</div>
-</div>
-</div><div class="fragment">
-<div class="cell border-box-sizing code_cell rendered">
-<div class="input">
-<div class="prompt input_prompt">In&nbsp;[20]:</div>
-<div class="inner_cell">
-    <div class="input_area">
-<div class=" highlight hl-ipython3"><pre><span></span><span class="n">api</span><span class="o">.</span><span class="n">update_status</span><span class="p">()</span>
-</pre></div>
-
-    </div>
 </div>
 </div>
 
 </div></div><div class="fragment">
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
+<div class="prompt input_prompt">In&nbsp;[21]:</div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">TXFR3</span> <span class="o">=</span> <span class="n">api</span><span class="o">.</span><span class="n">Contracts</span><span class="o">.</span><span class="n">Futures</span><span class="o">.</span><span class="n">TXF</span><span class="o">.</span><span class="n">TXF201903</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+</div></div></section><section>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In&nbsp;[22]:</div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">sample_order</span> <span class="o">=</span> <span class="n">api</span><span class="o">.</span><span class="n">Order</span><span class="p">(</span><span class="n">product_id</span><span class="o">=</span><span class="n">TXFR3</span><span class="o">.</span><span class="n">code</span><span class="p">,</span> 
+                         <span class="n">price</span><span class="o">=</span><span class="mi">9600</span><span class="p">,</span>
+                         <span class="n">action</span><span class="o">=</span><span class="n">api</span><span class="o">.</span><span class="n">OrderProps</span><span class="o">.</span><span class="n">action</span><span class="o">.</span><span class="n">Buy</span><span class="p">,</span>
+                         <span class="n">price_type</span><span class="o">=</span><span class="n">api</span><span class="o">.</span><span class="n">OrderProps</span><span class="o">.</span><span class="n">price_type</span><span class="o">.</span><span class="n">LMT</span><span class="p">,</span>
+                         <span class="n">order_type</span><span class="o">=</span><span class="n">api</span><span class="o">.</span><span class="n">OrderProps</span><span class="o">.</span><span class="n">order_type</span><span class="o">.</span><span class="n">ROD</span><span class="p">,</span>
+                         <span class="n">octype</span><span class="o">=</span><span class="n">api</span><span class="o">.</span><span class="n">OrderProps</span><span class="o">.</span><span class="n">octype</span><span class="o">.</span><span class="n">auto</span><span class="p">,</span>
+                         <span class="n">quantity</span><span class="o">=</span><span class="mi">5</span><span class="p">,</span>
+                         <span class="n">account</span><span class="o">=</span><span class="n">api</span><span class="o">.</span><span class="n">fut_account</span><span class="p">,</span>
+                        <span class="p">)</span>
+<span class="n">sample_order</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+
+<div class="output_area">
+
+    <div class="prompt output_prompt">Out[22]:</div>
+
+
+
+
+<div class="output_text output_subarea output_execute_result">
+<pre>Order(product_id=&#39;TXFC9&#39;, action=&#39;B&#39;, price_type=&#39;LMT&#39;, order_type=&#39;ROD&#39;, price=9600, quantity=5, account=FutureAccount(person_id=&#39;SCCEIEFAJA&#39;, broker_id=&#39;F002000&#39;, account_id=&#39;9104000&#39;, username=&#39;莊*芬&#39;))</pre>
+</div>
+
+</div>
+
+</div>
+</div>
+
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h3 id="Using-LimitOrder,-MarketOrder,-etc.">Using LimitOrder, MarketOrder, etc.<a class="anchor-link" href="#Using-LimitOrder,-MarketOrder,-etc.">&#182;</a></h3>
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In&nbsp;[23]:</div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="nb">print</span><span class="p">(</span><span class="n">api</span><span class="o">.</span><span class="n">LimitOrder</span><span class="o">.</span><span class="fm">__init__</span><span class="o">.</span><span class="vm">__doc__</span><span class="p">)</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+
+<div class="output_area">
+
+    <div class="prompt"></div>
+
+
+<div class="output_subarea output_stream output_stdout output_text">
+<pre> LimitOrder
+
+        Args:
+            product_id (str, optional): the code of product that order to placing 
+                                        if not provide will gen from contract when placing order 
+            action (srt): {B, S}, order action to buy or sell
+                - B: buy
+                - S: sell
+            price (float or int): the price of order
+            quantity (int): the quantity of order
+            order_type (str, optional): {ROD, IOC, FOK}, the type of order
+                - ROD: Rest of Day
+                - IOC: Immediate-or-Cancel
+                - FOK: Fill-or-Kill
+            octype (str, optional): {&#39; &#39;, &#39;0&#39;, &#39;1&#39;, &#39;6&#39;}, the type or order 
+                                    to open new position or close position 
+                                    if not provide will become auto mode 
+                - &#39; &#39;: auto
+                - &#39;0&#39;: new position
+                - &#39;1&#39;: close position
+                - &#39;6&#39;: day trade
+        
+</pre>
+</div>
+</div>
+
+</div>
+</div>
+
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
 <div class="prompt input_prompt">In&nbsp;[24]:</div>
 <div class="inner_cell">
     <div class="input_area">
-<div class=" highlight hl-ipython3"><pre><span></span><span class="n">trade</span>
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">sample_limit_order</span> <span class="o">=</span> <span class="n">api</span><span class="o">.</span><span class="n">LimitOrder</span><span class="p">(</span><span class="s1">&#39;B&#39;</span><span class="p">,</span> <span class="mi">9700</span><span class="p">,</span> <span class="mi">5</span><span class="p">)</span>
+<span class="n">sample_limit_order</span>
 </pre></div>
 
     </div>
@@ -14050,29 +14143,7 @@ quantity: int
 
 
 <div class="output_text output_subarea output_execute_result">
-<pre>Trade
-    status: order_sent
-        status_code: 0000
-        errmsg: 
-        product_id: TXFC9
-        ordno: kY01A
-        seqno: 710435
-        ord_bs: B
-        price: 9600.0
-        quantity: 5
-        price_type: LMT
-        account: {&#39;idno&#39;: &#39;SCCEIEFAJA&#39;, &#39;accttype&#39;: &#39;F&#39;, &#39;datacount&#39;: 0, &#39;username&#39;: &#39;莊*芬&#39;, &#39;broker_id&#39;: &#39;F002000&#39;, &#39;account&#39;: &#39;9104000&#39;}
-        msg:                                                             
-        trade_type: 01
-        octype:  
-        mttype: 0
-        composit: 00
-        ord_date: 20181220
-        preord_date: 20181220
-        ord_time: 16:03:13
-        ord_type: ROD
-        product_type: F
-        opt_type:  </pre>
+<pre>LimitOrder(action=&#39;B&#39;, order_type=&#39;ROD&#39;, price=9700, quantity=5)</pre>
 </div>
 
 </div>
@@ -14080,33 +14151,64 @@ quantity: int
 </div>
 </div>
 
-</div></div></section><section>
-<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
-</div><div class="inner_cell">
-<div class="text_cell_render border-box-sizing rendered_html">
-<h3 id="Modify-price-or-qty-of-trade">Modify price or qty of trade<a class="anchor-link" href="#Modify-price-or-qty-of-trade">&#182;</a></h3>
 </div>
-</div>
-</div><div class="fragment">
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
 <div class="prompt input_prompt">In&nbsp;[25]:</div>
 <div class="inner_cell">
     <div class="input_area">
-<div class=" highlight hl-ipython3"><pre><span></span><span class="n">trade</span> <span class="o">=</span> <span class="n">api</span><span class="o">.</span><span class="n">update_order</span><span class="p">(</span><span class="n">trade</span><span class="p">,</span> <span class="n">price</span><span class="o">=</span><span class="mi">9800</span><span class="p">,</span> <span class="n">qty</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
+<div class=" highlight hl-ipython3"><pre><span></span><span class="nb">print</span><span class="p">(</span><span class="n">api</span><span class="o">.</span><span class="n">MarketOrder</span><span class="o">.</span><span class="fm">__init__</span><span class="o">.</span><span class="vm">__doc__</span><span class="p">)</span>
 </pre></div>
 
     </div>
 </div>
 </div>
 
-</div></div><div class="fragment">
+<div class="output_wrapper">
+<div class="output">
+
+
+<div class="output_area">
+
+    <div class="prompt"></div>
+
+
+<div class="output_subarea output_stream output_stdout output_text">
+<pre> MarketOrder
+
+        Args:
+            product_id (str, optional): the code of product that order to placing 
+                                        if not provide will gen from contract when placing order 
+            action (srt): {B, S}, order action to buy or sell
+                - B: buy
+                - S: sell
+            quantity (int): the quantity of order
+            order_type (str, optional): {IOC, FOK}, the type of order
+                - IOC: Immediate-or-Cancel
+                - FOK: Fill-or-Kill
+            octype (str, optional): {&#39; &#39;, &#39;0&#39;, &#39;1&#39;, &#39;6&#39;}, the type or order 
+                                    to open new position or close position 
+                                    if not provide will become auto mode 
+                - &#39; &#39;: auto
+                - &#39;0&#39;: new position
+                - &#39;1&#39;: close position
+                - &#39;6&#39;: day trade
+        
+</pre>
+</div>
+</div>
+
+</div>
+</div>
+
+</div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
 <div class="prompt input_prompt">In&nbsp;[26]:</div>
 <div class="inner_cell">
     <div class="input_area">
-<div class=" highlight hl-ipython3"><pre><span></span><span class="n">trade</span>
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">sample_mkt_order</span> <span class="o">=</span> <span class="n">api</span><span class="o">.</span><span class="n">MarketOrder</span><span class="p">(</span><span class="s1">&#39;B&#39;</span><span class="p">,</span> <span class="mi">5</span><span class="p">)</span>
+<span class="n">sample_mkt_order</span>
 </pre></div>
 
     </div>
@@ -14125,29 +14227,166 @@ quantity: int
 
 
 <div class="output_text output_subarea output_execute_result">
-<pre>Trade
-    status: order_sent
-        status_code: 0000
-        errmsg: 
-        product_id: TXFC9
-        ordno: kY01A
-        seqno: 710435
-        ord_bs: B
-        price: 9800.0
-        quantity: 4
-        price_type: LMT
-        account: {&#39;idno&#39;: &#39;SCCEIEFAJA&#39;, &#39;accttype&#39;: &#39;F&#39;, &#39;datacount&#39;: 0, &#39;username&#39;: &#39;莊*芬&#39;, &#39;broker_id&#39;: &#39;F002000&#39;, &#39;account&#39;: &#39;9104000&#39;}
-        msg:                                                             
-        trade_type: 01
-        octype:  
-        mttype: 0
-        composit: 00
-        ord_date: 20181220
-        preord_date: 20181220
-        ord_time: 16:03:13
-        ord_type: ROD
-        product_type: F
-        opt_type:  </pre>
+<pre>MarketOrder(action=&#39;B&#39;, order_type=&#39;IOC&#39;, quantity=5)</pre>
+</div>
+
+</div>
+
+</div>
+</div>
+
+</div><div class="fragment">
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h3 id="just-pass-Order-object-to-place_order-fuction-to-place-order-then-will-get-the-Trade-object-return">just pass Order object to place_order fuction to place order then will get the Trade object return<a class="anchor-link" href="#just-pass-Order-object-to-place_order-fuction-to-place-order-then-will-get-the-Trade-object-return">&#182;</a></h3>
+</div>
+</div>
+</div></div><div class="fragment">
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In&nbsp;[27]:</div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">trade</span> <span class="o">=</span> <span class="n">api</span><span class="o">.</span><span class="n">place_order</span><span class="p">(</span><span class="n">TXFR3</span><span class="p">,</span> <span class="n">sample_order</span><span class="p">)</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+</div></div></section><section>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In&nbsp;[28]:</div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">trade</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+
+<div class="output_area">
+
+    <div class="prompt output_prompt">Out[28]:</div>
+
+
+
+
+<div class="output_text output_subarea output_execute_result">
+<pre>Trade(contract=Future(symbol=&#39;TXF201903&#39;, code=&#39;TXFC9&#39;, name=&#39;台指期貨&#39;, category=&#39;TXF&#39;, delivery_month=&#39;201903&#39;, underlying_kind=&#39;I&#39;, underlying_code=&#39;#001&#39;, unit=1.0), order=Order(product_id=&#39;TXFC9&#39;, action=&#39;B&#39;, price_type=&#39;LMT&#39;, order_type=&#39;ROD&#39;, price=9600, quantity=5, account=FutureAccount(person_id=&#39;SCCEIEFAJA&#39;, broker_id=&#39;F002000&#39;, account_id=&#39;9104000&#39;, username=&#39;莊*芬&#39;)), status=OrderStatus(seqno=&#39;701124&#39;, order_id=&#39;7521840eb43914f94f98f025b1762e0b250ded21&#39;, status=&#39;PendingSubmit&#39;, order_datetime=datetime.datetime(2019, 1, 16, 12, 39, 28)))</pre>
+</div>
+
+</div>
+
+</div>
+</div>
+
+</div></section><section>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h3 id="Update-the-trade-object-status-to-get-the-trade-information">Update the trade object status to get the trade information<a class="anchor-link" href="#Update-the-trade-object-status-to-get-the-trade-information">&#182;</a></h3>
+</div>
+</div>
+</div><div class="fragment">
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In&nbsp;[29]:</div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">api</span><span class="o">.</span><span class="n">update_status</span><span class="p">()</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+</div></div><div class="fragment">
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In&nbsp;[30]:</div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">trade</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+
+<div class="output_area">
+
+    <div class="prompt output_prompt">Out[30]:</div>
+
+
+
+
+<div class="output_text output_subarea output_execute_result">
+<pre>Trade(contract=Future(symbol=&#39;TXF201903&#39;, code=&#39;TXFC9&#39;, name=&#39;台指期貨&#39;, category=&#39;TXF&#39;, delivery_month=&#39;201903&#39;, underlying_kind=&#39;I&#39;, underlying_code=&#39;#001&#39;, unit=1.0), order=Order(product_id=&#39;TXFC9&#39;, action=&#39;B&#39;, price_type=&#39;LMT&#39;, order_type=&#39;ROD&#39;, price=9600, quantity=5, account=FutureAccount(person_id=&#39;SCCEIEFAJA&#39;, broker_id=&#39;F002000&#39;, account_id=&#39;9104000&#39;, username=&#39;莊*芬&#39;)), status=OrderStatus(seqno=&#39;701124&#39;, ordno=&#39;ky00P&#39;, order_id=&#39;7521840eb43914f94f98f025b1762e0b250ded21&#39;, status=&#39;Submitted&#39;, status_code=&#39;0000&#39;, msg=&#39;ky00P&#39;, modified_price=9600.0, remaining=5, order_datetime=datetime.datetime(2019, 1, 16, 12, 39, 28)))</pre>
+</div>
+
+</div>
+
+</div>
+</div>
+
+</div></div></section><section>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h3 id="Modify-price-or-qty-of-trade">Modify price or qty of trade<a class="anchor-link" href="#Modify-price-or-qty-of-trade">&#182;</a></h3>
+</div>
+</div>
+</div><div class="fragment">
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In&nbsp;[31]:</div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">trade</span> <span class="o">=</span> <span class="n">api</span><span class="o">.</span><span class="n">update_order</span><span class="p">(</span><span class="n">trade</span><span class="p">,</span> <span class="n">price</span><span class="o">=</span><span class="mi">9800</span><span class="p">,</span> <span class="n">qty</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+</div></div><div class="fragment">
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In&nbsp;[32]:</div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">trade</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+
+<div class="output_area">
+
+    <div class="prompt output_prompt">Out[32]:</div>
+
+
+
+
+<div class="output_text output_subarea output_execute_result">
+<pre>Trade(contract=Future(symbol=&#39;TXF201903&#39;, code=&#39;TXFC9&#39;, name=&#39;台指期貨&#39;, category=&#39;TXF&#39;, delivery_month=&#39;201903&#39;, underlying_kind=&#39;I&#39;, underlying_code=&#39;#001&#39;, unit=1.0), order=Order(product_id=&#39;TXFC9&#39;, action=&#39;B&#39;, price_type=&#39;LMT&#39;, order_type=&#39;ROD&#39;, price=9600, quantity=5, account=FutureAccount(person_id=&#39;SCCEIEFAJA&#39;, broker_id=&#39;F002000&#39;, account_id=&#39;9104000&#39;, username=&#39;莊*芬&#39;)), status=OrderStatus(seqno=&#39;701124&#39;, ordno=&#39;ky00P&#39;, order_id=&#39;7521840eb43914f94f98f025b1762e0b250ded21&#39;, status=&#39;Submitted&#39;, status_code=&#39;0000&#39;, msg=&#39;ky00P&#39;, modified_price=9800.0, remaining=5, order_datetime=datetime.datetime(2019, 1, 16, 12, 39, 28)))</pre>
 </div>
 
 </div>
