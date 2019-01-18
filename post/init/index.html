@@ -139,10 +139,10 @@ body {
 
 <p>接著我們需要初始化Shioaji這個物件來開始接下來要做的事</p>
 
-<p>python有個很方便的方法可以看這個物件或函式的文件，就是直接在function或object後面加上?</p>
+<p>ipython有個很方便的方法可以看這個物件或函式的文件，就是直接在function或object後面加上?</p>
 
-<blockquote>
-<p>input</p>
+<p>下面文件部分可以看到我們api底下所有可以用的function跟object以及初始化Shioaji的參數說明
+&gt; input</p>
 
 <pre><code>sj.Shioaji?
 </code></pre>
@@ -150,22 +150,39 @@ body {
 <p>output</p>
 
 <pre><code>Init signature: sj.Shioaji(backend='http', simulation=True, proxies={}, currency='NTD')
+Docstring:    
+shioaji api 
+
+Functions:
+    login 
+    activate_ca
+    list_accounts
+    set_default_account
+    get_account_margin 
+    get_account_openposition
+    get_account_settle_profitloss
+    place_order
+    update_order
+    update_status
+    list_trades
+
+Objects:
+    Contracts
+    Order
 Init docstring:
 initialize Shioaji to start trading
-backend: {http, socket}
-    use http or socket as backend currently only support http, socket backend coming soon.
-    - http: will support taiwan stock, future, and global stock
-    - socket: will support taiwan stock, future and global future
-simulation: bool
-    - False: to trading on real market (just use your Sinopac account to start trading)
-    - True: become simulation account(need to contract as to open simulation account)
-proxies: dict
-    specific the proxies of your https
-    {'https': 'your-proxy-url'}
-currency: {NTX, USX, NTD, USD, HKD, EUR, JPY, GBP}
-    set the default currency for display 
+
+Args:
+    backend (str): {http, socket} 
+        use http or socket as backend currently only support http, async socket backend coming soon.
+    simulation (bool): 
+        - False: to trading on real market (just use your Sinopac account to start trading)
+        - True: become simulation account(need to contract as to open simulation account)
+    proxies (dict): specific the proxies of your https
+        ex: {'https': 'your-proxy-url'}
+    currency (str): {NTX, USX, NTD, USD, HKD, EUR, JPY, GBP}
+        set the default currency for display
 </code></pre>
-</blockquote>
 
 <p>這邊我們選擇http為backend，並且關閉模擬模式，如果有需要使用模擬的客戶麻煩在gitter中聯絡我們，目前我們http比較完整socket會在近日釋出敬請期待。</p>
 
@@ -191,10 +208,10 @@ currency: {NTX, USX, NTD, USD, HKD, EUR, JPY, GBP}
 <pre><code>Signature: api.login(person_id, passwd)
 Docstring:
 login to trading server
-person_id: str
-    Same as your eleader, ileader login id(usually your person ID)
-passwd: str
-    the password of your eleader login password(not ca password)
+
+Args:
+    person_id (str): Same as your eleader, ileader login id(usually your person ID)
+    passwd  (str): the password of your eleader login password(not ca password)
 </code></pre>
 </blockquote>
 
@@ -209,12 +226,7 @@ api.fut_account
 
 <p>output</p>
 
-<pre><code>{'account': '9104000',
- 'username': '莊*芬',
- 'datacount': 0,
- 'accttype': 'F',
- 'broker_id': 'F002000',
- 'idno': 'SCCEIEFAJA'}
+<pre><code>FutureAccount(person_id='SCCEIEFAJA', broker_id='F002000', account_id='9104000', username='莊*芬')
 </code></pre>
 </blockquote>
 
@@ -228,24 +240,9 @@ api.fut_account
 
 <p>output</p>
 
-<pre><code>[{'account': '9104000',
-  'username': '莊*芬',
-  'datacount': 0,
-  'accttype': 'F',
-  'broker_id': 'F002000',
-  'idno': 'SCCEIEFAJA'},
- {'account': '9802195',
-  'username': '莊*芬',
-  'datacount': 1,
-  'accttype': 'S',
-  'broker_id': '9A92',
-  'idno': 'SCCEIEFAJA'},
- {'account': '09800762',
-  'username': 'n*m',
-  'datacount': 3,
-  'accttype': 'H',
-  'broker_id': '1300',
-  'idno': 'QCCAHIFFDH'}]
+<pre><code>[Account(account_type='H', person_id='QCCAHIFFDH', broker_id='1300', account_id='09800762', username='n*m'),
+FutureAccount(person_id='SCCEIEFAJA', broker_id='F002000', account_id='9104000', username='莊*芬'),
+StockAccount(person_id='SCCEIEFAJA', broker_id='9A92', account_id='9802195', username='莊*芬')]
 </code></pre>
 </blockquote>
 
@@ -264,12 +261,12 @@ api.fut_account
 <pre><code>Signature: api.activate_ca(ca_path, ca_passwd, person_id)
 Docstring:
 activate your ca for trading
-ca_path: str
-    the path of your ca, support both absloutely and relatively path, use same ca with eleader
-ca_passwd: str
-    password of your ca
-person_id: str
-    the ca belong which person ID
+
+Args: 
+    ca_path (str):
+        the path of your ca, support both absloutely and relatively path, use same ca with eleader
+    ca_passwd (str): password of your ca
+    person_id (str): the ca belong which person ID
 </code></pre>
 
 <p>input</p>

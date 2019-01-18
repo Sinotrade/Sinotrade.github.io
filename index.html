@@ -225,6 +225,11 @@ body {
 
 <p>這邊沒有在使用docker的可以忽略，docker主要就是幫各位處理好各種環境問題，但是基本上大家應該pip install就可以開了</p>
 
+<p>這邊也幫大家build好jupyter的環境，執行下面docker指令連到<a href="http://localhost:8888">localhost:8888</a>就可以使用了</p>
+
+<pre><code>docker run -p 8888:8888 sinotrade/shioaji:jupyter
+</code></pre>
+
                 </div>
             </div>
 
@@ -265,10 +270,10 @@ body {
 
 <p>接著我們需要初始化Shioaji這個物件來開始接下來要做的事</p>
 
-<p>python有個很方便的方法可以看這個物件或函式的文件，就是直接在function或object後面加上?</p>
+<p>ipython有個很方便的方法可以看這個物件或函式的文件，就是直接在function或object後面加上?</p>
 
-<blockquote>
-<p>input</p>
+<p>下面文件部分可以看到我們api底下所有可以用的function跟object以及初始化Shioaji的參數說明
+&gt; input</p>
 
 <pre><code>sj.Shioaji?
 </code></pre>
@@ -276,22 +281,39 @@ body {
 <p>output</p>
 
 <pre><code>Init signature: sj.Shioaji(backend='http', simulation=True, proxies={}, currency='NTD')
+Docstring:    
+shioaji api 
+
+Functions:
+    login 
+    activate_ca
+    list_accounts
+    set_default_account
+    get_account_margin 
+    get_account_openposition
+    get_account_settle_profitloss
+    place_order
+    update_order
+    update_status
+    list_trades
+
+Objects:
+    Contracts
+    Order
 Init docstring:
 initialize Shioaji to start trading
-backend: {http, socket}
-    use http or socket as backend currently only support http, socket backend coming soon.
-    - http: will support taiwan stock, future, and global stock
-    - socket: will support taiwan stock, future and global future
-simulation: bool
-    - False: to trading on real market (just use your Sinopac account to start trading)
-    - True: become simulation account(need to contract as to open simulation account)
-proxies: dict
-    specific the proxies of your https
-    {'https': 'your-proxy-url'}
-currency: {NTX, USX, NTD, USD, HKD, EUR, JPY, GBP}
-    set the default currency for display 
+
+Args:
+    backend (str): {http, socket} 
+        use http or socket as backend currently only support http, async socket backend coming soon.
+    simulation (bool): 
+        - False: to trading on real market (just use your Sinopac account to start trading)
+        - True: become simulation account(need to contract as to open simulation account)
+    proxies (dict): specific the proxies of your https
+        ex: {'https': 'your-proxy-url'}
+    currency (str): {NTX, USX, NTD, USD, HKD, EUR, JPY, GBP}
+        set the default currency for display
 </code></pre>
-</blockquote>
 
 <p>這邊我們選擇http為backend，並且關閉模擬模式，如果有需要使用模擬的客戶麻煩在gitter中聯絡我們，目前我們http比較完整socket會在近日釋出敬請期待。</p>
 
@@ -317,10 +339,10 @@ currency: {NTX, USX, NTD, USD, HKD, EUR, JPY, GBP}
 <pre><code>Signature: api.login(person_id, passwd)
 Docstring:
 login to trading server
-person_id: str
-    Same as your eleader, ileader login id(usually your person ID)
-passwd: str
-    the password of your eleader login password(not ca password)
+
+Args:
+    person_id (str): Same as your eleader, ileader login id(usually your person ID)
+    passwd  (str): the password of your eleader login password(not ca password)
 </code></pre>
 </blockquote>
 
@@ -335,12 +357,7 @@ api.fut_account
 
 <p>output</p>
 
-<pre><code>{'account': '9104000',
- 'username': '莊*芬',
- 'datacount': 0,
- 'accttype': 'F',
- 'broker_id': 'F002000',
- 'idno': 'SCCEIEFAJA'}
+<pre><code>FutureAccount(person_id='SCCEIEFAJA', broker_id='F002000', account_id='9104000', username='莊*芬')
 </code></pre>
 </blockquote>
 
@@ -354,24 +371,9 @@ api.fut_account
 
 <p>output</p>
 
-<pre><code>[{'account': '9104000',
-  'username': '莊*芬',
-  'datacount': 0,
-  'accttype': 'F',
-  'broker_id': 'F002000',
-  'idno': 'SCCEIEFAJA'},
- {'account': '9802195',
-  'username': '莊*芬',
-  'datacount': 1,
-  'accttype': 'S',
-  'broker_id': '9A92',
-  'idno': 'SCCEIEFAJA'},
- {'account': '09800762',
-  'username': 'n*m',
-  'datacount': 3,
-  'accttype': 'H',
-  'broker_id': '1300',
-  'idno': 'QCCAHIFFDH'}]
+<pre><code>[Account(account_type='H', person_id='QCCAHIFFDH', broker_id='1300', account_id='09800762', username='n*m'),
+FutureAccount(person_id='SCCEIEFAJA', broker_id='F002000', account_id='9104000', username='莊*芬'),
+StockAccount(person_id='SCCEIEFAJA', broker_id='9A92', account_id='9802195', username='莊*芬')]
 </code></pre>
 </blockquote>
 
@@ -390,12 +392,12 @@ api.fut_account
 <pre><code>Signature: api.activate_ca(ca_path, ca_passwd, person_id)
 Docstring:
 activate your ca for trading
-ca_path: str
-    the path of your ca, support both absloutely and relatively path, use same ca with eleader
-ca_passwd: str
-    password of your ca
-person_id: str
-    the ca belong which person ID
+
+Args: 
+    ca_path (str):
+        the path of your ca, support both absloutely and relatively path, use same ca with eleader
+    ca_passwd (str): password of your ca
+    person_id (str): the ca belong which person ID
 </code></pre>
 
 <p>input</p>
@@ -433,7 +435,7 @@ person_id: str
 
 <h3 id="order">order</h3>
 
-<p>開始下單的部分吧!首先我們會需要先製作出Order一筆order物件，然後丟進api的place_order函式中，這個函式會回傳一個Trade物件包涵這筆單的狀態。</p>
+<p>開始下單的部分吧!首先api的place_order下單的函式中，需要傳入兩個物件，分別是Contract及Order，我們可以從Contracts物件中找到我們要交易的商品Contract，以及用Order製作出一筆order物件，然後丟進函式中，這個函式會回傳一個Trade物件包含Contract, Order及這筆單的狀態物件(OrderStatus)。</p>
 
 <h3 id="order物件">Order物件</h3>
 
@@ -447,169 +449,189 @@ person_id: str
 
 <p>output</p>
 
-<pre><code>Init signature: api.Order(product_id, product_type, opt_type, price, price_type, order_bs, order_type, octype, quantity, account)
-Docstring: 
-create order object
-product_id: str 
-    the product code
-product_type: {'F', 'O'}
-    - F: future
-    - O: option
-opt_type: {' ', 'C', 'P'}
-    the option type Call or Put, leave blank if place future order
-    - ' ': Future
-    - 'C': Call
-    - 'P': Put 
-price: float or int
-    order price
-price_type: {LMT, MKT, MKP}
-    - LMT: limit
-    - MKT: market
-    - MKP: market range
-order_bs: {'B', 'S', 
-    - 'B': buy
-    - 'S': sell
-order_type: {ROD, IOC, FOK}
-    - ROD: Rest of Day
-    - IOC: Immediate-or-Cancel
-    - FOK: Fill-or-Kill
-octype: {' ', '0', '1', '6'}, 
-    - ' ': auto
-    - '0': new position
-    - '1': close position
-    - '6': day trade
-quantity: int
+<pre><code>Init signature: api.Order(action, price_type, order_type, price, quantity, *args, **kwargs)
+Docstring:     
+The basic order object to place order
+
+Attributes:
+    product_id (str): the code of product that order to placing
+    action (srt): {B, S}, order action to buy or sell
+        - B: buy
+        - S: sell
+    price_type (str): {LMT, MKT, MKP}, pricing type of order
+        - LMT: limit
+        - MKT: market
+        - MKP: market range
+    order_type (str): {ROD, IOC, FOK}, the type of order
+        - ROD: Rest of Day
+        - IOC: Immediate-or-Cancel
+        - FOK: Fill-or-Kill
+    octype (str): {' ', '0', '1', '6'}, the type or order to open new position or close position 
+        - ' ': auto
+        - '0': new position
+        - '1': close position
+        - '6': day trade
+    price (float or int): the price of order
+    quantity (int): the quantity of order
+    account (:obj:Account): which account to place this order
+    ca (binary): the ca of this order
+
 </code></pre>
 </blockquote>
 
-<p>接著我們有做一件方便大家開發的事，有兩個物件<code>api.Order_props</code>跟<code>api.Contracts</code>這兩個物件可以快速輔助開發的時候直接用tab自動補齊的方式找到Order物件中需要填入的欄位。</p>
+<p>接著我們有做一件方便大家開發的事，有兩個物件<code>api.OrderProps</code>跟<code>api.Contracts</code>這兩個物件可以快速輔助開發的時候直接用tab自動補齊的方式找到Order物件中需要填入的欄位。</p>
 
 <blockquote>
 <p>input</p>
 
-<pre><code>api.Order_props.&lt;/tab&gt;
+<pre><code>api.OrderProps.&lt;/tab&gt;
 api.Contracts.&lt;/tab&gt;
 </code></pre>
 
-<p>這邊我們以期貨為範例按tab鍵自動補齊可交易的合約</p>
+<p>這邊我們以期貨為範例按tab鍵自動補齊可交易的合約，回傳的Future物件就是一個期貨的Contract物件，可以以<code>isinstance(api.Contracts.Futures.TXF.TXF201903, shioaji.contracts.Contract)</code>來確認他確實是個Contract物件
+input</p>
 
-<pre><code>api.Contracts.Future.TXF.TXF201903
+<pre><code>api.Contracts.Futures.TXF
 </code></pre>
 
 <p>output</p>
 
-<pre><code>Contract
-    Code: TXFC9
-    Detail:
-        code: TXFC9
-        deliverymonth: 201903
-        poc: 
-        eprice: 0.0
-        ename: TXF
-        category: TXF
-        prod_kind: I
-        csname: 台指期貨
-        ostock: #001
-        basic: 0001.000000
+<pre><code>TXF(TXF201903, TXF201906, TXF201809, TXF201810, TXF201811, TXF201812)
+</code></pre>
+
+<p>input</p>
+
+<pre><code>api.Contracts.Futures.TXF.TXF201903
+</code></pre>
+
+<p>output</p>
+
+<pre><code>Future(symbol='TXF201903', code='TXFC9', name='台指期貨', category='TXF', delivery_month='201903', underlying_kind='I', underlying_code='#001', unit=1.0)
 </code></pre>
 </blockquote>
 
-<p>知道使用方式後我們直接用自動補齊的方式幫我快速創建一筆Order，下面這個例子我們可以看到product_id就是用Contracts來填入，其他的參數在Order_props都有相對應的欄位可以幫我們免去用文件的選項輸入，當然也可以直接使用文件的選項直接填入。</p>
+<p>知道使用方式後我們直接用自動補齊的方式幫我快速創建一筆Order，參數在OrderProps都有相對應的欄位可以幫我們免去用文件的選項輸入，當然也可以直接使用文件的選項直接填入。</p>
 
-<pre><code>sample_order = api.Order(product_id=api.Contracts.Future.TXF.TXF201903.code, 
-                         product_type=api.Order_props.product_type.Future, 
-                         opt_type=api.Order_props.opt_type.Future,
-                         price=9600,
-                         price_type=api.Order_props.price_type.LMT,
-                         order_bs=api.Order_props.order_bs.Buy,
-                         order_type=api.Order_props.order_type.ROD,
-                         octype=api.Order_props.octype.auto,
+<pre><code>sample_order = api.Order(price=9600,
+                         action=api.OrderProps.action.Buy,
+                         price_type=api.OrderProps.price_type.LMT,
+                         order_type=api.OrderProps.order_type.ROD,
+                         octype=api.OrderProps.octype.auto,
                          quantity=5,
                          account=api.fut_account,
                         )
 </code></pre>
 
-<h3 id="下單函式">下單函式</h3>
+<p>另外為了不用煩鎖的Order我們可以直接使用MarketOrder, LimitOrder物件，需要填的選項就會很少。</p>
 
-<p>接著我們把order物件傳進<code>place_order</code>函式中就會送出委託單了。</p>
+<h4 id="marketorder">MarketOrder</h4>
 
-<blockquote>
-<p>input</p>
+<pre><code>MarketOrder
 
-<pre><code>trade = api.place_order(sample_order)
-trade
+    Args:
+        product_id (str, optional): the code of product that order to placing 
+                                    if not provide will gen from contract when placing order 
+        action (srt): {B, S}, order action to buy or sell
+            - B: buy
+            - S: sell
+        quantity (int): the quantity of order
+        order_type (str, optional): {IOC, FOK}, the type of order
+            - IOC: Immediate-or-Cancel
+            - FOK: Fill-or-Kill
+        octype (str, optional): {' ', '0', '1', '6'}, the type or order 
+                                to open new position or close position 
+                                if not provide will become auto mode 
+            - ' ': auto
+            - '0': new position
+            - '1': close position
+            - '6': day trade
+
+</code></pre>
+
+<p>製作一個MarketOrder物件就非常簡單，用下面填入買或賣，及口數就完成了。
+&gt; input</p>
+
+<pre><code>sample_mkt_order = api.MarketOrder('B', 5)
+sample_mkt_order
 </code></pre>
 
 <p>output</p>
 
-<pre><code>Trade
-    status: order_sent
-        status_code: 
-        errmsg: 
-        product_id: TXFC9
-        ordno: 
-        seqno: 702330
-        ord_bs: B
-        price: 9600
-        quantity: 5
-        price_type: LMT
-        account: {'account': '9104000', 'username': '莊*芬', 'datacount': 0, 'accttype': 'F', 'broker_id': 'F002000', 'idno': 'SCCEIEFAJA'}
-        msg:                                                             
-        trade_type: 01
-        octype:  
-        mttype: 0
-        composit: 00
-        ord_date: 20181119
-        preord_date: 20181119
-        ord_time: 15:45:48
-        ord_type: ROD
-        product_type: F
-        opt_type:  
+<pre><code>MarketOrder(action='B', order_type='IOC', quantity=5)
+</code></pre>
+
+<h4 id="limitorder">LimitOrder</h4>
+
+<pre><code>LimitOrder
+
+    Args:
+        product_id (str, optional): the code of product that order to placing 
+                                    if not provide will gen from contract when placing order 
+        action (srt): {B, S}, order action to buy or sell
+            - B: buy
+            - S: sell
+        price (float or int): the price of order
+        quantity (int): the quantity of order
+        order_type (str, optional): {ROD, IOC, FOK}, the type of order
+            - ROD: Rest of Day
+            - IOC: Immediate-or-Cancel
+            - FOK: Fill-or-Kill
+        octype (str, optional): {' ', '0', '1', '6'}, the type or order 
+                                to open new position or close position 
+                                if not provide will become auto mode 
+            - ' ': auto
+            - '0': new position
+            - '1': close position
+            - '6': day trade
+</code></pre>
+
+<p>限價單的部分就多一個參數，價格就完成了。
+&gt; input</p>
+
+<pre><code>sample_limit_order = api.LimitOrder('B', 9700, 5)
+sample_limit_order
+</code></pre>
+
+<p>output</p>
+
+<pre><code>LimitOrder(action='B', order_type='ROD', price=9700, quantity=5)
+</code></pre>
+
+<h3 id="下單函式">下單函式</h3>
+
+<p>接著我們把製作好的Contract及Order物件傳進<code>place_order</code>函式中就會送出委託單了，這時候會回傳trade物件，Trade.status底下會是這筆交易的狀態，目前可以看到剛下出去是PendingSubmit。</p>
+
+<blockquote>
+<p>input</p>
+
+<pre><code>txf = api.Contracts.Futures.TXF.TXF201903
+trade = api.place_order(txf, sample_order)
+</code></pre>
+
+<p>output</p>
+
+<pre><code>Trade(contract=Future(symbol='TXF201903', code='TXFC9', name='台指期貨', category='TXF', delivery_month='201903', underlying_kind='I', underlying_code='#001', unit=1.0), order=Order(product_id='TXFC9', action='B', price_type='LMT', order_type='ROD', price=9600, quantity=5, account=FutureAccount(person_id='SCCEIEFAJA', broker_id='F002000', account_id='9104000', username='莊*芬')), status=OrderStatus(seqno='701124', order_id='7521840eb43914f94f98f025b1762e0b250ded21', status='PendingSubmit', order_datetime=datetime.datetime(2019, 1, 16, 12, 39, 28)))
 </code></pre>
 </blockquote>
 
 <h3 id="trade">Trade</h3>
 
-<p>拿到的Trade物件我們可以透過<code>update_status</code>函式來看目前order的狀態</p>
+<p>拿到的Trade物件我可以透過<code>update_status</code>函式來更新所有Trade的狀態，這時候就會看到狀態變為Submitted，成交後會變為Filled。</p>
 
 <blockquote>
 <p>input</p>
 
-<pre><code>trade.update_status(api.client)
+<pre><code>api.update_status()
 trade
 </code></pre>
 
 <p>output</p>
 
-<pre><code>Trade
-    status: order_sent
-        status_code: 0000
-        errmsg: 
-        product_id: TXFC9
-        ordno: kY012
-        seqno: 702330
-        ord_bs: B
-        price: 9600.0
-        quantity: 5
-        price_type: LMT
-        account: {'account': '9104000', 'username': '莊*芬', 'datacount': 0, 'accttype': 'F', 'broker_id': 'F002000', 'idno': 'SCCEIEFAJA'}
-        msg:                                                             
-        trade_type: 01
-        octype:  
-        mttype: 0
-        composit: 00
-        ord_date: 20181119
-        preord_date: 20181119
-        ord_time: 15:45:48
-        ord_type: ROD
-        product_type: F
-        opt_type:  
+<pre><code>Trade(contract=Future(symbol='TXF201903', code='TXFC9', name='台指期貨', category='TXF', delivery_month='201903', underlying_kind='I', underlying_code='#001', unit=1.0), order=Order(product_id='TXFC9', action='B', price_type='LMT', order_type='ROD', price=9600, quantity=5, account=FutureAccount(person_id='SCCEIEFAJA', broker_id='F002000', account_id='9104000', username='莊*芬')), status=OrderStatus(seqno='701124', ordno='ky00P', order_id='7521840eb43914f94f98f025b1762e0b250ded21', status='Submitted', status_code='0000', msg='ky00P', modified_price=9600.0, remaining=5, order_datetime=datetime.datetime(2019, 1, 16, 12, 39, 28)))
 </code></pre>
-</blockquote>
 
-<p>改價或改量的部分使用<code>api.update_order</code>函式傳入Trade物件</p>
+<p>改價或改量的部分使用<code>api.update_order</code>函式傳入Trade物件，可以看到modified_price就變成9800並</p>
 
-<blockquote>
 <p>input</p>
 
 <pre><code>trade = api.update_order(trade, price=9800, qty=1)
@@ -618,29 +640,7 @@ trade
 
 <p>output</p>
 
-<pre><code>Trade
-    status: order_sent
-        status_code: 0000
-        errmsg: 
-        product_id: TXFC9
-        ordno: kY012
-        seqno: 702330
-        ord_bs: B
-        price: 9800.0
-        quantity: 5
-        price_type: LMT
-        account: {'account': '9104000', 'username': '莊*芬', 'datacount': 0, 'accttype': 'F', 'broker_id': 'F002000', 'idno': 'SCCEIEFAJA'}
-        msg:                                                             
-        trade_type: 01
-        octype:  
-        mttype: 0
-        composit: 00
-        ord_date: 20181119
-        preord_date: 20181119
-        ord_time: 15:45:48
-        ord_type: ROD
-        product_type: F
-        opt_type:  
+<pre><code>Trade(contract=Future(symbol='TXF201903', code='TXFC9', name='台指期貨', category='TXF', delivery_month='201903', underlying_kind='I', underlying_code='#001', unit=1.0), order=Order(product_id='TXFC9', action='B', price_type='LMT', order_type='ROD', price=9600, quantity=5, account=FutureAccount(person_id='SCCEIEFAJA', broker_id='F002000', account_id='9104000', username='莊*芬')), status=OrderStatus(seqno='701124', ordno='ky00P', order_id='7521840eb43914f94f98f025b1762e0b250ded21', status='Submitted', status_code='0000', msg='ky00P', modified_price=9800.0, remaining=5, order_datetime=datetime.datetime(2019, 1, 16, 12, 39, 28)))
 </code></pre>
 </blockquote>
 

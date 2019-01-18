@@ -26,9 +26,11 @@
       <pubDate>Thu, 22 Nov 2018 10:45:13 +0800</pubDate>
       
       <guid>https://sinotrade.github.io/post/install/</guid>
-      <description>install Let&amp;rsquo;s get it pip install 直接pip install起來，台灣應該沒有其他券商的api那麼方便了。
+      <description> install Let&amp;rsquo;s get it pip install 直接pip install起來，台灣應該沒有其他券商的api那麼方便了。
 pip install shioaji  docker 我們也準備好了docker image給各位直接使用，有需要那些其他的linux distribution歡迎在github上跟我們講。
-docker run -it sinotrade/shioaji:latest bash  這邊沒有在使用docker的可以忽略，docker主要就是幫各位處理好各種環境問題，但是基本上大家應該pip install就可以開了</description>
+docker run -it sinotrade/shioaji:latest bash  這邊沒有在使用docker的可以忽略，docker主要就是幫各位處理好各種環境問題，但是基本上大家應該pip install就可以開了
+這邊也幫大家build好jupyter的環境，執行下面docker指令連到localhost:8888就可以使用了
+docker run -p 8888:8888 sinotrade/shioaji:jupyter  </description>
     </item>
     
     <item>
@@ -42,10 +44,10 @@ docker run -it sinotrade/shioaji:latest bash  這邊沒有在使用docker的可�
 準備好永豐帳戶就讓我們開始吧!
 載入 起手式import我們的api就像import tensorflow pandas等等一樣
 import shioaji as sj  初始api 接著我們需要初始化Shioaji這個物件來開始接下來要做的事
-python有個很方便的方法可以看這個物件或函式的文件，就是直接在function或object後面加上?
- input
+ipython有個很方便的方法可以看這個物件或函式的文件，就是直接在function或object後面加上?
+下面文件部分可以看到我們api底下所有可以用的function跟object以及初始化Shioaji的參數說明 &amp;gt; input
 sj.Shioaji?  output
-Init signature: sj.Shioaji(backend=&#39;http&#39;, simulation=True, proxies={}, currency=&#39;NTD&#39;) Init docstring: initialize Shioaji to start trading backend: {http, socket} use http or socket as backend currently only support http, socket backend coming soon. - http: will support taiwan stock, future, and global stock - socket: will support taiwan stock, future and global future simulation: bool - False: to trading on real market (just use your Sinopac account to start trading) - True: become simulation account(need to contract as to open simulation account) proxies: dict specific the proxies of your https {&#39;https&#39;: &#39;your-proxy-url&#39;} currency: {NTX, USX, NTD, USD, HKD, EUR, JPY, GBP} set the default currency for display   這邊我們選擇http為backend，並且關閉模擬模式，如果有需要使用模擬的客戶麻煩在gitter中聯絡我們，目前我們http比較完整socket會在近日釋出敬請期待。</description>
+Init signature: sj.Shioaji(backend=&#39;http&#39;, simulation=True, proxies={}, currency=&#39;NTD&#39;) Docstring: shioaji api Functions: login activate_ca list_accounts set_default_account get_account_margin get_account_openposition get_account_settle_profitloss place_order update_order update_status list_trades Objects: Contracts Order Init docstring: initialize Shioaji to start trading Args: backend (str): {http, socket} use http or socket as backend currently only support http, async socket backend coming soon.</description>
     </item>
     
     <item>
@@ -54,11 +56,11 @@ Init signature: sj.Shioaji(backend=&#39;http&#39;, simulation=True, proxies={}, 
       <pubDate>Thu, 22 Nov 2018 11:29:00 +0800</pubDate>
       
       <guid>https://sinotrade.github.io/post/order/</guid>
-      <description>order 開始下單的部分吧!首先我們會需要先製作出Order一筆order物件，然後丟進api的place_order函式中，這個函式會回傳一個Trade物件包涵這筆單的狀態。
+      <description>order 開始下單的部分吧!首先api的place_order下單的函式中，需要傳入兩個物件，分別是Contract及Order，我們可以從Contracts物件中找到我們要交易的商品Contract，以及用Order製作出一筆order物件，然後丟進函式中，這個函式會回傳一個Trade物件包含Contract, Order及這筆單的狀態物件(OrderStatus)。
 Order物件 Order物件需要帶入的參數部分一樣可以用?直接看到文件
  input
 api.Order?  output
-Init signature: api.Order(product_id, product_type, opt_type, price, price_type, order_bs, order_type, octype, quantity, account) Docstring: create order object product_id: str the product code product_type: {&#39;F&#39;, &#39;O&#39;} - F: future - O: option opt_type: {&#39; &#39;, &#39;C&#39;, &#39;P&#39;} the option type Call or Put, leave blank if place future order - &#39; &#39;: Future - &#39;C&#39;: Call - &#39;P&#39;: Put price: float or int order price price_type: {LMT, MKT, MKP} - LMT: limit - MKT: market - MKP: market range order_bs: {&#39;B&#39;, &#39;S&#39;, - &#39;B&#39;: buy - &#39;S&#39;: sell order_type: {ROD, IOC, FOK} - ROD: Rest of Day - IOC: Immediate-or-Cancel - FOK: Fill-or-Kill octype: {&#39; &#39;, &#39;0&#39;, &#39;1&#39;, &#39;6&#39;}, - &#39; &#39;: auto - &#39;0&#39;: new position - &#39;1&#39;: close position - &#39;6&#39;: day trade quantity: int   接著我們有做一件方便大家開發的事，有兩個物件api.</description>
+Init signature: api.Order(action, price_type, order_type, price, quantity, *args, **kwargs) Docstring: The basic order object to place order Attributes: product_id (str): the code of product that order to placing action (srt): {B, S}, order action to buy or sell - B: buy - S: sell price_type (str): {LMT, MKT, MKP}, pricing type of order - LMT: limit - MKT: market - MKP: market range order_type (str): {ROD, IOC, FOK}, the type of order - ROD: Rest of Day - IOC: Immediate-or-Cancel - FOK: Fill-or-Kill octype (str): {&#39; &#39;, &#39;0&#39;, &#39;1&#39;, &#39;6&#39;}, the type or order to open new position or close position - &#39; &#39;: auto - &#39;0&#39;: new position - &#39;1&#39;: close position - &#39;6&#39;: day trade price (float or int): the price of order quantity (int): the quantity of order account (:obj:Account): which account to place this order ca (binary): the ca of this order   接著我們有做一件方便大家開發的事，有兩個物件api.</description>
     </item>
     
     <item>
