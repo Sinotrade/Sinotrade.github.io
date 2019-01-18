@@ -714,8 +714,10 @@ account_margin
         Ybaln: 207000.0
 </code></pre>
 
-<p>直接用將物件傳入<code>pandas.DataFrame</code>就可以簡單的拿到常用的dataframe了
-input</p>
+<p>直接用將物件傳入<code>pandas.DataFrame</code>就可以簡單的拿到常用的dataframe了</p>
+</blockquote>
+
+<p>input</p>
 
 <pre><code>df_margin = pd.DataFrame([{**account_margin}])
 df_margin
@@ -779,7 +781,6 @@ df_margin
 </table>
 <p>1 rows × 34 columns</p>
 </div></p>
-</blockquote>
 
 <h3 id="未平倉帳務">未平倉帳務</h3>
 
@@ -817,8 +818,10 @@ positions
 <pre><code>AccountOpenPosition
 </code></pre>
 
-<p>轉換成dataframe
-input</p>
+<p>轉換成dataframe</p>
+</blockquote>
+
+<p>input</p>
 
 <pre><code>df_positions = pd.DataFrame(positions.data())
 df_positions
@@ -987,7 +990,6 @@ df_positions
   </tbody>
 </table>
 </div></p>
-</blockquote>
 
 <h3 id="平倉損益">平倉損益</h3>
 
