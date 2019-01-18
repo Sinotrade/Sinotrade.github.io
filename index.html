@@ -664,7 +664,6 @@ trade
 
 <h3 id="權益數帳務">權益數帳務</h3>
 
-<blockquote>
 <p>input</p>
 
 <pre><code>api.get_account_margin?
@@ -739,7 +738,6 @@ account_margin
 </code></pre>
 
 <p>直接用將物件傳入<code>pandas.DataFrame</code>就可以簡單的拿到常用的dataframe了</p>
-</blockquote>
 
 <p>input</p>
 
@@ -808,7 +806,6 @@ df_margin
 
 <h3 id="未平倉帳務">未平倉帳務</h3>
 
-<blockquote>
 <p>input</p>
 
 <pre><code>api.get_account_openposition?
@@ -843,7 +840,6 @@ positions
 </code></pre>
 
 <p>轉換成dataframe</p>
-</blockquote>
 
 <p>input</p>
 
@@ -1017,7 +1013,6 @@ df_positions
 
 <h3 id="平倉損益">平倉損益</h3>
 
-<blockquote>
 <p>input</p>
 
 <pre><code>api.get_account_settle_profitloss?
@@ -1065,14 +1060,16 @@ settle_profitloss
 <pre><code>AccountSettleProfitLoss
 </code></pre>
 
-<p>轉換成dataframe
-input</p>
+<p>轉換成dataframe</p>
+
+<p>input</p>
 
 <pre><code>df_profitloss = pd.DataFrame(settle_profitloss.data())
 df_profitloss
 </code></pre>
 
-<p>output
+<p>output</p>
+
 <div class="table-responsive">
 <table class="table">
   <thead>
@@ -1126,8 +1123,7 @@ df_profitloss
     </tr>
   </tbody>
 </table>
-</div></p>
-</blockquote>
+</div>
 
                 </div>
             </div>
