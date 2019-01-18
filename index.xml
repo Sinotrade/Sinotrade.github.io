@@ -39,13 +39,14 @@ docker run -p 8888:8888 sinotrade/shioaji:jupyter  </description>
       <pubDate>Thu, 22 Nov 2018 10:58:18 +0800</pubDate>
       
       <guid>https://sinotrade.github.io/post/init/</guid>
-      <description>init 上回我們pip install完了以後，接著我們就可以用python, ipython, jupyter notebook或jupyter lab等等之類開始接下來旅程。
+      <description>init pip install shioaji 了之後，接著我們就可以用 python, ipython, jupyter notebook 或 JupyterLab 等編輯器開始接下來旅程。
 在這邊我們還需要一個條件，就是請先開好永豐金證券的帳戶，實體開戶或是直接線上開戶。
 準備好永豐帳戶就讓我們開始吧!
-載入 起手式import我們的api就像import tensorflow pandas等等一樣
+載入 起手式 import我們的api就像import tensorflow pandas等等一樣
 import shioaji as sj  初始api 接著我們需要初始化Shioaji這個物件來開始接下來要做的事
 ipython有個很方便的方法可以看這個物件或函式的文件，就是直接在function或object後面加上?
-下面文件部分可以看到我們api底下所有可以用的function跟object以及初始化Shioaji的參數說明 &amp;gt; input
+下面文件部分可以看到我們api底下所有可以用的function跟object以及初始化Shioaji的參數說明
+input
 sj.Shioaji?  output
 Init signature: sj.Shioaji(backend=&#39;http&#39;, simulation=True, proxies={}, currency=&#39;NTD&#39;) Docstring: shioaji api Functions: login activate_ca list_accounts set_default_account get_account_margin get_account_openposition get_account_settle_profitloss place_order update_order update_status list_trades Objects: Contracts Order Init docstring: initialize Shioaji to start trading Args: backend (str): {http, socket} use http or socket as backend currently only support http, async socket backend coming soon.</description>
     </item>

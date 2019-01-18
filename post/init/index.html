@@ -122,7 +122,7 @@ body {
 
 <h3 id="init">init</h3>
 
-<p>上回我們pip install完了以後，接著我們就可以用python, ipython, jupyter notebook或jupyter lab等等之類開始接下來旅程。</p>
+<p>pip install shioaji 了之後，接著我們就可以用 python, ipython, jupyter notebook 或 JupyterLab 等編輯器開始接下來旅程。</p>
 
 <p>在這邊我們還需要一個條件，就是請先開好永豐金證券的帳戶，實體開戶或是直接<a href="https://www.sinotrade.com.tw/newweb/OpenAccount?source=shioaji">線上開戶</a>。</p>
 
@@ -130,7 +130,7 @@ body {
 
 <h3 id="載入">載入</h3>
 
-<p>起手式import我們的api就像import tensorflow pandas等等一樣</p>
+<p>起手式 import我們的api就像import tensorflow pandas等等一樣</p>
 
 <pre><code>import shioaji as sj
 </code></pre>
@@ -139,10 +139,11 @@ body {
 
 <p>接著我們需要初始化Shioaji這個物件來開始接下來要做的事</p>
 
-<p>ipython有個很方便的方法可以看這個物件或函式的文件，就是直接在function或object後面加上?</p>
+<p>ipython有個很方便的方法可以看這個物件或函式的文件，就是直接在function或object後面加上<code>?</code></p>
 
-<p>下面文件部分可以看到我們api底下所有可以用的function跟object以及初始化Shioaji的參數說明
-&gt; input</p>
+<p>下面文件部分可以看到我們api底下所有可以用的function跟object以及初始化Shioaji的參數說明</p>
+
+<p>input</p>
 
 <pre><code>sj.Shioaji?
 </code></pre>
@@ -184,20 +185,17 @@ Args:
         set the default currency for display
 </code></pre>
 
-<p>這邊我們選擇http為backend，並且關閉模擬模式，如果有需要使用模擬的客戶麻煩在gitter中聯絡我們，目前我們http比較完整socket會在近日釋出敬請期待。</p>
+<p>這邊我們選擇http為backend，並且關閉模擬模式，如果有需要使用模擬的客戶麻煩在gitter中聯絡我們，http比較完整socket會在近日釋出敬請期待。</p>
 
-<blockquote>
 <p>input</p>
 
 <pre><code>api = sj.Shioaji(backend='http', simulation=False)
 </code></pre>
-</blockquote>
 
 <h3 id="登入">登入</h3>
 
-<p>接著我們要登入才有辦法開始使用api，登入帳號就是eleader的登入帳號密碼。</p>
+<p>接著我們要登入才有辦法開始使用api，登入帳號就是永豐金證券電子平台（如：eLeader）的登入帳號密碼。</p>
 
-<blockquote>
 <p>input</p>
 
 <pre><code>api.login?
@@ -213,11 +211,9 @@ Args:
     person_id (str): Same as your eleader, ileader login id(usually your person ID)
     passwd  (str): the password of your eleader login password(not ca password)
 </code></pre>
-</blockquote>
 
-<p>登入後我們會預設抓出第一個期貨帳戶與證券戶作為預設帳戶</p>
+<p>登入後會預設抓出第一個期貨帳戶與證券戶作為預設帳戶</p>
 
-<blockquote>
 <p>input</p>
 
 <pre><code>api.login(person_id=person_id, passwd='2222')
@@ -228,11 +224,9 @@ api.fut_account
 
 <pre><code>FutureAccount(person_id='SCCEIEFAJA', broker_id='F002000', account_id='9104000', username='莊*芬')
 </code></pre>
-</blockquote>
 
-<p>也可以列出我們所有帳戶，使用<code>api.set_default_account</code>將常用設為預設的帳戶</p>
+<p>也可以列出我們所有帳戶，並使用<code>api.set_default_account</code>將常用設為預設的帳戶</p>
 
-<blockquote>
 <p>input</p>
 
 <pre><code>api.list_accounts()
@@ -244,13 +238,11 @@ api.fut_account
 FutureAccount(person_id='SCCEIEFAJA', broker_id='F002000', account_id='9104000', username='莊*芬'),
 StockAccount(person_id='SCCEIEFAJA', broker_id='9A92', account_id='9802195', username='莊*芬')]
 </code></pre>
-</blockquote>
 
 <h3 id="激活憑證">激活憑證</h3>
 
 <p>以上動作已經完成與下單無關的動作的初始化了，需要下單的話必須啟動憑證，若只是帳務相關等功能無需憑證。</p>
 
-<blockquote>
 <p>input</p>
 
 <pre><code>api.activate_ca?
@@ -279,7 +271,6 @@ Args:
 <pre><code>Ca Initial Done.
 0
 </code></pre>
-</blockquote>
 
         </div>
     </div>
