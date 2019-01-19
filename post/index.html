@@ -543,8 +543,10 @@ sample_mkt_order
             - '6': day trade
 </code></pre>
 
-<p>限價單的部分就多一個參數，價格就完成了。
-&gt; input</p>
+<p>限價單的部分就多一個參數，價格就完成了。</p>
+
+<blockquote>
+<p>input</p>
 
 <pre><code>sample_limit_order = api.LimitOrder('B', 9700, 5)
 sample_limit_order
@@ -554,6 +556,7 @@ sample_limit_order
 
 <pre><code>LimitOrder(action='B', order_type='ROD', price=9700, quantity=5)
 </code></pre>
+</blockquote>
 
 <h3 id="下單函式">下單函式</h3>
 
