@@ -76,5 +76,17 @@ api.get_account_margin?  output
 Signature: api.get_account_margin(currency=&#39;NTD&#39;, margin_type=&#39;1&#39;, account={}) Docstring: query margin currency: {NTX, USX, NTD, USD, HKD, EUR, JPY, GBP} the margin calculate in which currency - NTX: 約當台幣 - USX: 約當美金 - NTD: 新台幣 - USD: 美元 - HKD: 港幣 - EUR: 歐元 - JPY: 日幣 - GBP: 英鎊 margin_type: {&#39;1&#39;, &#39;2&#39;} query margin type - 1 : 即時 - 2 : 風險  input</description>
     </item>
     
+    <item>
+      <title>DevelopEnvSetup</title>
+      <link>https://sinotrade.github.io/post/devenv/</link>
+      <pubDate>Fri, 18 Jan 2019 16:15:57 +0800</pubDate>
+      
+      <guid>https://sinotrade.github.io/post/devenv/</guid>
+      <description>Windows 開發環境設置 開發環境安裝app清單
+ git(version control) vscode(text editor) miniconda(python package management) docker(optional)  Git 下載window版本Git 安裝時請選Use Git and optional Unix tools from the Windows Command Prompt
+VSCode 下載Windows版本VSCode 安裝後到插件管理中搜尋python並安裝
+miniconda 下載miniconda 我們在windows中使用miniconda來安裝我們的環境，安裝完成後打開cmd，輸入 conda install jupyterlab pandas -y 把相關的套件裝好接著輸入jupyter lab，打開瀏覽器連到 localhost:8888 就可以連到jupyter開始使用。</description>
+    </item>
+    
   </channel>
 </rss>
