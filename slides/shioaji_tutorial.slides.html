@@ -37,7 +37,7 @@ if( window.location.search.match( /print-pdf/gi ) ) {
 
 <!-- Loading the mathjax macro -->
 <!-- Load mathjax -->
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-AMS_HTML"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/latest.js?config=TeX-AMS_HTML"></script>
     <!-- MathJax configuration -->
     <script type="text/x-mathjax-config">
     MathJax.Hub.Config({
@@ -14401,7 +14401,292 @@ Args:
 <div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
 </div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<h3 id="Account-Margin">Account Margin<a class="anchor-link" href="#Account-Margin">&#182;</a></h3>
+<h2 id="Quote-Api">Quote Api<a class="anchor-link" href="#Quote-Api">&#182;</a></h2>
+</div>
+</div>
+</div><div class="fragment">
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In&nbsp;[6]:</div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">api</span><span class="o">.</span><span class="n">quote</span><span class="err">?</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+
+<div class="output_area">
+
+    <div class="prompt"></div>
+
+
+
+
+<div class="output_text output_subarea ">
+<pre><span class="ansi-red-fg">Type:</span>        Quote
+<span class="ansi-red-fg">String form:</span> &lt;shioaji.backend.solace.quote.Quote object at 0x7fe4bba6d828&gt;
+<span class="ansi-red-fg">File:</span>        shioaji/backend/solace/quote.py
+<span class="ansi-red-fg">Docstring:</span>  
+Quote Api
+
+Functions:
+    set_callback
+    set_event_callback
+    subscribe 
+</pre>
+</div>
+
+</div>
+
+</div>
+</div>
+
+</div></div></section><section>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h3 id="Set-event-and-quote-callback">Set event and quote callback<a class="anchor-link" href="#Set-event-and-quote-callback">&#182;</a></h3>
+</div>
+</div>
+</div><div class="fragment">
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In&nbsp;[7]:</div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">api</span><span class="o">.</span><span class="n">quote</span><span class="o">.</span><span class="n">set_callback</span><span class="err">?</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+
+<div class="output_area">
+
+    <div class="prompt"></div>
+
+
+
+
+<div class="output_text output_subarea ">
+<pre><span class="ansi-red-fg">Signature:</span> api<span class="ansi-blue-fg">.</span>quote<span class="ansi-blue-fg">.</span>set_callback<span class="ansi-blue-fg">(</span>func<span class="ansi-blue-fg">)</span>
+<span class="ansi-red-fg">Docstring:</span>
+set quote callback
+
+Args: 
+    func (:function): func(topic: str, quote_msg: dict) -&gt; int
+        when receive quote will call this function to processed the msg
+<span class="ansi-red-fg">File:</span>      shioaji/backend/solace/quote.py
+<span class="ansi-red-fg">Type:</span>      method
+</pre>
+</div>
+
+</div>
+
+</div>
+</div>
+
+</div></div><div class="fragment">
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In&nbsp;[8]:</div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">api</span><span class="o">.</span><span class="n">quote</span><span class="o">.</span><span class="n">set_event_callback</span><span class="err">?</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+
+<div class="output_area">
+
+    <div class="prompt"></div>
+
+
+
+
+<div class="output_text output_subarea ">
+<pre><span class="ansi-red-fg">Signature:</span> api<span class="ansi-blue-fg">.</span>quote<span class="ansi-blue-fg">.</span>set_event_callback<span class="ansi-blue-fg">(</span>func<span class="ansi-blue-fg">)</span>
+<span class="ansi-red-fg">Docstring:</span>
+set event callback
+
+Args:
+    func (:function): func(resp_code: int, event_code: int, event: str) -&gt; None
+        when event happend will call this function to deal with event
+<span class="ansi-red-fg">File:</span>      shioaji/backend/solace/quote.py
+<span class="ansi-red-fg">Type:</span>      method
+</pre>
+</div>
+
+</div>
+
+</div>
+</div>
+
+</div></div></section><section>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h3 id="Prepare-your-callback,-now-just-keep-it-simple">Prepare your callback, now just keep it simple<a class="anchor-link" href="#Prepare-your-callback,-now-just-keep-it-simple">&#182;</a></h3>
+</div>
+</div>
+</div><div class="fragment">
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In&nbsp;[7]:</div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="nd">@sj</span><span class="o">.</span><span class="n">on_quote</span>
+<span class="k">def</span> <span class="nf">quote_callback</span><span class="p">(</span><span class="n">topic</span><span class="p">,</span> <span class="n">quote_msg</span><span class="p">):</span>
+    <span class="nb">print</span><span class="p">(</span><span class="n">topic</span><span class="p">,</span> <span class="n">quote_msg</span><span class="p">)</span>
+
+<span class="nd">@sj</span><span class="o">.</span><span class="n">on_event</span>
+<span class="k">def</span> <span class="nf">event_callback</span><span class="p">(</span><span class="n">resp_code</span><span class="p">,</span> <span class="n">event_code</span><span class="p">,</span> <span class="n">event</span><span class="p">):</span>
+    <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Respone Code: </span><span class="si">{}</span><span class="s2"> | Event Code: </span><span class="si">{}</span><span class="s2"> | Event: </span><span class="si">{}</span><span class="s2">&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">resp_code</span><span class="p">,</span> <span class="n">event_code</span><span class="p">,</span> <span class="n">event</span><span class="p">))</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+</div></div><div class="fragment">
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In&nbsp;[8]:</div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">api</span><span class="o">.</span><span class="n">quote</span><span class="o">.</span><span class="n">set_callback</span><span class="p">(</span><span class="n">quote_callback</span><span class="p">)</span>
+<span class="n">api</span><span class="o">.</span><span class="n">quote</span><span class="o">.</span><span class="n">set_event_callback</span><span class="p">(</span><span class="n">event_callback</span><span class="p">)</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+</div></div></section><section>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h3 id="Subscribe-quote-of-the-contract">Subscribe quote of the contract<a class="anchor-link" href="#Subscribe-quote-of-the-contract">&#182;</a></h3>
+</div>
+</div>
+</div><div class="fragment">
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In&nbsp;[9]:</div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">api</span><span class="o">.</span><span class="n">quote</span><span class="o">.</span><span class="n">subscribe</span><span class="err">?</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+
+<div class="output_area">
+
+    <div class="prompt"></div>
+
+
+
+
+<div class="output_text output_subarea ">
+<pre><span class="ansi-red-fg">Signature:</span> api<span class="ansi-blue-fg">.</span>quote<span class="ansi-blue-fg">.</span>subscribe<span class="ansi-blue-fg">(</span>contract<span class="ansi-blue-fg">,</span> quote_type<span class="ansi-blue-fg">=</span><span class="ansi-blue-fg">&#39;tick&#39;</span><span class="ansi-blue-fg">)</span>
+<span class="ansi-red-fg">Docstring:</span>
+subscribe the quote of contract 
+
+Args:
+    contract (:obj:Shioaji.Contract): the contract you want to subscribe
+    quote_type (str): {tick, bidask}
+<span class="ansi-red-fg">File:</span>      shioaji/backend/solace/quote.py
+<span class="ansi-red-fg">Type:</span>      method
+</pre>
+</div>
+
+</div>
+
+</div>
+</div>
+
+</div></div><div class="fragment">
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In&nbsp;[9]:</div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">TXFR1</span> <span class="o">=</span> <span class="n">api</span><span class="o">.</span><span class="n">Contracts</span><span class="o">.</span><span class="n">Futures</span><span class="o">.</span><span class="n">TXF</span><span class="o">.</span><span class="n">TXF201903</span>
+<span class="n">TSE2330</span> <span class="o">=</span> <span class="n">api</span><span class="o">.</span><span class="n">Contracts</span><span class="o">.</span><span class="n">Stocks</span><span class="o">.</span><span class="n">TSE</span><span class="o">.</span><span class="n">TSE2330</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+</div></div></section><section>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In&nbsp;[10]:</div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">api</span><span class="o">.</span><span class="n">quote</span><span class="o">.</span><span class="n">subscribe</span><span class="p">(</span><span class="n">TXFR1</span><span class="p">)</span>
+<span class="n">api</span><span class="o">.</span><span class="n">quote</span><span class="o">.</span><span class="n">subscribe</span><span class="p">(</span><span class="n">TXFR1</span><span class="p">,</span> <span class="n">quote_type</span><span class="o">=</span><span class="s1">&#39;bidask&#39;</span><span class="p">)</span>
+<span class="n">api</span><span class="o">.</span><span class="n">quote</span><span class="o">.</span><span class="n">subscribe</span><span class="p">(</span><span class="n">TSE2330</span><span class="p">)</span>
+<span class="n">api</span><span class="o">.</span><span class="n">quote</span><span class="o">.</span><span class="n">subscribe</span><span class="p">(</span><span class="n">TSE2330</span><span class="p">,</span> <span class="n">quote_type</span><span class="o">=</span><span class="s1">&#39;bidask&#39;</span><span class="p">)</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+
+<div class="output_area">
+
+    <div class="prompt"></div>
+
+
+<div class="output_subarea output_stream output_stdout output_text">
+<pre>Respone Code: 200 | Event Code: 16 | Event: Subscribe or Unsubscribe ok
+Respone Code: 200 | Event Code: 16 | Event: Subscribe or Unsubscribe ok
+Respone Code: 200 | Event Code: 16 | Event: Subscribe or Unsubscribe ok
+MKT/redisrd/TSE/2330 {&#39;Close&#39;: [239.5], &#39;Time&#39;: &#39;11:11:42.624718&#39;, &#39;VolSum&#39;: [12206], &#39;Volume&#39;: [5]}
+QUT/redisrd/TSE/2330 {&#39;AskPrice&#39;: [240.0, 240.5, 241.0, 241.5, 242.0], &#39;AskVolume&#39;: [1808, 1789, 1645, 582, 1170], &#39;BidPrice&#39;: [239.5, 239.0, 238.5, 238.0, 237.5], &#39;BidVolume&#39;: [204, 765, 389, 475, 359], &#39;Date&#39;: &#39;2019/03/18&#39;, &#39;Time&#39;: &#39;11:11:42.624718&#39;}
+L/TFE/TXFC9 {&#39;Amount&#39;: [10466.0], &#39;AmountSum&#39;: [631295113.0], &#39;AvgPrice&#39;: [10465.247302024103], &#39;Close&#39;: [10466.0], &#39;Code&#39;: &#39;TXFC9&#39;, &#39;Date&#39;: &#39;2019/03/18&#39;, &#39;DiffPrice&#39;: [53.0], &#39;DiffRate&#39;: [0.508979160664554], &#39;DiffType&#39;: [2], &#39;High&#39;: [10474.0], &#39;Low&#39;: [10420.0], &#39;Open&#39;: 10437.0, &#39;TargetKindPrice&#39;: 10476.09, &#39;TickType&#39;: [2], &#39;Time&#39;: &#39;11:11:44.457000&#39;, &#39;TradeAskVolSum&#39;: 29697, &#39;TradeBidVolSum&#39;: 27732, &#39;VolSum&#39;: [60323], &#39;Volume&#39;: [1]}
+MKT/redisrd/TSE/2330 {&#39;Close&#39;: [240.0], &#39;Time&#39;: &#39;11:11:47.643968&#39;, &#39;VolSum&#39;: [12208], &#39;Volume&#39;: [2]}
+QUT/redisrd/TSE/2330 {&#39;AskPrice&#39;: [240.0, 240.5, 241.0, 241.5, 242.0], &#39;AskVolume&#39;: [1807, 1791, 1645, 582, 1170], &#39;BidPrice&#39;: [239.5, 239.0, 238.5, 238.0, 237.5], &#39;BidVolume&#39;: [207, 763, 389, 475, 359], &#39;Date&#39;: &#39;2019/03/18&#39;, &#39;Time&#39;: &#39;11:11:47.643968&#39;}
+</pre>
+</div>
+</div>
+
+</div>
+</div>
+
+</div></section></section><section><section>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h2 id="Account-&amp;-Portfolio">Account &amp; Portfolio<a class="anchor-link" href="#Account-&amp;-Portfolio">&#182;</a></h2><h3 id="Account-Margin">Account Margin<a class="anchor-link" href="#Account-Margin">&#182;</a></h3>
 </div>
 </div>
 </div><div class="fragment">
@@ -14641,7 +14926,7 @@ margin_type: {&#39;1&#39;, &#39;2&#39;}
 <div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
 </div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<h1 id="Get-Open-Position">Get Open Position<a class="anchor-link" href="#Get-Open-Position">&#182;</a></h1>
+<h3 id="Get-Open-Position">Get Open Position<a class="anchor-link" href="#Get-Open-Position">&#182;</a></h3>
 </div>
 </div>
 </div><div class="fragment">
