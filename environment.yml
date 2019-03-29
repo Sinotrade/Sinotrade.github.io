@@ -1,0 +1,10 @@
+name: shioaji
+channels:
+  - conda-forge
+dependencies:
+  - bqplot=0.11.2
+  - numpy
+  - pandas
+  - pip
+  - pip:
+    - shioaji
