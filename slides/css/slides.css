@@ -1,0 +1,20 @@
+.gallery {
+    margin: 5px;
+    border: 1px solid slategray;
+    float: left;
+    width: 180px;
+}
+
+.gallery:hover {
+    border: 1px solid black;
+}
+
+.gallery iframe {
+    width: 100%;
+    height: auto;
+}
+
+.tutorial-name {
+    padding: 15px;
+    text-align: center;
+}
