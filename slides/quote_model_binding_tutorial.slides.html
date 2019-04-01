@@ -13420,6 +13420,42 @@ _________________________________________________________________
 </div>
 </div>
 
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In&nbsp;[3]:</div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="k">def</span> <span class="nf">load_model</span><span class="p">():</span>
+    <span class="k">global</span> <span class="n">model</span><span class="p">,</span> <span class="n">graph</span>
+    <span class="n">graph</span> <span class="o">=</span> <span class="n">tf</span><span class="o">.</span><span class="n">get_default_graph</span><span class="p">()</span>
+    <span class="k">with</span> <span class="n">graph</span><span class="o">.</span><span class="n">as_default</span><span class="p">():</span>
+        <span class="n">input_layer</span> <span class="o">=</span> <span class="n">Input</span><span class="p">(</span><span class="n">shape</span><span class="o">=</span><span class="p">(</span><span class="mi">500</span><span class="p">,</span> <span class="mi">6</span><span class="p">,</span> <span class="mi">1</span><span class="p">),</span> <span class="n">name</span><span class="o">=</span><span class="s1">&#39;input&#39;</span><span class="p">)</span>
+        <span class="n">conv1</span> <span class="o">=</span> <span class="n">Conv2D</span><span class="p">(</span><span class="n">filters</span><span class="o">=</span><span class="mi">8</span><span class="p">,</span> <span class="n">kernel_size</span><span class="o">=</span><span class="p">(</span><span class="mi">4</span><span class="p">,</span> <span class="mi">1</span><span class="p">),</span> <span class="n">activation</span><span class="o">=</span><span class="s1">&#39;relu&#39;</span><span class="p">,</span> <span class="n">name</span><span class="o">=</span><span class="s1">&#39;conv1&#39;</span><span class="p">)(</span><span class="n">input_layer</span><span class="p">)</span>
+        <span class="n">conv2</span> <span class="o">=</span> <span class="n">Conv2D</span><span class="p">(</span><span class="n">filters</span><span class="o">=</span><span class="mi">16</span><span class="p">,</span> <span class="n">kernel_size</span><span class="o">=</span><span class="p">(</span><span class="mi">4</span><span class="p">,</span> <span class="mi">1</span><span class="p">),</span> <span class="n">activation</span><span class="o">=</span><span class="s1">&#39;relu&#39;</span><span class="p">,</span> <span class="n">name</span><span class="o">=</span><span class="s1">&#39;conv2&#39;</span><span class="p">)(</span><span class="n">conv1</span><span class="p">)</span>
+        <span class="n">maxp1</span> <span class="o">=</span> <span class="n">MaxPool2D</span><span class="p">(</span><span class="n">pool_size</span><span class="o">=</span><span class="p">(</span><span class="mi">4</span><span class="p">,</span> <span class="mi">1</span><span class="p">),</span> <span class="n">name</span><span class="o">=</span><span class="s1">&#39;maxp1&#39;</span><span class="p">)(</span><span class="n">conv2</span><span class="p">)</span>
+        <span class="n">conv3</span> <span class="o">=</span> <span class="n">Conv2D</span><span class="p">(</span><span class="n">filters</span><span class="o">=</span><span class="mi">32</span><span class="p">,</span> <span class="n">kernel_size</span><span class="o">=</span><span class="p">(</span><span class="mi">4</span><span class="p">,</span> <span class="mi">1</span><span class="p">),</span> <span class="n">activation</span><span class="o">=</span><span class="s1">&#39;relu&#39;</span><span class="p">,</span> <span class="n">name</span><span class="o">=</span><span class="s1">&#39;conv3&#39;</span><span class="p">)(</span><span class="n">maxp1</span><span class="p">)</span>
+        <span class="n">conv4</span> <span class="o">=</span> <span class="n">Conv2D</span><span class="p">(</span><span class="n">filters</span><span class="o">=</span><span class="mi">64</span><span class="p">,</span> <span class="n">kernel_size</span><span class="o">=</span><span class="p">(</span><span class="mi">4</span><span class="p">,</span> <span class="mi">1</span><span class="p">),</span> <span class="n">activation</span><span class="o">=</span><span class="s1">&#39;relu&#39;</span><span class="p">,</span> <span class="n">name</span><span class="o">=</span><span class="s1">&#39;conv4&#39;</span><span class="p">)(</span><span class="n">conv3</span><span class="p">)</span>
+        <span class="n">maxp2</span> <span class="o">=</span> <span class="n">MaxPool2D</span><span class="p">(</span><span class="n">pool_size</span><span class="o">=</span><span class="p">(</span><span class="mi">4</span><span class="p">,</span> <span class="mi">1</span><span class="p">),</span> <span class="n">name</span><span class="o">=</span><span class="s1">&#39;maxp2&#39;</span><span class="p">)(</span><span class="n">conv4</span><span class="p">)</span>
+        <span class="n">conv5</span> <span class="o">=</span> <span class="n">Conv2D</span><span class="p">(</span><span class="n">filters</span><span class="o">=</span><span class="mi">64</span><span class="p">,</span> <span class="n">kernel_size</span><span class="o">=</span><span class="p">(</span><span class="mi">4</span><span class="p">,</span> <span class="mi">1</span><span class="p">),</span> <span class="n">activation</span><span class="o">=</span><span class="s1">&#39;relu&#39;</span><span class="p">,</span> <span class="n">name</span><span class="o">=</span><span class="s1">&#39;conv5&#39;</span><span class="p">)(</span><span class="n">maxp2</span><span class="p">)</span>
+        <span class="n">conv6</span> <span class="o">=</span> <span class="n">Conv2D</span><span class="p">(</span><span class="n">filters</span><span class="o">=</span><span class="mi">128</span><span class="p">,</span> <span class="n">kernel_size</span><span class="o">=</span><span class="p">(</span><span class="mi">4</span><span class="p">,</span> <span class="mi">1</span><span class="p">),</span> <span class="n">activation</span><span class="o">=</span><span class="s1">&#39;relu&#39;</span><span class="p">,</span> <span class="n">name</span><span class="o">=</span><span class="s1">&#39;conv6&#39;</span><span class="p">)(</span><span class="n">conv5</span><span class="p">)</span>
+        <span class="n">maxp3</span> <span class="o">=</span> <span class="n">MaxPool2D</span><span class="p">(</span><span class="n">pool_size</span><span class="o">=</span><span class="p">(</span><span class="mi">4</span><span class="p">,</span> <span class="mi">1</span><span class="p">),</span> <span class="n">name</span><span class="o">=</span><span class="s1">&#39;maxp3&#39;</span><span class="p">)(</span><span class="n">conv6</span><span class="p">)</span>
+        <span class="n">conv7</span> <span class="o">=</span> <span class="n">Conv2D</span><span class="p">(</span><span class="n">filters</span><span class="o">=</span><span class="mi">256</span><span class="p">,</span> <span class="n">kernel_size</span><span class="o">=</span><span class="p">(</span><span class="mi">2</span><span class="p">,</span> <span class="mi">1</span><span class="p">),</span> <span class="n">activation</span><span class="o">=</span><span class="s1">&#39;relu&#39;</span><span class="p">,</span> <span class="n">name</span><span class="o">=</span><span class="s1">&#39;conv7&#39;</span><span class="p">)(</span><span class="n">maxp3</span><span class="p">)</span>
+        <span class="n">conv8</span> <span class="o">=</span> <span class="n">Conv2D</span><span class="p">(</span><span class="n">filters</span><span class="o">=</span><span class="mi">256</span><span class="p">,</span> <span class="n">kernel_size</span><span class="o">=</span><span class="p">(</span><span class="mi">2</span><span class="p">,</span> <span class="mi">1</span><span class="p">),</span> <span class="n">activation</span><span class="o">=</span><span class="s1">&#39;relu&#39;</span><span class="p">,</span> <span class="n">name</span><span class="o">=</span><span class="s1">&#39;conv8&#39;</span><span class="p">)(</span><span class="n">conv7</span><span class="p">)</span>
+        <span class="n">maxp4</span> <span class="o">=</span> <span class="n">MaxPool2D</span><span class="p">(</span><span class="n">pool_size</span><span class="o">=</span><span class="p">(</span><span class="mi">2</span><span class="p">,</span> <span class="mi">1</span><span class="p">),</span> <span class="n">name</span><span class="o">=</span><span class="s1">&#39;maxp4&#39;</span><span class="p">)(</span><span class="n">conv8</span><span class="p">)</span>
+        <span class="n">flat</span> <span class="o">=</span> <span class="n">Flatten</span><span class="p">(</span><span class="n">name</span><span class="o">=</span><span class="s1">&#39;flat&#39;</span><span class="p">)(</span><span class="n">maxp4</span><span class="p">)</span>
+        <span class="n">dropout1</span> <span class="o">=</span> <span class="n">Dropout</span><span class="p">(</span><span class="n">rate</span><span class="o">=</span><span class="mf">0.4</span><span class="p">,</span> <span class="n">name</span><span class="o">=</span><span class="s1">&#39;dropout1&#39;</span><span class="p">)(</span><span class="n">flat</span><span class="p">)</span>
+        <span class="n">fc1</span> <span class="o">=</span> <span class="n">Dense</span><span class="p">(</span><span class="mi">256</span><span class="p">,</span> <span class="n">activation</span><span class="o">=</span><span class="s1">&#39;relu&#39;</span><span class="p">,</span> <span class="n">name</span><span class="o">=</span><span class="s1">&#39;fc1&#39;</span><span class="p">)(</span><span class="n">dropout1</span><span class="p">)</span>
+        <span class="n">dropout2</span> <span class="o">=</span> <span class="n">Dropout</span><span class="p">(</span><span class="n">rate</span><span class="o">=</span><span class="mf">0.4</span><span class="p">,</span> <span class="n">name</span><span class="o">=</span><span class="s1">&#39;dropout2&#39;</span><span class="p">)(</span><span class="n">fc1</span><span class="p">)</span>
+        <span class="n">fc2</span> <span class="o">=</span> <span class="n">Dense</span><span class="p">(</span><span class="mi">3</span><span class="p">,</span> <span class="n">activation</span><span class="o">=</span><span class="s1">&#39;softmax&#39;</span><span class="p">,</span> <span class="n">name</span><span class="o">=</span><span class="s1">&#39;fc2&#39;</span><span class="p">)(</span><span class="n">dropout2</span><span class="p">)</span>
+        <span class="n">model</span> <span class="o">=</span> <span class="n">Model</span><span class="p">(</span><span class="n">inputs</span><span class="o">=</span><span class="p">[</span><span class="n">input_layer</span><span class="p">],</span> <span class="n">outputs</span><span class="o">=</span><span class="p">[</span><span class="n">fc2</span><span class="p">])</span>
+        <span class="n">model</span><span class="o">.</span><span class="n">load_weights</span><span class="p">(</span><span class="s1">&#39;simplecnn.h5&#39;</span><span class="p">)</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
 </div></div></section></section><section><section>
 <div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
 </div><div class="inner_cell">
@@ -13430,7 +13466,7 @@ _________________________________________________________________
 </div><div class="fragment">
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[2]:</div>
+<div class="prompt input_prompt">In&nbsp;[4]:</div>
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="n">api</span> <span class="o">=</span> <span class="n">sj</span><span class="o">.</span><span class="n">Shioaji</span><span class="p">(</span><span class="n">simulation</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
@@ -13443,7 +13479,7 @@ _________________________________________________________________
 </div></div><div class="fragment">
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[3]:</div>
+<div class="prompt input_prompt">In&nbsp;[5]:</div>
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="k">with</span> <span class="nb">open</span><span class="p">(</span><span class="s1">&#39;login.json&#39;</span><span class="p">,</span> <span class="s1">&#39;r&#39;</span><span class="p">)</span> <span class="k">as</span> <span class="n">f</span><span class="p">:</span>
@@ -13465,7 +13501,7 @@ _________________________________________________________________
 </div><div class="fragment">
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[8]:</div>
+<div class="prompt input_prompt">In&nbsp;[6]:</div>
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="n">tick_plot_length</span> <span class="o">=</span> <span class="mi">150</span>
@@ -13486,7 +13522,7 @@ _________________________________________________________________
 </div></div><div class="fragment">
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[14]:</div>
+<div class="prompt input_prompt">In&nbsp;[12]:</div>
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="n">data_in</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">rand</span><span class="p">(</span><span class="mi">2</span><span class="p">)</span>
@@ -13508,7 +13544,7 @@ _________________________________________________________________
 </div><div class="fragment">
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[85]:</div>
+<div class="prompt input_prompt">In&nbsp;[13]:</div>
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="k">def</span> <span class="nf">init_model_chart</span><span class="p">():</span>
@@ -13543,7 +13579,7 @@ _________________________________________________________________
 </div><div class="fragment">
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[20]:</div>
+<div class="prompt input_prompt">In&nbsp;[18]:</div>
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="k">def</span> <span class="nf">split_data</span><span class="p">(</span><span class="n">rec</span><span class="p">,</span> <span class="n">index</span><span class="p">):</span>
@@ -13553,8 +13589,9 @@ _________________________________________________________________
     <span class="n">sp_rec</span><span class="p">[</span><span class="s1">&#39;idx&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">index</span>
     <span class="k">return</span> <span class="n">sp_rec</span>
 
-<span class="k">def</span> <span class="nf">proc_model_data</span><span class="p">(</span><span class="n">quote_msgs</span><span class="p">):</span>
+<span class="k">def</span> <span class="nf">proc_model_data</span><span class="p">(</span><span class="n">quote_msg</span><span class="p">):</span>
     <span class="k">global</span> <span class="n">np_features</span><span class="p">,</span> <span class="n">pred_data</span>
+    <span class="k">global</span> <span class="n">model</span><span class="p">,</span> <span class="n">graph</span>
     <span class="n">quote_msgs</span> <span class="o">=</span> <span class="p">[</span><span class="n">split_data</span><span class="p">(</span><span class="n">quote_msg</span><span class="p">,</span> <span class="n">ind</span><span class="p">)</span> <span class="k">for</span> <span class="n">ind</span><span class="p">,</span> <span class="n">_</span> <span class="ow">in</span> <span class="nb">enumerate</span><span class="p">(</span><span class="n">quote_msg</span><span class="p">[</span><span class="s1">&#39;Close&#39;</span><span class="p">])]</span>
     <span class="k">for</span> <span class="n">msg</span> <span class="ow">in</span> <span class="n">quote_msgs</span><span class="p">:</span>
         <span class="k">if</span> <span class="n">msg</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s1">&#39;TickType&#39;</span><span class="p">,</span> <span class="mi">0</span><span class="p">)</span> <span class="o">==</span> <span class="mi">1</span><span class="p">:</span>
@@ -13562,14 +13599,16 @@ _________________________________________________________________
         <span class="k">elif</span> <span class="n">msg</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s1">&#39;TickType&#39;</span><span class="p">,</span> <span class="mi">0</span><span class="p">)</span> <span class="o">==</span> <span class="mi">2</span><span class="p">:</span>
             <span class="n">ask_vol</span><span class="p">,</span> <span class="n">bid_vol</span> <span class="o">=</span> <span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="n">msg</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s1">&#39;Volume&#39;</span><span class="p">,</span> <span class="mi">0</span><span class="p">))</span>
         <span class="k">else</span><span class="p">:</span>
-            <span class="n">ask_vol</span><span class="p">,</span> <span class="n">bid_vol</span> <span class="o">=</span> <span class="mi">0</span>
+            <span class="n">ask_vol</span><span class="p">,</span> <span class="n">bid_vol</span> <span class="o">=</span> <span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">)</span>
         <span class="n">np_features</span><span class="p">[:</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span> <span class="o">=</span> <span class="n">np_features</span><span class="p">[</span><span class="mi">1</span><span class="p">:]</span>
         <span class="n">np_features</span><span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span> <span class="o">=</span> <span class="p">[</span><span class="n">msg</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s1">&#39;Close&#39;</span><span class="p">,</span> <span class="mi">0</span><span class="p">),</span> <span class="n">msg</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s1">&#39;DiffPrice&#39;</span><span class="p">,</span> <span class="mi">0</span><span class="p">),</span> 
                            <span class="n">msg</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s1">&#39;Volume&#39;</span><span class="p">,</span> <span class="mi">0</span><span class="p">),</span> <span class="n">msg</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s1">&#39;TargetKindPrice&#39;</span><span class="p">,</span> <span class="mi">0</span><span class="p">),</span>
                            <span class="n">ask_vol</span><span class="p">,</span> <span class="n">bid_vol</span><span class="p">,]</span>
         <span class="n">input_x</span> <span class="o">=</span> <span class="p">((</span><span class="n">np_features</span> <span class="o">-</span> <span class="n">norm_min</span><span class="p">)</span> <span class="o">/</span> <span class="n">norm_range</span><span class="p">)[</span><span class="n">np</span><span class="o">.</span><span class="n">newaxis</span><span class="p">,:,:,</span><span class="n">np</span><span class="o">.</span><span class="n">newaxis</span><span class="p">]</span>
         <span class="n">pred_data</span><span class="p">[:</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span> <span class="o">=</span> <span class="n">pred_data</span><span class="p">[</span><span class="mi">1</span><span class="p">:]</span>
-        <span class="n">pred_data</span><span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span> <span class="o">=</span> <span class="n">model</span><span class="o">.</span><span class="n">predict</span><span class="p">(</span><span class="n">input_x</span><span class="p">)[</span><span class="mi">0</span><span class="p">]</span>
+        <span class="k">with</span> <span class="n">graph</span><span class="o">.</span><span class="n">as_default</span><span class="p">():</span>
+            <span class="n">model</span><span class="o">.</span><span class="n">load_weights</span><span class="p">(</span><span class="s1">&#39;simplecnn.h5&#39;</span><span class="p">)</span>
+            <span class="n">pred_data</span><span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span> <span class="o">=</span> <span class="n">model</span><span class="o">.</span><span class="n">predict</span><span class="p">(</span><span class="n">input_x</span><span class="p">)[</span><span class="mi">0</span><span class="p">]</span>
 </pre></div>
 
     </div>
@@ -13586,7 +13625,7 @@ _________________________________________________________________
 </div><div class="fragment">
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[25]:</div>
+<div class="prompt input_prompt">In&nbsp;[23]:</div>
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="k">def</span> <span class="nf">update_model_chart</span><span class="p">():</span>
@@ -13610,10 +13649,11 @@ _________________________________________________________________
 </div><div class="fragment">
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[29]:</div>
+<div class="prompt input_prompt">In&nbsp;[27]:</div>
 <div class="inner_cell">
     <div class="input_area">
-<div class=" highlight hl-ipython3"><pre><span></span><span class="nd">@sj</span><span class="o">.</span><span class="n">on_quote</span>
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">load_model</span><span class="p">()</span>
+<span class="nd">@sj</span><span class="o">.</span><span class="n">on_quote</span>
 <span class="k">def</span> <span class="nf">quote_callback</span><span class="p">(</span><span class="n">topic</span><span class="p">,</span> <span class="n">quote_msg</span><span class="p">):</span>
     <span class="k">global</span> <span class="n">tick_plot_length</span>
     <span class="k">global</span> <span class="n">line_chart</span><span class="p">,</span> <span class="n">scatter_chart</span>
@@ -13627,6 +13667,7 @@ _________________________________________________________________
     <span class="k">global</span> <span class="n">bar_bidask</span><span class="p">,</span> <span class="n">bar_bidask_diff</span>
     <span class="k">global</span> <span class="n">x_bar_data</span><span class="p">,</span> <span class="n">y_bar_data</span><span class="p">,</span> <span class="n">color_bar_data</span><span class="p">,</span> <span class="n">y_data_diff</span>
     <span class="k">global</span> <span class="n">ohlc_chart</span><span class="p">,</span> <span class="n">df_min</span>
+    <span class="k">global</span> <span class="n">model</span><span class="p">,</span> <span class="n">graph</span><span class="p">,</span> <span class="n">init_model</span>
     <span class="n">vol_threshold</span> <span class="o">=</span> <span class="mi">10</span>
     <span class="c1">#print(topic, quote_msg)</span>
     <span class="k">if</span> <span class="n">topic</span><span class="o">.</span><span class="n">startswith</span><span class="p">(</span><span class="s1">&#39;Q&#39;</span><span class="p">)</span> <span class="ow">and</span> <span class="s1">&#39;TXFD9&#39;</span> <span class="ow">in</span> <span class="n">topic</span><span class="p">:</span>
@@ -13648,6 +13689,29 @@ _________________________________________________________________
 </div>
 </div>
 
+<div class="output_wrapper">
+<div class="output">
+
+
+<div class="output_area">
+
+    <div class="prompt"></div>
+
+
+<div class="output_subarea output_stream output_stdout output_text">
+<pre>WARNING:tensorflow:From /Users/Tanni/.pyenv/versions/miniconda3-latest/lib/python3.7/site-packages/tensorflow/python/ops/resource_variable_ops.py:435: colocate_with (from tensorflow.python.framework.ops) is deprecated and will be removed in a future version.
+Instructions for updating:
+Colocations handled automatically by placer.
+WARNING:tensorflow:From /Users/Tanni/.pyenv/versions/miniconda3-latest/lib/python3.7/site-packages/tensorflow/python/keras/layers/core.py:143: calling dropout (from tensorflow.python.ops.nn_ops) with keep_prob is deprecated and will be removed in a future version.
+Instructions for updating:
+Please use `rate` instead of `keep_prob`. Rate should be set to `rate = 1 - keep_prob`.
+</pre>
+</div>
+</div>
+
+</div>
+</div>
+
 </div></div></section><section>
 <div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
 </div><div class="inner_cell">
@@ -13658,7 +13722,7 @@ _________________________________________________________________
 </div><div class="fragment">
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[30]:</div>
+<div class="prompt input_prompt">In&nbsp;[28]:</div>
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="nd">@sj</span><span class="o">.</span><span class="n">on_event</span>
@@ -13680,7 +13744,7 @@ _________________________________________________________________
 </div><div class="fragment">
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[23]:</div>
+<div class="prompt input_prompt">In&nbsp;[29]:</div>
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="n">api</span><span class="o">.</span><span class="n">quote</span><span class="o">.</span><span class="n">set_callback</span><span class="p">(</span><span class="n">quote_callback</span><span class="p">)</span>
@@ -13701,7 +13765,7 @@ _________________________________________________________________
 </div><div class="fragment">
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[92]:</div>
+<div class="prompt input_prompt">In&nbsp;[30]:</div>
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="n">VBox</span><span class="p">([</span><span class="n">init_model_chart</span><span class="p">(),</span>
@@ -13728,13 +13792,13 @@ _________________________________________________________________
 
  
  
-<div id="fe556ea4-f469-4870-8118-fc0a84b921b7"></div>
+<div id="1168dc06-8145-4061-a016-9848275eae66"></div>
 <div class="output_subarea output_widget_view ">
 <script type="text/javascript">
-var element = $('#fe556ea4-f469-4870-8118-fc0a84b921b7');
+var element = $('#1168dc06-8145-4061-a016-9848275eae66');
 </script>
 <script type="application/vnd.jupyter.widget-view+json">
-{"model_id": "bfbe3dd2b5d24ef2945f43ec32a11cb5", "version_major": 2, "version_minor": 0}
+{"model_id": "7fcff16d8850467b95561f47df3d84df", "version_major": 2, "version_minor": 0}
 </script>
 </div>
 
@@ -13743,6 +13807,14 @@ var element = $('#fe556ea4-f469-4870-8118-fc0a84b921b7');
 </div>
 </div>
 
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p><img src="https://raw.githubusercontent.com/Sinotrade/Sinotrade.github.io/master/images/model_binding.gif" alt="gif"></p>
+
+</div>
+</div>
 </div></div></section><section>
 <div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
 </div><div class="inner_cell">
@@ -13753,7 +13825,7 @@ var element = $('#fe556ea4-f469-4870-8118-fc0a84b921b7');
 </div><div class="fragment">
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[25]:</div>
+<div class="prompt input_prompt">In&nbsp;[31]:</div>
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="n">TXFR1</span> <span class="o">=</span> <span class="n">api</span><span class="o">.</span><span class="n">Contracts</span><span class="o">.</span><span class="n">Futures</span><span class="o">.</span><span class="n">TXF</span><span class="o">.</span><span class="n">TXF201904</span>
@@ -13767,7 +13839,7 @@ var element = $('#fe556ea4-f469-4870-8118-fc0a84b921b7');
 </div></div><div class="fragment">
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[26]:</div>
+<div class="prompt input_prompt">In&nbsp;[32]:</div>
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="n">api</span><span class="o">.</span><span class="n">quote</span><span class="o">.</span><span class="n">subscribe</span><span class="p">(</span><span class="n">TXFR1</span><span class="p">)</span>
@@ -13794,32 +13866,6 @@ var element = $('#fe556ea4-f469-4870-8118-fc0a84b921b7');
 Respone Code: 200 | Event Code: 16 | Event: Subscribe or Unsubscribe ok
 Respone Code: 200 | Event Code: 16 | Event: Subscribe or Unsubscribe ok
 Respone Code: 200 | Event Code: 16 | Event: Subscribe or Unsubscribe ok
-Q/TFE/TXFD9 {&#39;AskPrice&#39;: [10580.0, 10581.0, 10582.0, 10583.0, 10584.0], &#39;AskVolSum&#39;: 356, &#39;AskVolume&#39;: [25, 44, 64, 75, 148], &#39;BidPrice&#39;: [10579.0, 10578.0, 10577.0, 10576.0, 10575.0], &#39;BidVolSum&#39;: 240, &#39;BidVolume&#39;: [12, 42, 59, 66, 61], &#39;Code&#39;: &#39;TXFD9&#39;, &#39;Date&#39;: &#39;2019/03/29&#39;, &#39;DiffAskVol&#39;: [0, 0, 0, -1, 0], &#39;DiffAskVolSum&#39;: -1, &#39;DiffBidVol&#39;: [0, 0, 0, 0, 0], &#39;DiffBidVolSum&#39;: 0, &#39;FirstDerivedAskPrice&#39;: 10581.0, &#39;FirstDerivedAskVolume&#39;: 6, &#39;FirstDerivedBidPrice&#39;: 10577.0, &#39;FirstDerivedBidVolume&#39;: 1, &#39;TargetKindPrice&#39;: 10620.7, &#39;Time&#39;: &#39;13:12:35.328000&#39;}
-Q/TFE/TXFD9 {&#39;AskPrice&#39;: [10580.0, 10581.0, 10582.0, 10583.0, 10584.0], &#39;AskVolSum&#39;: 356, &#39;AskVolume&#39;: [25, 44, 64, 75, 148], &#39;BidPrice&#39;: [10579.0, 10578.0, 10577.0, 10576.0, 10575.0], &#39;BidVolSum&#39;: 239, &#39;BidVolume&#39;: [11, 42, 59, 66, 61], &#39;Code&#39;: &#39;TXFD9&#39;, &#39;Date&#39;: &#39;2019/03/29&#39;, &#39;DiffAskVol&#39;: [0, 0, 0, 0, 0], &#39;DiffAskVolSum&#39;: 0, &#39;DiffBidVol&#39;: [-1, 0, 0, 0, 0], &#39;DiffBidVolSum&#39;: -1, &#39;FirstDerivedAskPrice&#39;: 10581.0, &#39;FirstDerivedAskVolume&#39;: 6, &#39;FirstDerivedBidPrice&#39;: 10577.0, &#39;FirstDerivedBidVolume&#39;: 1, &#39;TargetKindPrice&#39;: 10620.7, &#39;Time&#39;: &#39;13:12:35.453000&#39;}
-Q/TFE/TXFD9 {&#39;AskPrice&#39;: [10580.0, 10581.0, 10582.0, 10583.0, 10584.0], &#39;AskVolSum&#39;: 341, &#39;AskVolume&#39;: [25, 44, 64, 65, 143], &#39;BidPrice&#39;: [10579.0, 10578.0, 10577.0, 10576.0, 10575.0], &#39;BidVolSum&#39;: 239, &#39;BidVolume&#39;: [11, 42, 59, 66, 61], &#39;Code&#39;: &#39;TXFD9&#39;, &#39;Date&#39;: &#39;2019/03/29&#39;, &#39;DiffAskVol&#39;: [0, 0, 0, -10, -5], &#39;DiffAskVolSum&#39;: -15, &#39;DiffBidVol&#39;: [0, 0, 0, 0, 0], &#39;DiffBidVolSum&#39;: 0, &#39;FirstDerivedAskPrice&#39;: 10581.0, &#39;FirstDerivedAskVolume&#39;: 6, &#39;FirstDerivedBidPrice&#39;: 10577.0, &#39;FirstDerivedBidVolume&#39;: 1, &#39;TargetKindPrice&#39;: 10620.7, &#39;Time&#39;: &#39;13:12:35.703000&#39;}
-Q/TFE/TXFD9 {&#39;AskPrice&#39;: [10580.0, 10581.0, 10582.0, 10583.0, 10584.0], &#39;AskVolSum&#39;: 341, &#39;AskVolume&#39;: [25, 44, 64, 65, 143], &#39;BidPrice&#39;: [10579.0, 10578.0, 10577.0, 10576.0, 10575.0], &#39;BidVolSum&#39;: 239, &#39;BidVolume&#39;: [11, 42, 59, 66, 61], &#39;Code&#39;: &#39;TXFD9&#39;, &#39;Date&#39;: &#39;2019/03/29&#39;, &#39;DiffAskVol&#39;: [0, 0, 0, 0, 0], &#39;DiffAskVolSum&#39;: 0, &#39;DiffBidVol&#39;: [0, 0, 0, 0, 0], &#39;DiffBidVolSum&#39;: 0, &#39;FirstDerivedAskPrice&#39;: 10581.0, &#39;FirstDerivedAskVolume&#39;: 6, &#39;FirstDerivedBidPrice&#39;: 10577.0, &#39;FirstDerivedBidVolume&#39;: 1, &#39;TargetKindPrice&#39;: 10620.7, &#39;Time&#39;: &#39;13:12:35.828000&#39;}
-Q/TFE/TXFD9 {&#39;AskPrice&#39;: [10580.0, 10581.0, 10582.0, 10583.0, 10584.0], &#39;AskVolSum&#39;: 341, &#39;AskVolume&#39;: [25, 44, 64, 65, 143], &#39;BidPrice&#39;: [10579.0, 10578.0, 10577.0, 10576.0, 10575.0], &#39;BidVolSum&#39;: 241, &#39;BidVolume&#39;: [12, 42, 59, 66, 62], &#39;Code&#39;: &#39;TXFD9&#39;, &#39;Date&#39;: &#39;2019/03/29&#39;, &#39;DiffAskVol&#39;: [0, 0, 0, 0, 0], &#39;DiffAskVolSum&#39;: 0, &#39;DiffBidVol&#39;: [1, 0, 0, 0, 1], &#39;DiffBidVolSum&#39;: 2, &#39;FirstDerivedAskPrice&#39;: 10581.0, &#39;FirstDerivedAskVolume&#39;: 6, &#39;FirstDerivedBidPrice&#39;: 10577.0, &#39;FirstDerivedBidVolume&#39;: 1, &#39;TargetKindPrice&#39;: 10620.7, &#39;Time&#39;: &#39;13:12:36.203000&#39;}
-Q/TFE/TXFD9 {&#39;AskPrice&#39;: [10580.0, 10581.0, 10582.0, 10583.0, 10584.0], &#39;AskVolSum&#39;: 341, &#39;AskVolume&#39;: [25, 44, 64, 65, 143], &#39;BidPrice&#39;: [10579.0, 10578.0, 10577.0, 10576.0, 10575.0], &#39;BidVolSum&#39;: 244, &#39;BidVolume&#39;: [15, 42, 59, 66, 62], &#39;Code&#39;: &#39;TXFD9&#39;, &#39;Date&#39;: &#39;2019/03/29&#39;, &#39;DiffAskVol&#39;: [0, 0, 0, 0, 0], &#39;DiffAskVolSum&#39;: 0, &#39;DiffBidVol&#39;: [3, 0, 0, 0, 0], &#39;DiffBidVolSum&#39;: 3, &#39;FirstDerivedAskPrice&#39;: 10581.0, &#39;FirstDerivedAskVolume&#39;: 6, &#39;FirstDerivedBidPrice&#39;: 10577.0, &#39;FirstDerivedBidVolume&#39;: 1, &#39;TargetKindPrice&#39;: 10620.7, &#39;Time&#39;: &#39;13:12:36.328000&#39;}
-Q/TFE/TXFD9 {&#39;AskPrice&#39;: [10580.0, 10581.0, 10582.0, 10583.0, 10584.0], &#39;AskVolSum&#39;: 342, &#39;AskVolume&#39;: [25, 45, 64, 65, 143], &#39;BidPrice&#39;: [10579.0, 10578.0, 10577.0, 10576.0, 10575.0], &#39;BidVolSum&#39;: 244, &#39;BidVolume&#39;: [14, 44, 58, 65, 63], &#39;Code&#39;: &#39;TXFD9&#39;, &#39;Date&#39;: &#39;2019/03/29&#39;, &#39;DiffAskVol&#39;: [0, 1, 0, 0, 0], &#39;DiffAskVolSum&#39;: 1, &#39;DiffBidVol&#39;: [-1, 2, -1, -1, 1], &#39;DiffBidVolSum&#39;: 0, &#39;FirstDerivedAskPrice&#39;: 10581.0, &#39;FirstDerivedAskVolume&#39;: 6, &#39;FirstDerivedBidPrice&#39;: 10577.0, &#39;FirstDerivedBidVolume&#39;: 1, &#39;TargetKindPrice&#39;: 10620.7, &#39;Time&#39;: &#39;13:12:36.453000&#39;}
-Q/TFE/TXFD9 {&#39;AskPrice&#39;: [10580.0, 10581.0, 10582.0, 10583.0, 10584.0], &#39;AskVolSum&#39;: 342, &#39;AskVolume&#39;: [25, 45, 64, 65, 143], &#39;BidPrice&#39;: [10579.0, 10578.0, 10577.0, 10576.0, 10575.0], &#39;BidVolSum&#39;: 247, &#39;BidVolume&#39;: [16, 43, 58, 66, 64], &#39;Code&#39;: &#39;TXFD9&#39;, &#39;Date&#39;: &#39;2019/03/29&#39;, &#39;DiffAskVol&#39;: [0, 0, 0, 0, 0], &#39;DiffAskVolSum&#39;: 0, &#39;DiffBidVol&#39;: [2, -1, 0, 1, 1], &#39;DiffBidVolSum&#39;: 3, &#39;FirstDerivedAskPrice&#39;: 10581.0, &#39;FirstDerivedAskVolume&#39;: 6, &#39;FirstDerivedBidPrice&#39;: 10577.0, &#39;FirstDerivedBidVolume&#39;: 1, &#39;TargetKindPrice&#39;: 10620.7, &#39;Time&#39;: &#39;13:12:36.578000&#39;}
-Q/TFE/TXFD9 {&#39;AskPrice&#39;: [10580.0, 10581.0, 10582.0, 10583.0, 10584.0], &#39;AskVolSum&#39;: 342, &#39;AskVolume&#39;: [25, 45, 64, 65, 143], &#39;BidPrice&#39;: [10579.0, 10578.0, 10577.0, 10576.0, 10575.0], &#39;BidVolSum&#39;: 248, &#39;BidVolume&#39;: [17, 44, 58, 65, 64], &#39;Code&#39;: &#39;TXFD9&#39;, &#39;Date&#39;: &#39;2019/03/29&#39;, &#39;DiffAskVol&#39;: [0, 0, 0, 0, 0], &#39;DiffAskVolSum&#39;: 0, &#39;DiffBidVol&#39;: [1, 1, 0, -1, 0], &#39;DiffBidVolSum&#39;: 1, &#39;FirstDerivedAskPrice&#39;: 10581.0, &#39;FirstDerivedAskVolume&#39;: 6, &#39;FirstDerivedBidPrice&#39;: 10577.0, &#39;FirstDerivedBidVolume&#39;: 1, &#39;TargetKindPrice&#39;: 10620.7, &#39;Time&#39;: &#39;13:12:36.703000&#39;}
-Q/TFE/TXFD9 {&#39;AskPrice&#39;: [10580.0, 10581.0, 10582.0, 10583.0, 10584.0], &#39;AskVolSum&#39;: 342, &#39;AskVolume&#39;: [25, 45, 64, 65, 143], &#39;BidPrice&#39;: [10579.0, 10578.0, 10577.0, 10576.0, 10575.0], &#39;BidVolSum&#39;: 247, &#39;BidVolume&#39;: [16, 44, 58, 65, 64], &#39;Code&#39;: &#39;TXFD9&#39;, &#39;Date&#39;: &#39;2019/03/29&#39;, &#39;DiffAskVol&#39;: [0, 0, 0, 0, 0], &#39;DiffAskVolSum&#39;: 0, &#39;DiffBidVol&#39;: [-1, 0, 0, 0, 0], &#39;DiffBidVolSum&#39;: -1, &#39;FirstDerivedAskPrice&#39;: 10581.0, &#39;FirstDerivedAskVolume&#39;: 6, &#39;FirstDerivedBidPrice&#39;: 10577.0, &#39;FirstDerivedBidVolume&#39;: 1, &#39;TargetKindPrice&#39;: 10620.7, &#39;Time&#39;: &#39;13:12:36.828000&#39;}
-MKT/idcdmzpcr01/TSE/2330 {&#39;Close&#39;: [244.5], &#39;Time&#39;: &#39;13:12:37.754742&#39;, &#39;VolSum&#39;: [15915], &#39;Volume&#39;: [1]}
-QUT/idcdmzpcr01/TSE/2330 {&#39;AskPrice&#39;: [245.0, 245.5, 246.0, 246.5, 247.0], &#39;AskVolume&#39;: [1148, 377, 501, 182, 218], &#39;BidPrice&#39;: [244.5, 244.0, 243.5, 243.0, 242.5], &#39;BidVolume&#39;: [456, 373, 1529, 1670, 280], &#39;Date&#39;: &#39;2019/03/29&#39;, &#39;Time&#39;: &#39;13:12:37.754742&#39;}
-Q/TFE/TXFD9 {&#39;AskPrice&#39;: [10580.0, 10581.0, 10582.0, 10583.0, 10584.0], &#39;AskVolSum&#39;: 342, &#39;AskVolume&#39;: [25, 45, 64, 65, 143], &#39;BidPrice&#39;: [10579.0, 10578.0, 10577.0, 10576.0, 10575.0], &#39;BidVolSum&#39;: 247, &#39;BidVolume&#39;: [16, 44, 58, 65, 64], &#39;Code&#39;: &#39;TXFD9&#39;, &#39;Date&#39;: &#39;2019/03/29&#39;, &#39;DiffAskVol&#39;: [0, 0, 0, 0, 0], &#39;DiffAskVolSum&#39;: 0, &#39;DiffBidVol&#39;: [0, 0, 0, 0, 0], &#39;DiffBidVolSum&#39;: 0, &#39;FirstDerivedAskPrice&#39;: 10581.0, &#39;FirstDerivedAskVolume&#39;: 6, &#39;FirstDerivedBidPrice&#39;: 10577.0, &#39;FirstDerivedBidVolume&#39;: 1, &#39;TargetKindPrice&#39;: 10620.7, &#39;Time&#39;: &#39;13:12:37.953000&#39;}
-Q/TFE/TXFD9 {&#39;AskPrice&#39;: [10580.0, 10581.0, 10582.0, 10583.0, 10584.0], &#39;AskVolSum&#39;: 339, &#39;AskVolume&#39;: [25, 45, 64, 62, 143], &#39;BidPrice&#39;: [10579.0, 10578.0, 10577.0, 10576.0, 10575.0], &#39;BidVolSum&#39;: 247, &#39;BidVolume&#39;: [16, 44, 58, 65, 64], &#39;Code&#39;: &#39;TXFD9&#39;, &#39;Date&#39;: &#39;2019/03/29&#39;, &#39;DiffAskVol&#39;: [0, 0, 0, -3, 0], &#39;DiffAskVolSum&#39;: -3, &#39;DiffBidVol&#39;: [0, 0, 0, 0, 0], &#39;DiffBidVolSum&#39;: 0, &#39;FirstDerivedAskPrice&#39;: 10581.0, &#39;FirstDerivedAskVolume&#39;: 6, &#39;FirstDerivedBidPrice&#39;: 10577.0, &#39;FirstDerivedBidVolume&#39;: 1, &#39;TargetKindPrice&#39;: 10620.7, &#39;Time&#39;: &#39;13:12:38.078000&#39;}
-Q/TFE/TXFD9 {&#39;AskPrice&#39;: [10580.0, 10581.0, 10582.0, 10583.0, 10584.0], &#39;AskVolSum&#39;: 339, &#39;AskVolume&#39;: [25, 45, 64, 62, 143], &#39;BidPrice&#39;: [10579.0, 10578.0, 10577.0, 10576.0, 10575.0], &#39;BidVolSum&#39;: 248, &#39;BidVolume&#39;: [16, 44, 59, 65, 64], &#39;Code&#39;: &#39;TXFD9&#39;, &#39;Date&#39;: &#39;2019/03/29&#39;, &#39;DiffAskVol&#39;: [0, 0, 0, 0, 0], &#39;DiffAskVolSum&#39;: 0, &#39;DiffBidVol&#39;: [0, 0, 1, 0, 0], &#39;DiffBidVolSum&#39;: 1, &#39;FirstDerivedAskPrice&#39;: 10581.0, &#39;FirstDerivedAskVolume&#39;: 6, &#39;FirstDerivedBidPrice&#39;: 10577.0, &#39;FirstDerivedBidVolume&#39;: 1, &#39;TargetKindPrice&#39;: 10620.7, &#39;Time&#39;: &#39;13:12:38.203000&#39;}
-Q/TFE/TXFD9 {&#39;AskPrice&#39;: [10580.0, 10581.0, 10582.0, 10583.0, 10584.0], &#39;AskVolSum&#39;: 340, &#39;AskVolume&#39;: [26, 45, 64, 62, 143], &#39;BidPrice&#39;: [10579.0, 10578.0, 10577.0, 10576.0, 10575.0], &#39;BidVolSum&#39;: 247, &#39;BidVolume&#39;: [16, 44, 59, 64, 64], &#39;Code&#39;: &#39;TXFD9&#39;, &#39;Date&#39;: &#39;2019/03/29&#39;, &#39;DiffAskVol&#39;: [1, 0, 0, 0, 0], &#39;DiffAskVolSum&#39;: 1, &#39;DiffBidVol&#39;: [0, 0, 0, -1, 0], &#39;DiffBidVolSum&#39;: -1, &#39;FirstDerivedAskPrice&#39;: 10581.0, &#39;FirstDerivedAskVolume&#39;: 6, &#39;FirstDerivedBidPrice&#39;: 10577.0, &#39;FirstDerivedBidVolume&#39;: 1, &#39;TargetKindPrice&#39;: 10620.7, &#39;Time&#39;: &#39;13:12:38.703000&#39;}
-Q/TFE/TXFD9 {&#39;AskPrice&#39;: [10580.0, 10581.0, 10582.0, 10583.0, 10584.0], &#39;AskVolSum&#39;: 340, &#39;AskVolume&#39;: [26, 45, 64, 62, 143], &#39;BidPrice&#39;: [10579.0, 10578.0, 10577.0, 10576.0, 10575.0], &#39;BidVolSum&#39;: 247, &#39;BidVolume&#39;: [16, 43, 60, 64, 64], &#39;Code&#39;: &#39;TXFD9&#39;, &#39;Date&#39;: &#39;2019/03/29&#39;, &#39;DiffAskVol&#39;: [0, 0, 0, 0, 0], &#39;DiffAskVolSum&#39;: 0, &#39;DiffBidVol&#39;: [0, -1, 1, 0, 0], &#39;DiffBidVolSum&#39;: 0, &#39;FirstDerivedAskPrice&#39;: 10581.0, &#39;FirstDerivedAskVolume&#39;: 6, &#39;FirstDerivedBidPrice&#39;: 10577.0, &#39;FirstDerivedBidVolume&#39;: 1, &#39;TargetKindPrice&#39;: 10620.7, &#39;Time&#39;: &#39;13:12:38.828000&#39;}
-Q/TFE/TXFD9 {&#39;AskPrice&#39;: [10580.0, 10581.0, 10582.0, 10583.0, 10584.0], &#39;AskVolSum&#39;: 341, &#39;AskVolume&#39;: [26, 46, 64, 62, 143], &#39;BidPrice&#39;: [10579.0, 10578.0, 10577.0, 10576.0, 10575.0], &#39;BidVolSum&#39;: 247, &#39;BidVolume&#39;: [16, 43, 60, 64, 64], &#39;Code&#39;: &#39;TXFD9&#39;, &#39;Date&#39;: &#39;2019/03/29&#39;, &#39;DiffAskVol&#39;: [0, 1, 0, 0, 0], &#39;DiffAskVolSum&#39;: 1, &#39;DiffBidVol&#39;: [0, 0, 0, 0, 0], &#39;DiffBidVolSum&#39;: 0, &#39;FirstDerivedAskPrice&#39;: 10581.0, &#39;FirstDerivedAskVolume&#39;: 6, &#39;FirstDerivedBidPrice&#39;: 10577.0, &#39;FirstDerivedBidVolume&#39;: 1, &#39;TargetKindPrice&#39;: 10620.7, &#39;Time&#39;: &#39;13:12:39.078000&#39;}
-Q/TFE/TXFD9 {&#39;AskPrice&#39;: [10580.0, 10581.0, 10582.0, 10583.0, 10584.0], &#39;AskVolSum&#39;: 341, &#39;AskVolume&#39;: [26, 46, 64, 62, 143], &#39;BidPrice&#39;: [10579.0, 10578.0, 10577.0, 10576.0, 10575.0], &#39;BidVolSum&#39;: 247, &#39;BidVolume&#39;: [16, 43, 60, 64, 64], &#39;Code&#39;: &#39;TXFD9&#39;, &#39;Date&#39;: &#39;2019/03/29&#39;, &#39;DiffAskVol&#39;: [0, 0, 0, 0, 0], &#39;DiffAskVolSum&#39;: 0, &#39;DiffBidVol&#39;: [0, 0, 0, 0, 0], &#39;DiffBidVolSum&#39;: 0, &#39;FirstDerivedAskPrice&#39;: 10581.0, &#39;FirstDerivedAskVolume&#39;: 6, &#39;FirstDerivedBidPrice&#39;: 10577.0, &#39;FirstDerivedBidVolume&#39;: 1, &#39;TargetKindPrice&#39;: 10620.7, &#39;Time&#39;: &#39;13:12:39.328000&#39;}
-Q/TFE/TXFD9 {&#39;AskPrice&#39;: [10580.0, 10581.0, 10582.0, 10583.0, 10584.0], &#39;AskVolSum&#39;: 341, &#39;AskVolume&#39;: [26, 46, 64, 62, 143], &#39;BidPrice&#39;: [10579.0, 10578.0, 10577.0, 10576.0, 10575.0], &#39;BidVolSum&#39;: 245, &#39;BidVolume&#39;: [14, 43, 60, 64, 64], &#39;Code&#39;: &#39;TXFD9&#39;, &#39;Date&#39;: &#39;2019/03/29&#39;, &#39;DiffAskVol&#39;: [0, 0, 0, 0, 0], &#39;DiffAskVolSum&#39;: 0, &#39;DiffBidVol&#39;: [-2, 0, 0, 0, 0], &#39;DiffBidVolSum&#39;: -2, &#39;FirstDerivedAskPrice&#39;: 10581.0, &#39;FirstDerivedAskVolume&#39;: 6, &#39;FirstDerivedBidPrice&#39;: 10577.0, &#39;FirstDerivedBidVolume&#39;: 1, &#39;TargetKindPrice&#39;: 10620.7, &#39;Time&#39;: &#39;13:12:39.453000&#39;}
-Q/TFE/TXFD9 {&#39;AskPrice&#39;: [10580.0, 10581.0, 10582.0, 10583.0, 10584.0], &#39;AskVolSum&#39;: 341, &#39;AskVolume&#39;: [26, 46, 64, 62, 143], &#39;BidPrice&#39;: [10579.0, 10578.0, 10577.0, 10576.0, 10575.0], &#39;BidVolSum&#39;: 242, &#39;BidVolume&#39;: [12, 42, 60, 65, 63], &#39;Code&#39;: &#39;TXFD9&#39;, &#39;Date&#39;: &#39;2019/03/29&#39;, &#39;DiffAskVol&#39;: [0, 0, 0, 0, 0], &#39;DiffAskVolSum&#39;: 0, &#39;DiffBidVol&#39;: [-2, -1, 0, 1, -1], &#39;DiffBidVolSum&#39;: -3, &#39;FirstDerivedAskPrice&#39;: 10581.0, &#39;FirstDerivedAskVolume&#39;: 6, &#39;FirstDerivedBidPrice&#39;: 10577.0, &#39;FirstDerivedBidVolume&#39;: 1, &#39;TargetKindPrice&#39;: 10620.7, &#39;Time&#39;: &#39;13:12:39.578000&#39;}
-Q/TFE/TXFD9 {&#39;AskPrice&#39;: [10580.0, 10581.0, 10582.0, 10583.0, 10584.0], &#39;AskVolSum&#39;: 311, &#39;AskVolume&#39;: [26, 46, 64, 62, 113], &#39;BidPrice&#39;: [10579.0, 10578.0, 10577.0, 10576.0, 10575.0], &#39;BidVolSum&#39;: 242, &#39;BidVolume&#39;: [12, 42, 60, 65, 63], &#39;Code&#39;: &#39;TXFD9&#39;, &#39;Date&#39;: &#39;2019/03/29&#39;, &#39;DiffAskVol&#39;: [0, 0, 0, 0, -30], &#39;DiffAskVolSum&#39;: -30, &#39;DiffBidVol&#39;: [0, 0, 0, 0, 0], &#39;DiffBidVolSum&#39;: 0, &#39;FirstDerivedAskPrice&#39;: 10581.0, &#39;FirstDerivedAskVolume&#39;: 6, &#39;FirstDerivedBidPrice&#39;: 10577.0, &#39;FirstDerivedBidVolume&#39;: 1, &#39;TargetKindPrice&#39;: 10620.7, &#39;Time&#39;: &#39;13:12:39.828000&#39;}
-Q/TFE/TXFD9 {&#39;AskPrice&#39;: [10580.0, 10581.0, 10582.0, 10583.0, 10584.0], &#39;AskVolSum&#39;: 311, &#39;AskVolume&#39;: [26, 46, 64, 62, 113], &#39;BidPrice&#39;: [10579.0, 10578.0, 10577.0, 10576.0, 10575.0], &#39;BidVolSum&#39;: 248, &#39;BidVolume&#39;: [18, 42, 60, 65, 63], &#39;Code&#39;: &#39;TXFD9&#39;, &#39;Date&#39;: &#39;2019/03/29&#39;, &#39;DiffAskVol&#39;: [0, 0, 0, 0, 0], &#39;DiffAskVolSum&#39;: 0, &#39;DiffBidVol&#39;: [6, 0, 0, 0, 0], &#39;DiffBidVolSum&#39;: 6, &#39;FirstDerivedAskPrice&#39;: 10581.0, &#39;FirstDerivedAskVolume&#39;: 6, &#39;FirstDerivedBidPrice&#39;: 10577.0, &#39;FirstDerivedBidVolume&#39;: 1, &#39;TargetKindPrice&#39;: 10620.7, &#39;Time&#39;: &#39;13:12:40.078000&#39;}
-Q/TFE/TXFD9 {&#39;AskPrice&#39;: [10580.0, 10581.0, 10582.0, 10583.0, 10584.0], &#39;AskVolSum&#39;: 308, &#39;AskVolume&#39;: [23, 46, 64, 62, 113], &#39;BidPrice&#39;: [10579.0, 10578.0, 10577.0, 10576.0, 10575.0], &#39;BidVolSum&#39;: 249, &#39;BidVolume&#39;: [19, 44, 59, 64, 63], &#39;Code&#39;: &#39;TXFD9&#39;, &#39;Date&#39;: &#39;2019/03/29&#39;, &#39;DiffAskVol&#39;: [-3, 0, 0, 0, 0], &#39;DiffAskVolSum&#39;: -3, &#39;DiffBidVol&#39;: [1, 2, -1, -1, 0], &#39;DiffBidVolSum&#39;: 1, &#39;FirstDerivedAskPrice&#39;: 10581.0, &#39;FirstDerivedAskVolume&#39;: 6, &#39;FirstDerivedBidPrice&#39;: 10577.0, &#39;FirstDerivedBidVolume&#39;: 1, &#39;TargetKindPrice&#39;: 10615.63, &#39;Time&#39;: &#39;13:12:40.203000&#39;}
-Q/TFE/TXFD9 {&#39;AskPrice&#39;: [10580.0, 10581.0, 10582.0, 10583.0, 10584.0], &#39;AskVolSum&#39;: 309, &#39;AskVolume&#39;: [23, 47, 64, 62, 113], &#39;BidPrice&#39;: [10579.0, 10578.0, 10577.0, 10576.0, 10575.0], &#39;BidVolSum&#39;: 249, &#39;BidVolume&#39;: [19, 44, 59, 64, 63], &#39;Code&#39;: &#39;TXFD9&#39;, &#39;Date&#39;: &#39;2019/03/29&#39;, &#39;DiffAskVol&#39;: [0, 1, 0, 0, 0], &#39;DiffAskVolSum&#39;: 1, &#39;DiffBidVol&#39;: [0, 0, 0, 0, 0], &#39;DiffBidVolSum&#39;: 0, &#39;FirstDerivedAskPrice&#39;: 10581.0, &#39;FirstDerivedAskVolume&#39;: 6, &#39;FirstDerivedBidPrice&#39;: 10577.0, &#39;FirstDerivedBidVolume&#39;: 1, &#39;TargetKindPrice&#39;: 10615.63, &#39;Time&#39;: &#39;13:12:40.953000&#39;}
-Q/TFE/TXFD9 {&#39;AskPrice&#39;: [10580.0, 10581.0, 10582.0, 10583.0, 10584.0], &#39;AskVolSum&#39;: 310, &#39;AskVolume&#39;: [24, 47, 64, 62, 113], &#39;BidPrice&#39;: [10579.0, 10578.0, 10577.0, 10576.0, 10575.0], &#39;BidVolSum&#39;: 249, &#39;BidVolume&#39;: [19, 44, 59, 64, 63], &#39;Code&#39;: &#39;TXFD9&#39;, &#39;Date&#39;: &#39;2019/03/29&#39;, &#39;DiffAskVol&#39;: [1, 0, 0, 0, 0], &#39;DiffAskVolSum&#39;: 1, &#39;DiffBidVol&#39;: [0, 0, 0, 0, 0], &#39;DiffBidVolSum&#39;: 0, &#39;FirstDerivedAskPrice&#39;: 10581.0, &#39;FirstDerivedAskVolume&#39;: 6, &#39;FirstDerivedBidPrice&#39;: 10577.0, &#39;FirstDerivedBidVolume&#39;: 1, &#39;TargetKindPrice&#39;: 10615.63, &#39;Time&#39;: &#39;13:12:41.078000&#39;}
 </pre>
 </div>
 </div>
