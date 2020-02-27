@@ -462,14 +462,22 @@
     <span class="n">person_id</span><span class="o">=</span><span class="s2">&quot;Person of this Ca&quot;</span><span class="p">,</span>
 <span class="p">)</span>
 </code></pre></div>
-Just import our API library like other popular python library and new the instance to start using our API. Login your account and activate the ca then you can start placing order.</p>
+Just import our API library like other popular python library and new the instance to start using our API. Login your account and activate the certification then you can start placing order.</p>
+<div class="admonition attention">
+<p class="admonition-title">The Certification Path</p>
+<p>In Windows you copy the file path with <code>\</code> to separate the file, you need to replace it with <code>/</code>.</p>
+</div>
 <h2 id="streaming-market-data">Streaming Market Data<a class="headerlink" href="#streaming-market-data" title="Permanent link">&para;</a></h2>
 <div class="codehilite"><pre><span></span><code><span class="n">api</span><span class="o">.</span><span class="n">quote</span><span class="o">.</span><span class="n">subscribe</span><span class="p">(</span><span class="n">api</span><span class="o">.</span><span class="n">Contracts</span><span class="o">.</span><span class="n">Stocks</span><span class="p">[</span><span class="s2">&quot;2330&quot;</span><span class="p">],</span> <span class="n">quote_type</span><span class="o">=</span><span class="s2">&quot;tick&quot;</span><span class="p">)</span>
 <span class="n">api</span><span class="o">.</span><span class="n">quote</span><span class="o">.</span><span class="n">subscribe</span><span class="p">(</span><span class="n">api</span><span class="o">.</span><span class="n">Contracts</span><span class="o">.</span><span class="n">Stocks</span><span class="p">[</span><span class="s2">&quot;2330&quot;</span><span class="p">],</span> <span class="n">quote_type</span><span class="o">=</span><span class="s2">&quot;bidask&quot;</span><span class="p">)</span>
 <span class="n">api</span><span class="o">.</span><span class="n">quote</span><span class="o">.</span><span class="n">subscribe</span><span class="p">(</span><span class="n">api</span><span class="o">.</span><span class="n">Contracts</span><span class="o">.</span><span class="n">Futures</span><span class="p">[</span><span class="s2">&quot;TXFC0&quot;</span><span class="p">],</span> <span class="n">quote_type</span><span class="o">=</span><span class="s2">&quot;tick&quot;</span><span class="p">)</span>
 </code></pre></div>
 
-<p>Subscribe the real time market data. Simplely pass contract into quote subscribe function and give the quote type will receive the streaming data.</p>
+<p>Subscribe the real time market data. Simplely pass contract into quote <code>subscribe</code> function and give the quote type will receive the streaming data.</p>
+<div class="admonition tip">
+<p class="admonition-title">Quote Type</p>
+<p>Currently we support two quote type you can see in <code class="codehilite"><span class="n">shioaji</span><span class="o">.</span><span class="n">constent</span><span class="o">.</span><span class="n">QuoteType</span></code>. The best way to use that is directly pass this enum into <code class="codehilite"><span class="n">subscribe</span></code> function. </p>
+</div>
 <h2 id="place-order">Place Order<a class="headerlink" href="#place-order" title="Permanent link">&para;</a></h2>
 <div class="codehilite"><pre><span></span><code><span class="n">contract</span> <span class="o">=</span> <span class="n">api</span><span class="o">.</span><span class="n">Contracts</span><span class="o">.</span><span class="n">Stocks</span><span class="p">[</span><span class="s2">&quot;2890&quot;</span><span class="p">]</span>
 <span class="n">order</span> <span class="o">=</span> <span class="n">api</span><span class="o">.</span><span class="n">Order</span><span class="p">(</span>
@@ -482,9 +490,9 @@ Just import our API library like other popular python library and new the instan
 <span class="n">trade</span> <span class="o">=</span> <span class="n">api</span><span class="o">.</span><span class="n">place_order</span><span class="p">(</span><span class="n">contract</span><span class="p">,</span> <span class="n">order</span><span class="p">)</span>
 </code></pre></div>
 
-<p>Like the above subscribing market data using the contract, then need to define the order. Pass them into place order function, then it will return the trade that describe the status of your order.</p>
+<p>Like the above subscribing market data using the contract, then need to define the order. Pass them into <code class="codehilite"><span class="n">place_order</span></code> function, then it will return the trade that describe the status of your order.</p>
 <h2 id="conclusion">Conclusion<a class="headerlink" href="#conclusion" title="Permanent link">&para;</a></h2>
-<p>This quickstart demonstrates how easy to use our package is for native Python users. Unlike many other trading API is hard for Python developer. We focus on making more pythonic trading API for our users. </p>
+<p>This quickstart demonstrates how easy to use our package for native Python users. Unlike many other trading API is hard for Python developer. We focus on making more pythonic trading API for our users. </p>
                 
                   
                 
