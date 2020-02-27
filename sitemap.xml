@@ -19,5 +19,13 @@
      <loc>https://sinotrade.github.io/tutor/order/</loc>
      <lastmod>2020-02-27</lastmod>
      <changefreq>daily</changefreq>
+    </url><url>
+     <loc>https://sinotrade.github.io/release/</loc>
+     <lastmod>2020-02-27</lastmod>
+     <changefreq>daily</changefreq>
+    </url><url>
+     <loc>https://sinotrade.github.io/zh-tw/</loc>
+     <lastmod>2020-02-27</lastmod>
+     <changefreq>daily</changefreq>
     </url>
 </urlset>
