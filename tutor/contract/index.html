@@ -476,6 +476,16 @@
 
 </div>
 <p>After login success we will start to fetch all kind of contract but fetching will not block other action. So how to know the fetch action is done ? We have contracts_cb in <code>login</code> function that you can pass your customize function define how to do when the contract fetched. In this exmaple, we just print what kind of contract when it has been fetched.</p>
+<div class="admonition note">
+<p class="admonition-title">contracts_timeout</p>
+<p>If you set contracts_timeout inside <code>login</code> from 0 to 10000, it will block the fetch and wait 10 second until the contract is back.
+<div class="codehilite"><pre><span></span><code><span class="n">api</span><span class="o">.</span><span class="n">login</span><span class="p">(</span>
+    <span class="n">person_id</span><span class="o">=</span><span class="s1">&#39;YOUR_ID&#39;</span><span class="p">,</span> 
+    <span class="n">passwd</span><span class="o">=</span><span class="s1">&#39;YOUR_PASSWORD&#39;</span><span class="p">,</span> 
+    <span class="n">contracts_timeout</span><span class="o">=</span><span class="mi">10000</span><span class="p">,</span>
+<span class="p">)</span> 
+</code></pre></div></p>
+</div>
 </div>
 <h2 id="contracts">Contracts<a class="headerlink" href="#contracts" title="Permanent link">&para;</a></h2>
 <div class="admonition tldr">
