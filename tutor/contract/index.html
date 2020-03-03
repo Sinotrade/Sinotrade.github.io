@@ -325,6 +325,19 @@
     Login Fecth Contracts
   </a>
   
+    <nav class="md-nav">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#login" class="md-nav__link">
+    Login
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
 </li>
       
         <li class="md-nav__item">
@@ -462,6 +475,19 @@
     Login Fecth Contracts
   </a>
   
+    <nav class="md-nav">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#login" class="md-nav__link">
+    Login
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
 </li>
       
         <li class="md-nav__item">
@@ -532,8 +558,7 @@
                   <h1>Contract</h1>
                 
                 <h2 id="login-fecth-contracts">Login Fecth Contracts<a class="headerlink" href="#login-fecth-contracts" title="Permanent link">&para;</a></h2>
-<div class="admonition tldr">
-<p class="admonition-title">Login</p>
+<h3 id="login">Login<a class="headerlink" href="#login" title="Permanent link">&para;</a></h3>
 <div class="admonition info">
 <p class="admonition-title">In</p>
 <div class="codehilite"><pre><span></span><code><span class="kn">import</span> <span class="nn">shioaji</span> <span class="k">as</span> <span class="nn">sj</span>
@@ -549,7 +574,7 @@
 <div class="admonition done">
 <p class="admonition-title">Out</p>
 <div class="codehilite"><pre><span></span><code><span class="p">[</span><span class="n">FutureAccount</span><span class="p">(</span><span class="n">person_id</span><span class="o">=</span><span class="s1">&#39;&#39;</span><span class="p">,</span> <span class="n">broker_id</span><span class="o">=</span><span class="s1">&#39;&#39;</span><span class="p">,</span> <span class="n">account_id</span><span class="o">=</span><span class="s1">&#39;&#39;</span><span class="p">,</span> <span class="n">signed</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">username</span><span class="o">=</span><span class="s1">&#39;&#39;</span><span class="p">),</span>
- <span class="n">StockAccount</span><span class="p">(</span><span class="n">person_id</span><span class="o">=</span><span class="s1">&#39;&#39;</span><span class="p">,</span> <span class="n">broker_id</span><span class="o">=</span><span class="s1">&#39;&#39;</span><span class="p">,</span> <span class="n">account_id</span><span class="o">=</span><span class="s1">&#39;&#39;</span><span class="p">,</span> <span class="n">signed</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">username</span><span class="o">=</span><span class="s1">&#39;&#39;</span><span class="p">)]</span>
+    <span class="n">StockAccount</span><span class="p">(</span><span class="n">person_id</span><span class="o">=</span><span class="s1">&#39;&#39;</span><span class="p">,</span> <span class="n">broker_id</span><span class="o">=</span><span class="s1">&#39;&#39;</span><span class="p">,</span> <span class="n">account_id</span><span class="o">=</span><span class="s1">&#39;&#39;</span><span class="p">,</span> <span class="n">signed</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">username</span><span class="o">=</span><span class="s1">&#39;&#39;</span><span class="p">)]</span>
 <span class="o">&lt;</span><span class="n">SecurityType</span><span class="o">.</span><span class="n">Index</span><span class="p">:</span> <span class="s1">&#39;IND&#39;</span><span class="o">&gt;</span> <span class="n">fetch</span> <span class="n">done</span><span class="o">.</span>
 <span class="o">&lt;</span><span class="n">SecurityType</span><span class="o">.</span><span class="n">Future</span><span class="p">:</span> <span class="s1">&#39;FUT&#39;</span><span class="o">&gt;</span> <span class="n">fetch</span> <span class="n">done</span><span class="o">.</span>
 <span class="o">&lt;</span><span class="n">SecurityType</span><span class="o">.</span><span class="n">Option</span><span class="p">:</span> <span class="s1">&#39;OPT&#39;</span><span class="o">&gt;</span> <span class="n">fetch</span> <span class="n">done</span><span class="o">.</span>
@@ -568,10 +593,7 @@
 <span class="p">)</span> 
 </code></pre></div></p>
 </div>
-</div>
 <h2 id="contracts">Contracts<a class="headerlink" href="#contracts" title="Permanent link">&para;</a></h2>
-<div class="admonition tldr">
-<p class="admonition-title">Contracts</p>
 <div class="admonition info">
 <p class="admonition-title">In</p>
 <div class="codehilite"><pre><span></span><code><span class="n">api</span><span class="o">.</span><span class="n">Contracts</span>
@@ -585,10 +607,7 @@
 
 </div>
 <p>If your contracts have been downloaded, will see the output like above. If part of that kind contract download not yet, It will still be <code>None</code>.</p>
-</div>
 <h3 id="stock-contract">Stock Contract<a class="headerlink" href="#stock-contract" title="Permanent link">&para;</a></h3>
-<div class="admonition tldr">
-<p class="admonition-title">Stock Contract</p>
 <div class="admonition info">
 <p class="admonition-title">In</p>
 <div class="codehilite"><pre><span></span><code><span class="n">contract_2890</span> <span class="o">=</span> <span class="n">api</span><span class="o">.</span><span class="n">Contracts</span><span class="o">.</span><span class="n">Stocks</span><span class="p">[</span><span class="s2">&quot;2890&quot;</span><span class="p">]</span>
@@ -602,10 +621,7 @@
 </code></pre></div>
 
 </div>
-</div>
 <h3 id="futures-contract">Futures Contract<a class="headerlink" href="#futures-contract" title="Permanent link">&para;</a></h3>
-<div class="admonition tldr">
-<p class="admonition-title">Futures Contract</p>
 <div class="admonition info">
 <p class="admonition-title">In</p>
 <div class="codehilite"><pre><span></span><code><span class="hll"><span class="n">contract_txf</span> <span class="o">=</span> <span class="n">api</span><span class="o">.</span><span class="n">Contracts</span><span class="o">.</span><span class="n">Futures</span><span class="p">[</span><span class="s1">&#39;TXFC0&#39;</span><span class="p">]</span>
@@ -622,10 +638,7 @@
 
 </div>
 <p>In above two highlight lines, you can get same contract with different way.</p>
-</div>
 <h3 id="options-contract">Options Contract<a class="headerlink" href="#options-contract" title="Permanent link">&para;</a></h3>
-<div class="admonition tldr">
-<p class="admonition-title">Options Contract</p>
 <div class="admonition info">
 <p class="admonition-title">In</p>
 <div class="codehilite"><pre><span></span><code><span class="n">api</span><span class="o">.</span><span class="n">Contracts</span><span class="o">.</span><span class="n">Options</span>
@@ -678,10 +691,7 @@
 
 </div>
 <p>Get put options with readable way.</p>
-</div>
 <h3 id="index-contract">Index Contract<a class="headerlink" href="#index-contract" title="Permanent link">&para;</a></h3>
-<div class="admonition tldr">
-<p class="admonition-title">Index Contract</p>
 <div class="admonition info">
 <p class="admonition-title">In</p>
 <div class="codehilite"><pre><span></span><code><span class="n">api</span><span class="o">.</span><span class="n">Contracts</span><span class="o">.</span><span class="n">Indexs</span><span class="o">.</span><span class="n">TSE</span>
@@ -707,7 +717,6 @@
 
 </div>
 <p>This contract is not avaiable to place order, but allow to subscribe the quote. It will be disuccess at net topic.</p>
-</div>
 <h2 id="conclusion">Conclusion<a class="headerlink" href="#conclusion" title="Permanent link">&para;</a></h2>
 <p>Contract object will be used by a lot of place like place order and subscribe quote etc... So Keep in mind how to get the contract you want to use.</p>
                 
