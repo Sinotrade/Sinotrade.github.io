@@ -9,7 +9,7 @@
 <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
 
 
-<title>quote_visualize_tutorial slides</title>
+<title>stock slides</title>
 
 <script src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.1.10/require.min.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script>
@@ -13202,368 +13202,17 @@ a.anchor-link {
 <div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
 </div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<h1 id="Shioaji-Quote-Api-with-bqplot">Shioaji Quote Api with bqplot<a class="anchor-link" href="#Shioaji-Quote-Api-with-bqplot">&#182;</a></h1><p><img src="https://sinotrade.github.io/images/shioaji_spot_light-01.png" alt="shioaji-logo"></p>
-
+<h2 id="Login-Shioaji.">Login Shioaji.<a class="anchor-link" href="#Login-Shioaji.">&#182;</a></h2>
 </div>
 </div>
-</div></section><section>
+</div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[1]:</div>
+<div class="prompt input_prompt">In&nbsp;[12]:</div>
 <div class="inner_cell">
     <div class="input_area">
-<div class=" highlight hl-ipython3"><pre><span></span><span class="kn">import</span> <span class="nn">json</span>
-<span class="kn">import</span> <span class="nn">datetime</span> <span class="k">as</span> <span class="nn">dt</span>
-<span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
-<span class="kn">import</span> <span class="nn">pandas</span> <span class="k">as</span> <span class="nn">pd</span>
-<span class="kn">import</span> <span class="nn">bqplot</span> <span class="k">as</span> <span class="nn">bq</span>
-<span class="kn">import</span> <span class="nn">shioaji</span> <span class="k">as</span> <span class="nn">sj</span>
-<span class="kn">from</span> <span class="nn">ipywidgets</span> <span class="kn">import</span> <span class="n">HBox</span><span class="p">,</span> <span class="n">VBox</span>
-</pre></div>
-
-    </div>
-</div>
-</div>
-
-</div></section><section>
-<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
-</div><div class="inner_cell">
-<div class="text_cell_render border-box-sizing rendered_html">
-<h2 id="Init-shioaji-api-and-login">Init shioaji api and login<a class="anchor-link" href="#Init-shioaji-api-and-login">&#182;</a></h2>
-</div>
-</div>
-</div><div class="fragment">
-<div class="cell border-box-sizing code_cell rendered">
-<div class="input">
-<div class="prompt input_prompt">In&nbsp;[2]:</div>
-<div class="inner_cell">
-    <div class="input_area">
-<div class=" highlight hl-ipython3"><pre><span></span><span class="n">api</span> <span class="o">=</span> <span class="n">sj</span><span class="o">.</span><span class="n">Shioaji</span><span class="p">(</span><span class="n">simulation</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
-</pre></div>
-
-    </div>
-</div>
-</div>
-
-</div></div><div class="fragment">
-<div class="cell border-box-sizing code_cell rendered">
-<div class="input">
-<div class="prompt input_prompt">In&nbsp;[3]:</div>
-<div class="inner_cell">
-    <div class="input_area">
-<div class=" highlight hl-ipython3"><pre><span></span><span class="k">with</span> <span class="nb">open</span><span class="p">(</span><span class="s1">&#39;login.json&#39;</span><span class="p">,</span> <span class="s1">&#39;r&#39;</span><span class="p">)</span> <span class="k">as</span> <span class="n">f</span><span class="p">:</span>
-    <span class="n">kw_login</span> <span class="o">=</span> <span class="n">json</span><span class="o">.</span><span class="n">loads</span><span class="p">(</span><span class="n">f</span><span class="o">.</span><span class="n">read</span><span class="p">())</span>
-<span class="n">api</span><span class="o">.</span><span class="n">login</span><span class="p">(</span><span class="o">**</span><span class="n">kw_login</span><span class="p">)</span>
-</pre></div>
-
-    </div>
-</div>
-</div>
-
-</div></div></section><section>
-<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
-</div><div class="inner_cell">
-<div class="text_cell_render border-box-sizing rendered_html">
-<h2 id="Init-Charts-dataset">Init Charts dataset<a class="anchor-link" href="#Init-Charts-dataset">&#182;</a></h2>
-</div>
-</div>
-</div><div class="fragment">
-<div class="cell border-box-sizing code_cell rendered">
-<div class="input">
-<div class="prompt input_prompt">In&nbsp;[4]:</div>
-<div class="inner_cell">
-    <div class="input_area">
-<div class=" highlight hl-ipython3"><pre><span></span><span class="n">today</span> <span class="o">=</span> <span class="n">dt</span><span class="o">.</span><span class="n">date</span><span class="o">.</span><span class="n">today</span><span class="p">()</span>
-<span class="n">df_min</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">(</span><span class="n">index</span><span class="o">=</span><span class="n">pd</span><span class="o">.</span><span class="n">date_range</span><span class="p">(</span><span class="n">start</span><span class="o">=</span><span class="n">dt</span><span class="o">.</span><span class="n">datetime</span><span class="p">(</span><span class="o">*</span><span class="p">(</span><span class="n">today</span><span class="o">.</span><span class="n">year</span><span class="p">,</span> <span class="n">today</span><span class="o">.</span><span class="n">month</span><span class="p">,</span> <span class="n">today</span><span class="o">.</span><span class="n">day</span><span class="p">,</span> <span class="mi">8</span><span class="p">,</span> <span class="mi">45</span><span class="p">)),</span>
-                                          <span class="n">end</span><span class="o">=</span><span class="n">dt</span><span class="o">.</span><span class="n">datetime</span><span class="p">(</span><span class="o">*</span><span class="p">(</span><span class="n">today</span><span class="o">.</span><span class="n">year</span><span class="p">,</span> <span class="n">today</span><span class="o">.</span><span class="n">month</span><span class="p">,</span> <span class="n">today</span><span class="o">.</span><span class="n">day</span><span class="p">,</span> <span class="mi">13</span><span class="p">,</span> <span class="mi">45</span><span class="p">)),</span>
-                                          <span class="n">freq</span><span class="o">=</span><span class="s1">&#39;1T&#39;</span><span class="p">),</span>
-                      <span class="n">columns</span><span class="o">=</span><span class="p">[</span><span class="s1">&#39;open&#39;</span><span class="p">,</span> <span class="s1">&#39;high&#39;</span><span class="p">,</span> <span class="s1">&#39;low&#39;</span><span class="p">,</span> <span class="s1">&#39;close&#39;</span><span class="p">],</span> <span class="n">dtype</span><span class="o">=</span><span class="nb">float</span><span class="p">,</span>
-                     <span class="p">)</span>
-</pre></div>
-
-    </div>
-</div>
-</div>
-
-</div></div><div class="fragment">
-<div class="cell border-box-sizing code_cell rendered">
-<div class="input">
-<div class="prompt input_prompt">In&nbsp;[9]:</div>
-<div class="inner_cell">
-    <div class="input_area">
-<div class=" highlight hl-ipython3"><pre><span></span><span class="n">data_in</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">rand</span><span class="p">(</span><span class="mi">2</span><span class="p">)</span>
-<span class="n">data_inner</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">rand</span><span class="p">(</span><span class="mi">2</span><span class="p">)</span>
-<span class="n">data_outer</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">rand</span><span class="p">(</span><span class="mi">4</span><span class="p">)</span>
-</pre></div>
-
-    </div>
-</div>
-</div>
-
-</div></div></section><section>
-<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
-</div><div class="inner_cell">
-<div class="text_cell_render border-box-sizing rendered_html">
-<h2 id="define-init-charts-function">define init charts function<a class="anchor-link" href="#define-init-charts-function">&#182;</a></h2>
-</div>
-</div>
-</div><div class="fragment">
-<div class="cell border-box-sizing code_cell rendered">
-<div class="input">
-<div class="prompt input_prompt">In&nbsp;[10]:</div>
-<div class="inner_cell">
-    <div class="input_area">
-<div class=" highlight hl-ipython3"><pre><span></span><span class="k">def</span> <span class="nf">init_ohlc_chart</span><span class="p">():</span>
-    <span class="k">global</span> <span class="n">ohlc_chart</span>
-    <span class="n">sc</span> <span class="o">=</span> <span class="n">bq</span><span class="o">.</span><span class="n">LinearScale</span><span class="p">()</span>
-    <span class="n">dt_scale</span> <span class="o">=</span> <span class="n">bq</span><span class="o">.</span><span class="n">DateScale</span><span class="p">()</span>
-    <span class="n">ax_x</span> <span class="o">=</span> <span class="n">bq</span><span class="o">.</span><span class="n">Axis</span><span class="p">(</span><span class="n">label</span><span class="o">=</span><span class="s1">&#39;datetime&#39;</span><span class="p">,</span> <span class="n">scale</span><span class="o">=</span><span class="n">dt_scale</span><span class="p">)</span>
-    <span class="n">ax_y</span> <span class="o">=</span> <span class="n">bq</span><span class="o">.</span><span class="n">Axis</span><span class="p">(</span><span class="n">label</span><span class="o">=</span><span class="s1">&#39;price&#39;</span><span class="p">,</span> <span class="n">scale</span><span class="o">=</span><span class="n">sc</span><span class="p">,</span> <span class="n">orientation</span><span class="o">=</span><span class="s1">&#39;vertical&#39;</span><span class="p">,</span> <span class="n">tick_format</span><span class="o">=</span><span class="s1">&#39;0.0f&#39;</span><span class="p">)</span>
-
-    <span class="c1"># Construct the marks</span>
-    <span class="n">ohlc_chart</span> <span class="o">=</span> <span class="n">bq</span><span class="o">.</span><span class="n">OHLC</span><span class="p">(</span><span class="n">x</span><span class="o">=</span><span class="n">df_min</span><span class="o">.</span><span class="n">index</span><span class="p">,</span> <span class="n">y</span><span class="o">=</span><span class="n">df_min</span><span class="o">.</span><span class="n">dropna</span><span class="p">()</span><span class="o">.</span><span class="n">values</span><span class="p">,</span><span class="c1">#df_tick_nosim_min.values[:10], </span>
-                   <span class="n">marker</span><span class="o">=</span><span class="s1">&#39;candle&#39;</span><span class="p">,</span> <span class="n">scales</span><span class="o">=</span><span class="p">{</span><span class="s1">&#39;x&#39;</span><span class="p">:</span> <span class="n">dt_scale</span><span class="p">,</span> <span class="s1">&#39;y&#39;</span><span class="p">:</span> <span class="n">sc</span><span class="p">},</span> <span class="nb">format</span><span class="o">=</span><span class="s1">&#39;ohlc&#39;</span><span class="p">,</span>
-                   <span class="n">colors</span><span class="o">=</span><span class="p">[</span><span class="s1">&#39;red&#39;</span><span class="p">,</span> <span class="s1">&#39;limegreen&#39;</span><span class="p">],</span> <span class="n">stroke</span><span class="o">=</span><span class="s1">&#39;gray&#39;</span><span class="p">,</span> 
-                   <span class="n">opacities</span><span class="o">=</span><span class="p">[</span><span class="mf">0.85</span> <span class="k">for</span> <span class="n">_</span> <span class="ow">in</span> <span class="n">df_min</span><span class="o">.</span><span class="n">index</span><span class="p">],</span>
-                   <span class="n">display_legend</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">labels</span><span class="o">=</span><span class="p">[</span><span class="s1">&#39;TXFD9&#39;</span><span class="p">])</span>
-
-    <span class="n">fig</span> <span class="o">=</span> <span class="n">bq</span><span class="o">.</span><span class="n">Figure</span><span class="p">(</span><span class="n">axes</span><span class="o">=</span><span class="p">[</span><span class="n">ax_x</span><span class="p">,</span> <span class="n">ax_y</span><span class="p">],</span> <span class="n">marks</span><span class="o">=</span><span class="p">[</span><span class="n">ohlc_chart</span><span class="p">])</span>
-    <span class="k">return</span> <span class="n">fig</span>
-</pre></div>
-
-    </div>
-</div>
-</div>
-
-</div></div></section><section>
-<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
-</div><div class="inner_cell">
-<div class="text_cell_render border-box-sizing rendered_html">
-<h2 id="define-processing-data-function">define processing data function<a class="anchor-link" href="#define-processing-data-function">&#182;</a></h2>
-</div>
-</div>
-</div><div class="fragment">
-<div class="cell border-box-sizing code_cell rendered">
-<div class="input">
-<div class="prompt input_prompt">In&nbsp;[14]:</div>
-<div class="inner_cell">
-    <div class="input_area">
-<div class=" highlight hl-ipython3"><pre><span></span><span class="k">def</span> <span class="nf">proc_ohlc_data</span><span class="p">(</span><span class="n">quote_msg</span><span class="p">,</span> <span class="n">new_deal_price</span><span class="p">):</span>
-    <span class="k">global</span> <span class="n">df_min</span>
-    <span class="n">ts</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">Timestamp</span><span class="p">(</span><span class="s2">&quot;</span><span class="si">{Date}</span><span class="s2"> </span><span class="si">{Time}</span><span class="s2">&quot;</span> <span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="o">**</span><span class="n">quote_msg</span><span class="p">))</span><span class="o">.</span><span class="n">replace</span><span class="p">(</span><span class="n">second</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span> <span class="n">microsecond</span><span class="o">=</span><span class="mi">0</span><span class="p">)</span>
-    <span class="n">df_min</span><span class="o">.</span><span class="n">loc</span><span class="p">[</span><span class="n">ts</span><span class="p">,</span> <span class="s1">&#39;open&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">new_deal_price</span> <span class="k">if</span> <span class="n">np</span><span class="o">.</span><span class="n">isnan</span><span class="p">(</span><span class="n">df_min</span><span class="o">.</span><span class="n">loc</span><span class="p">[</span><span class="n">ts</span><span class="p">,</span> <span class="s1">&#39;open&#39;</span><span class="p">])</span> <span class="k">else</span> <span class="n">df_min</span><span class="o">.</span><span class="n">loc</span><span class="p">[</span><span class="n">ts</span><span class="p">,</span> <span class="s1">&#39;open&#39;</span><span class="p">]</span> 
-    <span class="n">df_min</span><span class="o">.</span><span class="n">loc</span><span class="p">[</span><span class="n">ts</span><span class="p">,</span> <span class="s1">&#39;high&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">new_deal_price</span> <span class="k">if</span> <span class="n">np</span><span class="o">.</span><span class="n">isnan</span><span class="p">(</span><span class="n">df_min</span><span class="o">.</span><span class="n">loc</span><span class="p">[</span><span class="n">ts</span><span class="p">,</span> <span class="s1">&#39;high&#39;</span><span class="p">])</span> <span class="ow">or</span> <span class="n">new_deal_price</span> <span class="o">&gt;</span> <span class="n">df_min</span><span class="o">.</span><span class="n">loc</span><span class="p">[</span><span class="n">ts</span><span class="p">,</span> <span class="s1">&#39;high&#39;</span><span class="p">]</span> <span class="k">else</span> <span class="n">df_min</span><span class="o">.</span><span class="n">loc</span><span class="p">[</span><span class="n">ts</span><span class="p">,</span> <span class="s1">&#39;high&#39;</span><span class="p">]</span> 
-    <span class="n">df_min</span><span class="o">.</span><span class="n">loc</span><span class="p">[</span><span class="n">ts</span><span class="p">,</span> <span class="s1">&#39;low&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">new_deal_price</span> <span class="k">if</span> <span class="n">np</span><span class="o">.</span><span class="n">isnan</span><span class="p">(</span><span class="n">df_min</span><span class="o">.</span><span class="n">loc</span><span class="p">[</span><span class="n">ts</span><span class="p">,</span> <span class="s1">&#39;low&#39;</span><span class="p">])</span> <span class="ow">or</span> <span class="n">new_deal_price</span> <span class="o">&lt;</span> <span class="n">df_min</span><span class="o">.</span><span class="n">loc</span><span class="p">[</span><span class="n">ts</span><span class="p">,</span> <span class="s1">&#39;low&#39;</span><span class="p">]</span> <span class="k">else</span> <span class="n">df_min</span><span class="o">.</span><span class="n">loc</span><span class="p">[</span><span class="n">ts</span><span class="p">,</span> <span class="s1">&#39;low&#39;</span><span class="p">]</span>
-    <span class="n">df_min</span><span class="o">.</span><span class="n">loc</span><span class="p">[</span><span class="n">ts</span><span class="p">,</span> <span class="s1">&#39;close&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">new_deal_price</span>
-</pre></div>
-
-    </div>
-</div>
-</div>
-
-</div></div></section><section>
-<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
-</div><div class="inner_cell">
-<div class="text_cell_render border-box-sizing rendered_html">
-<h2 id="define-update-chart-function">define update chart function<a class="anchor-link" href="#define-update-chart-function">&#182;</a></h2>
-</div>
-</div>
-</div><div class="fragment">
-<div class="cell border-box-sizing code_cell rendered">
-<div class="input">
-<div class="prompt input_prompt">In&nbsp;[18]:</div>
-<div class="inner_cell">
-    <div class="input_area">
-<div class=" highlight hl-ipython3"><pre><span></span><span class="k">def</span> <span class="nf">update_ohlc_chart</span><span class="p">():</span>
-    <span class="k">global</span> <span class="n">ohlc_chart</span>
-    <span class="k">with</span> <span class="n">ohlc_chart</span><span class="o">.</span><span class="n">hold_sync</span><span class="p">():</span>
-        <span class="n">ohlc_chart</span><span class="o">.</span><span class="n">x</span> <span class="o">=</span> <span class="n">df_min</span><span class="o">.</span><span class="n">dropna</span><span class="p">()</span><span class="o">.</span><span class="n">index</span>
-        <span class="n">ohlc_chart</span><span class="o">.</span><span class="n">y</span> <span class="o">=</span> <span class="n">df_min</span><span class="o">.</span><span class="n">dropna</span><span class="p">()</span><span class="o">.</span><span class="n">values</span>
-</pre></div>
-
-    </div>
-</div>
-</div>
-
-</div></div></section><section>
-<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
-</div><div class="inner_cell">
-<div class="text_cell_render border-box-sizing rendered_html">
-<h2 id="define-on-quote-callback">define on quote callback<a class="anchor-link" href="#define-on-quote-callback">&#182;</a></h2>
-</div>
-</div>
-</div><div class="fragment">
-<div class="cell border-box-sizing code_cell rendered">
-<div class="input">
-<div class="prompt input_prompt">In&nbsp;[21]:</div>
-<div class="inner_cell">
-    <div class="input_area">
-<div class=" highlight hl-ipython3"><pre><span></span><span class="nd">@sj</span><span class="o">.</span><span class="n">on_quote</span>
-<span class="k">def</span> <span class="nf">quote_callback</span><span class="p">(</span><span class="n">topic</span><span class="p">,</span> <span class="n">quote_msg</span><span class="p">):</span>
-    <span class="k">global</span> <span class="n">tick_plot_length</span>
-    <span class="k">global</span> <span class="n">line_chart</span><span class="p">,</span> <span class="n">scatter_chart</span>
-    <span class="k">global</span> <span class="n">pie_outer</span><span class="p">,</span> <span class="n">pie_inner</span><span class="p">,</span> <span class="n">pie_in</span>
-    <span class="k">global</span> <span class="n">x_tick_index</span><span class="p">,</span> <span class="n">y_price</span><span class="p">,</span> <span class="n">y_vol</span><span class="p">,</span> <span class="n">updown_color</span><span class="p">,</span> <span class="n">askbid_color_data</span>
-    <span class="k">global</span> <span class="n">new_index</span><span class="p">,</span> <span class="n">new_deal_price</span><span class="p">,</span> <span class="n">new_vol</span><span class="p">,</span> <span class="n">new_updown_color</span><span class="p">,</span> <span class="n">new_askbid_color_data</span>
-    <span class="k">global</span> <span class="n">ask_price</span><span class="p">,</span> <span class="n">bid_price</span>
-    <span class="k">global</span> <span class="n">large_ask_deal_volsum</span><span class="p">,</span> <span class="n">small_ask_deal_volsum</span><span class="p">,</span> <span class="n">large_bid_deal_volsum</span>
-    <span class="k">global</span> <span class="n">small_bid_deal_volsum</span><span class="p">,</span> <span class="n">ask_deal_count</span><span class="p">,</span> <span class="n">bid_deal_count</span>
-    <span class="k">global</span> <span class="n">ask_bid_static</span>
-    <span class="k">global</span> <span class="n">bar_bidask</span><span class="p">,</span> <span class="n">bar_bidask_diff</span>
-    <span class="k">global</span> <span class="n">x_bar_data</span><span class="p">,</span> <span class="n">y_bar_data</span><span class="p">,</span> <span class="n">color_bar_data</span><span class="p">,</span> <span class="n">y_data_diff</span>
-    <span class="k">global</span> <span class="n">ohlc_chart</span><span class="p">,</span> <span class="n">df_min</span>
-    <span class="n">vol_threshold</span> <span class="o">=</span> <span class="mi">10</span>
-    <span class="nb">print</span><span class="p">(</span><span class="n">topic</span><span class="p">,</span> <span class="n">quote_msg</span><span class="p">)</span>
-    <span class="k">if</span> <span class="n">topic</span><span class="o">.</span><span class="n">startswith</span><span class="p">(</span><span class="s1">&#39;Q&#39;</span><span class="p">)</span> <span class="ow">and</span> <span class="s1">&#39;TXFD9&#39;</span> <span class="ow">in</span> <span class="n">topic</span><span class="p">:</span>
-        <span class="n">proc_ask_bid_bardata</span><span class="p">(</span><span class="n">topic</span><span class="p">,</span> <span class="n">quote_msg</span><span class="p">)</span>
-        <span class="n">update_barchart</span><span class="p">(</span><span class="n">x_bar_data</span><span class="p">,</span> <span class="n">y_bar_data</span><span class="p">,</span> 
-                        <span class="n">color_bar_data</span><span class="p">,</span> <span class="n">y_bar_data_diff</span><span class="p">)</span>
-        
-    <span class="k">elif</span> <span class="n">topic</span><span class="o">.</span><span class="n">startswith</span><span class="p">(</span><span class="s1">&#39;L&#39;</span><span class="p">)</span> <span class="ow">and</span> <span class="s1">&#39;TXFD9&#39;</span> <span class="ow">in</span> <span class="n">topic</span><span class="p">:</span>
-        <span class="n">proc_tick_chartdata</span><span class="p">(</span><span class="n">topic</span><span class="p">,</span> <span class="n">quote_msg</span><span class="p">)</span>
-        <span class="n">proc_ask_bid_staticdata</span><span class="p">(</span><span class="n">topic</span><span class="p">,</span> <span class="n">quote_msg</span><span class="p">,</span> <span class="n">vol_threshold</span><span class="p">)</span>
-        <span class="n">proc_ohlc_data</span><span class="p">(</span><span class="n">quote_msg</span><span class="p">,</span> <span class="n">new_deal_price</span><span class="p">)</span>
-        <span class="n">update_ohlc_chart</span><span class="p">()</span>
-        <span class="n">update_tickandpie_chart</span><span class="p">(</span><span class="n">update_freq</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
-</pre></div>
-
-    </div>
-</div>
-</div>
-
-</div></div></section><section>
-<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
-</div><div class="inner_cell">
-<div class="text_cell_render border-box-sizing rendered_html">
-<h2 id="define-event-callback">define event callback<a class="anchor-link" href="#define-event-callback">&#182;</a></h2>
-</div>
-</div>
-</div><div class="fragment">
-<div class="cell border-box-sizing code_cell rendered">
-<div class="input">
-<div class="prompt input_prompt">In&nbsp;[22]:</div>
-<div class="inner_cell">
-    <div class="input_area">
-<div class=" highlight hl-ipython3"><pre><span></span><span class="nd">@sj</span><span class="o">.</span><span class="n">on_event</span>
-<span class="k">def</span> <span class="nf">event_callback</span><span class="p">(</span><span class="n">resp_code</span><span class="p">,</span> <span class="n">event_code</span><span class="p">,</span> <span class="n">event</span><span class="p">):</span>
-    <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Respone Code: </span><span class="si">{}</span><span class="s2"> | Event Code: </span><span class="si">{}</span><span class="s2"> | Event: </span><span class="si">{}</span><span class="s2">&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">resp_code</span><span class="p">,</span> <span class="n">event_code</span><span class="p">,</span> <span class="n">event</span><span class="p">))</span>
-</pre></div>
-
-    </div>
-</div>
-</div>
-
-</div></div></section><section>
-<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
-</div><div class="inner_cell">
-<div class="text_cell_render border-box-sizing rendered_html">
-<h2 id="set-callback-function">set callback function<a class="anchor-link" href="#set-callback-function">&#182;</a></h2>
-</div>
-</div>
-</div><div class="fragment">
-<div class="cell border-box-sizing code_cell rendered">
-<div class="input">
-<div class="prompt input_prompt">In&nbsp;[23]:</div>
-<div class="inner_cell">
-    <div class="input_area">
-<div class=" highlight hl-ipython3"><pre><span></span><span class="n">api</span><span class="o">.</span><span class="n">quote</span><span class="o">.</span><span class="n">set_callback</span><span class="p">(</span><span class="n">quote_callback</span><span class="p">)</span>
-<span class="n">api</span><span class="o">.</span><span class="n">quote</span><span class="o">.</span><span class="n">set_event_callback</span><span class="p">(</span><span class="n">event_callback</span><span class="p">)</span>
-</pre></div>
-
-    </div>
-</div>
-</div>
-
-</div></div></section></section><section><section>
-<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
-</div><div class="inner_cell">
-<div class="text_cell_render border-box-sizing rendered_html">
-<h2 id="Chart">Chart<a class="anchor-link" href="#Chart">&#182;</a></h2>
-</div>
-</div>
-</div><div class="fragment">
-<div class="cell border-box-sizing code_cell rendered">
-<div class="input">
-<div class="prompt input_prompt">In&nbsp;[24]:</div>
-<div class="inner_cell">
-    <div class="input_area">
-<div class=" highlight hl-ipython3"><pre><span></span><span class="n">VBox</span><span class="p">([</span><span class="n">HBox</span><span class="p">([</span><span class="n">init_ohlc_chart</span><span class="p">(),</span> <span class="n">init_tickchart</span><span class="p">(),]),</span>
-      <span class="n">HBox</span><span class="p">([</span><span class="n">pies_chart</span><span class="p">(),</span> <span class="n">bidask_bar_chart</span><span class="p">(),</span> <span class="p">])</span>
-     <span class="p">])</span>
-</pre></div>
-
-    </div>
-</div>
-</div>
-
-<div class="output_wrapper">
-<div class="output">
-
-
-<div class="output_area">
-
-    <div class="prompt"></div>
-
-
-
-
-
- 
- 
-<div id="7db2e2f7-560f-4e8b-be40-3869615a2882"></div>
-<div class="output_subarea output_widget_view ">
-<script type="text/javascript">
-var element = $('#7db2e2f7-560f-4e8b-be40-3869615a2882');
-</script>
-<script type="application/vnd.jupyter.widget-view+json">
-{"model_id": "2deef03e26864984bf35462333257e58", "version_major": 2, "version_minor": 0}
-</script>
-</div>
-
-</div>
-
-</div>
-</div>
-
-</div></div><div class="fragment">
-<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
-</div><div class="inner_cell">
-<div class="text_cell_render border-box-sizing rendered_html">
-<p><img src="https://raw.githubusercontent.com/Sinotrade/Sinotrade.github.io/master/images/quote_visualize.gif" alt="gif"></p>
-
-</div>
-</div>
-</div></div></section><section>
-<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
-</div><div class="inner_cell">
-<div class="text_cell_render border-box-sizing rendered_html">
-<h2 id="Subscribe-Quote">Subscribe Quote<a class="anchor-link" href="#Subscribe-Quote">&#182;</a></h2>
-</div>
-</div>
-</div><div class="fragment">
-<div class="cell border-box-sizing code_cell rendered">
-<div class="input">
-<div class="prompt input_prompt">In&nbsp;[25]:</div>
-<div class="inner_cell">
-    <div class="input_area">
-<div class=" highlight hl-ipython3"><pre><span></span><span class="n">TXFR1</span> <span class="o">=</span> <span class="n">api</span><span class="o">.</span><span class="n">Contracts</span><span class="o">.</span><span class="n">Futures</span><span class="o">.</span><span class="n">TXF</span><span class="o">.</span><span class="n">TXF201904</span>
-<span class="n">TSE2330</span> <span class="o">=</span> <span class="n">api</span><span class="o">.</span><span class="n">Contracts</span><span class="o">.</span><span class="n">Stocks</span><span class="o">.</span><span class="n">TSE</span><span class="o">.</span><span class="n">TSE2330</span>
-</pre></div>
-
-    </div>
-</div>
-</div>
-
-</div></div><div class="fragment">
-<div class="cell border-box-sizing code_cell rendered">
-<div class="input">
-<div class="prompt input_prompt">In&nbsp;[26]:</div>
-<div class="inner_cell">
-    <div class="input_area">
-<div class=" highlight hl-ipython3"><pre><span></span><span class="n">api</span><span class="o">.</span><span class="n">quote</span><span class="o">.</span><span class="n">subscribe</span><span class="p">(</span><span class="n">TXFR1</span><span class="p">)</span>
-<span class="n">api</span><span class="o">.</span><span class="n">quote</span><span class="o">.</span><span class="n">subscribe</span><span class="p">(</span><span class="n">TXFR1</span><span class="p">,</span> <span class="n">quote_type</span><span class="o">=</span><span class="s1">&#39;bidask&#39;</span><span class="p">)</span>
-<span class="n">api</span><span class="o">.</span><span class="n">quote</span><span class="o">.</span><span class="n">subscribe</span><span class="p">(</span><span class="n">TSE2330</span><span class="p">)</span>
-<span class="n">api</span><span class="o">.</span><span class="n">quote</span><span class="o">.</span><span class="n">subscribe</span><span class="p">(</span><span class="n">TSE2330</span><span class="p">,</span> <span class="n">quote_type</span><span class="o">=</span><span class="s1">&#39;bidask&#39;</span><span class="p">)</span>
+<div class=" highlight hl-ipython3"><pre><span></span><span class="kn">import</span> <span class="nn">shioaji</span> <span class="k">as</span> <span class="nn">sj</span>
+<span class="n">api</span> <span class="o">=</span> <span class="n">sj</span><span class="o">.</span><span class="n">Shioaji</span><span class="p">()</span>
 </pre></div>
 
     </div>
@@ -13580,38 +13229,640 @@ var element = $('#7db2e2f7-560f-4e8b-be40-3869615a2882');
 
 
 <div class="output_subarea output_stream output_stdout output_text">
-<pre>Respone Code: 200 | Event Code: 16 | Event: Subscribe or Unsubscribe ok
-Respone Code: 200 | Event Code: 16 | Event: Subscribe or Unsubscribe ok
-Respone Code: 200 | Event Code: 16 | Event: Subscribe or Unsubscribe ok
-Respone Code: 200 | Event Code: 16 | Event: Subscribe or Unsubscribe ok
-Q/TFE/TXFD9 {&#39;AskPrice&#39;: [10580.0, 10581.0, 10582.0, 10583.0, 10584.0], &#39;AskVolSum&#39;: 356, &#39;AskVolume&#39;: [25, 44, 64, 75, 148], &#39;BidPrice&#39;: [10579.0, 10578.0, 10577.0, 10576.0, 10575.0], &#39;BidVolSum&#39;: 240, &#39;BidVolume&#39;: [12, 42, 59, 66, 61], &#39;Code&#39;: &#39;TXFD9&#39;, &#39;Date&#39;: &#39;2019/03/29&#39;, &#39;DiffAskVol&#39;: [0, 0, 0, -1, 0], &#39;DiffAskVolSum&#39;: -1, &#39;DiffBidVol&#39;: [0, 0, 0, 0, 0], &#39;DiffBidVolSum&#39;: 0, &#39;FirstDerivedAskPrice&#39;: 10581.0, &#39;FirstDerivedAskVolume&#39;: 6, &#39;FirstDerivedBidPrice&#39;: 10577.0, &#39;FirstDerivedBidVolume&#39;: 1, &#39;TargetKindPrice&#39;: 10620.7, &#39;Time&#39;: &#39;13:12:35.328000&#39;}
-Q/TFE/TXFD9 {&#39;AskPrice&#39;: [10580.0, 10581.0, 10582.0, 10583.0, 10584.0], &#39;AskVolSum&#39;: 356, &#39;AskVolume&#39;: [25, 44, 64, 75, 148], &#39;BidPrice&#39;: [10579.0, 10578.0, 10577.0, 10576.0, 10575.0], &#39;BidVolSum&#39;: 239, &#39;BidVolume&#39;: [11, 42, 59, 66, 61], &#39;Code&#39;: &#39;TXFD9&#39;, &#39;Date&#39;: &#39;2019/03/29&#39;, &#39;DiffAskVol&#39;: [0, 0, 0, 0, 0], &#39;DiffAskVolSum&#39;: 0, &#39;DiffBidVol&#39;: [-1, 0, 0, 0, 0], &#39;DiffBidVolSum&#39;: -1, &#39;FirstDerivedAskPrice&#39;: 10581.0, &#39;FirstDerivedAskVolume&#39;: 6, &#39;FirstDerivedBidPrice&#39;: 10577.0, &#39;FirstDerivedBidVolume&#39;: 1, &#39;TargetKindPrice&#39;: 10620.7, &#39;Time&#39;: &#39;13:12:35.453000&#39;}
-Q/TFE/TXFD9 {&#39;AskPrice&#39;: [10580.0, 10581.0, 10582.0, 10583.0, 10584.0], &#39;AskVolSum&#39;: 341, &#39;AskVolume&#39;: [25, 44, 64, 65, 143], &#39;BidPrice&#39;: [10579.0, 10578.0, 10577.0, 10576.0, 10575.0], &#39;BidVolSum&#39;: 239, &#39;BidVolume&#39;: [11, 42, 59, 66, 61], &#39;Code&#39;: &#39;TXFD9&#39;, &#39;Date&#39;: &#39;2019/03/29&#39;, &#39;DiffAskVol&#39;: [0, 0, 0, -10, -5], &#39;DiffAskVolSum&#39;: -15, &#39;DiffBidVol&#39;: [0, 0, 0, 0, 0], &#39;DiffBidVolSum&#39;: 0, &#39;FirstDerivedAskPrice&#39;: 10581.0, &#39;FirstDerivedAskVolume&#39;: 6, &#39;FirstDerivedBidPrice&#39;: 10577.0, &#39;FirstDerivedBidVolume&#39;: 1, &#39;TargetKindPrice&#39;: 10620.7, &#39;Time&#39;: &#39;13:12:35.703000&#39;}
-Q/TFE/TXFD9 {&#39;AskPrice&#39;: [10580.0, 10581.0, 10582.0, 10583.0, 10584.0], &#39;AskVolSum&#39;: 341, &#39;AskVolume&#39;: [25, 44, 64, 65, 143], &#39;BidPrice&#39;: [10579.0, 10578.0, 10577.0, 10576.0, 10575.0], &#39;BidVolSum&#39;: 239, &#39;BidVolume&#39;: [11, 42, 59, 66, 61], &#39;Code&#39;: &#39;TXFD9&#39;, &#39;Date&#39;: &#39;2019/03/29&#39;, &#39;DiffAskVol&#39;: [0, 0, 0, 0, 0], &#39;DiffAskVolSum&#39;: 0, &#39;DiffBidVol&#39;: [0, 0, 0, 0, 0], &#39;DiffBidVolSum&#39;: 0, &#39;FirstDerivedAskPrice&#39;: 10581.0, &#39;FirstDerivedAskVolume&#39;: 6, &#39;FirstDerivedBidPrice&#39;: 10577.0, &#39;FirstDerivedBidVolume&#39;: 1, &#39;TargetKindPrice&#39;: 10620.7, &#39;Time&#39;: &#39;13:12:35.828000&#39;}
-Q/TFE/TXFD9 {&#39;AskPrice&#39;: [10580.0, 10581.0, 10582.0, 10583.0, 10584.0], &#39;AskVolSum&#39;: 341, &#39;AskVolume&#39;: [25, 44, 64, 65, 143], &#39;BidPrice&#39;: [10579.0, 10578.0, 10577.0, 10576.0, 10575.0], &#39;BidVolSum&#39;: 241, &#39;BidVolume&#39;: [12, 42, 59, 66, 62], &#39;Code&#39;: &#39;TXFD9&#39;, &#39;Date&#39;: &#39;2019/03/29&#39;, &#39;DiffAskVol&#39;: [0, 0, 0, 0, 0], &#39;DiffAskVolSum&#39;: 0, &#39;DiffBidVol&#39;: [1, 0, 0, 0, 1], &#39;DiffBidVolSum&#39;: 2, &#39;FirstDerivedAskPrice&#39;: 10581.0, &#39;FirstDerivedAskVolume&#39;: 6, &#39;FirstDerivedBidPrice&#39;: 10577.0, &#39;FirstDerivedBidVolume&#39;: 1, &#39;TargetKindPrice&#39;: 10620.7, &#39;Time&#39;: &#39;13:12:36.203000&#39;}
-Q/TFE/TXFD9 {&#39;AskPrice&#39;: [10580.0, 10581.0, 10582.0, 10583.0, 10584.0], &#39;AskVolSum&#39;: 341, &#39;AskVolume&#39;: [25, 44, 64, 65, 143], &#39;BidPrice&#39;: [10579.0, 10578.0, 10577.0, 10576.0, 10575.0], &#39;BidVolSum&#39;: 244, &#39;BidVolume&#39;: [15, 42, 59, 66, 62], &#39;Code&#39;: &#39;TXFD9&#39;, &#39;Date&#39;: &#39;2019/03/29&#39;, &#39;DiffAskVol&#39;: [0, 0, 0, 0, 0], &#39;DiffAskVolSum&#39;: 0, &#39;DiffBidVol&#39;: [3, 0, 0, 0, 0], &#39;DiffBidVolSum&#39;: 3, &#39;FirstDerivedAskPrice&#39;: 10581.0, &#39;FirstDerivedAskVolume&#39;: 6, &#39;FirstDerivedBidPrice&#39;: 10577.0, &#39;FirstDerivedBidVolume&#39;: 1, &#39;TargetKindPrice&#39;: 10620.7, &#39;Time&#39;: &#39;13:12:36.328000&#39;}
-Q/TFE/TXFD9 {&#39;AskPrice&#39;: [10580.0, 10581.0, 10582.0, 10583.0, 10584.0], &#39;AskVolSum&#39;: 342, &#39;AskVolume&#39;: [25, 45, 64, 65, 143], &#39;BidPrice&#39;: [10579.0, 10578.0, 10577.0, 10576.0, 10575.0], &#39;BidVolSum&#39;: 244, &#39;BidVolume&#39;: [14, 44, 58, 65, 63], &#39;Code&#39;: &#39;TXFD9&#39;, &#39;Date&#39;: &#39;2019/03/29&#39;, &#39;DiffAskVol&#39;: [0, 1, 0, 0, 0], &#39;DiffAskVolSum&#39;: 1, &#39;DiffBidVol&#39;: [-1, 2, -1, -1, 1], &#39;DiffBidVolSum&#39;: 0, &#39;FirstDerivedAskPrice&#39;: 10581.0, &#39;FirstDerivedAskVolume&#39;: 6, &#39;FirstDerivedBidPrice&#39;: 10577.0, &#39;FirstDerivedBidVolume&#39;: 1, &#39;TargetKindPrice&#39;: 10620.7, &#39;Time&#39;: &#39;13:12:36.453000&#39;}
-Q/TFE/TXFD9 {&#39;AskPrice&#39;: [10580.0, 10581.0, 10582.0, 10583.0, 10584.0], &#39;AskVolSum&#39;: 342, &#39;AskVolume&#39;: [25, 45, 64, 65, 143], &#39;BidPrice&#39;: [10579.0, 10578.0, 10577.0, 10576.0, 10575.0], &#39;BidVolSum&#39;: 247, &#39;BidVolume&#39;: [16, 43, 58, 66, 64], &#39;Code&#39;: &#39;TXFD9&#39;, &#39;Date&#39;: &#39;2019/03/29&#39;, &#39;DiffAskVol&#39;: [0, 0, 0, 0, 0], &#39;DiffAskVolSum&#39;: 0, &#39;DiffBidVol&#39;: [2, -1, 0, 1, 1], &#39;DiffBidVolSum&#39;: 3, &#39;FirstDerivedAskPrice&#39;: 10581.0, &#39;FirstDerivedAskVolume&#39;: 6, &#39;FirstDerivedBidPrice&#39;: 10577.0, &#39;FirstDerivedBidVolume&#39;: 1, &#39;TargetKindPrice&#39;: 10620.7, &#39;Time&#39;: &#39;13:12:36.578000&#39;}
-Q/TFE/TXFD9 {&#39;AskPrice&#39;: [10580.0, 10581.0, 10582.0, 10583.0, 10584.0], &#39;AskVolSum&#39;: 342, &#39;AskVolume&#39;: [25, 45, 64, 65, 143], &#39;BidPrice&#39;: [10579.0, 10578.0, 10577.0, 10576.0, 10575.0], &#39;BidVolSum&#39;: 248, &#39;BidVolume&#39;: [17, 44, 58, 65, 64], &#39;Code&#39;: &#39;TXFD9&#39;, &#39;Date&#39;: &#39;2019/03/29&#39;, &#39;DiffAskVol&#39;: [0, 0, 0, 0, 0], &#39;DiffAskVolSum&#39;: 0, &#39;DiffBidVol&#39;: [1, 1, 0, -1, 0], &#39;DiffBidVolSum&#39;: 1, &#39;FirstDerivedAskPrice&#39;: 10581.0, &#39;FirstDerivedAskVolume&#39;: 6, &#39;FirstDerivedBidPrice&#39;: 10577.0, &#39;FirstDerivedBidVolume&#39;: 1, &#39;TargetKindPrice&#39;: 10620.7, &#39;Time&#39;: &#39;13:12:36.703000&#39;}
-Q/TFE/TXFD9 {&#39;AskPrice&#39;: [10580.0, 10581.0, 10582.0, 10583.0, 10584.0], &#39;AskVolSum&#39;: 342, &#39;AskVolume&#39;: [25, 45, 64, 65, 143], &#39;BidPrice&#39;: [10579.0, 10578.0, 10577.0, 10576.0, 10575.0], &#39;BidVolSum&#39;: 247, &#39;BidVolume&#39;: [16, 44, 58, 65, 64], &#39;Code&#39;: &#39;TXFD9&#39;, &#39;Date&#39;: &#39;2019/03/29&#39;, &#39;DiffAskVol&#39;: [0, 0, 0, 0, 0], &#39;DiffAskVolSum&#39;: 0, &#39;DiffBidVol&#39;: [-1, 0, 0, 0, 0], &#39;DiffBidVolSum&#39;: -1, &#39;FirstDerivedAskPrice&#39;: 10581.0, &#39;FirstDerivedAskVolume&#39;: 6, &#39;FirstDerivedBidPrice&#39;: 10577.0, &#39;FirstDerivedBidVolume&#39;: 1, &#39;TargetKindPrice&#39;: 10620.7, &#39;Time&#39;: &#39;13:12:36.828000&#39;}
-MKT/idcdmzpcr01/TSE/2330 {&#39;Close&#39;: [244.5], &#39;Time&#39;: &#39;13:12:37.754742&#39;, &#39;VolSum&#39;: [15915], &#39;Volume&#39;: [1]}
-QUT/idcdmzpcr01/TSE/2330 {&#39;AskPrice&#39;: [245.0, 245.5, 246.0, 246.5, 247.0], &#39;AskVolume&#39;: [1148, 377, 501, 182, 218], &#39;BidPrice&#39;: [244.5, 244.0, 243.5, 243.0, 242.5], &#39;BidVolume&#39;: [456, 373, 1529, 1670, 280], &#39;Date&#39;: &#39;2019/03/29&#39;, &#39;Time&#39;: &#39;13:12:37.754742&#39;}
-Q/TFE/TXFD9 {&#39;AskPrice&#39;: [10580.0, 10581.0, 10582.0, 10583.0, 10584.0], &#39;AskVolSum&#39;: 342, &#39;AskVolume&#39;: [25, 45, 64, 65, 143], &#39;BidPrice&#39;: [10579.0, 10578.0, 10577.0, 10576.0, 10575.0], &#39;BidVolSum&#39;: 247, &#39;BidVolume&#39;: [16, 44, 58, 65, 64], &#39;Code&#39;: &#39;TXFD9&#39;, &#39;Date&#39;: &#39;2019/03/29&#39;, &#39;DiffAskVol&#39;: [0, 0, 0, 0, 0], &#39;DiffAskVolSum&#39;: 0, &#39;DiffBidVol&#39;: [0, 0, 0, 0, 0], &#39;DiffBidVolSum&#39;: 0, &#39;FirstDerivedAskPrice&#39;: 10581.0, &#39;FirstDerivedAskVolume&#39;: 6, &#39;FirstDerivedBidPrice&#39;: 10577.0, &#39;FirstDerivedBidVolume&#39;: 1, &#39;TargetKindPrice&#39;: 10620.7, &#39;Time&#39;: &#39;13:12:37.953000&#39;}
-Q/TFE/TXFD9 {&#39;AskPrice&#39;: [10580.0, 10581.0, 10582.0, 10583.0, 10584.0], &#39;AskVolSum&#39;: 339, &#39;AskVolume&#39;: [25, 45, 64, 62, 143], &#39;BidPrice&#39;: [10579.0, 10578.0, 10577.0, 10576.0, 10575.0], &#39;BidVolSum&#39;: 247, &#39;BidVolume&#39;: [16, 44, 58, 65, 64], &#39;Code&#39;: &#39;TXFD9&#39;, &#39;Date&#39;: &#39;2019/03/29&#39;, &#39;DiffAskVol&#39;: [0, 0, 0, -3, 0], &#39;DiffAskVolSum&#39;: -3, &#39;DiffBidVol&#39;: [0, 0, 0, 0, 0], &#39;DiffBidVolSum&#39;: 0, &#39;FirstDerivedAskPrice&#39;: 10581.0, &#39;FirstDerivedAskVolume&#39;: 6, &#39;FirstDerivedBidPrice&#39;: 10577.0, &#39;FirstDerivedBidVolume&#39;: 1, &#39;TargetKindPrice&#39;: 10620.7, &#39;Time&#39;: &#39;13:12:38.078000&#39;}
-Q/TFE/TXFD9 {&#39;AskPrice&#39;: [10580.0, 10581.0, 10582.0, 10583.0, 10584.0], &#39;AskVolSum&#39;: 339, &#39;AskVolume&#39;: [25, 45, 64, 62, 143], &#39;BidPrice&#39;: [10579.0, 10578.0, 10577.0, 10576.0, 10575.0], &#39;BidVolSum&#39;: 248, &#39;BidVolume&#39;: [16, 44, 59, 65, 64], &#39;Code&#39;: &#39;TXFD9&#39;, &#39;Date&#39;: &#39;2019/03/29&#39;, &#39;DiffAskVol&#39;: [0, 0, 0, 0, 0], &#39;DiffAskVolSum&#39;: 0, &#39;DiffBidVol&#39;: [0, 0, 1, 0, 0], &#39;DiffBidVolSum&#39;: 1, &#39;FirstDerivedAskPrice&#39;: 10581.0, &#39;FirstDerivedAskVolume&#39;: 6, &#39;FirstDerivedBidPrice&#39;: 10577.0, &#39;FirstDerivedBidVolume&#39;: 1, &#39;TargetKindPrice&#39;: 10620.7, &#39;Time&#39;: &#39;13:12:38.203000&#39;}
-Q/TFE/TXFD9 {&#39;AskPrice&#39;: [10580.0, 10581.0, 10582.0, 10583.0, 10584.0], &#39;AskVolSum&#39;: 340, &#39;AskVolume&#39;: [26, 45, 64, 62, 143], &#39;BidPrice&#39;: [10579.0, 10578.0, 10577.0, 10576.0, 10575.0], &#39;BidVolSum&#39;: 247, &#39;BidVolume&#39;: [16, 44, 59, 64, 64], &#39;Code&#39;: &#39;TXFD9&#39;, &#39;Date&#39;: &#39;2019/03/29&#39;, &#39;DiffAskVol&#39;: [1, 0, 0, 0, 0], &#39;DiffAskVolSum&#39;: 1, &#39;DiffBidVol&#39;: [0, 0, 0, -1, 0], &#39;DiffBidVolSum&#39;: -1, &#39;FirstDerivedAskPrice&#39;: 10581.0, &#39;FirstDerivedAskVolume&#39;: 6, &#39;FirstDerivedBidPrice&#39;: 10577.0, &#39;FirstDerivedBidVolume&#39;: 1, &#39;TargetKindPrice&#39;: 10620.7, &#39;Time&#39;: &#39;13:12:38.703000&#39;}
-Q/TFE/TXFD9 {&#39;AskPrice&#39;: [10580.0, 10581.0, 10582.0, 10583.0, 10584.0], &#39;AskVolSum&#39;: 340, &#39;AskVolume&#39;: [26, 45, 64, 62, 143], &#39;BidPrice&#39;: [10579.0, 10578.0, 10577.0, 10576.0, 10575.0], &#39;BidVolSum&#39;: 247, &#39;BidVolume&#39;: [16, 43, 60, 64, 64], &#39;Code&#39;: &#39;TXFD9&#39;, &#39;Date&#39;: &#39;2019/03/29&#39;, &#39;DiffAskVol&#39;: [0, 0, 0, 0, 0], &#39;DiffAskVolSum&#39;: 0, &#39;DiffBidVol&#39;: [0, -1, 1, 0, 0], &#39;DiffBidVolSum&#39;: 0, &#39;FirstDerivedAskPrice&#39;: 10581.0, &#39;FirstDerivedAskVolume&#39;: 6, &#39;FirstDerivedBidPrice&#39;: 10577.0, &#39;FirstDerivedBidVolume&#39;: 1, &#39;TargetKindPrice&#39;: 10620.7, &#39;Time&#39;: &#39;13:12:38.828000&#39;}
-Q/TFE/TXFD9 {&#39;AskPrice&#39;: [10580.0, 10581.0, 10582.0, 10583.0, 10584.0], &#39;AskVolSum&#39;: 341, &#39;AskVolume&#39;: [26, 46, 64, 62, 143], &#39;BidPrice&#39;: [10579.0, 10578.0, 10577.0, 10576.0, 10575.0], &#39;BidVolSum&#39;: 247, &#39;BidVolume&#39;: [16, 43, 60, 64, 64], &#39;Code&#39;: &#39;TXFD9&#39;, &#39;Date&#39;: &#39;2019/03/29&#39;, &#39;DiffAskVol&#39;: [0, 1, 0, 0, 0], &#39;DiffAskVolSum&#39;: 1, &#39;DiffBidVol&#39;: [0, 0, 0, 0, 0], &#39;DiffBidVolSum&#39;: 0, &#39;FirstDerivedAskPrice&#39;: 10581.0, &#39;FirstDerivedAskVolume&#39;: 6, &#39;FirstDerivedBidPrice&#39;: 10577.0, &#39;FirstDerivedBidVolume&#39;: 1, &#39;TargetKindPrice&#39;: 10620.7, &#39;Time&#39;: &#39;13:12:39.078000&#39;}
-Q/TFE/TXFD9 {&#39;AskPrice&#39;: [10580.0, 10581.0, 10582.0, 10583.0, 10584.0], &#39;AskVolSum&#39;: 341, &#39;AskVolume&#39;: [26, 46, 64, 62, 143], &#39;BidPrice&#39;: [10579.0, 10578.0, 10577.0, 10576.0, 10575.0], &#39;BidVolSum&#39;: 247, &#39;BidVolume&#39;: [16, 43, 60, 64, 64], &#39;Code&#39;: &#39;TXFD9&#39;, &#39;Date&#39;: &#39;2019/03/29&#39;, &#39;DiffAskVol&#39;: [0, 0, 0, 0, 0], &#39;DiffAskVolSum&#39;: 0, &#39;DiffBidVol&#39;: [0, 0, 0, 0, 0], &#39;DiffBidVolSum&#39;: 0, &#39;FirstDerivedAskPrice&#39;: 10581.0, &#39;FirstDerivedAskVolume&#39;: 6, &#39;FirstDerivedBidPrice&#39;: 10577.0, &#39;FirstDerivedBidVolume&#39;: 1, &#39;TargetKindPrice&#39;: 10620.7, &#39;Time&#39;: &#39;13:12:39.328000&#39;}
-Q/TFE/TXFD9 {&#39;AskPrice&#39;: [10580.0, 10581.0, 10582.0, 10583.0, 10584.0], &#39;AskVolSum&#39;: 341, &#39;AskVolume&#39;: [26, 46, 64, 62, 143], &#39;BidPrice&#39;: [10579.0, 10578.0, 10577.0, 10576.0, 10575.0], &#39;BidVolSum&#39;: 245, &#39;BidVolume&#39;: [14, 43, 60, 64, 64], &#39;Code&#39;: &#39;TXFD9&#39;, &#39;Date&#39;: &#39;2019/03/29&#39;, &#39;DiffAskVol&#39;: [0, 0, 0, 0, 0], &#39;DiffAskVolSum&#39;: 0, &#39;DiffBidVol&#39;: [-2, 0, 0, 0, 0], &#39;DiffBidVolSum&#39;: -2, &#39;FirstDerivedAskPrice&#39;: 10581.0, &#39;FirstDerivedAskVolume&#39;: 6, &#39;FirstDerivedBidPrice&#39;: 10577.0, &#39;FirstDerivedBidVolume&#39;: 1, &#39;TargetKindPrice&#39;: 10620.7, &#39;Time&#39;: &#39;13:12:39.453000&#39;}
-Q/TFE/TXFD9 {&#39;AskPrice&#39;: [10580.0, 10581.0, 10582.0, 10583.0, 10584.0], &#39;AskVolSum&#39;: 341, &#39;AskVolume&#39;: [26, 46, 64, 62, 143], &#39;BidPrice&#39;: [10579.0, 10578.0, 10577.0, 10576.0, 10575.0], &#39;BidVolSum&#39;: 242, &#39;BidVolume&#39;: [12, 42, 60, 65, 63], &#39;Code&#39;: &#39;TXFD9&#39;, &#39;Date&#39;: &#39;2019/03/29&#39;, &#39;DiffAskVol&#39;: [0, 0, 0, 0, 0], &#39;DiffAskVolSum&#39;: 0, &#39;DiffBidVol&#39;: [-2, -1, 0, 1, -1], &#39;DiffBidVolSum&#39;: -3, &#39;FirstDerivedAskPrice&#39;: 10581.0, &#39;FirstDerivedAskVolume&#39;: 6, &#39;FirstDerivedBidPrice&#39;: 10577.0, &#39;FirstDerivedBidVolume&#39;: 1, &#39;TargetKindPrice&#39;: 10620.7, &#39;Time&#39;: &#39;13:12:39.578000&#39;}
-Q/TFE/TXFD9 {&#39;AskPrice&#39;: [10580.0, 10581.0, 10582.0, 10583.0, 10584.0], &#39;AskVolSum&#39;: 311, &#39;AskVolume&#39;: [26, 46, 64, 62, 113], &#39;BidPrice&#39;: [10579.0, 10578.0, 10577.0, 10576.0, 10575.0], &#39;BidVolSum&#39;: 242, &#39;BidVolume&#39;: [12, 42, 60, 65, 63], &#39;Code&#39;: &#39;TXFD9&#39;, &#39;Date&#39;: &#39;2019/03/29&#39;, &#39;DiffAskVol&#39;: [0, 0, 0, 0, -30], &#39;DiffAskVolSum&#39;: -30, &#39;DiffBidVol&#39;: [0, 0, 0, 0, 0], &#39;DiffBidVolSum&#39;: 0, &#39;FirstDerivedAskPrice&#39;: 10581.0, &#39;FirstDerivedAskVolume&#39;: 6, &#39;FirstDerivedBidPrice&#39;: 10577.0, &#39;FirstDerivedBidVolume&#39;: 1, &#39;TargetKindPrice&#39;: 10620.7, &#39;Time&#39;: &#39;13:12:39.828000&#39;}
-Q/TFE/TXFD9 {&#39;AskPrice&#39;: [10580.0, 10581.0, 10582.0, 10583.0, 10584.0], &#39;AskVolSum&#39;: 311, &#39;AskVolume&#39;: [26, 46, 64, 62, 113], &#39;BidPrice&#39;: [10579.0, 10578.0, 10577.0, 10576.0, 10575.0], &#39;BidVolSum&#39;: 248, &#39;BidVolume&#39;: [18, 42, 60, 65, 63], &#39;Code&#39;: &#39;TXFD9&#39;, &#39;Date&#39;: &#39;2019/03/29&#39;, &#39;DiffAskVol&#39;: [0, 0, 0, 0, 0], &#39;DiffAskVolSum&#39;: 0, &#39;DiffBidVol&#39;: [6, 0, 0, 0, 0], &#39;DiffBidVolSum&#39;: 6, &#39;FirstDerivedAskPrice&#39;: 10581.0, &#39;FirstDerivedAskVolume&#39;: 6, &#39;FirstDerivedBidPrice&#39;: 10577.0, &#39;FirstDerivedBidVolume&#39;: 1, &#39;TargetKindPrice&#39;: 10620.7, &#39;Time&#39;: &#39;13:12:40.078000&#39;}
-Q/TFE/TXFD9 {&#39;AskPrice&#39;: [10580.0, 10581.0, 10582.0, 10583.0, 10584.0], &#39;AskVolSum&#39;: 308, &#39;AskVolume&#39;: [23, 46, 64, 62, 113], &#39;BidPrice&#39;: [10579.0, 10578.0, 10577.0, 10576.0, 10575.0], &#39;BidVolSum&#39;: 249, &#39;BidVolume&#39;: [19, 44, 59, 64, 63], &#39;Code&#39;: &#39;TXFD9&#39;, &#39;Date&#39;: &#39;2019/03/29&#39;, &#39;DiffAskVol&#39;: [-3, 0, 0, 0, 0], &#39;DiffAskVolSum&#39;: -3, &#39;DiffBidVol&#39;: [1, 2, -1, -1, 0], &#39;DiffBidVolSum&#39;: 1, &#39;FirstDerivedAskPrice&#39;: 10581.0, &#39;FirstDerivedAskVolume&#39;: 6, &#39;FirstDerivedBidPrice&#39;: 10577.0, &#39;FirstDerivedBidVolume&#39;: 1, &#39;TargetKindPrice&#39;: 10615.63, &#39;Time&#39;: &#39;13:12:40.203000&#39;}
-Q/TFE/TXFD9 {&#39;AskPrice&#39;: [10580.0, 10581.0, 10582.0, 10583.0, 10584.0], &#39;AskVolSum&#39;: 309, &#39;AskVolume&#39;: [23, 47, 64, 62, 113], &#39;BidPrice&#39;: [10579.0, 10578.0, 10577.0, 10576.0, 10575.0], &#39;BidVolSum&#39;: 249, &#39;BidVolume&#39;: [19, 44, 59, 64, 63], &#39;Code&#39;: &#39;TXFD9&#39;, &#39;Date&#39;: &#39;2019/03/29&#39;, &#39;DiffAskVol&#39;: [0, 1, 0, 0, 0], &#39;DiffAskVolSum&#39;: 1, &#39;DiffBidVol&#39;: [0, 0, 0, 0, 0], &#39;DiffBidVolSum&#39;: 0, &#39;FirstDerivedAskPrice&#39;: 10581.0, &#39;FirstDerivedAskVolume&#39;: 6, &#39;FirstDerivedBidPrice&#39;: 10577.0, &#39;FirstDerivedBidVolume&#39;: 1, &#39;TargetKindPrice&#39;: 10615.63, &#39;Time&#39;: &#39;13:12:40.953000&#39;}
-Q/TFE/TXFD9 {&#39;AskPrice&#39;: [10580.0, 10581.0, 10582.0, 10583.0, 10584.0], &#39;AskVolSum&#39;: 310, &#39;AskVolume&#39;: [24, 47, 64, 62, 113], &#39;BidPrice&#39;: [10579.0, 10578.0, 10577.0, 10576.0, 10575.0], &#39;BidVolSum&#39;: 249, &#39;BidVolume&#39;: [19, 44, 59, 64, 63], &#39;Code&#39;: &#39;TXFD9&#39;, &#39;Date&#39;: &#39;2019/03/29&#39;, &#39;DiffAskVol&#39;: [1, 0, 0, 0, 0], &#39;DiffAskVolSum&#39;: 1, &#39;DiffBidVol&#39;: [0, 0, 0, 0, 0], &#39;DiffBidVolSum&#39;: 0, &#39;FirstDerivedAskPrice&#39;: 10581.0, &#39;FirstDerivedAskVolume&#39;: 6, &#39;FirstDerivedBidPrice&#39;: 10577.0, &#39;FirstDerivedBidVolume&#39;: 1, &#39;TargetKindPrice&#39;: 10615.63, &#39;Time&#39;: &#39;13:12:41.078000&#39;}
+<pre>Response Code: 0 | Event Code: 0 | Info: host &#39;203.66.91.161:80&#39;, IP 203.66.91.161:80 (host 1 of 1) (host connection attempt 1 of 1) (total connection attempt 1 of 1) | Event: Session up
 </pre>
 </div>
+</div>
+
+</div>
+</div>
+
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In&nbsp;[13]:</div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">accounts</span> <span class="o">=</span> <span class="n">api</span><span class="o">.</span><span class="n">login</span><span class="p">(</span><span class="s2">&quot;YOUR_PERSON_ID&quot;</span><span class="p">,</span> <span class="s2">&quot;YOUR_PASSWORD&quot;</span><span class="p">)</span>
+<span class="n">accounts</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+
+<div class="output_area">
+
+    <div class="prompt output_prompt">Out[13]:</div>
+
+
+
+
+<div class="output_text output_subarea output_execute_result">
+<pre>[FutureAccount(person_id=SecretStr(&#39;**********&#39;), broker_id=SecretStr(&#39;**********&#39;), account_id=SecretStr(&#39;**********&#39;), signed=True, username=SecretStr(&#39;**********&#39;)),
+ Account(account_type=&lt;AccountType.H: &#39;H&#39;&gt;, person_id=SecretStr(&#39;**********&#39;), broker_id=SecretStr(&#39;**********&#39;), account_id=SecretStr(&#39;**********&#39;), signed=True, username=SecretStr(&#39;**********&#39;)),
+ StockAccount(person_id=SecretStr(&#39;**********&#39;), broker_id=SecretStr(&#39;**********&#39;), account_id=SecretStr(&#39;**********&#39;), signed=True, username=SecretStr(&#39;**********&#39;))]</pre>
+</div>
+
+</div>
+
+</div>
+</div>
+
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In&nbsp;[14]:</div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">api</span><span class="o">.</span><span class="n">activate_ca</span><span class="p">(</span>
+    <span class="n">ca_path</span><span class="o">=</span><span class="s2">&quot;/c/your/ca/path/Sinopac.pfx&quot;</span><span class="p">,</span>
+    <span class="n">ca_passwd</span><span class="o">=</span><span class="s2">&quot;YOUR_CA_PASSWORD&quot;</span><span class="p">,</span>
+    <span class="n">person_id</span><span class="o">=</span><span class="s2">&quot;Person of this Ca&quot;</span><span class="p">,</span>
+<span class="p">)</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+
+<div class="output_area">
+
+    <div class="prompt"></div>
+
+
+<div class="output_subarea output_stream output_stdout output_text">
+<pre>Ca Initial Done.
+</pre>
+</div>
+</div>
+
+<div class="output_area">
+
+    <div class="prompt output_prompt">Out[14]:</div>
+
+
+
+
+<div class="output_text output_subarea output_execute_result">
+<pre>0</pre>
+</div>
+
+</div>
+
+</div>
+</div>
+
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h2 id="Get-Contract-Object.">Get Contract Object.<a class="anchor-link" href="#Get-Contract-Object.">&#182;</a></h2>
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In&nbsp;[19]:</div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">contract</span> <span class="o">=</span> <span class="n">api</span><span class="o">.</span><span class="n">Contracts</span><span class="o">.</span><span class="n">Stocks</span><span class="o">.</span><span class="n">TSE</span><span class="o">.</span><span class="n">TSE2890</span>
+<span class="n">contract</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+
+<div class="output_area">
+
+    <div class="prompt output_prompt">Out[19]:</div>
+
+
+
+
+<div class="output_text output_subarea output_execute_result">
+<pre>Stock(exchange=&lt;Exchange.TSE: &#39;TSE&#39;&gt;, code=&#39;2890&#39;, symbol=&#39;TSE2890&#39;, name=&#39;永豐金&#39;, category=&#39;17&#39;, day_trade=&#39;OnlyBuy&#39;)</pre>
+</div>
+
+</div>
+
+</div>
+</div>
+
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h2 id="Making-Order-Object.">Making Order Object.<a class="anchor-link" href="#Making-Order-Object.">&#182;</a></h2><h3 id="Buy">Buy<a class="anchor-link" href="#Buy">&#182;</a></h3>
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In&nbsp;[22]:</div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">order</span> <span class="o">=</span> <span class="n">api</span><span class="o">.</span><span class="n">Order</span><span class="p">(</span>
+            <span class="n">price</span><span class="o">=</span><span class="mf">11.9</span><span class="p">,</span>
+            <span class="n">quantity</span><span class="o">=</span><span class="mi">3</span><span class="p">,</span>
+            <span class="n">action</span><span class="o">=</span><span class="s2">&quot;Buy&quot;</span><span class="p">,</span>
+            <span class="n">price_type</span><span class="o">=</span><span class="s2">&quot;LMT&quot;</span><span class="p">,</span>
+            <span class="n">order_type</span><span class="o">=</span><span class="s2">&quot;Common&quot;</span><span class="p">,</span>
+            <span class="n">account</span><span class="o">=</span><span class="n">api</span><span class="o">.</span><span class="n">stock_account</span><span class="p">,</span>
+        <span class="p">)</span>
+<span class="n">order</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+
+<div class="output_area">
+
+    <div class="prompt output_prompt">Out[22]:</div>
+
+
+
+
+<div class="output_text output_subarea output_execute_result">
+<pre>Order(action=&lt;Action.Buy: &#39;Buy&#39;&gt;, price=11.9, quantity=3, account=StockAccount(person_id=SecretStr(&#39;**********&#39;), broker_id=SecretStr(&#39;**********&#39;), account_id=SecretStr(&#39;**********&#39;), signed=True, username=SecretStr(&#39;**********&#39;)), price_type=&lt;StockPriceType.LMT: &#39;LMT&#39;&gt;, order_type=&lt;StockOrderType.Common: &#39;Common&#39;&gt;)</pre>
+</div>
+
+</div>
+
+</div>
+</div>
+
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h3 id="Sell">Sell<a class="anchor-link" href="#Sell">&#182;</a></h3>
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In&nbsp;[21]:</div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">order</span> <span class="o">=</span> <span class="n">api</span><span class="o">.</span><span class="n">Order</span><span class="p">(</span>
+            <span class="n">price</span><span class="o">=</span><span class="mf">11.9</span><span class="p">,</span>
+            <span class="n">quantity</span><span class="o">=</span><span class="mi">3</span><span class="p">,</span>
+            <span class="n">action</span><span class="o">=</span><span class="s2">&quot;Sell&quot;</span><span class="p">,</span>
+            <span class="n">price_type</span><span class="o">=</span><span class="s2">&quot;LMT&quot;</span><span class="p">,</span>
+            <span class="n">order_type</span><span class="o">=</span><span class="s2">&quot;Common&quot;</span><span class="p">,</span>
+            <span class="n">account</span><span class="o">=</span><span class="n">api</span><span class="o">.</span><span class="n">stock_account</span><span class="p">,</span>
+        <span class="p">)</span>
+<span class="n">order</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+
+<div class="output_area">
+
+    <div class="prompt output_prompt">Out[21]:</div>
+
+
+
+
+<div class="output_text output_subarea output_execute_result">
+<pre>Order(action=&lt;Action.Sell: &#39;Sell&#39;&gt;, price=11.9, quantity=3, account=StockAccount(person_id=SecretStr(&#39;**********&#39;), broker_id=SecretStr(&#39;**********&#39;), account_id=SecretStr(&#39;**********&#39;), signed=True, username=SecretStr(&#39;**********&#39;)), price_type=&lt;StockPriceType.LMT: &#39;LMT&#39;&gt;, order_type=&lt;StockOrderType.Common: &#39;Common&#39;&gt;)</pre>
+</div>
+
+</div>
+
+</div>
+</div>
+
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h3 id="First-Sell">First Sell<a class="anchor-link" href="#First-Sell">&#182;</a></h3>
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In&nbsp;[20]:</div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">order</span> <span class="o">=</span> <span class="n">api</span><span class="o">.</span><span class="n">Order</span><span class="p">(</span>
+            <span class="n">price</span><span class="o">=</span><span class="mf">11.9</span><span class="p">,</span>
+            <span class="n">quantity</span><span class="o">=</span><span class="mi">3</span><span class="p">,</span>
+            <span class="n">action</span><span class="o">=</span><span class="s2">&quot;Sell&quot;</span><span class="p">,</span>
+            <span class="n">price_type</span><span class="o">=</span><span class="s2">&quot;LMT&quot;</span><span class="p">,</span>
+            <span class="n">order_type</span><span class="o">=</span><span class="s2">&quot;Common&quot;</span><span class="p">,</span>
+            <span class="n">first_sell</span><span class="o">=</span><span class="s2">&quot;true&quot;</span><span class="p">,</span>
+            <span class="n">account</span><span class="o">=</span><span class="n">api</span><span class="o">.</span><span class="n">stock_account</span><span class="p">,</span>
+        <span class="p">)</span>
+<span class="n">order</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+
+<div class="output_area">
+
+    <div class="prompt output_prompt">Out[20]:</div>
+
+
+
+
+<div class="output_text output_subarea output_execute_result">
+<pre>Order(action=&lt;Action.Sell: &#39;Sell&#39;&gt;, price=11.9, quantity=3, account=StockAccount(person_id=SecretStr(&#39;**********&#39;), broker_id=SecretStr(&#39;**********&#39;), account_id=SecretStr(&#39;**********&#39;), signed=True, username=SecretStr(&#39;**********&#39;)), price_type=&lt;StockPriceType.LMT: &#39;LMT&#39;&gt;, order_type=&lt;StockOrderType.Common: &#39;Common&#39;&gt;, first_sell=&lt;StockFirstSell.Yes: &#39;true&#39;&gt;)</pre>
+</div>
+
+</div>
+
+</div>
+</div>
+
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h2 id="Place-Order">Place Order<a class="anchor-link" href="#Place-Order">&#182;</a></h2>
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In&nbsp;[24]:</div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">trade</span> <span class="o">=</span> <span class="n">api</span><span class="o">.</span><span class="n">place_order</span><span class="p">(</span><span class="n">contract</span><span class="p">,</span> <span class="n">order</span><span class="p">)</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+
+<div class="output_area">
+
+    <div class="prompt"></div>
+
+
+<div class="output_subarea output_stream output_stdout output_text">
+<pre>OrderState.Order {&#39;operation&#39;: {&#39;op_type&#39;: &#39;NEW&#39;, &#39;op_code&#39;: &#39;00&#39;, &#39;op_msg&#39;: &#39;&#39;}, &#39;order&#39;: {&#39;id&#39;: &#39;bf96e667&#39;, &#39;seqno&#39;: &#39;246152&#39;, &#39;ordno&#39;: &#39;I1139&#39;, &#39;action&#39;: &#39;Buy&#39;, &#39;price&#39;: 11.9, &#39;quantity&#39;: 3, &#39;order_cond&#39;: &#39;Cash&#39;}, &#39;status&#39;: {&#39;id&#39;: &#39;bf96e667&#39;, &#39;exchange_ts&#39;: 1583888559, &#39;modified_price&#39;: 0, &#39;cancel_quantity&#39;: 0}, &#39;contract&#39;: {&#39;security_type&#39;: &#39;STK&#39;, &#39;exchange&#39;: &#39;TSE&#39;, &#39;code&#39;: &#39;2890&#39;, &#39;symbol&#39;: &#39;&#39;, &#39;name&#39;: &#39;&#39;, &#39;currency&#39;: &#39;TWD&#39;}}
+</pre>
+</div>
+</div>
+
+</div>
+</div>
+
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In&nbsp;[25]:</div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">trade</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+
+<div class="output_area">
+
+    <div class="prompt output_prompt">Out[25]:</div>
+
+
+
+
+<div class="output_text output_subarea output_execute_result">
+<pre>Trade(contract=Stock(exchange=&lt;Exchange.TSE: &#39;TSE&#39;&gt;, code=&#39;2890&#39;, symbol=&#39;TSE2890&#39;, name=&#39;永豐金&#39;, category=&#39;17&#39;, day_trade=&#39;OnlyBuy&#39;), order=Order(action=&lt;Action.Buy: &#39;Buy&#39;&gt;, price=11.9, quantity=3, id=&#39;bf96e667&#39;, seqno=&#39;246152&#39;, ordno=&#39;I1139&#39;, account=Account(account_type=&lt;AccountType.Stock: &#39;S&#39;&gt;, person_id=SecretStr(&#39;**********&#39;), broker_id=SecretStr(&#39;**********&#39;), account_id=SecretStr(&#39;**********&#39;), signed=True, username=SecretStr(&#39;&#39;)), price_type=&lt;StockPriceType.LMT: &#39;LMT&#39;&gt;, order_type=&lt;StockOrderType.Common: &#39;Common&#39;&gt;), status=OrderStatus(id=&#39;bf96e667&#39;, status=&lt;Status.PendingSubmit: &#39;PendingSubmit&#39;&gt;, status_code=&#39;0&#39;, order_datetime=datetime.datetime(2020, 3, 11, 9, 2, 39), deals=[]))</pre>
+</div>
+
+</div>
+
+</div>
+</div>
+
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h2 id="Example-For">Example For<a class="anchor-link" href="#Example-For">&#182;</a></h2><h3 id="Place-Order-LMT-Common">Place Order LMT Common<a class="anchor-link" href="#Place-Order-LMT-Common">&#182;</a></h3>
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In&nbsp;[28]:</div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="kn">import</span> <span class="nn">shioaji</span> <span class="k">as</span> <span class="nn">sj</span>
+
+<span class="n">api</span> <span class="o">=</span> <span class="n">sj</span><span class="o">.</span><span class="n">Shioaji</span><span class="p">()</span>
+<span class="n">accounts</span> <span class="o">=</span> <span class="n">api</span><span class="o">.</span><span class="n">login</span><span class="p">(</span><span class="s2">&quot;YOUR_PERSON_ID&quot;</span><span class="p">,</span> <span class="s2">&quot;YOUR_PASSWORD&quot;</span><span class="p">,</span> <span class="n">contracts_timeout</span><span class="o">=</span><span class="mi">10000</span><span class="p">)</span>
+<span class="n">api</span><span class="o">.</span><span class="n">activate_ca</span><span class="p">(</span>
+    <span class="n">ca_path</span><span class="o">=</span><span class="s2">&quot;/c/your/ca/path/Sinopac.pfx&quot;</span><span class="p">,</span>
+    <span class="n">ca_passwd</span><span class="o">=</span><span class="s2">&quot;YOUR_CA_PASSWORD&quot;</span><span class="p">,</span>
+    <span class="n">person_id</span><span class="o">=</span><span class="s2">&quot;Person of this Ca&quot;</span><span class="p">,</span>
+<span class="p">)</span>
+
+<span class="n">contract</span> <span class="o">=</span> <span class="n">api</span><span class="o">.</span><span class="n">Contracts</span><span class="o">.</span><span class="n">Stocks</span><span class="o">.</span><span class="n">TSE</span><span class="o">.</span><span class="n">TSE2890</span>
+<span class="n">order</span> <span class="o">=</span> <span class="n">api</span><span class="o">.</span><span class="n">Order</span><span class="p">(</span>
+            <span class="n">price</span><span class="o">=</span><span class="mf">11.9</span><span class="p">,</span>
+            <span class="n">quantity</span><span class="o">=</span><span class="mi">3</span><span class="p">,</span>
+            <span class="n">action</span><span class="o">=</span><span class="s2">&quot;Buy&quot;</span><span class="p">,</span>
+            <span class="n">price_type</span><span class="o">=</span><span class="s2">&quot;LMT&quot;</span><span class="p">,</span>
+            <span class="n">order_type</span><span class="o">=</span><span class="s2">&quot;Common&quot;</span><span class="p">,</span>
+            <span class="n">account</span><span class="o">=</span><span class="n">api</span><span class="o">.</span><span class="n">stock_account</span>
+        <span class="p">)</span>
+<span class="n">trade</span> <span class="o">=</span> <span class="n">api</span><span class="o">.</span><span class="n">place_order</span><span class="p">(</span><span class="n">contract</span><span class="p">,</span> <span class="n">order</span><span class="p">)</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+
+<div class="output_area">
+
+    <div class="prompt"></div>
+
+
+<div class="output_subarea output_stream output_stdout output_text">
+<pre>Response Code: 0 | Event Code: 0 | Info: host &#39;203.66.91.161:80&#39;, IP 203.66.91.161:80 (host 1 of 1) (host connection attempt 1 of 1) (total connection attempt 1 of 1) | Event: Session up
+Ca Initial Done.
+OrderState.Order {&#39;operation&#39;: {&#39;op_type&#39;: &#39;NEW&#39;, &#39;op_code&#39;: &#39;00&#39;, &#39;op_msg&#39;: &#39;&#39;}, &#39;order&#39;: {&#39;id&#39;: &#39;8ce16af8&#39;, &#39;seqno&#39;: &#39;248514&#39;, &#39;ordno&#39;: &#39;I1373&#39;, &#39;action&#39;: &#39;Buy&#39;, &#39;price&#39;: 11.9, &#39;quantity&#39;: 3, &#39;order_cond&#39;: &#39;Cash&#39;}, &#39;status&#39;: {&#39;id&#39;: &#39;8ce16af8&#39;, &#39;exchange_ts&#39;: 1583888781, &#39;modified_price&#39;: 0, &#39;cancel_quantity&#39;: 0}, &#39;contract&#39;: {&#39;security_type&#39;: &#39;STK&#39;, &#39;exchange&#39;: &#39;TSE&#39;, &#39;code&#39;: &#39;2890&#39;, &#39;symbol&#39;: &#39;&#39;, &#39;name&#39;: &#39;&#39;, &#39;currency&#39;: &#39;TWD&#39;}}
+</pre>
+</div>
+</div>
+
+</div>
+</div>
+
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In&nbsp;[29]:</div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">trade</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+
+<div class="output_area">
+
+    <div class="prompt output_prompt">Out[29]:</div>
+
+
+
+
+<div class="output_text output_subarea output_execute_result">
+<pre>Trade(contract=Stock(exchange=&lt;Exchange.TSE: &#39;TSE&#39;&gt;, code=&#39;2890&#39;, symbol=&#39;TSE2890&#39;, name=&#39;永豐金&#39;, category=&#39;17&#39;, day_trade=&#39;OnlyBuy&#39;), order=Order(action=&lt;Action.Buy: &#39;Buy&#39;&gt;, price=11.9, quantity=3, id=&#39;8ce16af8&#39;, seqno=&#39;248514&#39;, ordno=&#39;I1373&#39;, account=Account(account_type=&lt;AccountType.Stock: &#39;S&#39;&gt;, person_id=SecretStr(&#39;**********&#39;), broker_id=SecretStr(&#39;**********&#39;), account_id=SecretStr(&#39;**********&#39;), signed=True, username=SecretStr(&#39;&#39;)), price_type=&lt;StockPriceType.LMT: &#39;LMT&#39;&gt;, order_type=&lt;StockOrderType.Common: &#39;Common&#39;&gt;), status=OrderStatus(id=&#39;8ce16af8&#39;, status=&lt;Status.PendingSubmit: &#39;PendingSubmit&#39;&gt;, status_code=&#39;0&#39;, order_datetime=datetime.datetime(2020, 3, 11, 9, 6, 21), deals=[]))</pre>
+</div>
+
+</div>
+
+</div>
+</div>
+
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h3 id="Place-Order-about-First-Sell">Place Order about First Sell<a class="anchor-link" href="#Place-Order-about-First-Sell">&#182;</a></h3>
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In&nbsp;[&nbsp;]:</div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="kn">import</span> <span class="nn">shioaji</span> <span class="k">as</span> <span class="nn">sj</span>
+
+<span class="n">api</span> <span class="o">=</span> <span class="n">sj</span><span class="o">.</span><span class="n">Shioaji</span><span class="p">()</span>
+<span class="n">accounts</span> <span class="o">=</span> <span class="n">api</span><span class="o">.</span><span class="n">login</span><span class="p">(</span><span class="s2">&quot;YOUR_PERSON_ID&quot;</span><span class="p">,</span> <span class="s2">&quot;YOUR_PASSWORD&quot;</span><span class="p">)</span>
+<span class="n">api</span><span class="o">.</span><span class="n">activate_ca</span><span class="p">(</span>
+    <span class="n">ca_path</span><span class="o">=</span><span class="s2">&quot;/c/your/ca/path/Sinopac.pfx&quot;</span><span class="p">,</span>
+    <span class="n">ca_passwd</span><span class="o">=</span><span class="s2">&quot;YOUR_CA_PASSWORD&quot;</span><span class="p">,</span>
+    <span class="n">person_id</span><span class="o">=</span><span class="s2">&quot;Person of this Ca&quot;</span><span class="p">,</span>
+<span class="p">)</span>
+
+<span class="n">contract</span> <span class="o">=</span> <span class="n">api</span><span class="o">.</span><span class="n">Contracts</span><span class="o">.</span><span class="n">Stocks</span><span class="o">.</span><span class="n">TSE</span><span class="o">.</span><span class="n">TSE2890</span>
+<span class="n">order</span> <span class="o">=</span> <span class="n">api</span><span class="o">.</span><span class="n">Order</span><span class="p">(</span><span class="n">price</span><span class="o">=</span><span class="mf">11.9</span><span class="p">,</span>
+                  <span class="n">quantity</span><span class="o">=</span><span class="mi">3</span><span class="p">,</span>
+                  <span class="n">action</span><span class="o">=</span><span class="s2">&quot;Sell&quot;</span><span class="p">,</span>
+                  <span class="n">price_type</span><span class="o">=</span><span class="s2">&quot;LMT&quot;</span><span class="p">,</span>
+                  <span class="n">order_type</span><span class="o">=</span><span class="s2">&quot;Common&quot;</span><span class="p">,</span>
+                  <span class="n">first_sell</span><span class="o">=</span><span class="s2">&quot;true&quot;</span><span class="p">,</span>
+                  <span class="n">account</span><span class="o">=</span><span class="n">api</span><span class="o">.</span><span class="n">stock_account</span>
+                  <span class="p">)</span>
+<span class="n">trade</span> <span class="o">=</span> <span class="n">api</span><span class="o">.</span><span class="n">place_order</span><span class="p">(</span><span class="n">contract</span><span class="p">,</span> <span class="n">order</span><span class="p">)</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In&nbsp;[&nbsp;]:</div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">trade</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h3 id="Cancel-Order">Cancel Order<a class="anchor-link" href="#Cancel-Order">&#182;</a></h3>
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In&nbsp;[33]:</div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">api</span><span class="o">.</span><span class="n">update_status</span><span class="p">(</span><span class="n">api</span><span class="o">.</span><span class="n">stock_account</span><span class="p">)</span>
+<span class="n">api</span><span class="o">.</span><span class="n">cancel_order</span><span class="p">(</span><span class="n">trade</span><span class="p">)</span>
+<span class="n">api</span><span class="o">.</span><span class="n">update_status</span><span class="p">(</span><span class="n">api</span><span class="o">.</span><span class="n">stock_account</span><span class="p">)</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+
+<div class="output_area">
+
+    <div class="prompt"></div>
+
+
+<div class="output_subarea output_stream output_stdout output_text">
+<pre>OrderState.Order {&#39;operation&#39;: {&#39;op_type&#39;: &#39;CANCEL&#39;, &#39;op_code&#39;: &#39;00&#39;, &#39;op_msg&#39;: &#39;&#39;}, &#39;order&#39;: {&#39;id&#39;: &#39;8ce16af8&#39;, &#39;seqno&#39;: &#39;248514&#39;, &#39;ordno&#39;: &#39;I1373&#39;, &#39;action&#39;: &#39;Buy&#39;, &#39;price&#39;: 11.9, &#39;quantity&#39;: 3, &#39;order_cond&#39;: &#39;Cash&#39;}, &#39;status&#39;: {&#39;id&#39;: &#39;8ce16af8&#39;, &#39;exchange_ts&#39;: 1583888839, &#39;modified_price&#39;: 0, &#39;cancel_quantity&#39;: 1}, &#39;contract&#39;: {&#39;security_type&#39;: &#39;STK&#39;, &#39;exchange&#39;: &#39;TSE&#39;, &#39;code&#39;: &#39;2890&#39;, &#39;symbol&#39;: &#39;&#39;, &#39;name&#39;: &#39;&#39;, &#39;currency&#39;: &#39;TWD&#39;}}
+</pre>
+</div>
+</div>
+
+</div>
+</div>
+
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In&nbsp;[34]:</div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">trade</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+
+<div class="output_area">
+
+    <div class="prompt output_prompt">Out[34]:</div>
+
+
+
+
+<div class="output_text output_subarea output_execute_result">
+<pre>Trade(contract=Stock(exchange=&lt;Exchange.TSE: &#39;TSE&#39;&gt;, code=&#39;2890&#39;, symbol=&#39;TSE2890&#39;, name=&#39;永豐金&#39;, category=&#39;17&#39;, day_trade=&#39;OnlyBuy&#39;), order=Order(action=&lt;Action.Buy: &#39;Buy&#39;&gt;, price=11.9, quantity=3, id=&#39;8ce16af8&#39;, seqno=&#39;248514&#39;, ordno=&#39;I1373&#39;, account=Account(account_type=&lt;AccountType.Stock: &#39;S&#39;&gt;, person_id=SecretStr(&#39;**********&#39;), broker_id=SecretStr(&#39;**********&#39;), account_id=SecretStr(&#39;**********&#39;), signed=True, username=SecretStr(&#39;&#39;)), price_type=&lt;StockPriceType.LMT: &#39;LMT&#39;&gt;, order_type=&lt;FuturesOrderType.ROD: &#39;ROD&#39;&gt;), status=OrderStatus(id=&#39;8ce16af8&#39;, status=&lt;Status.Submitted: &#39;Submitted&#39;&gt;, status_code=&#39;00&#39;, order_datetime=datetime.datetime(2020, 3, 11, 9, 6, 21), modified_price=11.9, cancel_quantity=2, deals=[]))</pre>
+</div>
+
+</div>
+
+</div>
+</div>
+
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h3 id="Update-Order">Update Order<a class="anchor-link" href="#Update-Order">&#182;</a></h3>
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In&nbsp;[31]:</div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">api</span><span class="o">.</span><span class="n">update_status</span><span class="p">(</span><span class="n">api</span><span class="o">.</span><span class="n">stock_account</span><span class="p">)</span>
+<span class="n">api</span><span class="o">.</span><span class="n">update_order</span><span class="p">(</span><span class="n">trade</span><span class="o">=</span><span class="n">trade</span><span class="p">,</span> <span class="n">price</span><span class="o">=</span><span class="mf">11.9</span><span class="p">,</span> <span class="n">qty</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
+<span class="n">api</span><span class="o">.</span><span class="n">update_status</span><span class="p">(</span><span class="n">api</span><span class="o">.</span><span class="n">stock_account</span><span class="p">)</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+
+<div class="output_area">
+
+    <div class="prompt"></div>
+
+
+<div class="output_subarea output_stream output_stdout output_text">
+<pre>OrderState.Order {&#39;operation&#39;: {&#39;op_type&#39;: &#39;UPDATE&#39;, &#39;op_code&#39;: &#39;00&#39;, &#39;op_msg&#39;: &#39;&#39;}, &#39;order&#39;: {&#39;id&#39;: &#39;8ce16af8&#39;, &#39;seqno&#39;: &#39;248514&#39;, &#39;ordno&#39;: &#39;I1373&#39;, &#39;action&#39;: &#39;Buy&#39;, &#39;price&#39;: 11.9, &#39;quantity&#39;: 3, &#39;order_cond&#39;: &#39;Cash&#39;}, &#39;status&#39;: {&#39;id&#39;: &#39;8ce16af8&#39;, &#39;exchange_ts&#39;: 1583888824, &#39;modified_price&#39;: 0, &#39;cancel_quantity&#39;: 1}, &#39;contract&#39;: {&#39;security_type&#39;: &#39;STK&#39;, &#39;exchange&#39;: &#39;TSE&#39;, &#39;code&#39;: &#39;2890&#39;, &#39;symbol&#39;: &#39;&#39;, &#39;name&#39;: &#39;&#39;, &#39;currency&#39;: &#39;TWD&#39;}}
+</pre>
+</div>
+</div>
+
+</div>
+</div>
+
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In&nbsp;[32]:</div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">trade</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+
+<div class="output_area">
+
+    <div class="prompt output_prompt">Out[32]:</div>
+
+
+
+
+<div class="output_text output_subarea output_execute_result">
+<pre>Trade(contract=Stock(exchange=&lt;Exchange.TSE: &#39;TSE&#39;&gt;, code=&#39;2890&#39;, symbol=&#39;TSE2890&#39;, name=&#39;永豐金&#39;, category=&#39;17&#39;, day_trade=&#39;OnlyBuy&#39;), order=Order(action=&lt;Action.Buy: &#39;Buy&#39;&gt;, price=11.9, quantity=3, id=&#39;8ce16af8&#39;, seqno=&#39;248514&#39;, ordno=&#39;I1373&#39;, account=Account(account_type=&lt;AccountType.Stock: &#39;S&#39;&gt;, person_id=SecretStr(&#39;**********&#39;), broker_id=SecretStr(&#39;**********&#39;), account_id=SecretStr(&#39;**********&#39;), signed=True, username=SecretStr(&#39;&#39;)), price_type=&lt;StockPriceType.LMT: &#39;LMT&#39;&gt;, order_type=&lt;FuturesOrderType.ROD: &#39;ROD&#39;&gt;), status=OrderStatus(id=&#39;8ce16af8&#39;, status=&lt;Status.Submitted: &#39;Submitted&#39;&gt;, status_code=&#39;00&#39;, order_datetime=datetime.datetime(2020, 3, 11, 9, 6, 21), modified_price=11.9, cancel_quantity=1, deals=[]))</pre>
+</div>
+
 </div>
 
 </div>
@@ -13630,7 +13881,7 @@ Q/TFE/TXFD9 {&#39;AskPrice&#39;: [10580.0, 10581.0, 10582.0, 10583.0, 10584.0], 
 </div>
 </div>
 
-</div></div></section></section>
+</div></section></section>
 </div>
 </div>
 
