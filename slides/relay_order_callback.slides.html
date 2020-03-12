@@ -9,7 +9,7 @@
 <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
 
 
-<title>quote_model_binding_tutorial slides</title>
+<title>relay_order_callback slides</title>
 
 <script src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.1.10/require.min.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script>
@@ -13199,101 +13199,20 @@ a.anchor-link {
 <div class="reveal">
 <div class="slides">
 <section><section>
-<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
-</div><div class="inner_cell">
-<div class="text_cell_render border-box-sizing rendered_html">
-<h1 id="Shioaji-Quote-Api-with-Tensorflow">Shioaji Quote Api with Tensorflow<a class="anchor-link" href="#Shioaji-Quote-Api-with-Tensorflow">&#182;</a></h1><p><img src="https://sinotrade.github.io/images/shioaji-logo-01.png" alt="shioaji-logo"><img src="https://upload.wikimedia.org/wikipedia/commons/thumb/2/2d/Tensorflow_logo.svg/224px-Tensorflow_logo.svg.png" alt="tensorflow-logo"></p>
-
-</div>
-</div>
-</div></section><section>
-<div class="cell border-box-sizing code_cell rendered">
-<div class="input">
-<div class="prompt input_prompt">In&nbsp;[1]:</div>
-<div class="inner_cell">
-    <div class="input_area">
-<div class=" highlight hl-ipython3"><pre><span></span><span class="kn">import</span> <span class="nn">json</span>
-<span class="kn">import</span> <span class="nn">datetime</span> <span class="k">as</span> <span class="nn">dt</span>
-<span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
-<span class="kn">import</span> <span class="nn">pandas</span> <span class="k">as</span> <span class="nn">pd</span>
-<span class="kn">import</span> <span class="nn">bqplot</span> <span class="k">as</span> <span class="nn">bq</span>
-<span class="kn">import</span> <span class="nn">shioaji</span> <span class="k">as</span> <span class="nn">sj</span>
-<span class="kn">from</span> <span class="nn">ipywidgets</span> <span class="kn">import</span> <span class="n">HBox</span><span class="p">,</span> <span class="n">VBox</span>
-</pre></div>
-
-    </div>
-</div>
-</div>
-
-</div><div class="fragment">
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
 <div class="prompt input_prompt">In&nbsp;[2]:</div>
 <div class="inner_cell">
     <div class="input_area">
-<div class=" highlight hl-ipython3"><pre><span></span><span class="kn">import</span> <span class="nn">tensorflow</span> <span class="k">as</span> <span class="nn">tf</span>
-<span class="kn">from</span> <span class="nn">tensorflow.keras.layers</span> <span class="kn">import</span> <span class="n">Conv2D</span><span class="p">,</span> <span class="n">MaxPool2D</span><span class="p">,</span> <span class="n">Dropout</span><span class="p">,</span> <span class="n">Dense</span><span class="p">,</span> <span class="n">Input</span><span class="p">,</span> <span class="n">Flatten</span>
-<span class="kn">from</span> <span class="nn">tensorflow.keras.models</span> <span class="kn">import</span> <span class="n">Model</span>
-<span class="kn">from</span> <span class="nn">tensorflow.keras.optimizers</span> <span class="kn">import</span> <span class="n">Adam</span>
-<span class="kn">from</span> <span class="nn">tensorflow.keras.losses</span> <span class="kn">import</span> <span class="n">categorical_crossentropy</span>
-</pre></div>
+<div class=" highlight hl-ipython3"><pre><span></span><span class="kn">import</span> <span class="nn">shioaji</span> <span class="k">as</span> <span class="nn">sj</span>
 
-    </div>
-</div>
-</div>
-
-</div></div></section><section>
-<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
-</div><div class="inner_cell">
-<div class="text_cell_render border-box-sizing rendered_html">
-<h2 id="Build-simple-convolution-neural-network-model-that-convolution-through-time">Build simple convolution neural network model that convolution through time<a class="anchor-link" href="#Build-simple-convolution-neural-network-model-that-convolution-through-time">&#182;</a></h2>
-</div>
-</div>
-</div><div class="fragment">
-<div class="cell border-box-sizing code_cell rendered">
-<div class="input">
-<div class="prompt input_prompt">In&nbsp;[4]:</div>
-<div class="inner_cell">
-    <div class="input_area">
-<div class=" highlight hl-ipython3"><pre><span></span><span class="n">input_layer</span> <span class="o">=</span> <span class="n">Input</span><span class="p">(</span><span class="n">shape</span><span class="o">=</span><span class="p">(</span><span class="mi">500</span><span class="p">,</span> <span class="mi">6</span><span class="p">,</span> <span class="mi">1</span><span class="p">),</span> <span class="n">name</span><span class="o">=</span><span class="s1">&#39;input&#39;</span><span class="p">)</span>
-<span class="n">conv1</span> <span class="o">=</span> <span class="n">Conv2D</span><span class="p">(</span><span class="n">filters</span><span class="o">=</span><span class="mi">8</span><span class="p">,</span> <span class="n">kernel_size</span><span class="o">=</span><span class="p">(</span><span class="mi">4</span><span class="p">,</span> <span class="mi">1</span><span class="p">),</span> <span class="n">activation</span><span class="o">=</span><span class="s1">&#39;relu&#39;</span><span class="p">,</span> <span class="n">name</span><span class="o">=</span><span class="s1">&#39;conv1&#39;</span><span class="p">)(</span><span class="n">input_layer</span><span class="p">)</span>
-<span class="n">conv2</span> <span class="o">=</span> <span class="n">Conv2D</span><span class="p">(</span><span class="n">filters</span><span class="o">=</span><span class="mi">16</span><span class="p">,</span> <span class="n">kernel_size</span><span class="o">=</span><span class="p">(</span><span class="mi">4</span><span class="p">,</span> <span class="mi">1</span><span class="p">),</span> <span class="n">activation</span><span class="o">=</span><span class="s1">&#39;relu&#39;</span><span class="p">,</span> <span class="n">name</span><span class="o">=</span><span class="s1">&#39;conv2&#39;</span><span class="p">)(</span><span class="n">conv1</span><span class="p">)</span>
-<span class="n">maxp1</span> <span class="o">=</span> <span class="n">MaxPool2D</span><span class="p">(</span><span class="n">pool_size</span><span class="o">=</span><span class="p">(</span><span class="mi">4</span><span class="p">,</span> <span class="mi">1</span><span class="p">),</span> <span class="n">name</span><span class="o">=</span><span class="s1">&#39;maxp1&#39;</span><span class="p">)(</span><span class="n">conv2</span><span class="p">)</span>
-<span class="n">conv3</span> <span class="o">=</span> <span class="n">Conv2D</span><span class="p">(</span><span class="n">filters</span><span class="o">=</span><span class="mi">32</span><span class="p">,</span> <span class="n">kernel_size</span><span class="o">=</span><span class="p">(</span><span class="mi">4</span><span class="p">,</span> <span class="mi">1</span><span class="p">),</span> <span class="n">activation</span><span class="o">=</span><span class="s1">&#39;relu&#39;</span><span class="p">,</span> <span class="n">name</span><span class="o">=</span><span class="s1">&#39;conv3&#39;</span><span class="p">)(</span><span class="n">maxp1</span><span class="p">)</span>
-<span class="n">conv4</span> <span class="o">=</span> <span class="n">Conv2D</span><span class="p">(</span><span class="n">filters</span><span class="o">=</span><span class="mi">64</span><span class="p">,</span> <span class="n">kernel_size</span><span class="o">=</span><span class="p">(</span><span class="mi">4</span><span class="p">,</span> <span class="mi">1</span><span class="p">),</span> <span class="n">activation</span><span class="o">=</span><span class="s1">&#39;relu&#39;</span><span class="p">,</span> <span class="n">name</span><span class="o">=</span><span class="s1">&#39;conv4&#39;</span><span class="p">)(</span><span class="n">conv3</span><span class="p">)</span>
-<span class="n">maxp2</span> <span class="o">=</span> <span class="n">MaxPool2D</span><span class="p">(</span><span class="n">pool_size</span><span class="o">=</span><span class="p">(</span><span class="mi">4</span><span class="p">,</span> <span class="mi">1</span><span class="p">),</span> <span class="n">name</span><span class="o">=</span><span class="s1">&#39;maxp2&#39;</span><span class="p">)(</span><span class="n">conv4</span><span class="p">)</span>
-<span class="n">conv5</span> <span class="o">=</span> <span class="n">Conv2D</span><span class="p">(</span><span class="n">filters</span><span class="o">=</span><span class="mi">64</span><span class="p">,</span> <span class="n">kernel_size</span><span class="o">=</span><span class="p">(</span><span class="mi">4</span><span class="p">,</span> <span class="mi">1</span><span class="p">),</span> <span class="n">activation</span><span class="o">=</span><span class="s1">&#39;relu&#39;</span><span class="p">,</span> <span class="n">name</span><span class="o">=</span><span class="s1">&#39;conv5&#39;</span><span class="p">)(</span><span class="n">maxp2</span><span class="p">)</span>
-<span class="n">conv6</span> <span class="o">=</span> <span class="n">Conv2D</span><span class="p">(</span><span class="n">filters</span><span class="o">=</span><span class="mi">128</span><span class="p">,</span> <span class="n">kernel_size</span><span class="o">=</span><span class="p">(</span><span class="mi">4</span><span class="p">,</span> <span class="mi">1</span><span class="p">),</span> <span class="n">activation</span><span class="o">=</span><span class="s1">&#39;relu&#39;</span><span class="p">,</span> <span class="n">name</span><span class="o">=</span><span class="s1">&#39;conv6&#39;</span><span class="p">)(</span><span class="n">conv5</span><span class="p">)</span>
-<span class="n">maxp3</span> <span class="o">=</span> <span class="n">MaxPool2D</span><span class="p">(</span><span class="n">pool_size</span><span class="o">=</span><span class="p">(</span><span class="mi">4</span><span class="p">,</span> <span class="mi">1</span><span class="p">),</span> <span class="n">name</span><span class="o">=</span><span class="s1">&#39;maxp3&#39;</span><span class="p">)(</span><span class="n">conv6</span><span class="p">)</span>
-<span class="n">conv7</span> <span class="o">=</span> <span class="n">Conv2D</span><span class="p">(</span><span class="n">filters</span><span class="o">=</span><span class="mi">256</span><span class="p">,</span> <span class="n">kernel_size</span><span class="o">=</span><span class="p">(</span><span class="mi">2</span><span class="p">,</span> <span class="mi">1</span><span class="p">),</span> <span class="n">activation</span><span class="o">=</span><span class="s1">&#39;relu&#39;</span><span class="p">,</span> <span class="n">name</span><span class="o">=</span><span class="s1">&#39;conv7&#39;</span><span class="p">)(</span><span class="n">maxp3</span><span class="p">)</span>
-<span class="n">conv8</span> <span class="o">=</span> <span class="n">Conv2D</span><span class="p">(</span><span class="n">filters</span><span class="o">=</span><span class="mi">256</span><span class="p">,</span> <span class="n">kernel_size</span><span class="o">=</span><span class="p">(</span><span class="mi">2</span><span class="p">,</span> <span class="mi">1</span><span class="p">),</span> <span class="n">activation</span><span class="o">=</span><span class="s1">&#39;relu&#39;</span><span class="p">,</span> <span class="n">name</span><span class="o">=</span><span class="s1">&#39;conv8&#39;</span><span class="p">)(</span><span class="n">conv7</span><span class="p">)</span>
-<span class="n">maxp4</span> <span class="o">=</span> <span class="n">MaxPool2D</span><span class="p">(</span><span class="n">pool_size</span><span class="o">=</span><span class="p">(</span><span class="mi">2</span><span class="p">,</span> <span class="mi">1</span><span class="p">),</span> <span class="n">name</span><span class="o">=</span><span class="s1">&#39;maxp4&#39;</span><span class="p">)(</span><span class="n">conv8</span><span class="p">)</span>
-<span class="n">flat</span> <span class="o">=</span> <span class="n">Flatten</span><span class="p">(</span><span class="n">name</span><span class="o">=</span><span class="s1">&#39;flat&#39;</span><span class="p">)(</span><span class="n">maxp4</span><span class="p">)</span>
-<span class="n">dropout1</span> <span class="o">=</span> <span class="n">Dropout</span><span class="p">(</span><span class="n">rate</span><span class="o">=</span><span class="mf">0.4</span><span class="p">,</span> <span class="n">name</span><span class="o">=</span><span class="s1">&#39;dropout1&#39;</span><span class="p">)(</span><span class="n">flat</span><span class="p">)</span>
-<span class="n">fc1</span> <span class="o">=</span> <span class="n">Dense</span><span class="p">(</span><span class="mi">256</span><span class="p">,</span> <span class="n">activation</span><span class="o">=</span><span class="s1">&#39;relu&#39;</span><span class="p">,</span> <span class="n">name</span><span class="o">=</span><span class="s1">&#39;fc1&#39;</span><span class="p">)(</span><span class="n">dropout1</span><span class="p">)</span>
-<span class="n">dropout2</span> <span class="o">=</span> <span class="n">Dropout</span><span class="p">(</span><span class="n">rate</span><span class="o">=</span><span class="mf">0.4</span><span class="p">,</span> <span class="n">name</span><span class="o">=</span><span class="s1">&#39;dropout2&#39;</span><span class="p">)(</span><span class="n">fc1</span><span class="p">)</span>
-<span class="n">fc2</span> <span class="o">=</span> <span class="n">Dense</span><span class="p">(</span><span class="mi">3</span><span class="p">,</span> <span class="n">activation</span><span class="o">=</span><span class="s1">&#39;softmax&#39;</span><span class="p">,</span> <span class="n">name</span><span class="o">=</span><span class="s1">&#39;fc2&#39;</span><span class="p">)(</span><span class="n">dropout2</span><span class="p">)</span>
-</pre></div>
-
-    </div>
-</div>
-</div>
-
-</div></div></section><section>
-<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
-</div><div class="inner_cell">
-<div class="text_cell_render border-box-sizing rendered_html">
-<h2 id="The-Model-Structure">The Model Structure<a class="anchor-link" href="#The-Model-Structure">&#182;</a></h2>
-</div>
-</div>
-</div><div class="fragment">
-<div class="cell border-box-sizing code_cell rendered">
-<div class="input">
-<div class="prompt input_prompt">In&nbsp;[5]:</div>
-<div class="inner_cell">
-    <div class="input_area">
-<div class=" highlight hl-ipython3"><pre><span></span><span class="n">model</span> <span class="o">=</span> <span class="n">Model</span><span class="p">(</span><span class="n">inputs</span><span class="o">=</span><span class="p">[</span><span class="n">input_layer</span><span class="p">],</span> <span class="n">outputs</span><span class="o">=</span><span class="p">[</span><span class="n">fc2</span><span class="p">])</span>
-<span class="n">model</span><span class="o">.</span><span class="n">summary</span><span class="p">()</span>
+<span class="n">api</span> <span class="o">=</span> <span class="n">sj</span><span class="o">.</span><span class="n">Shioaji</span><span class="p">()</span>
+<span class="n">accounts</span> <span class="o">=</span> <span class="n">api</span><span class="o">.</span><span class="n">login</span><span class="p">(</span><span class="s2">&quot;YOUR_PERSON_ID&quot;</span><span class="p">,</span> <span class="s2">&quot;YOUR_PASSWORD&quot;</span><span class="p">,</span> <span class="n">contracts_timeout</span><span class="o">=</span><span class="mi">10000</span><span class="p">)</span>
+<span class="n">api</span><span class="o">.</span><span class="n">activate_ca</span><span class="p">(</span>
+    <span class="n">ca_path</span><span class="o">=</span><span class="s2">&quot;/c/your/ca/path/Sinopac.pfx&quot;</span><span class="p">,</span>
+    <span class="n">ca_passwd</span><span class="o">=</span><span class="s2">&quot;YOUR_CA_PASSWORD&quot;</span><span class="p">,</span>
+    <span class="n">person_id</span><span class="o">=</span><span class="s2">&quot;Person of this Ca&quot;</span><span class="p">,</span>
+<span class="p">)</span>
 </pre></div>
 
     </div>
@@ -13310,339 +13229,159 @@ a.anchor-link {
 
 
 <div class="output_subarea output_stream output_stdout output_text">
-<pre>_________________________________________________________________
-Layer (type)                 Output Shape              Param #   
-=================================================================
-input (InputLayer)           (None, 500, 6, 1)         0         
-_________________________________________________________________
-conv1 (Conv2D)               (None, 497, 6, 8)         40        
-_________________________________________________________________
-conv2 (Conv2D)               (None, 494, 6, 16)        528       
-_________________________________________________________________
-maxp1 (MaxPooling2D)         (None, 123, 6, 16)        0         
-_________________________________________________________________
-conv3 (Conv2D)               (None, 120, 6, 32)        2080      
-_________________________________________________________________
-conv4 (Conv2D)               (None, 117, 6, 64)        8256      
-_________________________________________________________________
-maxp2 (MaxPooling2D)         (None, 29, 6, 64)         0         
-_________________________________________________________________
-conv5 (Conv2D)               (None, 26, 6, 64)         16448     
-_________________________________________________________________
-conv6 (Conv2D)               (None, 23, 6, 128)        32896     
-_________________________________________________________________
-maxp3 (MaxPooling2D)         (None, 5, 6, 128)         0         
-_________________________________________________________________
-conv7 (Conv2D)               (None, 4, 6, 256)         65792     
-_________________________________________________________________
-conv8 (Conv2D)               (None, 3, 6, 256)         131328    
-_________________________________________________________________
-maxp4 (MaxPooling2D)         (None, 1, 6, 256)         0         
-_________________________________________________________________
-flat (Flatten)               (None, 1536)              0         
-_________________________________________________________________
-dropout1 (Dropout)           (None, 1536)              0         
-_________________________________________________________________
-fc1 (Dense)                  (None, 256)               393472    
-_________________________________________________________________
-dropout2 (Dropout)           (None, 256)               0         
-_________________________________________________________________
-fc2 (Dense)                  (None, 3)                 771       
-=================================================================
-Total params: 651,611
-Trainable params: 651,611
-Non-trainable params: 0
-_________________________________________________________________
+<pre>Response Code: 0 | Event Code: 0 | Info: host &#39;203.66.91.161:80&#39;, IP 203.66.91.161:80 (host 1 of 1) (host connection attempt 1 of 1) (total connection attempt 1 of 1) | Event: Session up
+Ca Initial Done.
 </pre>
 </div>
 </div>
 
+<div class="output_area">
+
+    <div class="prompt output_prompt">Out[2]:</div>
+
+
+
+
+<div class="output_text output_subarea output_execute_result">
+<pre>0</pre>
+</div>
+
+</div>
+
 </div>
 </div>
 
-</div></div></section><section>
-<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
-</div><div class="inner_cell">
-<div class="text_cell_render border-box-sizing rendered_html">
-<h2 id="Load-the-trained-model-weights">Load the trained model weights<a class="anchor-link" href="#Load-the-trained-model-weights">&#182;</a></h2>
 </div>
-</div>
-</div><div class="fragment">
-<div class="cell border-box-sizing code_cell rendered">
-<div class="input">
-<div class="prompt input_prompt">In&nbsp;[6]:</div>
-<div class="inner_cell">
-    <div class="input_area">
-<div class=" highlight hl-ipython3"><pre><span></span><span class="n">model</span><span class="o">.</span><span class="n">load_weights</span><span class="p">(</span><span class="s1">&#39;simplecnn.h5&#39;</span><span class="p">)</span>
-</pre></div>
-
-    </div>
-</div>
-</div>
-
-</div></div></section><section>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
 <div class="prompt input_prompt">In&nbsp;[3]:</div>
 <div class="inner_cell">
     <div class="input_area">
-<div class=" highlight hl-ipython3"><pre><span></span><span class="k">def</span> <span class="nf">load_model</span><span class="p">():</span>
-    <span class="k">global</span> <span class="n">model</span><span class="p">,</span> <span class="n">graph</span>
-    <span class="n">graph</span> <span class="o">=</span> <span class="n">tf</span><span class="o">.</span><span class="n">get_default_graph</span><span class="p">()</span>
-    <span class="k">with</span> <span class="n">graph</span><span class="o">.</span><span class="n">as_default</span><span class="p">():</span>
-        <span class="n">input_layer</span> <span class="o">=</span> <span class="n">Input</span><span class="p">(</span><span class="n">shape</span><span class="o">=</span><span class="p">(</span><span class="mi">500</span><span class="p">,</span> <span class="mi">6</span><span class="p">,</span> <span class="mi">1</span><span class="p">),</span> <span class="n">name</span><span class="o">=</span><span class="s1">&#39;input&#39;</span><span class="p">)</span>
-        <span class="n">conv1</span> <span class="o">=</span> <span class="n">Conv2D</span><span class="p">(</span><span class="n">filters</span><span class="o">=</span><span class="mi">8</span><span class="p">,</span> <span class="n">kernel_size</span><span class="o">=</span><span class="p">(</span><span class="mi">4</span><span class="p">,</span> <span class="mi">1</span><span class="p">),</span> <span class="n">activation</span><span class="o">=</span><span class="s1">&#39;relu&#39;</span><span class="p">,</span> <span class="n">name</span><span class="o">=</span><span class="s1">&#39;conv1&#39;</span><span class="p">)(</span><span class="n">input_layer</span><span class="p">)</span>
-        <span class="n">conv2</span> <span class="o">=</span> <span class="n">Conv2D</span><span class="p">(</span><span class="n">filters</span><span class="o">=</span><span class="mi">16</span><span class="p">,</span> <span class="n">kernel_size</span><span class="o">=</span><span class="p">(</span><span class="mi">4</span><span class="p">,</span> <span class="mi">1</span><span class="p">),</span> <span class="n">activation</span><span class="o">=</span><span class="s1">&#39;relu&#39;</span><span class="p">,</span> <span class="n">name</span><span class="o">=</span><span class="s1">&#39;conv2&#39;</span><span class="p">)(</span><span class="n">conv1</span><span class="p">)</span>
-        <span class="n">maxp1</span> <span class="o">=</span> <span class="n">MaxPool2D</span><span class="p">(</span><span class="n">pool_size</span><span class="o">=</span><span class="p">(</span><span class="mi">4</span><span class="p">,</span> <span class="mi">1</span><span class="p">),</span> <span class="n">name</span><span class="o">=</span><span class="s1">&#39;maxp1&#39;</span><span class="p">)(</span><span class="n">conv2</span><span class="p">)</span>
-        <span class="n">conv3</span> <span class="o">=</span> <span class="n">Conv2D</span><span class="p">(</span><span class="n">filters</span><span class="o">=</span><span class="mi">32</span><span class="p">,</span> <span class="n">kernel_size</span><span class="o">=</span><span class="p">(</span><span class="mi">4</span><span class="p">,</span> <span class="mi">1</span><span class="p">),</span> <span class="n">activation</span><span class="o">=</span><span class="s1">&#39;relu&#39;</span><span class="p">,</span> <span class="n">name</span><span class="o">=</span><span class="s1">&#39;conv3&#39;</span><span class="p">)(</span><span class="n">maxp1</span><span class="p">)</span>
-        <span class="n">conv4</span> <span class="o">=</span> <span class="n">Conv2D</span><span class="p">(</span><span class="n">filters</span><span class="o">=</span><span class="mi">64</span><span class="p">,</span> <span class="n">kernel_size</span><span class="o">=</span><span class="p">(</span><span class="mi">4</span><span class="p">,</span> <span class="mi">1</span><span class="p">),</span> <span class="n">activation</span><span class="o">=</span><span class="s1">&#39;relu&#39;</span><span class="p">,</span> <span class="n">name</span><span class="o">=</span><span class="s1">&#39;conv4&#39;</span><span class="p">)(</span><span class="n">conv3</span><span class="p">)</span>
-        <span class="n">maxp2</span> <span class="o">=</span> <span class="n">MaxPool2D</span><span class="p">(</span><span class="n">pool_size</span><span class="o">=</span><span class="p">(</span><span class="mi">4</span><span class="p">,</span> <span class="mi">1</span><span class="p">),</span> <span class="n">name</span><span class="o">=</span><span class="s1">&#39;maxp2&#39;</span><span class="p">)(</span><span class="n">conv4</span><span class="p">)</span>
-        <span class="n">conv5</span> <span class="o">=</span> <span class="n">Conv2D</span><span class="p">(</span><span class="n">filters</span><span class="o">=</span><span class="mi">64</span><span class="p">,</span> <span class="n">kernel_size</span><span class="o">=</span><span class="p">(</span><span class="mi">4</span><span class="p">,</span> <span class="mi">1</span><span class="p">),</span> <span class="n">activation</span><span class="o">=</span><span class="s1">&#39;relu&#39;</span><span class="p">,</span> <span class="n">name</span><span class="o">=</span><span class="s1">&#39;conv5&#39;</span><span class="p">)(</span><span class="n">maxp2</span><span class="p">)</span>
-        <span class="n">conv6</span> <span class="o">=</span> <span class="n">Conv2D</span><span class="p">(</span><span class="n">filters</span><span class="o">=</span><span class="mi">128</span><span class="p">,</span> <span class="n">kernel_size</span><span class="o">=</span><span class="p">(</span><span class="mi">4</span><span class="p">,</span> <span class="mi">1</span><span class="p">),</span> <span class="n">activation</span><span class="o">=</span><span class="s1">&#39;relu&#39;</span><span class="p">,</span> <span class="n">name</span><span class="o">=</span><span class="s1">&#39;conv6&#39;</span><span class="p">)(</span><span class="n">conv5</span><span class="p">)</span>
-        <span class="n">maxp3</span> <span class="o">=</span> <span class="n">MaxPool2D</span><span class="p">(</span><span class="n">pool_size</span><span class="o">=</span><span class="p">(</span><span class="mi">4</span><span class="p">,</span> <span class="mi">1</span><span class="p">),</span> <span class="n">name</span><span class="o">=</span><span class="s1">&#39;maxp3&#39;</span><span class="p">)(</span><span class="n">conv6</span><span class="p">)</span>
-        <span class="n">conv7</span> <span class="o">=</span> <span class="n">Conv2D</span><span class="p">(</span><span class="n">filters</span><span class="o">=</span><span class="mi">256</span><span class="p">,</span> <span class="n">kernel_size</span><span class="o">=</span><span class="p">(</span><span class="mi">2</span><span class="p">,</span> <span class="mi">1</span><span class="p">),</span> <span class="n">activation</span><span class="o">=</span><span class="s1">&#39;relu&#39;</span><span class="p">,</span> <span class="n">name</span><span class="o">=</span><span class="s1">&#39;conv7&#39;</span><span class="p">)(</span><span class="n">maxp3</span><span class="p">)</span>
-        <span class="n">conv8</span> <span class="o">=</span> <span class="n">Conv2D</span><span class="p">(</span><span class="n">filters</span><span class="o">=</span><span class="mi">256</span><span class="p">,</span> <span class="n">kernel_size</span><span class="o">=</span><span class="p">(</span><span class="mi">2</span><span class="p">,</span> <span class="mi">1</span><span class="p">),</span> <span class="n">activation</span><span class="o">=</span><span class="s1">&#39;relu&#39;</span><span class="p">,</span> <span class="n">name</span><span class="o">=</span><span class="s1">&#39;conv8&#39;</span><span class="p">)(</span><span class="n">conv7</span><span class="p">)</span>
-        <span class="n">maxp4</span> <span class="o">=</span> <span class="n">MaxPool2D</span><span class="p">(</span><span class="n">pool_size</span><span class="o">=</span><span class="p">(</span><span class="mi">2</span><span class="p">,</span> <span class="mi">1</span><span class="p">),</span> <span class="n">name</span><span class="o">=</span><span class="s1">&#39;maxp4&#39;</span><span class="p">)(</span><span class="n">conv8</span><span class="p">)</span>
-        <span class="n">flat</span> <span class="o">=</span> <span class="n">Flatten</span><span class="p">(</span><span class="n">name</span><span class="o">=</span><span class="s1">&#39;flat&#39;</span><span class="p">)(</span><span class="n">maxp4</span><span class="p">)</span>
-        <span class="n">dropout1</span> <span class="o">=</span> <span class="n">Dropout</span><span class="p">(</span><span class="n">rate</span><span class="o">=</span><span class="mf">0.4</span><span class="p">,</span> <span class="n">name</span><span class="o">=</span><span class="s1">&#39;dropout1&#39;</span><span class="p">)(</span><span class="n">flat</span><span class="p">)</span>
-        <span class="n">fc1</span> <span class="o">=</span> <span class="n">Dense</span><span class="p">(</span><span class="mi">256</span><span class="p">,</span> <span class="n">activation</span><span class="o">=</span><span class="s1">&#39;relu&#39;</span><span class="p">,</span> <span class="n">name</span><span class="o">=</span><span class="s1">&#39;fc1&#39;</span><span class="p">)(</span><span class="n">dropout1</span><span class="p">)</span>
-        <span class="n">dropout2</span> <span class="o">=</span> <span class="n">Dropout</span><span class="p">(</span><span class="n">rate</span><span class="o">=</span><span class="mf">0.4</span><span class="p">,</span> <span class="n">name</span><span class="o">=</span><span class="s1">&#39;dropout2&#39;</span><span class="p">)(</span><span class="n">fc1</span><span class="p">)</span>
-        <span class="n">fc2</span> <span class="o">=</span> <span class="n">Dense</span><span class="p">(</span><span class="mi">3</span><span class="p">,</span> <span class="n">activation</span><span class="o">=</span><span class="s1">&#39;softmax&#39;</span><span class="p">,</span> <span class="n">name</span><span class="o">=</span><span class="s1">&#39;fc2&#39;</span><span class="p">)(</span><span class="n">dropout2</span><span class="p">)</span>
-        <span class="n">model</span> <span class="o">=</span> <span class="n">Model</span><span class="p">(</span><span class="n">inputs</span><span class="o">=</span><span class="p">[</span><span class="n">input_layer</span><span class="p">],</span> <span class="n">outputs</span><span class="o">=</span><span class="p">[</span><span class="n">fc2</span><span class="p">])</span>
-        <span class="n">model</span><span class="o">.</span><span class="n">load_weights</span><span class="p">(</span><span class="s1">&#39;simplecnn.h5&#39;</span><span class="p">)</span>
+<div class=" highlight hl-ipython3"><pre><span></span><span class="k">def</span> <span class="nf">order_callback_func</span><span class="p">(</span><span class="n">order_state</span><span class="p">,</span> <span class="n">state</span><span class="p">):</span>
+    <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;order_state: </span><span class="si">{order_state}</span><span class="s1">&#39;</span><span class="p">)</span>
+    <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;state: </span><span class="si">{state}</span><span class="s1">&#39;</span><span class="p">)</span>
+
+<span class="n">api</span><span class="o">.</span><span class="n">set_order_callback</span><span class="p">(</span><span class="n">order_callback_func</span><span class="p">)</span>
 </pre></div>
 
     </div>
 </div>
 </div>
 
-</div></section></section><section><section>
-<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
-</div><div class="inner_cell">
-<div class="text_cell_render border-box-sizing rendered_html">
-<h2 id="Init-shioaji-api-and-login">Init shioaji api and login<a class="anchor-link" href="#Init-shioaji-api-and-login">&#182;</a></h2>
 </div>
-</div>
-</div><div class="fragment">
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[4]:</div>
+<div class="prompt input_prompt">In&nbsp;[16]:</div>
 <div class="inner_cell">
     <div class="input_area">
-<div class=" highlight hl-ipython3"><pre><span></span><span class="n">api</span> <span class="o">=</span> <span class="n">sj</span><span class="o">.</span><span class="n">Shioaji</span><span class="p">(</span><span class="n">simulation</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">contract</span> <span class="o">=</span> <span class="n">api</span><span class="o">.</span><span class="n">Contracts</span><span class="o">.</span><span class="n">Stocks</span><span class="o">.</span><span class="n">TSE</span><span class="o">.</span><span class="n">TSE2890</span>
+<span class="n">order</span> <span class="o">=</span> <span class="n">api</span><span class="o">.</span><span class="n">Order</span><span class="p">(</span><span class="n">price</span><span class="o">=</span><span class="mf">11.15</span><span class="p">,</span>
+                  <span class="n">quantity</span><span class="o">=</span><span class="mi">2</span><span class="p">,</span>
+                  <span class="n">action</span><span class="o">=</span><span class="s2">&quot;Buy&quot;</span><span class="p">,</span>
+                  <span class="n">price_type</span><span class="o">=</span><span class="s2">&quot;LMT&quot;</span><span class="p">,</span>
+                  <span class="n">order_type</span><span class="o">=</span><span class="s2">&quot;Common&quot;</span><span class="p">,</span>
+                  <span class="n">account</span><span class="o">=</span><span class="n">api</span><span class="o">.</span><span class="n">stock_account</span>
+                  <span class="p">)</span>
+<span class="n">trade</span> <span class="o">=</span> <span class="n">api</span><span class="o">.</span><span class="n">place_order</span><span class="p">(</span><span class="n">contract</span><span class="p">,</span> <span class="n">order</span><span class="p">)</span>
 </pre></div>
 
     </div>
 </div>
 </div>
 
-</div></div><div class="fragment">
+<div class="output_wrapper">
+<div class="output">
+
+
+<div class="output_area">
+
+    <div class="prompt"></div>
+
+
+<div class="output_subarea output_stream output_stdout output_text">
+<pre>order_state: ORDER
+state: {&#39;operation&#39;: {&#39;op_type&#39;: &#39;NEW&#39;, &#39;op_code&#39;: &#39;00&#39;, &#39;op_msg&#39;: &#39;&#39;}, &#39;order&#39;: {&#39;id&#39;: &#39;71d711cf&#39;, &#39;seqno&#39;: &#39;375264&#39;, &#39;ordno&#39;: &#39;I2700&#39;, &#39;action&#39;: &#39;Buy&#39;, &#39;price&#39;: 11.15, &#39;quantity&#39;: 2, &#39;order_cond&#39;: &#39;Cash&#39;}, &#39;status&#39;: {&#39;id&#39;: &#39;71d711cf&#39;, &#39;exchange_ts&#39;: 1583983179, &#39;modified_price&#39;: 0, &#39;cancel_quantity&#39;: 0}, &#39;contract&#39;: {&#39;security_type&#39;: &#39;STK&#39;, &#39;exchange&#39;: &#39;TSE&#39;, &#39;code&#39;: &#39;2890&#39;, &#39;symbol&#39;: &#39;&#39;, &#39;name&#39;: &#39;&#39;, &#39;currency&#39;: &#39;TWD&#39;}}
+</pre>
+</div>
+</div>
+
+</div>
+</div>
+
+</div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[5]:</div>
+<div class="prompt input_prompt">In&nbsp;[20]:</div>
 <div class="inner_cell">
     <div class="input_area">
-<div class=" highlight hl-ipython3"><pre><span></span><span class="k">with</span> <span class="nb">open</span><span class="p">(</span><span class="s1">&#39;login.json&#39;</span><span class="p">,</span> <span class="s1">&#39;r&#39;</span><span class="p">)</span> <span class="k">as</span> <span class="n">f</span><span class="p">:</span>
-    <span class="n">kw_login</span> <span class="o">=</span> <span class="n">json</span><span class="o">.</span><span class="n">loads</span><span class="p">(</span><span class="n">f</span><span class="o">.</span><span class="n">read</span><span class="p">())</span>
-<span class="n">api</span><span class="o">.</span><span class="n">login</span><span class="p">(</span><span class="o">**</span><span class="n">kw_login</span><span class="p">)</span>
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">api</span><span class="o">.</span><span class="n">update_status</span><span class="p">(</span><span class="n">api</span><span class="o">.</span><span class="n">stock_account</span><span class="p">)</span>
+<span class="n">trade</span> <span class="o">=</span> <span class="n">api</span><span class="o">.</span><span class="n">cancel_order</span><span class="p">(</span><span class="n">trade</span><span class="p">)</span>
 </pre></div>
 
     </div>
 </div>
 </div>
 
-</div></div></section><section>
-<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
-</div><div class="inner_cell">
-<div class="text_cell_render border-box-sizing rendered_html">
-<h2 id="Init-Charts-dataset">Init Charts dataset<a class="anchor-link" href="#Init-Charts-dataset">&#182;</a></h2>
+<div class="output_wrapper">
+<div class="output">
+
+
+<div class="output_area">
+
+    <div class="prompt"></div>
+
+
+<div class="output_subarea output_stream output_stdout output_text">
+<pre>order_state: ORDER
+state: {&#39;operation&#39;: {&#39;op_type&#39;: &#39;CANCEL&#39;, &#39;op_code&#39;: &#39;00&#39;, &#39;op_msg&#39;: &#39;&#39;}, &#39;order&#39;: {&#39;id&#39;: &#39;71d711cf&#39;, &#39;seqno&#39;: &#39;375264&#39;, &#39;ordno&#39;: &#39;I2700&#39;, &#39;action&#39;: &#39;Buy&#39;, &#39;price&#39;: 11.15, &#39;quantity&#39;: 2, &#39;order_cond&#39;: &#39;Cash&#39;}, &#39;status&#39;: {&#39;id&#39;: &#39;71d711cf&#39;, &#39;exchange_ts&#39;: 1583983201, &#39;modified_price&#39;: 0, &#39;cancel_quantity&#39;: 1}, &#39;contract&#39;: {&#39;security_type&#39;: &#39;STK&#39;, &#39;exchange&#39;: &#39;TSE&#39;, &#39;code&#39;: &#39;2890&#39;, &#39;symbol&#39;: &#39;&#39;, &#39;name&#39;: &#39;&#39;, &#39;currency&#39;: &#39;TWD&#39;}}
+</pre>
 </div>
 </div>
-</div><div class="fragment">
+
+</div>
+</div>
+
+</div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[6]:</div>
+<div class="prompt input_prompt">In&nbsp;[21]:</div>
 <div class="inner_cell">
     <div class="input_area">
-<div class=" highlight hl-ipython3"><pre><span></span><span class="n">tick_plot_length</span> <span class="o">=</span> <span class="mi">150</span>
-<span class="n">df_norm</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">read_hdf</span><span class="p">(</span><span class="s1">&#39;normalizer.h5&#39;</span><span class="p">)</span>
-<span class="n">norm_min</span> <span class="o">=</span> <span class="n">df_norm</span><span class="o">.</span><span class="n">loc</span><span class="p">[</span><span class="s1">&#39;min&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">values</span>
-<span class="n">norm_range</span> <span class="o">=</span> <span class="n">df_norm</span><span class="o">.</span><span class="n">loc</span><span class="p">[</span><span class="s1">&#39;max&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">values</span> <span class="o">-</span> <span class="n">norm_min</span>
-
-<span class="n">model_input_tick_num</span> <span class="o">=</span> <span class="mi">500</span>
-<span class="n">features_num</span> <span class="o">=</span> <span class="mi">6</span>
-<span class="n">np_features</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">zeros</span><span class="p">((</span><span class="n">model_input_tick_num</span><span class="p">,</span> <span class="n">features_num</span><span class="p">))</span>
-<span class="n">pred_data</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">zeros</span><span class="p">((</span><span class="n">tick_plot_length</span><span class="p">,</span> <span class="mi">3</span><span class="p">))</span>
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">trade</span>
 </pre></div>
 
     </div>
 </div>
 </div>
 
-</div></div><div class="fragment">
-<div class="cell border-box-sizing code_cell rendered">
-<div class="input">
-<div class="prompt input_prompt">In&nbsp;[12]:</div>
-<div class="inner_cell">
-    <div class="input_area">
-<div class=" highlight hl-ipython3"><pre><span></span><span class="n">data_in</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">rand</span><span class="p">(</span><span class="mi">2</span><span class="p">)</span>
-<span class="n">data_inner</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">rand</span><span class="p">(</span><span class="mi">2</span><span class="p">)</span>
-<span class="n">data_outer</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">rand</span><span class="p">(</span><span class="mi">4</span><span class="p">)</span>
-</pre></div>
+<div class="output_wrapper">
+<div class="output">
 
-    </div>
+
+<div class="output_area">
+
+    <div class="prompt output_prompt">Out[21]:</div>
+
+
+
+
+<div class="output_text output_subarea output_execute_result">
+<pre>Trade(contract=Stock(exchange=&lt;Exchange.TSE: &#39;TSE&#39;&gt;, code=&#39;2890&#39;, symbol=&#39;TSE2890&#39;, name=&#39;永豐金&#39;, category=&#39;17&#39;, limit_up=13.55, limit_down=11.15, update_date=&#39;2020/03/12&#39;, day_trade=&lt;DayTrade.OnlyBuy: &#39;OnlyBuy&#39;&gt;), order=Order(action=&lt;Action.Buy: &#39;Buy&#39;&gt;, price=11.15, quantity=2, id=&#39;71d711cf&#39;, seqno=&#39;375264&#39;, ordno=&#39;I2700&#39;, account=Account(account_type=&lt;AccountType.Stock: &#39;S&#39;&gt;, person_id=SecretStr(&#39;**********&#39;), broker_id=SecretStr(&#39;**********&#39;), account_id=SecretStr(&#39;**********&#39;), signed=True, username=SecretStr(&#39;&#39;)), price_type=&lt;StockPriceType.LMT: &#39;LMT&#39;&gt;, order_type=&lt;FuturesOrderType.ROD: &#39;ROD&#39;&gt;), status=OrderStatus(id=&#39;71d711cf&#39;, status=&lt;Status.Submitted: &#39;Submitted&#39;&gt;, status_code=&#39;00&#39;, order_datetime=datetime.datetime(2020, 3, 12, 11, 19, 39), modified_price=11.15, cancel_quantity=1, deals=[]))</pre>
 </div>
+
 </div>
 
-</div></div></section><section>
-<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
-</div><div class="inner_cell">
-<div class="text_cell_render border-box-sizing rendered_html">
-<h2 id="define-init-charts-function">define init charts function<a class="anchor-link" href="#define-init-charts-function">&#182;</a></h2>
-</div>
-</div>
-</div><div class="fragment">
-<div class="cell border-box-sizing code_cell rendered">
-<div class="input">
-<div class="prompt input_prompt">In&nbsp;[13]:</div>
-<div class="inner_cell">
-    <div class="input_area">
-<div class=" highlight hl-ipython3"><pre><span></span><span class="k">def</span> <span class="nf">init_model_chart</span><span class="p">():</span>
-    <span class="k">global</span> <span class="n">model_bar</span>
-    <span class="n">x_ord</span> <span class="o">=</span> <span class="n">bq</span><span class="o">.</span><span class="n">LinearScale</span><span class="p">()</span>
-    <span class="n">y_sc</span> <span class="o">=</span> <span class="n">bq</span><span class="o">.</span><span class="n">LinearScale</span><span class="p">()</span>
-
-    <span class="n">model_bar</span> <span class="o">=</span> <span class="n">bq</span><span class="o">.</span><span class="n">Bars</span><span class="p">(</span><span class="n">x</span><span class="o">=</span><span class="n">x_tick_index</span><span class="p">,</span> <span class="n">y</span><span class="o">=</span><span class="n">pred_data</span><span class="o">.</span><span class="n">T</span><span class="p">[:,</span> <span class="p">:],</span> 
-                  <span class="n">scales</span><span class="o">=</span><span class="p">{</span><span class="s1">&#39;x&#39;</span><span class="p">:</span> <span class="n">x_ord</span><span class="p">,</span> <span class="s1">&#39;y&#39;</span><span class="p">:</span> <span class="n">y_sc</span><span class="p">},</span>
-                  <span class="n">colors</span><span class="o">=</span><span class="p">[</span><span class="s1">&#39;#848484&#39;</span><span class="p">,</span> <span class="s1">&#39;#f44242&#39;</span><span class="p">,</span> <span class="s1">&#39;#00d100&#39;</span><span class="p">],</span> <span class="nb">type</span><span class="o">=</span><span class="s1">&#39;stacked&#39;</span><span class="p">)</span>
-    <span class="n">ax_x</span> <span class="o">=</span> <span class="n">bq</span><span class="o">.</span><span class="n">Axis</span><span class="p">(</span><span class="n">scale</span><span class="o">=</span><span class="n">x_ord</span><span class="p">)</span>
-    <span class="n">ax_y</span> <span class="o">=</span> <span class="n">bq</span><span class="o">.</span><span class="n">Axis</span><span class="p">(</span><span class="n">scale</span><span class="o">=</span><span class="n">y_sc</span><span class="p">,</span> <span class="n">tick_format</span><span class="o">=</span><span class="s1">&#39;0.2f&#39;</span><span class="p">,</span> <span class="n">orientation</span><span class="o">=</span><span class="s1">&#39;vertical&#39;</span><span class="p">)</span>
-
-    <span class="n">fig</span> <span class="o">=</span> <span class="n">bq</span><span class="o">.</span><span class="n">Figure</span><span class="p">(</span><span class="n">marks</span><span class="o">=</span><span class="p">[</span><span class="n">model_bar</span><span class="p">],</span> <span class="n">axes</span><span class="o">=</span><span class="p">[</span><span class="n">ax_x</span><span class="p">,</span> <span class="n">ax_y</span><span class="p">],</span>
-                   <span class="n">fig_margin</span><span class="o">=</span> <span class="p">{</span><span class="s2">&quot;top&quot;</span><span class="p">:</span><span class="mi">60</span><span class="p">,</span> <span class="s2">&quot;bottom&quot;</span><span class="p">:</span><span class="mi">30</span><span class="p">,</span> <span class="s2">&quot;left&quot;</span><span class="p">:</span><span class="mi">60</span><span class="p">,</span> <span class="s2">&quot;right&quot;</span><span class="p">:</span><span class="mi">0</span><span class="p">},)</span>
-    <span class="n">fig</span><span class="o">.</span><span class="n">layout</span><span class="o">.</span><span class="n">height</span> <span class="o">=</span> <span class="s1">&#39;200px&#39;</span>
-    <span class="n">fig</span><span class="o">.</span><span class="n">layout</span><span class="o">.</span><span class="n">width</span> <span class="o">=</span> <span class="s1">&#39;1200px&#39;</span>
-    <span class="k">return</span> <span class="n">fig</span>
-</pre></div>
-
-    </div>
 </div>
 </div>
 
-</div></div></section><section>
-<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
-</div><div class="inner_cell">
-<div class="text_cell_render border-box-sizing rendered_html">
-<h2 id="define-processing-data-function">define processing data function<a class="anchor-link" href="#define-processing-data-function">&#182;</a></h2>
 </div>
-</div>
-</div><div class="fragment">
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
 <div class="prompt input_prompt">In&nbsp;[18]:</div>
 <div class="inner_cell">
     <div class="input_area">
-<div class=" highlight hl-ipython3"><pre><span></span><span class="k">def</span> <span class="nf">split_data</span><span class="p">(</span><span class="n">rec</span><span class="p">,</span> <span class="n">index</span><span class="p">):</span>
-    <span class="n">sp_rec</span> <span class="o">=</span> <span class="p">{}</span>
-    <span class="p">[</span><span class="n">sp_rec</span><span class="o">.</span><span class="n">update</span><span class="p">({</span><span class="n">k</span><span class="p">:</span> <span class="n">v</span><span class="p">[</span><span class="n">index</span><span class="p">]</span> <span class="k">if</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">v</span><span class="p">,</span> <span class="p">(</span><span class="nb">list</span><span class="p">,</span> <span class="nb">tuple</span><span class="p">))</span> <span class="k">else</span> <span class="n">v</span><span class="p">})</span> 
-     <span class="k">for</span> <span class="n">k</span><span class="p">,</span> <span class="n">v</span> <span class="ow">in</span> <span class="n">rec</span><span class="o">.</span><span class="n">items</span><span class="p">()]</span>
-    <span class="n">sp_rec</span><span class="p">[</span><span class="s1">&#39;idx&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">index</span>
-    <span class="k">return</span> <span class="n">sp_rec</span>
-
-<span class="k">def</span> <span class="nf">proc_model_data</span><span class="p">(</span><span class="n">quote_msg</span><span class="p">):</span>
-    <span class="k">global</span> <span class="n">np_features</span><span class="p">,</span> <span class="n">pred_data</span>
-    <span class="k">global</span> <span class="n">model</span><span class="p">,</span> <span class="n">graph</span>
-    <span class="n">quote_msgs</span> <span class="o">=</span> <span class="p">[</span><span class="n">split_data</span><span class="p">(</span><span class="n">quote_msg</span><span class="p">,</span> <span class="n">ind</span><span class="p">)</span> <span class="k">for</span> <span class="n">ind</span><span class="p">,</span> <span class="n">_</span> <span class="ow">in</span> <span class="nb">enumerate</span><span class="p">(</span><span class="n">quote_msg</span><span class="p">[</span><span class="s1">&#39;Close&#39;</span><span class="p">])]</span>
-    <span class="k">for</span> <span class="n">msg</span> <span class="ow">in</span> <span class="n">quote_msgs</span><span class="p">:</span>
-        <span class="k">if</span> <span class="n">msg</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s1">&#39;TickType&#39;</span><span class="p">,</span> <span class="mi">0</span><span class="p">)</span> <span class="o">==</span> <span class="mi">1</span><span class="p">:</span>
-            <span class="n">ask_vol</span><span class="p">,</span> <span class="n">bid_vol</span> <span class="o">=</span> <span class="p">(</span><span class="n">msg</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s1">&#39;Volume&#39;</span><span class="p">,</span> <span class="mi">0</span><span class="p">),</span> <span class="mi">0</span><span class="p">)</span>
-        <span class="k">elif</span> <span class="n">msg</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s1">&#39;TickType&#39;</span><span class="p">,</span> <span class="mi">0</span><span class="p">)</span> <span class="o">==</span> <span class="mi">2</span><span class="p">:</span>
-            <span class="n">ask_vol</span><span class="p">,</span> <span class="n">bid_vol</span> <span class="o">=</span> <span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="n">msg</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s1">&#39;Volume&#39;</span><span class="p">,</span> <span class="mi">0</span><span class="p">))</span>
-        <span class="k">else</span><span class="p">:</span>
-            <span class="n">ask_vol</span><span class="p">,</span> <span class="n">bid_vol</span> <span class="o">=</span> <span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">)</span>
-        <span class="n">np_features</span><span class="p">[:</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span> <span class="o">=</span> <span class="n">np_features</span><span class="p">[</span><span class="mi">1</span><span class="p">:]</span>
-        <span class="n">np_features</span><span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span> <span class="o">=</span> <span class="p">[</span><span class="n">msg</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s1">&#39;Close&#39;</span><span class="p">,</span> <span class="mi">0</span><span class="p">),</span> <span class="n">msg</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s1">&#39;DiffPrice&#39;</span><span class="p">,</span> <span class="mi">0</span><span class="p">),</span> 
-                           <span class="n">msg</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s1">&#39;Volume&#39;</span><span class="p">,</span> <span class="mi">0</span><span class="p">),</span> <span class="n">msg</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s1">&#39;TargetKindPrice&#39;</span><span class="p">,</span> <span class="mi">0</span><span class="p">),</span>
-                           <span class="n">ask_vol</span><span class="p">,</span> <span class="n">bid_vol</span><span class="p">,]</span>
-        <span class="n">input_x</span> <span class="o">=</span> <span class="p">((</span><span class="n">np_features</span> <span class="o">-</span> <span class="n">norm_min</span><span class="p">)</span> <span class="o">/</span> <span class="n">norm_range</span><span class="p">)[</span><span class="n">np</span><span class="o">.</span><span class="n">newaxis</span><span class="p">,:,:,</span><span class="n">np</span><span class="o">.</span><span class="n">newaxis</span><span class="p">]</span>
-        <span class="n">pred_data</span><span class="p">[:</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span> <span class="o">=</span> <span class="n">pred_data</span><span class="p">[</span><span class="mi">1</span><span class="p">:]</span>
-        <span class="k">with</span> <span class="n">graph</span><span class="o">.</span><span class="n">as_default</span><span class="p">():</span>
-            <span class="n">model</span><span class="o">.</span><span class="n">load_weights</span><span class="p">(</span><span class="s1">&#39;simplecnn.h5&#39;</span><span class="p">)</span>
-            <span class="n">pred_data</span><span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span> <span class="o">=</span> <span class="n">model</span><span class="o">.</span><span class="n">predict</span><span class="p">(</span><span class="n">input_x</span><span class="p">)[</span><span class="mi">0</span><span class="p">]</span>
-</pre></div>
-
-    </div>
-</div>
-</div>
-
-</div></div></section><section>
-<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
-</div><div class="inner_cell">
-<div class="text_cell_render border-box-sizing rendered_html">
-<h2 id="define-update-chart-function">define update chart function<a class="anchor-link" href="#define-update-chart-function">&#182;</a></h2>
-</div>
-</div>
-</div><div class="fragment">
-<div class="cell border-box-sizing code_cell rendered">
-<div class="input">
-<div class="prompt input_prompt">In&nbsp;[23]:</div>
-<div class="inner_cell">
-    <div class="input_area">
-<div class=" highlight hl-ipython3"><pre><span></span><span class="k">def</span> <span class="nf">update_model_chart</span><span class="p">():</span>
-    <span class="k">global</span> <span class="n">model_bar</span>
-    <span class="k">with</span> <span class="n">model_bar</span><span class="o">.</span><span class="n">hold_sync</span><span class="p">():</span>
-        <span class="n">model_bar</span><span class="o">.</span><span class="n">x</span> <span class="o">=</span> <span class="n">x_tick_index</span><span class="o">.</span><span class="n">copy</span><span class="p">()</span>
-        <span class="n">model_bar</span><span class="o">.</span><span class="n">y</span> <span class="o">=</span> <span class="n">pred_data</span><span class="o">.</span><span class="n">T</span><span class="o">.</span><span class="n">copy</span><span class="p">()</span>
-</pre></div>
-
-    </div>
-</div>
-</div>
-
-</div></div></section><section>
-<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
-</div><div class="inner_cell">
-<div class="text_cell_render border-box-sizing rendered_html">
-<h2 id="define-on-quote-callback">define on quote callback<a class="anchor-link" href="#define-on-quote-callback">&#182;</a></h2>
-</div>
-</div>
-</div><div class="fragment">
-<div class="cell border-box-sizing code_cell rendered">
-<div class="input">
-<div class="prompt input_prompt">In&nbsp;[27]:</div>
-<div class="inner_cell">
-    <div class="input_area">
-<div class=" highlight hl-ipython3"><pre><span></span><span class="n">load_model</span><span class="p">()</span>
-<span class="nd">@sj</span><span class="o">.</span><span class="n">on_quote</span>
-<span class="k">def</span> <span class="nf">quote_callback</span><span class="p">(</span><span class="n">topic</span><span class="p">,</span> <span class="n">quote_msg</span><span class="p">):</span>
-    <span class="k">global</span> <span class="n">tick_plot_length</span>
-    <span class="k">global</span> <span class="n">line_chart</span><span class="p">,</span> <span class="n">scatter_chart</span>
-    <span class="k">global</span> <span class="n">pie_outer</span><span class="p">,</span> <span class="n">pie_inner</span><span class="p">,</span> <span class="n">pie_in</span>
-    <span class="k">global</span> <span class="n">x_tick_index</span><span class="p">,</span> <span class="n">y_price</span><span class="p">,</span> <span class="n">y_vol</span><span class="p">,</span> <span class="n">updown_color</span><span class="p">,</span> <span class="n">askbid_color_data</span>
-    <span class="k">global</span> <span class="n">new_index</span><span class="p">,</span> <span class="n">new_deal_price</span><span class="p">,</span> <span class="n">new_vol</span><span class="p">,</span> <span class="n">new_updown_color</span><span class="p">,</span> <span class="n">new_askbid_color_data</span>
-    <span class="k">global</span> <span class="n">ask_price</span><span class="p">,</span> <span class="n">bid_price</span>
-    <span class="k">global</span> <span class="n">large_ask_deal_volsum</span><span class="p">,</span> <span class="n">small_ask_deal_volsum</span><span class="p">,</span> <span class="n">large_bid_deal_volsum</span>
-    <span class="k">global</span> <span class="n">small_bid_deal_volsum</span><span class="p">,</span> <span class="n">ask_deal_count</span><span class="p">,</span> <span class="n">bid_deal_count</span>
-    <span class="k">global</span> <span class="n">ask_bid_static</span>
-    <span class="k">global</span> <span class="n">bar_bidask</span><span class="p">,</span> <span class="n">bar_bidask_diff</span>
-    <span class="k">global</span> <span class="n">x_bar_data</span><span class="p">,</span> <span class="n">y_bar_data</span><span class="p">,</span> <span class="n">color_bar_data</span><span class="p">,</span> <span class="n">y_data_diff</span>
-    <span class="k">global</span> <span class="n">ohlc_chart</span><span class="p">,</span> <span class="n">df_min</span>
-    <span class="k">global</span> <span class="n">model</span><span class="p">,</span> <span class="n">graph</span><span class="p">,</span> <span class="n">init_model</span>
-    <span class="n">vol_threshold</span> <span class="o">=</span> <span class="mi">10</span>
-    <span class="c1">#print(topic, quote_msg)</span>
-    <span class="k">if</span> <span class="n">topic</span><span class="o">.</span><span class="n">startswith</span><span class="p">(</span><span class="s1">&#39;Q&#39;</span><span class="p">)</span> <span class="ow">and</span> <span class="s1">&#39;TXFD9&#39;</span> <span class="ow">in</span> <span class="n">topic</span><span class="p">:</span>
-        <span class="n">proc_ask_bid_bardata</span><span class="p">(</span><span class="n">topic</span><span class="p">,</span> <span class="n">quote_msg</span><span class="p">)</span>
-        <span class="n">update_barchart</span><span class="p">(</span><span class="n">x_bar_data</span><span class="p">,</span> <span class="n">y_bar_data</span><span class="p">,</span> 
-                        <span class="n">color_bar_data</span><span class="p">,</span> <span class="n">y_bar_data_diff</span><span class="p">)</span>
-        
-    <span class="k">elif</span> <span class="n">topic</span><span class="o">.</span><span class="n">startswith</span><span class="p">(</span><span class="s1">&#39;L&#39;</span><span class="p">)</span> <span class="ow">and</span> <span class="s1">&#39;TXFD9&#39;</span> <span class="ow">in</span> <span class="n">topic</span><span class="p">:</span>
-        <span class="n">proc_tick_chartdata</span><span class="p">(</span><span class="n">topic</span><span class="p">,</span> <span class="n">quote_msg</span><span class="p">)</span>
-        <span class="n">proc_ask_bid_staticdata</span><span class="p">(</span><span class="n">topic</span><span class="p">,</span> <span class="n">quote_msg</span><span class="p">,</span> <span class="n">vol_threshold</span><span class="p">)</span>
-        <span class="n">proc_ohlc_data</span><span class="p">(</span><span class="n">quote_msg</span><span class="p">,</span> <span class="n">new_deal_price</span><span class="p">)</span>
-        <span class="n">proc_model_data</span><span class="p">(</span><span class="n">quote_msg</span><span class="p">)</span>
-        <span class="n">update_ohlc_chart</span><span class="p">()</span>
-        <span class="n">update_tickandpie_chart</span><span class="p">(</span><span class="n">update_freq</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
-        <span class="n">update_model_chart</span><span class="p">()</span>
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">api</span><span class="o">.</span><span class="n">update_status</span><span class="p">(</span><span class="n">api</span><span class="o">.</span><span class="n">stock_account</span><span class="p">)</span>
+<span class="n">trade</span> <span class="o">=</span> <span class="n">api</span><span class="o">.</span><span class="n">update_order</span><span class="p">(</span><span class="n">trade</span><span class="o">=</span><span class="n">trade</span><span class="p">,</span> <span class="n">price</span><span class="o">=</span><span class="mf">11.15</span><span class="p">,</span> <span class="n">qty</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
 </pre></div>
 
     </div>
@@ -13659,12 +13398,8 @@ _________________________________________________________________
 
 
 <div class="output_subarea output_stream output_stdout output_text">
-<pre>WARNING:tensorflow:From /Users/Tanni/.pyenv/versions/miniconda3-latest/lib/python3.7/site-packages/tensorflow/python/ops/resource_variable_ops.py:435: colocate_with (from tensorflow.python.framework.ops) is deprecated and will be removed in a future version.
-Instructions for updating:
-Colocations handled automatically by placer.
-WARNING:tensorflow:From /Users/Tanni/.pyenv/versions/miniconda3-latest/lib/python3.7/site-packages/tensorflow/python/keras/layers/core.py:143: calling dropout (from tensorflow.python.ops.nn_ops) with keep_prob is deprecated and will be removed in a future version.
-Instructions for updating:
-Please use `rate` instead of `keep_prob`. Rate should be set to `rate = 1 - keep_prob`.
+<pre>order_state: ORDER
+state: {&#39;operation&#39;: {&#39;op_type&#39;: &#39;UPDATE&#39;, &#39;op_code&#39;: &#39;00&#39;, &#39;op_msg&#39;: &#39;&#39;}, &#39;order&#39;: {&#39;id&#39;: &#39;71d711cf&#39;, &#39;seqno&#39;: &#39;375264&#39;, &#39;ordno&#39;: &#39;I2700&#39;, &#39;action&#39;: &#39;Buy&#39;, &#39;price&#39;: 11.15, &#39;quantity&#39;: 2, &#39;order_cond&#39;: &#39;Cash&#39;}, &#39;status&#39;: {&#39;id&#39;: &#39;71d711cf&#39;, &#39;exchange_ts&#39;: 1583983197, &#39;modified_price&#39;: 0, &#39;cancel_quantity&#39;: 1}, &#39;contract&#39;: {&#39;security_type&#39;: &#39;STK&#39;, &#39;exchange&#39;: &#39;TSE&#39;, &#39;code&#39;: &#39;2890&#39;, &#39;symbol&#39;: &#39;&#39;, &#39;name&#39;: &#39;&#39;, &#39;currency&#39;: &#39;TWD&#39;}}
 </pre>
 </div>
 </div>
@@ -13672,66 +13407,13 @@ Please use `rate` instead of `keep_prob`. Rate should be set to `rate = 1 - keep
 </div>
 </div>
 
-</div></div></section><section>
-<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
-</div><div class="inner_cell">
-<div class="text_cell_render border-box-sizing rendered_html">
-<h2 id="define-event-callback">define event callback<a class="anchor-link" href="#define-event-callback">&#182;</a></h2>
 </div>
-</div>
-</div><div class="fragment">
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[28]:</div>
+<div class="prompt input_prompt">In&nbsp;[19]:</div>
 <div class="inner_cell">
     <div class="input_area">
-<div class=" highlight hl-ipython3"><pre><span></span><span class="nd">@sj</span><span class="o">.</span><span class="n">on_event</span>
-<span class="k">def</span> <span class="nf">event_callback</span><span class="p">(</span><span class="n">resp_code</span><span class="p">,</span> <span class="n">event_code</span><span class="p">,</span> <span class="n">event</span><span class="p">):</span>
-    <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Respone Code: </span><span class="si">{}</span><span class="s2"> | Event Code: </span><span class="si">{}</span><span class="s2"> | Event: </span><span class="si">{}</span><span class="s2">&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">resp_code</span><span class="p">,</span> <span class="n">event_code</span><span class="p">,</span> <span class="n">event</span><span class="p">))</span>
-</pre></div>
-
-    </div>
-</div>
-</div>
-
-</div></div></section><section>
-<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
-</div><div class="inner_cell">
-<div class="text_cell_render border-box-sizing rendered_html">
-<h2 id="set-callback-function">set callback function<a class="anchor-link" href="#set-callback-function">&#182;</a></h2>
-</div>
-</div>
-</div><div class="fragment">
-<div class="cell border-box-sizing code_cell rendered">
-<div class="input">
-<div class="prompt input_prompt">In&nbsp;[29]:</div>
-<div class="inner_cell">
-    <div class="input_area">
-<div class=" highlight hl-ipython3"><pre><span></span><span class="n">api</span><span class="o">.</span><span class="n">quote</span><span class="o">.</span><span class="n">set_callback</span><span class="p">(</span><span class="n">quote_callback</span><span class="p">)</span>
-<span class="n">api</span><span class="o">.</span><span class="n">quote</span><span class="o">.</span><span class="n">set_event_callback</span><span class="p">(</span><span class="n">event_callback</span><span class="p">)</span>
-</pre></div>
-
-    </div>
-</div>
-</div>
-
-</div></div></section></section><section><section>
-<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
-</div><div class="inner_cell">
-<div class="text_cell_render border-box-sizing rendered_html">
-<h2 id="Chart">Chart<a class="anchor-link" href="#Chart">&#182;</a></h2>
-</div>
-</div>
-</div><div class="fragment">
-<div class="cell border-box-sizing code_cell rendered">
-<div class="input">
-<div class="prompt input_prompt">In&nbsp;[30]:</div>
-<div class="inner_cell">
-    <div class="input_area">
-<div class=" highlight hl-ipython3"><pre><span></span><span class="n">VBox</span><span class="p">([</span><span class="n">init_model_chart</span><span class="p">(),</span>
-      <span class="n">HBox</span><span class="p">([</span><span class="n">init_ohlc_chart</span><span class="p">(),</span> <span class="n">init_tickchart</span><span class="p">(),]),</span>
-      <span class="n">HBox</span><span class="p">([</span><span class="n">pies_chart</span><span class="p">(),</span> <span class="n">bidask_bar_chart</span><span class="p">(),</span> <span class="p">]),</span>
-     <span class="p">])</span>
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">trade</span>
 </pre></div>
 
     </div>
@@ -13744,22 +13426,13 @@ Please use `rate` instead of `keep_prob`. Rate should be set to `rate = 1 - keep
 
 <div class="output_area">
 
-    <div class="prompt"></div>
+    <div class="prompt output_prompt">Out[19]:</div>
 
 
 
 
-
- 
- 
-<div id="28fdf3d9-6e26-49ce-8064-f09308cb6290"></div>
-<div class="output_subarea output_widget_view ">
-<script type="text/javascript">
-var element = $('#28fdf3d9-6e26-49ce-8064-f09308cb6290');
-</script>
-<script type="application/vnd.jupyter.widget-view+json">
-{"model_id": "7fcff16d8850467b95561f47df3d84df", "version_major": 2, "version_minor": 0}
-</script>
+<div class="output_text output_subarea output_execute_result">
+<pre>Trade(contract=Stock(exchange=&lt;Exchange.TSE: &#39;TSE&#39;&gt;, code=&#39;2890&#39;, symbol=&#39;TSE2890&#39;, name=&#39;永豐金&#39;, category=&#39;17&#39;, limit_up=13.55, limit_down=11.15, update_date=&#39;2020/03/12&#39;, day_trade=&lt;DayTrade.OnlyBuy: &#39;OnlyBuy&#39;&gt;), order=Order(action=&lt;Action.Buy: &#39;Buy&#39;&gt;, price=11.15, quantity=2, id=&#39;71d711cf&#39;, seqno=&#39;375264&#39;, ordno=&#39;I2700&#39;, account=Account(account_type=&lt;AccountType.Stock: &#39;S&#39;&gt;, person_id=SecretStr(&#39;**********&#39;), broker_id=SecretStr(&#39;**********&#39;), account_id=SecretStr(&#39;**********&#39;), signed=True, username=SecretStr(&#39;&#39;)), price_type=&lt;StockPriceType.LMT: &#39;LMT&#39;&gt;, order_type=&lt;FuturesOrderType.ROD: &#39;ROD&#39;&gt;), status=OrderStatus(id=&#39;71d711cf&#39;, status=&lt;Status.Submitted: &#39;Submitted&#39;&gt;, status_code=&#39;00&#39;, order_datetime=datetime.datetime(2020, 3, 12, 11, 19, 39), modified_price=11.15, deals=[]))</pre>
 </div>
 
 </div>
@@ -13767,285 +13440,19 @@ var element = $('#28fdf3d9-6e26-49ce-8064-f09308cb6290');
 </div>
 </div>
 
-</div></div><div class="fragment">
-<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
-</div><div class="inner_cell">
-<div class="text_cell_render border-box-sizing rendered_html">
-<p><img src="https://raw.githubusercontent.com/Sinotrade/Sinotrade.github.io/master/images/model_binding.gif" alt="gif"></p>
-
 </div>
-</div>
-</div></div></section><section>
-<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
-</div><div class="inner_cell">
-<div class="text_cell_render border-box-sizing rendered_html">
-<h2 id="Subscribe-Quote">Subscribe Quote<a class="anchor-link" href="#Subscribe-Quote">&#182;</a></h2>
-</div>
-</div>
-</div><div class="fragment">
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[31]:</div>
+<div class="prompt input_prompt">In&nbsp;[&nbsp;]:</div>
 <div class="inner_cell">
     <div class="input_area">
-<div class=" highlight hl-ipython3"><pre><span></span><span class="n">TXFR1</span> <span class="o">=</span> <span class="n">api</span><span class="o">.</span><span class="n">Contracts</span><span class="o">.</span><span class="n">Futures</span><span class="o">.</span><span class="n">TXF</span><span class="o">.</span><span class="n">TXF201904</span>
-<span class="n">TSE2330</span> <span class="o">=</span> <span class="n">api</span><span class="o">.</span><span class="n">Contracts</span><span class="o">.</span><span class="n">Stocks</span><span class="o">.</span><span class="n">TSE</span><span class="o">.</span><span class="n">TSE2330</span>
+<div class=" highlight hl-ipython3"><pre><span></span>
 </pre></div>
 
     </div>
 </div>
 </div>
 
-</div></div><div class="fragment">
-<div class="cell border-box-sizing code_cell rendered">
-<div class="input">
-<div class="prompt input_prompt">In&nbsp;[32]:</div>
-<div class="inner_cell">
-    <div class="input_area">
-<div class=" highlight hl-ipython3"><pre><span></span><span class="n">api</span><span class="o">.</span><span class="n">quote</span><span class="o">.</span><span class="n">subscribe</span><span class="p">(</span><span class="n">TXFR1</span><span class="p">)</span>
-<span class="n">api</span><span class="o">.</span><span class="n">quote</span><span class="o">.</span><span class="n">subscribe</span><span class="p">(</span><span class="n">TXFR1</span><span class="p">,</span> <span class="n">quote_type</span><span class="o">=</span><span class="s1">&#39;bidask&#39;</span><span class="p">)</span>
-<span class="n">api</span><span class="o">.</span><span class="n">quote</span><span class="o">.</span><span class="n">subscribe</span><span class="p">(</span><span class="n">TSE2330</span><span class="p">)</span>
-<span class="n">api</span><span class="o">.</span><span class="n">quote</span><span class="o">.</span><span class="n">subscribe</span><span class="p">(</span><span class="n">TSE2330</span><span class="p">,</span> <span class="n">quote_type</span><span class="o">=</span><span class="s1">&#39;bidask&#39;</span><span class="p">)</span>
-</pre></div>
-
-    </div>
-</div>
-</div>
-
-<div class="output_wrapper">
-<div class="output">
-
-
-<div class="output_area">
-
-    <div class="prompt"></div>
-
-
-<div class="output_subarea output_stream output_stdout output_text">
-<pre>Respone Code: 200 | Event Code: 16 | Event: Subscribe or Unsubscribe ok
-Respone Code: 200 | Event Code: 16 | Event: Subscribe or Unsubscribe ok
-Respone Code: 200 | Event Code: 16 | Event: Subscribe or Unsubscribe ok
-Respone Code: 200 | Event Code: 16 | Event: Subscribe or Unsubscribe ok
-</pre>
-</div>
-</div>
-
-</div>
-</div>
-
-</div></div></section></section><section><section>
-<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
-</div><div class="inner_cell">
-<div class="text_cell_render border-box-sizing rendered_html">
-<h2 id="Place-order-in-quote-callback?">Place order in quote callback?<a class="anchor-link" href="#Place-order-in-quote-callback?">&#182;</a></h2><ul>
-<li>use global to let Shioaji Object work fine</li>
-<li>c++ call quote callback will borrow python interpreter only when interact with python</li>
-<li>when the process back to c++ thread will release the blocking</li>
-<li>It is not recommended to do that the thing spend too much time in the callback function</li>
-</ul>
-
-</div>
-</div>
-</div><div class="fragment">
-<div class="cell border-box-sizing code_cell rendered">
-<div class="input">
-<div class="prompt input_prompt">In&nbsp;[112]:</div>
-<div class="inner_cell">
-    <div class="input_area">
-<div class=" highlight hl-ipython3"><pre><span></span><span class="nd">@sj</span><span class="o">.</span><span class="n">on_quote</span>
-<span class="k">def</span> <span class="nf">quote_callback</span><span class="p">(</span><span class="n">topic</span><span class="p">,</span> <span class="n">quote_msg</span><span class="p">):</span>
-    <span class="k">global</span> <span class="n">api</span>
-</pre></div>
-
-    </div>
-</div>
-</div>
-
-</div></div></section><section>
-<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
-</div><div class="inner_cell">
-<div class="text_cell_render border-box-sizing rendered_html">
-<h2 id="CNN-model-inference-performance">CNN model inference performance<a class="anchor-link" href="#CNN-model-inference-performance">&#182;</a></h2>
-</div>
-</div>
-</div><div class="fragment">
-<div class="cell border-box-sizing code_cell rendered">
-<div class="input">
-<div class="prompt input_prompt">In&nbsp;[100]:</div>
-<div class="inner_cell">
-    <div class="input_area">
-<div class=" highlight hl-ipython3"><pre><span></span><span class="o">%%</span><span class="n">timeit</span>
-<span class="n">input_x</span> <span class="o">=</span> <span class="p">((</span><span class="n">np_features</span> <span class="o">-</span> <span class="n">norm_min</span><span class="p">)</span> <span class="o">/</span> <span class="n">norm_range</span><span class="p">)[</span><span class="n">np</span><span class="o">.</span><span class="n">newaxis</span><span class="p">,:,:,</span><span class="n">np</span><span class="o">.</span><span class="n">newaxis</span><span class="p">]</span>
-</pre></div>
-
-    </div>
-</div>
-</div>
-
-<div class="output_wrapper">
-<div class="output">
-
-
-<div class="output_area">
-
-    <div class="prompt"></div>
-
-
-<div class="output_subarea output_stream output_stdout output_text">
-<pre>28 µs ± 353 ns per loop (mean ± std. dev. of 7 runs, 10000 loops each)
-</pre>
-</div>
-</div>
-
-</div>
-</div>
-
-</div></div><div class="fragment">
-<div class="cell border-box-sizing code_cell rendered">
-<div class="input">
-<div class="prompt input_prompt">In&nbsp;[102]:</div>
-<div class="inner_cell">
-    <div class="input_area">
-<div class=" highlight hl-ipython3"><pre><span></span><span class="o">%%</span><span class="n">timeit</span>
-<span class="n">model</span><span class="o">.</span><span class="n">predict</span><span class="p">(</span><span class="n">input_x</span><span class="p">)</span>
-</pre></div>
-
-    </div>
-</div>
-</div>
-
-<div class="output_wrapper">
-<div class="output">
-
-
-<div class="output_area">
-
-    <div class="prompt"></div>
-
-
-<div class="output_subarea output_stream output_stdout output_text">
-<pre>2.91 ms ± 98.8 µs per loop (mean ± std. dev. of 7 runs, 100 loops each)
-</pre>
-</div>
-</div>
-
-</div>
-</div>
-
-</div></div></section><section>
-<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
-</div><div class="inner_cell">
-<div class="text_cell_render border-box-sizing rendered_html">
-<h2 id="Basic-way-for-simplify-the-callback-job-for-just-push-the-quote-msg-to-queue">Basic way for simplify the callback job for just push the quote msg to queue<a class="anchor-link" href="#Basic-way-for-simplify-the-callback-job-for-just-push-the-quote-msg-to-queue">&#182;</a></h2>
-</div>
-</div>
-</div><div class="fragment">
-<div class="cell border-box-sizing code_cell rendered">
-<div class="input">
-<div class="prompt input_prompt">In&nbsp;[114]:</div>
-<div class="inner_cell">
-    <div class="input_area">
-<div class=" highlight hl-ipython3"><pre><span></span><span class="n">storage_quote</span> <span class="o">=</span> <span class="p">{}</span>
-<span class="nd">@sj</span><span class="o">.</span><span class="n">on_quote</span>
-<span class="k">def</span> <span class="nf">quote_callback</span><span class="p">(</span><span class="n">topic</span><span class="p">,</span> <span class="n">quote_msg</span><span class="p">):</span>
-    <span class="k">global</span> <span class="n">storage_quote</span>
-    <span class="k">if</span> <span class="n">topic</span> <span class="ow">not</span> <span class="ow">in</span> <span class="n">storage_quote</span><span class="p">:</span>
-        <span class="n">storage_quote</span><span class="p">[</span><span class="n">topic</span><span class="p">]</span> <span class="o">=</span> <span class="p">[</span><span class="n">quote_msg</span><span class="p">]</span>
-    <span class="k">else</span><span class="p">:</span>
-        <span class="n">storage_quote</span><span class="p">[</span><span class="n">topic</span><span class="p">]</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">quote_msg</span><span class="p">)</span>
-
-<span class="n">api</span><span class="o">.</span><span class="n">quote</span><span class="o">.</span><span class="n">set_callback</span><span class="p">(</span><span class="n">quote_callback</span><span class="p">)</span>
-</pre></div>
-
-    </div>
-</div>
-</div>
-
-</div></div></section><section>
-<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
-</div><div class="inner_cell">
-<div class="text_cell_render border-box-sizing rendered_html">
-<h2 id="Use-redis-for-cross-instance-and-cross-language-to-get-the-quote">Use redis for cross instance and cross language to get the quote<a class="anchor-link" href="#Use-redis-for-cross-instance-and-cross-language-to-get-the-quote">&#182;</a></h2>
-</div>
-</div>
-</div><div class="fragment">
-<div class="cell border-box-sizing code_cell rendered">
-<div class="input">
-<div class="prompt input_prompt">In&nbsp;[111]:</div>
-<div class="inner_cell">
-    <div class="input_area">
-<div class=" highlight hl-ipython3"><pre><span></span><span class="err">!</span> <span class="n">pip</span> <span class="n">install</span> <span class="n">redis</span> <span class="n">msgpack</span>
-</pre></div>
-
-    </div>
-</div>
-</div>
-
-<div class="output_wrapper">
-<div class="output">
-
-
-<div class="output_area">
-
-    <div class="prompt"></div>
-
-
-<div class="output_subarea output_stream output_stdout output_text">
-<pre>Requirement already satisfied: redis in /Users/Tanni/.pyenv/versions/miniconda3-latest/lib/python3.7/site-packages (3.2.1)
-Requirement already satisfied: msgpack in /Users/Tanni/.pyenv/versions/miniconda3-latest/lib/python3.7/site-packages (0.6.1)
-</pre>
-</div>
-</div>
-
-</div>
-</div>
-
-</div></div><div class="fragment">
-<div class="cell border-box-sizing code_cell rendered">
-<div class="input">
-<div class="prompt input_prompt">In&nbsp;[109]:</div>
-<div class="inner_cell">
-    <div class="input_area">
-<div class=" highlight hl-ipython3"><pre><span></span><span class="kn">import</span> <span class="nn">redis</span>
-<span class="kn">import</span> <span class="nn">msgpack</span>
-<span class="n">rs</span> <span class="o">=</span> <span class="n">redis</span><span class="o">.</span><span class="n">Redis</span><span class="p">(</span><span class="n">host</span><span class="o">=</span><span class="s1">&#39;localhost&#39;</span><span class="p">,</span> <span class="n">port</span><span class="o">=</span><span class="mi">6666</span><span class="p">)</span>
-</pre></div>
-
-    </div>
-</div>
-</div>
-
-</div></div><div class="fragment">
-<div class="cell border-box-sizing code_cell rendered">
-<div class="input">
-<div class="prompt input_prompt">In&nbsp;[110]:</div>
-<div class="inner_cell">
-    <div class="input_area">
-<div class=" highlight hl-ipython3"><pre><span></span><span class="nd">@sj</span><span class="o">.</span><span class="n">on_quote</span>
-<span class="k">def</span> <span class="nf">quote_callback</span><span class="p">(</span><span class="n">topic</span><span class="p">,</span> <span class="n">quote_msg</span><span class="p">):</span>
-    <span class="n">rs</span><span class="o">.</span><span class="n">rpush</span><span class="p">(</span><span class="n">topic</span><span class="p">,</span> <span class="n">msgpack</span><span class="o">.</span><span class="n">dumps</span><span class="p">(</span><span class="n">quote_msg</span><span class="p">))</span>
-    
-<span class="n">api</span><span class="o">.</span><span class="n">quote</span><span class="o">.</span><span class="n">set_callback</span><span class="p">(</span><span class="n">quote_callback</span><span class="p">)</span>
-</pre></div>
-
-    </div>
-</div>
-</div>
-
-</div></div></section><section>
-<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
-</div><div class="inner_cell">
-<div class="text_cell_render border-box-sizing rendered_html">
-<h2 id="Some-advanced-alternative">Some advanced alternative<a class="anchor-link" href="#Some-advanced-alternative">&#182;</a></h2><ul>
-<li><a href="https://arrow.apache.org/">Arrow</a></li>
-<li><a href="https://cloud.google.com/dataflow/">GCP DataFlow</a></li>
-<li><a href="https://spark.apache.org/streaming/">Spark Streaming</a></li>
-<li><a href="https://flink.apache.org/">Flink</a></li>
-<li><a href="https://hive.apache.org/">Hive</a></li>
-</ul>
-
-</div>
-</div>
 </div></section></section>
 </div>
 </div>
