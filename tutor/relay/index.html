@@ -559,6 +559,40 @@
   
 </li>
         
+          <li class="md-nav__item">
+  <a href="#set-order-callback" class="md-nav__link">
+    Set order callback
+  </a>
+  
+    <nav class="md-nav">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#place-order_2" class="md-nav__link">
+    Place Order
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#cancel-order_2" class="md-nav__link">
+    Cancel Order
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#update-quantity_2" class="md-nav__link">
+    Update Quantity
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
       </ul>
     </nav>
   
@@ -731,6 +765,40 @@
         
           <li class="md-nav__item">
   <a href="#update-quantity_1" class="md-nav__link">
+    Update Quantity
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#set-order-callback" class="md-nav__link">
+    Set order callback
+  </a>
+  
+    <nav class="md-nav">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#place-order_2" class="md-nav__link">
+    Place Order
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#cancel-order_2" class="md-nav__link">
+    Cancel Order
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#update-quantity_2" class="md-nav__link">
     Update Quantity
   </a>
   
@@ -1104,6 +1172,148 @@
         <span class="s1">&#39;modified_price&#39;</span><span class="p">:</span> <span class="mi">0</span><span class="p">,</span> 
 <span class="hll">        <span class="s1">&#39;cancel_quantity&#39;</span><span class="p">:</span> <span class="mi">1</span>
 </span>    <span class="p">},</span> 
+    <span class="s1">&#39;contract&#39;</span><span class="p">:</span> <span class="p">{</span>
+        <span class="s1">&#39;security_type&#39;</span><span class="p">:</span> <span class="s1">&#39;STK&#39;</span><span class="p">,</span> 
+        <span class="s1">&#39;exchange&#39;</span><span class="p">:</span> <span class="s1">&#39;TSE&#39;</span><span class="p">,</span> 
+        <span class="s1">&#39;code&#39;</span><span class="p">:</span> <span class="s1">&#39;2890&#39;</span><span class="p">,</span> 
+        <span class="s1">&#39;symbol&#39;</span><span class="p">:</span> <span class="s1">&#39;&#39;</span><span class="p">,</span> 
+        <span class="s1">&#39;name&#39;</span><span class="p">:</span> <span class="s1">&#39;&#39;</span><span class="p">,</span> 
+        <span class="s1">&#39;currency&#39;</span><span class="p">:</span> <span class="s1">&#39;TWD&#39;</span>
+    <span class="p">}</span>
+<span class="p">}</span>
+</code></pre></div>
+
+</div>
+<h3 id="set-order-callback">Set order callback<a class="headerlink" href="#set-order-callback" title="Permanent link">&para;</a></h3>
+<p>default: print</p>
+<div class="admonition info">
+<p class="admonition-title">In</p>
+<div class="codehilite"><pre><span></span><code><span class="k">def</span> <span class="nf">order_callback_func</span><span class="p">(</span><span class="n">order_state</span><span class="p">,</span> <span class="n">state</span><span class="p">):</span>
+    <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;order_state: </span><span class="si">{order_state}</span><span class="s1">&#39;</span><span class="p">)</span>
+    <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;state: </span><span class="si">{state}</span><span class="s1">&#39;</span><span class="p">)</span>
+
+<span class="n">api</span><span class="o">.</span><span class="n">set_order_callback</span><span class="p">(</span><span class="n">order_callback_func</span><span class="p">)</span>
+</code></pre></div>
+
+</div>
+<h4 id="place-order_2">Place Order<a class="headerlink" href="#place-order_2" title="Permanent link">&para;</a></h4>
+<div class="admonition info">
+<p class="admonition-title">In</p>
+<div class="codehilite"><pre><span></span><code><span class="n">trade</span> <span class="o">=</span> <span class="n">api</span><span class="o">.</span><span class="n">place_order</span><span class="p">(</span><span class="n">contract</span><span class="p">,</span> <span class="n">order</span><span class="p">)</span>
+</code></pre></div>
+
+</div>
+<div class="admonition info">
+<p class="admonition-title">Out</p>
+<div class="codehilite"><pre><span></span><code><span class="hll"><span class="n">order_state</span><span class="p">:</span> <span class="n">ORDER</span>
+</span><span class="hll"><span class="n">state</span><span class="p">:</span> <span class="p">{</span>
+</span>    <span class="s1">&#39;operation&#39;</span><span class="p">:</span> <span class="p">{</span>
+<span class="hll">        <span class="s1">&#39;op_type&#39;</span><span class="p">:</span> <span class="s1">&#39;NEW&#39;</span><span class="p">,</span> 
+</span>        <span class="s1">&#39;op_code&#39;</span><span class="p">:</span> <span class="s1">&#39;00&#39;</span><span class="p">,</span> 
+        <span class="s1">&#39;op_msg&#39;</span><span class="p">:</span> <span class="s1">&#39;&#39;</span>
+    <span class="p">},</span> 
+    <span class="s1">&#39;order&#39;</span><span class="p">:</span> <span class="p">{</span>
+        <span class="s1">&#39;id&#39;</span><span class="p">:</span> <span class="s1">&#39;50a5e248&#39;</span><span class="p">,</span> 
+        <span class="s1">&#39;seqno&#39;</span><span class="p">:</span> <span class="s1">&#39;372069&#39;</span><span class="p">,</span> 
+        <span class="s1">&#39;ordno&#39;</span><span class="p">:</span> <span class="s1">&#39;I2534&#39;</span><span class="p">,</span> 
+        <span class="s1">&#39;action&#39;</span><span class="p">:</span> <span class="s1">&#39;Buy&#39;</span><span class="p">,</span> 
+        <span class="s1">&#39;price&#39;</span><span class="p">:</span> <span class="mf">11.15</span><span class="p">,</span> 
+        <span class="s1">&#39;quantity&#39;</span><span class="p">:</span> <span class="mi">1</span><span class="p">,</span> 
+        <span class="s1">&#39;order_cond&#39;</span><span class="p">:</span> <span class="s1">&#39;Cash&#39;</span>
+    <span class="p">},</span> 
+    <span class="s1">&#39;status&#39;</span><span class="p">:</span> <span class="p">{</span>
+        <span class="s1">&#39;id&#39;</span><span class="p">:</span> <span class="s1">&#39;50a5e248&#39;</span><span class="p">,</span> 
+        <span class="s1">&#39;exchange_ts&#39;</span><span class="p">:</span> <span class="mi">1583981985</span><span class="p">,</span> 
+        <span class="s1">&#39;modified_price&#39;</span><span class="p">:</span> <span class="mi">0</span><span class="p">,</span> 
+        <span class="s1">&#39;cancel_quantity&#39;</span><span class="p">:</span> <span class="mi">0</span>
+    <span class="p">},</span> 
+    <span class="s1">&#39;contract&#39;</span><span class="p">:</span> <span class="p">{</span>
+        <span class="s1">&#39;security_type&#39;</span><span class="p">:</span> <span class="s1">&#39;STK&#39;</span><span class="p">,</span> 
+        <span class="s1">&#39;exchange&#39;</span><span class="p">:</span> <span class="s1">&#39;TSE&#39;</span><span class="p">,</span> 
+        <span class="s1">&#39;code&#39;</span><span class="p">:</span> <span class="s1">&#39;2890&#39;</span><span class="p">,</span> 
+        <span class="s1">&#39;symbol&#39;</span><span class="p">:</span> <span class="s1">&#39;&#39;</span><span class="p">,</span> 
+        <span class="s1">&#39;name&#39;</span><span class="p">:</span> <span class="s1">&#39;&#39;</span><span class="p">,</span> 
+        <span class="s1">&#39;currency&#39;</span><span class="p">:</span> <span class="s1">&#39;TWD&#39;</span>
+    <span class="p">}</span>
+<span class="p">}</span>
+</code></pre></div>
+
+</div>
+<h4 id="cancel-order_2">Cancel Order<a class="headerlink" href="#cancel-order_2" title="Permanent link">&para;</a></h4>
+<div class="admonition info">
+<p class="admonition-title">In</p>
+<div class="codehilite"><pre><span></span><code><span class="n">trade</span> <span class="o">=</span> <span class="n">api</span><span class="o">.</span><span class="n">cancel_order</span><span class="p">(</span><span class="n">trade</span><span class="p">)</span>
+</code></pre></div>
+
+</div>
+<div class="admonition info">
+<p class="admonition-title">Out</p>
+<div class="codehilite"><pre><span></span><code><span class="hll"><span class="n">order_state</span><span class="p">:</span> <span class="n">ORDER</span>
+</span><span class="hll"><span class="n">state</span><span class="p">:</span> <span class="p">{</span>
+</span>    <span class="s1">&#39;operation&#39;</span><span class="p">:</span> <span class="p">{</span>
+<span class="hll">        <span class="s1">&#39;op_type&#39;</span><span class="p">:</span> <span class="s1">&#39;CANCEL&#39;</span><span class="p">,</span> 
+</span>        <span class="s1">&#39;op_code&#39;</span><span class="p">:</span> <span class="s1">&#39;00&#39;</span><span class="p">,</span> 
+        <span class="s1">&#39;op_msg&#39;</span><span class="p">:</span> <span class="s1">&#39;&#39;</span>
+    <span class="p">},</span> 
+    <span class="s1">&#39;order&#39;</span><span class="p">:</span> <span class="p">{</span>
+        <span class="s1">&#39;id&#39;</span><span class="p">:</span> <span class="s1">&#39;50a5e248&#39;</span><span class="p">,</span> 
+        <span class="s1">&#39;seqno&#39;</span><span class="p">:</span> <span class="s1">&#39;372069&#39;</span><span class="p">,</span> 
+        <span class="s1">&#39;ordno&#39;</span><span class="p">:</span> <span class="s1">&#39;I2534&#39;</span><span class="p">,</span> 
+        <span class="s1">&#39;action&#39;</span><span class="p">:</span> <span class="s1">&#39;Buy&#39;</span><span class="p">,</span> 
+        <span class="s1">&#39;price&#39;</span><span class="p">:</span> <span class="mf">11.15</span><span class="p">,</span> 
+        <span class="s1">&#39;quantity&#39;</span><span class="p">:</span> <span class="mi">1</span><span class="p">,</span> 
+        <span class="s1">&#39;order_cond&#39;</span><span class="p">:</span> 
+        <span class="s1">&#39;Cash&#39;</span>
+    <span class="p">},</span> 
+    <span class="s1">&#39;status&#39;</span><span class="p">:</span> <span class="p">{</span>
+        <span class="s1">&#39;id&#39;</span><span class="p">:</span> <span class="s1">&#39;50a5e248&#39;</span><span class="p">,</span> 
+        <span class="s1">&#39;exchange_ts&#39;</span><span class="p">:</span> <span class="mi">1583981988</span><span class="p">,</span> 
+        <span class="s1">&#39;modified_price&#39;</span><span class="p">:</span> <span class="mi">0</span><span class="p">,</span> 
+        <span class="s1">&#39;cancel_quantity&#39;</span><span class="p">:</span> <span class="mi">1</span>
+    <span class="p">},</span> 
+    <span class="s1">&#39;contract&#39;</span><span class="p">:</span> <span class="p">{</span>
+        <span class="s1">&#39;security_type&#39;</span><span class="p">:</span> <span class="s1">&#39;STK&#39;</span><span class="p">,</span> 
+        <span class="s1">&#39;exchange&#39;</span><span class="p">:</span> <span class="s1">&#39;TSE&#39;</span><span class="p">,</span> 
+        <span class="s1">&#39;code&#39;</span><span class="p">:</span> <span class="s1">&#39;2890&#39;</span><span class="p">,</span> 
+        <span class="s1">&#39;symbol&#39;</span><span class="p">:</span> <span class="s1">&#39;&#39;</span><span class="p">,</span> 
+        <span class="s1">&#39;name&#39;</span><span class="p">:</span> <span class="s1">&#39;&#39;</span><span class="p">,</span> 
+        <span class="s1">&#39;currency&#39;</span><span class="p">:</span> <span class="s1">&#39;TWD&#39;</span>
+    <span class="p">}</span>
+<span class="p">}</span>
+</code></pre></div>
+
+</div>
+<h4 id="update-quantity_2">Update Quantity<a class="headerlink" href="#update-quantity_2" title="Permanent link">&para;</a></h4>
+<div class="admonition info">
+<p class="admonition-title">In</p>
+<div class="codehilite"><pre><span></span><code><span class="n">trade</span> <span class="o">=</span> <span class="n">api</span><span class="o">.</span><span class="n">update_order</span><span class="p">(</span><span class="n">trade</span><span class="p">,</span> <span class="n">price</span><span class="o">=</span><span class="mf">11.15</span><span class="p">,</span> <span class="n">qty</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
+</code></pre></div>
+
+</div>
+<div class="admonition info">
+<p class="admonition-title">Out</p>
+<div class="codehilite"><pre><span></span><code><span class="hll"><span class="n">order_state</span><span class="p">:</span> <span class="n">ORDER</span>
+</span><span class="hll"><span class="n">state</span><span class="p">:</span> <span class="p">{</span>
+</span>    <span class="s1">&#39;operation&#39;</span><span class="p">:</span> <span class="p">{</span>
+<span class="hll">        <span class="s1">&#39;op_type&#39;</span><span class="p">:</span> <span class="s1">&#39;UPDATE&#39;</span><span class="p">,</span> 
+</span>        <span class="s1">&#39;op_code&#39;</span><span class="p">:</span> <span class="s1">&#39;00&#39;</span><span class="p">,</span> 
+        <span class="s1">&#39;op_msg&#39;</span><span class="p">:</span> <span class="s1">&#39;&#39;</span>
+    <span class="p">},</span>
+    <span class="s1">&#39;order&#39;</span><span class="p">:</span> <span class="p">{</span>
+        <span class="s1">&#39;id&#39;</span><span class="p">:</span> <span class="s1">&#39;3607d9fc&#39;</span><span class="p">,</span> 
+        <span class="s1">&#39;seqno&#39;</span><span class="p">:</span> <span class="s1">&#39;373224&#39;</span><span class="p">,</span> 
+        <span class="s1">&#39;ordno&#39;</span><span class="p">:</span> <span class="s1">&#39;I2590&#39;</span><span class="p">,</span> 
+        <span class="s1">&#39;action&#39;</span><span class="p">:</span> <span class="s1">&#39;Buy&#39;</span><span class="p">,</span> 
+        <span class="s1">&#39;price&#39;</span><span class="p">:</span> <span class="mf">11.15</span><span class="p">,</span> 
+        <span class="s1">&#39;quantity&#39;</span><span class="p">:</span> <span class="mi">1</span><span class="p">,</span> 
+        <span class="s1">&#39;order_cond&#39;</span><span class="p">:</span><span class="s1">&#39;Cash&#39;</span>
+    <span class="p">},</span> 
+    <span class="s1">&#39;status&#39;</span><span class="p">:</span> <span class="p">{</span>
+        <span class="s1">&#39;id&#39;</span><span class="p">:</span> <span class="s1">&#39;3607d9fc&#39;</span><span class="p">,</span> 
+        <span class="s1">&#39;exchange_ts&#39;</span><span class="p">:</span> <span class="mi">1583982420</span><span class="p">,</span> 
+        <span class="s1">&#39;modified_price&#39;</span><span class="p">:</span> <span class="mi">0</span><span class="p">,</span> 
+        <span class="s1">&#39;cancel_quantity&#39;</span><span class="p">:</span> <span class="mi">1</span>
+    <span class="p">},</span> 
     <span class="s1">&#39;contract&#39;</span><span class="p">:</span> <span class="p">{</span>
         <span class="s1">&#39;security_type&#39;</span><span class="p">:</span> <span class="s1">&#39;STK&#39;</span><span class="p">,</span> 
         <span class="s1">&#39;exchange&#39;</span><span class="p">:</span> <span class="s1">&#39;TSE&#39;</span><span class="p">,</span> 
