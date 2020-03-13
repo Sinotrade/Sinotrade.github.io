@@ -654,8 +654,8 @@
                   <h1>Touch Price Order</h1>
                 
                 <h2 id="touch-price-order">Touch Price Order<a class="headerlink" href="#touch-price-order" title="Permanent link">&para;</a></h2>
-<p>Shioaji can extend setting a price to trigger order. you can subscribe the quote and set callback.<br />
-This can be seen in the following example.</p>
+<p>Here is a simple example that how to build your price monitor and when price touches the condition 
+will place the order.</p>
 <div class="codehilite"><pre><span></span><code><span class="kn">from</span> <span class="nn">pydantic</span> <span class="kn">import</span> <span class="n">BaseModel</span>
 
 <span class="k">class</span> <span class="nc">TouchOrderCond</span><span class="p">(</span><span class="n">BaseModel</span><span class="p">):</span>
