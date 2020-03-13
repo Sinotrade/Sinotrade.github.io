@@ -13,7 +13,7 @@
         <meta name="description" content="Shioaji is provided by SinoPac the most pythonic API for trading the Taiwan and global financial market. You can use your favorite Python packages such as NumPy, pandas, PyTorch or TensorFlow to build your trading model with integrated the Shioaji API on cross-platform.">
       
       
-        <link rel="canonical" href="https://sinotrade.github.io/tutor/accounting/position/">
+        <link rel="canonical" href="https://sinotrade.github.io/tutor/advanced/nonblock/">
       
       
         <meta name="author" content="Yvictor, ">
@@ -42,7 +42,7 @@
     
     
       
-        <title>Position - Shioaji</title>
+        <title>None Block & Block Mode - Shioaji</title>
       
     
     
@@ -116,7 +116,7 @@
     <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
     <label class="md-overlay" data-md-component="overlay" for="__drawer"></label>
     
-      <a href="#coming-soon" tabindex="0" class="md-skip">
+      <a href="#block-non-block-mode" tabindex="0" class="md-skip">
         Skip to content
       </a>
     
@@ -142,7 +142,7 @@
             </span>
             <span class="md-header-nav__topic">
               
-                Position
+                None Block & Block Mode
               
             </span>
           
@@ -416,12 +416,10 @@
           
           
 
-  
 
-
-  <li class="md-nav__item md-nav__item--active md-nav__item--nested">
+  <li class="md-nav__item md-nav__item--nested">
     
-      <input class="md-toggle md-nav__toggle" data-md-toggle="nav-3-4" type="checkbox" id="nav-3-4" checked>
+      <input class="md-toggle md-nav__toggle" data-md-toggle="nav-3-4" type="checkbox" id="nav-3-4">
     
     <label class="md-nav__link" for="nav-3-4">
       Account & Portfolio Data
@@ -437,45 +435,11 @@
           
           
 
-  
 
-
-  <li class="md-nav__item md-nav__item--active">
-    
-    <input class="md-toggle md-nav__toggle" data-md-toggle="toc" type="checkbox" id="__toc">
-    
-    
-      <label class="md-nav__link md-nav__link--active" for="__toc">
-        Position
-      </label>
-    
-    <a href="./" title="Position" class="md-nav__link md-nav__link--active">
+  <li class="md-nav__item">
+    <a href="../../accounting/position/" title="Position" class="md-nav__link">
       Position
     </a>
-    
-      
-<nav class="md-nav md-nav--secondary">
-  
-  
-  
-    <label class="md-nav__title" for="__toc">Table of contents</label>
-    <ul class="md-nav__list" data-md-scrollfix>
-      
-        <li class="md-nav__item">
-  <a href="#coming-soon" class="md-nav__link">
-    Coming Soon
-  </a>
-  
-</li>
-      
-      
-      
-      
-      
-    </ul>
-  
-</nav>
-    
   </li>
 
         
@@ -500,10 +464,12 @@
           
           
 
+  
 
-  <li class="md-nav__item md-nav__item--nested">
+
+  <li class="md-nav__item md-nav__item--active md-nav__item--nested">
     
-      <input class="md-toggle md-nav__toggle" data-md-toggle="nav-3-6" type="checkbox" id="nav-3-6">
+      <input class="md-toggle md-nav__toggle" data-md-toggle="nav-3-6" type="checkbox" id="nav-3-6" checked>
     
     <label class="md-nav__link" for="nav-3-6">
       Advanced Guide
@@ -519,11 +485,58 @@
           
           
 
+  
 
-  <li class="md-nav__item">
-    <a href="../../advanced/nonblock/" title="None Block & Block Mode" class="md-nav__link">
+
+  <li class="md-nav__item md-nav__item--active">
+    
+    <input class="md-toggle md-nav__toggle" data-md-toggle="toc" type="checkbox" id="__toc">
+    
+    
+      <label class="md-nav__link md-nav__link--active" for="__toc">
+        None Block & Block Mode
+      </label>
+    
+    <a href="./" title="None Block & Block Mode" class="md-nav__link md-nav__link--active">
       None Block & Block Mode
     </a>
+    
+      
+<nav class="md-nav md-nav--secondary">
+  
+  
+  
+    <label class="md-nav__title" for="__toc">Table of contents</label>
+    <ul class="md-nav__list" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#block-non-block-mode" class="md-nav__link">
+    Block &amp; Non Block Mode
+  </a>
+  
+    <nav class="md-nav">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#support-function" class="md-nav__link">
+    Support Function
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+      
+      
+      
+      
+    </ul>
+  
+</nav>
+    
   </li>
 
         
@@ -533,7 +546,7 @@
 
 
   <li class="md-nav__item">
-    <a href="../../advanced/touchorder/" title="Touch Price Order" class="md-nav__link">
+    <a href="../touchorder/" title="Touch Price Order" class="md-nav__link">
       Touch Price Order
     </a>
   </li>
@@ -628,9 +641,22 @@
     <ul class="md-nav__list" data-md-scrollfix>
       
         <li class="md-nav__item">
-  <a href="#coming-soon" class="md-nav__link">
-    Coming Soon
+  <a href="#block-non-block-mode" class="md-nav__link">
+    Block &amp; Non Block Mode
   </a>
+  
+    <nav class="md-nav">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#support-function" class="md-nav__link">
+    Support Function
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
   
 </li>
       
@@ -651,9 +677,58 @@
               
                 
                 
-                  <h1>Position</h1>
+                  <h1>None Block & Block Mode</h1>
                 
-                <h2 id="coming-soon">Coming Soon<a class="headerlink" href="#coming-soon" title="Permanent link">&para;</a></h2>
+                <h2 id="block-non-block-mode">Block &amp; Non Block Mode<a class="headerlink" href="#block-non-block-mode" title="Permanent link">&para;</a></h2>
+<p>Shioaji provides return the responsed using Block and Non Block mode, putting the 
+paramter of timeout can change the mode. It will use the default or value you set. </p>
+<div class="admonition info">
+<p class="admonition-title">In</p>
+<div class="codehilite"><pre><span></span><code><span class="n">api</span><span class="o">.</span><span class="n">place_order</span><span class="err">?</span>
+</code></pre></div>
+
+</div>
+<div class="admonition done">
+<p class="admonition-title">Out</p>
+<div class="codehilite"><pre><span></span><code><span class="n">Signature</span><span class="p">:</span>
+    <span class="n">api</span><span class="o">.</span><span class="n">place_order</span><span class="p">(</span>
+        <span class="n">contract</span><span class="p">:</span> <span class="n">shioaji</span><span class="o">.</span><span class="n">contracts</span><span class="o">.</span><span class="n">Contract</span><span class="p">,</span>
+        <span class="n">order</span><span class="p">:</span> <span class="n">shioaji</span><span class="o">.</span><span class="n">order</span><span class="o">.</span><span class="n">Order</span><span class="p">,</span>
+        <span class="n">timeout</span><span class="p">:</span> <span class="nb">int</span> <span class="o">=</span> <span class="mi">5000</span><span class="p">,</span>
+        <span class="n">cb</span><span class="p">:</span> <span class="n">Callable</span><span class="p">[[</span><span class="n">shioaji</span><span class="o">.</span><span class="n">order</span><span class="o">.</span><span class="n">Trade</span><span class="p">],</span> <span class="n">NoneType</span><span class="p">]</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
+    <span class="p">)</span> <span class="o">-&gt;</span> <span class="n">shioaji</span><span class="o">.</span><span class="n">order</span><span class="o">.</span><span class="n">Trade</span>
+<span class="n">Docstring</span><span class="p">:</span> <span class="n">placing</span> <span class="n">order</span>
+<span class="n">Type</span><span class="p">:</span>      <span class="n">method</span>
+</code></pre></div>
+
+</div>
+<div class="admonition info">
+<p class="admonition-title">In</p>
+<div class="codehilite"><pre><span></span><code><span class="n">api</span><span class="o">.</span><span class="n">place_order</span><span class="p">(</span><span class="n">contract</span><span class="p">,</span> <span class="n">order</span><span class="p">,</span> <span class="n">timeout</span><span class="o">=</span><span class="mi">5000</span><span class="p">)</span>
+</code></pre></div>
+
+</div>
+<div class="admonition info">
+<p class="admonition-title">In</p>
+<div class="codehilite"><pre><span></span><code><span class="n">api</span><span class="o">.</span><span class="n">place_order</span><span class="p">(</span><span class="n">contract</span><span class="p">,</span> <span class="n">order</span><span class="p">,</span> <span class="n">timeout</span><span class="o">=</span><span class="mi">0</span><span class="p">)</span>
+</code></pre></div>
+
+</div>
+<h3 id="support-function">Support Function<a class="headerlink" href="#support-function" title="Permanent link">&para;</a></h3>
+<ul>
+<li>Fuction:<ul>
+<li>ticks</li>
+<li>place_order</li>
+<li>update_order</li>
+<li>cancel_order</li>
+<li>update_status </li>
+<li>list_positions      </li>
+</ul>
+</li>
+<li>Parameter: timeout</li>
+<li>Parameter type: int</li>
+<li>Default Mode: Block </li>
+</ul>
                 
                   
                 
@@ -675,7 +750,7 @@
     <div class="md-footer-nav">
       <nav class="md-footer-nav__inner md-grid">
         
-          <a href="../../order/Future_Option/" title="Future and Option" class="md-flex md-footer-nav__link md-footer-nav__link--prev" rel="prev">
+          <a href="../../relay/" title="Relay" class="md-flex md-footer-nav__link md-footer-nav__link--prev" rel="prev">
             <div class="md-flex__cell md-flex__cell--shrink">
               <i class="md-icon md-icon--arrow-back md-footer-nav__button"></i>
             </div>
@@ -684,19 +759,19 @@
                 <span class="md-footer-nav__direction">
                   Previous
                 </span>
-                Future and Option
+                Relay
               </span>
             </div>
           </a>
         
         
-          <a href="../../relay/" title="Relay" class="md-flex md-footer-nav__link md-footer-nav__link--next" rel="next">
+          <a href="../touchorder/" title="Touch Price Order" class="md-flex md-footer-nav__link md-footer-nav__link--next" rel="next">
             <div class="md-flex__cell md-flex__cell--stretch md-footer-nav__title">
               <span class="md-flex__ellipsis">
                 <span class="md-footer-nav__direction">
                   Next
                 </span>
-                Relay
+                Touch Price Order
               </span>
             </div>
             <div class="md-flex__cell md-flex__cell--shrink">

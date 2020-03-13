@@ -13,7 +13,7 @@
         <meta name="description" content="Shioaji is provided by SinoPac the most pythonic API for trading the Taiwan and global financial market. You can use your favorite Python packages such as NumPy, pandas, PyTorch or TensorFlow to build your trading model with integrated the Shioaji API on cross-platform.">
       
       
-        <link rel="canonical" href="https://sinotrade.github.io/tutor/accounting/position/">
+        <link rel="canonical" href="https://sinotrade.github.io/tutor/advanced/touchorder/">
       
       
         <meta name="author" content="Yvictor, ">
@@ -42,7 +42,7 @@
     
     
       
-        <title>Position - Shioaji</title>
+        <title>Touch Price Order - Shioaji</title>
       
     
     
@@ -116,7 +116,7 @@
     <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
     <label class="md-overlay" data-md-component="overlay" for="__drawer"></label>
     
-      <a href="#coming-soon" tabindex="0" class="md-skip">
+      <a href="#touch-price-order" tabindex="0" class="md-skip">
         Skip to content
       </a>
     
@@ -142,7 +142,7 @@
             </span>
             <span class="md-header-nav__topic">
               
-                Position
+                Touch Price Order
               
             </span>
           
@@ -416,12 +416,10 @@
           
           
 
-  
 
-
-  <li class="md-nav__item md-nav__item--active md-nav__item--nested">
+  <li class="md-nav__item md-nav__item--nested">
     
-      <input class="md-toggle md-nav__toggle" data-md-toggle="nav-3-4" type="checkbox" id="nav-3-4" checked>
+      <input class="md-toggle md-nav__toggle" data-md-toggle="nav-3-4" type="checkbox" id="nav-3-4">
     
     <label class="md-nav__link" for="nav-3-4">
       Account & Portfolio Data
@@ -437,45 +435,11 @@
           
           
 
-  
 
-
-  <li class="md-nav__item md-nav__item--active">
-    
-    <input class="md-toggle md-nav__toggle" data-md-toggle="toc" type="checkbox" id="__toc">
-    
-    
-      <label class="md-nav__link md-nav__link--active" for="__toc">
-        Position
-      </label>
-    
-    <a href="./" title="Position" class="md-nav__link md-nav__link--active">
+  <li class="md-nav__item">
+    <a href="../../accounting/position/" title="Position" class="md-nav__link">
       Position
     </a>
-    
-      
-<nav class="md-nav md-nav--secondary">
-  
-  
-  
-    <label class="md-nav__title" for="__toc">Table of contents</label>
-    <ul class="md-nav__list" data-md-scrollfix>
-      
-        <li class="md-nav__item">
-  <a href="#coming-soon" class="md-nav__link">
-    Coming Soon
-  </a>
-  
-</li>
-      
-      
-      
-      
-      
-    </ul>
-  
-</nav>
-    
   </li>
 
         
@@ -500,10 +464,12 @@
           
           
 
+  
 
-  <li class="md-nav__item md-nav__item--nested">
+
+  <li class="md-nav__item md-nav__item--active md-nav__item--nested">
     
-      <input class="md-toggle md-nav__toggle" data-md-toggle="nav-3-6" type="checkbox" id="nav-3-6">
+      <input class="md-toggle md-nav__toggle" data-md-toggle="nav-3-6" type="checkbox" id="nav-3-6" checked>
     
     <label class="md-nav__link" for="nav-3-6">
       Advanced Guide
@@ -521,7 +487,7 @@
 
 
   <li class="md-nav__item">
-    <a href="../../advanced/nonblock/" title="None Block & Block Mode" class="md-nav__link">
+    <a href="../nonblock/" title="None Block & Block Mode" class="md-nav__link">
       None Block & Block Mode
     </a>
   </li>
@@ -531,11 +497,45 @@
           
           
 
+  
 
-  <li class="md-nav__item">
-    <a href="../../advanced/touchorder/" title="Touch Price Order" class="md-nav__link">
+
+  <li class="md-nav__item md-nav__item--active">
+    
+    <input class="md-toggle md-nav__toggle" data-md-toggle="toc" type="checkbox" id="__toc">
+    
+    
+      <label class="md-nav__link md-nav__link--active" for="__toc">
+        Touch Price Order
+      </label>
+    
+    <a href="./" title="Touch Price Order" class="md-nav__link md-nav__link--active">
       Touch Price Order
     </a>
+    
+      
+<nav class="md-nav md-nav--secondary">
+  
+  
+  
+    <label class="md-nav__title" for="__toc">Table of contents</label>
+    <ul class="md-nav__list" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#touch-price-order" class="md-nav__link">
+    Touch Price Order
+  </a>
+  
+</li>
+      
+      
+      
+      
+      
+    </ul>
+  
+</nav>
+    
   </li>
 
         
@@ -628,8 +628,8 @@
     <ul class="md-nav__list" data-md-scrollfix>
       
         <li class="md-nav__item">
-  <a href="#coming-soon" class="md-nav__link">
-    Coming Soon
+  <a href="#touch-price-order" class="md-nav__link">
+    Touch Price Order
   </a>
   
 </li>
@@ -651,9 +651,36 @@
               
                 
                 
-                  <h1>Position</h1>
+                  <h1>Touch Price Order</h1>
                 
-                <h2 id="coming-soon">Coming Soon<a class="headerlink" href="#coming-soon" title="Permanent link">&para;</a></h2>
+                <h2 id="touch-price-order">Touch Price Order<a class="headerlink" href="#touch-price-order" title="Permanent link">&para;</a></h2>
+<p>Shioaji can extend setting a price to trigger order. you can subscribe the quote and set callback.<br />
+This can be seen in the following example.</p>
+<div class="codehilite"><pre><span></span><code><span class="kn">from</span> <span class="nn">pydantic</span> <span class="kn">import</span> <span class="n">BaseModel</span>
+
+<span class="k">class</span> <span class="nc">TouchOrderCond</span><span class="p">(</span><span class="n">BaseModel</span><span class="p">):</span>
+    <span class="n">contract</span><span class="p">:</span> <span class="n">Contract</span>
+    <span class="n">order</span><span class="p">:</span> <span class="n">Order</span>
+    <span class="n">touch_price</span><span class="p">:</span> <span class="nb">float</span>
+
+<span class="k">class</span> <span class="nc">TouchOrder</span><span class="p">:</span>
+   <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">api</span><span class="p">:</span> <span class="n">sj</span><span class="o">.</span><span class="n">Shioaji</span><span class="p">,</span> <span class="n">condition</span><span class="p">:</span> <span class="n">TouchOrderCond</span>
+    <span class="p">):</span>
+       <span class="bp">self</span><span class="o">.</span><span class="n">flag</span> <span class="o">=</span> <span class="kc">False</span>
+       <span class="bp">self</span><span class="o">.</span><span class="n">api</span> <span class="o">=</span> <span class="n">api</span>
+       <span class="bp">self</span><span class="o">.</span><span class="n">order</span> <span class="o">=</span> <span class="n">condition</span><span class="o">.</span><span class="n">order</span>
+       <span class="bp">self</span><span class="o">.</span><span class="n">contract</span> <span class="o">=</span> <span class="n">condition</span><span class="o">.</span><span class="n">contract</span>
+       <span class="bp">self</span><span class="o">.</span><span class="n">touch_price</span> <span class="o">=</span> <span class="n">condition</span><span class="o">.</span><span class="n">touch_price</span>
+       <span class="bp">self</span><span class="o">.</span><span class="n">api</span><span class="o">.</span><span class="n">quote</span><span class="o">.</span><span class="n">subscribe</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">contract</span><span class="p">)</span>
+       <span class="bp">self</span><span class="o">.</span><span class="n">api</span><span class="o">.</span><span class="n">quote</span><span class="o">.</span><span class="n">set_quote_callback</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">touch</span><span class="p">)</span>
+
+   <span class="k">def</span> <span class="nf">touch</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">topic</span><span class="p">,</span> <span class="n">quote</span><span class="p">):</span>
+       <span class="n">price</span> <span class="o">=</span> <span class="n">quote</span><span class="p">[</span><span class="s2">&quot;Close&quot;</span><span class="p">][</span><span class="mi">0</span><span class="p">]</span>
+       <span class="k">if</span> <span class="n">price</span> <span class="o">==</span> <span class="bp">self</span><span class="o">.</span><span class="n">touch_price</span> <span class="ow">and</span> <span class="ow">not</span> <span class="bp">self</span><span class="o">.</span><span class="n">flag</span><span class="p">:</span>
+           <span class="bp">self</span><span class="o">.</span><span class="n">flag</span> <span class="o">=</span> <span class="kc">True</span>
+           <span class="bp">self</span><span class="o">.</span><span class="n">api</span><span class="o">.</span><span class="n">place_order</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">contract</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">order</span><span class="p">)</span>
+           <span class="bp">self</span><span class="o">.</span><span class="n">api</span><span class="o">.</span><span class="n">quote</span><span class="o">.</span><span class="n">unsubscribe</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">contract</span><span class="p">)</span>
+</code></pre></div>
                 
                   
                 
@@ -675,7 +702,7 @@
     <div class="md-footer-nav">
       <nav class="md-footer-nav__inner md-grid">
         
-          <a href="../../order/Future_Option/" title="Future and Option" class="md-flex md-footer-nav__link md-footer-nav__link--prev" rel="prev">
+          <a href="../nonblock/" title="None Block & Block Mode" class="md-flex md-footer-nav__link md-footer-nav__link--prev" rel="prev">
             <div class="md-flex__cell md-flex__cell--shrink">
               <i class="md-icon md-icon--arrow-back md-footer-nav__button"></i>
             </div>
@@ -684,19 +711,19 @@
                 <span class="md-footer-nav__direction">
                   Previous
                 </span>
-                Future and Option
+                None Block & Block Mode
               </span>
             </div>
           </a>
         
         
-          <a href="../../relay/" title="Relay" class="md-flex md-footer-nav__link md-footer-nav__link--next" rel="next">
+          <a href="../../../misc/CA/" title="CA" class="md-flex md-footer-nav__link md-footer-nav__link--next" rel="next">
             <div class="md-flex__cell md-flex__cell--stretch md-footer-nav__title">
               <span class="md-flex__ellipsis">
                 <span class="md-footer-nav__direction">
                   Next
                 </span>
-                Relay
+                CA
               </span>
             </div>
             <div class="md-flex__cell md-flex__cell--shrink">
