@@ -8,10 +8,6 @@
      <lastmod>2020-03-17</lastmod>
      <changefreq>daily</changefreq>
     </url><url>
-     <loc>https://sinotrade.github.io/tutor/snapshot/</loc>
-     <lastmod>2020-03-17</lastmod>
-     <changefreq>daily</changefreq>
-    </url><url>
      <loc>https://sinotrade.github.io/tutor/contract/</loc>
      <lastmod>2020-03-17</lastmod>
      <changefreq>daily</changefreq>
@@ -21,6 +17,10 @@
      <changefreq>daily</changefreq>
     </url><url>
      <loc>https://sinotrade.github.io/tutor/market_data/historical/</loc>
+     <lastmod>2020-03-17</lastmod>
+     <changefreq>daily</changefreq>
+    </url><url>
+     <loc>https://sinotrade.github.io/tutor/snapshot/</loc>
      <lastmod>2020-03-17</lastmod>
      <changefreq>daily</changefreq>
     </url><url>
