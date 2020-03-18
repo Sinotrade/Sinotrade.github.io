@@ -116,7 +116,7 @@
     <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
     <label class="md-overlay" data-md-component="overlay" for="__drawer"></label>
     
-      <a href="#login" tabindex="0" class="md-skip">
+      <a href="#first-you-need-login" tabindex="0" class="md-skip">
         Skip to content
       </a>
     
@@ -378,15 +378,15 @@
     <ul class="md-nav__list" data-md-scrollfix>
       
         <li class="md-nav__item">
-  <a href="#login" class="md-nav__link">
-    Login
+  <a href="#first-you-need-login" class="md-nav__link">
+    First, you need login.
   </a>
   
 </li>
       
         <li class="md-nav__item">
-  <a href="#get-shapshot" class="md-nav__link">
-    Get Shapshot
+  <a href="#get-snapshot" class="md-nav__link">
+    Get Snapshot
   </a>
   
 </li>
@@ -666,15 +666,15 @@
     <ul class="md-nav__list" data-md-scrollfix>
       
         <li class="md-nav__item">
-  <a href="#login" class="md-nav__link">
-    Login
+  <a href="#first-you-need-login" class="md-nav__link">
+    First, you need login.
   </a>
   
 </li>
       
         <li class="md-nav__item">
-  <a href="#get-shapshot" class="md-nav__link">
-    Get Shapshot
+  <a href="#get-snapshot" class="md-nav__link">
+    Get Snapshot
   </a>
   
 </li>
@@ -705,31 +705,9 @@
                 
                   <h1>Snapshot</h1>
                 
-                <h3 id="login">Login<a class="headerlink" href="#login" title="Permanent link">&para;</a></h3>
-<div class="admonition info">
-<p class="admonition-title">In</p>
-<div class="codehilite"><pre><span></span><code><span class="kn">import</span> <span class="nn">shioaji</span> <span class="k">as</span> <span class="nn">sj</span>
-<span class="n">api</span> <span class="o">=</span> <span class="n">sj</span><span class="o">.</span><span class="n">Shioaji</span><span class="p">()</span>
-<span class="n">api</span><span class="o">.</span><span class="n">login</span><span class="p">(</span>
-    <span class="n">person_id</span><span class="o">=</span><span class="s1">&#39;YOUR_ID&#39;</span><span class="p">,</span> 
-    <span class="n">passwd</span><span class="o">=</span><span class="s1">&#39;YOUR_PASSWORD&#39;</span><span class="p">,</span> 
-    <span class="n">contracts_cb</span><span class="o">=</span><span class="k">lambda</span> <span class="n">security_type</span><span class="p">:</span> <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;{repr(security_type)} fetch done.&quot;</span><span class="p">)</span>
-<span class="p">)</span>
-</code></pre></div>
-
-</div>
-<div class="admonition done">
-<p class="admonition-title">Out</p>
-<div class="codehilite"><pre><span></span><code><span class="p">[</span><span class="n">FutureAccount</span><span class="p">(</span><span class="n">person_id</span><span class="o">=</span><span class="s1">&#39;&#39;</span><span class="p">,</span> <span class="n">broker_id</span><span class="o">=</span><span class="s1">&#39;&#39;</span><span class="p">,</span> <span class="n">account_id</span><span class="o">=</span><span class="s1">&#39;&#39;</span><span class="p">,</span> <span class="n">signed</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">username</span><span class="o">=</span><span class="s1">&#39;&#39;</span><span class="p">),</span>
-    <span class="n">StockAccount</span><span class="p">(</span><span class="n">person_id</span><span class="o">=</span><span class="s1">&#39;&#39;</span><span class="p">,</span> <span class="n">broker_id</span><span class="o">=</span><span class="s1">&#39;&#39;</span><span class="p">,</span> <span class="n">account_id</span><span class="o">=</span><span class="s1">&#39;&#39;</span><span class="p">,</span> <span class="n">signed</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">username</span><span class="o">=</span><span class="s1">&#39;&#39;</span><span class="p">)]</span>
-<span class="o">&lt;</span><span class="n">SecurityType</span><span class="o">.</span><span class="n">Index</span><span class="p">:</span> <span class="s1">&#39;IND&#39;</span><span class="o">&gt;</span> <span class="n">fetch</span> <span class="n">done</span><span class="o">.</span>
-<span class="o">&lt;</span><span class="n">SecurityType</span><span class="o">.</span><span class="n">Future</span><span class="p">:</span> <span class="s1">&#39;FUT&#39;</span><span class="o">&gt;</span> <span class="n">fetch</span> <span class="n">done</span><span class="o">.</span>
-<span class="o">&lt;</span><span class="n">SecurityType</span><span class="o">.</span><span class="n">Option</span><span class="p">:</span> <span class="s1">&#39;OPT&#39;</span><span class="o">&gt;</span> <span class="n">fetch</span> <span class="n">done</span><span class="o">.</span>
-<span class="o">&lt;</span><span class="n">SecurityType</span><span class="o">.</span><span class="n">Stock</span><span class="p">:</span> <span class="s1">&#39;STK&#39;</span><span class="o">&gt;</span> <span class="n">fetch</span> <span class="n">done</span><span class="o">.</span>
-</code></pre></div>
-
-</div>
-<h3 id="get-shapshot">Get Shapshot<a class="headerlink" href="#get-shapshot" title="Permanent link">&para;</a></h3>
+                <p>Snapshot is a present stock, future, option info. It contain open, high, low, close, change price, average price, volume, total volume, buy price, buy volume, sell price, sell volume and yestoday volume.</p>
+<h3 id="first-you-need-login"><a href="https://sinotrade.github.io/tutor/contract/#login">First, you need login.</a><a class="headerlink" href="#first-you-need-login" title="Permanent link">&para;</a></h3>
+<h3 id="get-snapshot">Get Snapshot<a class="headerlink" href="#get-snapshot" title="Permanent link">&para;</a></h3>
 <div class="admonition info">
 <p class="admonition-title">In</p>
 <div class="codehilite"><pre><span></span><code><span class="n">contract</span> <span class="o">=</span> <span class="p">[</span><span class="n">api</span><span class="o">.</span><span class="n">Contracts</span><span class="o">.</span><span class="n">Stocks</span><span class="p">[</span><span class="s1">&#39;2330&#39;</span><span class="p">],</span><span class="n">api</span><span class="o">.</span><span class="n">Contracts</span><span class="o">.</span><span class="n">Stocks</span><span class="p">[</span><span class="s1">&#39;2317&#39;</span><span class="p">]]</span>
