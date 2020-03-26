@@ -9,7 +9,7 @@
 <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
 
 
-<title>order_callback slides</title>
+<title>order_deal slides</title>
 
 <script src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.1.10/require.min.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script>
@@ -13201,7 +13201,7 @@ a.anchor-link {
 <section><section>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[2]:</div>
+<div class="prompt input_prompt">In&nbsp;[3]:</div>
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="kn">import</span> <span class="nn">shioaji</span> <span class="k">as</span> <span class="nn">sj</span>
@@ -13213,73 +13213,13 @@ a.anchor-link {
     <span class="n">ca_passwd</span><span class="o">=</span><span class="s2">&quot;YOUR_CA_PASSWORD&quot;</span><span class="p">,</span>
     <span class="n">person_id</span><span class="o">=</span><span class="s2">&quot;Person of this Ca&quot;</span><span class="p">,</span>
 <span class="p">)</span>
-</pre></div>
 
-    </div>
-</div>
-</div>
-
-<div class="output_wrapper">
-<div class="output">
-
-
-<div class="output_area">
-
-    <div class="prompt"></div>
-
-
-<div class="output_subarea output_stream output_stdout output_text">
-<pre>Response Code: 0 | Event Code: 0 | Info: host &#39;203.66.91.161:80&#39;, IP 203.66.91.161:80 (host 1 of 1) (host connection attempt 1 of 1) (total connection attempt 1 of 1) | Event: Session up
-Ca Initial Done.
-</pre>
-</div>
-</div>
-
-<div class="output_area">
-
-    <div class="prompt output_prompt">Out[2]:</div>
-
-
-
-
-<div class="output_text output_subarea output_execute_result">
-<pre>0</pre>
-</div>
-
-</div>
-
-</div>
-</div>
-
-</div>
-<div class="cell border-box-sizing code_cell rendered">
-<div class="input">
-<div class="prompt input_prompt">In&nbsp;[3]:</div>
-<div class="inner_cell">
-    <div class="input_area">
-<div class=" highlight hl-ipython3"><pre><span></span><span class="k">def</span> <span class="nf">order_callback_func</span><span class="p">(</span><span class="n">order_state</span><span class="p">,</span> <span class="n">state</span><span class="p">):</span>
-    <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;order_state: </span><span class="si">{</span><span class="n">order_state</span><span class="si">}</span><span class="s1">&#39;</span><span class="p">)</span>
-    <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;state: </span><span class="si">{</span><span class="n">state</span><span class="si">}</span><span class="s1">&#39;</span><span class="p">)</span>
-
-<span class="n">api</span><span class="o">.</span><span class="n">set_order_callback</span><span class="p">(</span><span class="n">order_callback_func</span><span class="p">)</span>
-</pre></div>
-
-    </div>
-</div>
-</div>
-
-</div>
-<div class="cell border-box-sizing code_cell rendered">
-<div class="input">
-<div class="prompt input_prompt">In&nbsp;[16]:</div>
-<div class="inner_cell">
-    <div class="input_area">
-<div class=" highlight hl-ipython3"><pre><span></span><span class="n">contract</span> <span class="o">=</span> <span class="n">api</span><span class="o">.</span><span class="n">Contracts</span><span class="o">.</span><span class="n">Stocks</span><span class="o">.</span><span class="n">TSE</span><span class="o">.</span><span class="n">TSE2890</span>
-<span class="n">order</span> <span class="o">=</span> <span class="n">api</span><span class="o">.</span><span class="n">Order</span><span class="p">(</span><span class="n">price</span><span class="o">=</span><span class="mf">11.15</span><span class="p">,</span>
+<span class="n">contract</span> <span class="o">=</span> <span class="n">api</span><span class="o">.</span><span class="n">Contracts</span><span class="o">.</span><span class="n">Stocks</span><span class="o">.</span><span class="n">TSE</span><span class="o">.</span><span class="n">TSE2890</span>
+<span class="n">order</span> <span class="o">=</span> <span class="n">api</span><span class="o">.</span><span class="n">Order</span><span class="p">(</span><span class="n">price</span><span class="o">=</span><span class="mf">11.5</span><span class="p">,</span>
                   <span class="n">quantity</span><span class="o">=</span><span class="mi">2</span><span class="p">,</span>
                   <span class="n">action</span><span class="o">=</span><span class="s2">&quot;Buy&quot;</span><span class="p">,</span>
                   <span class="n">price_type</span><span class="o">=</span><span class="s2">&quot;LMT&quot;</span><span class="p">,</span>
-                  <span class="n">order_type</span><span class="o">=</span><span class="s2">&quot;Common&quot;</span><span class="p">,</span>
+                  <span class="n">order_type</span><span class="o">=</span><span class="s2">&quot;ROD&quot;</span><span class="p">,</span>
                   <span class="n">account</span><span class="o">=</span><span class="n">api</span><span class="o">.</span><span class="n">stock_account</span>
                   <span class="p">)</span>
 <span class="n">trade</span> <span class="o">=</span> <span class="n">api</span><span class="o">.</span><span class="n">place_order</span><span class="p">(</span><span class="n">contract</span><span class="p">,</span> <span class="n">order</span><span class="p">)</span>
@@ -13299,8 +13239,9 @@ Ca Initial Done.
 
 
 <div class="output_subarea output_stream output_stdout output_text">
-<pre>order_state: ORDER
-state: {&#39;operation&#39;: {&#39;op_type&#39;: &#39;NEW&#39;, &#39;op_code&#39;: &#39;00&#39;, &#39;op_msg&#39;: &#39;&#39;}, &#39;order&#39;: {&#39;id&#39;: &#39;71d711cf&#39;, &#39;seqno&#39;: &#39;375264&#39;, &#39;ordno&#39;: &#39;I2700&#39;, &#39;action&#39;: &#39;Buy&#39;, &#39;price&#39;: 11.15, &#39;quantity&#39;: 2, &#39;order_cond&#39;: &#39;Cash&#39;}, &#39;status&#39;: {&#39;id&#39;: &#39;71d711cf&#39;, &#39;exchange_ts&#39;: 1583983179, &#39;modified_price&#39;: 0, &#39;cancel_quantity&#39;: 0}, &#39;contract&#39;: {&#39;security_type&#39;: &#39;STK&#39;, &#39;exchange&#39;: &#39;TSE&#39;, &#39;code&#39;: &#39;2890&#39;, &#39;symbol&#39;: &#39;&#39;, &#39;name&#39;: &#39;&#39;, &#39;currency&#39;: &#39;TWD&#39;}}
+<pre>Response Code: 0 | Event Code: 0 | Info: host &#39;203.66.91.161:80&#39;, IP 203.66.91.161:80 (host 1 of 1) (host connection attempt 1 of 1) (total connection attempt 1 of 1) | Event: Session up
+Ca Initial Done.
+OrderState.Order {&#39;operation&#39;: {&#39;op_type&#39;: &#39;NEW&#39;, &#39;op_code&#39;: &#39;00&#39;, &#39;op_msg&#39;: &#39;&#39;}, &#39;order&#39;: {&#39;id&#39;: &#39;28ed0a7a&#39;, &#39;seqno&#39;: &#39;270229&#39;, &#39;ordno&#39;: &#39;I2006&#39;, &#39;action&#39;: &#39;Buy&#39;, &#39;price&#39;: 11.5, &#39;quantity&#39;: 2, &#39;order_cond&#39;: &#39;Cash&#39;}, &#39;status&#39;: {&#39;id&#39;: &#39;28ed0a7a&#39;, &#39;exchange_ts&#39;: 1583893802, &#39;modified_price&#39;: 0, &#39;cancel_quantity&#39;: 0}, &#39;contract&#39;: {&#39;security_type&#39;: &#39;STK&#39;, &#39;exchange&#39;: &#39;TSE&#39;, &#39;code&#39;: &#39;2890&#39;, &#39;symbol&#39;: &#39;&#39;, &#39;name&#39;: &#39;&#39;, &#39;currency&#39;: &#39;TWD&#39;}}
 </pre>
 </div>
 </div>
@@ -13311,7 +13252,28 @@ state: {&#39;operation&#39;: {&#39;op_type&#39;: &#39;NEW&#39;, &#39;op_code&#39
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[20]:</div>
+<div class="prompt input_prompt">In&nbsp;[&nbsp;]:</div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">contract</span> <span class="o">=</span> <span class="n">api</span><span class="o">.</span><span class="n">Contracts</span><span class="o">.</span><span class="n">Stocks</span><span class="o">.</span><span class="n">TSE</span><span class="o">.</span><span class="n">TSE2890</span>
+<span class="n">order</span> <span class="o">=</span> <span class="n">api</span><span class="o">.</span><span class="n">Order</span><span class="p">(</span><span class="n">price</span><span class="o">=</span><span class="mf">11.5</span><span class="p">,</span>
+                  <span class="n">quantity</span><span class="o">=</span><span class="mi">2</span><span class="p">,</span>
+                  <span class="n">action</span><span class="o">=</span><span class="s2">&quot;Buy&quot;</span><span class="p">,</span>
+                  <span class="n">price_type</span><span class="o">=</span><span class="s2">&quot;LMT&quot;</span><span class="p">,</span>
+                  <span class="n">order_type</span><span class="o">=</span><span class="s2">&quot;ROD&quot;</span><span class="p">,</span>
+                  <span class="n">account</span><span class="o">=</span><span class="n">api</span><span class="o">.</span><span class="n">stock_account</span>
+                  <span class="p">)</span>
+<span class="n">trade</span> <span class="o">=</span> <span class="n">api</span><span class="o">.</span><span class="n">place_order</span><span class="p">(</span><span class="n">contract</span><span class="p">,</span> <span class="n">order</span><span class="p">)</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In&nbsp;[6]:</div>
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="n">api</span><span class="o">.</span><span class="n">update_status</span><span class="p">(</span><span class="n">api</span><span class="o">.</span><span class="n">stock_account</span><span class="p">)</span>
@@ -13332,8 +13294,7 @@ state: {&#39;operation&#39;: {&#39;op_type&#39;: &#39;NEW&#39;, &#39;op_code&#39
 
 
 <div class="output_subarea output_stream output_stdout output_text">
-<pre>order_state: ORDER
-state: {&#39;operation&#39;: {&#39;op_type&#39;: &#39;CANCEL&#39;, &#39;op_code&#39;: &#39;00&#39;, &#39;op_msg&#39;: &#39;&#39;}, &#39;order&#39;: {&#39;id&#39;: &#39;71d711cf&#39;, &#39;seqno&#39;: &#39;375264&#39;, &#39;ordno&#39;: &#39;I2700&#39;, &#39;action&#39;: &#39;Buy&#39;, &#39;price&#39;: 11.15, &#39;quantity&#39;: 2, &#39;order_cond&#39;: &#39;Cash&#39;}, &#39;status&#39;: {&#39;id&#39;: &#39;71d711cf&#39;, &#39;exchange_ts&#39;: 1583983201, &#39;modified_price&#39;: 0, &#39;cancel_quantity&#39;: 1}, &#39;contract&#39;: {&#39;security_type&#39;: &#39;STK&#39;, &#39;exchange&#39;: &#39;TSE&#39;, &#39;code&#39;: &#39;2890&#39;, &#39;symbol&#39;: &#39;&#39;, &#39;name&#39;: &#39;&#39;, &#39;currency&#39;: &#39;TWD&#39;}}
+<pre>OrderState.Order {&#39;operation&#39;: {&#39;op_type&#39;: &#39;CANCEL&#39;, &#39;op_code&#39;: &#39;00&#39;, &#39;op_msg&#39;: &#39;&#39;}, &#39;order&#39;: {&#39;id&#39;: &#39;28ed0a7a&#39;, &#39;seqno&#39;: &#39;270229&#39;, &#39;ordno&#39;: &#39;I2006&#39;, &#39;action&#39;: &#39;Buy&#39;, &#39;price&#39;: 11.5, &#39;quantity&#39;: 2, &#39;order_cond&#39;: &#39;Cash&#39;}, &#39;status&#39;: {&#39;id&#39;: &#39;28ed0a7a&#39;, &#39;exchange_ts&#39;: 1583893809, &#39;modified_price&#39;: 0, &#39;cancel_quantity&#39;: 1}, &#39;contract&#39;: {&#39;security_type&#39;: &#39;STK&#39;, &#39;exchange&#39;: &#39;TSE&#39;, &#39;code&#39;: &#39;2890&#39;, &#39;symbol&#39;: &#39;&#39;, &#39;name&#39;: &#39;&#39;, &#39;currency&#39;: &#39;TWD&#39;}}
 </pre>
 </div>
 </div>
@@ -13344,7 +13305,7 @@ state: {&#39;operation&#39;: {&#39;op_type&#39;: &#39;CANCEL&#39;, &#39;op_code&
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[21]:</div>
+<div class="prompt input_prompt">In&nbsp;[7]:</div>
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="n">trade</span>
@@ -13360,13 +13321,13 @@ state: {&#39;operation&#39;: {&#39;op_type&#39;: &#39;CANCEL&#39;, &#39;op_code&
 
 <div class="output_area">
 
-    <div class="prompt output_prompt">Out[21]:</div>
+    <div class="prompt output_prompt">Out[7]:</div>
 
 
 
 
 <div class="output_text output_subarea output_execute_result">
-<pre>Trade(contract=Stock(exchange=&lt;Exchange.TSE: &#39;TSE&#39;&gt;, code=&#39;2890&#39;, symbol=&#39;TSE2890&#39;, name=&#39;永豐金&#39;, category=&#39;17&#39;, limit_up=13.55, limit_down=11.15, update_date=&#39;2020/03/12&#39;, day_trade=&lt;DayTrade.OnlyBuy: &#39;OnlyBuy&#39;&gt;), order=Order(action=&lt;Action.Buy: &#39;Buy&#39;&gt;, price=11.15, quantity=2, id=&#39;71d711cf&#39;, seqno=&#39;375264&#39;, ordno=&#39;I2700&#39;, account=Account(account_type=&lt;AccountType.Stock: &#39;S&#39;&gt;, person_id=SecretStr(&#39;**********&#39;), broker_id=SecretStr(&#39;**********&#39;), account_id=SecretStr(&#39;**********&#39;), signed=True, username=SecretStr(&#39;&#39;)), price_type=&lt;StockPriceType.LMT: &#39;LMT&#39;&gt;, order_type=&lt;FuturesOrderType.ROD: &#39;ROD&#39;&gt;), status=OrderStatus(id=&#39;71d711cf&#39;, status=&lt;Status.Submitted: &#39;Submitted&#39;&gt;, status_code=&#39;00&#39;, order_datetime=datetime.datetime(2020, 3, 12, 11, 19, 39), modified_price=11.15, cancel_quantity=1, deals=[]))</pre>
+<pre>Trade(contract=Stock(exchange=&lt;Exchange.TSE: &#39;TSE&#39;&gt;, code=&#39;2890&#39;, symbol=&#39;TSE2890&#39;, name=&#39;永豐金&#39;, category=&#39;17&#39;, limit_up=13.75, limit_down=11.25, update_date=&#39;2020/03/11&#39;, day_trade=&lt;DayTrade.OnlyBuy: &#39;OnlyBuy&#39;&gt;), order=Order(action=&lt;Action.Buy: &#39;Buy&#39;&gt;, price=11.5, quantity=2, id=&#39;28ed0a7a&#39;, seqno=&#39;270229&#39;, ordno=&#39;I2006&#39;, account=Account(account_type=&lt;AccountType.Stock: &#39;S&#39;&gt;, person_id=SecretStr(&#39;**********&#39;), broker_id=SecretStr(&#39;**********&#39;), account_id=SecretStr(&#39;**********&#39;), signed=True, username=SecretStr(&#39;&#39;)), price_type=&lt;StockPriceType.LMT: &#39;LMT&#39;&gt;, order_type=&lt;FuturesOrderType.ROD: &#39;ROD&#39;&gt;), status=OrderStatus(id=&#39;28ed0a7a&#39;, status=&lt;Status.Submitted: &#39;Submitted&#39;&gt;, status_code=&#39;00&#39;, order_datetime=datetime.datetime(2020, 3, 11, 10, 30, 2), modified_price=11.5, cancel_quantity=1, deals=[]))</pre>
 </div>
 
 </div>
@@ -13377,11 +13338,11 @@ state: {&#39;operation&#39;: {&#39;op_type&#39;: &#39;CANCEL&#39;, &#39;op_code&
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[18]:</div>
+<div class="prompt input_prompt">In&nbsp;[4]:</div>
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="n">api</span><span class="o">.</span><span class="n">update_status</span><span class="p">(</span><span class="n">api</span><span class="o">.</span><span class="n">stock_account</span><span class="p">)</span>
-<span class="n">trade</span> <span class="o">=</span> <span class="n">api</span><span class="o">.</span><span class="n">update_order</span><span class="p">(</span><span class="n">trade</span><span class="o">=</span><span class="n">trade</span><span class="p">,</span> <span class="n">price</span><span class="o">=</span><span class="mf">11.15</span><span class="p">,</span> <span class="n">qty</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
+<span class="n">trade</span> <span class="o">=</span> <span class="n">api</span><span class="o">.</span><span class="n">update_order</span><span class="p">(</span><span class="n">trade</span><span class="p">,</span> <span class="n">price</span><span class="o">=</span><span class="mf">11.5</span><span class="p">,</span> <span class="n">qty</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
 </pre></div>
 
     </div>
@@ -13398,8 +13359,7 @@ state: {&#39;operation&#39;: {&#39;op_type&#39;: &#39;CANCEL&#39;, &#39;op_code&
 
 
 <div class="output_subarea output_stream output_stdout output_text">
-<pre>order_state: ORDER
-state: {&#39;operation&#39;: {&#39;op_type&#39;: &#39;UPDATE&#39;, &#39;op_code&#39;: &#39;00&#39;, &#39;op_msg&#39;: &#39;&#39;}, &#39;order&#39;: {&#39;id&#39;: &#39;71d711cf&#39;, &#39;seqno&#39;: &#39;375264&#39;, &#39;ordno&#39;: &#39;I2700&#39;, &#39;action&#39;: &#39;Buy&#39;, &#39;price&#39;: 11.15, &#39;quantity&#39;: 2, &#39;order_cond&#39;: &#39;Cash&#39;}, &#39;status&#39;: {&#39;id&#39;: &#39;71d711cf&#39;, &#39;exchange_ts&#39;: 1583983197, &#39;modified_price&#39;: 0, &#39;cancel_quantity&#39;: 1}, &#39;contract&#39;: {&#39;security_type&#39;: &#39;STK&#39;, &#39;exchange&#39;: &#39;TSE&#39;, &#39;code&#39;: &#39;2890&#39;, &#39;symbol&#39;: &#39;&#39;, &#39;name&#39;: &#39;&#39;, &#39;currency&#39;: &#39;TWD&#39;}}
+<pre>OrderState.Order {&#39;operation&#39;: {&#39;op_type&#39;: &#39;UPDATE&#39;, &#39;op_code&#39;: &#39;00&#39;, &#39;op_msg&#39;: &#39;&#39;}, &#39;order&#39;: {&#39;id&#39;: &#39;28ed0a7a&#39;, &#39;seqno&#39;: &#39;270229&#39;, &#39;ordno&#39;: &#39;I2006&#39;, &#39;action&#39;: &#39;Buy&#39;, &#39;price&#39;: 11.5, &#39;quantity&#39;: 2, &#39;order_cond&#39;: &#39;Cash&#39;}, &#39;status&#39;: {&#39;id&#39;: &#39;28ed0a7a&#39;, &#39;exchange_ts&#39;: 1583893806, &#39;modified_price&#39;: 0, &#39;cancel_quantity&#39;: 1}, &#39;contract&#39;: {&#39;security_type&#39;: &#39;STK&#39;, &#39;exchange&#39;: &#39;TSE&#39;, &#39;code&#39;: &#39;2890&#39;, &#39;symbol&#39;: &#39;&#39;, &#39;name&#39;: &#39;&#39;, &#39;currency&#39;: &#39;TWD&#39;}}
 </pre>
 </div>
 </div>
@@ -13410,7 +13370,7 @@ state: {&#39;operation&#39;: {&#39;op_type&#39;: &#39;UPDATE&#39;, &#39;op_code&
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[19]:</div>
+<div class="prompt input_prompt">In&nbsp;[5]:</div>
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="n">trade</span>
@@ -13426,30 +13386,17 @@ state: {&#39;operation&#39;: {&#39;op_type&#39;: &#39;UPDATE&#39;, &#39;op_code&
 
 <div class="output_area">
 
-    <div class="prompt output_prompt">Out[19]:</div>
+    <div class="prompt output_prompt">Out[5]:</div>
 
 
 
 
 <div class="output_text output_subarea output_execute_result">
-<pre>Trade(contract=Stock(exchange=&lt;Exchange.TSE: &#39;TSE&#39;&gt;, code=&#39;2890&#39;, symbol=&#39;TSE2890&#39;, name=&#39;永豐金&#39;, category=&#39;17&#39;, limit_up=13.55, limit_down=11.15, update_date=&#39;2020/03/12&#39;, day_trade=&lt;DayTrade.OnlyBuy: &#39;OnlyBuy&#39;&gt;), order=Order(action=&lt;Action.Buy: &#39;Buy&#39;&gt;, price=11.15, quantity=2, id=&#39;71d711cf&#39;, seqno=&#39;375264&#39;, ordno=&#39;I2700&#39;, account=Account(account_type=&lt;AccountType.Stock: &#39;S&#39;&gt;, person_id=SecretStr(&#39;**********&#39;), broker_id=SecretStr(&#39;**********&#39;), account_id=SecretStr(&#39;**********&#39;), signed=True, username=SecretStr(&#39;&#39;)), price_type=&lt;StockPriceType.LMT: &#39;LMT&#39;&gt;, order_type=&lt;FuturesOrderType.ROD: &#39;ROD&#39;&gt;), status=OrderStatus(id=&#39;71d711cf&#39;, status=&lt;Status.Submitted: &#39;Submitted&#39;&gt;, status_code=&#39;00&#39;, order_datetime=datetime.datetime(2020, 3, 12, 11, 19, 39), modified_price=11.15, deals=[]))</pre>
+<pre>Trade(contract=Stock(exchange=&lt;Exchange.TSE: &#39;TSE&#39;&gt;, code=&#39;2890&#39;, symbol=&#39;TSE2890&#39;, name=&#39;永豐金&#39;, category=&#39;17&#39;, limit_up=13.75, limit_down=11.25, update_date=&#39;2020/03/11&#39;, day_trade=&lt;DayTrade.OnlyBuy: &#39;OnlyBuy&#39;&gt;), order=Order(action=&lt;Action.Buy: &#39;Buy&#39;&gt;, price=11.5, quantity=2, id=&#39;28ed0a7a&#39;, seqno=&#39;270229&#39;, ordno=&#39;I2006&#39;, account=Account(account_type=&lt;AccountType.Stock: &#39;S&#39;&gt;, person_id=SecretStr(&#39;**********&#39;), broker_id=SecretStr(&#39;**********&#39;), account_id=SecretStr(&#39;**********&#39;), signed=True, username=SecretStr(&#39;&#39;)), price_type=&lt;StockPriceType.LMT: &#39;LMT&#39;&gt;, order_type=&lt;FuturesOrderType.ROD: &#39;ROD&#39;&gt;), status=OrderStatus(id=&#39;28ed0a7a&#39;, status=&lt;Status.Submitted: &#39;Submitted&#39;&gt;, status_code=&#39;00&#39;, order_datetime=datetime.datetime(2020, 3, 11, 10, 30, 2), modified_price=11.5, deals=[]))</pre>
 </div>
 
 </div>
 
-</div>
-</div>
-
-</div>
-<div class="cell border-box-sizing code_cell rendered">
-<div class="input">
-<div class="prompt input_prompt">In&nbsp;[&nbsp;]:</div>
-<div class="inner_cell">
-    <div class="input_area">
-<div class=" highlight hl-ipython3"><pre><span></span>
-</pre></div>
-
-    </div>
 </div>
 </div>
 
