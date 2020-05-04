@@ -764,26 +764,25 @@
 <h4 id="place-order">Place Order<a class="headerlink" href="#place-order" title="Permanent link">&para;</a></h4>
 <div class="admonition info">
 <p class="admonition-title">In</p>
-<div class="codehilite"><pre><span></span><code><span class="kn">import</span> <span class="nn">shioaji</span> <span class="k">as</span> <span class="nn">sj</span>
+<div class="codehilite"><pre><span></span><code>import shioaji as sj
 
-<span class="n">api</span> <span class="o">=</span> <span class="n">sj</span><span class="o">.</span><span class="n">Shioaji</span><span class="p">()</span>
-<span class="n">accounts</span> <span class="o">=</span> <span class="n">api</span><span class="o">.</span><span class="n">login</span><span class="p">(</span><span class="s2">&quot;YOUR_PERSON_ID&quot;</span><span class="p">,</span> <span class="s2">&quot;YOUR_PASSWORD&quot;</span><span class="p">,</span> <span class="n">contracts_timeout</span><span class="o">=</span><span class="mi">10000</span><span class="p">)</span>
-<span class="n">api</span><span class="o">.</span><span class="n">activate_ca</span><span class="p">(</span>
-    <span class="n">ca_path</span><span class="o">=</span><span class="s2">&quot;/c/your/ca/path/Sinopac.pfx&quot;</span><span class="p">,</span>
-    <span class="n">ca_passwd</span><span class="o">=</span><span class="s2">&quot;YOUR_CA_PASSWORD&quot;</span><span class="p">,</span>
-    <span class="n">person_id</span><span class="o">=</span><span class="s2">&quot;Person of this Ca&quot;</span><span class="p">,</span>
-<span class="p">)</span>
-<span class="hll"><span class="n">api</span><span class="o">.</span><span class="n">tft</span> <span class="o">=</span> <span class="kc">True</span>
-</span>
-<span class="n">contract</span> <span class="o">=</span> <span class="n">api</span><span class="o">.</span><span class="n">Contracts</span><span class="o">.</span><span class="n">Stocks</span><span class="o">.</span><span class="n">TSE</span><span class="o">.</span><span class="n">TSE2890</span>
-<span class="n">order</span> <span class="o">=</span> <span class="n">api</span><span class="o">.</span><span class="n">Order</span><span class="p">(</span><span class="n">price</span><span class="o">=</span><span class="mi">12</span><span class="p">,</span>
-                  <span class="n">quantity</span><span class="o">=</span><span class="mi">10</span><span class="p">,</span>
-                  <span class="n">action</span><span class="o">=</span><span class="s2">&quot;Buy&quot;</span><span class="p">,</span>
-                  <span class="n">price_type</span><span class="o">=</span><span class="s2">&quot;LMT&quot;</span><span class="p">,</span>
-                  <span class="n">order_type</span><span class="o">=</span><span class="s2">&quot;ROD&quot;</span><span class="p">,</span>
-                  <span class="n">account</span><span class="o">=</span><span class="n">api</span><span class="o">.</span><span class="n">stock_account</span>
-                  <span class="p">)</span>
-<span class="n">trade</span> <span class="o">=</span> <span class="n">api</span><span class="o">.</span><span class="n">place_order</span><span class="p">(</span><span class="n">contract</span><span class="p">,</span> <span class="n">order</span><span class="p">)</span>
+api = sj.Shioaji()
+accounts = api.login(&quot;YOUR_PERSON_ID&quot;, &quot;YOUR_PASSWORD&quot;, contracts_timeout=10000)
+api.activate_ca(
+    ca_path=&quot;/c/your/ca/path/Sinopac.pfx&quot;,
+    ca_passwd=&quot;YOUR_CA_PASSWORD&quot;,
+    person_id=&quot;Person of this Ca&quot;,
+)
+
+contract = api.Contracts.Stocks.TSE.TSE2890
+order = api.Order(price=12,
+                  quantity=10,
+                  action=&quot;Buy&quot;,
+                  price_type=&quot;LMT&quot;,
+                  order_type=&quot;ROD&quot;,
+                  account=api.stock_account
+                  )
+trade = api.place_order(contract, order)
 </code></pre></div>
 
 </div>
