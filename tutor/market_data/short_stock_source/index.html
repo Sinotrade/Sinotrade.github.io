@@ -701,7 +701,7 @@
 </div>
 <div class="admonition done">
 <p class="admonition-title">Out</p>
-<div class="highlight"><pre><span></span><code><span class="p">[</span><span class="n">ShortStockSource</span><span class="p">(</span><span class="n">code</span><span class="o">=</span><span class="s1">&#39;2330&#39;</span><span class="p">,</span> <span class="n">short_stock_source</span><span class="o">=</span><span class="mi">12678</span><span class="p">),</span> <span class="n">ShortStockSource</span><span class="p">(</span><span class="n">code</span><span class="o">=</span><span class="s1">&#39;2317&#39;</span><span class="p">,</span> <span class="n">short_stock_source</span><span class="o">=</span><span class="mi">20093</span><span class="p">)]</span>
+<div class="highlight"><pre><span></span><code><span class="p">[</span><span class="n">ShortStockSource</span><span class="p">(</span><span class="n">code</span><span class="o">=</span><span class="s1">&#39;2330&#39;</span><span class="p">,</span> <span class="n">short_stock_source</span><span class="o">=</span><span class="mi">12678</span><span class="p">,</span> <span class="n">ts</span><span class="o">=</span><span class="mi">1589797829000000000</span><span class="p">),</span> <span class="n">ShortStockSource</span><span class="p">(</span><span class="n">code</span><span class="o">=</span><span class="s1">&#39;2317&#39;</span><span class="p">,</span> <span class="n">short_stock_source</span><span class="o">=</span><span class="mi">20093</span><span class="p">,</span> <span class="n">ts</span><span class="o">=</span><span class="mi">1589797829000000000</span><span class="p">)]</span>
 </code></pre></div>
 
 </div>
@@ -711,6 +711,8 @@
 <div class="highlight"><pre><span></span><code><span class="n">contracts</span> <span class="o">=</span> <span class="p">[</span><span class="n">api</span><span class="o">.</span><span class="n">Contracts</span><span class="o">.</span><span class="n">Stocks</span><span class="p">[</span><span class="s1">&#39;2330&#39;</span><span class="p">],</span><span class="n">api</span><span class="o">.</span><span class="n">Contracts</span><span class="o">.</span><span class="n">Stocks</span><span class="p">[</span><span class="s1">&#39;2317&#39;</span><span class="p">]]</span>
 <span class="n">short_stock_sources</span> <span class="o">=</span> <span class="n">api</span><span class="o">.</span><span class="n">short_stock_sources</span><span class="p">(</span><span class="n">contracts</span><span class="p">)</span>
 <span class="n">df</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">(</span><span class="n">short_stock_sources</span><span class="p">)</span>
+<span class="n">df</span><span class="o">.</span><span class="n">ts</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">to_datetime</span><span class="p">(</span><span class="n">df</span><span class="o">.</span><span class="n">ts</span><span class="p">)</span>
+<span class="n">df</span>
 </code></pre></div>
 
 </div>
@@ -722,6 +724,7 @@
 <th></th>
 <th>code</th>
 <th>short_stock_source</th>
+<th>ts</th>
 </tr>
 </thead>
 <tbody>
@@ -729,11 +732,13 @@
 <td>0</td>
 <td>2330</td>
 <td>12678</td>
+<td>2020-05-18 10:30:29</td>
 </tr>
 <tr>
 <td>1</td>
 <td>2317</td>
 <td>20093</td>
+<td>2020-05-18 10:30:29</td>
 </tr>
 </tbody>
 </table>
@@ -742,6 +747,7 @@
 <p class="admonition-title">Attributes:</p>
 <div class="highlight"><pre><span></span><code><span class="n">code</span> <span class="p">(</span><span class="nb">str</span><span class="p">):</span> <span class="n">Contract</span> <span class="nb">id</span><span class="o">.</span>
 <span class="n">short_stock_source</span> <span class="p">(</span><span class="nb">float</span><span class="p">):</span> <span class="n">short_stock_source</span>
+<span class="n">ts</span> <span class="p">(</span><span class="nb">int</span><span class="p">):</span> <span class="n">TimeStamp</span><span class="o">.</span>
 </code></pre></div>
 
 </div>
