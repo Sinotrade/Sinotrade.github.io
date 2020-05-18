@@ -11,7 +11,7 @@
         <meta name="description" content="Shioaji is provided by SinoPac the most pythonic API for trading the Taiwan and global financial market. You can use your favorite Python packages such as NumPy, pandas, PyTorch or TensorFlow to build your trading model with integrated the Shioaji API on cross-platform.">
       
       
-        <link rel="canonical" href="https://sinotrade.github.io/tutor/advanced/nonblock/">
+        <link rel="canonical" href="https://sinotrade.github.io/tutor/market_data/short_stock_sources/">
       
       
         <meta name="author" content="Yvictor, ">
@@ -21,7 +21,7 @@
     
     
       
-        <title>None Block & Block Mode - Shioaji</title>
+        <title>Short Stock Sources - Shioaji</title>
       
     
     
@@ -67,7 +67,7 @@
     <div data-md-component="skip">
       
         
-        <a href="#block-non-block-mode" class="md-skip">
+        <a href="#first-you-need-login" class="md-skip">
           Skip to content
         </a>
       
@@ -94,7 +94,7 @@
           </span>
           <span class="md-header-nav__topic md-ellipsis">
             
-              None Block & Block Mode
+              Short Stock Sources
             
           </span>
         </div>
@@ -254,10 +254,12 @@
           
           
 
+  
 
-  <li class="md-nav__item md-nav__item--nested">
+
+  <li class="md-nav__item md-nav__item--active md-nav__item--nested">
     
-      <input class="md-nav__toggle md-toggle" data-md-toggle="nav-3-2" type="checkbox" id="nav-3-2">
+      <input class="md-nav__toggle md-toggle" data-md-toggle="nav-3-2" type="checkbox" id="nav-3-2" checked>
     
     <label class="md-nav__link" for="nav-3-2">
       Market Data
@@ -281,7 +283,7 @@
 
 
   <li class="md-nav__item">
-    <a href="../../market_data/streaming/" title="Streaming Market Data" class="md-nav__link">
+    <a href="../streaming/" title="Streaming Market Data" class="md-nav__link">
       Streaming Market Data
     </a>
   </li>
@@ -293,7 +295,7 @@
 
 
   <li class="md-nav__item">
-    <a href="../../market_data/historical/" title="Historical Market Data" class="md-nav__link">
+    <a href="../historical/" title="Historical Market Data" class="md-nav__link">
       Historical Market Data
     </a>
   </li>
@@ -305,7 +307,7 @@
 
 
   <li class="md-nav__item">
-    <a href="../../market_data/snapshots/" title="Snapshots" class="md-nav__link">
+    <a href="../snapshots/" title="Snapshots" class="md-nav__link">
       Snapshots
     </a>
   </li>
@@ -315,11 +317,63 @@
           
           
 
+  
 
-  <li class="md-nav__item">
-    <a href="../../market_data/short_stock_sources/" title="Short Stock Sources" class="md-nav__link">
+
+  <li class="md-nav__item md-nav__item--active">
+    
+    <input class="md-nav__toggle md-toggle" data-md-toggle="toc" type="checkbox" id="__toc">
+    
+    
+      <label class="md-nav__link md-nav__link--active" for="__toc">
+        Short Stock Sources
+        <span class="md-nav__icon md-icon">
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 9h14V7H3v2m0 4h14v-2H3v2m0 4h14v-2H3v2m16 0h2v-2h-2v2m0-10v2h2V7h-2m0 6h2v-2h-2v2z"/></svg>
+        </span>
+      </label>
+    
+    <a href="./" title="Short Stock Sources" class="md-nav__link md-nav__link--active">
       Short Stock Sources
     </a>
+    
+      
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11h12z"/></svg>
+      </span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#first-you-need-login" class="md-nav__link">
+    First, you need login.
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#get-short-stock-sources" class="md-nav__link">
+    Get Short Stock Sources
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#short-stock-sources-to-dataframe" class="md-nav__link">
+    Short Stock Sources to DataFrame
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+    
   </li>
 
         
@@ -452,12 +506,10 @@
           
           
 
-  
 
-
-  <li class="md-nav__item md-nav__item--active md-nav__item--nested">
+  <li class="md-nav__item md-nav__item--nested">
     
-      <input class="md-nav__toggle md-toggle" data-md-toggle="nav-3-6" type="checkbox" id="nav-3-6" checked>
+      <input class="md-nav__toggle md-toggle" data-md-toggle="nav-3-6" type="checkbox" id="nav-3-6">
     
     <label class="md-nav__link" for="nav-3-6">
       Advanced Guide
@@ -479,62 +531,11 @@
           
           
 
-  
 
-
-  <li class="md-nav__item md-nav__item--active">
-    
-    <input class="md-nav__toggle md-toggle" data-md-toggle="toc" type="checkbox" id="__toc">
-    
-    
-      <label class="md-nav__link md-nav__link--active" for="__toc">
-        None Block & Block Mode
-        <span class="md-nav__icon md-icon">
-          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 9h14V7H3v2m0 4h14v-2H3v2m0 4h14v-2H3v2m16 0h2v-2h-2v2m0-10v2h2V7h-2m0 6h2v-2h-2v2z"/></svg>
-        </span>
-      </label>
-    
-    <a href="./" title="None Block & Block Mode" class="md-nav__link md-nav__link--active">
+  <li class="md-nav__item">
+    <a href="../../advanced/nonblock/" title="None Block & Block Mode" class="md-nav__link">
       None Block & Block Mode
     </a>
-    
-      
-<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
-  
-  
-  
-    <label class="md-nav__title" for="__toc">
-      <span class="md-nav__icon md-icon">
-        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11h12z"/></svg>
-      </span>
-      Table of contents
-    </label>
-    <ul class="md-nav__list" data-md-scrollfix>
-      
-        <li class="md-nav__item">
-  <a href="#block-non-block-mode" class="md-nav__link">
-    Block &amp; Non Block Mode
-  </a>
-  
-    <nav class="md-nav" aria-label="Block &amp; Non Block Mode">
-      <ul class="md-nav__list">
-        
-          <li class="md-nav__item">
-  <a href="#support-function" class="md-nav__link">
-    Support Function
-  </a>
-  
-</li>
-        
-      </ul>
-    </nav>
-  
-</li>
-      
-    </ul>
-  
-</nav>
-    
   </li>
 
         
@@ -544,7 +545,7 @@
 
 
   <li class="md-nav__item">
-    <a href="../touchorder/" title="Touch Price Order" class="md-nav__link">
+    <a href="../../advanced/touchorder/" title="Touch Price Order" class="md-nav__link">
       Touch Price Order
     </a>
   </li>
@@ -650,22 +651,23 @@
     <ul class="md-nav__list" data-md-scrollfix>
       
         <li class="md-nav__item">
-  <a href="#block-non-block-mode" class="md-nav__link">
-    Block &amp; Non Block Mode
-  </a>
-  
-    <nav class="md-nav" aria-label="Block &amp; Non Block Mode">
-      <ul class="md-nav__list">
-        
-          <li class="md-nav__item">
-  <a href="#support-function" class="md-nav__link">
-    Support Function
+  <a href="#first-you-need-login" class="md-nav__link">
+    First, you need login.
   </a>
   
 </li>
-        
-      </ul>
-    </nav>
+      
+        <li class="md-nav__item">
+  <a href="#get-short-stock-sources" class="md-nav__link">
+    Get Short Stock Sources
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#short-stock-sources-to-dataframe" class="md-nav__link">
+    Short Stock Sources to DataFrame
+  </a>
   
 </li>
       
@@ -685,58 +687,64 @@
                   
                 
                 
-                  <h1>None Block & Block Mode</h1>
+                  <h1>Short Stock Sources</h1>
                 
-                <h2 id="block-non-block-mode">Block &amp; Non Block Mode<a class="headerlink" href="#block-non-block-mode" title="Permanent link">&para;</a></h2>
-<p>Shioaji provides return the responsed using Block and Non Block mode, putting the 
-paramter of timeout can change the mode. It will use the default or value you set. </p>
+                <h3 id="first-you-need-login"><a href="https://sinotrade.github.io/tutor/contract/#login">First, you need login.</a><a class="headerlink" href="#first-you-need-login" title="Permanent link">&para;</a></h3>
+<h3 id="get-short-stock-sources">Get Short Stock Sources<a class="headerlink" href="#get-short-stock-sources" title="Permanent link">&para;</a></h3>
 <div class="admonition info">
 <p class="admonition-title">In</p>
-<div class="highlight"><pre><span></span><code><span class="n">api</span><span class="o">.</span><span class="n">place_order</span><span class="err">?</span>
+<div class="highlight"><pre><span></span><code><span class="n">contract</span> <span class="o">=</span> <span class="p">[</span><span class="n">api</span><span class="o">.</span><span class="n">Contracts</span><span class="o">.</span><span class="n">Stocks</span><span class="p">[</span><span class="s1">&#39;2330&#39;</span><span class="p">],</span><span class="n">api</span><span class="o">.</span><span class="n">Contracts</span><span class="o">.</span><span class="n">Stocks</span><span class="p">[</span><span class="s1">&#39;2317&#39;</span><span class="p">]]</span>
+<span class="n">short_stock_sources</span> <span class="o">=</span> <span class="n">api</span><span class="o">.</span><span class="n">short_stock_sources</span><span class="p">(</span><span class="n">contract</span><span class="p">)</span>
+<span class="n">short_stock_sources</span>
 </code></pre></div>
 
 </div>
 <div class="admonition done">
 <p class="admonition-title">Out</p>
-<div class="highlight"><pre><span></span><code><span class="n">Signature</span><span class="p">:</span>
-    <span class="n">api</span><span class="o">.</span><span class="n">place_order</span><span class="p">(</span>
-        <span class="n">contract</span><span class="p">:</span> <span class="n">shioaji</span><span class="o">.</span><span class="n">contracts</span><span class="o">.</span><span class="n">Contract</span><span class="p">,</span>
-        <span class="n">order</span><span class="p">:</span> <span class="n">shioaji</span><span class="o">.</span><span class="n">order</span><span class="o">.</span><span class="n">Order</span><span class="p">,</span>
-        <span class="n">timeout</span><span class="p">:</span> <span class="nb">int</span> <span class="o">=</span> <span class="mi">5000</span><span class="p">,</span>
-        <span class="n">cb</span><span class="p">:</span> <span class="n">Callable</span><span class="p">[[</span><span class="n">shioaji</span><span class="o">.</span><span class="n">order</span><span class="o">.</span><span class="n">Trade</span><span class="p">],</span> <span class="n">NoneType</span><span class="p">]</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
-    <span class="p">)</span> <span class="o">-&gt;</span> <span class="n">shioaji</span><span class="o">.</span><span class="n">order</span><span class="o">.</span><span class="n">Trade</span>
-<span class="n">Docstring</span><span class="p">:</span> <span class="n">placing</span> <span class="n">order</span>
-<span class="n">Type</span><span class="p">:</span>      <span class="n">method</span>
+<div class="highlight"><pre><span></span><code><span class="p">[</span><span class="n">ShortStockSource</span><span class="p">(</span><span class="n">code</span><span class="o">=</span><span class="s1">&#39;2330&#39;</span><span class="p">,</span> <span class="n">short_stock_source</span><span class="o">=</span><span class="mi">12678</span><span class="p">),</span> <span class="n">ShortStockSource</span><span class="p">(</span><span class="n">code</span><span class="o">=</span><span class="s1">&#39;2317&#39;</span><span class="p">,</span> <span class="n">short_stock_source</span><span class="o">=</span><span class="mi">20093</span><span class="p">)]</span>
 </code></pre></div>
 
 </div>
+<h3 id="short-stock-sources-to-dataframe">Short Stock Sources to DataFrame<a class="headerlink" href="#short-stock-sources-to-dataframe" title="Permanent link">&para;</a></h3>
 <div class="admonition info">
 <p class="admonition-title">In</p>
-<div class="highlight"><pre><span></span><code><span class="n">api</span><span class="o">.</span><span class="n">place_order</span><span class="p">(</span><span class="n">contract</span><span class="p">,</span> <span class="n">order</span><span class="p">,</span> <span class="n">timeout</span><span class="o">=</span><span class="mi">5000</span><span class="p">)</span>
+<div class="highlight"><pre><span></span><code><span class="n">contract</span> <span class="o">=</span> <span class="p">[</span><span class="n">api</span><span class="o">.</span><span class="n">Contracts</span><span class="o">.</span><span class="n">Stocks</span><span class="p">[</span><span class="s1">&#39;2330&#39;</span><span class="p">],</span><span class="n">api</span><span class="o">.</span><span class="n">Contracts</span><span class="o">.</span><span class="n">Stocks</span><span class="p">[</span><span class="s1">&#39;2317&#39;</span><span class="p">]]</span>
+<span class="n">short_stock_sources</span> <span class="o">=</span> <span class="n">api</span><span class="o">.</span><span class="n">short_stock_sources</span><span class="p">(</span><span class="n">contract</span><span class="p">)</span>
+<span class="n">df</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">(</span><span class="n">short_stock_sources</span><span class="p">)</span>
 </code></pre></div>
 
 </div>
-<div class="admonition info">
-<p class="admonition-title">In</p>
-<div class="highlight"><pre><span></span><code><span class="n">api</span><span class="o">.</span><span class="n">place_order</span><span class="p">(</span><span class="n">contract</span><span class="p">,</span> <span class="n">order</span><span class="p">,</span> <span class="n">timeout</span><span class="o">=</span><span class="mi">0</span><span class="p">)</span>
+<div class="admonition done">
+<p class="admonition-title">Out</p>
+<table>
+<thead>
+<tr>
+<th></th>
+<th>code</th>
+<th>short_stock_source</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>0</td>
+<td>2330</td>
+<td>12678</td>
+</tr>
+<tr>
+<td>1</td>
+<td>2317</td>
+<td>20093</td>
+</tr>
+</tbody>
+</table>
+</div>
+<div class="admonition example">
+<p class="admonition-title">Attributes:</p>
+<div class="highlight"><pre><span></span><code><span class="n">code</span> <span class="p">(</span><span class="nb">str</span><span class="p">):</span> <span class="n">Contract</span> <span class="nb">id</span><span class="o">.</span>
+<span class="n">short_stock_source</span> <span class="p">(</span><span class="nb">float</span><span class="p">):</span> <span class="n">short_stock_source</span>
 </code></pre></div>
 
 </div>
-<h3 id="support-function">Support Function<a class="headerlink" href="#support-function" title="Permanent link">&para;</a></h3>
-<ul>
-<li>Fuction:<ul>
-<li>ticks</li>
-<li>place_order</li>
-<li>update_order</li>
-<li>cancel_order</li>
-<li>update_status </li>
-<li>list_positions      </li>
-</ul>
-</li>
-<li>Parameter: timeout</li>
-<li>Parameter type: int</li>
-<li>Default Mode: Block </li>
-</ul>
                 
               
               
@@ -755,7 +763,7 @@ paramter of timeout can change the mode. It will use the default or value you se
     <div class="md-footer-nav">
       <nav class="md-footer-nav__inner md-grid" aria-label="Footer">
         
-          <a href="../../order_deal_event/" title="Order & Deal Event" class="md-footer-nav__link md-footer-nav__link--prev" rel="prev">
+          <a href="../snapshots/" title="Snapshots" class="md-footer-nav__link md-footer-nav__link--prev" rel="prev">
             <div class="md-footer-nav__button md-icon">
               <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11h12z"/></svg>
             </div>
@@ -764,19 +772,19 @@ paramter of timeout can change the mode. It will use the default or value you se
                 <span class="md-footer-nav__direction">
                   Previous
                 </span>
-                Order & Deal Event
+                Snapshots
               </div>
             </div>
           </a>
         
         
-          <a href="../touchorder/" title="Touch Price Order" class="md-footer-nav__link md-footer-nav__link--next" rel="next">
+          <a href="../../order/Stock/" title="Stock" class="md-footer-nav__link md-footer-nav__link--next" rel="next">
             <div class="md-footer-nav__title">
               <div class="md-ellipsis">
                 <span class="md-footer-nav__direction">
                   Next
                 </span>
-                Touch Price Order
+                Stock
               </div>
             </div>
             <div class="md-footer-nav__button md-icon">

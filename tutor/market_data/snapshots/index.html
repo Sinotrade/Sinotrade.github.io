@@ -11,7 +11,7 @@
         <meta name="description" content="Shioaji is provided by SinoPac the most pythonic API for trading the Taiwan and global financial market. You can use your favorite Python packages such as NumPy, pandas, PyTorch or TensorFlow to build your trading model with integrated the Shioaji API on cross-platform.">
       
       
-        <link rel="canonical" href="https://sinotrade.github.io/tutor/market_data/historical/">
+        <link rel="canonical" href="https://sinotrade.github.io/tutor/market_data/snapshots/">
       
       
         <meta name="author" content="Yvictor, ">
@@ -21,7 +21,7 @@
     
     
       
-        <title>Historical Market Data - Shioaji</title>
+        <title>Snapshots - Shioaji</title>
       
     
     
@@ -67,7 +67,7 @@
     <div data-md-component="skip">
       
         
-        <a href="#ticks-data" class="md-skip">
+        <a href="#first-you-need-login" class="md-skip">
           Skip to content
         </a>
       
@@ -94,7 +94,7 @@
           </span>
           <span class="md-header-nav__topic md-ellipsis">
             
-              Historical Market Data
+              Snapshots
             
           </span>
         </div>
@@ -293,6 +293,18 @@
           
           
 
+
+  <li class="md-nav__item">
+    <a href="../historical/" title="Historical Market Data" class="md-nav__link">
+      Historical Market Data
+    </a>
+  </li>
+
+        
+          
+          
+          
+
   
 
 
@@ -302,14 +314,14 @@
     
     
       <label class="md-nav__link md-nav__link--active" for="__toc">
-        Historical Market Data
+        Snapshots
         <span class="md-nav__icon md-icon">
           <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 9h14V7H3v2m0 4h14v-2H3v2m0 4h14v-2H3v2m16 0h2v-2h-2v2m0-10v2h2V7h-2m0 6h2v-2h-2v2z"/></svg>
         </span>
       </label>
     
-    <a href="./" title="Historical Market Data" class="md-nav__link md-nav__link--active">
-      Historical Market Data
+    <a href="./" title="Snapshots" class="md-nav__link md-nav__link--active">
+      Snapshots
     </a>
     
       
@@ -326,56 +338,23 @@
     <ul class="md-nav__list" data-md-scrollfix>
       
         <li class="md-nav__item">
-  <a href="#ticks-data" class="md-nav__link">
-    Ticks Data
+  <a href="#first-you-need-login" class="md-nav__link">
+    First, you need login.
   </a>
-  
-    <nav class="md-nav" aria-label="Ticks Data">
-      <ul class="md-nav__list">
-        
-          <li class="md-nav__item">
-  <a href="#ticks-schema" class="md-nav__link">
-    Ticks Schema
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#ticks-function-api" class="md-nav__link">
-    ticks function api
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#ticks-to-dataframe" class="md-nav__link">
-    Ticks to DataFrame
-  </a>
-  
-</li>
-        
-      </ul>
-    </nav>
   
 </li>
       
         <li class="md-nav__item">
-  <a href="#kbar-data" class="md-nav__link">
-    KBar Data
-  </a>
-  
-    <nav class="md-nav" aria-label="KBar Data">
-      <ul class="md-nav__list">
-        
-          <li class="md-nav__item">
-  <a href="#coming-soon" class="md-nav__link">
-    Coming Soon
+  <a href="#get-snapshots" class="md-nav__link">
+    Get Snapshots
   </a>
   
 </li>
-        
-      </ul>
-    </nav>
+      
+        <li class="md-nav__item">
+  <a href="#snapshots-to-dataframe" class="md-nav__link">
+    Snapshots to DataFrame
+  </a>
   
 </li>
       
@@ -383,18 +362,6 @@
   
 </nav>
     
-  </li>
-
-        
-          
-          
-          
-
-
-  <li class="md-nav__item">
-    <a href="../snapshots/" title="Snapshots" class="md-nav__link">
-      Snapshots
-    </a>
   </li>
 
         
@@ -684,56 +651,23 @@
     <ul class="md-nav__list" data-md-scrollfix>
       
         <li class="md-nav__item">
-  <a href="#ticks-data" class="md-nav__link">
-    Ticks Data
+  <a href="#first-you-need-login" class="md-nav__link">
+    First, you need login.
   </a>
-  
-    <nav class="md-nav" aria-label="Ticks Data">
-      <ul class="md-nav__list">
-        
-          <li class="md-nav__item">
-  <a href="#ticks-schema" class="md-nav__link">
-    Ticks Schema
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#ticks-function-api" class="md-nav__link">
-    ticks function api
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#ticks-to-dataframe" class="md-nav__link">
-    Ticks to DataFrame
-  </a>
-  
-</li>
-        
-      </ul>
-    </nav>
   
 </li>
       
         <li class="md-nav__item">
-  <a href="#kbar-data" class="md-nav__link">
-    KBar Data
-  </a>
-  
-    <nav class="md-nav" aria-label="KBar Data">
-      <ul class="md-nav__list">
-        
-          <li class="md-nav__item">
-  <a href="#coming-soon" class="md-nav__link">
-    Coming Soon
+  <a href="#get-snapshots" class="md-nav__link">
+    Get Snapshots
   </a>
   
 </li>
-        
-      </ul>
-    </nav>
+      
+        <li class="md-nav__item">
+  <a href="#snapshots-to-dataframe" class="md-nav__link">
+    Snapshots to DataFrame
+  </a>
   
 </li>
       
@@ -753,139 +687,265 @@
                   
                 
                 
-                  <h1>Historical Market Data</h1>
+                  <h1>Snapshots</h1>
                 
-                <h2 id="ticks-data">Ticks Data<a class="headerlink" href="#ticks-data" title="Permanent link">&para;</a></h2>
-<h3 id="ticks-schema">Ticks Schema<a class="headerlink" href="#ticks-schema" title="Permanent link">&para;</a></h3>
+                <p>Snapshots are present stock, future, option info. It contain open, high, low, close, change price, average price, volume, total volume, buy price, buy volume, sell price, sell volume and yestoday volume.</p>
+<h3 id="first-you-need-login"><a href="https://sinotrade.github.io/tutor/contract/#login">First, you need login.</a><a class="headerlink" href="#first-you-need-login" title="Permanent link">&para;</a></h3>
+<h3 id="get-snapshots">Get Snapshots<a class="headerlink" href="#get-snapshots" title="Permanent link">&para;</a></h3>
 <div class="admonition info">
 <p class="admonition-title">In</p>
-<div class="highlight"><pre><span></span><code><span class="kn">from</span> <span class="nn">shioaji.data</span> <span class="kn">import</span> <span class="n">Ticks</span>
-<span class="n">Ticks</span><span class="err">??</span>
+<div class="highlight"><pre><span></span><code><span class="n">contract</span> <span class="o">=</span> <span class="p">[</span><span class="n">api</span><span class="o">.</span><span class="n">Contracts</span><span class="o">.</span><span class="n">Stocks</span><span class="p">[</span><span class="s1">&#39;2330&#39;</span><span class="p">],</span><span class="n">api</span><span class="o">.</span><span class="n">Contracts</span><span class="o">.</span><span class="n">Stocks</span><span class="p">[</span><span class="s1">&#39;2317&#39;</span><span class="p">]]</span>
+<span class="n">snapshots</span> <span class="o">=</span> <span class="n">api</span><span class="o">.</span><span class="n">snapshots</span><span class="p">(</span><span class="n">contract</span><span class="p">)</span>
+<span class="n">snapshots</span>
 </code></pre></div>
 
 </div>
 <div class="admonition done">
 <p class="admonition-title">Out</p>
-<div class="highlight"><pre><span></span><code><span class="n">Init</span> <span class="n">signature</span><span class="p">:</span> <span class="n">Ticks</span><span class="p">(</span><span class="o">**</span><span class="n">data</span><span class="p">:</span><span class="n">Any</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span>
-<span class="n">Docstring</span><span class="p">:</span>      <span class="o">&lt;</span><span class="n">no</span> <span class="n">docstring</span><span class="o">&gt;</span>
-<span class="n">Source</span><span class="p">:</span>        
-<span class="k">class</span> <span class="nc">Ticks</span><span class="p">(</span><span class="n">BaseModel</span><span class="p">):</span>
-    <span class="n">ts</span><span class="p">:</span> <span class="n">typing</span><span class="o">.</span><span class="n">List</span><span class="p">[</span><span class="nb">int</span><span class="p">]</span>
-    <span class="n">close</span><span class="p">:</span> <span class="n">typing</span><span class="o">.</span><span class="n">List</span><span class="p">[</span><span class="nb">float</span><span class="p">]</span>
-    <span class="n">volume</span><span class="p">:</span> <span class="n">typing</span><span class="o">.</span><span class="n">List</span><span class="p">[</span><span class="nb">int</span><span class="p">]</span>
-    <span class="n">bid_price</span><span class="p">:</span> <span class="n">typing</span><span class="o">.</span><span class="n">List</span><span class="p">[</span><span class="nb">float</span><span class="p">]</span>
-    <span class="n">bid_volume</span><span class="p">:</span> <span class="n">typing</span><span class="o">.</span><span class="n">List</span><span class="p">[</span><span class="nb">int</span><span class="p">]</span>
-    <span class="n">ask_price</span><span class="p">:</span> <span class="n">typing</span><span class="o">.</span><span class="n">List</span><span class="p">[</span><span class="nb">float</span><span class="p">]</span>
-    <span class="n">ask_volume</span><span class="p">:</span> <span class="n">typing</span><span class="o">.</span><span class="n">List</span><span class="p">[</span><span class="nb">int</span><span class="p">]</span>
-
-<span class="n">File</span><span class="p">:</span>           <span class="n">shioaji</span><span class="o">/</span><span class="n">data</span><span class="o">.</span><span class="n">py</span>
-<span class="n">Type</span><span class="p">:</span>           <span class="n">ModelMetaclass</span>
+<div class="tabbed-set" data-tabs="1:2"><input checked="checked" id="__tabbed_1_1" name="__tabbed_1" type="radio" /><label for="__tabbed_1_1">version &gt;= 0.2.1.dev2</label><div class="tabbed-content">
+<div class="highlight"><pre><span></span><code><span class="p">[</span>
+    <span class="n">Snapshot</span><span class="p">(</span>
+        <span class="n">ts</span><span class="o">=</span><span class="mi">1589801466456000000</span><span class="p">,</span> 
+        <span class="n">code</span><span class="o">=</span><span class="s1">&#39;2330&#39;</span><span class="p">,</span> 
+        <span class="n">exchange</span><span class="o">=</span><span class="s1">&#39;TSE&#39;</span><span class="p">,</span> 
+        <span class="nb">open</span><span class="o">=</span><span class="mf">291.0</span><span class="p">,</span> 
+        <span class="n">high</span><span class="o">=</span><span class="mf">293.5</span><span class="p">,</span> 
+        <span class="n">low</span><span class="o">=</span><span class="mf">290.5</span><span class="p">,</span> 
+        <span class="n">close</span><span class="o">=</span><span class="mf">292.5</span><span class="p">,</span> 
+        <span class="n">tick_type</span><span class="o">=&lt;</span><span class="n">TickType</span><span class="o">.</span><span class="n">Buy</span><span class="p">:</span> <span class="s1">&#39;Buy&#39;</span><span class="o">&gt;</span><span class="p">,</span> 
+        <span class="n">change_price</span><span class="o">=-</span><span class="mf">5.5</span><span class="p">,</span> 
+        <span class="n">change_rate</span><span class="o">=-</span><span class="mf">1.84</span><span class="p">,</span> 
+        <span class="n">change_type</span><span class="o">=&lt;</span><span class="n">ChangeType</span><span class="o">.</span><span class="n">Dowm</span><span class="p">:</span> <span class="s1">&#39;Dowm&#39;</span><span class="o">&gt;</span><span class="p">,</span> 
+        <span class="n">average_price</span><span class="o">=</span><span class="mf">291.71</span><span class="p">,</span> 
+        <span class="n">volume</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span> 
+        <span class="n">total_volume</span><span class="o">=</span><span class="mi">50850</span><span class="p">,</span> 
+        <span class="n">amount</span><span class="o">=</span><span class="mi">292500</span><span class="p">,</span> 
+        <span class="n">total_amount</span><span class="o">=</span><span class="mi">14833373000</span><span class="p">,</span> 
+        <span class="n">yesterday_volume</span><span class="o">=</span><span class="mf">42298.0</span><span class="p">,</span> 
+        <span class="n">buy_price</span><span class="o">=</span><span class="mf">292.0</span><span class="p">,</span> 
+        <span class="n">buy_volume</span><span class="o">=</span><span class="mf">898.0</span><span class="p">,</span> 
+        <span class="n">sell_price</span><span class="o">=</span><span class="mf">292.5</span><span class="p">,</span> 
+        <span class="n">sell_volume</span><span class="o">=</span><span class="mi">1549</span><span class="p">,</span> 
+        <span class="n">volume_ratio</span><span class="o">=</span><span class="mf">1.2</span>
+    <span class="p">),</span> 
+    <span class="n">Snapshot</span><span class="p">(</span>
+        <span class="n">ts</span><span class="o">=</span><span class="mi">1589801463015000000</span><span class="p">,</span> 
+        <span class="n">code</span><span class="o">=</span><span class="s1">&#39;2317&#39;</span><span class="p">,</span> 
+        <span class="n">exchange</span><span class="o">=</span><span class="s1">&#39;TSE&#39;</span><span class="p">,</span> 
+        <span class="nb">open</span><span class="o">=</span><span class="mf">76.6</span><span class="p">,</span> 
+        <span class="n">high</span><span class="o">=</span><span class="mf">76.6</span><span class="p">,</span> 
+        <span class="n">low</span><span class="o">=</span><span class="mf">74.9</span><span class="p">,</span> 
+        <span class="n">close</span><span class="o">=</span><span class="mf">75.8</span><span class="p">,</span> 
+        <span class="n">tick_type</span><span class="o">=&lt;</span><span class="n">TickType</span><span class="o">.</span><span class="n">Buy</span><span class="p">:</span> <span class="s1">&#39;Buy&#39;</span><span class="o">&gt;</span><span class="p">,</span> 
+        <span class="n">change_price</span><span class="o">=-</span><span class="mf">1.3</span><span class="p">,</span> 
+        <span class="n">change_rate</span><span class="o">=-</span><span class="mf">1.69</span><span class="p">,</span> 
+        <span class="n">change_type</span><span class="o">=&lt;</span><span class="n">ChangeType</span><span class="o">.</span><span class="n">Dowm</span><span class="p">:</span> <span class="s1">&#39;Dowm&#39;</span><span class="o">&gt;</span><span class="p">,</span> 
+        <span class="n">average_price</span><span class="o">=</span><span class="mf">75.68</span><span class="p">,</span> 
+        <span class="n">volume</span><span class="o">=</span><span class="mi">2</span><span class="p">,</span> 
+        <span class="n">total_volume</span><span class="o">=</span><span class="mi">39714</span><span class="p">,</span> 
+        <span class="n">amount</span><span class="o">=</span><span class="mi">151600</span><span class="p">,</span> 
+        <span class="n">total_amount</span><span class="o">=</span><span class="mi">3005477400</span><span class="p">,</span> 
+        <span class="n">yesterday_volume</span><span class="o">=</span><span class="mf">46575.0</span><span class="p">,</span> 
+        <span class="n">buy_price</span><span class="o">=</span><span class="mf">75.7</span><span class="p">,</span> 
+        <span class="n">buy_volume</span><span class="o">=</span><span class="mf">185.0</span><span class="p">,</span> 
+        <span class="n">sell_price</span><span class="o">=</span><span class="mf">75.8</span><span class="p">,</span> 
+        <span class="n">sell_volume</span><span class="o">=</span><span class="mi">472</span><span class="p">,</span> 
+        <span class="n">volume_ratio</span><span class="o">=</span><span class="mf">0.85</span>
+    <span class="p">)</span>
+<span class="p">]</span>
 </code></pre></div>
 
 </div>
-<h3 id="ticks-function-api">ticks function api<a class="headerlink" href="#ticks-function-api" title="Permanent link">&para;</a></h3>
-<div class="admonition info">
-<p class="admonition-title">In</p>
-<div class="highlight"><pre><span></span><code><span class="n">ticks</span> <span class="o">=</span> <span class="n">api</span><span class="o">.</span><span class="n">ticks</span><span class="p">(</span><span class="n">api</span><span class="o">.</span><span class="n">Contracts</span><span class="o">.</span><span class="n">Stocks</span><span class="p">[</span><span class="s2">&quot;2330&quot;</span><span class="p">],</span> <span class="s2">&quot;2020-03-04&quot;</span><span class="p">)</span>
-<span class="n">ticks</span>
-</code></pre></div>
-
-</div>
-<div class="admonition done">
-<p class="admonition-title">Out</p>
-<div class="highlight"><pre><span></span><code><span class="n">Ticks</span><span class="p">(</span>
-    <span class="n">ts</span><span class="o">=</span><span class="p">[</span><span class="mi">1583312400821000000</span><span class="p">,</span> <span class="mi">1583312405836000000</span><span class="p">,</span> <span class="mi">1583312410849000000</span><span class="p">,</span> <span class="mi">1583312415864000000</span><span class="p">,</span> <span class="mi">1583312420877000000</span><span class="p">],</span> 
-    <span class="n">close</span><span class="o">=</span><span class="p">[</span><span class="mf">322.0</span><span class="p">,</span> <span class="mf">321.5</span><span class="p">,</span> <span class="mf">321.0</span><span class="p">,</span> <span class="mf">321.0</span><span class="p">,</span> <span class="mf">321.0</span><span class="p">],</span>
-    <span class="n">volume</span><span class="o">=</span><span class="p">[</span><span class="mi">5098</span><span class="p">,</span> <span class="mi">91</span><span class="p">,</span> <span class="mi">126</span><span class="p">,</span> <span class="mi">59</span><span class="p">,</span> <span class="mi">90</span><span class="p">],</span>
-    <span class="n">bid_price</span><span class="o">=</span><span class="p">[</span><span class="mf">321.5</span><span class="p">,</span> <span class="mf">321.0</span><span class="p">,</span> <span class="mf">321.0</span><span class="p">,</span> <span class="mf">321.0</span><span class="p">,</span> <span class="mf">321.0</span><span class="p">],</span>
-    <span class="n">bid_volume</span><span class="o">=</span><span class="p">[</span><span class="mi">5</span><span class="p">,</span> <span class="mi">100</span><span class="p">,</span> <span class="mi">94</span><span class="p">,</span> <span class="mi">78</span><span class="p">,</span> <span class="mi">20</span><span class="p">],</span>
-    <span class="n">ask_price</span><span class="o">=</span><span class="p">[</span><span class="mf">322.0</span><span class="p">,</span> <span class="mf">321.5</span><span class="p">,</span> <span class="mf">321.5</span><span class="p">,</span> <span class="mf">321.5</span><span class="p">,</span> <span class="mf">321.5</span><span class="p">],</span>
-    <span class="n">ask_volume</span><span class="o">=</span><span class="p">[</span><span class="mi">646</span><span class="p">,</span> <span class="mi">13</span><span class="p">,</span> <span class="mi">31</span><span class="p">,</span> <span class="mi">86</span><span class="p">,</span> <span class="mi">199</span><span class="p">]</span>
+<input id="__tabbed_1_2" name="__tabbed_1" type="radio" /><label for="__tabbed_1_2">version &lt; 0.2.1.dev2</label><div class="tabbed-content">
+<div class="highlight"><pre><span></span><code><span class="n">Snapshots</span><span class="p">(</span>
+    <span class="n">snapshot</span><span class="o">=</span><span class="p">[</span>
+        <span class="p">{</span>
+            <span class="s1">&#39;ts&#39;</span><span class="p">:</span> <span class="mi">1584437921673000000</span><span class="p">,</span> 
+            <span class="s1">&#39;code&#39;</span><span class="p">:</span> <span class="s1">&#39;2317&#39;</span><span class="p">,</span> 
+            <span class="s1">&#39;exchange&#39;</span><span class="p">:</span> <span class="s1">&#39;TSE&#39;</span><span class="p">,</span> 
+            <span class="s1">&#39;open&#39;</span><span class="p">:</span> <span class="mf">70.1</span><span class="p">,</span> 
+            <span class="s1">&#39;high&#39;</span><span class="p">:</span> <span class="mf">72.8</span><span class="p">,</span> 
+            <span class="s1">&#39;low&#39;</span><span class="p">:</span> <span class="mf">70.0</span><span class="p">,</span> 
+            <span class="s1">&#39;close&#39;</span><span class="p">:</span> <span class="mf">71.8</span><span class="p">,</span> 
+            <span class="s1">&#39;tick_type&#39;</span><span class="p">:</span> <span class="s1">&#39;Sell&#39;</span><span class="p">,</span> 
+            <span class="s1">&#39;change_price&#39;</span><span class="p">:</span> <span class="mf">0.7</span><span class="p">,</span> 
+            <span class="s1">&#39;change_rate&#39;</span><span class="p">:</span> <span class="mf">0.98</span><span class="p">,</span> 
+            <span class="s1">&#39;change_type&#39;</span><span class="p">:</span> <span class="s1">&#39;Up&#39;</span><span class="p">,</span> 
+            <span class="s1">&#39;avgerage_price&#39;</span><span class="p">:</span> <span class="mf">71.13</span><span class="p">,</span> 
+            <span class="s1">&#39;volume&#39;</span><span class="p">:</span> <span class="mi">16</span><span class="p">,</span> 
+            <span class="s1">&#39;total_volume&#39;</span><span class="p">:</span> <span class="mi">21019</span><span class="p">,</span> 
+            <span class="s1">&#39;amount&#39;</span><span class="p">:</span> <span class="mi">1148800</span><span class="p">,</span> 
+            <span class="s1">&#39;total_amount&#39;</span><span class="p">:</span> <span class="mi">1495047800</span><span class="p">,</span> 
+            <span class="s1">&#39;yestoday_volume&#39;</span><span class="p">:</span> <span class="mf">65223.0</span><span class="p">,</span> 
+            <span class="s1">&#39;buy_price&#39;</span><span class="p">:</span> <span class="mf">71.8</span><span class="p">,</span> 
+            <span class="s1">&#39;buy_volume&#39;</span><span class="p">:</span> <span class="mf">79.0</span><span class="p">,</span> 
+            <span class="s1">&#39;sell_price&#39;</span><span class="p">:</span> <span class="mf">71.9</span><span class="p">,</span> 
+            <span class="s1">&#39;sell_volume&#39;</span><span class="p">:</span> <span class="mi">38</span><span class="p">,</span> 
+            <span class="s1">&#39;volume_ratio&#39;</span><span class="p">:</span> <span class="mf">0.32</span>
+        <span class="p">},</span> 
+        <span class="p">{</span>
+            <span class="s1">&#39;ts&#39;</span><span class="p">:</span> <span class="mi">1584437921045000000</span><span class="p">,</span> 
+            <span class="s1">&#39;code&#39;</span><span class="p">:</span> <span class="s1">&#39;2330&#39;</span><span class="p">,</span> 
+            <span class="s1">&#39;exchange&#39;</span><span class="p">:</span> <span class="s1">&#39;TSE&#39;</span><span class="p">,</span> 
+            <span class="s1">&#39;open&#39;</span><span class="p">:</span> <span class="mf">265.0</span><span class="p">,</span> 
+            <span class="s1">&#39;high&#39;</span><span class="p">:</span> <span class="mf">276.5</span><span class="p">,</span> 
+            <span class="s1">&#39;low&#39;</span><span class="p">:</span> <span class="mf">265.0</span><span class="p">,</span> 
+            <span class="s1">&#39;close&#39;</span><span class="p">:</span> <span class="mf">273.5</span><span class="p">,</span> 
+            <span class="s1">&#39;tick_type&#39;</span><span class="p">:</span> <span class="s1">&#39;Sell&#39;</span><span class="p">,</span> 
+            <span class="s1">&#39;change_price&#39;</span><span class="p">:</span> <span class="o">-</span><span class="mf">3.0</span><span class="p">,</span> 
+            <span class="s1">&#39;change_rate&#39;</span><span class="p">:</span> <span class="o">-</span><span class="mf">1.08</span><span class="p">,</span> 
+            <span class="s1">&#39;change_type&#39;</span><span class="p">:</span> <span class="s1">&#39;Dowm&#39;</span><span class="p">,</span> 
+            <span class="s1">&#39;avgerage_price&#39;</span><span class="p">:</span> <span class="mf">269.39</span><span class="p">,</span> 
+            <span class="s1">&#39;volume&#39;</span><span class="p">:</span> <span class="mi">32</span><span class="p">,</span> 
+            <span class="s1">&#39;total_volume&#39;</span><span class="p">:</span> <span class="mi">38154</span><span class="p">,</span> 
+            <span class="s1">&#39;amount&#39;</span><span class="p">:</span> <span class="mi">8752000</span><span class="p">,</span> 
+            <span class="s1">&#39;total_amount&#39;</span><span class="p">:</span> <span class="mi">10278416500</span><span class="p">,</span> 
+            <span class="s1">&#39;yestoday_volume&#39;</span><span class="p">:</span> <span class="mf">103873.0</span><span class="p">,</span> 
+            <span class="s1">&#39;buy_price&#39;</span><span class="p">:</span> <span class="mf">273.5</span><span class="p">,</span> 
+            <span class="s1">&#39;buy_volume&#39;</span><span class="p">:</span> <span class="mf">123.0</span><span class="p">,</span> 
+            <span class="s1">&#39;sell_price&#39;</span><span class="p">:</span> <span class="mf">274.0</span><span class="p">,</span> 
+            <span class="s1">&#39;sell_volume&#39;</span><span class="p">:</span> <span class="mi">130</span><span class="p">,</span> 
+            <span class="s1">&#39;volume_ratio&#39;</span><span class="p">:</span> <span class="mf">0.37</span>
+        <span class="p">}</span>
+    <span class="p">]</span>
 <span class="p">)</span>
 </code></pre></div>
 
 </div>
-<h3 id="ticks-to-dataframe">Ticks to DataFrame<a class="headerlink" href="#ticks-to-dataframe" title="Permanent link">&para;</a></h3>
+</div>
+</div>
+<h3 id="snapshots-to-dataframe">Snapshots to DataFrame<a class="headerlink" href="#snapshots-to-dataframe" title="Permanent link">&para;</a></h3>
 <div class="admonition info">
 <p class="admonition-title">In</p>
+<div class="tabbed-set" data-tabs="2:2"><input checked="checked" id="__tabbed_2_1" name="__tabbed_2" type="radio" /><label for="__tabbed_2_1">version &gt;= 0.2.1.dev2</label><div class="tabbed-content">
 <div class="highlight"><pre><span></span><code><span class="kn">import</span> <span class="nn">pandas</span> <span class="k">as</span> <span class="nn">pd</span>
-<span class="n">df</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">({</span><span class="o">**</span><span class="n">ticks</span><span class="p">})</span>
+<span class="n">df</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">(</span><span class="n">snapshots</span><span class="p">)</span>
 <span class="n">df</span><span class="o">.</span><span class="n">ts</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">to_datetime</span><span class="p">(</span><span class="n">df</span><span class="o">.</span><span class="n">ts</span><span class="p">)</span>
-<span class="n">df</span><span class="o">.</span><span class="n">head</span><span class="p">()</span>
 </code></pre></div>
 
+</div>
+<input id="__tabbed_2_2" name="__tabbed_2" type="radio" /><label for="__tabbed_2_2">version &lt; 0.2.1.dev2</label><div class="tabbed-content">
+<div class="highlight"><pre><span></span><code><span class="kn">import</span> <span class="nn">pandas</span> <span class="k">as</span> <span class="nn">pd</span>
+<span class="n">df</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">(</span><span class="n">snapshots</span><span class="p">[</span><span class="s1">&#39;snapshot&#39;</span><span class="p">])</span>
+<span class="n">df</span><span class="o">.</span><span class="n">ts</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">to_datetime</span><span class="p">(</span><span class="n">df</span><span class="o">.</span><span class="n">ts</span><span class="p">)</span>
+</code></pre></div>
+
+</div>
+</div>
 </div>
 <div class="admonition done">
 <p class="admonition-title">Out</p>
 <table>
 <thead>
 <tr>
-<th align="right"></th>
-<th align="left">ts</th>
-<th align="left">ask_volume</th>
-<th align="left">ask_price</th>
-<th align="left">close</th>
-<th align="left">bid_price</th>
-<th align="left">bid_volume</th>
-<th align="left">volume</th>
+<th></th>
+<th>ts</th>
+<th>code</th>
+<th>exchange</th>
+<th>open</th>
+<th>high</th>
+<th>low</th>
+<th>close</th>
+<th>tick_type</th>
+<th>change_price</th>
+<th>change_rate</th>
+<th>change_type</th>
+<th>avgerage_price</th>
+<th>volume</th>
+<th>total_volume</th>
+<th>amount</th>
+<th>total_amount</th>
+<th>yestoday_volume</th>
+<th>buy_price</th>
+<th>buy_volume</th>
+<th>sell_price</th>
+<th>sell_volume</th>
+<th>volume_ratio</th>
 </tr>
 </thead>
 <tbody>
 <tr>
-<td align="right">0</td>
-<td align="left">2020-03-04 09:00:00.821</td>
-<td align="left">646</td>
-<td align="left">322.0</td>
-<td align="left">322.0</td>
-<td align="left">321.5</td>
-<td align="left">5</td>
-<td align="left">5098</td>
+<td>0</td>
+<td>2020-03-17 09:38:41.673000</td>
+<td>2317</td>
+<td>TSE</td>
+<td>70.1</td>
+<td>72.8</td>
+<td>70</td>
+<td>71.8</td>
+<td>Sell</td>
+<td>0.7</td>
+<td>0.98</td>
+<td>Up</td>
+<td>71.13</td>
+<td>16</td>
+<td>21019</td>
+<td>1148800</td>
+<td>1495047800</td>
+<td>65223</td>
+<td>71.8</td>
+<td>79</td>
+<td>71.9</td>
+<td>38</td>
+<td>0.32</td>
 </tr>
 <tr>
-<td align="right">1</td>
-<td align="left">2020-03-04 09:00:05.836</td>
-<td align="left">13</td>
-<td align="left">321.5</td>
-<td align="left">321.5</td>
-<td align="left">321.0</td>
-<td align="left">100</td>
-<td align="left">91</td>
-</tr>
-<tr>
-<td align="right">2</td>
-<td align="left">2020-03-04 09:00:10.849</td>
-<td align="left">31</td>
-<td align="left">321.5</td>
-<td align="left">321.0</td>
-<td align="left">321.0</td>
-<td align="left">94</td>
-<td align="left">126</td>
-</tr>
-<tr>
-<td align="right">3</td>
-<td align="left">2020-03-04 09:00:15.864</td>
-<td align="left">86</td>
-<td align="left">321.5</td>
-<td align="left">321.0</td>
-<td align="left">321.0</td>
-<td align="left">78</td>
-<td align="left">59</td>
-</tr>
-<tr>
-<td align="right">4</td>
-<td align="left">2020-03-04 09:00:20.877</td>
-<td align="left">199</td>
-<td align="left">321.5</td>
-<td align="left">321.0</td>
-<td align="left">321.0</td>
-<td align="left">20</td>
-<td align="left">90</td>
+<td>1</td>
+<td>2020-03-17 09:38:41.045000</td>
+<td>2330</td>
+<td>TSE</td>
+<td>265</td>
+<td>276.5</td>
+<td>265</td>
+<td>273.5</td>
+<td>Sell</td>
+<td>-3</td>
+<td>-1.08</td>
+<td>Dowm</td>
+<td>269.39</td>
+<td>32</td>
+<td>38154</td>
+<td>8752000</td>
+<td>10278416500</td>
+<td>103873</td>
+<td>273.5</td>
+<td>123</td>
+<td>274</td>
+<td>130</td>
+<td>0.37</td>
 </tr>
 </tbody>
 </table>
 </div>
-<h2 id="kbar-data">KBar Data<a class="headerlink" href="#kbar-data" title="Permanent link">&para;</a></h2>
-<h3 id="coming-soon">Coming Soon<a class="headerlink" href="#coming-soon" title="Permanent link">&para;</a></h3>
+<div class="admonition example">
+<p class="admonition-title">Attributes:</p>
+<div class="highlight"><pre><span></span><code><span class="n">ts</span> <span class="p">(</span><span class="nb">int</span><span class="p">):</span> <span class="n">TimeStamp</span><span class="o">.</span>
+<span class="n">code</span> <span class="p">(</span><span class="nb">str</span><span class="p">):</span> <span class="n">Contract</span> <span class="nb">id</span><span class="o">.</span>
+<span class="n">exchange</span> <span class="p">(</span><span class="n">Exchange</span><span class="p">):</span> <span class="n">Attributes</span> <span class="n">of</span> <span class="n">industry</span><span class="o">.</span>
+<span class="nb">open</span> <span class="p">(</span><span class="nb">float</span><span class="p">):</span> <span class="nb">open</span>
+<span class="n">high</span> <span class="p">(</span><span class="nb">float</span><span class="p">):</span> <span class="n">high</span>
+<span class="n">low</span> <span class="p">(</span><span class="nb">float</span><span class="p">):</span> <span class="n">low</span>
+<span class="n">close</span> <span class="p">(</span><span class="nb">float</span><span class="p">):</span> <span class="n">close</span>
+<span class="n">tick_type</span> <span class="p">(</span><span class="n">TickType</span><span class="p">):</span> <span class="n">Close</span> <span class="ow">is</span> <span class="n">buy</span> <span class="ow">or</span> <span class="n">sell</span> <span class="n">price</span><span class="o">.</span>
+    <span class="p">{</span><span class="kc">None</span><span class="p">,</span> <span class="n">Buy</span><span class="p">,</span> <span class="n">Sell</span><span class="p">}</span>
+<span class="n">change_price</span> <span class="p">(</span><span class="nb">float</span><span class="p">):</span> <span class="n">change</span> <span class="n">price</span><span class="o">.</span>
+<span class="n">change_rate</span> <span class="p">(</span><span class="nb">float</span><span class="p">):</span> <span class="n">change</span> <span class="n">rate</span><span class="o">.</span>
+<span class="n">change_type</span> <span class="p">(</span><span class="n">ChangeType</span><span class="p">):</span>
+    <span class="p">{</span><span class="n">LimitUp</span><span class="p">,</span> <span class="n">Up</span><span class="p">,</span> <span class="n">Unchanged</span><span class="p">,</span> <span class="n">Dowm</span><span class="p">,</span> <span class="n">LimitDown</span><span class="p">}</span>
+<span class="n">avgerage_price</span> <span class="p">(</span><span class="nb">float</span><span class="p">):</span> <span class="n">avgerage</span> <span class="n">of</span> <span class="n">price</span><span class="o">.</span>
+<span class="n">volume</span> <span class="p">(</span><span class="nb">int</span><span class="p">):</span> <span class="n">volume</span><span class="o">.</span>
+<span class="n">total_volume</span> <span class="p">(</span><span class="nb">int</span><span class="p">):</span> <span class="n">total</span> <span class="n">volume</span><span class="o">.</span>
+<span class="n">amount</span> <span class="p">(</span><span class="nb">int</span><span class="p">):</span> <span class="n">Deal</span> <span class="n">amount</span><span class="o">.</span>
+<span class="n">total_amount</span> <span class="p">(</span><span class="nb">int</span><span class="p">):</span> <span class="n">Total</span> <span class="n">deal</span> <span class="n">amount</span><span class="o">.</span>
+<span class="n">yestoday_volume</span> <span class="p">(</span><span class="nb">float</span><span class="p">):</span> <span class="n">Volume</span> <span class="n">of</span> <span class="n">yestoday</span><span class="o">.</span>
+<span class="n">buy_price</span> <span class="p">(</span><span class="nb">float</span><span class="p">):</span> <span class="n">Price</span> <span class="n">of</span> <span class="n">buy</span><span class="o">.</span>
+<span class="n">buy_volume</span> <span class="p">(</span><span class="nb">float</span><span class="p">):</span> <span class="n">Volume</span> <span class="n">of</span> <span class="n">sell</span><span class="o">.</span>
+<span class="n">sell_price</span> <span class="p">(</span><span class="nb">float</span><span class="p">):</span> <span class="n">Price</span> <span class="n">of</span> <span class="n">sell</span><span class="o">.</span>
+<span class="n">sell_volume</span> <span class="p">(</span><span class="nb">int</span><span class="p">):</span> <span class="n">Volume</span> <span class="n">of</span> <span class="n">sell</span><span class="o">.</span>
+<span class="n">volume_ratio</span> <span class="p">(</span><span class="nb">float</span><span class="p">):</span> <span class="n">total_volume</span><span class="o">/</span><span class="n">yestoday_volume</span><span class="o">.</span>
+</code></pre></div>
+
+</div>
                 
               
               
@@ -904,7 +964,7 @@
     <div class="md-footer-nav">
       <nav class="md-footer-nav__inner md-grid" aria-label="Footer">
         
-          <a href="../streaming/" title="Streaming Market Data" class="md-footer-nav__link md-footer-nav__link--prev" rel="prev">
+          <a href="../historical/" title="Historical Market Data" class="md-footer-nav__link md-footer-nav__link--prev" rel="prev">
             <div class="md-footer-nav__button md-icon">
               <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11h12z"/></svg>
             </div>
@@ -913,19 +973,19 @@
                 <span class="md-footer-nav__direction">
                   Previous
                 </span>
-                Streaming Market Data
+                Historical Market Data
               </div>
             </div>
           </a>
         
         
-          <a href="../snapshots/" title="Snapshots" class="md-footer-nav__link md-footer-nav__link--next" rel="next">
+          <a href="../short_stock_sources/" title="Short Stock Sources" class="md-footer-nav__link md-footer-nav__link--next" rel="next">
             <div class="md-footer-nav__title">
               <div class="md-ellipsis">
                 <span class="md-footer-nav__direction">
                   Next
                 </span>
-                Snapshots
+                Short Stock Sources
               </div>
             </div>
             <div class="md-footer-nav__button md-icon">
