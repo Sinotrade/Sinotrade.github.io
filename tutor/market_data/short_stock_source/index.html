@@ -364,8 +364,8 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#snapshot-to-dataframe" class="md-nav__link">
-    Snapshot to DataFrame
+  <a href="#short-stock-source-to-dataframe" class="md-nav__link">
+    Short Stock Source to DataFrame
   </a>
   
 </li>
@@ -665,8 +665,8 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#snapshot-to-dataframe" class="md-nav__link">
-    Snapshot to DataFrame
+  <a href="#short-stock-source-to-dataframe" class="md-nav__link">
+    Short Stock Source to DataFrame
   </a>
   
 </li>
@@ -693,8 +693,8 @@
 <h3 id="get-short-stock-source">Get Short Stock Source<a class="headerlink" href="#get-short-stock-source" title="Permanent link">&para;</a></h3>
 <div class="admonition info">
 <p class="admonition-title">In</p>
-<div class="highlight"><pre><span></span><code><span class="n">contract</span> <span class="o">=</span> <span class="p">[</span><span class="n">api</span><span class="o">.</span><span class="n">Contracts</span><span class="o">.</span><span class="n">Stocks</span><span class="p">[</span><span class="s1">&#39;2330&#39;</span><span class="p">],</span><span class="n">api</span><span class="o">.</span><span class="n">Contracts</span><span class="o">.</span><span class="n">Stocks</span><span class="p">[</span><span class="s1">&#39;2317&#39;</span><span class="p">]]</span>
-<span class="n">short_stock_sources</span> <span class="o">=</span> <span class="n">api</span><span class="o">.</span><span class="n">short_stock_sources</span><span class="p">(</span><span class="n">contract</span><span class="p">)</span>
+<div class="highlight"><pre><span></span><code><span class="n">contracts</span> <span class="o">=</span> <span class="p">[</span><span class="n">api</span><span class="o">.</span><span class="n">Contracts</span><span class="o">.</span><span class="n">Stocks</span><span class="p">[</span><span class="s1">&#39;2330&#39;</span><span class="p">],</span><span class="n">api</span><span class="o">.</span><span class="n">Contracts</span><span class="o">.</span><span class="n">Stocks</span><span class="p">[</span><span class="s1">&#39;2317&#39;</span><span class="p">]]</span>
+<span class="n">short_stock_sources</span> <span class="o">=</span> <span class="n">api</span><span class="o">.</span><span class="n">short_stock_sources</span><span class="p">(</span><span class="n">contracts</span><span class="p">)</span>
 <span class="n">short_stock_sources</span>
 </code></pre></div>
 
@@ -705,11 +705,11 @@
 </code></pre></div>
 
 </div>
-<h3 id="snapshot-to-dataframe">Snapshot to DataFrame<a class="headerlink" href="#snapshot-to-dataframe" title="Permanent link">&para;</a></h3>
+<h3 id="short-stock-source-to-dataframe">Short Stock Source to DataFrame<a class="headerlink" href="#short-stock-source-to-dataframe" title="Permanent link">&para;</a></h3>
 <div class="admonition info">
 <p class="admonition-title">In</p>
-<div class="highlight"><pre><span></span><code><span class="n">contract</span> <span class="o">=</span> <span class="p">[</span><span class="n">api</span><span class="o">.</span><span class="n">Contracts</span><span class="o">.</span><span class="n">Stocks</span><span class="p">[</span><span class="s1">&#39;2330&#39;</span><span class="p">],</span><span class="n">api</span><span class="o">.</span><span class="n">Contracts</span><span class="o">.</span><span class="n">Stocks</span><span class="p">[</span><span class="s1">&#39;2317&#39;</span><span class="p">]]</span>
-<span class="n">short_stock_sources</span> <span class="o">=</span> <span class="n">api</span><span class="o">.</span><span class="n">short_stock_sources</span><span class="p">(</span><span class="n">contract</span><span class="p">)</span>
+<div class="highlight"><pre><span></span><code><span class="n">contracts</span> <span class="o">=</span> <span class="p">[</span><span class="n">api</span><span class="o">.</span><span class="n">Contracts</span><span class="o">.</span><span class="n">Stocks</span><span class="p">[</span><span class="s1">&#39;2330&#39;</span><span class="p">],</span><span class="n">api</span><span class="o">.</span><span class="n">Contracts</span><span class="o">.</span><span class="n">Stocks</span><span class="p">[</span><span class="s1">&#39;2317&#39;</span><span class="p">]]</span>
+<span class="n">short_stock_sources</span> <span class="o">=</span> <span class="n">api</span><span class="o">.</span><span class="n">short_stock_sources</span><span class="p">(</span><span class="n">contracts</span><span class="p">)</span>
 <span class="n">df</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">(</span><span class="n">short_stock_sources</span><span class="p">)</span>
 </code></pre></div>
 
