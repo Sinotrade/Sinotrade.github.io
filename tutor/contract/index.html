@@ -809,11 +809,13 @@
 <p>After login success we will start to fetch all kind of contract but fetching will not block other action. So how to know the fetch action is done ? We have contracts_cb in <code>login</code> function that you can pass your customize function define how to do when the contract fetched. In this exmaple, we just print what kind of contract when it has been fetched.</p>
 <div class="admonition note">
 <p class="admonition-title">contracts_timeout</p>
-<p>If you set contracts_timeout inside <code>login</code> from 0 to 10000, it will block the fetch and wait 10 second until the contract is back.
+<p>If you set contracts_timeout inside <code>login</code> from 0 to 10000, it will block the fetch and wait 10 second until the contract is back.<br>
+If you set contract_cb (contract callback) as prine, it will print "SecurityType.Index, SecurityType.Stock, SecurityType.Future, SecurityType.Option " until the contract is back.
 <div class="highlight"><pre><span></span><code><span class="n">api</span><span class="o">.</span><span class="n">login</span><span class="p">(</span>
     <span class="n">person_id</span><span class="o">=</span><span class="s1">&#39;YOUR_ID&#39;</span><span class="p">,</span> 
     <span class="n">passwd</span><span class="o">=</span><span class="s1">&#39;YOUR_PASSWORD&#39;</span><span class="p">,</span> 
     <span class="n">contracts_timeout</span><span class="o">=</span><span class="mi">10000</span><span class="p">,</span>
+    <span class="n">contracts_cb</span><span class="o">=</span><span class="nb">print</span><span class="p">,</span>
 <span class="p">)</span> 
 </code></pre></div></p>
 </div>
@@ -845,6 +847,25 @@
 </code></pre></div>
 
 </div>
+<div class="admonition example">
+<p class="admonition-title">Attributes:</p>
+<div class="highlight"><pre><span></span><code><span class="n">exchange</span> <span class="p">(</span><span class="n">Exchange</span><span class="p">):</span> <span class="n">Attributes</span> <span class="n">of</span> <span class="n">industry</span><span class="o">.</span>
+    <span class="p">{</span><span class="n">OES</span><span class="p">,</span> <span class="n">OTC</span><span class="p">,</span> <span class="n">TSE</span> <span class="o">...</span><span class="n">etc</span><span class="p">}</span>
+<span class="n">code</span> <span class="p">(</span><span class="nb">str</span><span class="p">):</span> <span class="n">Id</span><span class="o">.</span>
+<span class="n">symbol</span> <span class="p">(</span><span class="nb">str</span><span class="p">):</span> <span class="n">Symbol</span><span class="o">.</span>
+<span class="n">name</span> <span class="p">(</span><span class="nb">str</span><span class="p">):</span> <span class="n">Name</span><span class="o">.</span>
+<span class="n">category</span> <span class="p">(</span><span class="nb">str</span><span class="p">):</span> <span class="n">Category</span><span class="o">.</span>
+<span class="n">limit_up</span> <span class="p">(</span><span class="nb">float</span><span class="p">):</span> <span class="n">Limit</span> <span class="n">up</span><span class="o">.</span>
+<span class="n">limit_down</span> <span class="p">(</span><span class="nb">float</span><span class="p">):</span> <span class="n">Limit</span> <span class="n">down</span><span class="o">.</span>
+<span class="n">reference</span> <span class="p">(</span><span class="nb">float</span><span class="p">):</span> <span class="n">Reference</span> <span class="n">price</span><span class="o">.</span>
+<span class="n">update_date</span> <span class="p">(</span><span class="nb">str</span><span class="p">):</span> <span class="n">Update</span> <span class="n">date</span><span class="o">.</span>
+<span class="n">margin_trading_balance</span> <span class="p">(</span><span class="nb">int</span><span class="p">):</span> <span class="n">Margin</span> <span class="n">trading</span> <span class="n">balance</span><span class="o">.</span>
+<span class="n">short_selling_balance</span> <span class="p">(</span><span class="nb">int</span><span class="p">):</span> <span class="n">Short</span> <span class="n">selling</span> <span class="n">balance</span><span class="o">.</span>
+<span class="n">day_trade</span> <span class="p">(</span><span class="n">DayTrade</span><span class="p">):</span> <span class="n">Day</span> <span class="n">trade</span><span class="o">.</span>
+    <span class="p">{</span><span class="n">Yes</span><span class="p">,</span> <span class="n">No</span><span class="p">,</span> <span class="kc">None</span><span class="p">}</span>
+</code></pre></div>
+
+</div>
 <h3 id="futures-contract">Futures Contract<a class="headerlink" href="#futures-contract" title="Permanent link">&para;</a></h3>
 <div class="admonition info">
 <p class="admonition-title">In</p>
@@ -858,6 +879,21 @@
 <div class="admonition done">
 <p class="admonition-title">Out</p>
 <div class="highlight"><pre><span></span><code><span class="n">Future</span><span class="p">(</span><span class="n">code</span><span class="o">=</span><span class="s1">&#39;TXFC0&#39;</span><span class="p">,</span> <span class="n">symbol</span><span class="o">=</span><span class="s1">&#39;TXF202003&#39;</span><span class="p">,</span> <span class="n">name</span><span class="o">=</span><span class="s1">&#39;臺股期貨&#39;</span><span class="p">,</span> <span class="n">category</span><span class="o">=</span><span class="s1">&#39;TXF&#39;</span><span class="p">,</span> <span class="n">delivery_month</span><span class="o">=</span><span class="s1">&#39;202003&#39;</span><span class="p">,</span> <span class="n">underlying_kind</span><span class="o">=</span><span class="s1">&#39;I&#39;</span><span class="p">,</span> <span class="n">limit_up</span><span class="o">=</span><span class="mf">10308.0</span><span class="p">,</span> <span class="n">limit_down</span><span class="o">=</span><span class="mf">8434.0</span><span class="p">,</span> <span class="n">update_date</span><span class="o">=</span><span class="s1">&#39;2020/03/18&#39;</span><span class="p">)</span>
+</code></pre></div>
+
+</div>
+<div class="admonition example">
+<p class="admonition-title">Attributes:</p>
+<div class="highlight"><pre><span></span><code><span class="n">code</span> <span class="p">(</span><span class="nb">str</span><span class="p">):</span> <span class="n">Id</span><span class="o">.</span>
+<span class="n">symbol</span> <span class="p">(</span><span class="nb">str</span><span class="p">):</span> <span class="n">Symbol</span><span class="o">.</span>
+<span class="n">name</span> <span class="p">(</span><span class="nb">str</span><span class="p">):</span> <span class="n">Name</span><span class="o">.</span>
+<span class="n">category</span> <span class="p">(</span><span class="nb">str</span><span class="p">):</span> <span class="n">Category</span><span class="o">.</span>
+<span class="n">limit_up</span> <span class="p">(</span><span class="nb">float</span><span class="p">):</span> <span class="n">Limit</span> <span class="n">up</span><span class="o">.</span>
+<span class="n">limit_down</span> <span class="p">(</span><span class="nb">float</span><span class="p">):</span> <span class="n">Limit</span> <span class="n">down</span><span class="o">.</span>
+<span class="n">reference</span> <span class="p">(</span><span class="nb">float</span><span class="p">):</span> <span class="n">Reference</span> <span class="n">price</span><span class="o">.</span>
+<span class="n">update_date</span> <span class="p">(</span><span class="nb">str</span><span class="p">):</span> <span class="n">Update</span> <span class="n">date</span><span class="o">.</span>
+<span class="n">delivery_month</span> <span class="p">(</span><span class="nb">str</span><span class="p">):</span> <span class="n">Delivery</span> <span class="n">Month</span><span class="o">.</span>
+<span class="n">underlying_kind</span> <span class="p">(</span><span class="nb">str</span><span class="p">):</span> <span class="n">Underlying</span> <span class="n">Kind</span><span class="o">.</span>
 </code></pre></div>
 
 </div>
@@ -915,6 +951,23 @@
 
 </div>
 <p>Get put options with readable way.</p>
+<div class="admonition example">
+<p class="admonition-title">Attributes:</p>
+<div class="highlight"><pre><span></span><code><span class="n">code</span> <span class="p">(</span><span class="nb">str</span><span class="p">):</span> <span class="n">Id</span><span class="o">.</span>
+<span class="n">symbol</span> <span class="p">(</span><span class="nb">str</span><span class="p">):</span> <span class="n">Symbol</span><span class="o">.</span>
+<span class="n">name</span> <span class="p">(</span><span class="nb">str</span><span class="p">):</span> <span class="n">Name</span><span class="o">.</span>
+<span class="n">category</span> <span class="p">(</span><span class="nb">str</span><span class="p">):</span> <span class="n">Category</span><span class="o">.</span>
+<span class="n">limit_up</span> <span class="p">(</span><span class="nb">float</span><span class="p">):</span> <span class="n">Limit</span> <span class="n">up</span><span class="o">.</span>
+<span class="n">limit_down</span> <span class="p">(</span><span class="nb">float</span><span class="p">):</span> <span class="n">Limit</span> <span class="n">down</span><span class="o">.</span>
+<span class="n">reference</span> <span class="p">(</span><span class="nb">float</span><span class="p">):</span> <span class="n">Reference</span> <span class="n">price</span><span class="o">.</span>
+<span class="n">update_date</span> <span class="p">(</span><span class="nb">str</span><span class="p">):</span> <span class="n">Update</span> <span class="n">date</span><span class="o">.</span>
+<span class="n">delivery_month</span> <span class="p">(</span><span class="nb">str</span><span class="p">):</span> <span class="n">Delivery</span> <span class="n">Month</span><span class="o">.</span>
+<span class="n">strike_price</span> <span class="p">(</span><span class="nb">int</span> <span class="ow">or</span> <span class="nb">float</span><span class="p">):</span> <span class="n">Strike</span> <span class="n">Price</span><span class="o">.</span>
+<span class="n">option_right</span> <span class="p">(</span><span class="n">OptionRight</span><span class="p">):</span> <span class="n">Option</span> <span class="n">Right</span><span class="o">.</span>
+<span class="n">underlying_kind</span> <span class="p">(</span><span class="nb">str</span><span class="p">):</span> <span class="n">Underlying</span> <span class="n">Kind</span><span class="o">.</span>
+</code></pre></div>
+
+</div>
 <h3 id="index-contract">Index Contract<a class="headerlink" href="#index-contract" title="Permanent link">&para;</a></h3>
 <div class="admonition info">
 <p class="admonition-title">In</p>
@@ -937,6 +990,16 @@
 <div class="admonition done">
 <p class="admonition-title">Out</p>
 <div class="highlight"><pre><span></span><code><span class="n">Index</span><span class="p">(</span><span class="n">exchange</span><span class="o">=&lt;</span><span class="n">Exchange</span><span class="o">.</span><span class="n">TSE</span><span class="p">:</span> <span class="s1">&#39;TSE&#39;</span><span class="o">&gt;</span><span class="p">,</span> <span class="n">code</span><span class="o">=</span><span class="s1">&#39;001&#39;</span><span class="p">,</span> <span class="n">symbol</span><span class="o">=</span><span class="s1">&#39;TSE001&#39;</span><span class="p">,</span> <span class="n">name</span><span class="o">=</span><span class="s1">&#39;加權&#39;</span><span class="p">)</span>
+</code></pre></div>
+
+</div>
+<div class="admonition example">
+<p class="admonition-title">Attributes:</p>
+<div class="highlight"><pre><span></span><code><span class="n">exchange</span> <span class="p">(</span><span class="n">Exchange</span><span class="p">):</span> <span class="n">Attributes</span> <span class="n">of</span> <span class="n">industry</span><span class="o">.</span>
+    <span class="p">{</span><span class="n">OES</span><span class="p">,</span> <span class="n">OTC</span><span class="p">,</span> <span class="n">TSE</span> <span class="o">...</span><span class="n">etc</span><span class="p">}</span>
+<span class="n">code</span> <span class="p">(</span><span class="nb">str</span><span class="p">):</span> <span class="n">Id</span><span class="o">.</span>
+<span class="n">symbol</span> <span class="p">(</span><span class="nb">str</span><span class="p">):</span> <span class="n">Symbol</span><span class="o">.</span>
+<span class="n">name</span> <span class="p">(</span><span class="nb">str</span><span class="p">):</span> <span class="n">Name</span><span class="o">.</span>
 </code></pre></div>
 
 </div>
