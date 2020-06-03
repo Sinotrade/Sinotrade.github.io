@@ -675,6 +675,21 @@
 </code></pre></div>
 
 </div>
+<div class="admonition info">
+<p class="admonition-title">In</p>
+<div class="highlight"><pre><span></span><code><span class="n">positions</span> <span class="o">=</span> <span class="n">api</span><span class="o">.</span><span class="n">list_positions</span><span class="p">(</span><span class="n">api</span><span class="o">.</span><span class="n">stock_account</span><span class="p">)</span>
+<span class="n">df</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">(</span><span class="n">positions</span><span class="p">)</span>
+<span class="n">df</span>
+</code></pre></div>
+
+</div>
+<div class="admonition done">
+<p class="admonition-title">Out</p>
+<div class="highlight"><pre><span></span><code>    <span class="n">ode</span>                 <span class="n">cond</span>   <span class="n">direction</span>      <span class="n">pnl</span>   <span class="n">price</span>  <span class="n">quantity</span>  <span class="n">yd_quantity</span>
+<span class="mi">0</span>  <span class="mi">2890</span>  <span class="n">StockOrderCond</span><span class="o">.</span><span class="n">Cash</span>  <span class="n">Action</span><span class="o">.</span><span class="n">Buy</span> <span class="o">-</span><span class="mf">1234.0</span>   <span class="mf">10.1</span>        <span class="mi">10</span>           <span class="mi">10</span>
+</code></pre></div>
+
+</div>
 <div class="admonition example">
 <p class="admonition-title">Attributes:</p>
 <div class="highlight"><pre><span></span><code><span class="n">code</span> <span class="p">(</span><span class="nb">str</span><span class="p">):</span> <span class="n">contract</span> <span class="nb">id</span><span class="o">.</span>
@@ -684,6 +699,8 @@
 <span class="n">price</span> <span class="p">(</span><span class="nb">float</span><span class="p">):</span> <span class="n">the</span> <span class="n">average</span> <span class="n">price</span><span class="o">.</span>
 <span class="n">pnl</span> <span class="p">(</span><span class="nb">float</span><span class="p">):</span> <span class="n">unrealized</span> <span class="n">profit</span><span class="o">.</span>
 <span class="n">yd_quantity</span> <span class="p">(</span><span class="nb">int</span><span class="p">):</span> <span class="n">yesterday</span>
+<span class="n">cond</span> <span class="p">(</span><span class="n">StockOrderCond</span><span class="p">):</span> <span class="n">Default</span> <span class="n">Cash</span><span class="o">.</span>
+    <span class="p">{</span><span class="n">Cash</span><span class="p">,</span> <span class="n">Netting</span><span class="p">,</span> <span class="n">MarginTrading</span><span class="p">,</span> <span class="n">ShortSelling</span><span class="p">}</span>
 </code></pre></div>
 
 </div>
