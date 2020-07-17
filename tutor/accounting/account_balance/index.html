@@ -11,7 +11,7 @@
         <meta name="description" content="Shioaji is provided by SinoPac the most pythonic API for trading the Taiwan and global financial market. You can use your favorite Python packages such as NumPy, pandas, PyTorch or TensorFlow to build your trading model with integrated the Shioaji API on cross-platform.">
       
       
-        <link rel="canonical" href="https://sinotrade.github.io/tutor/accounting/profit_loss/">
+        <link rel="canonical" href="https://sinotrade.github.io/tutor/accounting/account_balance/">
       
       
         <meta name="author" content="Yvictor, ">
@@ -21,7 +21,7 @@
     
     
       
-        <title>Profit Loss - Shioaji</title>
+        <title>Account Balance - Shioaji</title>
       
     
     
@@ -94,7 +94,7 @@
           </span>
           <span class="md-header-nav__topic md-ellipsis">
             
-              Profit Loss
+              Account Balance
             
           </span>
         </div>
@@ -449,6 +449,30 @@
           
           
 
+
+  <li class="md-nav__item">
+    <a href="../profit_loss/" title="Profit Loss" class="md-nav__link">
+      Profit Loss
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../settlement/" title="Settlement" class="md-nav__link">
+      Settlement
+    </a>
+  </li>
+
+        
+          
+          
+          
+
   
 
 
@@ -458,14 +482,14 @@
     
     
       <label class="md-nav__link md-nav__link--active" for="__toc">
-        Profit Loss
+        Account Balance
         <span class="md-nav__icon md-icon">
           <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 9h14V7H3v2m0 4h14v-2H3v2m0 4h14v-2H3v2m16 0h2v-2h-2v2m0-10v2h2V7h-2m0 6h2v-2h-2v2z"/></svg>
         </span>
       </label>
     
-    <a href="./" title="Profit Loss" class="md-nav__link md-nav__link--active">
-      Profit Loss
+    <a href="./" title="Account Balance" class="md-nav__link md-nav__link--active">
+      Account Balance
     </a>
     
       
@@ -492,30 +516,6 @@
   
 </nav>
     
-  </li>
-
-        
-          
-          
-          
-
-
-  <li class="md-nav__item">
-    <a href="../settlement/" title="Settlement" class="md-nav__link">
-      Settlement
-    </a>
-  </li>
-
-        
-          
-          
-          
-
-
-  <li class="md-nav__item">
-    <a href="../account_balance/" title="Account Balance" class="md-nav__link">
-      Account Balance
-    </a>
   </li>
 
         
@@ -707,25 +707,25 @@
                   
                 
                 
-                  <h1>Profit Loss</h1>
+                  <h1>Account Balance</h1>
                 
                 <h3 id="first-you-need-login"><a href="../../tutor/login">First, you need login.</a><a class="headerlink" href="#first-you-need-login" title="Permanent link">&para;</a></h3>
 <div class="admonition info">
 <p class="admonition-title">In</p>
-<div class="highlight"><pre><span></span><code><span class="n">api</span><span class="o">.</span><span class="n">list_profit_loss</span><span class="p">(</span><span class="n">api</span><span class="o">.</span><span class="n">stock_account</span><span class="p">,</span><span class="s1">&#39;2020-05-05&#39;</span><span class="p">,</span><span class="s1">&#39;2020-05-30&#39;</span><span class="p">)</span>
+<div class="highlight"><pre><span></span><code><span class="n">api</span><span class="o">.</span><span class="n">account_balance</span><span class="p">()</span>
 </code></pre></div>
 
 </div>
 <div class="admonition done">
 <p class="admonition-title">Out</p>
-<div class="highlight"><pre><span></span><code><span class="p">[</span><span class="n">ProfitLoss</span><span class="p">(</span><span class="n">code</span><span class="o">=</span><span class="s1">&#39;2890&#39;</span><span class="p">,</span> <span class="n">seqno</span><span class="o">=</span><span class="s1">&#39;14816&#39;</span><span class="p">,</span> <span class="n">quantity</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span> <span class="n">price</span><span class="o">=</span><span class="mf">10.1</span><span class="p">,</span> <span class="n">pnl</span><span class="o">=</span><span class="mf">1234.0</span><span class="p">,</span> <span class="n">pr_ratio</span><span class="o">=</span><span class="mf">0.1237</span><span class="p">,</span> <span class="n">date</span><span class="o">=</span><span class="s1">&#39;2020-05-22&#39;</span><span class="p">)]</span>
+<div class="highlight"><pre><span></span><code><span class="p">[</span><span class="n">AccountBalance</span><span class="p">(</span><span class="n">acc_balance</span><span class="o">=</span><span class="mf">123456.0</span><span class="p">,</span> <span class="n">date</span><span class="o">=</span><span class="s1">&#39;2020-07-16 09:29:13&#39;</span><span class="p">,</span> <span class="n">errmsg</span><span class="o">=</span><span class="s1">&#39;&#39;</span><span class="p">)]</span>
 </code></pre></div>
 
 </div>
 <div class="admonition info">
 <p class="admonition-title">In</p>
-<div class="highlight"><pre><span></span><code><span class="n">profitloss</span> <span class="o">=</span> <span class="n">api</span><span class="o">.</span><span class="n">list_profit_loss</span><span class="p">(</span><span class="n">api</span><span class="o">.</span><span class="n">stock_account</span><span class="p">,</span><span class="s1">&#39;2020-05-05&#39;</span><span class="p">,</span><span class="s1">&#39;2020-05-30&#39;</span><span class="p">)</span>   
-<span class="n">df</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">(</span><span class="n">profitloss</span><span class="p">)</span>     
+<div class="highlight"><pre><span></span><code><span class="n">acc_balance</span> <span class="o">=</span> <span class="n">api</span><span class="o">.</span><span class="n">account_balance</span><span class="p">()</span>   
+<span class="n">df</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">(</span><span class="n">acc_balance</span><span class="p">)</span>     
 <span class="n">df</span>     
 </code></pre></div>
 
@@ -735,41 +735,25 @@
 <table>
 <thead>
 <tr>
-<th>code</th>
-<th>cond</th>
+<th>acc_balance</th>
 <th>date</th>
-<th>pnl</th>
-<th>pr_ratio</th>
-<th>price</th>
-<th>quantity</th>
-<th>seqno</th>
+<th>errmsg</th>
 </tr>
 </thead>
 <tbody>
 <tr>
-<td>2890</td>
-<td>StockOrderCond.Cash</td>
-<td>2020-05-22</td>
-<td>1234.0</td>
-<td>0.1237</td>
-<td>10.1</td>
-<td>1</td>
-<td>14816</td>
+<td>123456.0</td>
+<td>2020-07-16 09:29:13</td>
+<td></td>
 </tr>
 </tbody>
 </table>
 </div>
 <div class="admonition example">
 <p class="admonition-title">Attributes:</p>
-<div class="highlight"><pre><span></span><code><span class="n">code</span> <span class="p">(</span><span class="nb">str</span><span class="p">):</span> <span class="n">contract</span> <span class="nb">id</span><span class="o">.</span>
-<span class="n">seqno</span> <span class="p">(</span><span class="nb">str</span><span class="p">):</span> <span class="n">seqno</span> <span class="n">no</span><span class="o">.</span>
-<span class="n">quantity</span> <span class="p">(</span><span class="nb">int</span><span class="p">):</span> <span class="n">quantity</span><span class="o">.</span>
-<span class="n">price</span> <span class="p">(</span><span class="nb">float</span><span class="p">):</span> <span class="n">price</span><span class="o">.</span>
-<span class="n">pnl</span> <span class="p">(</span><span class="nb">float</span><span class="p">):</span> <span class="n">profit</span> <span class="ow">and</span> <span class="n">loss</span><span class="o">.</span>
-<span class="n">pr_ratio</span> <span class="p">(</span><span class="nb">float</span><span class="p">):</span> <span class="n">profit</span> <span class="n">rate</span><span class="o">.</span>
-<span class="n">cond</span> <span class="p">(</span><span class="n">StockOrderCond</span><span class="p">):</span> <span class="n">Default</span> <span class="n">Cash</span><span class="o">.</span>
-    <span class="p">{</span><span class="n">Cash</span><span class="p">,</span> <span class="n">Netting</span><span class="p">,</span> <span class="n">MarginTrading</span><span class="p">,</span> <span class="n">ShortSelling</span><span class="p">}</span>
-<span class="n">date</span> <span class="p">(</span><span class="nb">str</span><span class="p">):</span> <span class="n">trade</span> <span class="n">date</span><span class="o">.</span>
+<div class="highlight"><pre><span></span><code><span class="n">acc_balance</span> <span class="p">(</span><span class="nb">float</span><span class="p">):</span> <span class="n">account</span> <span class="n">balance</span>
+<span class="n">date</span> <span class="p">(</span><span class="nb">str</span><span class="p">):</span> <span class="n">query</span> <span class="n">date</span>
+<span class="n">errmsg</span> <span class="p">(</span><span class="nb">str</span><span class="p">):</span> <span class="n">error</span> <span class="n">message</span>    
 </code></pre></div>
 
 </div>
@@ -791,7 +775,7 @@
     <div class="md-footer-nav">
       <nav class="md-footer-nav__inner md-grid" aria-label="Footer">
         
-          <a href="../position/" title="Position" class="md-footer-nav__link md-footer-nav__link--prev" rel="prev">
+          <a href="../settlement/" title="Settlement" class="md-footer-nav__link md-footer-nav__link--prev" rel="prev">
             <div class="md-footer-nav__button md-icon">
               <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11h12z"/></svg>
             </div>
@@ -800,19 +784,19 @@
                 <span class="md-footer-nav__direction">
                   Previous
                 </span>
-                Position
+                Settlement
               </div>
             </div>
           </a>
         
         
-          <a href="../settlement/" title="Settlement" class="md-footer-nav__link md-footer-nav__link--next" rel="next">
+          <a href="../../order_deal_event/" title="Order & Deal Event" class="md-footer-nav__link md-footer-nav__link--next" rel="next">
             <div class="md-footer-nav__title">
               <div class="md-ellipsis">
                 <span class="md-footer-nav__direction">
                   Next
                 </span>
-                Settlement
+                Order & Deal Event
               </div>
             </div>
             <div class="md-footer-nav__button md-icon">
