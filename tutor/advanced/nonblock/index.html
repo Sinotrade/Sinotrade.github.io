@@ -737,7 +737,7 @@
                 
                 <h2 id="block-non-block-mode">Block &amp; Non Block Mode<a class="headerlink" href="#block-non-block-mode" title="Permanent link">&para;</a></h2>
 <p>Shioaji provides return the responsed using Block and Non Block mode, putting the 
-paramter of timeout can change the mode. It will use the default or value you set. </p>
+paramter of timeout can change the mode. Timeout default value is 5000 is wait the response for 5 second, but some api for data like tick data will become too large to receive in five second that need to scale up timeout or use Non-Block mode set the timeout as 0. Using cb parameter for Non-Block mode as the callback function.</p>
 <div class="admonition info">
 <p class="admonition-title">In</p>
 <div class="highlight"><pre><span></span><code><span class="n">api</span><span class="o">.</span><span class="n">place_order</span><span class="err">?</span>
