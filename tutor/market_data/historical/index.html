@@ -376,19 +376,6 @@
     KBar Data
   </a>
   
-    <nav class="md-nav" aria-label="KBar Data">
-      <ul class="md-nav__list">
-        
-          <li class="md-nav__item">
-  <a href="#coming-soon" class="md-nav__link">
-    Coming Soon
-  </a>
-  
-</li>
-        
-      </ul>
-    </nav>
-  
 </li>
       
     </ul>
@@ -770,19 +757,6 @@
     KBar Data
   </a>
   
-    <nav class="md-nav" aria-label="KBar Data">
-      <ul class="md-nav__list">
-        
-          <li class="md-nav__item">
-  <a href="#coming-soon" class="md-nav__link">
-    Coming Soon
-  </a>
-  
-</li>
-        
-      </ul>
-    </nav>
-  
 </li>
       
     </ul>
@@ -933,7 +907,100 @@
 </table>
 </div>
 <h2 id="kbar-data">KBar Data<a class="headerlink" href="#kbar-data" title="Permanent link">&para;</a></h2>
-<h3 id="coming-soon">Coming Soon<a class="headerlink" href="#coming-soon" title="Permanent link">&para;</a></h3>
+<div class="admonition info">
+<p class="admonition-title">In</p>
+<div class="highlight"><pre><span></span><code><span class="kn">from</span> <span class="nn">shioaji.data</span> <span class="kn">import</span> <span class="n">Kbars</span>
+<span class="n">Kbars</span><span class="err">??</span>
+</code></pre></div>
+
+</div>
+<div class="admonition done">
+<p class="admonition-title">Out</p>
+<div class="highlight"><pre><span></span><code><span class="n">Init</span> <span class="n">signature</span><span class="p">:</span> <span class="n">Kbars</span><span class="p">(</span><span class="o">**</span><span class="n">data</span><span class="p">:</span> <span class="n">Any</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span>
+<span class="n">Docstring</span><span class="p">:</span>      <span class="o">&lt;</span><span class="n">no</span> <span class="n">docstring</span><span class="o">&gt;</span>
+<span class="n">Source</span><span class="p">:</span>        
+<span class="k">class</span> <span class="nc">Kbars</span><span class="p">(</span><span class="n">BaseMapping</span><span class="p">):</span>
+    <span class="n">ts</span><span class="p">:</span> <span class="n">typing</span><span class="o">.</span><span class="n">List</span><span class="p">[</span><span class="nb">int</span><span class="p">]</span>
+    <span class="n">Open</span><span class="p">:</span> <span class="n">typing</span><span class="o">.</span><span class="n">List</span><span class="p">[</span><span class="nb">float</span><span class="p">]</span>
+    <span class="n">High</span><span class="p">:</span> <span class="n">typing</span><span class="o">.</span><span class="n">List</span><span class="p">[</span><span class="nb">float</span><span class="p">]</span>
+    <span class="n">Low</span><span class="p">:</span> <span class="n">typing</span><span class="o">.</span><span class="n">List</span><span class="p">[</span><span class="nb">float</span><span class="p">]</span>
+    <span class="n">Close</span><span class="p">:</span> <span class="n">typing</span><span class="o">.</span><span class="n">List</span><span class="p">[</span><span class="nb">float</span><span class="p">]</span>
+    <span class="n">Volume</span><span class="p">:</span> <span class="n">typing</span><span class="o">.</span><span class="n">List</span><span class="p">[</span><span class="nb">int</span><span class="p">]</span>
+</code></pre></div>
+
+</div>
+<div class="admonition info">
+<p class="admonition-title">In</p>
+<div class="highlight"><pre><span></span><code><span class="n">kbars</span> <span class="o">=</span> <span class="n">api</span><span class="o">.</span><span class="n">kbars</span><span class="p">(</span><span class="n">api</span><span class="o">.</span><span class="n">Contracts</span><span class="o">.</span><span class="n">Stocks</span><span class="p">[</span><span class="s2">&quot;2330&quot;</span><span class="p">],</span> <span class="n">start</span><span class="o">=</span><span class="s2">&quot;2020-06-01&quot;</span><span class="p">,</span> <span class="n">end</span><span class="o">=</span><span class="s2">&quot;2020-07-01&quot;</span><span class="p">)</span>
+<span class="n">df</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">({</span><span class="o">**</span><span class="n">kbars</span><span class="p">})</span>
+<span class="n">df</span><span class="o">.</span><span class="n">ts</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">to_datetime</span><span class="p">(</span><span class="n">df</span><span class="o">.</span><span class="n">ts</span><span class="p">)</span>
+<span class="n">df</span>
+</code></pre></div>
+
+</div>
+<div class="admonition done">
+<p class="admonition-title">Out</p>
+<table>
+<thead>
+<tr>
+<th></th>
+<th>ts</th>
+<th>Close</th>
+<th>Open</th>
+<th>High</th>
+<th>Volume</th>
+<th>Low</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>0</td>
+<td>2020-06-01 09:01:00</td>
+<td>294.0</td>
+<td>294.0</td>
+<td>294.0</td>
+<td>3187</td>
+<td>293.5</td>
+</tr>
+<tr>
+<td>1</td>
+<td>2020-06-01 09:02:00</td>
+<td>293.5</td>
+<td>293.5</td>
+<td>294.0</td>
+<td>201</td>
+<td>293.5</td>
+</tr>
+<tr>
+<td>2</td>
+<td>2020-06-01 09:03:00</td>
+<td>294.0</td>
+<td>293.5</td>
+<td>294.0</td>
+<td>267</td>
+<td>293.5</td>
+</tr>
+<tr>
+<td>3</td>
+<td>2020-06-01 09:04:00</td>
+<td>294.5</td>
+<td>294.0</td>
+<td>294.5</td>
+<td>624</td>
+<td>293.5</td>
+</tr>
+<tr>
+<td>4</td>
+<td>2020-06-01 09:05:00</td>
+<td>294.0</td>
+<td>294.0</td>
+<td>294.5</td>
+<td>419</td>
+<td>293.5</td>
+</tr>
+</tbody>
+</table>
+</div>
                 
               
               
