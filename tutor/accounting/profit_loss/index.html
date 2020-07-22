@@ -501,6 +501,18 @@
 
 
   <li class="md-nav__item">
+    <a href="../profit_loss_detail/" title="Profit Loss Detail" class="md-nav__link">
+      Profit Loss Detail
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
     <a href="../settlement/" title="Settlement" class="md-nav__link">
       Settlement
     </a>
@@ -718,7 +730,7 @@
 </div>
 <div class="admonition done">
 <p class="admonition-title">Out</p>
-<div class="highlight"><pre><span></span><code><span class="p">[</span><span class="n">ProfitLoss</span><span class="p">(</span><span class="n">code</span><span class="o">=</span><span class="s1">&#39;2890&#39;</span><span class="p">,</span> <span class="n">seqno</span><span class="o">=</span><span class="s1">&#39;14816&#39;</span><span class="p">,</span> <span class="n">quantity</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span> <span class="n">price</span><span class="o">=</span><span class="mf">10.1</span><span class="p">,</span> <span class="n">pnl</span><span class="o">=</span><span class="mf">1234.0</span><span class="p">,</span> <span class="n">pr_ratio</span><span class="o">=</span><span class="mf">0.1237</span><span class="p">,</span> <span class="n">date</span><span class="o">=</span><span class="s1">&#39;2020-05-22&#39;</span><span class="p">)]</span>
+<div class="highlight"><pre><span></span><code><span class="p">[</span><span class="n">ProfitLoss</span><span class="p">(</span><span class="nb">id</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span> <span class="n">code</span><span class="o">=</span><span class="s1">&#39;2890&#39;</span><span class="p">,</span> <span class="n">seqno</span><span class="o">=</span><span class="s1">&#39;14816&#39;</span><span class="p">,</span> <span class="n">dseq</span><span class="o">=</span><span class="s1">&#39;ID111&#39;</span><span class="p">,</span> <span class="n">quantity</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span> <span class="n">price</span><span class="o">=</span><span class="mf">10.1</span><span class="p">,</span> <span class="n">pnl</span><span class="o">=</span><span class="mf">1234.0</span><span class="p">,</span> <span class="n">pr_ratio</span><span class="o">=</span><span class="mf">0.1237</span><span class="p">,</span> <span class="n">cond</span><span class="o">=</span><span class="s1">&#39;Cash&#39;</span><span class="p">,</span> <span class="n">date</span><span class="o">=</span><span class="s1">&#39;2020-05-22&#39;</span><span class="p">)]</span>
 </code></pre></div>
 
 </div>
@@ -732,43 +744,21 @@
 </div>
 <div class="admonition done">
 <p class="admonition-title">Out</p>
-<table>
-<thead>
-<tr>
-<th>code</th>
-<th>cond</th>
-<th>date</th>
-<th>pnl</th>
-<th>pr_ratio</th>
-<th>price</th>
-<th>quantity</th>
-<th>seqno</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td>2890</td>
-<td>StockOrderCond.Cash</td>
-<td>2020-05-22</td>
-<td>1234.0</td>
-<td>0.1237</td>
-<td>10.1</td>
-<td>1</td>
-<td>14816</td>
-</tr>
-</tbody>
-</table>
+<p>| id | code | cond                | date       | pnl    | pr_ratio | price | quantity | seqno | dseq |
+|------|---------------------|------------|--------|----------|-------|----------|-------|
+| 0  | 2890 | StockOrderCond.Cash | 2020-05-22 | 1000.0 | 0.1237   | 10.1  | 1        | 14816 | ID111|</p>
 </div>
 <div class="admonition example">
 <p class="admonition-title">Attributes:</p>
-<div class="highlight"><pre><span></span><code><span class="n">code</span> <span class="p">(</span><span class="nb">str</span><span class="p">):</span> <span class="n">contract</span> <span class="nb">id</span><span class="o">.</span>
+<div class="highlight"><pre><span></span><code><span class="nb">id</span> <span class="p">(</span><span class="nb">int</span><span class="p">):</span> <span class="n">use</span> <span class="n">to</span> <span class="n">find</span> <span class="n">detail</span><span class="o">.</span>
+<span class="n">code</span> <span class="p">(</span><span class="nb">str</span><span class="p">):</span> <span class="n">contract</span> <span class="nb">id</span><span class="o">.</span>
 <span class="n">seqno</span> <span class="p">(</span><span class="nb">str</span><span class="p">):</span> <span class="n">seqno</span> <span class="n">no</span><span class="o">.</span>
+<span class="n">dseq</span> <span class="p">(</span><span class="nb">str</span><span class="p">):</span> <span class="n">seqno</span> <span class="n">no</span><span class="o">.</span>
 <span class="n">quantity</span> <span class="p">(</span><span class="nb">int</span><span class="p">):</span> <span class="n">quantity</span><span class="o">.</span>
 <span class="n">price</span> <span class="p">(</span><span class="nb">float</span><span class="p">):</span> <span class="n">price</span><span class="o">.</span>
 <span class="n">pnl</span> <span class="p">(</span><span class="nb">float</span><span class="p">):</span> <span class="n">profit</span> <span class="ow">and</span> <span class="n">loss</span><span class="o">.</span>
 <span class="n">pr_ratio</span> <span class="p">(</span><span class="nb">float</span><span class="p">):</span> <span class="n">profit</span> <span class="n">rate</span><span class="o">.</span>
-<span class="n">cond</span> <span class="p">(</span><span class="n">StockOrderCond</span><span class="p">):</span> <span class="n">Default</span> <span class="n">Cash</span><span class="o">.</span>
-    <span class="p">{</span><span class="n">Cash</span><span class="p">,</span> <span class="n">Netting</span><span class="p">,</span> <span class="n">MarginTrading</span><span class="p">,</span> <span class="n">ShortSelling</span><span class="p">}</span>
+<span class="n">cond</span> <span class="p">(</span><span class="n">StockOrderCond</span><span class="p">):</span> <span class="p">{</span><span class="n">Cash</span><span class="p">,</span> <span class="n">Netting</span><span class="p">,</span> <span class="n">MarginTrading</span><span class="p">,</span> <span class="n">ShortSelling</span><span class="p">}</span>
 <span class="n">date</span> <span class="p">(</span><span class="nb">str</span><span class="p">):</span> <span class="n">trade</span> <span class="n">date</span><span class="o">.</span>
 </code></pre></div>
 
@@ -806,13 +796,13 @@
           </a>
         
         
-          <a href="../settlement/" title="Settlement" class="md-footer-nav__link md-footer-nav__link--next" rel="next">
+          <a href="../profit_loss_detail/" title="Profit Loss Detail" class="md-footer-nav__link md-footer-nav__link--next" rel="next">
             <div class="md-footer-nav__title">
               <div class="md-ellipsis">
                 <span class="md-footer-nav__direction">
                   Next
                 </span>
-                Settlement
+                Profit Loss Detail
               </div>
             </div>
             <div class="md-footer-nav__button md-icon">
