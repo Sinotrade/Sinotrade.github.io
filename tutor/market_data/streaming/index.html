@@ -968,7 +968,7 @@
 <p class="admonition-title">In</p>
 <div class="highlight"><pre><span></span><code><span class="nd">@api</span><span class="o">.</span><span class="n">quote</span><span class="o">.</span><span class="n">on_quote</span>
 <span class="k">def</span> <span class="nf">quote_callback</span><span class="p">(</span><span class="n">topic</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span> <span class="n">quote</span><span class="p">:</span> <span class="nb">dict</span><span class="p">):</span>
-    <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Topic: </span><span class="si">{topic}</span><span class="s2">, Quote: </span><span class="si">{quote}</span><span class="s2">&quot;</span><span class="p">)</span>
+    <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Topic: </span><span class="si">{</span><span class="n">topic</span><span class="si">}</span><span class="s2">, Quote: </span><span class="si">{</span><span class="n">quote</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
 </code></pre></div>
 
 </div>
@@ -982,7 +982,7 @@
 <div class="admonition info">
 <p class="admonition-title">In</p>
 <div class="highlight"><pre><span></span><code><span class="k">def</span> <span class="nf">quote_callback</span><span class="p">(</span><span class="n">topic</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span> <span class="n">quote</span><span class="p">:</span> <span class="nb">dict</span><span class="p">):</span>
-    <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Topic: </span><span class="si">{topic}</span><span class="s2">, Quote: </span><span class="si">{quote}</span><span class="s2">&quot;</span><span class="p">)</span>
+    <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Topic: </span><span class="si">{</span><span class="n">topic</span><span class="si">}</span><span class="s2">, Quote: </span><span class="si">{</span><span class="n">quote</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
 
 <span class="n">api</span><span class="o">.</span><span class="n">quote</span><span class="o">.</span><span class="n">set_quote_callback</span><span class="p">(</span><span class="n">quote_callback</span><span class="p">)</span>
 </code></pre></div>
@@ -999,7 +999,7 @@ If you have no experience with networking, please skip this part, In defalut, we
 <p class="admonition-title">In</p>
 <div class="highlight"><pre><span></span><code><span class="nd">@api</span><span class="o">.</span><span class="n">quote</span><span class="o">.</span><span class="n">on_event</span>
 <span class="k">def</span> <span class="nf">event_callback</span><span class="p">(</span><span class="n">resp_code</span><span class="p">:</span> <span class="nb">int</span><span class="p">,</span> <span class="n">event_code</span><span class="p">:</span> <span class="nb">int</span><span class="p">,</span> <span class="n">info</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span> <span class="n">event</span><span class="p">:</span> <span class="nb">str</span><span class="p">):</span>
-    <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;Event code: </span><span class="si">{event_code}</span><span class="s1"> | Event: </span><span class="si">{event}</span><span class="s1">&#39;</span><span class="p">)</span>
+    <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;Event code: </span><span class="si">{</span><span class="n">event_code</span><span class="si">}</span><span class="s1"> | Event: </span><span class="si">{</span><span class="n">event</span><span class="si">}</span><span class="s1">&#39;</span><span class="p">)</span>
 </code></pre></div>
 
 </div>
