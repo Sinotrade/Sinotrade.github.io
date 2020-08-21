@@ -721,7 +721,33 @@
                 
                   <h1>Profit Loss Detail</h1>
                 
-                <h3 id="first-you-need-get-profit-loss"><a href="../../tutor/accounting/profir_loss.">First, you need get profit loss.</a><a class="headerlink" href="#first-you-need-get-profit-loss" title="Permanent link">&para;</a></h3>
+                <p>Query account of profit loss detail</p>
+<h3 id="first-you-need-get-profit-loss"><a href="../../tutor/accounting/profir_loss.">First, you need get profit loss.</a><a class="headerlink" href="#first-you-need-get-profit-loss" title="Permanent link">&para;</a></h3>
+<div class="admonition info">
+<p class="admonition-title">In</p>
+<div class="highlight"><pre><span></span><code><span class="n">api</span><span class="o">.</span><span class="n">list_profit_loss_detail</span><span class="err">?</span>
+</code></pre></div>
+
+</div>
+<div class="admonition done">
+<p class="admonition-title">Out</p>
+<div class="highlight"><pre><span></span><code><span class="n">Signature</span><span class="p">:</span>
+    <span class="n">api</span><span class="o">.</span><span class="n">list_profit_loss_detail</span><span class="p">(</span>
+        <span class="n">account</span><span class="p">:</span> <span class="n">shioaji</span><span class="o">.</span><span class="n">account</span><span class="o">.</span><span class="n">Account</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
+        <span class="n">detail_id</span><span class="p">:</span> <span class="nb">int</span> <span class="o">=</span> <span class="mi">0</span><span class="p">,</span>
+        <span class="n">timeout</span><span class="p">:</span> <span class="nb">int</span> <span class="o">=</span> <span class="mi">5000</span><span class="p">,</span>
+        <span class="n">cb</span><span class="p">:</span> <span class="n">Callable</span><span class="p">[[</span><span class="n">List</span><span class="p">[</span><span class="n">shioaji</span><span class="o">.</span><span class="n">position</span><span class="o">.</span><span class="n">ProfitLossDetail</span><span class="p">]],</span> <span class="n">NoneType</span><span class="p">]</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
+    <span class="p">)</span>
+<span class="n">Docstring</span><span class="p">:</span>
+    <span class="n">query</span> <span class="n">account</span> <span class="n">of</span> <span class="n">profit</span> <span class="n">loss</span> <span class="n">detail</span>
+
+    <span class="n">Args</span><span class="p">:</span>
+        <span class="n">account</span> <span class="p">(:</span><span class="n">obj</span><span class="p">:</span><span class="n">Account</span><span class="p">):</span> 
+            <span class="n">choice</span> <span class="n">the</span> <span class="n">account</span> <span class="kn">from</span> <span class="nn">listing</span> <span class="n">account</span> <span class="p">(</span><span class="n">Default</span><span class="p">:</span> <span class="n">stock</span> <span class="n">account</span><span class="p">)</span>
+        <span class="n">detail_id</span> <span class="p">(</span><span class="nb">int</span><span class="p">):</span> <span class="n">the</span> <span class="nb">id</span> <span class="ow">is</span> <span class="kn">from</span> <span class="nn">ProfitLoss</span> <span class="nb">object</span><span class="p">,</span> <span class="n">ProfitLoss</span> <span class="ow">is</span> <span class="kn">from</span> <span class="nn">list_profit_loss</span>
+</code></pre></div>
+
+</div>
 <div class="admonition info">
 <p class="admonition-title">In</p>
 <div class="highlight"><pre><span></span><code><span class="n">api</span><span class="o">.</span><span class="n">list_profit_loss_detail</span><span class="p">(</span><span class="n">api</span><span class="o">.</span><span class="n">stock_account</span><span class="p">,</span><span class="mi">2</span><span class="p">)</span>
