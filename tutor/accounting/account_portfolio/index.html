@@ -864,7 +864,7 @@
 <p>directly pass our AccountMargin object to pandas to using your model</p>
 <div class="admonition info">
 <p class="admonition-title">In</p>
-<div class="highlight"><pre><span></span><code><span class="n">df_margin</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">([{</span><span class="o">**</span><span class="n">account_margin</span><span class="p">}])</span>
+<div class="highlight"><pre><span></span><code><span class="n">df_margin</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">(</span><span class="n">account_margin</span><span class="o">.</span><span class="n">data</span><span class="p">())</span>
 <span class="n">df_margin</span>
 </code></pre></div>
 
