@@ -850,9 +850,9 @@
     <span class="n">quantity</span><span class="o">=</span><span class="mi">10</span><span class="p">,</span>
     <span class="n">action</span><span class="o">=</span><span class="s2">&quot;Buy&quot;</span><span class="p">,</span>
     <span class="n">price_type</span><span class="o">=</span><span class="s2">&quot;LMT&quot;</span><span class="p">,</span>
-<span class="hll">    <span class="n">order_type</span><span class="o">=</span><span class="s2">&quot;ROD&quot;</span><span class="p">,</span>     
-</span>    <span class="n">order_lot</span><span class="o">=</span><span class="s2">&quot;IntradayOdd&quot;</span><span class="p">,</span>     
-    <span class="n">octype</span><span class="o">=</span><span class="s2">&quot;Auto&quot;</span><span class="p">,</span>
+    <span class="n">order_type</span><span class="o">=</span><span class="s2">&quot;ROD&quot;</span><span class="p">,</span>     
+<span class="hll">    <span class="n">order_lot</span><span class="o">=</span><span class="s2">&quot;IntradayOdd&quot;</span><span class="p">,</span>     
+</span>    <span class="n">octype</span><span class="o">=</span><span class="s2">&quot;Auto&quot;</span><span class="p">,</span>
     <span class="n">account</span><span class="o">=</span><span class="n">api</span><span class="o">.</span><span class="n">stock_account</span><span class="p">,</span>
 <span class="p">)</span>
 
@@ -955,7 +955,8 @@
         <span class="n">update_date</span><span class="o">=</span><span class="s1">&#39;2020/09/21&#39;</span><span class="p">,</span> 
         <span class="n">margin_trading_balance</span><span class="o">=</span><span class="mi">15390</span><span class="p">,</span> 
         <span class="n">short_selling_balance</span><span class="o">=</span><span class="mi">2</span><span class="p">,</span> 
-        <span class="n">day_trade</span><span class="o">=&lt;</span><span class="n">DayTrade</span><span class="o">.</span><span class="n">Yes</span><span class="p">:</span> <span class="s1">&#39;Yes&#39;</span><span class="o">&gt;</span><span class="p">),</span> 
+        <span class="n">day_trade</span><span class="o">=&lt;</span><span class="n">DayTrade</span><span class="o">.</span><span class="n">Yes</span><span class="p">:</span> <span class="s1">&#39;Yes&#39;</span><span class="o">&gt;</span>
+    <span class="p">),</span> 
     <span class="n">order</span><span class="o">=</span><span class="n">Order</span><span class="p">(</span>
         <span class="n">action</span><span class="o">=&lt;</span><span class="n">Action</span><span class="o">.</span><span class="n">Buy</span><span class="p">:</span> <span class="s1">&#39;Buy&#39;</span><span class="o">&gt;</span><span class="p">,</span> 
         <span class="n">price</span><span class="o">=</span><span class="mf">90.0</span><span class="p">,</span> 
@@ -968,19 +969,18 @@
             <span class="n">person_id</span><span class="o">=</span><span class="s1">&#39;PAPIUSER04&#39;</span><span class="p">,</span> 
             <span class="n">broker_id</span><span class="o">=</span><span class="s1">&#39;9A95&#39;</span><span class="p">,</span> 
             <span class="n">account_id</span><span class="o">=</span><span class="s1">&#39;0506112&#39;</span><span class="p">,</span> 
-<span class="hll">            <span class="n">signed</span><span class="o">=</span><span class="kc">True</span>
-</span>        <span class="p">),</span> 
+            <span class="n">signed</span><span class="o">=</span><span class="kc">True</span>
+        <span class="p">),</span> 
         <span class="n">price_type</span><span class="o">=&lt;</span><span class="n">StockPriceType</span><span class="o">.</span><span class="n">LMT</span><span class="p">:</span> <span class="s1">&#39;LMT&#39;</span><span class="o">&gt;</span><span class="p">,</span> 
-<span class="hll">        <span class="n">order_type</span><span class="o">=&lt;</span><span class="n">FuturesOrderType</span><span class="o">.</span><span class="n">ROD</span><span class="p">:</span> <span class="s1">&#39;ROD&#39;</span><span class="o">&gt;</span><span class="p">,</span> 
-</span>        <span class="n">order_lot</span><span class="o">=&lt;</span><span class="n">TFTStockOrderLot</span><span class="o">.</span><span class="n">IntradayOdd</span><span class="p">:</span> <span class="s1">&#39;IntradayOdd&#39;</span><span class="o">&gt;</span>
+        <span class="n">order_type</span><span class="o">=&lt;</span><span class="n">FuturesOrderType</span><span class="o">.</span><span class="n">ROD</span><span class="p">:</span> <span class="s1">&#39;ROD&#39;</span><span class="o">&gt;</span><span class="p">,</span> 
+        <span class="n">order_lot</span><span class="o">=&lt;</span><span class="n">TFTStockOrderLot</span><span class="o">.</span><span class="n">IntradayOdd</span><span class="p">:</span> <span class="s1">&#39;IntradayOdd&#39;</span><span class="o">&gt;</span>
     <span class="p">),</span> 
     <span class="n">status</span><span class="o">=</span><span class="n">OrderStatus</span><span class="p">(</span>
         <span class="nb">id</span><span class="o">=</span><span class="s1">&#39;9b44c3b2&#39;</span><span class="p">,</span> 
-        <span class="n">status</span><span class="o">=&lt;</span><span class="n">Status</span><span class="o">.</span><span class="n">Submitted</span><span class="p">:</span> <span class="s1">&#39;Submitted&#39;</span><span class="o">&gt;</span><span class="p">,</span> 
-        <span class="n">status_code</span><span class="o">=</span><span class="s1">&#39;00&#39;</span><span class="p">,</span> 
+<span class="hll">        <span class="n">status</span><span class="o">=&lt;</span><span class="n">Status</span><span class="o">.</span><span class="n">Cancelled</span><span class="p">:</span> <span class="s1">&#39;Cancelled&#39;</span><span class="o">&gt;</span><span class="p">,</span> 
+</span>        <span class="n">status_code</span><span class="o">=</span><span class="s1">&#39;00&#39;</span><span class="p">,</span> 
         <span class="n">order_datetime</span><span class="o">=</span><span class="n">datetime</span><span class="o">.</span><span class="n">datetime</span><span class="p">(</span><span class="mi">2020</span><span class="p">,</span> <span class="mi">9</span><span class="p">,</span> <span class="mi">21</span><span class="p">,</span> <span class="mi">14</span><span class="p">,</span> <span class="mi">54</span><span class="p">,</span> <span class="mi">36</span><span class="p">),</span> 
-        <span class="n">cancel_quantity</span><span class="o">=</span><span class="mi">2</span><span class="p">,</span> 
-        <span class="n">deals</span><span class="o">=</span><span class="p">[]</span>
+        <span class="n">cancel_quantity</span><span class="o">=</span><span class="mi">10</span><span class="p">,</span> <span class="n">deals</span><span class="o">=</span><span class="p">[]</span>
     <span class="p">)</span>
 <span class="p">)</span>
 </code></pre></div>
