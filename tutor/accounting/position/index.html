@@ -486,6 +486,33 @@
     First, you need login.
   </a>
   
+    <nav class="md-nav" aria-label="First, you need login.">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#stocks" class="md-nav__link">
+    Stocks
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#shares" class="md-nav__link">
+    Shares
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#stock-to-dataframe" class="md-nav__link">
+    Stock to dataframe
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
 </li>
       
     </ul>
@@ -713,6 +740,33 @@
     First, you need login.
   </a>
   
+    <nav class="md-nav" aria-label="First, you need login.">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#stocks" class="md-nav__link">
+    Stocks
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#shares" class="md-nav__link">
+    Shares
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#stock-to-dataframe" class="md-nav__link">
+    Stock to dataframe
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
 </li>
       
     </ul>
@@ -757,6 +811,7 @@
 </code></pre></div>
 
 </div>
+<h4 id="stocks">Stocks<a class="headerlink" href="#stocks" title="Permanent link">&para;</a></h4>
 <div class="admonition info">
 <p class="admonition-title">In</p>
 <div class="highlight"><pre><span></span><code><span class="n">api</span><span class="o">.</span><span class="n">list_positions</span><span class="p">(</span><span class="n">api</span><span class="o">.</span><span class="n">stock_account</span><span class="p">)</span>
@@ -769,6 +824,20 @@
 </code></pre></div>
 
 </div>
+<h4 id="shares">Shares<a class="headerlink" href="#shares" title="Permanent link">&para;</a></h4>
+<div class="admonition info">
+<p class="admonition-title">In</p>
+<div class="highlight"><pre><span></span><code><span class="n">api</span><span class="o">.</span><span class="n">list_positions</span><span class="p">(</span><span class="n">api</span><span class="o">.</span><span class="n">stock_account</span><span class="p">,</span> <span class="n">unit</span><span class="o">=</span><span class="s2">&quot;Share&quot;</span><span class="p">)</span>
+</code></pre></div>
+
+</div>
+<div class="admonition done">
+<p class="admonition-title">Out</p>
+<div class="highlight"><pre><span></span><code><span class="p">[</span><span class="n">Position</span><span class="p">(</span><span class="n">code</span><span class="o">=</span><span class="s1">&#39;2890&#39;</span><span class="p">,</span> <span class="n">direction</span><span class="o">=&lt;</span><span class="n">Action</span><span class="o">.</span><span class="n">Buy</span><span class="p">:</span> <span class="s1">&#39;Buy&#39;</span><span class="o">&gt;</span><span class="p">,</span> <span class="n">quantity</span><span class="o">=</span><span class="mi">10000</span><span class="p">,</span> <span class="n">price</span><span class="o">=</span><span class="mf">10.1</span><span class="p">,</span> <span class="n">pnl</span><span class="o">=</span><span class="mf">1234.0</span><span class="p">,</span> <span class="n">yd_quantity</span><span class="o">=</span><span class="mi">10000</span><span class="p">)]</span>
+</code></pre></div>
+
+</div>
+<h4 id="stock-to-dataframe">Stock to dataframe<a class="headerlink" href="#stock-to-dataframe" title="Permanent link">&para;</a></h4>
 <div class="admonition info">
 <p class="admonition-title">In</p>
 <div class="highlight"><pre><span></span><code><span class="n">positions</span> <span class="o">=</span> <span class="n">api</span><span class="o">.</span><span class="n">list_positions</span><span class="p">(</span><span class="n">api</span><span class="o">.</span><span class="n">stock_account</span><span class="p">)</span>
