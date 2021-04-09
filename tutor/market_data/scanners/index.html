@@ -11,7 +11,7 @@
         <meta name="description" content="Shioaji is provided by SinoPac the most pythonic API for trading the Taiwan and global financial market. You can use your favorite Python packages such as NumPy, pandas, PyTorch or TensorFlow to build your trading model with integrated the Shioaji API on cross-platform.">
       
       
-        <link rel="canonical" href="https://sinotrade.github.io/tutor/market_data/credit_enquires/">
+        <link rel="canonical" href="https://sinotrade.github.io/tutor/market_data/scanners/">
       
       
         <meta name="author" content="Yvictor, ">
@@ -21,7 +21,7 @@
     
     
       
-        <title>Credit Enquires - Shioaji</title>
+        <title>Scanners - Shioaji</title>
       
     
     
@@ -94,7 +94,7 @@
           </span>
           <span class="md-header-nav__topic md-ellipsis">
             
-              Credit Enquires
+              Scanners
             
           </span>
         </div>
@@ -341,6 +341,18 @@
           
           
 
+
+  <li class="md-nav__item">
+    <a href="../credit_enquires/" title="Credit Enquires" class="md-nav__link">
+      Credit Enquires
+    </a>
+  </li>
+
+        
+          
+          
+          
+
   
 
 
@@ -350,14 +362,14 @@
     
     
       <label class="md-nav__link md-nav__link--active" for="__toc">
-        Credit Enquires
+        Scanners
         <span class="md-nav__icon md-icon">
           <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 9h14V7H3v2m0 4h14v-2H3v2m0 4h14v-2H3v2m16 0h2v-2h-2v2m0-10v2h2V7h-2m0 6h2v-2h-2v2z"/></svg>
         </span>
       </label>
     
-    <a href="./" title="Credit Enquires" class="md-nav__link md-nav__link--active">
-      Credit Enquires
+    <a href="./" title="Scanners" class="md-nav__link md-nav__link--active">
+      Scanners
     </a>
     
       
@@ -381,15 +393,43 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#get-credit-enquires" class="md-nav__link">
-    Get Credit Enquires
+  <a href="#get-amount-rank" class="md-nav__link">
+    Get Amount Rank
   </a>
   
 </li>
       
         <li class="md-nav__item">
-  <a href="#short-stock-source-to-dataframe" class="md-nav__link">
-    Short Stock Source to DataFrame
+  <a href="#to-dataframe" class="md-nav__link">
+    To DataFrame
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#get-change-pricerank" class="md-nav__link">
+    Get Change PriceRank
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#get-volume-rank" class="md-nav__link">
+    Get Volume Rank
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#get-change-percent-rank" class="md-nav__link">
+    Get Change Percent Rank
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#get-day-range-rank" class="md-nav__link">
+    Get Day Range Rank
   </a>
   
 </li>
@@ -398,18 +438,6 @@
   
 </nav>
     
-  </li>
-
-        
-          
-          
-          
-
-
-  <li class="md-nav__item">
-    <a href="../scanners/" title="Scanners" class="md-nav__link">
-      Scanners
-    </a>
   </li>
 
         
@@ -790,15 +818,43 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#get-credit-enquires" class="md-nav__link">
-    Get Credit Enquires
+  <a href="#get-amount-rank" class="md-nav__link">
+    Get Amount Rank
   </a>
   
 </li>
       
         <li class="md-nav__item">
-  <a href="#short-stock-source-to-dataframe" class="md-nav__link">
-    Short Stock Source to DataFrame
+  <a href="#to-dataframe" class="md-nav__link">
+    To DataFrame
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#get-change-pricerank" class="md-nav__link">
+    Get Change PriceRank
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#get-volume-rank" class="md-nav__link">
+    Get Volume Rank
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#get-change-percent-rank" class="md-nav__link">
+    Get Change Percent Rank
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#get-day-range-rank" class="md-nav__link">
+    Get Day Range Rank
   </a>
   
 </li>
@@ -819,40 +875,67 @@
                   
                 
                 
-                  <h1>Credit Enquires</h1>
+                  <h1>Scanners</h1>
                 
                 <h3 id="first-you-need-login"><a href="../../tutor/login">First, you need login.</a><a class="headerlink" href="#first-you-need-login" title="Permanent link">&para;</a></h3>
-<h3 id="get-credit-enquires">Get Credit Enquires<a class="headerlink" href="#get-credit-enquires" title="Permanent link">&para;</a></h3>
+<h3 id="get-amount-rank">Get Amount Rank<a class="headerlink" href="#get-amount-rank" title="Permanent link">&para;</a></h3>
 <div class="admonition info">
 <p class="admonition-title">In</p>
-<div class="highlight"><pre><span></span><code><span class="n">contracts</span> <span class="o">=</span> <span class="p">[</span><span class="n">api</span><span class="o">.</span><span class="n">Contracts</span><span class="o">.</span><span class="n">Stocks</span><span class="p">[</span><span class="s1">&#39;2330&#39;</span><span class="p">],</span><span class="n">api</span><span class="o">.</span><span class="n">Contracts</span><span class="o">.</span><span class="n">Stocks</span><span class="p">[</span><span class="s1">&#39;2890&#39;</span><span class="p">]]</span>
-<span class="n">credit_enquires</span> <span class="o">=</span> <span class="n">api</span><span class="o">.</span><span class="n">credit_enquires</span><span class="p">(</span><span class="n">contracts</span><span class="p">)</span>
-<span class="n">credit_enquires</span>
+<div class="highlight"><pre><span></span><code><span class="n">scanner</span> <span class="o">=</span> <span class="n">api</span><span class="o">.</span><span class="n">scanners</span><span class="p">(</span><span class="n">sj</span><span class="o">.</span><span class="n">constant</span><span class="o">.</span><span class="n">ScannerType</span><span class="o">.</span><span class="n">AmountRank</span><span class="p">)</span>
+<span class="n">scanner</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
 </code></pre></div>
 
 </div>
 <div class="admonition done">
 <p class="admonition-title">Out</p>
-<div class="highlight"><pre><span></span><code><span class="p">[</span>
-    <span class="n">CreditEnquire</span><span class="p">(</span><span class="n">update_time</span><span class="o">=</span><span class="s1">&#39;2020-12-11 13:30:13&#39;</span><span class="p">,</span> <span class="n">system</span><span class="o">=</span><span class="s1">&#39;HE&#39;</span><span class="p">,</span> <span class="n">stock_id</span><span class="o">=</span><span class="s1">&#39;2330&#39;</span><span class="p">,</span> <span class="n">margin_unit</span><span class="o">=</span><span class="mi">1381</span><span class="p">),</span> 
-    <span class="n">CreditEnquire</span><span class="p">(</span><span class="n">update_time</span><span class="o">=</span><span class="s1">&#39;2020-12-11 13:30:02&#39;</span><span class="p">,</span> <span class="n">system</span><span class="o">=</span><span class="s1">&#39;HC&#39;</span><span class="p">,</span> <span class="n">stock_id</span><span class="o">=</span><span class="s1">&#39;2330&#39;</span><span class="p">,</span> <span class="n">margin_unit</span><span class="o">=</span><span class="mi">1371</span><span class="p">),</span> 
-    <span class="n">CreditEnquire</span><span class="p">(</span><span class="n">update_time</span><span class="o">=</span><span class="s1">&#39;2020-12-11 13:30:05&#39;</span><span class="p">,</span> <span class="n">system</span><span class="o">=</span><span class="s1">&#39;HN&#39;</span><span class="p">,</span> <span class="n">stock_id</span><span class="o">=</span><span class="s1">&#39;2330&#39;</span><span class="p">,</span> <span class="n">margin_unit</span><span class="o">=</span><span class="mi">1357</span><span class="p">),</span> 
-    <span class="n">CreditEnquire</span><span class="p">(</span><span class="n">update_time</span><span class="o">=</span><span class="s1">&#39;2020-12-11 13:30:03&#39;</span><span class="p">,</span> <span class="n">system</span><span class="o">=</span><span class="s1">&#39;HF&#39;</span><span class="p">,</span> <span class="n">stock_id</span><span class="o">=</span><span class="s1">&#39;2330&#39;</span><span class="p">,</span> <span class="n">margin_unit</span><span class="o">=</span><span class="mi">1314</span><span class="p">),</span> 
-    <span class="n">CreditEnquire</span><span class="p">(</span><span class="n">update_time</span><span class="o">=</span><span class="s1">&#39;2020-12-09 10:56:05&#39;</span><span class="p">,</span> <span class="n">system</span><span class="o">=</span><span class="s1">&#39;HE&#39;</span><span class="p">,</span> <span class="n">stock_id</span><span class="o">=</span><span class="s1">&#39;2890&#39;</span><span class="p">),</span> 
-    <span class="n">CreditEnquire</span><span class="p">(</span><span class="n">update_time</span><span class="o">=</span><span class="s1">&#39;2020-12-11 09:33:04&#39;</span><span class="p">,</span> <span class="n">system</span><span class="o">=</span><span class="s1">&#39;HN&#39;</span><span class="p">,</span> <span class="n">stock_id</span><span class="o">=</span><span class="s1">&#39;2890&#39;</span><span class="p">),</span> 
-    <span class="n">CreditEnquire</span><span class="p">(</span><span class="n">update_time</span><span class="o">=</span><span class="s1">&#39;2020-12-02 09:01:03&#39;</span><span class="p">,</span> <span class="n">system</span><span class="o">=</span><span class="s1">&#39;HF&#39;</span><span class="p">,</span> <span class="n">stock_id</span><span class="o">=</span><span class="s1">&#39;2890&#39;</span><span class="p">)</span>
-<span class="p">]</span>
+<div class="highlight"><pre><span></span><code><span class="n">ChangePercentRank</span><span class="p">(</span>
+    <span class="n">date</span><span class="o">=</span><span class="s1">&#39;2021-04-09&#39;</span><span class="p">,</span> 
+    <span class="n">code</span><span class="o">=</span><span class="s1">&#39;2603&#39;</span><span class="p">,</span> 
+    <span class="n">name</span><span class="o">=</span><span class="s1">&#39;長榮&#39;</span><span class="p">,</span> 
+    <span class="n">ts</span><span class="o">=</span><span class="mi">1617978600000000000</span><span class="p">,</span> 
+    <span class="nb">open</span><span class="o">=</span><span class="mf">52.5</span><span class="p">,</span> 
+    <span class="n">high</span><span class="o">=</span><span class="mf">52.7</span><span class="p">,</span> 
+    <span class="n">low</span><span class="o">=</span><span class="mf">49.0</span><span class="p">,</span> 
+    <span class="n">close</span><span class="o">=</span><span class="mf">50.0</span><span class="p">,</span> 
+    <span class="n">price_range</span><span class="o">=</span><span class="mf">3.7</span><span class="p">,</span> 
+    <span class="n">tick_type</span><span class="o">=</span><span class="mi">2</span><span class="p">,</span> 
+    <span class="n">change_price</span><span class="o">=-</span><span class="mf">2.3</span><span class="p">,</span> 
+    <span class="n">change_type</span><span class="o">=</span><span class="mi">4</span><span class="p">,</span> 
+    <span class="n">average_price</span><span class="o">=</span><span class="mf">50.52</span><span class="p">,</span> 
+    <span class="n">volume</span><span class="o">=</span><span class="mi">817</span><span class="p">,</span> 
+    <span class="n">total_volume</span><span class="o">=</span><span class="mi">387811</span><span class="p">,</span>
+    <span class="n">amount</span><span class="o">=</span><span class="mi">40850000</span><span class="p">,</span> 
+    <span class="n">total_amount</span><span class="o">=</span><span class="mi">19593829300</span><span class="p">,</span> 
+    <span class="n">yesterday_volume</span><span class="o">=</span><span class="mi">275461</span><span class="p">,</span> 
+    <span class="n">volume_ratio</span><span class="o">=</span><span class="mf">1.41</span><span class="p">,</span> 
+    <span class="n">buy_price</span><span class="o">=</span><span class="mf">50.0</span><span class="p">,</span> 
+    <span class="n">buy_volume</span><span class="o">=</span><span class="mi">3039</span><span class="p">,</span> 
+    <span class="n">sell_price</span><span class="o">=</span><span class="mf">50.1</span><span class="p">,</span> 
+    <span class="n">sell_volume</span><span class="o">=</span><span class="mi">631</span><span class="p">,</span> 
+    <span class="n">bid_orders</span><span class="o">=</span><span class="mi">22299</span><span class="p">,</span> 
+    <span class="n">bid_volumes</span><span class="o">=</span><span class="mi">10620</span><span class="p">,</span> 
+    <span class="n">ask_orders</span><span class="o">=</span><span class="mi">22648</span><span class="p">,</span> 
+    <span class="n">ask_volumes</span><span class="o">=</span><span class="mi">12709</span>
+<span class="p">)</span>
 </code></pre></div>
 
 </div>
-<h3 id="short-stock-source-to-dataframe">Short Stock Source to DataFrame<a class="headerlink" href="#short-stock-source-to-dataframe" title="Permanent link">&para;</a></h3>
+<div class="admonition example">
+<p class="admonition-title">Attributes:</p>
+<div class="highlight"><pre><span></span><code><span class="n">scanner_type</span> <span class="p">(</span><span class="n">ScannerType</span><span class="p">):</span> 
+    <span class="p">{</span><span class="n">ChangePercentRank</span><span class="p">,</span> <span class="n">ChangePriceRank</span><span class="p">,</span> <span class="n">DayRangeRank</span><span class="p">,</span> <span class="n">VolumeRank</span><span class="p">,</span> <span class="n">AmountRank</span><span class="p">}</span>
+<span class="n">ascending</span> <span class="p">(</span><span class="nb">bool</span><span class="p">):</span> <span class="n">ascending</span>
+<span class="n">date</span> <span class="p">(</span><span class="nb">str</span><span class="p">):</span> <span class="n">date</span><span class="o">.</span>
+</code></pre></div>
+
+</div>
+<h3 id="to-dataframe">To DataFrame<a class="headerlink" href="#to-dataframe" title="Permanent link">&para;</a></h3>
 <div class="admonition info">
 <p class="admonition-title">In</p>
-<div class="highlight"><pre><span></span><code><span class="n">contracts</span> <span class="o">=</span> <span class="p">[</span><span class="n">api</span><span class="o">.</span><span class="n">Contracts</span><span class="o">.</span><span class="n">Stocks</span><span class="p">[</span><span class="s1">&#39;2330&#39;</span><span class="p">],</span><span class="n">api</span><span class="o">.</span><span class="n">Contracts</span><span class="o">.</span><span class="n">Stocks</span><span class="p">[</span><span class="s1">&#39;2890&#39;</span><span class="p">]]</span>
-<span class="n">credit_enquires</span> <span class="o">=</span> <span class="n">api</span><span class="o">.</span><span class="n">credit_enquires</span><span class="p">(</span><span class="n">contracts</span><span class="p">)</span>
-<span class="n">df</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">(</span><span class="n">credit_enquires</span><span class="p">)</span>
-<span class="n">df</span><span class="o">.</span><span class="n">update_time</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">to_datetime</span><span class="p">(</span><span class="n">df</span><span class="o">.</span><span class="n">update_time</span><span class="p">)</span>
-<span class="n">df</span>
+<div class="highlight"><pre><span></span><code><span class="n">scanner</span> <span class="o">=</span> <span class="n">api</span><span class="o">.</span><span class="n">scanners</span><span class="p">(</span><span class="n">sj</span><span class="o">.</span><span class="n">constant</span><span class="o">.</span><span class="n">ScannerType</span><span class="o">.</span><span class="n">AmountRank</span><span class="p">)</span>
+<span class="n">scanner_df</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">(</span><span class="n">scanner</span><span class="p">)</span>
+<span class="n">scanner_df</span><span class="o">.</span><span class="n">ts</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">to_datetime</span><span class="p">(</span><span class="n">scanner_df</span><span class="o">.</span><span class="n">ts</span><span class="p">)</span>
+<span class="n">scanner_df</span>
 </code></pre></div>
 
 </div>
@@ -862,80 +945,281 @@
 <thead>
 <tr>
 <th></th>
-<th>margin_unit</th>
-<th>short_unit</th>
-<th>stock_id</th>
-<th>system</th>
-<th>update_time</th>
+<th>amount</th>
+<th>ask_orders</th>
+<th>ask_volumes</th>
+<th>average_price</th>
+<th>bid_orders</th>
+<th>bid_volumes</th>
+<th>buy_price</th>
+<th>...</th>
+<th>tick_type</th>
+<th>total_amount</th>
+<th>total_volume</th>
+<th>ts</th>
+<th>volume</th>
+<th>volume_ratio</th>
+<th>yesterday_volume</th>
 </tr>
 </thead>
 <tbody>
 <tr>
 <td>0</td>
-<td>1381</td>
-<td>0</td>
-<td>2330</td>
-<td>HE</td>
-<td>2020-12-11 13:30:13</td>
+<td>481150000</td>
+<td>22646</td>
+<td>12709</td>
+<td>50.53</td>
+<td>22299</td>
+<td>10620</td>
+<td>50.00</td>
+<td>...</td>
+<td>2</td>
+<td>19551063400</td>
+<td>386956</td>
+<td>2021-04-09 13:30:00</td>
+<td>9623</td>
+<td>1.40</td>
+<td>275461</td>
 </tr>
 <tr>
 <td>1</td>
-<td>1371</td>
-<td>0</td>
-<td>2330</td>
-<td>HC</td>
-<td>2020-12-11 13:30:02</td>
+<td>59170000</td>
+<td>4361</td>
+<td>3256</td>
+<td>612.46</td>
+<td>3316</td>
+<td>2225</td>
+<td>610.00</td>
+<td>...</td>
+<td>1</td>
+<td>16633534000</td>
+<td>27159</td>
+<td>2021-04-09 13:30:00</td>
+<td>3371</td>
+<td>1.13</td>
+<td>23976</td>
 </tr>
 <tr>
 <td>2</td>
-<td>1357</td>
-<td>0</td>
-<td>2330</td>
-<td>HN</td>
-<td>2020-12-11 14:31:19</td>
+<td>31724550</td>
+<td>23002</td>
+<td>12669</td>
+<td>25.00</td>
+<td>31294</td>
+<td>11268</td>
+<td>24.60</td>
+<td>...</td>
+<td>2</td>
+<td>16590525150</td>
+<td>663561</td>
+<td>2021-04-09 13:30:00</td>
+<td>14888</td>
+<td>1.55</td>
+<td>427521</td>
 </tr>
 <tr>
 <td>3</td>
-<td>1314</td>
-<td>0</td>
-<td>2330</td>
-<td>HF</td>
-<td>2020-12-11 14:31:19</td>
+<td>5968200</td>
+<td>20378</td>
+<td>13430</td>
+<td>33.02</td>
+<td>28132</td>
+<td>12023</td>
+<td>34.30</td>
+<td>...</td>
+<td>1</td>
+<td>15120385700</td>
+<td>457881</td>
+<td>2021-04-09 13:30:00</td>
+<td>870</td>
+<td>4.44</td>
+<td>103173</td>
 </tr>
 <tr>
 <td>4</td>
-<td>0</td>
-<td>0</td>
-<td>2890</td>
-<td>HE</td>
-<td>2020-12-09 10:56:05</td>
-</tr>
-<tr>
-<td>5</td>
-<td>0</td>
-<td>0</td>
-<td>2890</td>
-<td>HN</td>
-<td>2020-12-11 09:33:04</td>
-</tr>
-<tr>
-<td>6</td>
-<td>0</td>
-<td>0</td>
-<td>2890</td>
-<td>HF</td>
-<td>2020-12-02 09:01:03</td>
+<td>54225000</td>
+<td>9596</td>
+<td>7394</td>
+<td>235.00</td>
+<td>10634</td>
+<td>7349</td>
+<td>225.00</td>
+<td>...</td>
+<td>1</td>
+<td>14149030500</td>
+<td>60199</td>
+<td>2021-04-09 13:30:00</td>
+<td>1056</td>
+<td>1.60</td>
+<td>37622</td>
 </tr>
 </tbody>
 </table>
 </div>
-<div class="admonition example">
-<p class="admonition-title">Attributes:</p>
-<div class="highlight"><pre><span></span><code><span class="n">update_time</span> <span class="p">(</span><span class="nb">str</span><span class="p">):</span> <span class="n">update</span> <span class="n">time</span><span class="o">.</span>
-<span class="n">system</span> <span class="p">(</span><span class="nb">str</span><span class="p">):</span> <span class="n">system</span><span class="o">.</span>
-<span class="n">stock_id</span> <span class="p">(</span><span class="nb">str</span><span class="p">):</span> <span class="n">stock_id</span><span class="o">.</span>
-<span class="n">margin_unit</span> <span class="p">(</span><span class="nb">int</span><span class="p">):</span> <span class="n">margin</span> <span class="n">unit</span><span class="o">.</span>
-<span class="n">short_unit</span> <span class="p">(</span><span class="nb">int</span><span class="p">):</span> <span class="n">short</span> <span class="n">unit</span><span class="o">.</span>
+<h3 id="get-change-pricerank">Get Change PriceRank<a class="headerlink" href="#get-change-pricerank" title="Permanent link">&para;</a></h3>
+<div class="admonition info">
+<p class="admonition-title">In</p>
+<div class="highlight"><pre><span></span><code><span class="n">scanner</span> <span class="o">=</span> <span class="n">api</span><span class="o">.</span><span class="n">scanners</span><span class="p">(</span><span class="n">sj</span><span class="o">.</span><span class="n">constant</span><span class="o">.</span><span class="n">ScannerType</span><span class="o">.</span><span class="n">ChangePriceRank</span><span class="p">)</span>
+<span class="n">scanner</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
+</code></pre></div>
+
+</div>
+<div class="admonition done">
+<p class="admonition-title">Out</p>
+<div class="highlight"><pre><span></span><code><span class="n">ChangePercentRank</span><span class="p">(</span>
+    <span class="n">date</span><span class="o">=</span><span class="s1">&#39;2021-04-09&#39;</span><span class="p">,</span> <span class="n">code</span><span class="o">=</span><span class="s1">&#39;6781&#39;</span><span class="p">,</span> 
+    <span class="n">name</span><span class="o">=</span><span class="s1">&#39;AES-KY&#39;</span><span class="p">,</span> 
+    <span class="n">ts</span><span class="o">=</span><span class="mi">1617978600000000000</span><span class="p">,</span> 
+    <span class="nb">open</span><span class="o">=</span><span class="mf">660.0</span><span class="p">,</span> 
+    <span class="n">high</span><span class="o">=</span><span class="mf">698.0</span><span class="p">,</span> 
+    <span class="n">low</span><span class="o">=</span><span class="mf">634.0</span><span class="p">,</span> 
+    <span class="n">close</span><span class="o">=</span><span class="mf">698.0</span><span class="p">,</span> 
+    <span class="n">price_range</span><span class="o">=</span><span class="mf">64.0</span><span class="p">,</span> 
+    <span class="n">tick_type</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span> 
+    <span class="n">change_price</span><span class="o">=</span><span class="mf">63.0</span><span class="p">,</span> 
+    <span class="n">change_type</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span> 
+    <span class="n">average_price</span><span class="o">=</span><span class="mf">667.63</span><span class="p">,</span> 
+    <span class="n">volume</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span> 
+    <span class="n">total_volume</span><span class="o">=</span><span class="mi">1902</span><span class="p">,</span> 
+    <span class="n">amount</span><span class="o">=</span><span class="mi">698000</span><span class="p">,</span> 
+    <span class="n">total_amount</span><span class="o">=</span><span class="mi">1269849148</span><span class="p">,</span> 
+    <span class="n">yesterday_volume</span><span class="o">=</span><span class="mi">1098</span><span class="p">,</span> 
+    <span class="n">volume_ratio</span><span class="o">=</span><span class="mf">1.73</span><span class="p">,</span> 
+    <span class="n">buy_price</span><span class="o">=</span><span class="mf">698.0</span><span class="p">,</span> 
+    <span class="n">buy_volume</span><span class="o">=</span><span class="mi">1264</span><span class="p">,</span> 
+    <span class="n">sell_price</span><span class="o">=</span><span class="mf">0.0</span><span class="p">,</span> 
+    <span class="n">sell_volume</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span> 
+    <span class="n">bid_orders</span><span class="o">=</span><span class="mi">717</span><span class="p">,</span> 
+    <span class="n">bid_volumes</span><span class="o">=</span><span class="mi">398</span><span class="p">,</span> 
+    <span class="n">ask_orders</span><span class="o">=</span><span class="mi">296</span><span class="p">,</span> 
+    <span class="n">ask_volumes</span><span class="o">=</span><span class="mi">288</span>
+<span class="p">)</span>
+</code></pre></div>
+
+</div>
+<h3 id="get-volume-rank">Get Volume Rank<a class="headerlink" href="#get-volume-rank" title="Permanent link">&para;</a></h3>
+<div class="admonition info">
+<p class="admonition-title">In</p>
+<div class="highlight"><pre><span></span><code><span class="n">scanner</span> <span class="o">=</span> <span class="n">api</span><span class="o">.</span><span class="n">scanners</span><span class="p">(</span><span class="n">sj</span><span class="o">.</span><span class="n">constant</span><span class="o">.</span><span class="n">ScannerType</span><span class="o">.</span><span class="n">VolumeRank</span><span class="p">)</span>
+<span class="n">scanner</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
+</code></pre></div>
+
+</div>
+<div class="admonition done">
+<p class="admonition-title">Out</p>
+<div class="highlight"><pre><span></span><code><span class="n">ChangePercentRank</span><span class="p">(</span>
+    <span class="n">date</span><span class="o">=</span><span class="s1">&#39;2021-04-09&#39;</span><span class="p">,</span> 
+    <span class="n">code</span><span class="o">=</span><span class="s1">&#39;3481&#39;</span><span class="p">,</span> 
+    <span class="n">name</span><span class="o">=</span><span class="s1">&#39;群創&#39;</span><span class="p">,</span> 
+    <span class="n">ts</span><span class="o">=</span><span class="mi">1617978600000000000</span><span class="p">,</span> 
+    <span class="nb">open</span><span class="o">=</span><span class="mf">24.45</span><span class="p">,</span> 
+    <span class="n">high</span><span class="o">=</span><span class="mf">25.9</span><span class="p">,</span> 
+    <span class="n">low</span><span class="o">=</span><span class="mf">24.3</span><span class="p">,</span> 
+    <span class="n">close</span><span class="o">=</span><span class="mf">24.65</span><span class="p">,</span> 
+    <span class="n">price_range</span><span class="o">=</span><span class="mf">1.6</span><span class="p">,</span> 
+    <span class="n">tick_type</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span> 
+    <span class="n">change_price</span><span class="o">=</span><span class="mf">0.65</span><span class="p">,</span> 
+    <span class="n">change_type</span><span class="o">=</span><span class="mi">2</span><span class="p">,</span> 
+    <span class="n">average_price</span><span class="o">=</span><span class="mf">25.0</span><span class="p">,</span> 
+    <span class="n">volume</span><span class="o">=</span><span class="mi">1287</span><span class="p">,</span> 
+    <span class="n">total_volume</span><span class="o">=</span><span class="mi">664906</span><span class="p">,</span> 
+    <span class="n">amount</span><span class="o">=</span><span class="mi">31724550</span><span class="p">,</span> 
+    <span class="n">total_amount</span><span class="o">=</span><span class="mi">16623686424</span><span class="p">,</span> 
+    <span class="n">yesterday_volume</span><span class="o">=</span><span class="mi">427521</span><span class="p">,</span> 
+    <span class="n">volume_ratio</span><span class="o">=</span><span class="mf">1.56</span><span class="p">,</span> 
+    <span class="n">buy_price</span><span class="o">=</span><span class="mf">24.6</span><span class="p">,</span> 
+    <span class="n">buy_volume</span><span class="o">=</span><span class="mi">3528</span><span class="p">,</span> 
+    <span class="n">sell_price</span><span class="o">=</span><span class="mf">24.65</span><span class="p">,</span> 
+    <span class="n">sell_volume</span><span class="o">=</span><span class="mi">491</span><span class="p">,</span> 
+    <span class="n">bid_orders</span><span class="o">=</span><span class="mi">31294</span><span class="p">,</span> 
+    <span class="n">bid_volumes</span><span class="o">=</span><span class="mi">11268</span><span class="p">,</span> 
+    <span class="n">ask_orders</span><span class="o">=</span><span class="mi">23002</span><span class="p">,</span> 
+    <span class="n">ask_volumes</span><span class="o">=</span><span class="mi">12669</span>
+<span class="p">)</span>
+</code></pre></div>
+
+</div>
+<h3 id="get-change-percent-rank">Get Change Percent Rank<a class="headerlink" href="#get-change-percent-rank" title="Permanent link">&para;</a></h3>
+<div class="admonition info">
+<p class="admonition-title">In</p>
+<div class="highlight"><pre><span></span><code><span class="n">scanner</span> <span class="o">=</span> <span class="n">api</span><span class="o">.</span><span class="n">scanners</span><span class="p">(</span><span class="n">sj</span><span class="o">.</span><span class="n">constant</span><span class="o">.</span><span class="n">ScannerType</span><span class="o">.</span><span class="n">ChangePercentRank</span><span class="p">)</span>
+<span class="n">scanner</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
+</code></pre></div>
+
+</div>
+<div class="admonition done">
+<p class="admonition-title">Out</p>
+<div class="highlight"><pre><span></span><code><span class="n">ChangePercentRank</span><span class="p">(</span>
+    <span class="n">date</span><span class="o">=</span><span class="s1">&#39;2021-04-09&#39;</span><span class="p">,</span> 
+    <span class="n">code</span><span class="o">=</span><span class="s1">&#39;5211&#39;</span><span class="p">,</span> 
+    <span class="n">name</span><span class="o">=</span><span class="s1">&#39;蒙恬&#39;</span><span class="p">,</span> 
+    <span class="n">ts</span><span class="o">=</span><span class="mi">1617978600000000000</span><span class="p">,</span> 
+    <span class="nb">open</span><span class="o">=</span><span class="mf">16.4</span><span class="p">,</span> 
+    <span class="n">high</span><span class="o">=</span><span class="mf">17.6</span><span class="p">,</span> 
+    <span class="n">low</span><span class="o">=</span><span class="mf">16.35</span><span class="p">,</span> 
+    <span class="n">close</span><span class="o">=</span><span class="mf">17.6</span><span class="p">,</span> 
+    <span class="n">price_range</span><span class="o">=</span><span class="mf">1.25</span><span class="p">,</span> 
+    <span class="n">tick_type</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span> 
+    <span class="n">change_price</span><span class="o">=</span><span class="mf">1.6</span><span class="p">,</span> 
+    <span class="n">change_type</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span> 
+    <span class="n">average_price</span><span class="o">=</span><span class="mf">17.45</span><span class="p">,</span> 
+    <span class="n">volume</span><span class="o">=</span><span class="mi">7</span><span class="p">,</span> 
+    <span class="n">total_volume</span><span class="o">=</span><span class="mi">1742</span><span class="p">,</span> 
+    <span class="n">amount</span><span class="o">=</span><span class="mi">123200</span><span class="p">,</span> 
+    <span class="n">total_amount</span><span class="o">=</span><span class="mi">30397496</span><span class="p">,</span> 
+    <span class="n">yesterday_volume</span><span class="o">=</span><span class="mi">514</span><span class="p">,</span> 
+    <span class="n">volume_ratio</span><span class="o">=</span><span class="mf">3.39</span><span class="p">,</span> 
+    <span class="n">buy_price</span><span class="o">=</span><span class="mf">17.6</span><span class="p">,</span> 
+    <span class="n">buy_volume</span><span class="o">=</span><span class="mi">723</span><span class="p">,</span> 
+    <span class="n">sell_price</span><span class="o">=</span><span class="mf">0.0</span><span class="p">,</span> 
+    <span class="n">sell_volume</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span> 
+    <span class="n">bid_orders</span><span class="o">=</span><span class="mi">237</span><span class="p">,</span> 
+    <span class="n">bid_volumes</span><span class="o">=</span><span class="mi">82</span><span class="p">,</span> 
+    <span class="n">ask_orders</span><span class="o">=</span><span class="mi">33</span><span class="p">,</span> 
+    <span class="n">ask_volumes</span><span class="o">=</span><span class="mi">64</span>
+<span class="p">)</span>
+</code></pre></div>
+
+</div>
+<h3 id="get-day-range-rank">Get Day Range Rank<a class="headerlink" href="#get-day-range-rank" title="Permanent link">&para;</a></h3>
+<div class="admonition info">
+<p class="admonition-title">In</p>
+<div class="highlight"><pre><span></span><code><span class="n">scanner</span> <span class="o">=</span> <span class="n">api</span><span class="o">.</span><span class="n">scanners</span><span class="p">(</span><span class="n">sj</span><span class="o">.</span><span class="n">constant</span><span class="o">.</span><span class="n">ScannerType</span><span class="o">.</span><span class="n">DayRangeRank</span><span class="p">)</span>
+<span class="n">scanner</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
+</code></pre></div>
+
+</div>
+<div class="admonition done">
+<p class="admonition-title">Out</p>
+<div class="highlight"><pre><span></span><code><span class="n">ChangePercentRank</span><span class="p">(</span>
+    <span class="n">date</span><span class="o">=</span><span class="s1">&#39;2021-04-09&#39;</span><span class="p">,</span> 
+    <span class="n">code</span><span class="o">=</span><span class="s1">&#39;6415&#39;</span><span class="p">,</span> 
+    <span class="n">name</span><span class="o">=</span><span class="s1">&#39;矽力-KY&#39;</span><span class="p">,</span> 
+    <span class="n">ts</span><span class="o">=</span><span class="mi">1617978600000000000</span><span class="p">,</span> 
+    <span class="nb">open</span><span class="o">=</span><span class="mf">2560.0</span><span class="p">,</span> 
+    <span class="n">high</span><span class="o">=</span><span class="mf">2620.0</span><span class="p">,</span> 
+    <span class="n">low</span><span class="o">=</span><span class="mf">2455.0</span><span class="p">,</span> 
+    <span class="n">close</span><span class="o">=</span><span class="mf">2525.0</span><span class="p">,</span> 
+    <span class="n">price_range</span><span class="o">=</span><span class="mf">165.0</span><span class="p">,</span> 
+    <span class="n">tick_type</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span> 
+    <span class="n">change_price</span><span class="o">=-</span><span class="mf">20.0</span><span class="p">,</span> 
+    <span class="n">change_type</span><span class="o">=</span><span class="mi">4</span><span class="p">,</span> 
+    <span class="n">average_price</span><span class="o">=</span><span class="mf">2506.18</span><span class="p">,</span> 
+    <span class="n">volume</span><span class="o">=</span><span class="mi">3</span><span class="p">,</span> 
+    <span class="n">total_volume</span><span class="o">=</span><span class="mi">711</span><span class="p">,</span> 
+    <span class="n">amount</span><span class="o">=</span><span class="mi">7575000</span><span class="p">,</span> 
+    <span class="n">total_amount</span><span class="o">=</span><span class="mi">1781892220</span><span class="p">,</span> 
+    <span class="n">yesterday_volume</span><span class="o">=</span><span class="mi">669</span><span class="p">,</span> 
+    <span class="n">volume_ratio</span><span class="o">=</span><span class="mf">1.06</span><span class="p">,</span> 
+    <span class="n">buy_price</span><span class="o">=</span><span class="mf">2520.0</span><span class="p">,</span> 
+    <span class="n">buy_volume</span><span class="o">=</span><span class="mi">13</span><span class="p">,</span> 
+    <span class="n">sell_price</span><span class="o">=</span><span class="mf">2525.0</span><span class="p">,</span> 
+    <span class="n">sell_volume</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span> 
+    <span class="n">bid_orders</span><span class="o">=</span><span class="mi">248</span><span class="p">,</span> 
+    <span class="n">bid_volumes</span><span class="o">=</span><span class="mi">125</span><span class="p">,</span> 
+    <span class="n">ask_orders</span><span class="o">=</span><span class="mi">189</span><span class="p">,</span> 
+    <span class="n">ask_volumes</span><span class="o">=</span><span class="mi">162</span>
+<span class="p">)</span>
 </code></pre></div>
 
 </div>
@@ -957,7 +1241,7 @@
     <div class="md-footer-nav">
       <nav class="md-footer-nav__inner md-grid" aria-label="Footer">
         
-          <a href="../short_stock_source/" title="Short Stock Source" class="md-footer-nav__link md-footer-nav__link--prev" rel="prev">
+          <a href="../credit_enquires/" title="Credit Enquires" class="md-footer-nav__link md-footer-nav__link--prev" rel="prev">
             <div class="md-footer-nav__button md-icon">
               <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11h12z"/></svg>
             </div>
@@ -966,19 +1250,19 @@
                 <span class="md-footer-nav__direction">
                   Previous
                 </span>
-                Short Stock Source
+                Credit Enquires
               </div>
             </div>
           </a>
         
         
-          <a href="../scanners/" title="Scanners" class="md-footer-nav__link md-footer-nav__link--next" rel="next">
+          <a href="../../order/Stock/" title="Stock" class="md-footer-nav__link md-footer-nav__link--next" rel="next">
             <div class="md-footer-nav__title">
               <div class="md-ellipsis">
                 <span class="md-footer-nav__direction">
                   Next
                 </span>
-                Scanners
+                Stock
               </div>
             </div>
             <div class="md-footer-nav__button md-icon">
