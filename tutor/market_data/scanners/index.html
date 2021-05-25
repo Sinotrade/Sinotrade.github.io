@@ -393,13 +393,6 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#get-amount-rank" class="md-nav__link">
-    Get Amount Rank
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
   <a href="#to-dataframe" class="md-nav__link">
     To DataFrame
   </a>
@@ -818,13 +811,6 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#get-amount-rank" class="md-nav__link">
-    Get Amount Rank
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
   <a href="#to-dataframe" class="md-nav__link">
     To DataFrame
   </a>
@@ -878,11 +864,32 @@
                   <h1>Scanners</h1>
                 
                 <h3 id="first-you-need-login"><a href="../../tutor/login">First, you need login.</a><a class="headerlink" href="#first-you-need-login" title="Permanent link">&para;</a></h3>
-<h3 id="get-amount-rank">Get Amount Rank<a class="headerlink" href="#get-amount-rank" title="Permanent link">&para;</a></h3>
 <div class="admonition info">
 <p class="admonition-title">In</p>
-<div class="highlight"><pre><span></span><code><span class="n">scanner</span> <span class="o">=</span> <span class="n">api</span><span class="o">.</span><span class="n">scanners</span><span class="p">(</span><span class="n">sj</span><span class="o">.</span><span class="n">constant</span><span class="o">.</span><span class="n">ScannerType</span><span class="o">.</span><span class="n">AmountRank</span><span class="p">)</span>
-<span class="n">scanner</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
+<div class="highlight"><pre><span></span><code><span class="n">api</span><span class="o">.</span><span class="n">scanners</span><span class="err">?</span>
+</code></pre></div>
+
+</div>
+<div class="admonition done">
+<p class="admonition-title">Out</p>
+<div class="highlight"><pre><span></span><code><span class="n">Signature</span><span class="p">:</span>
+    <span class="n">api</span><span class="o">.</span><span class="n">scanners</span><span class="p">(</span>
+        <span class="n">scanner_type</span><span class="p">:</span> <span class="n">shioaji</span><span class="o">.</span><span class="n">constant</span><span class="o">.</span><span class="n">ScannerType</span><span class="p">,</span>
+        <span class="n">ascending</span><span class="p">:</span> <span class="nb">bool</span> <span class="o">=</span> <span class="kc">True</span><span class="p">,</span>
+        <span class="n">date</span><span class="p">:</span> <span class="nb">str</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
+        <span class="n">count</span><span class="p">:</span> <span class="n">shioaji</span><span class="o">.</span><span class="n">shioaji</span><span class="o">.</span><span class="n">ConstrainedIntValue</span> <span class="o">=</span> <span class="mi">100</span><span class="p">,</span>
+        <span class="n">timeout</span><span class="p">:</span> <span class="nb">int</span> <span class="o">=</span> <span class="mi">30000</span><span class="p">,</span>
+        <span class="n">cb</span><span class="p">:</span> <span class="n">Callable</span><span class="p">[[</span><span class="n">List</span><span class="p">[</span><span class="n">shioaji</span><span class="o">.</span><span class="n">data</span><span class="o">.</span><span class="n">ChangePercentRank</span><span class="p">]],</span> <span class="n">NoneType</span><span class="p">]</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
+    <span class="p">)</span>
+</code></pre></div>
+
+</div>
+<div class="admonition info">
+<p class="admonition-title">In</p>
+<div class="highlight"><pre><span></span><code><span class="n">scanner</span> <span class="o">=</span> <span class="n">api</span><span class="o">.</span><span class="n">scanners</span><span class="p">(</span>
+                <span class="n">sj</span><span class="o">.</span><span class="n">constant</span><span class="o">.</span><span class="n">ScannerType</span><span class="o">.</span><span class="n">AmountRank</span><span class="p">,</span> 
+                <span class="n">count</span> <span class="o">=</span> <span class="mi">1</span>
+        <span class="p">)</span>
 </code></pre></div>
 
 </div>
@@ -925,14 +932,18 @@
 <div class="highlight"><pre><span></span><code><span class="n">scanner_type</span> <span class="p">(</span><span class="n">ScannerType</span><span class="p">):</span> 
     <span class="p">{</span><span class="n">ChangePercentRank</span><span class="p">,</span> <span class="n">ChangePriceRank</span><span class="p">,</span> <span class="n">DayRangeRank</span><span class="p">,</span> <span class="n">VolumeRank</span><span class="p">,</span> <span class="n">AmountRank</span><span class="p">}</span>
 <span class="n">ascending</span> <span class="p">(</span><span class="nb">bool</span><span class="p">):</span> <span class="n">ascending</span>
-<span class="n">date</span> <span class="p">(</span><span class="nb">str</span><span class="p">):</span> <span class="n">date</span><span class="o">.</span>
+<span class="n">date</span> <span class="p">(</span><span class="nb">str</span><span class="p">):</span> <span class="n">date</span>
+<span class="n">count</span> <span class="p">(</span><span class="nb">int</span><span class="p">):</span> <span class="n">count</span> <span class="p">{</span><span class="mi">1</span><span class="o">&lt;=</span><span class="n">count</span><span class="o">&lt;=</span><span class="mi">200</span><span class="p">}</span>
 </code></pre></div>
 
 </div>
 <h3 id="to-dataframe">To DataFrame<a class="headerlink" href="#to-dataframe" title="Permanent link">&para;</a></h3>
 <div class="admonition info">
 <p class="admonition-title">In</p>
-<div class="highlight"><pre><span></span><code><span class="n">scanner</span> <span class="o">=</span> <span class="n">api</span><span class="o">.</span><span class="n">scanners</span><span class="p">(</span><span class="n">sj</span><span class="o">.</span><span class="n">constant</span><span class="o">.</span><span class="n">ScannerType</span><span class="o">.</span><span class="n">AmountRank</span><span class="p">)</span>
+<div class="highlight"><pre><span></span><code><span class="n">scanner</span> <span class="o">=</span> <span class="n">api</span><span class="o">.</span><span class="n">scanners</span><span class="p">(</span>
+            <span class="n">scanner_type</span> <span class="o">=</span> <span class="n">sj</span><span class="o">.</span><span class="n">constant</span><span class="o">.</span><span class="n">ScannerType</span><span class="o">.</span><span class="n">AmountRank</span><span class="p">,</span> 
+            <span class="n">count</span> <span class="o">=</span> <span class="mi">5</span>
+          <span class="p">)</span>
 <span class="n">scanner_df</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">(</span><span class="n">scanner</span><span class="p">)</span>
 <span class="n">scanner_df</span><span class="o">.</span><span class="n">ts</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">to_datetime</span><span class="p">(</span><span class="n">scanner_df</span><span class="o">.</span><span class="n">ts</span><span class="p">)</span>
 <span class="n">scanner_df</span>
@@ -1059,8 +1070,7 @@
 <h3 id="get-change-pricerank">Get Change PriceRank<a class="headerlink" href="#get-change-pricerank" title="Permanent link">&para;</a></h3>
 <div class="admonition info">
 <p class="admonition-title">In</p>
-<div class="highlight"><pre><span></span><code><span class="n">scanner</span> <span class="o">=</span> <span class="n">api</span><span class="o">.</span><span class="n">scanners</span><span class="p">(</span><span class="n">sj</span><span class="o">.</span><span class="n">constant</span><span class="o">.</span><span class="n">ScannerType</span><span class="o">.</span><span class="n">ChangePriceRank</span><span class="p">)</span>
-<span class="n">scanner</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
+<div class="highlight"><pre><span></span><code><span class="n">scanner</span> <span class="o">=</span> <span class="n">api</span><span class="o">.</span><span class="n">scanners</span><span class="p">(</span><span class="n">scanner_type</span> <span class="o">=</span> <span class="n">sj</span><span class="o">.</span><span class="n">constant</span><span class="o">.</span><span class="n">ScannerType</span><span class="o">.</span><span class="n">ChangePriceRank</span><span class="p">,</span> <span class="n">count</span> <span class="o">=</span> <span class="mi">1</span><span class="p">)</span>
 </code></pre></div>
 
 </div>
