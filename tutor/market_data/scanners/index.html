@@ -884,12 +884,23 @@
 </code></pre></div>
 
 </div>
+<div class="admonition example">
+<p class="admonition-title">Attributes:</p>
+<div class="highlight"><pre><span></span><code><span class="n">scanner_type</span> <span class="p">(</span><span class="n">ScannerType</span><span class="p">):</span> 
+    <span class="p">{</span><span class="n">ChangePercentRank</span><span class="p">,</span> <span class="n">ChangePriceRank</span><span class="p">,</span> <span class="n">DayRangeRank</span><span class="p">,</span> <span class="n">VolumeRank</span><span class="p">,</span> <span class="n">AmountRank</span><span class="p">}</span>
+<span class="n">ascending</span> <span class="p">(</span><span class="nb">bool</span><span class="p">):</span> <span class="n">ascending</span>
+<span class="n">date</span> <span class="p">(</span><span class="nb">str</span><span class="p">):</span> <span class="n">date</span>
+<span class="n">count</span> <span class="p">(</span><span class="nb">int</span><span class="p">):</span> <span class="n">count</span> <span class="p">{</span><span class="mi">1</span><span class="o">&lt;=</span><span class="n">count</span><span class="o">&lt;=</span><span class="mi">200</span><span class="p">}</span>
+</code></pre></div>
+
+</div>
 <div class="admonition info">
 <p class="admonition-title">In</p>
 <div class="highlight"><pre><span></span><code><span class="n">scanner</span> <span class="o">=</span> <span class="n">api</span><span class="o">.</span><span class="n">scanners</span><span class="p">(</span>
-                <span class="n">sj</span><span class="o">.</span><span class="n">constant</span><span class="o">.</span><span class="n">ScannerType</span><span class="o">.</span><span class="n">AmountRank</span><span class="p">,</span> 
-                <span class="n">count</span> <span class="o">=</span> <span class="mi">1</span>
-        <span class="p">)</span>
+            <span class="n">scanner_type</span> <span class="o">=</span> <span class="n">sj</span><span class="o">.</span><span class="n">constant</span><span class="o">.</span><span class="n">ScannerType</span><span class="o">.</span><span class="n">AmountRank</span><span class="p">,</span> 
+            <span class="n">count</span> <span class="o">=</span> <span class="mi">1</span>
+          <span class="p">)</span>
+<span class="n">scanner</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
 </code></pre></div>
 
 </div>
@@ -924,16 +935,6 @@
     <span class="n">ask_orders</span><span class="o">=</span><span class="mi">22648</span><span class="p">,</span> 
     <span class="n">ask_volumes</span><span class="o">=</span><span class="mi">12709</span>
 <span class="p">)</span>
-</code></pre></div>
-
-</div>
-<div class="admonition example">
-<p class="admonition-title">Attributes:</p>
-<div class="highlight"><pre><span></span><code><span class="n">scanner_type</span> <span class="p">(</span><span class="n">ScannerType</span><span class="p">):</span> 
-    <span class="p">{</span><span class="n">ChangePercentRank</span><span class="p">,</span> <span class="n">ChangePriceRank</span><span class="p">,</span> <span class="n">DayRangeRank</span><span class="p">,</span> <span class="n">VolumeRank</span><span class="p">,</span> <span class="n">AmountRank</span><span class="p">}</span>
-<span class="n">ascending</span> <span class="p">(</span><span class="nb">bool</span><span class="p">):</span> <span class="n">ascending</span>
-<span class="n">date</span> <span class="p">(</span><span class="nb">str</span><span class="p">):</span> <span class="n">date</span>
-<span class="n">count</span> <span class="p">(</span><span class="nb">int</span><span class="p">):</span> <span class="n">count</span> <span class="p">{</span><span class="mi">1</span><span class="o">&lt;=</span><span class="n">count</span><span class="o">&lt;=</span><span class="mi">200</span><span class="p">}</span>
 </code></pre></div>
 
 </div>
@@ -1070,7 +1071,11 @@
 <h3 id="get-change-pricerank">Get Change PriceRank<a class="headerlink" href="#get-change-pricerank" title="Permanent link">&para;</a></h3>
 <div class="admonition info">
 <p class="admonition-title">In</p>
-<div class="highlight"><pre><span></span><code><span class="n">scanner</span> <span class="o">=</span> <span class="n">api</span><span class="o">.</span><span class="n">scanners</span><span class="p">(</span><span class="n">scanner_type</span> <span class="o">=</span> <span class="n">sj</span><span class="o">.</span><span class="n">constant</span><span class="o">.</span><span class="n">ScannerType</span><span class="o">.</span><span class="n">ChangePriceRank</span><span class="p">,</span> <span class="n">count</span> <span class="o">=</span> <span class="mi">1</span><span class="p">)</span>
+<div class="highlight"><pre><span></span><code><span class="n">scanner</span> <span class="o">=</span> <span class="n">api</span><span class="o">.</span><span class="n">scanners</span><span class="p">(</span>
+            <span class="n">scanner_type</span> <span class="o">=</span> <span class="n">sj</span><span class="o">.</span><span class="n">constant</span><span class="o">.</span><span class="n">ScannerType</span><span class="o">.</span><span class="n">ChangePriceRank</span><span class="p">,</span> 
+            <span class="n">count</span> <span class="o">=</span> <span class="mi">1</span>
+          <span class="p">)</span>
+<span class="n">scanner</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
 </code></pre></div>
 
 </div>
@@ -1110,7 +1115,10 @@
 <h3 id="get-volume-rank">Get Volume Rank<a class="headerlink" href="#get-volume-rank" title="Permanent link">&para;</a></h3>
 <div class="admonition info">
 <p class="admonition-title">In</p>
-<div class="highlight"><pre><span></span><code><span class="n">scanner</span> <span class="o">=</span> <span class="n">api</span><span class="o">.</span><span class="n">scanners</span><span class="p">(</span><span class="n">sj</span><span class="o">.</span><span class="n">constant</span><span class="o">.</span><span class="n">ScannerType</span><span class="o">.</span><span class="n">VolumeRank</span><span class="p">)</span>
+<div class="highlight"><pre><span></span><code><span class="n">scanner</span> <span class="o">=</span> <span class="n">api</span><span class="o">.</span><span class="n">scanners</span><span class="p">(</span>
+            <span class="n">scanner_type</span> <span class="o">=</span> <span class="n">sj</span><span class="o">.</span><span class="n">constant</span><span class="o">.</span><span class="n">ScannerType</span><span class="o">.</span><span class="n">VolumeRank</span><span class="p">,</span>
+            <span class="n">count</span> <span class="o">=</span> <span class="mi">1</span>
+          <span class="p">)</span>
 <span class="n">scanner</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
 </code></pre></div>
 
@@ -1152,7 +1160,10 @@
 <h3 id="get-change-percent-rank">Get Change Percent Rank<a class="headerlink" href="#get-change-percent-rank" title="Permanent link">&para;</a></h3>
 <div class="admonition info">
 <p class="admonition-title">In</p>
-<div class="highlight"><pre><span></span><code><span class="n">scanner</span> <span class="o">=</span> <span class="n">api</span><span class="o">.</span><span class="n">scanners</span><span class="p">(</span><span class="n">sj</span><span class="o">.</span><span class="n">constant</span><span class="o">.</span><span class="n">ScannerType</span><span class="o">.</span><span class="n">ChangePercentRank</span><span class="p">)</span>
+<div class="highlight"><pre><span></span><code><span class="n">scanner</span> <span class="o">=</span> <span class="n">api</span><span class="o">.</span><span class="n">scanners</span><span class="p">(</span>
+            <span class="n">scanner_type</span> <span class="o">=</span> <span class="n">sj</span><span class="o">.</span><span class="n">constant</span><span class="o">.</span><span class="n">ScannerType</span><span class="o">.</span><span class="n">ChangePercentRank</span><span class="p">,</span>
+            <span class="n">count</span> <span class="o">=</span> <span class="mi">1</span>
+          <span class="p">)</span>
 <span class="n">scanner</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
 </code></pre></div>
 
@@ -1194,7 +1205,10 @@
 <h3 id="get-day-range-rank">Get Day Range Rank<a class="headerlink" href="#get-day-range-rank" title="Permanent link">&para;</a></h3>
 <div class="admonition info">
 <p class="admonition-title">In</p>
-<div class="highlight"><pre><span></span><code><span class="n">scanner</span> <span class="o">=</span> <span class="n">api</span><span class="o">.</span><span class="n">scanners</span><span class="p">(</span><span class="n">sj</span><span class="o">.</span><span class="n">constant</span><span class="o">.</span><span class="n">ScannerType</span><span class="o">.</span><span class="n">DayRangeRank</span><span class="p">)</span>
+<div class="highlight"><pre><span></span><code><span class="n">scanner</span> <span class="o">=</span> <span class="n">api</span><span class="o">.</span><span class="n">scanners</span><span class="p">(</span>
+            <span class="n">scanner_type</span> <span class="o">=</span> <span class="n">sj</span><span class="o">.</span><span class="n">constant</span><span class="o">.</span><span class="n">ScannerType</span><span class="o">.</span><span class="n">DayRangeRank</span><span class="p">,</span>
+            <span class="n">count</span><span class="o">=</span><span class="mi">1</span>
+          <span class="p">)</span>
 <span class="n">scanner</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
 </code></pre></div>
 
