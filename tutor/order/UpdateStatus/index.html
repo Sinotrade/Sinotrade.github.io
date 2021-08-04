@@ -397,6 +397,18 @@
 
 
   <li class="md-nav__item">
+    <a href="../CA/" title="CA" class="md-nav__link">
+      CA
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
     <a href="../Stock/" title="Stock" class="md-nav__link">
       Stock
     </a>
@@ -716,48 +728,6 @@
       
 
 
-  <li class="md-nav__item md-nav__item--nested">
-    
-      <input class="md-nav__toggle md-toggle" data-md-toggle="nav-4" type="checkbox" id="nav-4">
-    
-    <label class="md-nav__link" for="nav-4">
-      Misc
-      <span class="md-nav__icon md-icon">
-        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M8.59 16.58L13.17 12 8.59 7.41 10 6l6 6-6 6-1.41-1.42z"/></svg>
-      </span>
-    </label>
-    <nav class="md-nav" aria-label="Misc" data-md-level="1">
-      <label class="md-nav__title" for="nav-4">
-        <span class="md-nav__icon md-icon">
-          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11h12z"/></svg>
-        </span>
-        Misc
-      </label>
-      <ul class="md-nav__list" data-md-scrollfix>
-        
-        
-          
-          
-          
-
-
-  <li class="md-nav__item">
-    <a href="../../../misc/CA/" title="CA" class="md-nav__link">
-      CA
-    </a>
-  </li>
-
-        
-      </ul>
-    </nav>
-  </li>
-
-    
-      
-      
-      
-
-
   <li class="md-nav__item">
     <a href="../../../release/" title="Release Note" class="md-nav__link">
       Release Note
@@ -863,23 +833,14 @@
                 
                   <h1>Update Status</h1>
                 
-                <h3 id="first-you-need-login"><a href="../../login/">First, you need login.</a><a class="headerlink" href="#first-you-need-login" title="Permanent link">&para;</a></h3>
+                <h3 id="first-you-need-login">First, you need <a href="../../login/">login</a>.<a class="headerlink" href="#first-you-need-login" title="Permanent link">&para;</a></h3>
 <h3 id="update-status">Update Status<a class="headerlink" href="#update-status" title="Permanent link">&para;</a></h3>
+<p>In order to use functions, like 1) <code>list_trades</code> 2) <code>cancel_order</code> 3) <code>update_order</code>, we have to call <code>update_status</code> first.</p>
 <div class="admonition info">
 <p class="admonition-title">In</p>
-<div class="highlight"><pre><span></span><code><span class="kn">import</span> <span class="nn">shioaji</span> <span class="k">as</span> <span class="nn">sj</span>
-
-<span class="n">api</span> <span class="o">=</span> <span class="n">sj</span><span class="o">.</span><span class="n">Shioaji</span><span class="p">()</span>
-<span class="n">accounts</span> <span class="o">=</span> <span class="n">api</span><span class="o">.</span><span class="n">login</span><span class="p">(</span><span class="s2">&quot;YOUR_PERSON_ID&quot;</span><span class="p">,</span> <span class="s2">&quot;YOUR_PASSWORD&quot;</span><span class="p">,</span> <span class="n">contracts_timeout</span><span class="o">=</span><span class="mi">10000</span><span class="p">)</span>
-<span class="n">api</span><span class="o">.</span><span class="n">activate_ca</span><span class="p">(</span>
-    <span class="n">ca_path</span><span class="o">=</span><span class="s2">&quot;/c/your/ca/path/Sinopac.pfx&quot;</span><span class="p">,</span>
-    <span class="n">ca_passwd</span><span class="o">=</span><span class="s2">&quot;YOUR_CA_PASSWORD&quot;</span><span class="p">,</span>
-    <span class="n">person_id</span><span class="o">=</span><span class="s2">&quot;Person of this Ca&quot;</span><span class="p">,</span>
-<span class="p">)</span>
-
-<span class="hll"><span class="n">api</span><span class="o">.</span><span class="n">update_status</span><span class="p">()</span>
-</span><span class="hll"><span class="n">api</span><span class="o">.</span><span class="n">list_trades</span><span class="p">()</span>
-</span></code></pre></div>
+<div class="highlight"><pre><span></span><code><span class="n">api</span><span class="o">.</span><span class="n">update_status</span><span class="p">()</span>
+<span class="n">api</span><span class="o">.</span><span class="n">list_trades</span><span class="p">()</span>
+</code></pre></div>
 
 </div>
 <h3 id="get-trade-list">Get trade list<a class="headerlink" href="#get-trade-list" title="Permanent link">&para;</a></h3>
