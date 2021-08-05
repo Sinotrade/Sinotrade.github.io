@@ -1,0 +1,1632 @@
+
+
+
+<!doctype html>
+<html lang="en" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+        <meta name="description" content="Shioaji is provided by SinoPac the most pythonic API for trading the Taiwan and global financial market. You can use your favorite Python packages such as NumPy, pandas, PyTorch or TensorFlow to build your trading model with integrated the Shioaji API on cross-platform.">
+      
+      
+        <link rel="canonical" href="https://sinotrade.github.io/tutor/market_data/streaming/stocks/">
+      
+      
+        <meta name="author" content="Yvictor, ">
+      
+      <link rel="shortcut icon" href="https://sinotrade.github.io/images/shioaji-logo-01.png">
+      <meta name="generator" content="mkdocs-1.1.2, mkdocs-material-5.1.7">
+    
+    
+      
+        <title>Stocks - Shioaji</title>
+      
+    
+    
+      <link rel="stylesheet" href="../../../../assets/stylesheets/main.4c7052ca.min.css">
+      
+        <link rel="stylesheet" href="../../../../assets/stylesheets/palette.b79bcd20.min.css">
+      
+      
+        
+        
+        <meta name="theme-color" content="#00bcd4">
+      
+    
+    
+    
+      
+        <link href="https://fonts.gstatic.com" rel="preconnect" crossorigin>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,400,400i,700%7CRoboto+Mono&display=fallback">
+        <style>body,input{font-family:"Roboto",-apple-system,BlinkMacSystemFont,Helvetica,Arial,sans-serif}code,kbd,pre{font-family:"Roboto Mono",SFMono-Regular,Consolas,Menlo,monospace}</style>
+      
+    
+    
+    
+    
+      
+        
+<link rel="preconnect dns-prefetch" href="https://www.google-analytics.com">
+<script>window.ga=window.ga||function(){(ga.q=ga.q||[]).push(arguments)},ga.l=+new Date,ga("create","UA-129719388-1","auto"),ga("set","anonymizeIp",!0),ga("send","pageview"),document.addEventListener("DOMContentLoaded",function(){document.forms.search&&document.forms.search.query.addEventListener("blur",function(){if(this.value){var e=document.location.pathname;ga("send","pageview",e+"?q="+this.value)}})}),document.addEventListener("DOMContentSwitch",function(){ga("send","pageview")})</script>
+<script async src="https://www.google-analytics.com/analytics.js"></script>
+      
+    
+    
+  </head>
+  
+  
+    
+    
+    <body dir="ltr" data-md-color-primary="cyan" data-md-color-accent="amber">
+  
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#subscribe" class="md-skip">
+          Skip to content
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
+    
+      <header class="md-header" data-md-component="header">
+  <nav class="md-header-nav md-grid" aria-label="Header">
+    <a href="https://sinotrade.github.io/" title="Shioaji" class="md-header-nav__button md-logo" aria-label="Shioaji">
+      
+  <img src="../../../../img/shioaji-logo.svg" alt="logo">
+
+    </a>
+    <label class="md-header-nav__button md-icon" for="__drawer">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3V6m0 5h18v2H3v-2m0 5h18v2H3v-2z"/></svg>
+    </label>
+    <div class="md-header-nav__title" data-md-component="header-title">
+      
+        <div class="md-header-nav__ellipsis">
+          <span class="md-header-nav__topic md-ellipsis">
+            Shioaji
+          </span>
+          <span class="md-header-nav__topic md-ellipsis">
+            
+              Stocks
+            
+          </span>
+        </div>
+      
+    </div>
+    
+      <label class="md-header-nav__button md-icon" for="__search">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0116 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.516 6.516 0 019.5 16 6.5 6.5 0 013 9.5 6.5 6.5 0 019.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5z"/></svg>
+      </label>
+      
+<div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" aria-label="Search" placeholder="Search" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" data-md-state="active">
+      <label class="md-search__icon md-icon" for="__search">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0116 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.516 6.516 0 019.5 16 6.5 6.5 0 013 9.5 6.5 6.5 0 019.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5z"/></svg>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11h12z"/></svg>
+      </label>
+      <button type="reset" class="md-search__icon md-icon" aria-label="Clear" data-md-component="search-reset" tabindex="-1">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41L17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12 19 6.41z"/></svg>
+      </button>
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="search-result">
+          <div class="md-search-result__meta">
+            Initializing search
+          </div>
+          <ol class="md-search-result__list"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+    
+    
+      <div class="md-header-nav__source">
+        
+<a href="https://github.com/Sinotrade/Shioaji" title="Go to repository" class="md-source">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><path d="M439.55 236.05L244 40.45a28.87 28.87 0 00-40.81 0l-40.66 40.63 51.52 51.52c27.06-9.14 52.68 16.77 43.39 43.68l49.66 49.66c34.23-11.8 61.18 31 35.47 56.69-26.49 26.49-70.21-2.87-56-37.34L240.22 199v121.85c25.3 12.54 22.26 41.85 9.08 55a34.34 34.34 0 01-48.55 0c-17.57-17.6-11.07-46.91 11.25-56v-123c-20.8-8.51-24.6-30.74-18.64-45L142.57 101 8.45 235.14a28.86 28.86 0 000 40.81l195.61 195.6a28.86 28.86 0 0040.8 0l194.69-194.69a28.86 28.86 0 000-40.81z"/></svg>
+  </div>
+  <div class="md-source__repository">
+    Sinotrade/Shioaji
+  </div>
+</a>
+      </div>
+    
+  </nav>
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+        
+      
+      
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              <div class="md-sidebar md-sidebar--primary" data-md-component="navigation">
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    <nav class="md-nav md-nav--primary" aria-label="Navigation" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href="https://sinotrade.github.io/" title="Shioaji" class="md-nav__button md-logo" aria-label="Shioaji">
+      
+  <img src="../../../../img/shioaji-logo.svg" alt="logo">
+
+    </a>
+    Shioaji
+  </label>
+  
+    <div class="md-nav__source">
+      
+<a href="https://github.com/Sinotrade/Shioaji" title="Go to repository" class="md-source">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><path d="M439.55 236.05L244 40.45a28.87 28.87 0 00-40.81 0l-40.66 40.63 51.52 51.52c27.06-9.14 52.68 16.77 43.39 43.68l49.66 49.66c34.23-11.8 61.18 31 35.47 56.69-26.49 26.49-70.21-2.87-56-37.34L240.22 199v121.85c25.3 12.54 22.26 41.85 9.08 55a34.34 34.34 0 01-48.55 0c-17.57-17.6-11.07-46.91 11.25-56v-123c-20.8-8.51-24.6-30.74-18.64-45L142.57 101 8.45 235.14a28.86 28.86 0 000 40.81l195.61 195.6a28.86 28.86 0 0040.8 0l194.69-194.69a28.86 28.86 0 000-40.81z"/></svg>
+  </div>
+  <div class="md-source__repository">
+    Sinotrade/Shioaji
+  </div>
+</a>
+    </div>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+      
+
+
+  <li class="md-nav__item">
+    <a href="../../../.." title="Overview" class="md-nav__link">
+      Overview
+    </a>
+  </li>
+
+    
+      
+      
+      
+
+
+  <li class="md-nav__item">
+    <a href="../../../../quickstart/" title="Quick Start" class="md-nav__link">
+      Quick Start
+    </a>
+  </li>
+
+    
+      
+      
+      
+
+  
+
+
+  <li class="md-nav__item md-nav__item--active md-nav__item--nested">
+    
+      <input class="md-nav__toggle md-toggle" data-md-toggle="nav-3" type="checkbox" id="nav-3" checked>
+    
+    <label class="md-nav__link" for="nav-3">
+      Tutorial - User Guide
+      <span class="md-nav__icon md-icon">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M8.59 16.58L13.17 12 8.59 7.41 10 6l6 6-6 6-1.41-1.42z"/></svg>
+      </span>
+    </label>
+    <nav class="md-nav" aria-label="Tutorial - User Guide" data-md-level="1">
+      <label class="md-nav__title" for="nav-3">
+        <span class="md-nav__icon md-icon">
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11h12z"/></svg>
+        </span>
+        Tutorial - User Guide
+      </label>
+      <ul class="md-nav__list" data-md-scrollfix>
+        
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../../login/" title="Login" class="md-nav__link">
+      Login
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../../contract/" title="Contract" class="md-nav__link">
+      Contract
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+  
+
+
+  <li class="md-nav__item md-nav__item--active md-nav__item--nested">
+    
+      <input class="md-nav__toggle md-toggle" data-md-toggle="nav-3-3" type="checkbox" id="nav-3-3" checked>
+    
+    <label class="md-nav__link" for="nav-3-3">
+      Market Data
+      <span class="md-nav__icon md-icon">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M8.59 16.58L13.17 12 8.59 7.41 10 6l6 6-6 6-1.41-1.42z"/></svg>
+      </span>
+    </label>
+    <nav class="md-nav" aria-label="Market Data" data-md-level="2">
+      <label class="md-nav__title" for="nav-3-3">
+        <span class="md-nav__icon md-icon">
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11h12z"/></svg>
+        </span>
+        Market Data
+      </label>
+      <ul class="md-nav__list" data-md-scrollfix>
+        
+        
+          
+          
+          
+
+  
+
+
+  <li class="md-nav__item md-nav__item--active md-nav__item--nested">
+    
+      <input class="md-nav__toggle md-toggle" data-md-toggle="nav-3-3-1" type="checkbox" id="nav-3-3-1" checked>
+    
+    <label class="md-nav__link" for="nav-3-3-1">
+      Streaming Market Data
+      <span class="md-nav__icon md-icon">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M8.59 16.58L13.17 12 8.59 7.41 10 6l6 6-6 6-1.41-1.42z"/></svg>
+      </span>
+    </label>
+    <nav class="md-nav" aria-label="Streaming Market Data" data-md-level="3">
+      <label class="md-nav__title" for="nav-3-3-1">
+        <span class="md-nav__icon md-icon">
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11h12z"/></svg>
+        </span>
+        Streaming Market Data
+      </label>
+      <ul class="md-nav__list" data-md-scrollfix>
+        
+        
+          
+          
+          
+
+  
+
+
+  <li class="md-nav__item md-nav__item--active">
+    
+    <input class="md-nav__toggle md-toggle" data-md-toggle="toc" type="checkbox" id="__toc">
+    
+    
+      <label class="md-nav__link md-nav__link--active" for="__toc">
+        Stocks
+        <span class="md-nav__icon md-icon">
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 9h14V7H3v2m0 4h14v-2H3v2m0 4h14v-2H3v2m16 0h2v-2h-2v2m0-10v2h2V7h-2m0 6h2v-2h-2v2z"/></svg>
+        </span>
+      </label>
+    
+    <a href="./" title="Stocks" class="md-nav__link md-nav__link--active">
+      Stocks
+    </a>
+    
+      
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11h12z"/></svg>
+      </span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#subscribe" class="md-nav__link">
+    Subscribe
+  </a>
+  
+    <nav class="md-nav" aria-label="Subscribe">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#tick" class="md-nav__link">
+    Tick
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#tick-intraday-odd" class="md-nav__link">
+    Tick intraday odd
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#bidask" class="md-nav__link">
+    BidAsk
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#bidask-intraday-odd" class="md-nav__link">
+    BidAsk intraday odd
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#quote-callback" class="md-nav__link">
+    Quote Callback
+  </a>
+  
+    <nav class="md-nav" aria-label="Quote Callback">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#tick-quote-callback" class="md-nav__link">
+    Tick quote callback
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#bidask-quote-callback" class="md-nav__link">
+    BidAsk quote callback
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#quote-format" class="md-nav__link">
+    Quote Format
+  </a>
+  
+    <nav class="md-nav" aria-label="Quote Format">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#tick_1" class="md-nav__link">
+    Tick
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#bidask_1" class="md-nav__link">
+    BidAsk
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#conclusion" class="md-nav__link">
+    Conclusion
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+    
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../futures/" title="Futures" class="md-nav__link">
+      Futures
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../quote_binding/" title="Quote-Binding Mode" class="md-nav__link">
+      Quote-Binding Mode
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../event_cb/" title="Event Callback" class="md-nav__link">
+      Event Callback
+    </a>
+  </li>
+
+        
+      </ul>
+    </nav>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../historical/" title="Historical Market Data" class="md-nav__link">
+      Historical Market Data
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../../snapshot/" title="Snapshot" class="md-nav__link">
+      Snapshot
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../short_stock_source/" title="Short Stock Source" class="md-nav__link">
+      Short Stock Source
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../credit_enquires/" title="Credit Enquires" class="md-nav__link">
+      Credit Enquires
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../scanners/" title="Scanners" class="md-nav__link">
+      Scanners
+    </a>
+  </li>
+
+        
+      </ul>
+    </nav>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item md-nav__item--nested">
+    
+      <input class="md-nav__toggle md-toggle" data-md-toggle="nav-3-4" type="checkbox" id="nav-3-4">
+    
+    <label class="md-nav__link" for="nav-3-4">
+      Order
+      <span class="md-nav__icon md-icon">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M8.59 16.58L13.17 12 8.59 7.41 10 6l6 6-6 6-1.41-1.42z"/></svg>
+      </span>
+    </label>
+    <nav class="md-nav" aria-label="Order" data-md-level="2">
+      <label class="md-nav__title" for="nav-3-4">
+        <span class="md-nav__icon md-icon">
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11h12z"/></svg>
+        </span>
+        Order
+      </label>
+      <ul class="md-nav__list" data-md-scrollfix>
+        
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../../order/CA/" title="CA" class="md-nav__link">
+      CA
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../../order/Stock/" title="Stock" class="md-nav__link">
+      Stock
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../../order/FutureOption/" title="Future and Option" class="md-nav__link">
+      Future and Option
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../../order/IntradayOdd/" title="Intraday Odd" class="md-nav__link">
+      Intraday Odd
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../../order/UpdateStatus/" title="Update Status" class="md-nav__link">
+      Update Status
+    </a>
+  </li>
+
+        
+      </ul>
+    </nav>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item md-nav__item--nested">
+    
+      <input class="md-nav__toggle md-toggle" data-md-toggle="nav-3-5" type="checkbox" id="nav-3-5">
+    
+    <label class="md-nav__link" for="nav-3-5">
+      Account Data
+      <span class="md-nav__icon md-icon">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M8.59 16.58L13.17 12 8.59 7.41 10 6l6 6-6 6-1.41-1.42z"/></svg>
+      </span>
+    </label>
+    <nav class="md-nav" aria-label="Account Data" data-md-level="2">
+      <label class="md-nav__title" for="nav-3-5">
+        <span class="md-nav__icon md-icon">
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11h12z"/></svg>
+        </span>
+        Account Data
+      </label>
+      <ul class="md-nav__list" data-md-scrollfix>
+        
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../../accounting/account_portfolio/" title="Account & Portfolio" class="md-nav__link">
+      Account & Portfolio
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../../accounting/position/" title="Position" class="md-nav__link">
+      Position
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../../accounting/profit_loss/" title="Profit Loss" class="md-nav__link">
+      Profit Loss
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../../accounting/profit_loss_detail/" title="Profit Loss Detail" class="md-nav__link">
+      Profit Loss Detail
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../../accounting/settlement/" title="Settlement" class="md-nav__link">
+      Settlement
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../../accounting/account_balance/" title="Account Balance" class="md-nav__link">
+      Account Balance
+    </a>
+  </li>
+
+        
+      </ul>
+    </nav>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item md-nav__item--nested">
+    
+      <input class="md-nav__toggle md-toggle" data-md-toggle="nav-3-6" type="checkbox" id="nav-3-6">
+    
+    <label class="md-nav__link" for="nav-3-6">
+      Order & Deal Event
+      <span class="md-nav__icon md-icon">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M8.59 16.58L13.17 12 8.59 7.41 10 6l6 6-6 6-1.41-1.42z"/></svg>
+      </span>
+    </label>
+    <nav class="md-nav" aria-label="Order & Deal Event" data-md-level="2">
+      <label class="md-nav__title" for="nav-3-6">
+        <span class="md-nav__icon md-icon">
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11h12z"/></svg>
+        </span>
+        Order & Deal Event
+      </label>
+      <ul class="md-nav__list" data-md-scrollfix>
+        
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../../order_deal_event/stocks/" title="Stocks" class="md-nav__link">
+      Stocks
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../../order_deal_event/futures/" title="Futures" class="md-nav__link">
+      Futures
+    </a>
+  </li>
+
+        
+      </ul>
+    </nav>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item md-nav__item--nested">
+    
+      <input class="md-nav__toggle md-toggle" data-md-toggle="nav-3-7" type="checkbox" id="nav-3-7">
+    
+    <label class="md-nav__link" for="nav-3-7">
+      Advanced Guide
+      <span class="md-nav__icon md-icon">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M8.59 16.58L13.17 12 8.59 7.41 10 6l6 6-6 6-1.41-1.42z"/></svg>
+      </span>
+    </label>
+    <nav class="md-nav" aria-label="Advanced Guide" data-md-level="2">
+      <label class="md-nav__title" for="nav-3-7">
+        <span class="md-nav__icon md-icon">
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11h12z"/></svg>
+        </span>
+        Advanced Guide
+      </label>
+      <ul class="md-nav__list" data-md-scrollfix>
+        
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../../advanced/nonblock/" title="Non-blocking Mode" class="md-nav__link">
+      Non-blocking Mode
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../../advanced/touchorder/" title="Touch Price Order" class="md-nav__link">
+      Touch Price Order
+    </a>
+  </li>
+
+        
+      </ul>
+    </nav>
+  </li>
+
+        
+      </ul>
+    </nav>
+  </li>
+
+    
+      
+      
+      
+
+
+  <li class="md-nav__item">
+    <a href="../../../../release/" title="Release Note" class="md-nav__link">
+      Release Note
+    </a>
+  </li>
+
+    
+      
+      
+      
+
+
+  <li class="md-nav__item">
+    <a href="../../../../zh-tw/" title="zh-tw" class="md-nav__link">
+      zh-tw
+    </a>
+  </li>
+
+    
+      
+      
+      
+
+
+  <li class="md-nav__item">
+    <a href="https://sinotrade.github.io/Shioaji.Csharp/" title="C#" class="md-nav__link">
+      C#
+    </a>
+  </li>
+
+    
+      
+      
+      
+
+
+  <li class="md-nav__item">
+    <a href="../../../limit/" title="使用限制" class="md-nav__link">
+      使用限制
+    </a>
+  </li>
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+              <div class="md-sidebar md-sidebar--secondary" data-md-component="toc">
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11h12z"/></svg>
+      </span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#subscribe" class="md-nav__link">
+    Subscribe
+  </a>
+  
+    <nav class="md-nav" aria-label="Subscribe">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#tick" class="md-nav__link">
+    Tick
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#tick-intraday-odd" class="md-nav__link">
+    Tick intraday odd
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#bidask" class="md-nav__link">
+    BidAsk
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#bidask-intraday-odd" class="md-nav__link">
+    BidAsk intraday odd
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#quote-callback" class="md-nav__link">
+    Quote Callback
+  </a>
+  
+    <nav class="md-nav" aria-label="Quote Callback">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#tick-quote-callback" class="md-nav__link">
+    Tick quote callback
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#bidask-quote-callback" class="md-nav__link">
+    BidAsk quote callback
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#quote-format" class="md-nav__link">
+    Quote Format
+  </a>
+  
+    <nav class="md-nav" aria-label="Quote Format">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#tick_1" class="md-nav__link">
+    Tick
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#bidask_1" class="md-nav__link">
+    BidAsk
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#conclusion" class="md-nav__link">
+    Conclusion
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+          
+          <div class="md-content">
+            <article class="md-content__inner md-typeset">
+              
+                
+                
+                  
+                
+                
+                  <h1>Stocks</h1>
+                
+                <h2 id="subscribe"><code>Subscribe</code><a class="headerlink" href="#subscribe" title="Permanent link">&para;</a></h2>
+<p>To subscribe quotes is very easy, just call <code>subscribe</code> function with <a href="../../../contract/">contract</a> which we've discussed in previous topic.</p>
+<div class="admonition info">
+<p class="admonition-title">Subscribe</p>
+<div class="highlight"><pre><span></span><code><span class="n">api</span><span class="o">.</span><span class="n">quote</span><span class="o">.</span><span class="n">subscribe</span><span class="err">?</span>
+
+    <span class="n">Signature</span><span class="p">:</span>
+        <span class="n">api</span><span class="o">.</span><span class="n">quote</span><span class="o">.</span><span class="n">subscribe</span><span class="p">(</span>
+            <span class="n">contract</span><span class="p">:</span><span class="n">shioaji</span><span class="o">.</span><span class="n">contracts</span><span class="o">.</span><span class="n">Contract</span><span class="p">,</span>
+            <span class="n">quote_type</span><span class="p">:</span><span class="n">shioaji</span><span class="o">.</span><span class="n">constant</span><span class="o">.</span><span class="n">QuoteType</span><span class="o">=&lt;</span><span class="n">QuoteType</span><span class="o">.</span><span class="n">Tick</span><span class="p">:</span> <span class="s1">&#39;tick&#39;</span><span class="o">&gt;</span><span class="p">,</span>
+            <span class="n">intraday_odd</span><span class="p">:</span><span class="nb">bool</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span>
+            <span class="n">version</span><span class="p">:</span> <span class="n">shioaji</span><span class="o">.</span><span class="n">constant</span><span class="o">.</span><span class="n">QuoteVersion</span><span class="o">=&lt;</span><span class="n">QuoteVersion</span><span class="o">.</span><span class="n">v0</span><span class="p">:</span> <span class="s1">&#39;v0&#39;</span><span class="o">&gt;</span><span class="p">,</span>
+        <span class="p">)</span>
+    <span class="n">Docstring</span><span class="p">:</span> <span class="o">&lt;</span><span class="n">no</span> <span class="n">docstring</span><span class="o">&gt;</span>
+    <span class="n">Type</span><span class="p">:</span>      <span class="n">method</span>
+</code></pre></div>
+
+</div>
+<div class="admonition done">
+<p class="admonition-title">Quote Parameters:</p>
+<div class="highlight"><pre><span></span><code>quote_type: tick price or bid/ask price to subscribe.
+    {&#39;tick&#39;, &#39;bidask&#39;}
+intraday_odd: 盤中零股
+    {True, False}
+version: version of quote format.
+    {&#39;v1&#39;, &#39;v0&#39;}
+</code></pre></div>
+
+</div>
+<h3 id="tick">Tick<a class="headerlink" href="#tick" title="Permanent link">&para;</a></h3>
+<div class="admonition info">
+<p class="admonition-title">In</p>
+<div class="highlight"><pre><span></span><code><span class="n">api</span><span class="o">.</span><span class="n">quote</span><span class="o">.</span><span class="n">subscribe</span><span class="p">(</span>
+    <span class="n">api</span><span class="o">.</span><span class="n">Contracts</span><span class="o">.</span><span class="n">Stocks</span><span class="p">[</span><span class="s2">&quot;2330&quot;</span><span class="p">],</span> 
+<span class="hll">    <span class="n">quote_type</span> <span class="o">=</span> <span class="n">sj</span><span class="o">.</span><span class="n">constant</span><span class="o">.</span><span class="n">QuoteType</span><span class="o">.</span><span class="n">Tick</span><span class="p">,</span> <span class="c1"># or &#39;tick&#39;</span>
+</span>    <span class="n">version</span> <span class="o">=</span> <span class="n">sj</span><span class="o">.</span><span class="n">constant</span><span class="o">.</span><span class="n">QuoteVersion</span><span class="o">.</span><span class="n">v1</span> <span class="c1"># or &#39;v1&#39;</span>
+<span class="p">)</span>
+</code></pre></div>
+
+</div>
+<div class="admonition done">
+<p class="admonition-title">Out:</p>
+<div class="tabbed-set" data-tabs="1:2"><input checked="checked" id="__tabbed_1_1" name="__tabbed_1" type="radio" /><label for="__tabbed_1_1">QuoteVersion.v1</label><div class="tabbed-content">
+<div class="highlight"><pre><span></span><code><span class="n">Response</span> <span class="n">Code</span><span class="p">:</span> <span class="mi">200</span> <span class="o">|</span> <span class="n">Event</span> <span class="n">Code</span><span class="p">:</span> <span class="mi">16</span> <span class="o">|</span> <span class="n">Info</span><span class="p">:</span> <span class="n">TIC</span><span class="o">/</span><span class="n">v1</span><span class="o">/</span><span class="n">STK</span><span class="o">/*/</span><span class="n">TSE</span><span class="o">/</span><span class="mi">2330</span> <span class="o">|</span> <span class="n">Event</span><span class="p">:</span> <span class="n">Subscribe</span> <span class="ow">or</span> <span class="n">Unsubscribe</span> <span class="n">ok</span>
+
+<span class="n">Exchange</span><span class="o">.</span><span class="n">TSE</span> 
+<span class="n">Tick</span><span class="p">(</span>
+    <span class="n">code</span> <span class="o">=</span> <span class="s1">&#39;2330&#39;</span><span class="p">,</span> 
+    <span class="n">datetime</span> <span class="o">=</span> <span class="n">datetime</span><span class="o">.</span><span class="n">datetime</span><span class="p">(</span><span class="mi">2021</span><span class="p">,</span> <span class="mi">7</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">13</span><span class="p">,</span> <span class="mi">16</span><span class="p">,</span> <span class="mi">35</span><span class="p">,</span> <span class="mi">92970</span><span class="p">),</span> 
+    <span class="nb">open</span> <span class="o">=</span> <span class="n">Decimal</span><span class="p">(</span><span class="s1">&#39;590&#39;</span><span class="p">),</span> 
+    <span class="n">avg_price</span> <span class="o">=</span> <span class="n">Decimal</span><span class="p">(</span><span class="s1">&#39;589.05&#39;</span><span class="p">),</span> 
+    <span class="n">close</span> <span class="o">=</span> <span class="n">Decimal</span><span class="p">(</span><span class="s1">&#39;590&#39;</span><span class="p">),</span> 
+    <span class="n">high</span> <span class="o">=</span> <span class="n">Decimal</span><span class="p">(</span><span class="s1">&#39;593&#39;</span><span class="p">),</span> 
+    <span class="n">low</span> <span class="o">=</span> <span class="n">Decimal</span><span class="p">(</span><span class="s1">&#39;587&#39;</span><span class="p">),</span> 
+    <span class="n">amount</span> <span class="o">=</span> <span class="n">Decimal</span><span class="p">(</span><span class="s1">&#39;590000&#39;</span><span class="p">),</span> 
+    <span class="n">total_amount</span> <span class="o">=</span> <span class="n">Decimal</span><span class="p">(</span><span class="s1">&#39;8540101000&#39;</span><span class="p">),</span> 
+    <span class="n">volume</span> <span class="o">=</span> <span class="mi">1</span><span class="p">,</span> 
+    <span class="n">total_volume</span> <span class="o">=</span> <span class="mi">14498</span><span class="p">,</span> 
+    <span class="n">tick_type</span> <span class="o">=</span> <span class="mi">1</span><span class="p">,</span> 
+    <span class="n">chg_type</span> <span class="o">=</span> <span class="mi">4</span><span class="p">,</span> 
+    <span class="n">price_chg</span> <span class="o">=</span> <span class="n">Decimal</span><span class="p">(</span><span class="s1">&#39;-3&#39;</span><span class="p">),</span> 
+    <span class="n">pct_chg</span> <span class="o">=</span> <span class="n">Decimal</span><span class="p">(</span><span class="s1">&#39;-0.505902&#39;</span><span class="p">),</span> 
+    <span class="n">bid_side_total_vol</span><span class="o">=</span> <span class="mi">6638</span><span class="p">,</span> 
+    <span class="n">ask_side_total_vol</span> <span class="o">=</span> <span class="mi">7860</span><span class="p">,</span> 
+    <span class="n">bid_side_total_cnt</span> <span class="o">=</span> <span class="mi">2694</span><span class="p">,</span> 
+    <span class="n">ask_side_total_cnt</span> <span class="o">=</span> <span class="mi">2705</span><span class="p">,</span> 
+    <span class="n">closing_oddlot_shares</span> <span class="o">=</span> <span class="mi">0</span><span class="p">,</span> 
+    <span class="n">fixed_trade_vol</span> <span class="o">=</span> <span class="mi">0</span><span class="p">,</span> 
+    <span class="n">suspend</span> <span class="o">=</span> <span class="mi">0</span><span class="p">,</span> 
+    <span class="n">simtrade</span> <span class="o">=</span> <span class="mi">0</span><span class="p">,</span> 
+    <span class="n">intraday_odd</span> <span class="o">=</span> <span class="mi">0</span>
+<span class="p">)</span>
+</code></pre></div>
+
+</div>
+<input id="__tabbed_1_2" name="__tabbed_1" type="radio" /><label for="__tabbed_1_2">QuoteVersion.v0</label><div class="tabbed-content">
+<div class="highlight"><pre><span></span><code><span class="n">Response</span> <span class="n">Code</span><span class="p">:</span> <span class="mi">200</span> <span class="o">|</span> <span class="n">Event</span> <span class="n">Code</span><span class="p">:</span> <span class="mi">16</span> <span class="o">|</span> <span class="n">Info</span><span class="p">:</span> <span class="n">MKT</span><span class="o">/*/</span><span class="n">TSE</span><span class="o">/</span><span class="mi">2330</span> <span class="o">|</span> <span class="n">Event</span><span class="p">:</span> <span class="n">Subscribe</span> <span class="ow">or</span> <span class="n">Unsubscribe</span> <span class="n">ok</span>
+
+<span class="n">MKT</span><span class="o">/</span><span class="n">idcdmzpcr01</span><span class="o">/</span><span class="n">TSE</span><span class="o">/</span><span class="mi">2330</span> 
+<span class="p">{</span>
+    <span class="s1">&#39;AmountSum&#39;</span><span class="p">:</span> <span class="p">[</span><span class="mf">1688787000.0</span><span class="p">],</span> 
+    <span class="s1">&#39;Close&#39;</span><span class="p">:</span> <span class="p">[</span><span class="mf">593.0</span><span class="p">],</span> 
+    <span class="s1">&#39;Date&#39;</span><span class="p">:</span> <span class="s1">&#39;2021/07/01&#39;</span><span class="p">,</span> 
+    <span class="s1">&#39;TickType&#39;</span><span class="p">:</span> <span class="p">[</span><span class="mi">2</span><span class="p">],</span> 
+    <span class="s1">&#39;Time&#39;</span><span class="p">:</span> <span class="s1">&#39;09:10:20.628620&#39;</span><span class="p">,</span> 
+    <span class="s1">&#39;VolSum&#39;</span><span class="p">:</span> <span class="p">[</span><span class="mi">2837</span><span class="p">],</span> 
+    <span class="s1">&#39;Volume&#39;</span><span class="p">:</span> <span class="p">[</span><span class="mi">1</span><span class="p">]</span>
+<span class="p">}</span>
+</code></pre></div>
+
+</div>
+</div>
+</div>
+<h3 id="tick-intraday-odd">Tick intraday odd<a class="headerlink" href="#tick-intraday-odd" title="Permanent link">&para;</a></h3>
+<div class="admonition info">
+<p class="admonition-title">In</p>
+<div class="highlight"><pre><span></span><code><span class="n">api</span><span class="o">.</span><span class="n">quote</span><span class="o">.</span><span class="n">subscribe</span><span class="p">(</span>
+    <span class="n">api</span><span class="o">.</span><span class="n">Contracts</span><span class="o">.</span><span class="n">Stocks</span><span class="p">[</span><span class="s2">&quot;2330&quot;</span><span class="p">],</span> 
+    <span class="n">quote_type</span> <span class="o">=</span> <span class="n">sj</span><span class="o">.</span><span class="n">constant</span><span class="o">.</span><span class="n">QuoteType</span><span class="o">.</span><span class="n">Tick</span><span class="p">,</span> <span class="c1"># or &#39;tick&#39;</span>
+    <span class="n">version</span> <span class="o">=</span> <span class="n">sj</span><span class="o">.</span><span class="n">constant</span><span class="o">.</span><span class="n">QuoteVersion</span><span class="o">.</span><span class="n">v1</span><span class="p">,</span> <span class="c1"># or &#39;v1&#39;</span>
+<span class="hll">    <span class="n">intraday_odd</span> <span class="o">=</span> <span class="kc">True</span>
+</span><span class="p">)</span>
+</code></pre></div>
+
+</div>
+<div class="admonition done">
+<p class="admonition-title">Out</p>
+<div class="tabbed-set" data-tabs="2:2"><input checked="checked" id="__tabbed_2_1" name="__tabbed_2" type="radio" /><label for="__tabbed_2_1">QuoteVersion.v1</label><div class="tabbed-content">
+<div class="highlight"><pre><span></span><code><span class="n">Response</span> <span class="n">Code</span><span class="p">:</span> <span class="mi">200</span> <span class="o">|</span> <span class="n">Event</span> <span class="n">Code</span><span class="p">:</span> <span class="mi">16</span> <span class="o">|</span> <span class="n">Info</span><span class="p">:</span> <span class="n">TIC</span><span class="o">/</span><span class="n">v1</span><span class="o">/</span><span class="n">ODD</span><span class="o">/*/</span><span class="n">TSE</span><span class="o">/</span><span class="mi">2330</span> <span class="o">|</span> <span class="n">Event</span><span class="p">:</span> <span class="n">Subscribe</span> <span class="ow">or</span> <span class="n">Unsubscribe</span> <span class="n">ok</span>
+
+<span class="n">Exchange</span><span class="o">.</span><span class="n">TSE</span> 
+<span class="n">Tick</span><span class="p">(</span>
+    <span class="n">code</span> <span class="o">=</span> <span class="s1">&#39;2330&#39;</span><span class="p">,</span> 
+    <span class="n">datetime</span> <span class="o">=</span> <span class="n">datetime</span><span class="o">.</span><span class="n">datetime</span><span class="p">(</span><span class="mi">2021</span><span class="p">,</span> <span class="mi">7</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">13</span><span class="p">,</span> <span class="mi">16</span><span class="p">,</span> <span class="mi">55</span><span class="p">,</span> <span class="mi">544646</span><span class="p">),</span> 
+    <span class="nb">open</span> <span class="o">=</span> <span class="n">Decimal</span><span class="p">(</span><span class="s1">&#39;591&#39;</span><span class="p">),</span> 
+    <span class="n">avg_price</span> <span class="o">=</span> <span class="n">Decimal</span><span class="p">(</span><span class="s1">&#39;590.24415&#39;</span><span class="p">),</span> 
+    <span class="n">close</span> <span class="o">=</span> <span class="n">Decimal</span><span class="p">(</span><span class="s1">&#39;590&#39;</span><span class="p">),</span> 
+    <span class="n">high</span> <span class="o">=</span> <span class="n">Decimal</span><span class="p">(</span><span class="s1">&#39;591&#39;</span><span class="p">),</span> 
+    <span class="n">low</span> <span class="o">=</span> <span class="n">Decimal</span><span class="p">(</span><span class="s1">&#39;589&#39;</span><span class="p">),</span> 
+    <span class="n">amount</span> <span class="o">=</span> <span class="n">Decimal</span><span class="p">(</span><span class="s1">&#39;276120&#39;</span><span class="p">),</span> 
+    <span class="n">total_amount</span> <span class="o">=</span> <span class="n">Decimal</span><span class="p">(</span><span class="s1">&#39;204995925&#39;</span><span class="p">),</span> 
+    <span class="n">volume</span> <span class="o">=</span> <span class="mi">468</span><span class="p">,</span> 
+    <span class="n">total_volume</span> <span class="o">=</span> <span class="mi">347307</span><span class="p">,</span> 
+    <span class="n">tick_type</span> <span class="o">=</span> <span class="mi">1</span><span class="p">,</span> 
+    <span class="n">chg_type</span> <span class="o">=</span> <span class="mi">4</span><span class="p">,</span> 
+    <span class="n">price_chg</span> <span class="o">=</span> <span class="n">Decimal</span><span class="p">(</span><span class="s1">&#39;-3&#39;</span><span class="p">),</span> 
+    <span class="n">pct_chg</span> <span class="o">=</span> <span class="n">Decimal</span><span class="p">(</span><span class="s1">&#39;-0.505902&#39;</span><span class="p">),</span> 
+    <span class="n">bid_side_total_vol</span><span class="o">=</span> <span class="mi">68209</span><span class="p">,</span> 
+    <span class="n">ask_side_total_vol</span> <span class="o">=</span> <span class="mi">279566</span><span class="p">,</span> 
+    <span class="n">bid_side_total_cnt</span> <span class="o">=</span> <span class="mi">28</span><span class="p">,</span> 
+    <span class="n">ask_side_total_cnt</span> <span class="o">=</span> <span class="mi">56</span><span class="p">,</span> 
+    <span class="n">closing_oddlot_shares</span> <span class="o">=</span> <span class="mi">0</span><span class="p">,</span> 
+    <span class="n">fixed_trade_vol</span> <span class="o">=</span> <span class="mi">0</span><span class="p">,</span> 
+    <span class="n">suspend</span> <span class="o">=</span> <span class="mi">0</span><span class="p">,</span> 
+    <span class="n">simtrade</span> <span class="o">=</span> <span class="mi">1</span><span class="p">,</span> 
+    <span class="n">intraday_odd</span> <span class="o">=</span> <span class="mi">1</span>
+<span class="p">)</span>
+</code></pre></div>
+
+</div>
+<input id="__tabbed_2_2" name="__tabbed_2" type="radio" /><label for="__tabbed_2_2">QuoteVersion.v0</label><div class="tabbed-content">
+<div class="highlight"><pre><span></span><code><span class="n">Response</span> <span class="n">Code</span><span class="p">:</span> <span class="mi">200</span> <span class="o">|</span> <span class="n">Event</span> <span class="n">Code</span><span class="p">:</span> <span class="mi">16</span> <span class="o">|</span> <span class="n">Info</span><span class="p">:</span> <span class="n">TIC</span><span class="o">/</span><span class="n">v2</span><span class="o">/*/</span><span class="n">TSE</span><span class="o">/</span><span class="mi">2330</span><span class="o">/</span><span class="n">ODDLOT</span> <span class="o">|</span> <span class="n">Event</span><span class="p">:</span> <span class="n">Subscribe</span> <span class="ow">or</span> <span class="n">Unsubscribe</span> <span class="n">ok</span>
+
+<span class="n">TIC</span><span class="o">/</span><span class="n">v2</span><span class="o">/</span><span class="n">replay</span><span class="o">/</span><span class="n">TSE</span><span class="o">/</span><span class="mi">2330</span><span class="o">/</span><span class="n">ODDLOT</span> 
+<span class="p">{</span>
+    <span class="s1">&#39;Date&#39;</span><span class="p">:</span> <span class="s1">&#39;2021/07/01&#39;</span><span class="p">,</span> 
+    <span class="s1">&#39;Time&#39;</span><span class="p">:</span> <span class="s1">&#39;09:23:36.880878&#39;</span><span class="p">,</span> 
+    <span class="s1">&#39;Close&#39;</span><span class="p">:</span> <span class="s1">&#39;593&#39;</span><span class="p">,</span> 
+    <span class="s1">&#39;TickType&#39;</span><span class="p">:</span> <span class="mi">1</span><span class="p">,</span> 
+    <span class="s1">&#39;Shares&#39;</span><span class="p">:</span> <span class="mi">1860</span><span class="p">,</span> 
+    <span class="s1">&#39;SharesSum&#39;</span><span class="p">:</span> <span class="mi">33152</span><span class="p">,</span> 
+    <span class="s1">&#39;Simtrade&#39;</span><span class="p">:</span> <span class="mi">1</span>
+<span class="p">}</span>
+</code></pre></div>
+
+</div>
+</div>
+</div>
+<h3 id="bidask">BidAsk<a class="headerlink" href="#bidask" title="Permanent link">&para;</a></h3>
+<div class="admonition info">
+<p class="admonition-title">In</p>
+<div class="highlight"><pre><span></span><code><span class="n">api</span><span class="o">.</span><span class="n">quote</span><span class="o">.</span><span class="n">subscribe</span><span class="p">(</span>
+    <span class="n">api</span><span class="o">.</span><span class="n">Contracts</span><span class="o">.</span><span class="n">Stocks</span><span class="p">[</span><span class="s2">&quot;2330&quot;</span><span class="p">],</span> 
+<span class="hll">    <span class="n">quote_type</span> <span class="o">=</span> <span class="n">sj</span><span class="o">.</span><span class="n">constant</span><span class="o">.</span><span class="n">QuoteType</span><span class="o">.</span><span class="n">BidAsk</span><span class="p">,</span> <span class="c1"># or &#39;bidask&#39;</span>
+</span>    <span class="n">version</span> <span class="o">=</span> <span class="n">sj</span><span class="o">.</span><span class="n">constant</span><span class="o">.</span><span class="n">QuoteVersion</span><span class="o">.</span><span class="n">v1</span> <span class="c1"># or &#39;v1&#39;</span>
+<span class="p">)</span>
+</code></pre></div>
+
+</div>
+<div class="admonition done">
+<p class="admonition-title">Out</p>
+<div class="tabbed-set" data-tabs="3:2"><input checked="checked" id="__tabbed_3_1" name="__tabbed_3" type="radio" /><label for="__tabbed_3_1">QuoteVersion.v1</label><div class="tabbed-content">
+<div class="highlight"><pre><span></span><code><span class="n">Response</span> <span class="n">Code</span><span class="p">:</span> <span class="mi">200</span> <span class="o">|</span> <span class="n">Event</span> <span class="n">Code</span><span class="p">:</span> <span class="mi">16</span> <span class="o">|</span> <span class="n">Info</span><span class="p">:</span> <span class="n">QUO</span><span class="o">/</span><span class="n">v1</span><span class="o">/</span><span class="n">STK</span><span class="o">/*/</span><span class="n">TSE</span><span class="o">/</span><span class="mi">2330</span> <span class="o">|</span> <span class="n">Event</span><span class="p">:</span> <span class="n">Subscribe</span> <span class="ow">or</span> <span class="n">Unsubscribe</span> <span class="n">ok</span>
+
+<span class="n">Exchange</span><span class="o">.</span><span class="n">TSE</span> 
+<span class="n">BidAsk</span><span class="p">(</span>
+    <span class="n">code</span> <span class="o">=</span> <span class="s1">&#39;2330&#39;</span><span class="p">,</span> 
+    <span class="n">datetime</span> <span class="o">=</span> <span class="n">datetime</span><span class="o">.</span><span class="n">datetime</span><span class="p">(</span><span class="mi">2021</span><span class="p">,</span> <span class="mi">7</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">9</span><span class="p">,</span> <span class="mi">9</span><span class="p">,</span> <span class="mi">54</span><span class="p">,</span> <span class="mi">36828</span><span class="p">),</span> 
+    <span class="n">bid_price</span> <span class="o">=</span> <span class="p">[</span><span class="n">Decimal</span><span class="p">(</span><span class="s1">&#39;593&#39;</span><span class="p">),</span> <span class="n">Decimal</span><span class="p">(</span><span class="s1">&#39;592&#39;</span><span class="p">),</span> <span class="n">Decimal</span><span class="p">(</span><span class="s1">&#39;591&#39;</span><span class="p">),</span> <span class="n">Decimal</span><span class="p">(</span><span class="s1">&#39;590&#39;</span><span class="p">),</span> <span class="n">Decimal</span><span class="p">(</span><span class="s1">&#39;589&#39;</span><span class="p">)],</span> 
+    <span class="n">bid_volume</span> <span class="o">=</span> <span class="p">[</span><span class="mi">248</span><span class="p">,</span> <span class="mi">180</span><span class="p">,</span> <span class="mi">258</span><span class="p">,</span> <span class="mi">267</span><span class="p">,</span> <span class="mi">163</span><span class="p">],</span> 
+    <span class="n">diff_bid_vol</span> <span class="o">=</span> <span class="p">[</span><span class="mi">3</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">],</span> 
+    <span class="n">ask_price</span> <span class="o">=</span> <span class="p">[</span><span class="n">Decimal</span><span class="p">(</span><span class="s1">&#39;594&#39;</span><span class="p">),</span> <span class="n">Decimal</span><span class="p">(</span><span class="s1">&#39;595&#39;</span><span class="p">),</span> <span class="n">Decimal</span><span class="p">(</span><span class="s1">&#39;596&#39;</span><span class="p">),</span> <span class="n">Decimal</span><span class="p">(</span><span class="s1">&#39;597&#39;</span><span class="p">),</span> <span class="n">Decimal</span><span class="p">(</span><span class="s1">&#39;598&#39;</span><span class="p">)],</span> 
+    <span class="n">ask_volume</span> <span class="o">=</span> <span class="p">[</span><span class="mi">1457</span><span class="p">,</span> <span class="mi">531</span><span class="p">,</span> <span class="mi">506</span><span class="p">,</span> <span class="mi">90</span><span class="p">,</span> <span class="mi">259</span><span class="p">],</span> 
+    <span class="n">diff_ask_vol</span> <span class="o">=</span> <span class="p">[</span><span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">],</span> 
+    <span class="n">suspend</span> <span class="o">=</span> <span class="mi">0</span><span class="p">,</span> 
+    <span class="n">simtrade</span> <span class="o">=</span> <span class="mi">0</span><span class="p">,</span>
+    <span class="n">intraday_odd</span> <span class="o">=</span> <span class="mi">0</span>
+<span class="p">)</span>
+</code></pre></div>
+
+</div>
+<input id="__tabbed_3_2" name="__tabbed_3" type="radio" /><label for="__tabbed_3_2">QuoteVersion.v0</label><div class="tabbed-content">
+<div class="highlight"><pre><span></span><code><span class="n">Response</span> <span class="n">Code</span><span class="p">:</span> <span class="mi">200</span> <span class="o">|</span> <span class="n">Event</span> <span class="n">Code</span><span class="p">:</span> <span class="mi">16</span> <span class="o">|</span> <span class="n">Info</span><span class="p">:</span> <span class="n">QUT</span><span class="o">/*/</span><span class="n">TSE</span><span class="o">/</span><span class="mi">2330</span> <span class="o">|</span> <span class="n">Event</span><span class="p">:</span> <span class="n">Subscribe</span> <span class="ow">or</span> <span class="n">Unsubscribe</span> <span class="n">ok</span>
+
+<span class="n">QUT</span><span class="o">/</span><span class="n">idcdmzpcr01</span><span class="o">/</span><span class="n">TSE</span><span class="o">/</span><span class="mi">2330</span> 
+<span class="p">{</span>
+    <span class="s1">&#39;AskPrice&#39;</span><span class="p">:</span> <span class="p">[</span><span class="mf">594.0</span><span class="p">,</span> <span class="mf">595.0</span><span class="p">,</span> <span class="mf">596.0</span><span class="p">,</span> <span class="mf">597.0</span><span class="p">,</span> <span class="mf">598.0</span><span class="p">],</span> 
+    <span class="s1">&#39;AskVolume&#39;</span><span class="p">:</span> <span class="p">[</span><span class="mi">1465</span><span class="p">,</span> <span class="mi">532</span><span class="p">,</span> <span class="mi">507</span><span class="p">,</span> <span class="mi">92</span><span class="p">,</span> <span class="mi">258</span><span class="p">],</span> 
+    <span class="s1">&#39;BidPrice&#39;</span><span class="p">:</span> <span class="p">[</span><span class="mf">593.0</span><span class="p">,</span> <span class="mf">592.0</span><span class="p">,</span> <span class="mf">591.0</span><span class="p">,</span> <span class="mf">590.0</span><span class="p">,</span> <span class="mf">589.0</span><span class="p">],</span> 
+    <span class="s1">&#39;BidVolume&#39;</span><span class="p">:</span> <span class="p">[</span><span class="mi">254</span><span class="p">,</span> <span class="mi">178</span><span class="p">,</span> <span class="mi">255</span><span class="p">,</span> <span class="mi">268</span><span class="p">,</span> <span class="mi">163</span><span class="p">],</span> 
+    <span class="s1">&#39;Date&#39;</span><span class="p">:</span> <span class="s1">&#39;2021/07/01&#39;</span><span class="p">,</span> 
+    <span class="s1">&#39;Time&#39;</span><span class="p">:</span> <span class="s1">&#39;09:09:48.447219&#39;</span>
+<span class="p">}</span>
+</code></pre></div>
+
+</div>
+</div>
+</div>
+<h3 id="bidask-intraday-odd">BidAsk intraday odd<a class="headerlink" href="#bidask-intraday-odd" title="Permanent link">&para;</a></h3>
+<div class="admonition info">
+<p class="admonition-title">In</p>
+<div class="highlight"><pre><span></span><code><span class="n">api</span><span class="o">.</span><span class="n">quote</span><span class="o">.</span><span class="n">subscribe</span><span class="p">(</span>
+    <span class="n">api</span><span class="o">.</span><span class="n">Contracts</span><span class="o">.</span><span class="n">Stocks</span><span class="p">[</span><span class="s2">&quot;2330&quot;</span><span class="p">],</span> 
+    <span class="n">quote_type</span> <span class="o">=</span> <span class="n">sj</span><span class="o">.</span><span class="n">constant</span><span class="o">.</span><span class="n">QuoteType</span><span class="o">.</span><span class="n">BidAsk</span><span class="p">,</span> <span class="c1"># or &#39;bidask&#39;</span>
+    <span class="n">version</span> <span class="o">=</span> <span class="n">sj</span><span class="o">.</span><span class="n">constant</span><span class="o">.</span><span class="n">QuoteVersion</span><span class="o">.</span><span class="n">v1</span> <span class="c1"># or &#39;v1&#39;</span>
+<span class="hll">    <span class="n">intraday_odd</span><span class="o">=</span><span class="kc">True</span>
+</span><span class="p">)</span>
+</code></pre></div>
+
+</div>
+<div class="admonition done">
+<p class="admonition-title">Out</p>
+<div class="tabbed-set" data-tabs="4:2"><input checked="checked" id="__tabbed_4_1" name="__tabbed_4" type="radio" /><label for="__tabbed_4_1">QuoteVersion.v1</label><div class="tabbed-content">
+<div class="highlight"><pre><span></span><code><span class="n">Response</span> <span class="n">Code</span><span class="p">:</span> <span class="mi">200</span> <span class="o">|</span> <span class="n">Event</span> <span class="n">Code</span><span class="p">:</span> <span class="mi">16</span> <span class="o">|</span> <span class="n">Info</span><span class="p">:</span> <span class="n">QUO</span><span class="o">/</span><span class="n">v1</span><span class="o">/</span><span class="n">ODD</span><span class="o">/*/</span><span class="n">TSE</span><span class="o">/</span><span class="mi">2330</span> <span class="o">|</span> <span class="n">Event</span><span class="p">:</span> <span class="n">Subscribe</span> <span class="ow">or</span> <span class="n">Unsubscribe</span> <span class="n">ok</span>
+
+<span class="n">Exchange</span><span class="o">.</span><span class="n">TSE</span> 
+<span class="n">BidAsk</span><span class="p">(</span>
+    <span class="n">code</span> <span class="o">=</span> <span class="s1">&#39;2330&#39;</span><span class="p">,</span>
+    <span class="n">datetime</span> <span class="o">=</span> <span class="n">datetime</span><span class="o">.</span><span class="n">datetime</span><span class="p">(</span><span class="mi">2021</span><span class="p">,</span> <span class="mi">7</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">13</span><span class="p">,</span> <span class="mi">17</span><span class="p">,</span> <span class="mi">45</span><span class="p">,</span> <span class="mi">743299</span><span class="p">),</span>
+    <span class="n">bid_price</span> <span class="o">=</span> <span class="p">[</span><span class="n">Decimal</span><span class="p">(</span><span class="s1">&#39;589&#39;</span><span class="p">),</span> <span class="n">Decimal</span><span class="p">(</span><span class="s1">&#39;588&#39;</span><span class="p">),</span> <span class="n">Decimal</span><span class="p">(</span><span class="s1">&#39;587&#39;</span><span class="p">),</span> <span class="n">Decimal</span><span class="p">(</span><span class="s1">&#39;586&#39;</span><span class="p">),</span> <span class="n">Decimal</span><span class="p">(</span><span class="s1">&#39;585&#39;</span><span class="p">)],</span> 
+    <span class="n">bid_volume</span> <span class="o">=</span> <span class="p">[</span><span class="mi">59391</span><span class="p">,</span> <span class="mi">224490</span><span class="p">,</span> <span class="mi">74082</span><span class="p">,</span> <span class="mi">68570</span><span class="p">,</span> <span class="mi">125246</span><span class="p">],</span> 
+    <span class="n">diff_bid_vol</span> <span class="o">=</span> <span class="p">[</span><span class="mi">49874</span><span class="p">,</span> <span class="mi">101808</span><span class="p">,</span> <span class="mi">23863</span><span class="p">,</span> <span class="mi">38712</span><span class="p">,</span> <span class="mi">77704</span><span class="p">],</span> 
+    <span class="n">ask_price</span> <span class="o">=</span> <span class="p">[</span><span class="n">Decimal</span><span class="p">(</span><span class="s1">&#39;590&#39;</span><span class="p">),</span> <span class="n">Decimal</span><span class="p">(</span><span class="s1">&#39;591&#39;</span><span class="p">),</span> <span class="n">Decimal</span><span class="p">(</span><span class="s1">&#39;592&#39;</span><span class="p">),</span> <span class="n">Decimal</span><span class="p">(</span><span class="s1">&#39;593&#39;</span><span class="p">),</span> <span class="n">Decimal</span><span class="p">(</span><span class="s1">&#39;594&#39;</span><span class="p">)],</span> 
+    <span class="n">ask_volume</span> <span class="o">=</span> <span class="p">[</span><span class="mi">26355</span><span class="p">,</span> <span class="mi">9680</span><span class="p">,</span> <span class="mi">18087</span><span class="p">,</span> <span class="mi">11773</span><span class="p">,</span> <span class="mi">3568</span><span class="p">],</span> 
+    <span class="n">diff_ask_vol</span> <span class="o">=</span> <span class="p">[</span><span class="mi">13251</span><span class="p">,</span> <span class="o">-</span><span class="mi">14347</span><span class="p">,</span> <span class="mi">39249</span><span class="p">,</span> <span class="o">-</span><span class="mi">20397</span><span class="p">,</span> <span class="o">-</span><span class="mi">10591</span><span class="p">],</span> 
+    <span class="n">suspend</span> <span class="o">=</span> <span class="mi">0</span><span class="p">,</span> 
+    <span class="n">simtrade</span> <span class="o">=</span> <span class="mi">1</span><span class="p">,</span> 
+    <span class="n">intraday_odd</span> <span class="o">=</span> <span class="mi">1</span>
+<span class="p">)</span>
+</code></pre></div>
+
+</div>
+<input id="__tabbed_4_2" name="__tabbed_4" type="radio" /><label for="__tabbed_4_2">QuoteVersion.v0</label><div class="tabbed-content">
+<div class="highlight"><pre><span></span><code><span class="n">Response</span> <span class="n">Code</span><span class="p">:</span> <span class="mi">200</span> <span class="o">|</span> <span class="n">Event</span> <span class="n">Code</span><span class="p">:</span> <span class="mi">16</span> <span class="o">|</span> <span class="n">Info</span><span class="p">:</span> <span class="n">QUO</span><span class="o">/</span><span class="n">v2</span><span class="o">/*/</span><span class="n">TSE</span><span class="o">/</span><span class="mi">2330</span><span class="o">/</span><span class="n">ODDLOT</span> <span class="o">|</span> <span class="n">Event</span><span class="p">:</span> <span class="n">Subscribe</span> <span class="ow">or</span> <span class="n">Unsubscribe</span> <span class="n">ok</span>
+
+<span class="n">QUO</span><span class="o">/</span><span class="n">v2</span><span class="o">/</span><span class="n">replay</span><span class="o">/</span><span class="n">TSE</span><span class="o">/</span><span class="mi">2330</span><span class="o">/</span><span class="n">ODDLOT</span> 
+<span class="p">{</span>
+    <span class="s1">&#39;Date&#39;</span><span class="p">:</span> <span class="s1">&#39;2021/07/01&#39;</span><span class="p">,</span> 
+    <span class="s1">&#39;Time&#39;</span><span class="p">:</span> <span class="s1">&#39;09:43:47.143789&#39;</span><span class="p">,</span> 
+    <span class="s1">&#39;BidPrice&#39;</span><span class="p">:</span> <span class="p">[</span><span class="s1">&#39;592&#39;</span><span class="p">,</span> <span class="s1">&#39;591&#39;</span><span class="p">,</span> <span class="s1">&#39;590&#39;</span><span class="p">,</span> <span class="s1">&#39;589&#39;</span><span class="p">,</span> <span class="s1">&#39;588&#39;</span><span class="p">],</span> 
+    <span class="s1">&#39;AskPrice&#39;</span><span class="p">:</span> <span class="p">[</span><span class="s1">&#39;593&#39;</span><span class="p">,</span> <span class="s1">&#39;594&#39;</span><span class="p">,</span> <span class="s1">&#39;595&#39;</span><span class="p">,</span> <span class="s1">&#39;596&#39;</span><span class="p">,</span> <span class="s1">&#39;597&#39;</span><span class="p">],</span> 
+    <span class="s1">&#39;BidShares&#39;</span><span class="p">:</span> <span class="p">[</span><span class="mi">16979</span><span class="p">,</span> <span class="mi">12009</span><span class="p">,</span> <span class="mi">45045</span><span class="p">,</span> <span class="mi">5501</span><span class="p">,</span> <span class="mi">12956</span><span class="p">],</span> 
+    <span class="s1">&#39;AskShares&#39;</span><span class="p">:</span> <span class="p">[</span><span class="mi">17276</span><span class="p">,</span> <span class="mi">14823</span><span class="p">,</span> <span class="mi">26518</span><span class="p">,</span> <span class="mi">23388</span><span class="p">,</span> <span class="mi">10527</span><span class="p">],</span> 
+    <span class="s1">&#39;Simtrade&#39;</span><span class="p">:</span> <span class="mi">1</span>
+<span class="p">}</span>
+</code></pre></div>
+
+</div>
+</div>
+</div>
+<h2 id="quote-callback">Quote Callback<a class="headerlink" href="#quote-callback" title="Permanent link">&para;</a></h2>
+<p>In default, we set quote callback as print function. You can modify callback function as you wish. Just remember, always avoid making calulations inside the callback function.</p>
+<h3 id="tick-quote-callback">Tick quote callback<a class="headerlink" href="#tick-quote-callback" title="Permanent link">&para;</a></h3>
+<div class="admonition info">
+<p class="admonition-title">In: pythonic way by using decorator</p>
+<div class="tabbed-set" data-tabs="5:2"><input checked="checked" id="__tabbed_5_1" name="__tabbed_5" type="radio" /><label for="__tabbed_5_1">QuoteVersion.v1</label><div class="tabbed-content">
+<div class="highlight"><pre><span></span><code><span class="kn">from</span> <span class="nn">shioaji</span> <span class="kn">import</span> <span class="n">TickSTKv1</span><span class="p">,</span> <span class="n">Exchange</span>
+
+<span class="nd">@api</span><span class="o">.</span><span class="n">on_tick_stk_v1</span><span class="p">()</span>
+<span class="k">def</span> <span class="nf">quote_callback</span><span class="p">(</span><span class="n">exchange</span><span class="p">:</span> <span class="n">Exchange</span><span class="p">,</span> <span class="n">tick</span><span class="p">:</span><span class="n">TickSTKv1</span><span class="p">):</span>
+    <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Exchange: </span><span class="si">{</span><span class="n">exchange</span><span class="si">}</span><span class="s2">, Tick: </span><span class="si">{</span><span class="n">tick</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+</code></pre></div>
+
+</div>
+<input id="__tabbed_5_2" name="__tabbed_5" type="radio" /><label for="__tabbed_5_2">QuoteVersion.v0</label><div class="tabbed-content">
+<div class="highlight"><pre><span></span><code><span class="nd">@api</span><span class="o">.</span><span class="n">quote</span><span class="o">.</span><span class="n">on_quote</span>
+<span class="k">def</span> <span class="nf">quote_callback</span><span class="p">(</span><span class="n">topic</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span> <span class="n">quote</span><span class="p">:</span> <span class="nb">dict</span><span class="p">):</span>
+    <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Topic: </span><span class="si">{</span><span class="n">topic</span><span class="si">}</span><span class="s2">, Quote: </span><span class="si">{</span><span class="n">quote</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+</code></pre></div>
+
+</div>
+</div>
+</div>
+<div class="admonition info">
+<p class="admonition-title">In: traditional way</p>
+<div class="tabbed-set" data-tabs="6:2"><input checked="checked" id="__tabbed_6_1" name="__tabbed_6" type="radio" /><label for="__tabbed_6_1">QuoteVersion.v1</label><div class="tabbed-content">
+<div class="highlight"><pre><span></span><code><span class="kn">from</span> <span class="nn">shioaji</span> <span class="kn">import</span> <span class="n">TickSTKv1</span><span class="p">,</span> <span class="n">Exchange</span>
+
+<span class="k">def</span> <span class="nf">quote_callback</span><span class="p">(</span><span class="n">exchange</span><span class="p">:</span> <span class="n">Exchange</span><span class="p">,</span> <span class="n">tick</span><span class="p">:</span><span class="n">TickSTKv1</span><span class="p">):</span>
+    <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Exchange: </span><span class="si">{</span><span class="n">exchange</span><span class="si">}</span><span class="s2">, Tick: </span><span class="si">{</span><span class="n">tick</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+
+<span class="n">api</span><span class="o">.</span><span class="n">quote</span><span class="o">.</span><span class="n">set_on_tick_stk_v1_callback</span><span class="p">(</span><span class="n">quote_callback</span><span class="p">)</span>
+</code></pre></div>
+
+</div>
+<input id="__tabbed_6_2" name="__tabbed_6" type="radio" /><label for="__tabbed_6_2">QuoteVersion.v0</label><div class="tabbed-content">
+<div class="highlight"><pre><span></span><code><span class="k">def</span> <span class="nf">quote_callback</span><span class="p">(</span><span class="n">topic</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span> <span class="n">quote</span><span class="p">:</span> <span class="nb">dict</span><span class="p">):</span>
+    <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Topic: </span><span class="si">{</span><span class="n">topic</span><span class="si">}</span><span class="s2">, Quote: </span><span class="si">{</span><span class="n">quote</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+
+<span class="n">api</span><span class="o">.</span><span class="n">quote</span><span class="o">.</span><span class="n">set_quote_callback</span><span class="p">(</span><span class="n">quote_callback</span><span class="p">)</span>
+</code></pre></div>
+
+</div>
+</div>
+</div>
+<div class="admonition done">
+<p class="admonition-title">Out</p>
+<div class="tabbed-set" data-tabs="7:2"><input checked="checked" id="__tabbed_7_1" name="__tabbed_7" type="radio" /><label for="__tabbed_7_1">QuoteVersion.v1</label><div class="tabbed-content">
+<div class="highlight"><pre><span></span><code><span class="n">Exchange</span><span class="p">:</span> <span class="n">Exchange</span><span class="o">.</span><span class="n">TSE</span><span class="p">,</span> <span class="n">Tick</span><span class="p">:</span> <span class="n">Tick</span><span class="p">(</span><span class="n">code</span><span class="o">=</span><span class="s1">&#39;2330&#39;</span><span class="p">,</span> <span class="n">datetime</span><span class="o">=</span><span class="n">datetime</span><span class="o">.</span><span class="n">datetime</span><span class="p">(</span><span class="mi">2021</span><span class="p">,</span> <span class="mi">7</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">13</span><span class="p">,</span> <span class="mi">16</span><span class="p">,</span> <span class="mi">35</span><span class="p">,</span> <span class="mi">92970</span><span class="p">),</span> <span class="nb">open</span><span class="o">=</span><span class="n">Decimal</span><span class="p">(</span><span class="s1">&#39;590&#39;</span><span class="p">),</span> <span class="n">avg_price</span><span class="o">=</span><span class="n">Decimal</span><span class="p">(</span><span class="s1">&#39;589.05&#39;</span><span class="p">),</span> <span class="n">close</span><span class="o">=</span><span class="n">Decimal</span><span class="p">(</span><span class="s1">&#39;590&#39;</span><span class="p">),</span> <span class="n">high</span><span class="o">=</span><span class="n">Decimal</span><span class="p">(</span><span class="s1">&#39;593&#39;</span><span class="p">),</span> <span class="n">low</span><span class="o">=</span><span class="n">Decimal</span><span class="p">(</span><span class="s1">&#39;587&#39;</span><span class="p">),</span> <span class="n">amount</span><span class="o">=</span><span class="n">Decimal</span><span class="p">(</span><span class="s1">&#39;590000&#39;</span><span class="p">),</span> <span class="n">total_amount</span><span class="o">=</span><span class="n">Decimal</span><span class="p">(</span><span class="s1">&#39;8540101000&#39;</span><span class="p">),</span> <span class="n">volume</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span> <span class="n">total_volume</span><span class="o">=</span><span class="mi">14498</span><span class="p">,</span> <span class="n">tick_type</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span> <span class="n">chg_type</span><span class="o">=</span><span class="mi">4</span><span class="p">,</span> <span class="n">price_chg</span><span class="o">=</span><span class="n">Decimal</span><span class="p">(</span><span class="s1">&#39;-3&#39;</span><span class="p">),</span> <span class="n">pct_chg</span><span class="o">=</span><span class="n">Decimal</span><span class="p">(</span><span class="s1">&#39;-0.505902&#39;</span><span class="p">),</span> <span class="n">trade_bid_volume</span><span class="o">=</span><span class="mi">6638</span><span class="p">,</span> <span class="n">ask_side_total_vol</span><span class="o">=</span><span class="mi">7860</span><span class="p">,</span> <span class="n">bid_side_total_cnt</span><span class="o">=</span><span class="mi">2694</span><span class="p">,</span> <span class="n">ask_side_total_cnt</span><span class="o">=</span><span class="mi">2705</span><span class="p">,</span> <span class="n">closing_oddlot_shares</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span> <span class="n">fixed_trade_vol</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span> <span class="n">suspend</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span> <span class="n">simtrade</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span> <span class="n">intraday_odd</span><span class="o">=</span><span class="mi">0</span><span class="p">)</span>
+</code></pre></div>
+
+</div>
+<input id="__tabbed_7_2" name="__tabbed_7" type="radio" /><label for="__tabbed_7_2">QuoteVersion.v0</label><div class="tabbed-content">
+<div class="highlight"><pre><span></span><code><span class="n">Topic</span><span class="p">:</span> <span class="n">MKT</span><span class="o">/*/</span><span class="n">TSE</span><span class="o">/</span><span class="mi">2330</span><span class="p">,</span> <span class="n">Quote</span><span class="p">:</span> <span class="p">{</span><span class="s1">&#39;AmountSum&#39;</span><span class="p">:</span> <span class="p">[</span><span class="mf">4739351000.0</span><span class="p">],</span> <span class="s1">&#39;Close&#39;</span><span class="p">:</span> <span class="p">[</span><span class="mf">596.0</span><span class="p">],</span> <span class="s1">&#39;Date&#39;</span><span class="p">:</span> <span class="s1">&#39;2021/03/30&#39;</span><span class="p">,</span> <span class="s1">&#39;TickType&#39;</span><span class="p">:</span> <span class="p">[</span><span class="mi">2</span><span class="p">],</span> <span class="s1">&#39;Time&#39;</span><span class="p">:</span> <span class="s1">&#39;10:01:33.349431&#39;</span><span class="p">,</span> <span class="s1">&#39;VolSum&#39;</span><span class="p">:</span> <span class="p">[</span><span class="mi">7932</span><span class="p">],</span> <span class="s1">&#39;Volume&#39;</span><span class="p">:</span> <span class="p">[</span><span class="mi">1</span><span class="p">]}</span>
+</code></pre></div>
+
+</div>
+</div>
+</div>
+<ul>
+<li>Intraday odd share the callback function with common stock.</li>
+<li>Advanced quote callback settings please refer to <a href="../quote_binding/">Quote-Binding Mode</a>.</li>
+</ul>
+<h3 id="bidask-quote-callback">BidAsk quote callback<a class="headerlink" href="#bidask-quote-callback" title="Permanent link">&para;</a></h3>
+<div class="admonition info">
+<p class="admonition-title">In: pythonic way by using decorator</p>
+<div class="tabbed-set" data-tabs="8:2"><input checked="checked" id="__tabbed_8_1" name="__tabbed_8" type="radio" /><label for="__tabbed_8_1">QuoteVersion.v1</label><div class="tabbed-content">
+<div class="highlight"><pre><span></span><code><span class="kn">from</span> <span class="nn">shioaji</span> <span class="kn">import</span> <span class="n">BidAskSTKv1</span><span class="p">,</span> <span class="n">Exchange</span>
+
+<span class="nd">@api</span><span class="o">.</span><span class="n">on_bidask_stk_v1</span><span class="p">()</span>
+<span class="k">def</span> <span class="nf">quote_callback</span><span class="p">(</span><span class="n">exchange</span><span class="p">:</span> <span class="n">Exchange</span><span class="p">,</span> <span class="n">bidask</span><span class="p">:</span><span class="n">BidAskSTKv1</span><span class="p">):</span>
+    <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Exchange: </span><span class="si">{</span><span class="n">exchange</span><span class="si">}</span><span class="s2">, BidAsk: </span><span class="si">{</span><span class="n">bidask</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+</code></pre></div>
+
+</div>
+<input id="__tabbed_8_2" name="__tabbed_8" type="radio" /><label for="__tabbed_8_2">QuoteVersion.v0</label><div class="tabbed-content">
+<div class="highlight"><pre><span></span><code><span class="nd">@api</span><span class="o">.</span><span class="n">quote</span><span class="o">.</span><span class="n">on_quote</span>
+<span class="k">def</span> <span class="nf">quote_callback</span><span class="p">(</span><span class="n">topic</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span> <span class="n">quote</span><span class="p">:</span> <span class="nb">dict</span><span class="p">):</span>
+    <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Topic: </span><span class="si">{</span><span class="n">topic</span><span class="si">}</span><span class="s2">, Quote: </span><span class="si">{</span><span class="n">quote</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+</code></pre></div>
+
+</div>
+</div>
+</div>
+<div class="admonition info">
+<p class="admonition-title">In: traditional way</p>
+<div class="tabbed-set" data-tabs="9:2"><input checked="checked" id="__tabbed_9_1" name="__tabbed_9" type="radio" /><label for="__tabbed_9_1">QuoteVersion.v1</label><div class="tabbed-content">
+<div class="highlight"><pre><span></span><code><span class="kn">from</span> <span class="nn">shioaji</span> <span class="kn">import</span> <span class="n">BidAskSTKv1</span><span class="p">,</span> <span class="n">Exchange</span>
+
+<span class="k">def</span> <span class="nf">quote_callback</span><span class="p">(</span><span class="n">exchange</span><span class="p">:</span> <span class="n">Exchange</span><span class="p">,</span> <span class="n">bidask</span><span class="p">:</span><span class="n">BidAskSTKv1</span><span class="p">):</span>
+    <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Exchange: </span><span class="si">{</span><span class="n">exchange</span><span class="si">}</span><span class="s2">, BidAsk: </span><span class="si">{</span><span class="n">bidask</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+
+<span class="n">api</span><span class="o">.</span><span class="n">quote</span><span class="o">.</span><span class="n">set_on_bidask_stk_v1_callback</span><span class="p">(</span><span class="n">quote_callback</span><span class="p">)</span>
+</code></pre></div>
+
+</div>
+<input id="__tabbed_9_2" name="__tabbed_9" type="radio" /><label for="__tabbed_9_2">QuoteVersion.v0</label><div class="tabbed-content">
+<div class="highlight"><pre><span></span><code><span class="k">def</span> <span class="nf">quote_callback</span><span class="p">(</span><span class="n">topic</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span> <span class="n">quote</span><span class="p">:</span> <span class="nb">dict</span><span class="p">):</span>
+    <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Topic: </span><span class="si">{</span><span class="n">topic</span><span class="si">}</span><span class="s2">, Quote: </span><span class="si">{</span><span class="n">quote</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+
+<span class="n">api</span><span class="o">.</span><span class="n">quote</span><span class="o">.</span><span class="n">set_quote_callback</span><span class="p">(</span><span class="n">quote_callback</span><span class="p">)</span>
+</code></pre></div>
+
+</div>
+</div>
+</div>
+<div class="admonition done">
+<p class="admonition-title">Out</p>
+<div class="tabbed-set" data-tabs="10:2"><input checked="checked" id="__tabbed_10_1" name="__tabbed_10" type="radio" /><label for="__tabbed_10_1">QuoteVersion.v1</label><div class="tabbed-content">
+<div class="highlight"><pre><span></span><code><span class="n">Exchange</span><span class="p">:</span> <span class="n">Exchange</span><span class="o">.</span><span class="n">TSE</span><span class="p">,</span> <span class="n">BidAsk</span><span class="p">:</span> <span class="n">BidAsk</span><span class="p">(</span><span class="n">code</span><span class="o">=</span><span class="s1">&#39;2330&#39;</span><span class="p">,</span> <span class="n">datetime</span><span class="o">=</span><span class="n">datetime</span><span class="o">.</span><span class="n">datetime</span><span class="p">(</span><span class="mi">2021</span><span class="p">,</span> <span class="mi">7</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">13</span><span class="p">,</span> <span class="mi">17</span><span class="p">,</span> <span class="mi">29</span><span class="p">,</span> <span class="mi">726428</span><span class="p">),</span> <span class="n">bid_price</span><span class="o">=</span><span class="p">[</span><span class="n">Decimal</span><span class="p">(</span><span class="s1">&#39;589&#39;</span><span class="p">),</span> <span class="n">Decimal</span><span class="p">(</span><span class="s1">&#39;588&#39;</span><span class="p">),</span> <span class="n">Decimal</span><span class="p">(</span><span class="s1">&#39;587&#39;</span><span class="p">),</span> <span class="n">Decimal</span><span class="p">(</span><span class="s1">&#39;586&#39;</span><span class="p">),</span> <span class="n">Decimal</span><span class="p">(</span><span class="s1">&#39;585&#39;</span><span class="p">)],</span> <span class="n">bid_volume</span><span class="o">=</span><span class="p">[</span><span class="mi">223</span><span class="p">,</span> <span class="mi">761</span><span class="p">,</span> <span class="mi">1003</span><span class="p">,</span> <span class="mi">809</span><span class="p">,</span> <span class="mi">1274</span><span class="p">],</span> <span class="n">diff_bid_vol</span><span class="o">=</span><span class="p">[</span><span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">],</span> <span class="n">ask_price</span><span class="o">=</span><span class="p">[</span><span class="n">Decimal</span><span class="p">(</span><span class="s1">&#39;590&#39;</span><span class="p">),</span> <span class="n">Decimal</span><span class="p">(</span><span class="s1">&#39;591&#39;</span><span class="p">),</span> <span class="n">Decimal</span><span class="p">(</span><span class="s1">&#39;592&#39;</span><span class="p">),</span> <span class="n">Decimal</span><span class="p">(</span><span class="s1">&#39;593&#39;</span><span class="p">),</span> <span class="n">Decimal</span><span class="p">(</span><span class="s1">&#39;594&#39;</span><span class="p">)],</span> <span class="n">ask_volume</span><span class="o">=</span><span class="p">[</span><span class="mi">304</span><span class="p">,</span> <span class="mi">232</span><span class="p">,</span> <span class="mi">183</span><span class="p">,</span> <span class="mi">242</span><span class="p">,</span> <span class="mi">131</span><span class="p">],</span> <span class="n">diff_ask_vol</span><span class="o">=</span><span class="p">[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">],</span> <span class="n">suspend</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span> <span class="n">simtrade</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span> <span class="n">intraday_odd</span><span class="o">=</span><span class="mi">0</span><span class="p">)</span>
+</code></pre></div>
+
+</div>
+<input id="__tabbed_10_2" name="__tabbed_10" type="radio" /><label for="__tabbed_10_2">QuoteVersion.v0</label><div class="tabbed-content">
+<div class="highlight"><pre><span></span><code><span class="n">Topic</span><span class="p">:</span> <span class="n">QUT</span><span class="o">/</span><span class="n">idcdmzpcr01</span><span class="o">/</span><span class="n">TSE</span><span class="o">/</span><span class="mi">2330</span><span class="p">,</span> <span class="n">Quote</span><span class="p">:</span> <span class="p">{</span><span class="s1">&#39;AskPrice&#39;</span><span class="p">:</span> <span class="p">[</span><span class="mf">590.0</span><span class="p">,</span> <span class="mf">591.0</span><span class="p">,</span> <span class="mf">592.0</span><span class="p">,</span> <span class="mf">593.0</span><span class="p">,</span> <span class="mf">594.0</span><span class="p">],</span> <span class="s1">&#39;AskVolume&#39;</span><span class="p">:</span> <span class="p">[</span><span class="mi">303</span><span class="p">,</span> <span class="mi">232</span><span class="p">,</span> <span class="mi">183</span><span class="p">,</span> <span class="mi">242</span><span class="p">,</span> <span class="mi">131</span><span class="p">],</span> <span class="s1">&#39;BidPrice&#39;</span><span class="p">:</span> <span class="p">[</span><span class="mf">589.0</span><span class="p">,</span> <span class="mf">588.0</span><span class="p">,</span> <span class="mf">587.0</span><span class="p">,</span> <span class="mf">586.0</span><span class="p">,</span> <span class="mf">585.0</span><span class="p">],</span> <span class="s1">&#39;BidVolume&#39;</span><span class="p">:</span> <span class="p">[</span><span class="mi">224</span><span class="p">,</span> <span class="mi">762</span><span class="p">,</span> <span class="mi">1003</span><span class="p">,</span> <span class="mi">809</span><span class="p">,</span> <span class="mi">1274</span><span class="p">],</span> <span class="s1">&#39;Date&#39;</span><span class="p">:</span> <span class="s1">&#39;2021/07/02&#39;</span><span class="p">,</span> <span class="s1">&#39;Time&#39;</span><span class="p">:</span> <span class="s1">&#39;13:17:26.391840&#39;</span><span class="p">}</span>
+</code></pre></div>
+
+</div>
+</div>
+</div>
+<ul>
+<li>Intraday odd share the callback function with common stock.</li>
+<li>Advanced quote callback settings please refer to <a href="../quote_binding/">Quote-Binding Mode</a>.</li>
+</ul>
+<h2 id="quote-format">Quote Format<a class="headerlink" href="#quote-format" title="Permanent link">&para;</a></h2>
+<h3 id="tick_1">Tick<a class="headerlink" href="#tick_1" title="Permanent link">&para;</a></h3>
+<div class="admonition example">
+<p class="admonition-title">Stock</p>
+<div class="tabbed-set" data-tabs="11:2"><input checked="checked" id="__tabbed_11_1" name="__tabbed_11" type="radio" /><label for="__tabbed_11_1">QuoteVersion.v1</label><div class="tabbed-content">
+<div class="highlight"><pre><span></span><code>code (str): code
+datetime (datetime.datetime): datetime
+open (Decimal): open
+avg_price (Decimal): average price
+close (Decimal): deal price
+high (Decimal): high since market open
+low (Decimal): low since market open
+amount (Decimal): amount (NTD)
+total_amount (Decimal): total amount (NTD)
+volume (int): volume (K shares)
+    if intraday_odd: (share)
+total_volume (int): total volume (K shares)
+    if intraday_odd: (share)
+tick_type (int): tick type (內外盤別)
+    {1: buy deal, 2: sell deal, 0: can&#39;t judge}
+chg_type (int): (漲跌註記)
+    {1: limit up, 2: up, 3: unchanged, 4: down, 5: limit down}
+price_chg (Decimal): price change
+pct_chg (Decimal): percentage change (%)
+bid_side_total_vol(int): total buy deal volume (K shares, 買盤成交總量)
+    if intraday_odd: (share)
+ask_side_total_vol (int): total sell deal volume (K shares, 賣盤成交總量)
+    if intraday_odd: (share)
+bid_side_total_cnt (int): total number of buy deal (買盤成交筆數)
+ask_side_total_cnt (int): total number of sell deal (賣盤成交筆數)
+closing_oddlot_shares (int): (share, 盤後零股成交股數)
+fixed_trade_vol (int): fixed trade volume (K shares, 定盤成交量)
+    if intraday_odd: 0
+suspend (bool): suspend (暫停交易)
+simtrade (bool): simulated trade (試撮)
+intraday_odd (bool): intraday odd (盤中零股)
+</code></pre></div>
+
+</div>
+<input id="__tabbed_11_2" name="__tabbed_11" type="radio" /><label for="__tabbed_11_2">QuoteVersion.v0</label><div class="tabbed-content">
+<div class="highlight"><pre><span></span><code>AmountSum (list of float): amount of sum
+Close (list of float): deal price
+Date (str): date (yyyy/MM/dd)
+TickType (list of int): 
+    {1: buy deal, 2: sell deal, 0: can&#39;t judge}
+Time (str): time (HH:mm:ss.ffffff)
+VolSum (list of int): total volume (K shares)
+Volume (list of int): volume (K shares)
+</code></pre></div>
+
+</div>
+</div>
+</div>
+<h3 id="bidask_1">BidAsk<a class="headerlink" href="#bidask_1" title="Permanent link">&para;</a></h3>
+<div class="admonition example">
+<p class="admonition-title">Stock</p>
+<div class="tabbed-set" data-tabs="12:2"><input checked="checked" id="__tabbed_12_1" name="__tabbed_12" type="radio" /><label for="__tabbed_12_1">QuoteVersion.v1</label><div class="tabbed-content">
+<div class="highlight"><pre><span></span><code>code (str): code
+datetime (datetime.datetime): datetime
+bid_price (list of Decimal): bid price
+bid_volume (list of int): bid volume (K shares)
+diff_bid_vol (list of int): (K shares, 買價增減量)
+ask_price (list of Decimal): ask price
+ask_volume (list of int): ask volume
+diff_ask_vol (list of int): (K shares, 賣價增減量)
+suspend (bool): suspend (暫停交易)
+simtrade (bool): simulated trade (試撮)
+</code></pre></div>
+
+</div>
+<input id="__tabbed_12_2" name="__tabbed_12" type="radio" /><label for="__tabbed_12_2">QuoteVersion.v0</label><div class="tabbed-content">
+<div class="highlight"><pre><span></span><code>AskPrice (list of float): ask price
+AskVolume (list of int): ask volume
+BidPrice (list of float): bid price
+BidVolume (list of int): bid volume
+Date (str): date (yyyy/MM/dd)
+Time (str): time (HH:mm:ss.ffffff)
+</code></pre></div>
+
+</div>
+</div>
+</div>
+<h2 id="conclusion">Conclusion<a class="headerlink" href="#conclusion" title="Permanent link">&para;</a></h2>
+<p>Contract object will be used by a lot of place like place order and subscribe quote etc... So Keep in mind how to get the contract you want to use.</p>
+                
+              
+              
+                
+
+
+              
+            </article>
+          </div>
+        </div>
+      </main>
+      
+        
+<footer class="md-footer">
+  
+    <div class="md-footer-nav">
+      <nav class="md-footer-nav__inner md-grid" aria-label="Footer">
+        
+          <a href="../../../contract/" title="Contract" class="md-footer-nav__link md-footer-nav__link--prev" rel="prev">
+            <div class="md-footer-nav__button md-icon">
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11h12z"/></svg>
+            </div>
+            <div class="md-footer-nav__title">
+              <div class="md-ellipsis">
+                <span class="md-footer-nav__direction">
+                  Previous
+                </span>
+                Contract
+              </div>
+            </div>
+          </a>
+        
+        
+          <a href="../futures/" title="Futures" class="md-footer-nav__link md-footer-nav__link--next" rel="next">
+            <div class="md-footer-nav__title">
+              <div class="md-ellipsis">
+                <span class="md-footer-nav__direction">
+                  Next
+                </span>
+                Futures
+              </div>
+            </div>
+            <div class="md-footer-nav__button md-icon">
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M4 11v2h12l-5.5 5.5 1.42 1.42L19.84 12l-7.92-7.92L10.5 5.5 16 11H4z"/></svg>
+            </div>
+          </a>
+        
+      </nav>
+    </div>
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-footer-copyright">
+        
+          <div class="md-footer-copyright__highlight">
+            Copyright
+          </div>
+        
+        Made with
+        <a href="https://squidfunk.github.io/mkdocs-material/" target="_blank" rel="noopener">
+          Material for MkDocs
+        </a>
+      </div>
+      
+  <div class="md-footer-social">
+    
+      
+      
+        
+        
+      
+      <a href="https://github.com/Sinotrade/Shioaji" target="_blank" rel="noopener" title="github.com" class="md-footer-social__link">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 480 512"><path d="M186.1 328.7c0 20.9-10.9 55.1-36.7 55.1s-36.7-34.2-36.7-55.1 10.9-55.1 36.7-55.1 36.7 34.2 36.7 55.1zM480 278.2c0 31.9-3.2 65.7-17.5 95-37.9 76.6-142.1 74.8-216.7 74.8-75.8 0-186.2 2.7-225.6-74.8-14.6-29-20.2-63.1-20.2-95 0-41.9 13.9-81.5 41.5-113.6-5.2-15.8-7.7-32.4-7.7-48.8 0-21.5 4.9-32.3 14.6-51.8 45.3 0 74.3 9 108.8 36 29-6.9 58.8-10 88.7-10 27 0 54.2 2.9 80.4 9.2 34-26.7 63-35.2 107.8-35.2 9.8 19.5 14.6 30.3 14.6 51.8 0 16.4-2.6 32.7-7.7 48.2 27.5 32.4 39 72.3 39 114.2zm-64.3 50.5c0-43.9-26.7-82.6-73.5-82.6-18.9 0-37 3.4-56 6-14.9 2.3-29.8 3.2-45.1 3.2-15.2 0-30.1-.9-45.1-3.2-18.7-2.6-37-6-56-6-46.8 0-73.5 38.7-73.5 82.6 0 87.8 80.4 101.3 150.4 101.3h48.2c70.3 0 150.6-13.4 150.6-101.3zm-82.6-55.1c-25.8 0-36.7 34.2-36.7 55.1s10.9 55.1 36.7 55.1 36.7-34.2 36.7-55.1-10.9-55.1-36.7-55.1z"/></svg>
+      </a>
+    
+  </div>
+
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    
+      <script src="../../../../assets/javascripts/vendor.22b62ea4.min.js"></script>
+      <script src="../../../../assets/javascripts/bundle.5f27aba8.min.js"></script><script id="__lang" type="application/json">{"clipboard.copy": "Copy to clipboard", "clipboard.copied": "Copied to clipboard", "search.config.lang": "en", "search.config.pipeline": "trimmer, stopWordFilter", "search.config.separator": "[\\s\\-]+", "search.result.placeholder": "Type to start searching", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents"}</script>
+      
+      <script>
+        app = initialize({
+          base: "../../../..",
+          features: [],
+          search: Object.assign({
+            worker: "../../../../assets/javascripts/worker/search.f6ebf1dc.min.js"
+          }, typeof search !== "undefined" && search)
+        })
+      </script>
+      
+    
+  </body>
+</html>

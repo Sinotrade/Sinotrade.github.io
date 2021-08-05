@@ -11,7 +11,7 @@
         <meta name="description" content="Shioaji is provided by SinoPac the most pythonic API for trading the Taiwan and global financial market. You can use your favorite Python packages such as NumPy, pandas, PyTorch or TensorFlow to build your trading model with integrated the Shioaji API on cross-platform.">
       
       
-        <link rel="canonical" href="https://sinotrade.github.io/quickstart/">
+        <link rel="canonical" href="https://sinotrade.github.io/tutor/market_data/streaming/event_cb/">
       
       
         <meta name="author" content="Yvictor, ">
@@ -21,13 +21,13 @@
     
     
       
-        <title>Quick Start - Shioaji</title>
+        <title>Event Callback - Shioaji</title>
       
     
     
-      <link rel="stylesheet" href="../assets/stylesheets/main.4c7052ca.min.css">
+      <link rel="stylesheet" href="../../../../assets/stylesheets/main.4c7052ca.min.css">
       
-        <link rel="stylesheet" href="../assets/stylesheets/palette.b79bcd20.min.css">
+        <link rel="stylesheet" href="../../../../assets/stylesheets/palette.b79bcd20.min.css">
       
       
         
@@ -67,7 +67,7 @@
     <div data-md-component="skip">
       
         
-        <a href="#initialization" class="md-skip">
+        <a href="#event-callback" class="md-skip">
           Skip to content
         </a>
       
@@ -80,7 +80,7 @@
   <nav class="md-header-nav md-grid" aria-label="Header">
     <a href="https://sinotrade.github.io/" title="Shioaji" class="md-header-nav__button md-logo" aria-label="Shioaji">
       
-  <img src="../img/shioaji-logo.svg" alt="logo">
+  <img src="../../../../img/shioaji-logo.svg" alt="logo">
 
     </a>
     <label class="md-header-nav__button md-icon" for="__drawer">
@@ -94,7 +94,7 @@
           </span>
           <span class="md-header-nav__topic md-ellipsis">
             
-              Quick Start
+              Event Callback
             
           </span>
         </div>
@@ -166,7 +166,7 @@
   <label class="md-nav__title" for="__drawer">
     <a href="https://sinotrade.github.io/" title="Shioaji" class="md-nav__button md-logo" aria-label="Shioaji">
       
-  <img src="../img/shioaji-logo.svg" alt="logo">
+  <img src="../../../../img/shioaji-logo.svg" alt="logo">
 
     </a>
     Shioaji
@@ -193,7 +193,7 @@
 
 
   <li class="md-nav__item">
-    <a href=".." title="Overview" class="md-nav__link">
+    <a href="../../../.." title="Overview" class="md-nav__link">
       Overview
     </a>
   </li>
@@ -203,70 +203,11 @@
       
       
 
-  
 
-
-  <li class="md-nav__item md-nav__item--active">
-    
-    <input class="md-nav__toggle md-toggle" data-md-toggle="toc" type="checkbox" id="__toc">
-    
-    
-      <label class="md-nav__link md-nav__link--active" for="__toc">
-        Quick Start
-        <span class="md-nav__icon md-icon">
-          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 9h14V7H3v2m0 4h14v-2H3v2m0 4h14v-2H3v2m16 0h2v-2h-2v2m0-10v2h2V7h-2m0 6h2v-2h-2v2z"/></svg>
-        </span>
-      </label>
-    
-    <a href="./" title="Quick Start" class="md-nav__link md-nav__link--active">
+  <li class="md-nav__item">
+    <a href="../../../../quickstart/" title="Quick Start" class="md-nav__link">
       Quick Start
     </a>
-    
-      
-<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
-  
-  
-  
-    <label class="md-nav__title" for="__toc">
-      <span class="md-nav__icon md-icon">
-        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11h12z"/></svg>
-      </span>
-      Table of contents
-    </label>
-    <ul class="md-nav__list" data-md-scrollfix>
-      
-        <li class="md-nav__item">
-  <a href="#initialization" class="md-nav__link">
-    Initialization
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#streaming-market-data" class="md-nav__link">
-    Streaming Market Data
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#place-order" class="md-nav__link">
-    Place Order
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#conclusion" class="md-nav__link">
-    Conclusion
-  </a>
-  
-</li>
-      
-    </ul>
-  
-</nav>
-    
   </li>
 
     
@@ -274,10 +215,12 @@
       
       
 
+  
 
-  <li class="md-nav__item md-nav__item--nested">
+
+  <li class="md-nav__item md-nav__item--active md-nav__item--nested">
     
-      <input class="md-nav__toggle md-toggle" data-md-toggle="nav-3" type="checkbox" id="nav-3">
+      <input class="md-nav__toggle md-toggle" data-md-toggle="nav-3" type="checkbox" id="nav-3" checked>
     
     <label class="md-nav__link" for="nav-3">
       Tutorial - User Guide
@@ -301,7 +244,7 @@
 
 
   <li class="md-nav__item">
-    <a href="../tutor/login/" title="Login" class="md-nav__link">
+    <a href="../../../login/" title="Login" class="md-nav__link">
       Login
     </a>
   </li>
@@ -313,7 +256,7 @@
 
 
   <li class="md-nav__item">
-    <a href="../tutor/contract/" title="Contract" class="md-nav__link">
+    <a href="../../../contract/" title="Contract" class="md-nav__link">
       Contract
     </a>
   </li>
@@ -323,10 +266,12 @@
           
           
 
+  
 
-  <li class="md-nav__item md-nav__item--nested">
+
+  <li class="md-nav__item md-nav__item--active md-nav__item--nested">
     
-      <input class="md-nav__toggle md-toggle" data-md-toggle="nav-3-3" type="checkbox" id="nav-3-3">
+      <input class="md-nav__toggle md-toggle" data-md-toggle="nav-3-3" type="checkbox" id="nav-3-3" checked>
     
     <label class="md-nav__link" for="nav-3-3">
       Market Data
@@ -348,10 +293,12 @@
           
           
 
+  
 
-  <li class="md-nav__item md-nav__item--nested">
+
+  <li class="md-nav__item md-nav__item--active md-nav__item--nested">
     
-      <input class="md-nav__toggle md-toggle" data-md-toggle="nav-3-3-1" type="checkbox" id="nav-3-3-1">
+      <input class="md-nav__toggle md-toggle" data-md-toggle="nav-3-3-1" type="checkbox" id="nav-3-3-1" checked>
     
     <label class="md-nav__link" for="nav-3-3-1">
       Streaming Market Data
@@ -375,7 +322,7 @@
 
 
   <li class="md-nav__item">
-    <a href="../tutor/market_data/streaming/stocks/" title="Stocks" class="md-nav__link">
+    <a href="../stocks/" title="Stocks" class="md-nav__link">
       Stocks
     </a>
   </li>
@@ -387,7 +334,7 @@
 
 
   <li class="md-nav__item">
-    <a href="../tutor/market_data/streaming/futures/" title="Futures" class="md-nav__link">
+    <a href="../futures/" title="Futures" class="md-nav__link">
       Futures
     </a>
   </li>
@@ -399,7 +346,7 @@
 
 
   <li class="md-nav__item">
-    <a href="../tutor/market_data/streaming/quote_binding/" title="Quote-Binding Mode" class="md-nav__link">
+    <a href="../quote_binding/" title="Quote-Binding Mode" class="md-nav__link">
       Quote-Binding Mode
     </a>
   </li>
@@ -409,11 +356,62 @@
           
           
 
+  
 
-  <li class="md-nav__item">
-    <a href="../tutor/market_data/streaming/event_cb/" title="Event Callback" class="md-nav__link">
+
+  <li class="md-nav__item md-nav__item--active">
+    
+    <input class="md-nav__toggle md-toggle" data-md-toggle="toc" type="checkbox" id="__toc">
+    
+    
+      <label class="md-nav__link md-nav__link--active" for="__toc">
+        Event Callback
+        <span class="md-nav__icon md-icon">
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 9h14V7H3v2m0 4h14v-2H3v2m0 4h14v-2H3v2m16 0h2v-2h-2v2m0-10v2h2V7h-2m0 6h2v-2h-2v2z"/></svg>
+        </span>
+      </label>
+    
+    <a href="./" title="Event Callback" class="md-nav__link md-nav__link--active">
       Event Callback
     </a>
+    
+      
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11h12z"/></svg>
+      </span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#event-callback" class="md-nav__link">
+    Event Callback
+  </a>
+  
+    <nav class="md-nav" aria-label="Event Callback">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#event-code" class="md-nav__link">
+    Event Code
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+    
   </li>
 
         
@@ -428,7 +426,7 @@
 
 
   <li class="md-nav__item">
-    <a href="../tutor/market_data/historical/" title="Historical Market Data" class="md-nav__link">
+    <a href="../../historical/" title="Historical Market Data" class="md-nav__link">
       Historical Market Data
     </a>
   </li>
@@ -440,7 +438,7 @@
 
 
   <li class="md-nav__item">
-    <a href="../tutor/snapshot/" title="Snapshot" class="md-nav__link">
+    <a href="../../../snapshot/" title="Snapshot" class="md-nav__link">
       Snapshot
     </a>
   </li>
@@ -452,7 +450,7 @@
 
 
   <li class="md-nav__item">
-    <a href="../tutor/market_data/short_stock_source/" title="Short Stock Source" class="md-nav__link">
+    <a href="../../short_stock_source/" title="Short Stock Source" class="md-nav__link">
       Short Stock Source
     </a>
   </li>
@@ -464,7 +462,7 @@
 
 
   <li class="md-nav__item">
-    <a href="../tutor/market_data/credit_enquires/" title="Credit Enquires" class="md-nav__link">
+    <a href="../../credit_enquires/" title="Credit Enquires" class="md-nav__link">
       Credit Enquires
     </a>
   </li>
@@ -476,7 +474,7 @@
 
 
   <li class="md-nav__item">
-    <a href="../tutor/market_data/scanners/" title="Scanners" class="md-nav__link">
+    <a href="../../scanners/" title="Scanners" class="md-nav__link">
       Scanners
     </a>
   </li>
@@ -518,7 +516,7 @@
 
 
   <li class="md-nav__item">
-    <a href="../tutor/order/CA/" title="CA" class="md-nav__link">
+    <a href="../../../order/CA/" title="CA" class="md-nav__link">
       CA
     </a>
   </li>
@@ -530,7 +528,7 @@
 
 
   <li class="md-nav__item">
-    <a href="../tutor/order/Stock/" title="Stock" class="md-nav__link">
+    <a href="../../../order/Stock/" title="Stock" class="md-nav__link">
       Stock
     </a>
   </li>
@@ -542,7 +540,7 @@
 
 
   <li class="md-nav__item">
-    <a href="../tutor/order/FutureOption/" title="Future and Option" class="md-nav__link">
+    <a href="../../../order/FutureOption/" title="Future and Option" class="md-nav__link">
       Future and Option
     </a>
   </li>
@@ -554,7 +552,7 @@
 
 
   <li class="md-nav__item">
-    <a href="../tutor/order/IntradayOdd/" title="Intraday Odd" class="md-nav__link">
+    <a href="../../../order/IntradayOdd/" title="Intraday Odd" class="md-nav__link">
       Intraday Odd
     </a>
   </li>
@@ -566,7 +564,7 @@
 
 
   <li class="md-nav__item">
-    <a href="../tutor/order/UpdateStatus/" title="Update Status" class="md-nav__link">
+    <a href="../../../order/UpdateStatus/" title="Update Status" class="md-nav__link">
       Update Status
     </a>
   </li>
@@ -608,7 +606,7 @@
 
 
   <li class="md-nav__item">
-    <a href="../tutor/accounting/account_portfolio/" title="Account & Portfolio" class="md-nav__link">
+    <a href="../../../accounting/account_portfolio/" title="Account & Portfolio" class="md-nav__link">
       Account & Portfolio
     </a>
   </li>
@@ -620,7 +618,7 @@
 
 
   <li class="md-nav__item">
-    <a href="../tutor/accounting/position/" title="Position" class="md-nav__link">
+    <a href="../../../accounting/position/" title="Position" class="md-nav__link">
       Position
     </a>
   </li>
@@ -632,7 +630,7 @@
 
 
   <li class="md-nav__item">
-    <a href="../tutor/accounting/profit_loss/" title="Profit Loss" class="md-nav__link">
+    <a href="../../../accounting/profit_loss/" title="Profit Loss" class="md-nav__link">
       Profit Loss
     </a>
   </li>
@@ -644,7 +642,7 @@
 
 
   <li class="md-nav__item">
-    <a href="../tutor/accounting/profit_loss_detail/" title="Profit Loss Detail" class="md-nav__link">
+    <a href="../../../accounting/profit_loss_detail/" title="Profit Loss Detail" class="md-nav__link">
       Profit Loss Detail
     </a>
   </li>
@@ -656,7 +654,7 @@
 
 
   <li class="md-nav__item">
-    <a href="../tutor/accounting/settlement/" title="Settlement" class="md-nav__link">
+    <a href="../../../accounting/settlement/" title="Settlement" class="md-nav__link">
       Settlement
     </a>
   </li>
@@ -668,7 +666,7 @@
 
 
   <li class="md-nav__item">
-    <a href="../tutor/accounting/account_balance/" title="Account Balance" class="md-nav__link">
+    <a href="../../../accounting/account_balance/" title="Account Balance" class="md-nav__link">
       Account Balance
     </a>
   </li>
@@ -710,7 +708,7 @@
 
 
   <li class="md-nav__item">
-    <a href="../tutor/order_deal_event/stocks/" title="Stocks" class="md-nav__link">
+    <a href="../../../order_deal_event/stocks/" title="Stocks" class="md-nav__link">
       Stocks
     </a>
   </li>
@@ -722,7 +720,7 @@
 
 
   <li class="md-nav__item">
-    <a href="../tutor/order_deal_event/futures/" title="Futures" class="md-nav__link">
+    <a href="../../../order_deal_event/futures/" title="Futures" class="md-nav__link">
       Futures
     </a>
   </li>
@@ -764,7 +762,7 @@
 
 
   <li class="md-nav__item">
-    <a href="../tutor/advanced/nonblock/" title="Non-blocking Mode" class="md-nav__link">
+    <a href="../../../advanced/nonblock/" title="Non-blocking Mode" class="md-nav__link">
       Non-blocking Mode
     </a>
   </li>
@@ -776,7 +774,7 @@
 
 
   <li class="md-nav__item">
-    <a href="../tutor/advanced/touchorder/" title="Touch Price Order" class="md-nav__link">
+    <a href="../../../advanced/touchorder/" title="Touch Price Order" class="md-nav__link">
       Touch Price Order
     </a>
   </li>
@@ -798,7 +796,7 @@
 
 
   <li class="md-nav__item">
-    <a href="../release/" title="Release Note" class="md-nav__link">
+    <a href="../../../../release/" title="Release Note" class="md-nav__link">
       Release Note
     </a>
   </li>
@@ -810,7 +808,7 @@
 
 
   <li class="md-nav__item">
-    <a href="../zh-tw/" title="zh-tw" class="md-nav__link">
+    <a href="../../../../zh-tw/" title="zh-tw" class="md-nav__link">
       zh-tw
     </a>
   </li>
@@ -834,7 +832,7 @@
 
 
   <li class="md-nav__item">
-    <a href="../tutor/limit/" title="使用限制" class="md-nav__link">
+    <a href="../../../limit/" title="使用限制" class="md-nav__link">
       使用限制
     </a>
   </li>
@@ -864,30 +862,22 @@
     <ul class="md-nav__list" data-md-scrollfix>
       
         <li class="md-nav__item">
-  <a href="#initialization" class="md-nav__link">
-    Initialization
+  <a href="#event-callback" class="md-nav__link">
+    Event Callback
+  </a>
+  
+    <nav class="md-nav" aria-label="Event Callback">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#event-code" class="md-nav__link">
+    Event Code
   </a>
   
 </li>
-      
-        <li class="md-nav__item">
-  <a href="#streaming-market-data" class="md-nav__link">
-    Streaming Market Data
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#place-order" class="md-nav__link">
-    Place Order
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#conclusion" class="md-nav__link">
-    Conclusion
-  </a>
+        
+      </ul>
+    </nav>
   
 </li>
       
@@ -907,50 +897,176 @@
                   
                 
                 
-                  <h1>Quick Start</h1>
+                  <h1>Event Callback</h1>
                 
-                <h2 id="initialization">Initialization<a class="headerlink" href="#initialization" title="Permanent link">&para;</a></h2>
-<p><div class="highlight"><pre><span></span><code><span class="kn">import</span> <span class="nn">shioaji</span> <span class="k">as</span> <span class="nn">sj</span>
-
-<span class="n">api</span> <span class="o">=</span> <span class="n">sj</span><span class="o">.</span><span class="n">Shioaji</span><span class="p">()</span>
-<span class="n">accounts</span> <span class="o">=</span> <span class="n">api</span><span class="o">.</span><span class="n">login</span><span class="p">(</span><span class="s2">&quot;YOUR_PERSON_ID&quot;</span><span class="p">,</span> <span class="s2">&quot;YOUR_PASSWORD&quot;</span><span class="p">)</span>
-<span class="n">api</span><span class="o">.</span><span class="n">activate_ca</span><span class="p">(</span>
-    <span class="n">ca_path</span><span class="o">=</span><span class="s2">&quot;/c/your/ca/path/Sinopac.pfx&quot;</span><span class="p">,</span>
-    <span class="n">ca_passwd</span><span class="o">=</span><span class="s2">&quot;YOUR_CA_PASSWORD&quot;</span><span class="p">,</span>
-    <span class="n">person_id</span><span class="o">=</span><span class="s2">&quot;Person of this Ca&quot;</span><span class="p">,</span>
-<span class="p">)</span>
-</code></pre></div>
-Just import our API library like other popular python library and new the instance to start using our API. Login your account and activate the certification then you can start placing order.</p>
+                <h2 id="event-callback">Event Callback<a class="headerlink" href="#event-callback" title="Permanent link">&para;</a></h2>
 <div class="admonition attention">
-<p class="admonition-title">The Certification Path</p>
-<p>In Windows you copy the file path with <code>\</code> to separate the file, you need to replace it with <code>/</code>.</p>
+<p class="admonition-title">event</p>
+<p>In this api, we use solace as mesh borker. This event mean the status for your client with solace connection situation.
+If you have no experience with networking, please skip this part, In defalut, we help you reconnect solace broker 50 times without any setting. Best way is keep your network connection alive.</p>
 </div>
-<h2 id="streaming-market-data">Streaming Market Data<a class="headerlink" href="#streaming-market-data" title="Permanent link">&para;</a></h2>
-<div class="highlight"><pre><span></span><code><span class="n">api</span><span class="o">.</span><span class="n">quote</span><span class="o">.</span><span class="n">subscribe</span><span class="p">(</span><span class="n">api</span><span class="o">.</span><span class="n">Contracts</span><span class="o">.</span><span class="n">Stocks</span><span class="p">[</span><span class="s2">&quot;2330&quot;</span><span class="p">],</span> <span class="n">quote_type</span><span class="o">=</span><span class="s2">&quot;tick&quot;</span><span class="p">)</span>
-<span class="n">api</span><span class="o">.</span><span class="n">quote</span><span class="o">.</span><span class="n">subscribe</span><span class="p">(</span><span class="n">api</span><span class="o">.</span><span class="n">Contracts</span><span class="o">.</span><span class="n">Stocks</span><span class="p">[</span><span class="s2">&quot;2330&quot;</span><span class="p">],</span> <span class="n">quote_type</span><span class="o">=</span><span class="s2">&quot;bidask&quot;</span><span class="p">)</span>
-<span class="n">api</span><span class="o">.</span><span class="n">quote</span><span class="o">.</span><span class="n">subscribe</span><span class="p">(</span><span class="n">api</span><span class="o">.</span><span class="n">Contracts</span><span class="o">.</span><span class="n">Futures</span><span class="p">[</span><span class="s2">&quot;TXFC0&quot;</span><span class="p">],</span> <span class="n">quote_type</span><span class="o">=</span><span class="s2">&quot;tick&quot;</span><span class="p">)</span>
+<div class="admonition info">
+<p class="admonition-title">In</p>
+<div class="highlight"><pre><span></span><code><span class="nd">@api</span><span class="o">.</span><span class="n">quote</span><span class="o">.</span><span class="n">on_event</span>
+<span class="k">def</span> <span class="nf">event_callback</span><span class="p">(</span><span class="n">resp_code</span><span class="p">:</span> <span class="nb">int</span><span class="p">,</span> <span class="n">event_code</span><span class="p">:</span> <span class="nb">int</span><span class="p">,</span> <span class="n">info</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span> <span class="n">event</span><span class="p">:</span> <span class="nb">str</span><span class="p">):</span>
+    <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;Event code: </span><span class="si">{</span><span class="n">event_code</span><span class="si">}</span><span class="s1"> | Event: </span><span class="si">{</span><span class="n">event</span><span class="si">}</span><span class="s1">&#39;</span><span class="p">)</span>
 </code></pre></div>
 
-<p>Subscribe the real time market data. Simplely pass contract into quote <code>subscribe</code> function and give the quote type will receive the streaming data.</p>
-<div class="admonition tip">
-<p class="admonition-title">Quote Type</p>
-<p>Currently we support two quote type you can see in <code class="highlight"><span class="n">shioaji</span><span class="o">.</span><span class="n">constent</span><span class="o">.</span><span class="n">QuoteType</span></code>. The best way to use that is directly pass this enum into <code class="highlight"><span class="n">subscribe</span></code> function. </p>
 </div>
-<h2 id="place-order">Place Order<a class="headerlink" href="#place-order" title="Permanent link">&para;</a></h2>
-<div class="highlight"><pre><span></span><code><span class="n">contract</span> <span class="o">=</span> <span class="n">api</span><span class="o">.</span><span class="n">Contracts</span><span class="o">.</span><span class="n">Stocks</span><span class="p">[</span><span class="s2">&quot;2890&quot;</span><span class="p">]</span>
-<span class="n">order</span> <span class="o">=</span> <span class="n">api</span><span class="o">.</span><span class="n">Order</span><span class="p">(</span>
-    <span class="n">price</span><span class="o">=</span><span class="mi">12</span><span class="p">,</span>
-    <span class="n">quantity</span><span class="o">=</span><span class="mi">5</span><span class="p">,</span>
-    <span class="n">action</span><span class="o">=</span><span class="n">sj</span><span class="o">.</span><span class="n">constant</span><span class="o">.</span><span class="n">Action</span><span class="o">.</span><span class="n">Buy</span><span class="p">,</span>
-    <span class="n">price_type</span><span class="o">=</span><span class="n">sj</span><span class="o">.</span><span class="n">constant</span><span class="o">.</span><span class="n">StockPriceType</span><span class="o">.</span><span class="n">LMT</span><span class="p">,</span>
-    <span class="n">order_type</span><span class="o">=</span><span class="n">sj</span><span class="o">.</span><span class="n">constant</span><span class="o">.</span><span class="n">StockOrderType</span><span class="o">.</span><span class="n">Common</span><span class="p">,</span>
-<span class="p">)</span>
-<span class="n">trade</span> <span class="o">=</span> <span class="n">api</span><span class="o">.</span><span class="n">place_order</span><span class="p">(</span><span class="n">contract</span><span class="p">,</span> <span class="n">order</span><span class="p">)</span>
+<div class="admonition done">
+<p class="admonition-title">Out</p>
+<div class="highlight"><pre><span></span><code><span class="n">Event</span> <span class="n">code</span><span class="p">:</span> <span class="mi">16</span> <span class="o">|</span> <span class="n">Event</span><span class="p">:</span> <span class="n">Subscribe</span> <span class="ow">or</span> <span class="n">Unsubscribe</span> <span class="n">ok</span>
 </code></pre></div>
 
-<p>Like the above subscribing market data using the contract, then need to define the order. Pass them into <code class="highlight"><span class="n">place_order</span></code> function, then it will return the trade that describe the status of your order.</p>
-<h2 id="conclusion">Conclusion<a class="headerlink" href="#conclusion" title="Permanent link">&para;</a></h2>
-<p>This quickstart demonstrates how easy to use our package for native Python users. Unlike many other trading API is hard for Python developer. We focus on making more pythonic trading API for our users. </p>
+</div>
+<p>Like the quote callback, your can also set event cllback with two way just make <code>quote -&gt; event</code>.</p>
+<div class="admonition info">
+<p class="admonition-title">In</p>
+<div class="highlight"><pre><span></span><code><span class="n">api</span><span class="o">.</span><span class="n">quote</span><span class="o">.</span><span class="n">set_event_callback</span><span class="err">?</span>
+</code></pre></div>
+
+</div>
+<div class="admonition done">
+<p class="admonition-title">Out</p>
+<div class="highlight"><pre><span></span><code><span class="n">Signature</span><span class="p">:</span> <span class="n">api</span><span class="o">.</span><span class="n">quote</span><span class="o">.</span><span class="n">set_event_callback</span><span class="p">(</span><span class="n">func</span><span class="p">:</span><span class="n">Callable</span><span class="p">[[</span><span class="nb">int</span><span class="p">,</span> <span class="nb">int</span><span class="p">,</span> <span class="nb">str</span><span class="p">,</span> <span class="nb">str</span><span class="p">],</span> <span class="n">NoneType</span><span class="p">])</span> <span class="o">-&gt;</span> <span class="kc">None</span>
+<span class="n">Docstring</span><span class="p">:</span> <span class="o">&lt;</span><span class="n">no</span> <span class="n">docstring</span><span class="o">&gt;</span>
+<span class="n">Type</span><span class="p">:</span>      <span class="n">method</span>
+</code></pre></div>
+
+</div>
+<p>If you want to set event callback please pay attention one the event callback signature.</p>
+<h3 id="event-code">Event Code<a class="headerlink" href="#event-code" title="Permanent link">&para;</a></h3>
+<table>
+<thead>
+<tr>
+<th>Event Code</th>
+<th>Event Code Enumerator</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>0</td>
+<td>SOLCLIENT_SESSION_EVENT_UP_NOTICE</td>
+<td>The Session is established.</td>
+</tr>
+<tr>
+<td>1</td>
+<td>SOLCLIENT_SESSION_EVENT_DOWN_ERROR</td>
+<td>The Session was established and then went down.</td>
+</tr>
+<tr>
+<td>2</td>
+<td>SOLCLIENT_SESSION_EVENT_CONNECT_FAILED_ERROR</td>
+<td>The Session attempted to connect but was unsuccessful.</td>
+</tr>
+<tr>
+<td>3</td>
+<td>SOLCLIENT_SESSION_EVENT_REJECTED_MSG_ERROR</td>
+<td>The appliance rejected a published message.</td>
+</tr>
+<tr>
+<td>4</td>
+<td>SOLCLIENT_SESSION_EVENT_SUBSCRIPTION_ERROR</td>
+<td>The appliance rejected a subscription (add or remove).</td>
+</tr>
+<tr>
+<td>5</td>
+<td>SOLCLIENT_SESSION_EVENT_RX_MSG_TOO_BIG_ERROR</td>
+<td>The API discarded a received message that exceeded the Session buffer size.</td>
+</tr>
+<tr>
+<td>6</td>
+<td>SOLCLIENT_SESSION_EVENT_ACKNOWLEDGEMENT</td>
+<td>The oldest transmitted Persistent/Non-Persistent message that has been acknowledged.</td>
+</tr>
+<tr>
+<td>7</td>
+<td>SOLCLIENT_SESSION_EVENT_ASSURED_PUBLISHING_UP</td>
+<td>Deprecated -- see notes in solClient_session_startAssuredPublishing.The AD Handshake (that is, Guaranteed Delivery handshake) has completed for the publisher and Guaranteed messages can be sent.</td>
+</tr>
+<tr>
+<td>8</td>
+<td>SOLCLIENT_SESSION_EVENT_ASSURED_CONNECT_FAILED</td>
+<td>Deprecated -- see notes in solClient_session_startAssuredPublishing.The appliance rejected the AD Handshake to start Guaranteed publishing. Use SOLCLIENT_SESSION_EVENT_ASSURED_DELIVERY_DOWN instead.</td>
+</tr>
+<tr>
+<td>8</td>
+<td>SOLCLIENT_SESSION_EVENT_ASSURED_DELIVERY_DOWN</td>
+<td>Guaranteed Delivery publishing is not available.The guaranteed delivery capability on the session has been disabled by some action on the appliance.</td>
+</tr>
+<tr>
+<td>9</td>
+<td>SOLCLIENT_SESSION_EVENT_TE_UNSUBSCRIBE_ERROR</td>
+<td>The Topic Endpoint unsubscribe command failed.</td>
+</tr>
+<tr>
+<td>9</td>
+<td>SOLCLIENT_SESSION_EVENT_DTE_UNSUBSCRIBE_ERROR</td>
+<td>Deprecated name; SOLCLIENT_SESSION_EVENT_TE_UNSUBSCRIBE_ERROR is preferred.</td>
+</tr>
+<tr>
+<td>10</td>
+<td>SOLCLIENT_SESSION_EVENT_TE_UNSUBSCRIBE_OK</td>
+<td>The Topic Endpoint unsubscribe completed.</td>
+</tr>
+<tr>
+<td>10</td>
+<td>SOLCLIENT_SESSION_EVENT_DTE_UNSUBSCRIBE_OK</td>
+<td>Deprecated name; SOLCLIENT_SESSION_EVENT_TE_UNSUBSCRIBE_OK is preferred.</td>
+</tr>
+<tr>
+<td>11</td>
+<td>SOLCLIENT_SESSION_EVENT_CAN_SEND</td>
+<td>The send is no longer blocked.</td>
+</tr>
+<tr>
+<td>12</td>
+<td>SOLCLIENT_SESSION_EVENT_RECONNECTING_NOTICE</td>
+<td>The Session has gone down, and an automatic reconnect attempt is in progress.</td>
+</tr>
+<tr>
+<td>13</td>
+<td>SOLCLIENT_SESSION_EVENT_RECONNECTED_NOTICE</td>
+<td>The automatic reconnect of the Session was successful, and the Session was established again.</td>
+</tr>
+<tr>
+<td>14</td>
+<td>SOLCLIENT_SESSION_EVENT_PROVISION_ERROR</td>
+<td>The endpoint create/delete command failed.</td>
+</tr>
+<tr>
+<td>15</td>
+<td>SOLCLIENT_SESSION_EVENT_PROVISION_OK</td>
+<td>The endpoint create/delete command completed.</td>
+</tr>
+<tr>
+<td>16</td>
+<td>SOLCLIENT_SESSION_EVENT_SUBSCRIPTION_OK</td>
+<td>The subscribe or unsubscribe operation has succeeded.</td>
+</tr>
+<tr>
+<td>17</td>
+<td>SOLCLIENT_SESSION_EVENT_VIRTUAL_ROUTER_NAME_CHANGED</td>
+<td>The appliance's Virtual Router Name changed during a reconnect operation.This could render existing queues or temporary topics invalid.</td>
+</tr>
+<tr>
+<td>18</td>
+<td>SOLCLIENT_SESSION_EVENT_MODIFYPROP_OK</td>
+<td>The session property modification completed.</td>
+</tr>
+<tr>
+<td>19</td>
+<td>SOLCLIENT_SESSION_EVENT_MODIFYPROP_FAIL</td>
+<td>The session property modification failed.</td>
+</tr>
+<tr>
+<td>20</td>
+<td>SOLCLIENT_SESSION_EVENT_REPUBLISH_UNACKED_MESSAGES</td>
+<td>After successfully reconnecting a disconnected session, the SDK received an unknown publisher flow name response when reconnecting the GD publisher flow.</td>
+</tr>
+</tbody>
+</table>
                 
               
               
@@ -969,7 +1085,7 @@ Just import our API library like other popular python library and new the instan
     <div class="md-footer-nav">
       <nav class="md-footer-nav__inner md-grid" aria-label="Footer">
         
-          <a href=".." title="Overview" class="md-footer-nav__link md-footer-nav__link--prev" rel="prev">
+          <a href="../quote_binding/" title="Quote-Binding Mode" class="md-footer-nav__link md-footer-nav__link--prev" rel="prev">
             <div class="md-footer-nav__button md-icon">
               <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11h12z"/></svg>
             </div>
@@ -978,19 +1094,19 @@ Just import our API library like other popular python library and new the instan
                 <span class="md-footer-nav__direction">
                   Previous
                 </span>
-                Overview
+                Quote-Binding Mode
               </div>
             </div>
           </a>
         
         
-          <a href="../tutor/login/" title="Login" class="md-footer-nav__link md-footer-nav__link--next" rel="next">
+          <a href="../../historical/" title="Historical Market Data" class="md-footer-nav__link md-footer-nav__link--next" rel="next">
             <div class="md-footer-nav__title">
               <div class="md-ellipsis">
                 <span class="md-footer-nav__direction">
                   Next
                 </span>
-                Login
+                Historical Market Data
               </div>
             </div>
             <div class="md-footer-nav__button md-icon">
@@ -1034,15 +1150,15 @@ Just import our API library like other popular python library and new the instan
       
     </div>
     
-      <script src="../assets/javascripts/vendor.22b62ea4.min.js"></script>
-      <script src="../assets/javascripts/bundle.5f27aba8.min.js"></script><script id="__lang" type="application/json">{"clipboard.copy": "Copy to clipboard", "clipboard.copied": "Copied to clipboard", "search.config.lang": "en", "search.config.pipeline": "trimmer, stopWordFilter", "search.config.separator": "[\\s\\-]+", "search.result.placeholder": "Type to start searching", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents"}</script>
+      <script src="../../../../assets/javascripts/vendor.22b62ea4.min.js"></script>
+      <script src="../../../../assets/javascripts/bundle.5f27aba8.min.js"></script><script id="__lang" type="application/json">{"clipboard.copy": "Copy to clipboard", "clipboard.copied": "Copied to clipboard", "search.config.lang": "en", "search.config.pipeline": "trimmer, stopWordFilter", "search.config.separator": "[\\s\\-]+", "search.result.placeholder": "Type to start searching", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents"}</script>
       
       <script>
         app = initialize({
-          base: "..",
+          base: "../../../..",
           features: [],
           search: Object.assign({
-            worker: "../assets/javascripts/worker/search.f6ebf1dc.min.js"
+            worker: "../../../../assets/javascripts/worker/search.f6ebf1dc.min.js"
           }, typeof search !== "undefined" && search)
         })
       </script>
