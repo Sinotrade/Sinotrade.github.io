@@ -809,6 +809,18 @@
 
 
   <li class="md-nav__item">
+    <a href="../../../qa/" title="QA" class="md-nav__link">
+      QA
+    </a>
+  </li>
+
+    
+      
+      
+      
+
+
+  <li class="md-nav__item">
     <a href="../../../release/" title="Release Note" class="md-nav__link">
       Release Note
     </a>
@@ -970,44 +982,7 @@
 </div>
 <div class="admonition done">
 <p class="admonition-title">Out</p>
-<div class="highlight"><pre><span></span><code><span class="n">AccountMargin</span>
-    <span class="n">Currency</span><span class="p">:</span> <span class="n">NTD</span>
-    <span class="n">Account</span><span class="p">:</span> <span class="n">F0020009104000</span>
-    <span class="n">Detail</span><span class="p">:</span>
-        <span class="n">OrderPSecurity</span><span class="p">:</span> <span class="mf">207000.0</span>
-        <span class="n">ProfitAccCount</span><span class="p">:</span> <span class="mf">207000.0</span>
-        <span class="n">FProfit</span><span class="p">:</span> <span class="mf">0.0</span>
-        <span class="n">FMissConProfit</span><span class="p">:</span> <span class="mf">0.0</span>
-        <span class="n">OMissConProfit</span><span class="p">:</span> <span class="mf">0.0</span>
-        <span class="n">OColse</span><span class="p">:</span> <span class="mf">0.0</span>
-        <span class="n">OMarketPrice</span><span class="p">:</span> <span class="mf">0.0</span>
-        <span class="n">OTodayDiff</span><span class="p">:</span> <span class="mf">0.0</span>
-        <span class="n">HandCharge</span><span class="p">:</span> <span class="mf">0.0</span>
-        <span class="n">TradeTax</span><span class="p">:</span> <span class="mf">0.0</span>
-        <span class="n">Security</span><span class="p">:</span> <span class="mf">0.0</span>
-        <span class="n">StartSecurity</span><span class="p">:</span> <span class="mf">0.0</span>
-        <span class="n">UpKeepSecurity</span><span class="p">:</span> <span class="mf">0.0</span>
-        <span class="n">Statistics</span><span class="p">:</span> <span class="mf">99999.0</span>
-        <span class="n">Flow</span><span class="p">:</span> <span class="mf">999.0</span>
-        <span class="n">orderBid</span><span class="p">:</span> <span class="mf">0.0</span>
-        <span class="n">orderAsk</span><span class="p">:</span> <span class="mf">0.0</span>
-        <span class="n">Conclusionbid</span><span class="p">:</span> <span class="mf">0.0</span>
-        <span class="n">Conclusionask</span><span class="p">:</span> <span class="mf">0.0</span>
-        <span class="n">YesterdayBalance</span><span class="p">:</span> <span class="mf">207000.0</span>
-        <span class="n">PayMoney</span><span class="p">:</span> <span class="mf">0.0</span>
-        <span class="n">Equity</span><span class="p">:</span> <span class="mf">207000.0</span>
-        <span class="n">Ogain</span><span class="p">:</span> <span class="mf">0.0</span>
-        <span class="n">exrate</span><span class="p">:</span> <span class="mf">1.0</span>
-        <span class="n">xgdamt</span><span class="p">:</span> <span class="mf">0.0</span>
-        <span class="n">agtamt</span><span class="p">:</span> <span class="mf">0.0</span>
-        <span class="n">YesterdayEquity</span><span class="p">:</span> <span class="mf">207000.0</span>
-        <span class="n">Munet</span><span class="p">:</span> <span class="mf">0.0</span>
-        <span class="n">Cashamt</span><span class="p">:</span> <span class="mf">207000.0</span>
-        <span class="n">Bapamt</span><span class="p">:</span> <span class="mf">0.0</span>
-        <span class="n">Sapamt</span><span class="p">:</span> <span class="mf">0.0</span>
-        <span class="n">Adps</span><span class="p">:</span> <span class="mf">0.0</span>
-        <span class="n">Adamt</span><span class="p">:</span> <span class="mf">0.0</span>
-        <span class="n">Ybaln</span><span class="p">:</span> <span class="mf">207000.0</span>
+<div class="highlight"><pre><span></span><code><span class="n">AccountMargin</span><span class="p">(</span><span class="n">person_id</span><span class="o">=</span><span class="s1">&#39;PERSON_ID&#39;</span> <span class="n">broker_id</span><span class="o">=</span><span class="s1">&#39;BROKER_ID&#39;</span> <span class="n">account_id</span><span class="o">=</span><span class="s1">&#39;ACC_ID&#39;</span> <span class="n">signed</span><span class="o">=</span><span class="n">SIGNED</span> <span class="n">username</span><span class="o">=</span><span class="s1">&#39;USERNAME&#39;</span><span class="p">)</span>
 </code></pre></div>
 
 </div>
@@ -1023,53 +998,33 @@
 <thead>
 <tr>
 <th></th>
-<th>Adamt</th>
-<th>Adps</th>
-<th>Bapamt</th>
-<th>Cashamt</th>
-<th>Conclusionask</th>
-<th>Conclusionbid</th>
-<th>Equity</th>
-<th>FMissConProfit</th>
+<th>OrderPSecurity</th>
+<th>ProfitAccCount</th>
 <th>FProfit</th>
-<th>Flow</th>
+<th>FMissConProfit</th>
+<th>OMissConProfit</th>
 <th>...</th>
-<th>TradeTax</th>
-<th>UpKeepSecurity</th>
+<th>Bapamt</th>
+<th>Sapamt</th>
+<th>Adps</th>
+<th>Adamt</th>
 <th>Ybaln</th>
-<th>YesterdayBalance</th>
-<th>YesterdayEquity</th>
-<th>agtamt</th>
-<th>exrate</th>
-<th>orderAsk</th>
-<th>orderBid</th>
-<th>xgdamt</th>
 </tr>
 </thead>
 <tbody>
 <tr>
 <td>0</td>
+<td>50000.0</td>
+<td>50000.0</td>
 <td>0.0</td>
 <td>0.0</td>
 <td>0.0</td>
-<td>207000.0</td>
-<td>0.0</td>
-<td>0.0</td>
-<td>207000.0</td>
-<td>0.0</td>
-<td>0.0</td>
-<td>999.0</td>
 <td>...</td>
 <td>0.0</td>
 <td>0.0</td>
-<td>207000.0</td>
-<td>207000.0</td>
-<td>207000.0</td>
-<td>0.0</td>
-<td>1.0</td>
 <td>0.0</td>
 <td>0.0</td>
-<td>0.0</td>
+<td>50000.0</td>
 </tr>
 </tbody>
 </table>
@@ -1102,6 +1057,12 @@
 <p class="admonition-title">In</p>
 <div class="highlight"><pre><span></span><code><span class="n">positions</span> <span class="o">=</span> <span class="n">api</span><span class="o">.</span><span class="n">get_account_openposition</span><span class="p">(</span><span class="n">query_type</span><span class="o">=</span><span class="s1">&#39;1&#39;</span><span class="p">,</span> <span class="n">account</span><span class="o">=</span><span class="n">api</span><span class="o">.</span><span class="n">futopt_account</span><span class="p">)</span>
 <span class="n">positions</span>
+</code></pre></div>
+
+</div>
+<div class="admonition done">
+<p class="admonition-title">Out</p>
+<div class="highlight"><pre><span></span><code><span class="n">AccountOpenPosition</span><span class="p">(</span><span class="n">person_id</span><span class="o">=</span><span class="s1">&#39;PERSON_ID&#39;</span> <span class="n">broker_id</span><span class="o">=</span><span class="s1">&#39;BROKER_ID&#39;</span> <span class="n">account_id</span><span class="o">=</span><span class="s1">&#39;ACC_ID&#39;</span> <span class="n">signed</span><span class="o">=</span><span class="n">SIGNED</span> <span class="n">username</span><span class="o">=</span><span class="s1">&#39;USERNAME&#39;</span><span class="p">)</span>
 </code></pre></div>
 
 </div>

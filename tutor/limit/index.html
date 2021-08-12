@@ -67,7 +67,7 @@
     <div data-md-component="skip">
       
         
-        <a href="#shioaji" class="md-skip">
+        <a href="#_1" class="md-skip">
           Skip to content
         </a>
       
@@ -739,6 +739,18 @@
 
 
   <li class="md-nav__item">
+    <a href="../../qa/" title="QA" class="md-nav__link">
+      QA
+    </a>
+  </li>
+
+    
+      
+      
+      
+
+
+  <li class="md-nav__item">
     <a href="../../release/" title="Release Note" class="md-nav__link">
       Release Note
     </a>
@@ -806,9 +818,36 @@
     <ul class="md-nav__list" data-md-scrollfix>
       
         <li class="md-nav__item">
-  <a href="#shioaji" class="md-nav__link">
-    為避免過度使用 shioaji，影響本公司服務，以下將說明幾點，使用上的限制。如果使用量超過限制，將暫停服務一分鐘
+  <a href="#_1" class="md-nav__link">
+    為避免影響其他使用者連線，請遵守以下使用規範
   </a>
+  
+    <nav class="md-nav" aria-label="為避免影響其他使用者連線，請遵守以下使用規範">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#_2" class="md-nav__link">
+    若使用量超過限制，將暫停服務一分鐘
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#ipid" class="md-nav__link">
+    若當日連續多次超過限制，本公司將暫停該IP及ID使用權
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#idshioaji" class="md-nav__link">
+    若ID被暫停使用，請洽Shioaji管理人員
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
   
 </li>
       
@@ -843,9 +882,36 @@
     <ul class="md-nav__list" data-md-scrollfix>
       
         <li class="md-nav__item">
-  <a href="#shioaji" class="md-nav__link">
-    為避免過度使用 shioaji，影響本公司服務，以下將說明幾點，使用上的限制。如果使用量超過限制，將暫停服務一分鐘
+  <a href="#_1" class="md-nav__link">
+    為避免影響其他使用者連線，請遵守以下使用規範
   </a>
+  
+    <nav class="md-nav" aria-label="為避免影響其他使用者連線，請遵守以下使用規範">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#_2" class="md-nav__link">
+    若使用量超過限制，將暫停服務一分鐘
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#ipid" class="md-nav__link">
+    若當日連續多次超過限制，本公司將暫停該IP及ID使用權
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#idshioaji" class="md-nav__link">
+    若ID被暫停使用，請洽Shioaji管理人員
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
   
 </li>
       
@@ -867,21 +933,28 @@
                 
                   <h1>使用限制</h1>
                 
-                <h3 id="shioaji">為避免過度使用 shioaji，影響本公司服務，以下將說明幾點，使用上的限制。如果使用量超過限制，將暫停服務一分鐘<a class="headerlink" href="#shioaji" title="Permanent link">&para;</a></h3>
+                <h2 id="_1">為避免影響其他使用者連線，請遵守以下使用規範<a class="headerlink" href="#_1" title="Permanent link">&para;</a></h2>
 <ul>
 <li>
-<p>行情(data) : 相關查詢，5秒上限500次。</p>
-<p>包含 credit_enquire、short_stock_sources、snapshots、ticks、kbars。</p>
+<p>行情(data) : 相關查詢，5秒上限500次</p>
+<p>包含 <code>credit_enquire</code>、<code>short_stock_sources</code>、<code>snapshots</code>、<code>ticks</code>、<code>kbars</code>。</p>
 </li>
 <li>
-<p>帳務(portfolio) : 相關查詢，5秒上限25次。</p>
-<p>包含 list_profit_loss_detail、account_balance、list_settlements、list_profit_loss、list_positions。</p>
+<p>帳務(portfolio) : 相關查詢，5秒上限25次</p>
+<p>包含 <code>list_profit_loss_detail</code>、<code>account_balance</code>、<code>list_settlements</code>、<code>list_profit_loss</code>、<code>list_positions</code>。</p>
 </li>
 <li>
-<p>委託(order) : 相關查詢，10秒上限500次。</p>
-<p>包含 place_order、update_status、update_qty、update_price、cancel_order。</p>
+<p>委託(order) : 相關查詢，10秒上限500次</p>
+<p>包含 <code>place_order</code>、<code>update_status</code>、<code>update_qty</code>、<code>update_price</code>、<code>cancel_order</code>。</p>
+</li>
+<li>
+<p>連線限制: 同一永豐金證券<code>person_id</code>，僅可使用最多5個連線<br />
+<code>api.login()</code>即建立一個連線。</p>
 </li>
 </ul>
+<h3 id="_2">若使用量超過限制，將暫停服務一分鐘<a class="headerlink" href="#_2" title="Permanent link">&para;</a></h3>
+<h3 id="ipid">若當日連續多次超過限制，本公司將暫停該IP及ID使用權<a class="headerlink" href="#ipid" title="Permanent link">&para;</a></h3>
+<h3 id="idshioaji">若ID被暫停使用，請洽Shioaji管理人員<a class="headerlink" href="#idshioaji" title="Permanent link">&para;</a></h3>
                 
               
               
