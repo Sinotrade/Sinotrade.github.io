@@ -771,7 +771,7 @@
       
         <li class="md-nav__item">
   <a href="#_1" class="md-nav__link">
-    為什麼行情只能收幾行就斷掉了?
+    為什麼行情只能收幾行就斷掉了
   </a>
   
 </li>
@@ -779,6 +779,40 @@
         <li class="md-nav__item">
   <a href="#shioajilog" class="md-nav__link">
     如何更改shioaji.log
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#mktmkp" class="md-nav__link">
+    如何下市價單(MKT)、範圍市價單(MKP)
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#rod" class="md-nav__link">
+    如何掛漲(跌)停限價ROD單
+  </a>
+  
+    <nav class="md-nav" aria-label="如何掛漲(跌)停限價ROD單">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#example-place-lmt-and-rod-order-at-limit-up-price" class="md-nav__link">
+    Example place LMT and ROD order at limit up price.
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#3" class="md-nav__link">
+    輸入密碼錯誤3次怎麼辦
   </a>
   
 </li>
@@ -863,7 +897,7 @@
       
         <li class="md-nav__item">
   <a href="#_1" class="md-nav__link">
-    為什麼行情只能收幾行就斷掉了?
+    為什麼行情只能收幾行就斷掉了
   </a>
   
 </li>
@@ -871,6 +905,40 @@
         <li class="md-nav__item">
   <a href="#shioajilog" class="md-nav__link">
     如何更改shioaji.log
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#mktmkp" class="md-nav__link">
+    如何下市價單(MKT)、範圍市價單(MKP)
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#rod" class="md-nav__link">
+    如何掛漲(跌)停限價ROD單
+  </a>
+  
+    <nav class="md-nav" aria-label="如何掛漲(跌)停限價ROD單">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#example-place-lmt-and-rod-order-at-limit-up-price" class="md-nav__link">
+    Example place LMT and ROD order at limit up price.
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#3" class="md-nav__link">
+    輸入密碼錯誤3次怎麼辦
   </a>
   
 </li>
@@ -893,7 +961,7 @@
                 
                   <h1>QA</h1>
                 
-                <h4 id="_1">為什麼行情只能收幾行就斷掉了?<a class="headerlink" href="#_1" title="Permanent link">&para;</a></h4>
+                <h4 id="_1">為什麼行情只能收幾行就斷掉了<a class="headerlink" href="#_1" title="Permanent link">&para;</a></h4>
 <p>If your code something like this, and possibly run code on cmd/terminal with <code>python stream.py</code>.
 Then you definitely won't get any additional ticks, since the python program has already terminated.</p>
 <p><div class="highlight"><pre><span></span><code><span class="c1"># stream.py</span>
@@ -929,7 +997,75 @@ Then you definitely won't get any additional ticks, since the python program has
 </code></pre></div></p>
 <p>windows:<br />
 <div class="highlight"><pre><span></span><code>set SJ_LOG_PATH=C:\path\to\shioaji.log
-</code></pre></div></p>
+</code></pre></div>
+<br/></p>
+<h4 id="mktmkp">如何下市價單(MKT)、範圍市價單(MKP)<a class="headerlink" href="#mktmkp" title="Permanent link">&para;</a></h4>
+<div class="admonition info">
+<p class="admonition-title">In</p>
+<div class="highlight"><pre><span></span><code><span class="n">order</span> <span class="o">=</span> <span class="n">api</span><span class="o">.</span><span class="n">Order</span><span class="p">(</span>
+    <span class="n">action</span><span class="o">=</span><span class="n">sj</span><span class="o">.</span><span class="n">constant</span><span class="o">.</span><span class="n">Action</span><span class="o">.</span><span class="n">Buy</span><span class="p">,</span>
+<span class="hll">    <span class="n">price</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span> <span class="c1"># MKT, MKP will not use price parameter</span>
+</span>    <span class="n">quantity</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span>
+<span class="hll">    <span class="n">price_type</span><span class="o">=</span><span class="s1">&#39;MKP&#39;</span><span class="p">,</span> <span class="c1"># change to MKT or MKP</span>
+</span><span class="hll">    <span class="n">order_type</span><span class="o">=</span><span class="s1">&#39;IOC&#39;</span><span class="p">,</span> <span class="c1"># MKT, MKP only accecpt IOC order</span>
+</span>    <span class="n">octype</span><span class="o">=</span><span class="n">sj</span><span class="o">.</span><span class="n">constant</span><span class="o">.</span><span class="n">FuturesOCType</span><span class="o">.</span><span class="n">Auto</span><span class="p">,</span>
+    <span class="n">account</span><span class="o">=</span><span class="n">api</span><span class="o">.</span><span class="n">futopt_account</span>
+<span class="p">)</span>
+</code></pre></div>
+
+</div>
+<p><br/></p>
+<h4 id="rod">如何掛漲(跌)停限價ROD單<a class="headerlink" href="#rod" title="Permanent link">&para;</a></h4>
+<p>First, we need to know the <code>limit up(limit down)</code> price of the security. Just take 
+a look at the <code>api.Contracts</code>, you will find the information you want.</p>
+<div class="admonition info">
+<p class="admonition-title">In</p>
+<div class="highlight"><pre><span></span><code><span class="n">api</span><span class="o">.</span><span class="n">Contracts</span><span class="o">.</span><span class="n">Stocks</span><span class="o">.</span><span class="n">TSE</span><span class="p">[</span><span class="s1">&#39;TSE2330&#39;</span><span class="p">]</span>
+</code></pre></div>
+
+</div>
+<div class="admonition example">
+<p class="admonition-title">Out</p>
+<div class="highlight"><pre><span></span><code><span class="n">Stock</span><span class="p">(</span>
+    <span class="n">exchange</span><span class="o">=&lt;</span><span class="n">Exchange</span><span class="o">.</span><span class="n">TSE</span><span class="p">:</span> <span class="s1">&#39;TSE&#39;</span><span class="o">&gt;</span><span class="p">,</span> 
+    <span class="n">code</span><span class="o">=</span><span class="s1">&#39;2330&#39;</span><span class="p">,</span> 
+    <span class="n">symbol</span><span class="o">=</span><span class="s1">&#39;TSE2330&#39;</span><span class="p">,</span> 
+    <span class="n">name</span><span class="o">=</span><span class="s1">&#39;台積電&#39;</span><span class="p">,</span> 
+    <span class="n">category</span><span class="o">=</span><span class="s1">&#39;24&#39;</span><span class="p">,</span> 
+    <span class="n">unit</span><span class="o">=</span><span class="mi">1000</span><span class="p">,</span> 
+<span class="hll">    <span class="n">limit_up</span><span class="o">=</span><span class="mf">653.0</span><span class="p">,</span> 
+</span><span class="hll">    <span class="n">limit_down</span><span class="o">=</span><span class="mf">535.0</span><span class="p">,</span> 
+</span>    <span class="n">reference</span><span class="o">=</span><span class="mf">594.0</span><span class="p">,</span> 
+    <span class="n">update_date</span><span class="o">=</span><span class="s1">&#39;2021/08/27&#39;</span><span class="p">,</span> 
+    <span class="n">margin_trading_balance</span><span class="o">=</span><span class="mi">6565</span><span class="p">,</span> 
+    <span class="n">short_selling_balance</span><span class="o">=</span><span class="mi">365</span><span class="p">,</span> 
+    <span class="n">day_trade</span><span class="o">=&lt;</span><span class="n">DayTrade</span><span class="o">.</span><span class="n">Yes</span><span class="p">:</span> <span class="s1">&#39;Yes&#39;</span><span class="o">&gt;</span>
+<span class="p">)</span>
+</code></pre></div>
+
+</div>
+<h5 id="example-place-lmt-and-rod-order-at-limit-up-price">Example place LMT and ROD order at limit up price.<a class="headerlink" href="#example-place-lmt-and-rod-order-at-limit-up-price" title="Permanent link">&para;</a></h5>
+<div class="admonition info">
+<p class="admonition-title">In</p>
+<div class="highlight"><pre><span></span><code><span class="n">contract</span> <span class="o">=</span> <span class="n">api</span><span class="o">.</span><span class="n">Contracts</span><span class="o">.</span><span class="n">Stocks</span><span class="o">.</span><span class="n">TSE</span><span class="p">[</span><span class="s1">&#39;TSE2330&#39;</span><span class="p">]</span>
+<span class="hll"><span class="n">price</span> <span class="o">=</span> <span class="n">contract</span><span class="o">.</span><span class="n">limit_up</span>
+</span><span class="n">order</span> <span class="o">=</span> <span class="n">api</span><span class="o">.</span><span class="n">Order</span><span class="p">(</span>
+    <span class="n">action</span><span class="o">=</span><span class="n">sj</span><span class="o">.</span><span class="n">constant</span><span class="o">.</span><span class="n">Action</span><span class="o">.</span><span class="n">Buy</span><span class="p">,</span>
+<span class="hll">    <span class="n">price</span><span class="o">=</span><span class="n">price</span><span class="p">,</span>
+</span>    <span class="n">quantity</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span>
+<span class="hll">    <span class="n">price_type</span><span class="o">=</span><span class="s1">&#39;LMT&#39;</span><span class="p">,</span>
+</span><span class="hll">    <span class="n">order_type</span><span class="o">=</span><span class="s1">&#39;ROD&#39;</span><span class="p">,</span> 
+</span>    <span class="n">order_lot</span><span class="o">=</span><span class="n">sj</span><span class="o">.</span><span class="n">constant</span><span class="o">.</span><span class="n">TFTStockOrderLot</span><span class="o">.</span><span class="n">Common</span><span class="p">,</span>
+    <span class="n">account</span><span class="o">=</span><span class="n">api</span><span class="o">.</span><span class="n">stock_account</span>
+<span class="p">)</span>
+</code></pre></div>
+
+</div>
+<p><br/></p>
+<h4 id="3">輸入密碼錯誤3次怎麼辦<a class="headerlink" href="#3" title="Permanent link">&para;</a></h4>
+<p><a href="https://www.sinotrade.com.tw/newweb/Service_ForgetPassword_Self/">線上解鎖</a><br />
+Note that you only have 2 chances to unlock your account online in a day. </p>
+<p><br/></p>
                 
               
               

@@ -289,12 +289,7 @@
   
 </li>
         
-      </ul>
-    </nav>
-  
-</li>
-      
-        <li class="md-nav__item">
+          <li class="md-nav__item">
   <a href="#default-account" class="md-nav__link">
     Default Account
   </a>
@@ -332,6 +327,18 @@
         
       </ul>
     </nav>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#logout-shioaji" class="md-nav__link">
+    Logout Shioaji
+  </a>
   
 </li>
       
@@ -925,12 +932,7 @@
   
 </li>
         
-      </ul>
-    </nav>
-  
-</li>
-      
-        <li class="md-nav__item">
+          <li class="md-nav__item">
   <a href="#default-account" class="md-nav__link">
     Default Account
   </a>
@@ -970,6 +972,18 @@
     </nav>
   
 </li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#logout-shioaji" class="md-nav__link">
+    Logout Shioaji
+  </a>
+  
+</li>
       
     </ul>
   
@@ -989,7 +1003,7 @@
                 
                   <h1>Login</h1>
                 
-                <h3 id="login-shioaji">Login Shioaji<a class="headerlink" href="#login-shioaji" title="Permanent link">&para;</a></h3>
+                <h2 id="login-shioaji">Login Shioaji<a class="headerlink" href="#login-shioaji" title="Permanent link">&para;</a></h2>
 <h4 id="to-ensure-regular-service-please-sign-the-document-first-api">To ensure regular service, please sign the <a href="https://www.sinotrade.com.tw/ec/20191125/Main/index.aspx#pag4">document</a> first. (API下單簽屬)<a class="headerlink" href="#to-ensure-regular-service-please-sign-the-document-first-api" title="Permanent link">&para;</a></h4>
 <div class="admonition attention">
 <p class="admonition-title">Simulation Accounts</p>
@@ -1148,6 +1162,18 @@
 <li>Default stock account switch to ACCOUNT_ID_4 from ACCOUNT_ID_3.  </li>
 <li>Default futures account switch to ACCOUNT_ID_2 from ACCOUNT_ID_1.  </li>
 </ul>
+<h2 id="logout-shioaji">Logout Shioaji<a class="headerlink" href="#logout-shioaji" title="Permanent link">&para;</a></h2>
+<p>Logout funciton will close the connection between the client and the server.<br />
+In order to provide high quality services, starting from 2021/08/06, 
+we've limit the <a href="../limit/">number of connections used</a>. It's a good practice 
+to logout or to terminate the program when it is not in use.</p>
+<div class="admonition info">
+<p class="admonition-title"> </p>
+<div class="highlight"><pre><span></span><code><span class="n">api</span><span class="o">.</span><span class="n">logout</span><span class="p">()</span>
+<span class="c1"># True</span>
+</code></pre></div>
+
+</div>
                 
               
               
