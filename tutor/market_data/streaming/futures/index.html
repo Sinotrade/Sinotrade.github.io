@@ -584,8 +584,8 @@
 
 
   <li class="md-nav__item">
-    <a href="../../../order/CA/" title="CA" class="md-nav__link">
-      CA
+    <a href="../../../order/CA/" title="CA & Signature" class="md-nav__link">
+      CA & Signature
     </a>
   </li>
 
@@ -864,7 +864,7 @@
 
 
   <li class="md-nav__item">
-    <a href="../../../../qa/" title="QA" class="md-nav__link">
+    <a href="../../../../qa_new/" title="QA" class="md-nav__link">
       QA
     </a>
   </li>
@@ -1398,8 +1398,8 @@ Volume (list of int): volume (lot)
 <div class="tabbed-set" data-tabs="10:2"><input checked="checked" id="__tabbed_10_1" name="__tabbed_10" type="radio" /><label for="__tabbed_10_1">QuoteVersion.v1</label><div class="tabbed-content">
 <div class="highlight"><pre><span></span><code>code (str): code
 datetime (datetime.datetime): datetime
-bid_total_vol (int): total buy deal volume (lot, 買盤成交總量)
-ask_total_vol (int): total sell deal volume (lot, 賣盤成交總量)
+bid_total_vol (int): total bid volume (lot, 買量總計)
+ask_total_vol (int): total ask volume (lot, 賣量總計)
 bid_price (list of Decimal): bid price
 bid_volume (list of int): bid volume (lot)
 diff_bid_vol (list of int): (lot, 買價增減量)
@@ -1417,10 +1417,10 @@ simtrade (int): simulated trade (試撮)
 </div>
 <input id="__tabbed_10_2" name="__tabbed_10" type="radio" /><label for="__tabbed_10_2">QuoteVersion.v0</label><div class="tabbed-content">
 <div class="highlight"><pre><span></span><code>AskPrice (list of float): ask price
-AskVolSum (int): total sell deal volume (lot, 賣盤成交總量)
+AskVolSum (int): total ask volume (lot, 賣量總計)
 AskVolume (list of int): ask volume
 BidPrice (list of float): bid price
-BidVolSum (int): total buy deal volume (lot, 買盤成交總量)
+BidVolSum (int): total bid volume (lot, 買量總計)
 BidVolume (list of int): bid volume
 Code (str): code
 Date (str): date (yyyy/MM/dd)
