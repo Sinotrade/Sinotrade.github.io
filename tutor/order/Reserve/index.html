@@ -11,7 +11,7 @@
         <meta name="description" content="Shioaji is provided by SinoPac the most pythonic API for trading the Taiwan and global financial market. You can use your favorite Python packages such as NumPy, pandas, PyTorch or TensorFlow to build your trading model with integrated the Shioaji API on cross-platform.">
       
       
-        <link rel="canonical" href="https://sinotrade.github.io/tutor/market_data/historical/">
+        <link rel="canonical" href="https://sinotrade.github.io/tutor/order/Reserve/">
       
       
         <meta name="author" content="Yvictor, ">
@@ -21,7 +21,7 @@
     
     
       
-        <title>Historical Market Data - Shioaji</title>
+        <title>Reserve Order - Shioaji</title>
       
     
     
@@ -67,7 +67,7 @@
     <div data-md-component="skip">
       
         
-        <a href="#ticks-data" class="md-skip">
+        <a href="#reserve-order" class="md-skip">
           Skip to content
         </a>
       
@@ -94,7 +94,7 @@
           </span>
           <span class="md-header-nav__topic md-ellipsis">
             
-              Historical Market Data
+              Reserve Order
             
           </span>
         </div>
@@ -266,12 +266,10 @@
           
           
 
-  
 
-
-  <li class="md-nav__item md-nav__item--active md-nav__item--nested">
+  <li class="md-nav__item md-nav__item--nested">
     
-      <input class="md-nav__toggle md-toggle" data-md-toggle="nav-3-3" type="checkbox" id="nav-3-3" checked>
+      <input class="md-nav__toggle md-toggle" data-md-toggle="nav-3-3" type="checkbox" id="nav-3-3">
     
     <label class="md-nav__link" for="nav-3-3">
       Market Data
@@ -320,7 +318,7 @@
 
 
   <li class="md-nav__item">
-    <a href="../streaming/stocks/" title="Stocks" class="md-nav__link">
+    <a href="../../market_data/streaming/stocks/" title="Stocks" class="md-nav__link">
       Stocks
     </a>
   </li>
@@ -332,7 +330,7 @@
 
 
   <li class="md-nav__item">
-    <a href="../streaming/futures/" title="Futures" class="md-nav__link">
+    <a href="../../market_data/streaming/futures/" title="Futures" class="md-nav__link">
       Futures
     </a>
   </li>
@@ -344,7 +342,7 @@
 
 
   <li class="md-nav__item">
-    <a href="../streaming/quote_binding/" title="Quote-Binding Mode" class="md-nav__link">
+    <a href="../../market_data/streaming/quote_binding/" title="Quote-Binding Mode" class="md-nav__link">
       Quote-Binding Mode
     </a>
   </li>
@@ -356,7 +354,7 @@
 
 
   <li class="md-nav__item">
-    <a href="../streaming/event_cb/" title="Event Callback" class="md-nav__link">
+    <a href="../../market_data/streaming/event_cb/" title="Event Callback" class="md-nav__link">
       Event Callback
     </a>
   </li>
@@ -371,97 +369,11 @@
           
           
 
-  
 
-
-  <li class="md-nav__item md-nav__item--active">
-    
-    <input class="md-nav__toggle md-toggle" data-md-toggle="toc" type="checkbox" id="__toc">
-    
-    
-      <label class="md-nav__link md-nav__link--active" for="__toc">
-        Historical Market Data
-        <span class="md-nav__icon md-icon">
-          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 9h14V7H3v2m0 4h14v-2H3v2m0 4h14v-2H3v2m16 0h2v-2h-2v2m0-10v2h2V7h-2m0 6h2v-2h-2v2z"/></svg>
-        </span>
-      </label>
-    
-    <a href="./" title="Historical Market Data" class="md-nav__link md-nav__link--active">
+  <li class="md-nav__item">
+    <a href="../../market_data/historical/" title="Historical Market Data" class="md-nav__link">
       Historical Market Data
     </a>
-    
-      
-<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
-  
-  
-  
-    <label class="md-nav__title" for="__toc">
-      <span class="md-nav__icon md-icon">
-        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11h12z"/></svg>
-      </span>
-      Table of contents
-    </label>
-    <ul class="md-nav__list" data-md-scrollfix>
-      
-        <li class="md-nav__item">
-  <a href="#ticks-data" class="md-nav__link">
-    Ticks Data
-  </a>
-  
-    <nav class="md-nav" aria-label="Ticks Data">
-      <ul class="md-nav__list">
-        
-          <li class="md-nav__item">
-  <a href="#ticks-schema" class="md-nav__link">
-    Ticks Schema
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#get-ticks-all-day" class="md-nav__link">
-    Get ticks all day
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#ticks-to-dataframe" class="md-nav__link">
-    Ticks to DataFrame
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#get-ticks-range-time" class="md-nav__link">
-    Get ticks range time
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#get-ticks-last-count" class="md-nav__link">
-    Get ticks last count
-  </a>
-  
-</li>
-        
-      </ul>
-    </nav>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#kbar-data" class="md-nav__link">
-    KBar Data
-  </a>
-  
-</li>
-      
-    </ul>
-  
-</nav>
-    
   </li>
 
         
@@ -483,7 +395,7 @@
 
 
   <li class="md-nav__item">
-    <a href="../short_stock_source/" title="Short Stock Source" class="md-nav__link">
+    <a href="../../market_data/short_stock_source/" title="Short Stock Source" class="md-nav__link">
       Short Stock Source
     </a>
   </li>
@@ -495,7 +407,7 @@
 
 
   <li class="md-nav__item">
-    <a href="../credit_enquires/" title="Credit Enquires" class="md-nav__link">
+    <a href="../../market_data/credit_enquires/" title="Credit Enquires" class="md-nav__link">
       Credit Enquires
     </a>
   </li>
@@ -507,7 +419,7 @@
 
 
   <li class="md-nav__item">
-    <a href="../scanners/" title="Scanners" class="md-nav__link">
+    <a href="../../market_data/scanners/" title="Scanners" class="md-nav__link">
       Scanners
     </a>
   </li>
@@ -522,10 +434,12 @@
           
           
 
+  
 
-  <li class="md-nav__item md-nav__item--nested">
+
+  <li class="md-nav__item md-nav__item--active md-nav__item--nested">
     
-      <input class="md-nav__toggle md-toggle" data-md-toggle="nav-3-4" type="checkbox" id="nav-3-4">
+      <input class="md-nav__toggle md-toggle" data-md-toggle="nav-3-4" type="checkbox" id="nav-3-4" checked>
     
     <label class="md-nav__link" for="nav-3-4">
       Order
@@ -549,7 +463,7 @@
 
 
   <li class="md-nav__item">
-    <a href="../../order/CA/" title="CA & Signature" class="md-nav__link">
+    <a href="../CA/" title="CA & Signature" class="md-nav__link">
       CA & Signature
     </a>
   </li>
@@ -561,7 +475,7 @@
 
 
   <li class="md-nav__item">
-    <a href="../../order/Stock/" title="Stock" class="md-nav__link">
+    <a href="../Stock/" title="Stock" class="md-nav__link">
       Stock
     </a>
   </li>
@@ -573,7 +487,7 @@
 
 
   <li class="md-nav__item">
-    <a href="../../order/FutureOption/" title="Future and Option" class="md-nav__link">
+    <a href="../FutureOption/" title="Future and Option" class="md-nav__link">
       Future and Option
     </a>
   </li>
@@ -585,7 +499,7 @@
 
 
   <li class="md-nav__item">
-    <a href="../../order/IntradayOdd/" title="Intraday Odd" class="md-nav__link">
+    <a href="../IntradayOdd/" title="Intraday Odd" class="md-nav__link">
       Intraday Odd
     </a>
   </li>
@@ -597,7 +511,7 @@
 
 
   <li class="md-nav__item">
-    <a href="../../order/UpdateStatus/" title="Update Status" class="md-nav__link">
+    <a href="../UpdateStatus/" title="Update Status" class="md-nav__link">
       Update Status
     </a>
   </li>
@@ -607,11 +521,97 @@
           
           
 
+  
 
-  <li class="md-nav__item">
-    <a href="../../order/Reserve/" title="Reserve Order" class="md-nav__link">
+
+  <li class="md-nav__item md-nav__item--active">
+    
+    <input class="md-nav__toggle md-toggle" data-md-toggle="toc" type="checkbox" id="__toc">
+    
+    
+      <label class="md-nav__link md-nav__link--active" for="__toc">
+        Reserve Order
+        <span class="md-nav__icon md-icon">
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 9h14V7H3v2m0 4h14v-2H3v2m0 4h14v-2H3v2m16 0h2v-2h-2v2m0-10v2h2V7h-2m0 6h2v-2h-2v2z"/></svg>
+        </span>
+      </label>
+    
+    <a href="./" title="Reserve Order" class="md-nav__link md-nav__link--active">
       Reserve Order
     </a>
+    
+      
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11h12z"/></svg>
+      </span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#reserve-order" class="md-nav__link">
+    Reserve Order
+  </a>
+  
+    <nav class="md-nav" aria-label="Reserve Order">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#first-you-need-to-login-and-activate-ca" class="md-nav__link">
+    First, you need to login and activate CA.
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#get-stock-reserve-summay-status" class="md-nav__link">
+    Get Stock Reserve Summay Status
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#reserve-stock" class="md-nav__link">
+    Reserve Stock
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#get-stock-reserve-detail-satus" class="md-nav__link">
+    Get Stock Reserve Detail Satus
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#reserve-earmarking" class="md-nav__link">
+    Reserve Earmarking
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#example-for-reserve-all-stock" class="md-nav__link">
+    Example for Reserve All Stock
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+    
   </li>
 
         
@@ -919,57 +919,57 @@
     <ul class="md-nav__list" data-md-scrollfix>
       
         <li class="md-nav__item">
-  <a href="#ticks-data" class="md-nav__link">
-    Ticks Data
+  <a href="#reserve-order" class="md-nav__link">
+    Reserve Order
   </a>
   
-    <nav class="md-nav" aria-label="Ticks Data">
+    <nav class="md-nav" aria-label="Reserve Order">
       <ul class="md-nav__list">
         
           <li class="md-nav__item">
-  <a href="#ticks-schema" class="md-nav__link">
-    Ticks Schema
+  <a href="#first-you-need-to-login-and-activate-ca" class="md-nav__link">
+    First, you need to login and activate CA.
   </a>
   
 </li>
         
           <li class="md-nav__item">
-  <a href="#get-ticks-all-day" class="md-nav__link">
-    Get ticks all day
+  <a href="#get-stock-reserve-summay-status" class="md-nav__link">
+    Get Stock Reserve Summay Status
   </a>
   
 </li>
         
           <li class="md-nav__item">
-  <a href="#ticks-to-dataframe" class="md-nav__link">
-    Ticks to DataFrame
+  <a href="#reserve-stock" class="md-nav__link">
+    Reserve Stock
   </a>
   
 </li>
         
           <li class="md-nav__item">
-  <a href="#get-ticks-range-time" class="md-nav__link">
-    Get ticks range time
+  <a href="#get-stock-reserve-detail-satus" class="md-nav__link">
+    Get Stock Reserve Detail Satus
   </a>
   
 </li>
         
           <li class="md-nav__item">
-  <a href="#get-ticks-last-count" class="md-nav__link">
-    Get ticks last count
+  <a href="#reserve-earmarking" class="md-nav__link">
+    Reserve Earmarking
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#example-for-reserve-all-stock" class="md-nav__link">
+    Example for Reserve All Stock
   </a>
   
 </li>
         
       </ul>
     </nav>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#kbar-data" class="md-nav__link">
-    KBar Data
-  </a>
   
 </li>
       
@@ -989,289 +989,213 @@
                   
                 
                 
-                  <h1>Historical Market Data</h1>
+                  <h1>Reserve Order</h1>
                 
-                <h2 id="ticks-data">Ticks Data<a class="headerlink" href="#ticks-data" title="Permanent link">&para;</a></h2>
-<h3 id="ticks-schema">Ticks Schema<a class="headerlink" href="#ticks-schema" title="Permanent link">&para;</a></h3>
+                <h2 id="reserve-order">Reserve Order<a class="headerlink" href="#reserve-order" title="Permanent link">&para;</a></h2>
+<h3 id="first-you-need-to-login-and-activate-ca">First, you need to <a href="../../login/">login</a> and <a href="../CA/">activate CA</a>.<a class="headerlink" href="#first-you-need-to-login-and-activate-ca" title="Permanent link">&para;</a></h3>
+<h3 id="get-stock-reserve-summay-status">Get Stock Reserve Summay Status<a class="headerlink" href="#get-stock-reserve-summay-status" title="Permanent link">&para;</a></h3>
 <div class="admonition info">
 <p class="admonition-title">In</p>
-<div class="highlight"><pre><span></span><code><span class="kn">from</span> <span class="nn">shioaji.data</span> <span class="kn">import</span> <span class="n">Ticks</span>
-<span class="n">Ticks</span><span class="err">??</span>
+<div class="highlight"><pre><span></span><code><span class="n">reserve_summary_resp</span> <span class="o">=</span> <span class="n">api</span><span class="o">.</span><span class="n">stock_reserve_summary</span><span class="p">(</span><span class="n">account</span><span class="p">)</span>
 </code></pre></div>
 
 </div>
 <div class="admonition done">
 <p class="admonition-title">Out</p>
-<div class="highlight"><pre><span></span><code><span class="n">Init</span> <span class="n">signature</span><span class="p">:</span> <span class="n">Ticks</span><span class="p">(</span><span class="o">**</span><span class="n">data</span><span class="p">:</span><span class="n">Any</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span>
-<span class="n">Docstring</span><span class="p">:</span>      <span class="o">&lt;</span><span class="n">no</span> <span class="n">docstring</span><span class="o">&gt;</span>
-<span class="n">Source</span><span class="p">:</span>        
-<span class="k">class</span> <span class="nc">Ticks</span><span class="p">(</span><span class="n">BaseModel</span><span class="p">):</span>
-    <span class="n">ts</span><span class="p">:</span> <span class="n">typing</span><span class="o">.</span><span class="n">List</span><span class="p">[</span><span class="nb">int</span><span class="p">]</span>
-    <span class="n">close</span><span class="p">:</span> <span class="n">typing</span><span class="o">.</span><span class="n">List</span><span class="p">[</span><span class="nb">float</span><span class="p">]</span>
-    <span class="n">volume</span><span class="p">:</span> <span class="n">typing</span><span class="o">.</span><span class="n">List</span><span class="p">[</span><span class="nb">int</span><span class="p">]</span>
-    <span class="n">bid_price</span><span class="p">:</span> <span class="n">typing</span><span class="o">.</span><span class="n">List</span><span class="p">[</span><span class="nb">float</span><span class="p">]</span>
-    <span class="n">bid_volume</span><span class="p">:</span> <span class="n">typing</span><span class="o">.</span><span class="n">List</span><span class="p">[</span><span class="nb">int</span><span class="p">]</span>
-    <span class="n">ask_price</span><span class="p">:</span> <span class="n">typing</span><span class="o">.</span><span class="n">List</span><span class="p">[</span><span class="nb">float</span><span class="p">]</span>
-    <span class="n">ask_volume</span><span class="p">:</span> <span class="n">typing</span><span class="o">.</span><span class="n">List</span><span class="p">[</span><span class="nb">int</span><span class="p">]</span>
-
-<span class="n">File</span><span class="p">:</span>           <span class="n">shioaji</span><span class="o">/</span><span class="n">data</span><span class="o">.</span><span class="n">py</span>
-<span class="n">Type</span><span class="p">:</span>           <span class="n">ModelMetaclass</span>
+<div class="highlight"><pre><span></span><code><span class="n">ReserveStocksSummaryResponse</span><span class="p">(</span>
+    <span class="n">response</span><span class="o">=</span><span class="n">ReserveStocksSummary</span><span class="p">(</span>
+        <span class="n">stocks</span><span class="o">=</span><span class="p">[</span>
+            <span class="n">ReserveStockSummary</span><span class="p">(</span>
+                <span class="n">contract</span><span class="o">=</span><span class="n">Contract</span><span class="p">(</span>
+                    <span class="n">security_type</span><span class="o">=&lt;</span><span class="n">SecurityType</span><span class="o">.</span><span class="n">Stock</span><span class="p">:</span> <span class="s1">&#39;STK&#39;</span><span class="o">&gt;</span><span class="p">,</span> 
+                    <span class="n">exchange</span><span class="o">=&lt;</span><span class="n">Exchange</span><span class="o">.</span><span class="n">TSE</span><span class="p">:</span> <span class="s1">&#39;TSE&#39;</span><span class="o">&gt;</span><span class="p">,</span> 
+                    <span class="n">code</span><span class="o">=</span><span class="s1">&#39;2890&#39;</span><span class="p">,</span> 
+                    <span class="n">name</span><span class="o">=</span><span class="s1">&#39;永豐金&#39;</span>
+                <span class="p">),</span>
+                <span class="n">available_share</span><span class="o">=</span><span class="mi">5000</span><span class="p">,</span> 
+                <span class="n">reserved_share</span><span class="o">=</span><span class="mi">0</span>
+            <span class="p">)</span>
+        <span class="p">],</span> 
+        <span class="n">account</span><span class="o">=</span><span class="n">StockAccount</span><span class="p">(</span>
+            <span class="n">person_id</span><span class="o">=</span><span class="s1">&#39;X123456789&#39;</span><span class="p">,</span> 
+            <span class="n">broker_id</span><span class="o">=</span><span class="s1">&#39;9A95&#39;</span><span class="p">,</span> 
+            <span class="n">account_id</span><span class="o">=</span><span class="s1">&#39;12345678&#39;</span><span class="p">,</span> 
+            <span class="n">signed</span><span class="o">=</span><span class="kc">True</span>
+            <span class="p">)</span>
+        <span class="p">)</span>
+    <span class="p">)</span>
 </code></pre></div>
 
 </div>
-<h3 id="get-ticks-all-day">Get ticks all day<a class="headerlink" href="#get-ticks-all-day" title="Permanent link">&para;</a></h3>
+<h3 id="reserve-stock">Reserve Stock<a class="headerlink" href="#reserve-stock" title="Permanent link">&para;</a></h3>
 <div class="admonition info">
 <p class="admonition-title">In</p>
-<div class="highlight"><pre><span></span><code><span class="n">ticks</span> <span class="o">=</span> <span class="n">api</span><span class="o">.</span><span class="n">ticks</span><span class="p">(</span>
-    <span class="n">contract</span><span class="o">=</span><span class="n">api</span><span class="o">.</span><span class="n">Contracts</span><span class="o">.</span><span class="n">Stocks</span><span class="p">[</span><span class="s2">&quot;2330&quot;</span><span class="p">],</span> 
-    <span class="n">date</span><span class="o">=</span><span class="s2">&quot;2020-03-04&quot;</span>
-<span class="p">)</span>
-<span class="n">ticks</span>
+<div class="highlight"><pre><span></span><code><span class="n">contract</span> <span class="o">=</span> <span class="n">api</span><span class="o">.</span><span class="n">Contracts</span><span class="o">.</span><span class="n">Stocks</span><span class="p">[</span><span class="s2">&quot;2890&quot;</span><span class="p">]</span>
+<span class="n">resp</span> <span class="o">=</span> <span class="n">api</span><span class="o">.</span><span class="n">reserve_stock</span><span class="p">(</span><span class="n">account</span><span class="p">,</span> <span class="n">contract</span><span class="p">,</span> <span class="mi">1000</span><span class="p">)</span>
 </code></pre></div>
 
 </div>
 <div class="admonition done">
 <p class="admonition-title">Out</p>
-<div class="highlight"><pre><span></span><code><span class="n">Ticks</span><span class="p">(</span>
-    <span class="n">ts</span><span class="o">=</span><span class="p">[</span><span class="mi">1583312400821000000</span><span class="p">,</span> <span class="mi">1583312405836000000</span><span class="p">,</span> <span class="mi">1583312410849000000</span><span class="p">,</span> <span class="mi">1583312415864000000</span><span class="p">,</span> <span class="mi">1583312420877000000</span><span class="p">],</span> 
-    <span class="n">close</span><span class="o">=</span><span class="p">[</span><span class="mf">322.0</span><span class="p">,</span> <span class="mf">321.5</span><span class="p">,</span> <span class="mf">321.0</span><span class="p">,</span> <span class="mf">321.0</span><span class="p">,</span> <span class="mf">321.0</span><span class="p">],</span>
-    <span class="n">volume</span><span class="o">=</span><span class="p">[</span><span class="mi">5098</span><span class="p">,</span> <span class="mi">91</span><span class="p">,</span> <span class="mi">126</span><span class="p">,</span> <span class="mi">59</span><span class="p">,</span> <span class="mi">90</span><span class="p">],</span>
-    <span class="n">bid_price</span><span class="o">=</span><span class="p">[</span><span class="mf">321.5</span><span class="p">,</span> <span class="mf">321.0</span><span class="p">,</span> <span class="mf">321.0</span><span class="p">,</span> <span class="mf">321.0</span><span class="p">,</span> <span class="mf">321.0</span><span class="p">],</span>
-    <span class="n">bid_volume</span><span class="o">=</span><span class="p">[</span><span class="mi">5</span><span class="p">,</span> <span class="mi">100</span><span class="p">,</span> <span class="mi">94</span><span class="p">,</span> <span class="mi">78</span><span class="p">,</span> <span class="mi">20</span><span class="p">],</span>
-    <span class="n">ask_price</span><span class="o">=</span><span class="p">[</span><span class="mf">322.0</span><span class="p">,</span> <span class="mf">321.5</span><span class="p">,</span> <span class="mf">321.5</span><span class="p">,</span> <span class="mf">321.5</span><span class="p">,</span> <span class="mf">321.5</span><span class="p">],</span>
-    <span class="n">ask_volume</span><span class="o">=</span><span class="p">[</span><span class="mi">646</span><span class="p">,</span> <span class="mi">13</span><span class="p">,</span> <span class="mi">31</span><span class="p">,</span> <span class="mi">86</span><span class="p">,</span> <span class="mi">199</span><span class="p">]</span>
-<span class="p">)</span>
-</code></pre></div>
-
-</div>
-<h3 id="ticks-to-dataframe">Ticks to DataFrame<a class="headerlink" href="#ticks-to-dataframe" title="Permanent link">&para;</a></h3>
-<div class="admonition info">
-<p class="admonition-title">In</p>
-<div class="highlight"><pre><span></span><code><span class="kn">import</span> <span class="nn">pandas</span> <span class="k">as</span> <span class="nn">pd</span>
-<span class="n">df</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">({</span><span class="o">**</span><span class="n">ticks</span><span class="p">})</span>
-<span class="n">df</span><span class="o">.</span><span class="n">ts</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">to_datetime</span><span class="p">(</span><span class="n">df</span><span class="o">.</span><span class="n">ts</span><span class="p">)</span>
-<span class="n">df</span><span class="o">.</span><span class="n">head</span><span class="p">()</span>
-</code></pre></div>
-
-</div>
-<div class="admonition done">
-<p class="admonition-title">Out</p>
-<table>
-<thead>
-<tr>
-<th align="right"></th>
-<th align="left">ts</th>
-<th align="left">ask_volume</th>
-<th align="left">ask_price</th>
-<th align="left">close</th>
-<th align="left">bid_price</th>
-<th align="left">bid_volume</th>
-<th align="left">volume</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td align="right">0</td>
-<td align="left">2020-03-04 09:00:00.821</td>
-<td align="left">646</td>
-<td align="left">322.0</td>
-<td align="left">322.0</td>
-<td align="left">321.5</td>
-<td align="left">5</td>
-<td align="left">5098</td>
-</tr>
-<tr>
-<td align="right">1</td>
-<td align="left">2020-03-04 09:00:05.836</td>
-<td align="left">13</td>
-<td align="left">321.5</td>
-<td align="left">321.5</td>
-<td align="left">321.0</td>
-<td align="left">100</td>
-<td align="left">91</td>
-</tr>
-<tr>
-<td align="right">2</td>
-<td align="left">2020-03-04 09:00:10.849</td>
-<td align="left">31</td>
-<td align="left">321.5</td>
-<td align="left">321.0</td>
-<td align="left">321.0</td>
-<td align="left">94</td>
-<td align="left">126</td>
-</tr>
-<tr>
-<td align="right">3</td>
-<td align="left">2020-03-04 09:00:15.864</td>
-<td align="left">86</td>
-<td align="left">321.5</td>
-<td align="left">321.0</td>
-<td align="left">321.0</td>
-<td align="left">78</td>
-<td align="left">59</td>
-</tr>
-<tr>
-<td align="right">4</td>
-<td align="left">2020-03-04 09:00:20.877</td>
-<td align="left">199</td>
-<td align="left">321.5</td>
-<td align="left">321.0</td>
-<td align="left">321.0</td>
-<td align="left">20</td>
-<td align="left">90</td>
-</tr>
-</tbody>
-</table>
-</div>
-<h3 id="get-ticks-range-time">Get ticks range time<a class="headerlink" href="#get-ticks-range-time" title="Permanent link">&para;</a></h3>
-<div class="admonition info">
-<p class="admonition-title">In</p>
-<div class="highlight"><pre><span></span><code><span class="n">ticks</span> <span class="o">=</span> <span class="n">api</span><span class="o">.</span><span class="n">ticks</span><span class="p">(</span>
-    <span class="n">contract</span><span class="o">=</span><span class="n">api</span><span class="o">.</span><span class="n">Contracts</span><span class="o">.</span><span class="n">Stocks</span><span class="p">[</span><span class="s2">&quot;2330&quot;</span><span class="p">],</span> 
-    <span class="n">date</span><span class="o">=</span><span class="s2">&quot;2020-03-04&quot;</span><span class="p">,</span> 
-<span class="hll">    <span class="n">query_type</span><span class="o">=</span><span class="n">sj</span><span class="o">.</span><span class="n">constant</span><span class="o">.</span><span class="n">TicksQueryType</span><span class="o">.</span><span class="n">RangeTime</span><span class="p">,</span>
-</span><span class="hll">    <span class="n">time_start</span><span class="o">=</span><span class="s2">&quot;09:00:00&quot;</span><span class="p">,</span>
-</span><span class="hll">    <span class="n">time_end</span><span class="o">=</span><span class="s2">&quot;09:20:01&quot;</span>
-</span><span class="p">)</span>
-<span class="n">ticks</span>
-</code></pre></div>
-
-</div>
-<div class="admonition done">
-<p class="admonition-title">Out</p>
-<div class="highlight"><pre><span></span><code><span class="n">Ticks</span><span class="p">(</span>
-    <span class="n">ts</span><span class="o">=</span><span class="p">[</span><span class="mi">1621846804161286000</span><span class="p">,</span> <span class="mi">1621846804261371000</span><span class="p">,</span> <span class="mi">1621846808136002000</span><span class="p">,</span> <span class="mi">1621846809658787000</span><span class="p">,</span> <span class="mi">1621846809753537000</span><span class="p">],</span> 
-    <span class="n">close</span><span class="o">=</span><span class="p">[</span><span class="mf">570.0</span><span class="p">,</span> <span class="mf">570.0</span><span class="p">,</span> <span class="mf">569.0</span><span class="p">,</span> <span class="mf">569.0</span><span class="p">,</span> <span class="mf">569.0</span><span class="p">],</span>
-    <span class="n">volume</span><span class="o">=</span><span class="p">[</span><span class="mi">1121</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="mi">1</span><span class="p">],</span>
-    <span class="n">bid_price</span><span class="o">=</span><span class="p">[</span><span class="mf">569.0</span><span class="p">,</span> <span class="mf">569.0</span><span class="p">,</span> <span class="mf">569.0</span><span class="p">,</span> <span class="mf">569.0</span><span class="p">,</span> <span class="mf">569.0</span><span class="p">],</span>
-    <span class="n">bid_volume</span><span class="o">=</span><span class="p">[</span><span class="mi">15</span><span class="p">,</span> <span class="mi">15</span><span class="p">,</span> <span class="mi">60</span><span class="p">,</span> <span class="mi">79</span><span class="p">,</span> <span class="mi">78</span><span class="p">],</span>
-    <span class="n">ask_price</span><span class="o">=</span><span class="p">[</span><span class="mf">570.0</span><span class="p">,</span> <span class="mf">570.0</span><span class="p">,</span> <span class="mf">570.0</span><span class="p">,</span> <span class="mf">570.0</span><span class="p">,</span> <span class="mf">570.0</span><span class="p">],</span>
-    <span class="n">ask_volume</span><span class="o">=</span><span class="p">[</span><span class="mi">27</span><span class="p">,</span> <span class="mi">27</span><span class="p">,</span> <span class="mi">59</span><span class="p">,</span> <span class="mi">92</span><span class="p">,</span> <span class="mi">92</span><span class="p">]</span>
+<div class="highlight"><pre><span></span><code><span class="n">ReserveStockResponse</span><span class="p">(</span>
+    <span class="n">response</span><span class="o">=</span><span class="n">ReserveOrderResp</span><span class="p">(</span>
+        <span class="n">contract</span><span class="o">=</span><span class="n">Stock</span><span class="p">(</span>
+            <span class="n">exchange</span><span class="o">=&lt;</span><span class="n">Exchange</span><span class="o">.</span><span class="n">TSE</span><span class="p">:</span> <span class="s1">&#39;TSE&#39;</span><span class="o">&gt;</span><span class="p">,</span> 
+            <span class="n">code</span><span class="o">=</span><span class="s1">&#39;2890&#39;</span><span class="p">,</span> 
+            <span class="n">symbol</span><span class="o">=</span><span class="s1">&#39;TSE2890&#39;</span><span class="p">,</span> 
+            <span class="n">name</span><span class="o">=</span><span class="s1">&#39;永豐金&#39;</span>
+        <span class="p">),</span> 
+        <span class="n">account</span><span class="o">=</span><span class="n">StockAccount</span><span class="p">(</span>
+            <span class="n">person_id</span><span class="o">=</span><span class="s1">&#39;X123456789&#39;</span><span class="p">,</span> 
+            <span class="n">broker_id</span><span class="o">=</span><span class="s1">&#39;9A95&#39;</span><span class="p">,</span> 
+            <span class="n">account_id</span><span class="o">=</span><span class="s1">&#39;12345678&#39;</span><span class="p">,</span> 
+            <span class="n">signed</span><span class="o">=</span><span class="kc">True</span><span class="p">),</span> 
+        <span class="n">share</span><span class="o">=</span><span class="mi">1000</span><span class="p">,</span> 
+        <span class="n">status</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> 
+        <span class="n">info</span><span class="o">=</span><span class="s1">&#39;&#39;</span>
+    <span class="p">)</span>
 <span class="p">)</span>
 </code></pre></div>
 
 </div>
-<h3 id="get-ticks-last-count">Get ticks last count<a class="headerlink" href="#get-ticks-last-count" title="Permanent link">&para;</a></h3>
+<h3 id="get-stock-reserve-detail-satus">Get Stock Reserve Detail Satus<a class="headerlink" href="#get-stock-reserve-detail-satus" title="Permanent link">&para;</a></h3>
 <div class="admonition info">
 <p class="admonition-title">In</p>
-<div class="highlight"><pre><span></span><code><span class="n">ticks</span> <span class="o">=</span> <span class="n">api</span><span class="o">.</span><span class="n">ticks</span><span class="p">(</span>
-    <span class="n">contract</span><span class="o">=</span><span class="n">api</span><span class="o">.</span><span class="n">Contracts</span><span class="o">.</span><span class="n">Stocks</span><span class="p">[</span><span class="s2">&quot;2330&quot;</span><span class="p">],</span> 
-    <span class="n">date</span><span class="o">=</span><span class="s2">&quot;2020-03-04&quot;</span><span class="p">,</span> 
-<span class="hll">    <span class="n">query_type</span><span class="o">=</span><span class="n">sj</span><span class="o">.</span><span class="n">constant</span><span class="o">.</span><span class="n">TicksQueryType</span><span class="o">.</span><span class="n">LastCount</span><span class="p">,</span>
-</span><span class="hll">    <span class="n">last_cnt</span><span class="o">=</span><span class="mi">5</span><span class="p">,</span>
-</span><span class="p">)</span>
-<span class="n">ticks</span>
+<div class="highlight"><pre><span></span><code><span class="n">resp</span> <span class="o">=</span> <span class="n">api</span><span class="o">.</span><span class="n">earmarking_detail</span><span class="p">(</span><span class="n">account</span><span class="p">)</span>
 </code></pre></div>
 
 </div>
 <div class="admonition done">
 <p class="admonition-title">Out</p>
-<div class="highlight"><pre><span></span><code><span class="n">Ticks</span><span class="p">(</span>
-    <span class="n">ts</span><span class="o">=</span><span class="p">[</span><span class="mi">1621855608734606000</span><span class="p">,</span> <span class="mi">1621855614383711000</span><span class="p">,</span> <span class="mi">1621855616839500000</span><span class="p">,</span> <span class="mi">1621855627880863000</span><span class="p">,</span> <span class="mi">1621855640085704000</span><span class="p">],</span> 
-    <span class="n">close</span><span class="o">=</span><span class="p">[</span><span class="mf">571.0</span><span class="p">,</span> <span class="mf">570.0</span><span class="p">,</span> <span class="mf">570.0</span><span class="p">,</span> <span class="mf">571.0</span><span class="p">,</span> <span class="mf">570.0</span><span class="p">],</span>
-    <span class="n">volume</span><span class="o">=</span><span class="p">[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">5</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">],</span>
-    <span class="n">bid_price</span><span class="o">=</span><span class="p">[</span><span class="mf">570.0</span><span class="p">,</span> <span class="mf">570.0</span><span class="p">,</span> <span class="mf">570.0</span><span class="p">,</span> <span class="mf">570.0</span><span class="p">,</span> <span class="mf">570.0</span><span class="p">],</span>
-    <span class="n">bid_volume</span><span class="o">=</span><span class="p">[</span><span class="mi">99</span><span class="p">,</span> <span class="mi">98</span><span class="p">,</span> <span class="mi">93</span><span class="p">,</span> <span class="mi">95</span><span class="p">,</span> <span class="mi">98</span><span class="p">],</span>
-    <span class="n">ask_price</span><span class="o">=</span><span class="p">[</span><span class="mf">571.0</span><span class="p">,</span> <span class="mf">571.0</span><span class="p">,</span> <span class="mf">571.0</span><span class="p">,</span> <span class="mf">571.0</span><span class="p">,</span> <span class="mf">571.0</span><span class="p">],</span>
-    <span class="n">ask_volume</span><span class="o">=</span><span class="p">[</span><span class="mi">193</span><span class="p">,</span> <span class="mi">197</span><span class="p">,</span> <span class="mi">197</span><span class="p">,</span> <span class="mi">195</span><span class="p">,</span> <span class="mi">197</span><span class="p">]</span>
+<div class="highlight"><pre><span></span><code><span class="n">ReserveStocksDetailResponse</span><span class="p">(</span>
+    <span class="n">response</span><span class="o">=</span><span class="n">ReserveStocksDetail</span><span class="p">(</span><span class="n">stocks</span><span class="o">=</span><span class="p">[</span>
+            <span class="n">ReserveStockDetail</span><span class="p">(</span>
+                <span class="n">contract</span><span class="o">=</span><span class="n">Contract</span><span class="p">(</span>
+                    <span class="n">security_type</span><span class="o">=&lt;</span><span class="n">SecurityType</span><span class="o">.</span><span class="n">Stock</span><span class="p">:</span> <span class="s1">&#39;STK&#39;</span><span class="o">&gt;</span><span class="p">,</span> 
+                    <span class="n">exchange</span><span class="o">=&lt;</span><span class="n">Exchange</span><span class="o">.</span><span class="n">TSE</span><span class="p">:</span> <span class="s1">&#39;TSE&#39;</span><span class="o">&gt;</span><span class="p">,</span> 
+                    <span class="n">code</span><span class="o">=</span><span class="s1">&#39;6153&#39;</span><span class="p">,</span> 
+                    <span class="n">name</span><span class="o">=</span><span class="s1">&#39;嘉聯益&#39;</span>
+                <span class="p">),</span> 
+                <span class="n">share</span><span class="o">=</span><span class="mi">1000</span><span class="p">,</span> 
+                <span class="n">order_ts</span><span class="o">=</span><span class="mi">1638253253</span><span class="p">,</span> 
+                <span class="n">status</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> 
+                <span class="n">info</span><span class="o">=</span><span class="s1">&#39;已完成&#39;</span>
+            <span class="p">)</span>
+        <span class="p">],</span> 
+        <span class="n">account</span><span class="o">=</span><span class="n">StockAccount</span><span class="p">(</span>
+            <span class="n">person_id</span><span class="o">=</span><span class="s1">&#39;X123456789&#39;</span><span class="p">,</span> 
+            <span class="n">broker_id</span><span class="o">=</span><span class="s1">&#39;9A95&#39;</span><span class="p">,</span> 
+            <span class="n">account_id</span><span class="o">=</span><span class="s1">&#39;12345678&#39;</span><span class="p">,</span> 
+            <span class="n">signed</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+        <span class="p">)</span>
 <span class="p">)</span>
 </code></pre></div>
 
 </div>
-<h2 id="kbar-data">KBar Data<a class="headerlink" href="#kbar-data" title="Permanent link">&para;</a></h2>
+<h3 id="reserve-earmarking">Reserve Earmarking<a class="headerlink" href="#reserve-earmarking" title="Permanent link">&para;</a></h3>
 <div class="admonition info">
 <p class="admonition-title">In</p>
-<div class="highlight"><pre><span></span><code><span class="kn">from</span> <span class="nn">shioaji.data</span> <span class="kn">import</span> <span class="n">Kbars</span>
-<span class="n">Kbars</span><span class="err">??</span>
+<div class="highlight"><pre><span></span><code><span class="n">contract</span> <span class="o">=</span> <span class="n">api</span><span class="o">.</span><span class="n">Contracts</span><span class="o">.</span><span class="n">Stocks</span><span class="p">[</span><span class="s2">&quot;2890&quot;</span><span class="p">]</span>
+<span class="n">resp</span> <span class="o">=</span> <span class="n">api</span><span class="o">.</span><span class="n">reserve_earmarking</span><span class="p">(</span><span class="n">account</span><span class="p">,</span> <span class="n">contract</span><span class="p">,</span> <span class="mi">1000</span><span class="p">,</span> <span class="mf">15.15</span><span class="p">)</span>
 </code></pre></div>
 
 </div>
 <div class="admonition done">
 <p class="admonition-title">Out</p>
-<div class="highlight"><pre><span></span><code><span class="n">Init</span> <span class="n">signature</span><span class="p">:</span> <span class="n">Kbars</span><span class="p">(</span><span class="o">**</span><span class="n">data</span><span class="p">:</span> <span class="n">Any</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span>
-<span class="n">Docstring</span><span class="p">:</span>      <span class="o">&lt;</span><span class="n">no</span> <span class="n">docstring</span><span class="o">&gt;</span>
-<span class="n">Source</span><span class="p">:</span>        
-<span class="k">class</span> <span class="nc">Kbars</span><span class="p">(</span><span class="n">BaseMapping</span><span class="p">):</span>
-    <span class="n">ts</span><span class="p">:</span> <span class="n">typing</span><span class="o">.</span><span class="n">List</span><span class="p">[</span><span class="nb">int</span><span class="p">]</span>
-    <span class="n">Open</span><span class="p">:</span> <span class="n">typing</span><span class="o">.</span><span class="n">List</span><span class="p">[</span><span class="nb">float</span><span class="p">]</span>
-    <span class="n">High</span><span class="p">:</span> <span class="n">typing</span><span class="o">.</span><span class="n">List</span><span class="p">[</span><span class="nb">float</span><span class="p">]</span>
-    <span class="n">Low</span><span class="p">:</span> <span class="n">typing</span><span class="o">.</span><span class="n">List</span><span class="p">[</span><span class="nb">float</span><span class="p">]</span>
-    <span class="n">Close</span><span class="p">:</span> <span class="n">typing</span><span class="o">.</span><span class="n">List</span><span class="p">[</span><span class="nb">float</span><span class="p">]</span>
-    <span class="n">Volume</span><span class="p">:</span> <span class="n">typing</span><span class="o">.</span><span class="n">List</span><span class="p">[</span><span class="nb">int</span><span class="p">]</span>
+<div class="highlight"><pre><span></span><code><span class="n">ReserveEarmarkingResponse</span><span class="p">(</span>
+    <span class="n">response</span><span class="o">=</span><span class="n">EarmarkingOrderResp</span><span class="p">(</span>
+        <span class="n">contract</span><span class="o">=</span><span class="n">Stock</span><span class="p">(</span>
+            <span class="n">exchange</span><span class="o">=&lt;</span><span class="n">Exchange</span><span class="o">.</span><span class="n">TSE</span><span class="p">:</span> <span class="s1">&#39;TSE&#39;</span><span class="o">&gt;</span><span class="p">,</span> 
+            <span class="n">code</span><span class="o">=</span><span class="s1">&#39;2890&#39;</span><span class="p">,</span> 
+            <span class="n">symbol</span><span class="o">=</span><span class="s1">&#39;TSE2890&#39;</span><span class="p">,</span> 
+            <span class="n">name</span><span class="o">=</span><span class="s1">&#39;永豐金&#39;</span><span class="p">,</span> 
+        <span class="p">),</span> 
+        <span class="n">account</span><span class="o">=</span><span class="n">StockAccount</span><span class="p">(</span>
+            <span class="n">person_id</span><span class="o">=</span><span class="s1">&#39;X123456789&#39;</span><span class="p">,</span> 
+            <span class="n">broker_id</span><span class="o">=</span><span class="s1">&#39;9A95&#39;</span><span class="p">,</span> 
+            <span class="n">account_id</span><span class="o">=</span><span class="s1">&#39;12345678&#39;</span><span class="p">,</span> 
+            <span class="n">signed</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+        <span class="p">),</span> 
+        <span class="n">share</span><span class="o">=</span><span class="mi">1000</span><span class="p">,</span> 
+        <span class="n">price</span><span class="o">=</span><span class="mf">15.15</span><span class="p">,</span> 
+        <span class="n">status</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> 
+        <span class="n">info</span><span class="o">=</span><span class="s1">&#39;OK&#39;</span><span class="p">)</span>
+<span class="p">)</span>
 </code></pre></div>
 
 </div>
 <div class="admonition info">
 <p class="admonition-title">In</p>
-<div class="highlight"><pre><span></span><code><span class="n">kbars</span> <span class="o">=</span> <span class="n">api</span><span class="o">.</span><span class="n">kbars</span><span class="p">(</span><span class="n">api</span><span class="o">.</span><span class="n">Contracts</span><span class="o">.</span><span class="n">Stocks</span><span class="p">[</span><span class="s2">&quot;2330&quot;</span><span class="p">],</span> <span class="n">start</span><span class="o">=</span><span class="s2">&quot;2020-06-01&quot;</span><span class="p">,</span> <span class="n">end</span><span class="o">=</span><span class="s2">&quot;2020-07-01&quot;</span><span class="p">)</span>
-<span class="n">df</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">({</span><span class="o">**</span><span class="n">kbars</span><span class="p">})</span>
-<span class="n">df</span><span class="o">.</span><span class="n">ts</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">to_datetime</span><span class="p">(</span><span class="n">df</span><span class="o">.</span><span class="n">ts</span><span class="p">)</span>
-<span class="n">df</span>
+<div class="highlight"><pre><span></span><code><span class="n">api</span><span class="o">.</span><span class="n">earmarking_detail</span><span class="p">(</span><span class="n">account</span><span class="p">)</span>
 </code></pre></div>
 
 </div>
 <div class="admonition done">
 <p class="admonition-title">Out</p>
-<table>
-<thead>
-<tr>
-<th></th>
-<th>ts</th>
-<th>Close</th>
-<th>Open</th>
-<th>High</th>
-<th>Volume</th>
-<th>Low</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td>0</td>
-<td>2020-06-01 09:01:00</td>
-<td>294.0</td>
-<td>294.0</td>
-<td>294.0</td>
-<td>3187</td>
-<td>293.5</td>
-</tr>
-<tr>
-<td>1</td>
-<td>2020-06-01 09:02:00</td>
-<td>293.5</td>
-<td>293.5</td>
-<td>294.0</td>
-<td>201</td>
-<td>293.5</td>
-</tr>
-<tr>
-<td>2</td>
-<td>2020-06-01 09:03:00</td>
-<td>294.0</td>
-<td>293.5</td>
-<td>294.0</td>
-<td>267</td>
-<td>293.5</td>
-</tr>
-<tr>
-<td>3</td>
-<td>2020-06-01 09:04:00</td>
-<td>294.5</td>
-<td>294.0</td>
-<td>294.5</td>
-<td>624</td>
-<td>293.5</td>
-</tr>
-<tr>
-<td>4</td>
-<td>2020-06-01 09:05:00</td>
-<td>294.0</td>
-<td>294.0</td>
-<td>294.5</td>
-<td>419</td>
-<td>293.5</td>
-</tr>
-</tbody>
-</table>
+<div class="highlight"><pre><span></span><code><span class="n">EarmarkStocksDetailResponse</span><span class="p">(</span>
+    <span class="n">response</span><span class="o">=</span><span class="n">EarmarkStocksDetail</span><span class="p">(</span>
+        <span class="n">stocks</span><span class="o">=</span><span class="p">[</span>
+            <span class="n">EarmarkStockDetail</span><span class="p">(</span>
+                <span class="n">contract</span><span class="o">=</span><span class="n">Contract</span><span class="p">(</span>
+                    <span class="n">security_type</span><span class="o">=&lt;</span><span class="n">SecurityType</span><span class="o">.</span><span class="n">Stock</span><span class="p">:</span> <span class="s1">&#39;STK&#39;</span><span class="o">&gt;</span><span class="p">,</span> 
+                    <span class="n">exchange</span><span class="o">=&lt;</span><span class="n">Exchange</span><span class="o">.</span><span class="n">TSE</span><span class="p">:</span> <span class="s1">&#39;TSE&#39;</span><span class="o">&gt;</span><span class="p">,</span> 
+                    <span class="n">code</span><span class="o">=</span><span class="s1">&#39;2890&#39;</span><span class="p">,</span> 
+                    <span class="n">name</span><span class="o">=</span><span class="s1">&#39;永豐金&#39;</span>
+                <span class="p">),</span> 
+                <span class="n">share</span><span class="o">=</span><span class="mi">1000</span><span class="p">,</span> 
+                <span class="n">price</span><span class="o">=</span><span class="mf">15.15</span><span class="p">,</span> 
+                <span class="n">amount</span><span class="o">=</span><span class="mi">15171</span><span class="p">,</span> 
+                <span class="n">order_ts</span><span class="o">=</span><span class="mi">1638416488</span><span class="p">,</span> 
+                <span class="n">status</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span> 
+                <span class="n">info</span><span class="o">=</span><span class="s1">&#39;扣款失敗&#39;</span><span class="p">),</span> 
+            <span class="n">EarmarkStockDetail</span><span class="p">(</span>
+                <span class="n">contract</span><span class="o">=</span><span class="n">Contract</span><span class="p">(</span>
+                    <span class="n">security_type</span><span class="o">=&lt;</span><span class="n">SecurityType</span><span class="o">.</span><span class="n">Stock</span><span class="p">:</span> <span class="s1">&#39;STK&#39;</span><span class="o">&gt;</span><span class="p">,</span> 
+                    <span class="n">exchange</span><span class="o">=&lt;</span><span class="n">Exchange</span><span class="o">.</span><span class="n">TSE</span><span class="p">:</span> <span class="s1">&#39;TSE&#39;</span><span class="o">&gt;</span><span class="p">,</span> 
+                    <span class="n">code</span><span class="o">=</span><span class="s1">&#39;2890&#39;</span><span class="p">,</span> 
+                    <span class="n">name</span><span class="o">=</span><span class="s1">&#39;永豐金&#39;</span>
+                <span class="p">),</span> 
+                <span class="n">share</span><span class="o">=</span><span class="mi">1000</span><span class="p">,</span> 
+                <span class="n">price</span><span class="o">=</span><span class="mf">15.15</span><span class="p">,</span> 
+                <span class="n">amount</span><span class="o">=</span><span class="mi">15171</span><span class="p">,</span> 
+                <span class="n">order_ts</span><span class="o">=</span><span class="mi">1638415662</span><span class="p">,</span> <span class="n">status</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> 
+                <span class="n">info</span><span class="o">=</span><span class="s1">&#39;&#39;</span><span class="p">)</span>
+            <span class="p">],</span> 
+            <span class="n">account</span><span class="o">=</span><span class="n">StockAccount</span><span class="p">(</span>
+                <span class="n">person_id</span><span class="o">=</span><span class="s1">&#39;X123456789&#39;</span><span class="p">,</span> 
+                <span class="n">broker_id</span><span class="o">=</span><span class="s1">&#39;9A95&#39;</span><span class="p">,</span> 
+                <span class="n">account_id</span><span class="o">=</span><span class="s1">&#39;12345678&#39;</span><span class="p">,</span> 
+                <span class="n">signed</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+            <span class="p">)</span>
+        <span class="p">)</span>
+    <span class="p">)</span>
+</code></pre></div>
+
+</div>
+<h3 id="example-for-reserve-all-stock">Example for Reserve All Stock<a class="headerlink" href="#example-for-reserve-all-stock" title="Permanent link">&para;</a></h3>
+<div class="admonition info">
+<p class="admonition-title">In</p>
+<div class="highlight"><pre><span></span><code><span class="kn">import</span> <span class="nn">shioaji</span> <span class="k">as</span> <span class="nn">sj</span>
+
+<span class="n">api</span> <span class="o">=</span> <span class="n">sj</span><span class="o">.</span><span class="n">Shioaji</span><span class="p">()</span>
+<span class="n">accounts</span> <span class="o">=</span> <span class="n">api</span><span class="o">.</span><span class="n">login</span><span class="p">(</span><span class="s2">&quot;YOUR_PERSON_ID&quot;</span><span class="p">,</span> <span class="s2">&quot;YOUR_PASSWORD&quot;</span><span class="p">,</span> <span class="n">contracts_timeout</span><span class="o">=</span><span class="mi">10000</span><span class="p">)</span>
+<span class="n">api</span><span class="o">.</span><span class="n">activate_ca</span><span class="p">(</span>
+    <span class="n">ca_path</span><span class="o">=</span><span class="s2">&quot;/c/your/ca/path/Sinopac.pfx&quot;</span><span class="p">,</span>
+    <span class="n">ca_passwd</span><span class="o">=</span><span class="s2">&quot;YOUR_CA_PASSWORD&quot;</span><span class="p">,</span>
+    <span class="n">person_id</span><span class="o">=</span><span class="s2">&quot;Person of this Ca&quot;</span><span class="p">,</span>
+<span class="p">)</span>
+<span class="k">for</span> <span class="n">account</span> <span class="ow">in</span> <span class="n">accounts</span><span class="p">:</span>
+    <span class="k">if</span> <span class="n">account</span><span class="o">.</span><span class="n">account_type</span> <span class="o">==</span> <span class="n">AccountType</span><span class="o">.</span><span class="n">Stock</span><span class="p">:</span>
+        <span class="n">reserve_summary_resp</span> <span class="o">=</span> <span class="n">api</span><span class="o">.</span><span class="n">stock_reserve_summary</span><span class="p">(</span><span class="n">account</span><span class="p">)</span>
+        <span class="k">for</span> <span class="n">reserve_stock_summary</span> <span class="ow">in</span> <span class="n">reserve_summary_resp</span><span class="o">.</span><span class="n">response</span><span class="o">.</span><span class="n">stocks</span><span class="p">:</span>
+                <span class="k">if</span> <span class="n">reserve_stock_summary</span><span class="o">.</span><span class="n">available_share</span><span class="p">:</span>
+                    <span class="n">resp</span> <span class="o">=</span> <span class="n">api</span><span class="o">.</span><span class="n">reserve_stock</span><span class="p">(</span>
+                        <span class="n">account</span><span class="p">,</span> 
+                        <span class="n">reserve_stock_summary</span><span class="o">.</span><span class="n">contract</span><span class="p">,</span>
+                        <span class="n">reserve_stock_summary</span><span class="o">.</span><span class="n">available_share</span>
+                    <span class="p">)</span>
+</code></pre></div>
+
 </div>
                 
               
@@ -1291,7 +1215,7 @@
     <div class="md-footer-nav">
       <nav class="md-footer-nav__inner md-grid" aria-label="Footer">
         
-          <a href="../streaming/event_cb/" title="Event Callback" class="md-footer-nav__link md-footer-nav__link--prev" rel="prev">
+          <a href="../UpdateStatus/" title="Update Status" class="md-footer-nav__link md-footer-nav__link--prev" rel="prev">
             <div class="md-footer-nav__button md-icon">
               <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11h12z"/></svg>
             </div>
@@ -1300,19 +1224,19 @@
                 <span class="md-footer-nav__direction">
                   Previous
                 </span>
-                Event Callback
+                Update Status
               </div>
             </div>
           </a>
         
         
-          <a href="../../snapshot/" title="Snapshot" class="md-footer-nav__link md-footer-nav__link--next" rel="next">
+          <a href="../../accounting/account_portfolio/" title="Account & Portfolio" class="md-footer-nav__link md-footer-nav__link--next" rel="next">
             <div class="md-footer-nav__title">
               <div class="md-ellipsis">
                 <span class="md-footer-nav__direction">
                   Next
                 </span>
-                Snapshot
+                Account & Portfolio
               </div>
             </div>
             <div class="md-footer-nav__button md-icon">
