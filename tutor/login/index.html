@@ -1194,15 +1194,26 @@
 <div class="admonition info">
 <p class="admonition-title">In: login</p>
 </div>
+<div class="highlight"><pre><span></span><code>    <span class="n">api</span><span class="o">.</span><span class="n">login</span><span class="p">(</span>
+        <span class="n">person_id</span><span class="o">=</span><span class="s2">&quot;YOUR_ID&quot;</span><span class="p">,</span> 
+        <span class="n">passwd</span><span class="o">=</span><span class="s2">&quot;YOUR_PASSWORD&quot;</span><span class="p">,</span> 
+        <span class="n">subscribe_trade</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span>
+        <span class="p">)</span>
+</code></pre></div>
+
 <div class="admonition info">
 <p class="admonition-title">In: subscribe_trade</p>
 </div>
+<div class="highlight"><pre><span></span><code>    <span class="n">api</span><span class="o">.</span><span class="n">subscribe_trade</span><span class="p">(</span><span class="n">account</span><span class="p">)</span>
+</code></pre></div>
+
 <div class="admonition info">
 <p class="admonition-title">In: unsubscribe_trade</p>
 </div>
-<p><div class="highlight"><pre><span></span><code>    <span class="n">api</span><span class="o">.</span><span class="n">unsubscribe_trade</span><span class="p">(</span><span class="n">account</span><span class="p">)</span>
+<div class="highlight"><pre><span></span><code>    <span class="n">api</span><span class="o">.</span><span class="n">unsubscribe_trade</span><span class="p">(</span><span class="n">account</span><span class="p">)</span>
 </code></pre></div>
-Note that: 
+
+<p>Note that: 
 * Default subscribe trade callback is True. </p>
 <h2 id="logout-shioaji">Logout Shioaji<a class="headerlink" href="#logout-shioaji" title="Permanent link">&para;</a></h2>
 <p>Logout funciton will close the connection between the client and the server.<br />
