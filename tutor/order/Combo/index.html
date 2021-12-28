@@ -1020,28 +1020,26 @@
                 <h2 id="place-comboorder">Place ComboOrder<a class="headerlink" href="#place-comboorder" title="Permanent link">&para;</a></h2>
 <h3 id="first-you-need-to-login-and-activate-ca">First, you need to <a href="../../login/">login</a> and <a href="../CA/">activate CA</a>.<a class="headerlink" href="#first-you-need-to-login-and-activate-ca" title="Permanent link">&para;</a></h3>
 <h3 id="get-combo-contract-object">Get Combo Contract Object.<a class="headerlink" href="#get-combo-contract-object" title="Permanent link">&para;</a></h3>
-<p>!!! info "In</p>
-<div class="codehilite"><pre><span></span><code><span class="err">```python</span>
-<span class="err">c1 = api.Contracts.Options.TX4.TX4202111017850C</span>
-<span class="err">c2 = api.Contracts.Options.TX4.TX4202111017850P</span>
-<span class="err">combo_c = sj.contracts.ComboContract(</span>
-<span class="err">    legs=[</span>
-<span class="err">        sj.contracts.ComboBase(action=&quot;Sell&quot;, **c1),</span>
-<span class="err">        sj.contracts.ComboBase(action=&quot;Sell&quot;, **c2),</span>
-<span class="err">    ]</span>
-<span class="err">)</span>
-<span class="err">```</span>
+<div class="admonition info">
+<p class="admonition-title">In</p>
+<div class="highlight"><pre><span></span><code><span class="n">c1</span> <span class="o">=</span> <span class="n">api</span><span class="o">.</span><span class="n">Contracts</span><span class="o">.</span><span class="n">Options</span><span class="o">.</span><span class="n">TX4</span><span class="o">.</span><span class="n">TX4202111017850C</span>
+<span class="n">c2</span> <span class="o">=</span> <span class="n">api</span><span class="o">.</span><span class="n">Contracts</span><span class="o">.</span><span class="n">Options</span><span class="o">.</span><span class="n">TX4</span><span class="o">.</span><span class="n">TX4202111017850P</span>
+<span class="n">combo_c</span> <span class="o">=</span> <span class="n">sj</span><span class="o">.</span><span class="n">contracts</span><span class="o">.</span><span class="n">ComboContract</span><span class="p">(</span>
+    <span class="n">legs</span><span class="o">=</span><span class="p">[</span>
+        <span class="n">sj</span><span class="o">.</span><span class="n">contracts</span><span class="o">.</span><span class="n">ComboBase</span><span class="p">(</span><span class="n">action</span><span class="o">=</span><span class="s2">&quot;Sell&quot;</span><span class="p">,</span> <span class="o">**</span><span class="n">c1</span><span class="p">),</span>
+        <span class="n">sj</span><span class="o">.</span><span class="n">contracts</span><span class="o">.</span><span class="n">ComboBase</span><span class="p">(</span><span class="n">action</span><span class="o">=</span><span class="s2">&quot;Sell&quot;</span><span class="p">,</span> <span class="o">**</span><span class="n">c2</span><span class="p">),</span>
+    <span class="p">]</span>
+<span class="p">)</span>
 </code></pre></div>
 
-
+</div>
 <h3 id="making-comboorder-object">Making ComboOrder Object.<a class="headerlink" href="#making-comboorder-object" title="Permanent link">&para;</a></h3>
-<p>!!! info "In</p>
-<div class="codehilite"><pre><span></span><code><span class="err">```python</span>
-<span class="err">order = api.ComboOrder(price_type=&quot;LMT&quot;, price=1, quantity=1, order_type=&quot;IOC&quot;)</span>
-<span class="err">```</span>
+<div class="admonition info">
+<p class="admonition-title">In</p>
+<div class="highlight"><pre><span></span><code><span class="n">order</span> <span class="o">=</span> <span class="n">api</span><span class="o">.</span><span class="n">ComboOrder</span><span class="p">(</span><span class="n">price_type</span><span class="o">=</span><span class="s2">&quot;LMT&quot;</span><span class="p">,</span> <span class="n">price</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span> <span class="n">quantity</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span> <span class="n">order_type</span><span class="o">=</span><span class="s2">&quot;IOC&quot;</span><span class="p">)</span>
 </code></pre></div>
 
-
+</div>
 <h3 id="place-combo-order">Place Combo Order<a class="headerlink" href="#place-combo-order" title="Permanent link">&para;</a></h3>
 <div class="admonition info">
 <p class="admonition-title">In</p>
