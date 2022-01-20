@@ -1028,13 +1028,8 @@
                   <h1>Login</h1>
                 
                 <h2 id="login-shioaji">Login Shioaji<a class="headerlink" href="#login-shioaji" title="Permanent link">&para;</a></h2>
-<div class="admonition attention">
-<p class="admonition-title">Simulation Accounts</p>
-<p>If use simulation, we provide 8 of test accounts <strong>PAPIUSER01~PAPIUSER08</strong>, the password both <strong>2222</strong>.</p>
-</div>
 <div class="admonition info">
 <p class="admonition-title">In</p>
-<div class="tabbed-set" data-tabs="1:2"><input checked="checked" id="__tabbed_1_1" name="__tabbed_1" type="radio" /><label for="__tabbed_1_1">Production</label><div class="tabbed-content">
 <div class="highlight"><pre><span></span><code><span class="kn">import</span> <span class="nn">shioaji</span> <span class="k">as</span> <span class="nn">sj</span>
 <span class="n">api</span> <span class="o">=</span> <span class="n">sj</span><span class="o">.</span><span class="n">Shioaji</span><span class="p">()</span>
 <span class="n">api</span><span class="o">.</span><span class="n">login</span><span class="p">(</span>
@@ -1044,19 +1039,6 @@
 <span class="p">)</span>
 </code></pre></div>
 
-</div>
-<input id="__tabbed_1_2" name="__tabbed_1" type="radio" /><label for="__tabbed_1_2">Simulation</label><div class="tabbed-content">
-<div class="highlight"><pre><span></span><code><span class="kn">import</span> <span class="nn">shioaji</span> <span class="k">as</span> <span class="nn">sj</span>
-<span class="hll"><span class="n">api</span> <span class="o">=</span> <span class="n">sj</span><span class="o">.</span><span class="n">Shioaji</span><span class="p">(</span><span class="n">simulation</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span> 
-</span><span class="n">api</span><span class="o">.</span><span class="n">login</span><span class="p">(</span>
-    <span class="n">person_id</span><span class="o">=</span><span class="s2">&quot;PAPIUSER01&quot;</span><span class="p">,</span> 
-    <span class="n">passwd</span><span class="o">=</span><span class="s2">&quot;2222&quot;</span><span class="p">,</span> 
-    <span class="n">contracts_cb</span><span class="o">=</span><span class="k">lambda</span> <span class="n">security_type</span><span class="p">:</span> <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="nb">repr</span><span class="p">(</span><span class="n">security_type</span><span class="p">)</span><span class="si">}</span><span class="s2"> fetch done.&quot;</span><span class="p">)</span>
-<span class="p">)</span>
-</code></pre></div>
-
-</div>
-</div>
 </div>
 <div class="admonition done">
 <p class="admonition-title">Out</p>
