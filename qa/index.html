@@ -21,7 +21,7 @@
     
     
       
-        <title>Qa - Shioaji</title>
+        <title>QA - Shioaji</title>
       
     
     
@@ -94,7 +94,7 @@
           </span>
           <span class="md-header-nav__topic md-ellipsis">
             
-              Qa
+              QA
             
           </span>
         </div>
@@ -761,11 +761,104 @@
       
       
 
+  
 
-  <li class="md-nav__item">
-    <a href="../qa_new/" title="QA" class="md-nav__link">
+
+  <li class="md-nav__item md-nav__item--active">
+    
+    <input class="md-nav__toggle md-toggle" data-md-toggle="toc" type="checkbox" id="__toc">
+    
+    
+      <label class="md-nav__link md-nav__link--active" for="__toc">
+        QA
+        <span class="md-nav__icon md-icon">
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 9h14V7H3v2m0 4h14v-2H3v2m0 4h14v-2H3v2m16 0h2v-2h-2v2m0-10v2h2V7h-2m0 6h2v-2h-2v2z"/></svg>
+        </span>
+      </label>
+    
+    <a href="./" title="QA" class="md-nav__link md-nav__link--active">
       QA
     </a>
+    
+      
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11h12z"/></svg>
+      </span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#_1" class="md-nav__link">
+    為什麼行情只能收幾行就斷掉了
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#shioajilog" class="md-nav__link">
+    如何更改shioaji.log
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#contracts" class="md-nav__link">
+    如何更改contracts下載路徑
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#mktmkp" class="md-nav__link">
+    如何下市價單(MKT)、範圍市價單(MKP)
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#rod" class="md-nav__link">
+    如何掛漲(跌)停限價ROD單
+  </a>
+  
+    <nav class="md-nav" aria-label="如何掛漲(跌)停限價ROD單">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#example-place-lmt-and-rod-order-at-limit-up-price" class="md-nav__link">
+    Example place LMT and ROD order at limit up price.
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#3" class="md-nav__link">
+    輸入密碼錯誤3次怎麼辦
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#weve-migrate-qa-site-to-shioaji-forum" class="md-nav__link">
+    We've migrate QA site to Shioaji Forum
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+    
   </li>
 
     
@@ -855,6 +948,13 @@
 </li>
       
         <li class="md-nav__item">
+  <a href="#contracts" class="md-nav__link">
+    如何更改contracts下載路徑
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
   <a href="#mktmkp" class="md-nav__link">
     如何下市價單(MKT)、範圍市價單(MKP)
   </a>
@@ -888,6 +988,13 @@
   
 </li>
       
+        <li class="md-nav__item">
+  <a href="#weve-migrate-qa-site-to-shioaji-forum" class="md-nav__link">
+    We've migrate QA site to Shioaji Forum
+  </a>
+  
+</li>
+      
     </ul>
   
 </nav>
@@ -904,7 +1011,7 @@
                   
                 
                 
-                  <h1>Qa</h1>
+                  <h1>QA</h1>
                 
                 <h4 id="_1">為什麼行情只能收幾行就斷掉了<a class="headerlink" href="#_1" title="Permanent link">&para;</a></h4>
 <p>If your code something like this, and possibly run code on cmd/terminal with <code>python stream.py</code>.
@@ -944,6 +1051,17 @@ Then you definitely won't get any additional ticks, since the python program has
 <div class="highlight"><pre><span></span><code>set SJ_LOG_PATH=C:\path\to\shioaji.log
 </code></pre></div>
 <br/></p>
+<h4 id="contracts">如何更改contracts下載路徑<a class="headerlink" href="#contracts" title="Permanent link">&para;</a></h4>
+<p>Please add environment variable before import shioaji. <code>(version &gt;= 0.3.4.dev2)</code></p>
+<p>linux or Mac OS:<br />
+<div class="highlight"><pre><span></span><code>export SJ_CONTRACTS_PATH=MY_PATH
+</code></pre></div></p>
+<p>windows:<br />
+<div class="highlight"><pre><span></span><code>set SJ_CONTRACTS_PATH=MY_PATH
+</code></pre></div></p>
+<p>python:
+<div class="highlight"><pre><span></span><code>os.environ[&quot;SJ_CONTRACTS_PATH&quot;]=MY_PATH
+</code></pre></div></p>
 <h4 id="mktmkp">如何下市價單(MKT)、範圍市價單(MKP)<a class="headerlink" href="#mktmkp" title="Permanent link">&para;</a></h4>
 <div class="admonition info">
 <p class="admonition-title">In</p>
@@ -1011,6 +1129,8 @@ a look at the <code>api.Contracts</code>, you will find the information you want
 <p><a href="https://www.sinotrade.com.tw/newweb/Service_ForgetPassword_Self/">線上解鎖</a><br />
 Note that you only have 2 chances to unlock your account online in a day. </p>
 <p><br/></p>
+<h4 id="weve-migrate-qa-site-to-shioaji-forum">We've migrate QA site to <a href="https://sjapi.tw/">Shioaji Forum</a><a class="headerlink" href="#weve-migrate-qa-site-to-shioaji-forum" title="Permanent link">&para;</a></h4>
+<p><img alt="shioaji forum" src="https://raw.githubusercontent.com/Sinotrade/Sinotrade.github.io/master/img/sj_forum.png" /></p>
                 
               
               
@@ -1025,6 +1145,41 @@ Note that you only have 2 chances to unlock your account online in a day. </p>
       
         
 <footer class="md-footer">
+  
+    <div class="md-footer-nav">
+      <nav class="md-footer-nav__inner md-grid" aria-label="Footer">
+        
+          <a href="../tutor/advanced/touchorder/" title="Touch Price Order" class="md-footer-nav__link md-footer-nav__link--prev" rel="prev">
+            <div class="md-footer-nav__button md-icon">
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11h12z"/></svg>
+            </div>
+            <div class="md-footer-nav__title">
+              <div class="md-ellipsis">
+                <span class="md-footer-nav__direction">
+                  Previous
+                </span>
+                Touch Price Order
+              </div>
+            </div>
+          </a>
+        
+        
+          <a href="../release/" title="Release Note" class="md-footer-nav__link md-footer-nav__link--next" rel="next">
+            <div class="md-footer-nav__title">
+              <div class="md-ellipsis">
+                <span class="md-footer-nav__direction">
+                  Next
+                </span>
+                Release Note
+              </div>
+            </div>
+            <div class="md-footer-nav__button md-icon">
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M4 11v2h12l-5.5 5.5 1.42 1.42L19.84 12l-7.92-7.92L10.5 5.5 16 11H4z"/></svg>
+            </div>
+          </a>
+        
+      </nav>
+    </div>
   
   <div class="md-footer-meta md-typeset">
     <div class="md-footer-meta__inner md-grid">
