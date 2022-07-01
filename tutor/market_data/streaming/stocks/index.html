@@ -388,6 +388,13 @@
   
 </li>
         
+          <li class="md-nav__item">
+  <a href="#quote" class="md-nav__link">
+    Quote
+  </a>
+  
+</li>
+        
       </ul>
     </nav>
   
@@ -415,6 +422,13 @@
   
 </li>
         
+          <li class="md-nav__item">
+  <a href="#quote-callback_1" class="md-nav__link">
+    Quote callback
+  </a>
+  
+</li>
+        
       </ul>
     </nav>
   
@@ -438,6 +452,13 @@
           <li class="md-nav__item">
   <a href="#bidask_1" class="md-nav__link">
     BidAsk
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#quote_1" class="md-nav__link">
+    Quote
   </a>
   
 </li>
@@ -1015,6 +1036,13 @@
   
 </li>
         
+          <li class="md-nav__item">
+  <a href="#quote" class="md-nav__link">
+    Quote
+  </a>
+  
+</li>
+        
       </ul>
     </nav>
   
@@ -1042,6 +1070,13 @@
   
 </li>
         
+          <li class="md-nav__item">
+  <a href="#quote-callback_1" class="md-nav__link">
+    Quote callback
+  </a>
+  
+</li>
+        
       </ul>
     </nav>
   
@@ -1065,6 +1100,13 @@
           <li class="md-nav__item">
   <a href="#bidask_1" class="md-nav__link">
     BidAsk
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#quote_1" class="md-nav__link">
+    Quote
   </a>
   
 </li>
@@ -1359,6 +1401,59 @@ version: version of quote format.
 </div>
 </div>
 </div>
+<h3 id="quote">Quote<a class="headerlink" href="#quote" title="Permanent link">&para;</a></h3>
+<div class="admonition info">
+<p class="admonition-title">In</p>
+<div class="highlight"><pre><span></span><code><span class="n">api</span><span class="o">.</span><span class="n">quote</span><span class="o">.</span><span class="n">subscribe</span><span class="p">(</span>
+    <span class="n">api</span><span class="o">.</span><span class="n">Contracts</span><span class="o">.</span><span class="n">Stocks</span><span class="p">[</span><span class="s2">&quot;2330&quot;</span><span class="p">],</span> 
+<span class="hll">    <span class="n">quote_type</span> <span class="o">=</span> <span class="n">sj</span><span class="o">.</span><span class="n">constant</span><span class="o">.</span><span class="n">QuoteType</span><span class="o">.</span><span class="n">Quote</span><span class="p">,</span> 
+</span>    <span class="n">version</span> <span class="o">=</span> <span class="n">sj</span><span class="o">.</span><span class="n">constant</span><span class="o">.</span><span class="n">QuoteVersion</span><span class="o">.</span><span class="n">v1</span>
+<span class="p">)</span>
+</code></pre></div>
+
+</div>
+<div class="admonition done">
+<p class="admonition-title">Out</p>
+<div class="highlight"><pre><span></span><code><span class="n">Response</span> <span class="n">Code</span><span class="p">:</span> <span class="mi">200</span> <span class="o">|</span> <span class="n">Event</span> <span class="n">Code</span><span class="p">:</span> <span class="mi">16</span> <span class="o">|</span> <span class="n">Info</span><span class="p">:</span> <span class="n">QUO</span><span class="o">/</span><span class="n">v2</span><span class="o">/</span><span class="n">STK</span><span class="o">/*/</span><span class="n">TSE</span><span class="o">/</span><span class="mi">2330</span> <span class="o">|</span> <span class="n">Event</span><span class="p">:</span> <span class="n">Subscribe</span> <span class="ow">or</span> <span class="n">Unsubscribe</span> <span class="n">ok</span>
+
+<span class="n">Exchange</span><span class="p">:</span> <span class="n">TSE</span><span class="p">,</span> 
+<span class="n">Quote</span><span class="p">:</span> <span class="n">Quote</span><span class="p">(</span>
+    <span class="n">code</span><span class="o">=</span><span class="s1">&#39;2330&#39;</span><span class="p">,</span> 
+    <span class="n">datetime</span><span class="o">=</span><span class="n">datetime</span><span class="o">.</span><span class="n">datetime</span><span class="p">(</span><span class="mi">2022</span><span class="p">,</span> <span class="mi">7</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">10</span><span class="p">,</span> <span class="mi">43</span><span class="p">,</span> <span class="mi">15</span><span class="p">,</span> <span class="mi">430329</span><span class="p">),</span> <span class="nb">open</span><span class="o">=</span><span class="n">Decimal</span><span class="p">(</span><span class="s1">&#39;471.5&#39;</span><span class="p">),</span> 
+    <span class="n">avg_price</span><span class="o">=</span><span class="n">Decimal</span><span class="p">(</span><span class="s1">&#39;467.91&#39;</span><span class="p">),</span> 
+    <span class="n">close</span><span class="o">=</span><span class="n">Decimal</span><span class="p">(</span><span class="s1">&#39;461&#39;</span><span class="p">),</span> 
+    <span class="n">high</span><span class="o">=</span><span class="n">Decimal</span><span class="p">(</span><span class="s1">&#39;474&#39;</span><span class="p">),</span> 
+    <span class="n">low</span><span class="o">=</span><span class="n">Decimal</span><span class="p">(</span><span class="s1">&#39;461&#39;</span><span class="p">),</span> 
+    <span class="n">amount</span><span class="o">=</span><span class="n">Decimal</span><span class="p">(</span><span class="s1">&#39;461000&#39;</span><span class="p">),</span> 
+    <span class="n">total_amount</span><span class="o">=</span><span class="n">Decimal</span><span class="p">(</span><span class="s1">&#39;11834476000&#39;</span><span class="p">),</span> 
+    <span class="n">volume</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span> 
+    <span class="n">total_volume</span><span class="o">=</span><span class="mi">25292</span><span class="p">,</span> 
+    <span class="n">tick_type</span><span class="o">=</span><span class="mi">2</span><span class="p">,</span> 
+    <span class="n">chg_type</span><span class="o">=</span><span class="mi">4</span><span class="p">,</span> 
+    <span class="n">price_chg</span><span class="o">=</span><span class="n">Decimal</span><span class="p">(</span><span class="s1">&#39;-15&#39;</span><span class="p">),</span> 
+    <span class="n">pct_chg</span><span class="o">=</span><span class="n">Decimal</span><span class="p">(</span><span class="s1">&#39;-3.15&#39;</span><span class="p">),</span> 
+    <span class="n">bid_side_total_vol</span><span class="o">=</span><span class="mi">9350</span><span class="p">,</span> 
+    <span class="n">ask_side_total_vol</span><span class="o">=</span><span class="mi">15942</span><span class="p">,</span> 
+    <span class="n">bid_side_total_cnt</span><span class="o">=</span><span class="mi">2730</span><span class="p">,</span> 
+    <span class="n">ask_side_total_cnt</span><span class="o">=</span><span class="mi">2847</span><span class="p">,</span> 
+    <span class="n">closing_oddlot_shares</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span> 
+    <span class="n">closing_oddlot_close</span><span class="o">=</span><span class="n">Decimal</span><span class="p">(</span><span class="s1">&#39;0.0&#39;</span><span class="p">),</span> 
+    <span class="n">closing_oddlot_amount</span><span class="o">=</span><span class="n">Decimal</span><span class="p">(</span><span class="s1">&#39;0&#39;</span><span class="p">),</span> 
+    <span class="n">closing_oddlot_bid_price</span><span class="o">=</span><span class="n">Decimal</span><span class="p">(</span><span class="s1">&#39;0.0&#39;</span><span class="p">),</span> <span class="n">closing_oddlot_ask_price</span><span class="o">=</span><span class="n">Decimal</span><span class="p">(</span><span class="s1">&#39;0.0&#39;</span><span class="p">),</span> 
+    <span class="n">fixed_trade_vol</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span> 
+    <span class="n">fixed_trade_amount</span><span class="o">=</span><span class="n">Decimal</span><span class="p">(</span><span class="s1">&#39;0&#39;</span><span class="p">),</span> 
+    <span class="n">bid_price</span><span class="o">=</span><span class="p">[</span><span class="n">Decimal</span><span class="p">(</span><span class="s1">&#39;461&#39;</span><span class="p">),</span> <span class="n">Decimal</span><span class="p">(</span><span class="s1">&#39;460.5&#39;</span><span class="p">),</span> <span class="n">Decimal</span><span class="p">(</span><span class="s1">&#39;460&#39;</span><span class="p">),</span> <span class="n">Decimal</span><span class="p">(</span><span class="s1">&#39;459.5&#39;</span><span class="p">),</span> <span class="n">Decimal</span><span class="p">(</span><span class="s1">&#39;459&#39;</span><span class="p">)],</span> 
+    <span class="n">bid_volume</span><span class="o">=</span><span class="p">[</span><span class="mi">220</span><span class="p">,</span> <span class="mi">140</span><span class="p">,</span> <span class="mi">994</span><span class="p">,</span> <span class="mi">63</span><span class="p">,</span> <span class="mi">132</span><span class="p">],</span> 
+    <span class="n">diff_bid_vol</span><span class="o">=</span><span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">],</span> 
+    <span class="n">ask_price</span><span class="o">=</span><span class="p">[</span><span class="n">Decimal</span><span class="p">(</span><span class="s1">&#39;461.5&#39;</span><span class="p">),</span> <span class="n">Decimal</span><span class="p">(</span><span class="s1">&#39;462&#39;</span><span class="p">),</span> <span class="n">Decimal</span><span class="p">(</span><span class="s1">&#39;462.5&#39;</span><span class="p">),</span> <span class="n">Decimal</span><span class="p">(</span><span class="s1">&#39;463&#39;</span><span class="p">),</span> <span class="n">Decimal</span><span class="p">(</span><span class="s1">&#39;463.5&#39;</span><span class="p">)],</span> 
+    <span class="n">ask_volume</span><span class="o">=</span><span class="p">[</span><span class="mi">115</span><span class="p">,</span> <span class="mi">101</span><span class="p">,</span> <span class="mi">103</span><span class="p">,</span> <span class="mi">147</span><span class="p">,</span> <span class="mi">91</span><span class="p">],</span> 
+    <span class="n">diff_ask_vol</span><span class="o">=</span><span class="p">[</span><span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">],</span> 
+    <span class="n">avail_borrowing</span><span class="o">=</span><span class="mi">9579699</span><span class="p">,</span> 
+    <span class="n">suspend</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span> 
+    <span class="n">simtrade</span><span class="o">=</span><span class="mi">0</span><span class="p">)</span>
+</code></pre></div>
+
+</div>
 <h2 id="quote-callback">Quote Callback<a class="headerlink" href="#quote-callback" title="Permanent link">&para;</a></h2>
 <p>In default, we set quote callback as print function. You can modify callback function as you wish. Just remember, always avoid making calulations inside the callback function.</p>
 <h3 id="tick-quote-callback">Tick quote callback<a class="headerlink" href="#tick-quote-callback" title="Permanent link">&para;</a></h3>
@@ -1479,6 +1574,34 @@ version: version of quote format.
 </div>
 </div>
 </div>
+<h3 id="quote-callback_1">Quote callback<a class="headerlink" href="#quote-callback_1" title="Permanent link">&para;</a></h3>
+<div class="admonition info">
+<p class="admonition-title">In: pythonic way by using decorator</p>
+<div class="highlight"><pre><span></span><code><span class="kn">from</span> <span class="nn">shioaji</span> <span class="kn">import</span> <span class="n">QuoteSTKv1</span><span class="p">,</span> <span class="n">Exchange</span>
+
+<span class="nd">@api</span><span class="o">.</span><span class="n">on_quote_stk_v1</span><span class="p">()</span>
+<span class="k">def</span> <span class="nf">quote_callback</span><span class="p">(</span><span class="n">exchange</span><span class="p">:</span> <span class="n">Exchange</span><span class="p">,</span> <span class="n">quote</span><span class="p">:</span><span class="n">QuoteSTKv1</span><span class="p">):</span>
+    <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Exchange: </span><span class="si">{</span><span class="n">exchange</span><span class="si">}</span><span class="s2">, Quote: </span><span class="si">{</span><span class="n">quote</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+</code></pre></div>
+
+</div>
+<div class="admonition info">
+<p class="admonition-title">In: traditional way</p>
+<div class="highlight"><pre><span></span><code><span class="kn">from</span> <span class="nn">shioaji</span> <span class="kn">import</span> <span class="n">QuoteSTKv1</span><span class="p">,</span> <span class="n">Exchange</span>
+
+<span class="k">def</span> <span class="nf">quote_callback</span><span class="p">(</span><span class="n">exchange</span><span class="p">:</span> <span class="n">Exchange</span><span class="p">,</span> <span class="n">quote</span><span class="p">:</span><span class="n">QuoteSTKv1</span><span class="p">):</span>
+    <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Exchange: </span><span class="si">{</span><span class="n">exchange</span><span class="si">}</span><span class="s2">, Quote: </span><span class="si">{</span><span class="n">quote</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+
+<span class="n">api</span><span class="o">.</span><span class="n">quote</span><span class="o">.</span><span class="n">set_on_quote_stk_v1_callback</span><span class="p">(</span><span class="n">quote_callback</span><span class="p">)</span>
+</code></pre></div>
+
+</div>
+<div class="admonition done">
+<p class="admonition-title">Out</p>
+<div class="highlight"><pre><span></span><code><span class="n">Exchange</span><span class="p">:</span> <span class="n">TSE</span><span class="p">,</span> <span class="n">Quote</span><span class="p">:</span> <span class="n">Quote</span><span class="p">(</span><span class="n">code</span><span class="o">=</span><span class="s1">&#39;2330&#39;</span><span class="p">,</span> <span class="n">datetime</span><span class="o">=</span><span class="n">datetime</span><span class="o">.</span><span class="n">datetime</span><span class="p">(</span><span class="mi">2022</span><span class="p">,</span> <span class="mi">7</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">10</span><span class="p">,</span> <span class="mi">43</span><span class="p">,</span> <span class="mi">15</span><span class="p">,</span> <span class="mi">430329</span><span class="p">),</span> <span class="nb">open</span><span class="o">=</span><span class="n">Decimal</span><span class="p">(</span><span class="s1">&#39;471.5&#39;</span><span class="p">),</span> <span class="n">avg_price</span><span class="o">=</span><span class="n">Decimal</span><span class="p">(</span><span class="s1">&#39;467.91&#39;</span><span class="p">),</span> <span class="n">close</span><span class="o">=</span><span class="n">Decimal</span><span class="p">(</span><span class="s1">&#39;461&#39;</span><span class="p">),</span> <span class="n">high</span><span class="o">=</span><span class="n">Decimal</span><span class="p">(</span><span class="s1">&#39;474&#39;</span><span class="p">),</span> <span class="n">low</span><span class="o">=</span><span class="n">Decimal</span><span class="p">(</span><span class="s1">&#39;461&#39;</span><span class="p">),</span> <span class="n">amount</span><span class="o">=</span><span class="n">Decimal</span><span class="p">(</span><span class="s1">&#39;461000&#39;</span><span class="p">),</span> <span class="n">total_amount</span><span class="o">=</span><span class="n">Decimal</span><span class="p">(</span><span class="s1">&#39;11834476000&#39;</span><span class="p">),</span> <span class="n">volume</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span> <span class="n">total_volume</span><span class="o">=</span><span class="mi">25292</span><span class="p">,</span> <span class="n">tick_type</span><span class="o">=</span><span class="mi">2</span><span class="p">,</span> <span class="n">chg_type</span><span class="o">=</span><span class="mi">4</span><span class="p">,</span> <span class="n">price_chg</span><span class="o">=</span><span class="n">Decimal</span><span class="p">(</span><span class="s1">&#39;-15&#39;</span><span class="p">),</span> <span class="n">pct_chg</span><span class="o">=</span><span class="n">Decimal</span><span class="p">(</span><span class="s1">&#39;-3.15&#39;</span><span class="p">),</span> <span class="n">bid_side_total_vol</span><span class="o">=</span><span class="mi">9350</span><span class="p">,</span> <span class="n">ask_side_total_vol</span><span class="o">=</span><span class="mi">15942</span><span class="p">,</span> <span class="n">bid_side_total_cnt</span><span class="o">=</span><span class="mi">2730</span><span class="p">,</span> <span class="n">ask_side_total_cnt</span><span class="o">=</span><span class="mi">2847</span><span class="p">,</span> <span class="n">closing_oddlot_shares</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span> <span class="n">closing_oddlot_close</span><span class="o">=</span><span class="n">Decimal</span><span class="p">(</span><span class="s1">&#39;0.0&#39;</span><span class="p">),</span> <span class="n">closing_oddlot_amount</span><span class="o">=</span><span class="n">Decimal</span><span class="p">(</span><span class="s1">&#39;0&#39;</span><span class="p">),</span> <span class="n">closing_oddlot_bid_price</span><span class="o">=</span><span class="n">Decimal</span><span class="p">(</span><span class="s1">&#39;0.0&#39;</span><span class="p">),</span> <span class="n">closing_oddlot_ask_price</span><span class="o">=</span><span class="n">Decimal</span><span class="p">(</span><span class="s1">&#39;0.0&#39;</span><span class="p">),</span> <span class="n">fixed_trade_vol</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span> <span class="n">fixed_trade_amount</span><span class="o">=</span><span class="n">Decimal</span><span class="p">(</span><span class="s1">&#39;0&#39;</span><span class="p">),</span> <span class="n">bid_price</span><span class="o">=</span><span class="p">[</span><span class="n">Decimal</span><span class="p">(</span><span class="s1">&#39;461&#39;</span><span class="p">),</span> <span class="n">Decimal</span><span class="p">(</span><span class="s1">&#39;460.5&#39;</span><span class="p">),</span> <span class="n">Decimal</span><span class="p">(</span><span class="s1">&#39;460&#39;</span><span class="p">),</span> <span class="n">Decimal</span><span class="p">(</span><span class="s1">&#39;459.5&#39;</span><span class="p">),</span> <span class="n">Decimal</span><span class="p">(</span><span class="s1">&#39;459&#39;</span><span class="p">)],</span> <span class="n">bid_volume</span><span class="o">=</span><span class="p">[</span><span class="mi">220</span><span class="p">,</span> <span class="mi">140</span><span class="p">,</span> <span class="mi">994</span><span class="p">,</span> <span class="mi">63</span><span class="p">,</span> <span class="mi">132</span><span class="p">],</span> <span class="n">diff_bid_vol</span><span class="o">=</span><span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">],</span> <span class="n">ask_price</span><span class="o">=</span><span class="p">[</span><span class="n">Decimal</span><span class="p">(</span><span class="s1">&#39;461.5&#39;</span><span class="p">),</span> <span class="n">Decimal</span><span class="p">(</span><span class="s1">&#39;462&#39;</span><span class="p">),</span> <span class="n">Decimal</span><span class="p">(</span><span class="s1">&#39;462.5&#39;</span><span class="p">),</span> <span class="n">Decimal</span><span class="p">(</span><span class="s1">&#39;463&#39;</span><span class="p">),</span> <span class="n">Decimal</span><span class="p">(</span><span class="s1">&#39;463.5&#39;</span><span class="p">)],</span> <span class="n">ask_volume</span><span class="o">=</span><span class="p">[</span><span class="mi">115</span><span class="p">,</span> <span class="mi">101</span><span class="p">,</span> <span class="mi">103</span><span class="p">,</span> <span class="mi">147</span><span class="p">,</span> <span class="mi">91</span><span class="p">],</span> <span class="n">diff_ask_vol</span><span class="o">=</span><span class="p">[</span><span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">],</span> <span class="n">avail_borrowing</span><span class="o">=</span><span class="mi">9579699</span><span class="p">,</span> <span class="n">suspend</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span> <span class="n">simtrade</span><span class="o">=</span><span class="mi">0</span><span class="p">)</span>
+</code></pre></div>
+
+</div>
 <ul>
 <li>Intraday odd share the callback function with common stock.</li>
 <li>Advanced quote callback settings please refer to <a href="../quote_binding/">Quote-Binding Mode</a>.</li>
@@ -1488,51 +1611,185 @@ version: version of quote format.
 <div class="admonition example">
 <p class="admonition-title">Stock</p>
 <div class="tabbed-set" data-tabs="11:2"><input checked="checked" id="__tabbed_11_1" name="__tabbed_11" type="radio" /><label for="__tabbed_11_1">QuoteVersion.v1</label><div class="tabbed-content">
-<div class="highlight"><pre><span></span><code>code (str): code
-datetime (datetime.datetime): datetime
-open (Decimal): open
-avg_price (Decimal): average price
-close (Decimal): deal price
-high (Decimal): high since market open
-low (Decimal): low since market open
-amount (Decimal): amount (NTD)
-total_amount (Decimal): total amount (NTD)
-volume (int): volume (K shares)
-    if intraday_odd: (share)
-total_volume (int): total volume (K shares)
-    if intraday_odd: (share)
-tick_type (int): tick type (內外盤別)
-    {1: buy deal, 2: sell deal, 0: can&#39;t judge}
-chg_type (int): (漲跌註記)
-    {1: limit up, 2: up, 3: unchanged, 4: down, 5: limit down}
-price_chg (Decimal): price change
-pct_chg (Decimal): percentage change (%)
-bid_side_total_vol(int): total buy deal volume (K shares, 買盤成交總量)
-    if intraday_odd: (share)
-ask_side_total_vol (int): total sell deal volume (K shares, 賣盤成交總量)
-    if intraday_odd: (share)
-bid_side_total_cnt (int): total number of buy deal (買盤成交筆數)
-ask_side_total_cnt (int): total number of sell deal (賣盤成交筆數)
-closing_oddlot_shares (int): (share, 盤後零股成交股數)
-fixed_trade_vol (int): fixed trade volume (K shares, 定盤成交量)
-    if intraday_odd: 0
-suspend (bool): suspend (暫停交易)
-simtrade (bool): simulated trade (試撮)
-intraday_odd (bool): intraday odd (盤中零股)
-</code></pre></div>
-
+<table>
+<thead>
+<tr>
+<th align="left">Name</th>
+<th align="left">Type</th>
+<th align="left">Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td align="left"><code>code</code></td>
+<td align="left">str</td>
+<td align="left">code</td>
+</tr>
+<tr>
+<td align="left"><code>datetime</code></td>
+<td align="left">datetime</td>
+<td align="left">datetime</td>
+</tr>
+<tr>
+<td align="left"><code>open</code></td>
+<td align="left">Decimal</td>
+<td align="left">open</td>
+</tr>
+<tr>
+<td align="left"><code>avg_price</code></td>
+<td align="left">Decimal</td>
+<td align="left">average price</td>
+</tr>
+<tr>
+<td align="left"><code>close</code></td>
+<td align="left">Decimal</td>
+<td align="left">deal price</td>
+</tr>
+<tr>
+<td align="left"><code>high</code></td>
+<td align="left">Decimal</td>
+<td align="left">high since market open</td>
+</tr>
+<tr>
+<td align="left"><code>low</code></td>
+<td align="left">Decimal</td>
+<td align="left">low since market open</td>
+</tr>
+<tr>
+<td align="left"><code>amount</code></td>
+<td align="left">Decimal</td>
+<td align="left">amount (NTD)</td>
+</tr>
+<tr>
+<td align="left"><code>total_amount</code></td>
+<td align="left">Decimal</td>
+<td align="left">total amount (NTD)</td>
+</tr>
+<tr>
+<td align="left"><code>volume</code></td>
+<td align="left">int</td>
+<td align="left">(K shares if intraday_odd: (share)</td>
+</tr>
+<tr>
+<td align="left"><code>total_volume</code></td>
+<td align="left">int</td>
+<td align="left">total volume (K shares) if intraday_odd: (share)</td>
+</tr>
+<tr>
+<td align="left"><code>tick_type</code></td>
+<td align="left">int</td>
+<td 0:="0:" 1:="1:" 2:="2:" align="left" buy="buy" can_t="can't" deal_="deal," judge="judge" sell="sell">tick type (內外盤別)</td>
+</tr>
+<tr>
+<td align="left"><code>chg_type</code></td>
+<td align="left">int</td>
+<td 1:="1:" 2:="2:" 3:="3:" 4:="4:" 5:="5:" align="left" down="down" down_="down," limit="limit" unchanged_="unchanged," up_="up,">(漲跌註記)</td>
+</tr>
+<tr>
+<td align="left"><code>price_chg</code></td>
+<td align="left">Decimal</td>
+<td align="left">price change</td>
+</tr>
+<tr>
+<td align="left"><code>pct_chg</code></td>
+<td align="left">Decimal</td>
+<td align="left">percentage change (%)</td>
+</tr>
+<tr>
+<td align="left"><code>bid_side_total_vol</code></td>
+<td align="left">int</td>
+<td align="left">total buy deal volume (K shares, 買盤成交總量) if intraday_odd: (share)</td>
+</tr>
+<tr>
+<td align="left"><code>ask_side_total_vol</code></td>
+<td align="left">int</td>
+<td align="left">total sell deal volume (K shares, 賣盤成交總量) if intraday_odd: (share)</td>
+</tr>
+<tr>
+<td align="left"><code>bid_side_total_cnt</code></td>
+<td align="left">int</td>
+<td align="left">total number of buy deal (買盤成交筆數)</td>
+</tr>
+<tr>
+<td align="left"><code>ask_side_total_cnt</code></td>
+<td align="left">int</td>
+<td align="left">total number of sell deal (賣盤成交筆數)</td>
+</tr>
+<tr>
+<td align="left"><code>closing_oddlot_shares</code></td>
+<td align="left">int</td>
+<td align="left">(share, 盤後零股成交股數)</td>
+</tr>
+<tr>
+<td align="left"><code>fixed_trade_vol</code></td>
+<td align="left">int</td>
+<td align="left">fixed trade volume (K shares, 定盤成交量) if intraday_odd: 0</td>
+</tr>
+<tr>
+<td align="left"><code>suspend</code></td>
+<td align="left">bool</td>
+<td align="left">suspend (暫停交易)</td>
+</tr>
+<tr>
+<td align="left"><code>simtrade</code></td>
+<td align="left">bool</td>
+<td align="left">simulated trade (試撮)</td>
+</tr>
+<tr>
+<td align="left"><code>intraday_odd</code></td>
+<td align="left">bool</td>
+<td align="left">intraday odd (盤中零股)</td>
+</tr>
+</tbody>
+</table>
 </div>
 <input id="__tabbed_11_2" name="__tabbed_11" type="radio" /><label for="__tabbed_11_2">QuoteVersion.v0</label><div class="tabbed-content">
-<div class="highlight"><pre><span></span><code>AmountSum (list of float): amount of sum
-Close (list of float): deal price
-Date (str): date (yyyy/MM/dd)
-TickType (list of int): 
-    {1: buy deal, 2: sell deal, 0: can&#39;t judge}
-Time (str): time (HH:mm:ss.ffffff)
-VolSum (list of int): total volume (K shares)
-Volume (list of int): volume (K shares)
-</code></pre></div>
-
+<table>
+<thead>
+<tr>
+<th align="left">Name</th>
+<th align="left">Type</th>
+<th align="left">Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td align="left"><code>AmountSum</code></td>
+<td align="left">list of float</td>
+<td align="left">amount of sum</td>
+</tr>
+<tr>
+<td align="left"><code>Close</code></td>
+<td align="left">list of float</td>
+<td align="left">deal price</td>
+</tr>
+<tr>
+<td align="left"><code>Date</code></td>
+<td align="left">str</td>
+<td align="left">date (yyyy/MM/dd)</td>
+</tr>
+<tr>
+<td align="left"><code>TickType</code></td>
+<td align="left">list of int</td>
+<td align="left">1: buy deal, 2: sell deal, 0: can't judge</td>
+</tr>
+<tr>
+<td align="left"><code>Time</code></td>
+<td align="left">str</td>
+<td align="left">time (HH:mm:ss.ffffff)</td>
+</tr>
+<tr>
+<td align="left"><code>VolSum</code></td>
+<td align="left">list of int</td>
+<td align="left">total volume (K shares)</td>
+</tr>
+<tr>
+<td align="left"><code>Volume</code></td>
+<td align="left">list of int</td>
+<td align="left">volume (K shares)</td>
+</tr>
+</tbody>
+</table>
 </div>
 </div>
 </div>
@@ -1540,30 +1797,302 @@ Volume (list of int): volume (K shares)
 <div class="admonition example">
 <p class="admonition-title">Stock</p>
 <div class="tabbed-set" data-tabs="12:2"><input checked="checked" id="__tabbed_12_1" name="__tabbed_12" type="radio" /><label for="__tabbed_12_1">QuoteVersion.v1</label><div class="tabbed-content">
-<div class="highlight"><pre><span></span><code>code (str): code
-datetime (datetime.datetime): datetime
-bid_price (list of Decimal): bid price
-bid_volume (list of int): bid volume (K shares)
-diff_bid_vol (list of int): (K shares, 買價增減量)
-ask_price (list of Decimal): ask price
-ask_volume (list of int): ask volume
-diff_ask_vol (list of int): (K shares, 賣價增減量)
-suspend (bool): suspend (暫停交易)
-simtrade (bool): simulated trade (試撮)
-</code></pre></div>
-
+<table>
+<thead>
+<tr>
+<th align="left">Name</th>
+<th align="left">Type</th>
+<th align="left">Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td align="left"><code>code</code></td>
+<td align="left">str</td>
+<td align="left">code</td>
+</tr>
+<tr>
+<td align="left"><code>datetime</code></td>
+<td align="left">datetime</td>
+<td align="left">datetime</td>
+</tr>
+<tr>
+<td align="left"><code>bid_price</code></td>
+<td align="left">list of Decimal</td>
+<td align="left">bid price</td>
+</tr>
+<tr>
+<td align="left"><code>bid_volume</code></td>
+<td align="left">list of int</td>
+<td align="left">bid volume (K shares)</td>
+</tr>
+<tr>
+<td align="left"><code>diff_bid_vol</code></td>
+<td align="left">list of int</td>
+<td align="left">(K shares, 買價增減量)</td>
+</tr>
+<tr>
+<td align="left"><code>ask_price</code></td>
+<td align="left">list of Decimal</td>
+<td align="left">ask price</td>
+</tr>
+<tr>
+<td align="left"><code>ask_volume</code></td>
+<td align="left">list of int</td>
+<td align="left">ask volume</td>
+</tr>
+<tr>
+<td align="left"><code>diff_ask_vol</code></td>
+<td align="left">list of int</td>
+<td align="left">(K shares, 賣價增減量)</td>
+</tr>
+<tr>
+<td align="left"><code>suspend</code></td>
+<td align="left">bool</td>
+<td align="left">暫停交易</td>
+</tr>
+<tr>
+<td align="left"><code>simtrade</code></td>
+<td align="left">bool</td>
+<td align="left">試撮</td>
+</tr>
+</tbody>
+</table>
 </div>
 <input id="__tabbed_12_2" name="__tabbed_12" type="radio" /><label for="__tabbed_12_2">QuoteVersion.v0</label><div class="tabbed-content">
-<div class="highlight"><pre><span></span><code>AskPrice (list of float): ask price
-AskVolume (list of int): ask volume
-BidPrice (list of float): bid price
-BidVolume (list of int): bid volume
-Date (str): date (yyyy/MM/dd)
-Time (str): time (HH:mm:ss.ffffff)
-</code></pre></div>
-
+<table>
+<thead>
+<tr>
+<th align="left">Name</th>
+<th align="left">Type</th>
+<th align="left">Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td align="left"><code>AskPrice</code></td>
+<td align="left">list of float</td>
+<td align="left">ask price</td>
+</tr>
+<tr>
+<td align="left"><code>AskVolume</code></td>
+<td align="left">list of int</td>
+<td align="left">ask volume</td>
+</tr>
+<tr>
+<td align="left"><code>BidPrice</code></td>
+<td align="left">list of float</td>
+<td align="left">bid price</td>
+</tr>
+<tr>
+<td align="left"><code>BidVolume</code></td>
+<td align="left">list of int</td>
+<td align="left">bid volume</td>
+</tr>
+<tr>
+<td align="left"><code>Date</code></td>
+<td align="left">date</td>
+<td align="left">date (yyyy/MM/dd)</td>
+</tr>
+<tr>
+<td align="left"><code>Time</code></td>
+<td align="left">time</td>
+<td align="left">time (HH:mm:ss.ffffff)</td>
+</tr>
+</tbody>
+</table>
 </div>
 </div>
+</div>
+<h3 id="quote_1">Quote<a class="headerlink" href="#quote_1" title="Permanent link">&para;</a></h3>
+<div class="admonition example">
+<p class="admonition-title">Stock</p>
+<table>
+<thead>
+<tr>
+<th align="left">Name</th>
+<th align="left">Type</th>
+<th align="left">Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td align="left"><code>code</code></td>
+<td align="left">str</td>
+<td align="left">商品代碼</td>
+</tr>
+<tr>
+<td align="left"><code>datetime</code></td>
+<td align="left">datetime</td>
+<td align="left">時間</td>
+</tr>
+<tr>
+<td align="left"><code>open</code></td>
+<td align="left">Decimal</td>
+<td align="left">今開</td>
+</tr>
+<tr>
+<td align="left"><code>avg_price</code></td>
+<td align="left">Decimal</td>
+<td align="left">均價</td>
+</tr>
+<tr>
+<td align="left"><code>close</code></td>
+<td align="left">Decimal</td>
+<td align="left">成交價</td>
+</tr>
+<tr>
+<td align="left"><code>high</code></td>
+<td align="left">Decimal</td>
+<td align="left">今高</td>
+</tr>
+<tr>
+<td align="left"><code>low</code></td>
+<td align="left">Decimal</td>
+<td align="left">今低</td>
+</tr>
+<tr>
+<td align="left"><code>amount</code></td>
+<td align="left">Decimal</td>
+<td align="left">成交額 (NTD)</td>
+</tr>
+<tr>
+<td align="left"><code>total_amount</code></td>
+<td align="left">Decimal</td>
+<td align="left">總成交額 (NTD)</td>
+</tr>
+<tr>
+<td align="left"><code>volume</code></td>
+<td align="left">int</td>
+<td align="left">成交量</td>
+</tr>
+<tr>
+<td align="left"><code>total_volume</code></td>
+<td align="left">int</td>
+<td align="left">總成交量</td>
+</tr>
+<tr>
+<td align="left"><code>tick_type</code></td>
+<td align="left">int</td>
+<td align="left">內外盤別</td>
+</tr>
+<tr>
+<td align="left"><code>chg_type</code></td>
+<td align="left">int</td>
+<td align="left">漲跌註記</td>
+</tr>
+<tr>
+<td align="left"><code>price_chg</code></td>
+<td align="left">Decimal</td>
+<td align="left">漲跌價</td>
+</tr>
+<tr>
+<td align="left"><code>pct_chg</code></td>
+<td align="left">Decimal</td>
+<td align="left">漲跌率</td>
+</tr>
+<tr>
+<td align="left"><code>bid_side_total_vol</code></td>
+<td align="left">int</td>
+<td align="left">買盤成交總量(張)</td>
+</tr>
+<tr>
+<td align="left"><code>ask_side_total_vol</code></td>
+<td align="left">int</td>
+<td align="left">賣盤成交總量(張)</td>
+</tr>
+<tr>
+<td align="left"><code>bid_side_total_cnt</code></td>
+<td align="left">int</td>
+<td align="left">買盤成交筆數</td>
+</tr>
+<tr>
+<td align="left"><code>ask_side_total_cnt</code></td>
+<td align="left">int</td>
+<td align="left">賣盤成交筆數</td>
+</tr>
+<tr>
+<td align="left"><code>closing_oddlot_shares</code></td>
+<td align="left">int</td>
+<td align="left">盤後零股成交股數</td>
+</tr>
+<tr>
+<td align="left"><code>closing_oddlot_close</code></td>
+<td align="left">Decimal</td>
+<td align="left">盤後零股成交價</td>
+</tr>
+<tr>
+<td align="left"><code>closing_oddlot_amount</code></td>
+<td align="left">Decimal</td>
+<td align="left">盤後零股成交額 (圓)</td>
+</tr>
+<tr>
+<td align="left"><code>closing_oddlot_bid_price</code></td>
+<td align="left">Decimal</td>
+<td align="left">盤後零股買價</td>
+</tr>
+<tr>
+<td align="left"><code>closing_oddlot_ask_price</code></td>
+<td align="left">Decimal</td>
+<td align="left">盤後零股賣價</td>
+</tr>
+<tr>
+<td align="left"><code>fixed_trade_vol</code></td>
+<td align="left">int</td>
+<td align="left">定盤成交量(張)</td>
+</tr>
+<tr>
+<td align="left"><code>fixed_trade_amount</code></td>
+<td align="left">Decimal</td>
+<td align="left">定盤成交額(圓)</td>
+</tr>
+<tr>
+<td align="left"><code>bid_price</code></td>
+<td align="left">list of Decimal</td>
+<td align="left">買價[5]</td>
+</tr>
+<tr>
+<td align="left"><code>bid_volume</code></td>
+<td align="left">list of int</td>
+<td align="left">買量[5]</td>
+</tr>
+<tr>
+<td align="left"><code>diff_bid_vol</code></td>
+<td align="left">list of int</td>
+<td align="left">買價增減量[5]</td>
+</tr>
+<tr>
+<td align="left"><code>ask_price</code></td>
+<td align="left">list of Decimal</td>
+<td align="left">賣價[5]</td>
+</tr>
+<tr>
+<td align="left"><code>ask_volume</code></td>
+<td align="left">list of int</td>
+<td align="left">賣量[5]</td>
+</tr>
+<tr>
+<td align="left"><code>diff_ask_vol</code></td>
+<td align="left">list of int</td>
+<td align="left">賣價增減量[5]</td>
+</tr>
+<tr>
+<td align="left"><code>avail_borrowing</code></td>
+<td align="left">int</td>
+<td align="left">借券可用餘額</td>
+</tr>
+<tr>
+<td align="left"><code>suspend</code></td>
+<td align="left">bool</td>
+<td align="left">暫停交易</td>
+</tr>
+<tr>
+<td align="left"><code>simtrade</code></td>
+<td align="left">bool</td>
+<td align="left">試撮</td>
+</tr>
+</tbody>
+</table>
 </div>
 <h2 id="conclusion">Conclusion<a class="headerlink" href="#conclusion" title="Permanent link">&para;</a></h2>
 <p>Contract object will be used by a lot of place like place order and subscribe quote etc... So Keep in mind how to get the contract you want to use.</p>
