@@ -1043,13 +1043,19 @@ If you set contract_cb (contract callback) as print, it will print "SecurityType
 </code></pre></div></p>
 </div>
 <div class="admonition note">
-<p class="admonition-title">fetch_contract</p>
-<p>If fetch_contract inside <code>login</code> is set to TRUE, it will download contract again.
+<p class="admonition-title">Not fetch_contract</p>
+<p>If fetch_contract inside <code>login</code> is set to False, it will not download contract.
 <div class="highlight"><pre><span></span><code><span class="n">api</span><span class="o">.</span><span class="n">login</span><span class="p">(</span>
     <span class="n">person_id</span><span class="o">=</span><span class="s1">&#39;YOUR_ID&#39;</span><span class="p">,</span> 
     <span class="n">passwd</span><span class="o">=</span><span class="s1">&#39;YOUR_PASSWORD&#39;</span><span class="p">,</span> 
-    <span class="n">fetch_contract</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span>
+    <span class="n">fetch_contract</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span>
 <span class="p">)</span> 
+</code></pre></div></p>
+</div>
+<div class="admonition note">
+<p class="admonition-title">fetch_contract</p>
+<p>In addition to login can download contract, you can use fetch_contracts.
+<div class="highlight"><pre><span></span><code><span class="n">api</span><span class="o">.</span><span class="n">fetch_contracts</span><span class="p">()</span>
 </code></pre></div></p>
 </div>
 <h2 id="contracts">Contracts<a class="headerlink" href="#contracts" title="Permanent link">&para;</a></h2>
