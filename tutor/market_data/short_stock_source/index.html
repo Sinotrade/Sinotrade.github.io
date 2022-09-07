@@ -935,7 +935,7 @@
                 
                   <h1>Short Stock Source</h1>
                 
-                <h3 id="first-you-need-login"><a href="../../tutor/login">First, you need login.</a><a class="headerlink" href="#first-you-need-login" title="Permanent link">&para;</a></h3>
+                <h3 id="first-you-need-login"><a href="../../../tutor/login">First, you need login.</a><a class="headerlink" href="#first-you-need-login" title="Permanent link">&para;</a></h3>
 <h3 id="get-short-stock-source">Get Short Stock Source<a class="headerlink" href="#get-short-stock-source" title="Permanent link">&para;</a></h3>
 <div class="admonition info">
 <p class="admonition-title">In</p>
@@ -956,7 +956,7 @@
 <p class="admonition-title">In</p>
 <div class="highlight"><pre><span></span><code><span class="n">contracts</span> <span class="o">=</span> <span class="p">[</span><span class="n">api</span><span class="o">.</span><span class="n">Contracts</span><span class="o">.</span><span class="n">Stocks</span><span class="p">[</span><span class="s1">&#39;2330&#39;</span><span class="p">],</span><span class="n">api</span><span class="o">.</span><span class="n">Contracts</span><span class="o">.</span><span class="n">Stocks</span><span class="p">[</span><span class="s1">&#39;2317&#39;</span><span class="p">]]</span>
 <span class="n">short_stock_sources</span> <span class="o">=</span> <span class="n">api</span><span class="o">.</span><span class="n">short_stock_sources</span><span class="p">(</span><span class="n">contracts</span><span class="p">)</span>
-<span class="n">df</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">(</span><span class="n">short_stock_sources</span><span class="p">)</span>
+<span class="n">df</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">(</span><span class="n">s</span><span class="o">.</span><span class="vm">__dict__</span> <span class="k">for</span> <span class="n">s</span> <span class="ow">in</span> <span class="n">short_stock_sources</span><span class="p">)</span>
 <span class="n">df</span><span class="o">.</span><span class="n">ts</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">to_datetime</span><span class="p">(</span><span class="n">df</span><span class="o">.</span><span class="n">ts</span><span class="p">)</span>
 <span class="n">df</span>
 </code></pre></div>
