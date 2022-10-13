@@ -648,6 +648,13 @@
   
 </li>
         
+          <li class="md-nav__item">
+  <a href="#future-to-dataframe" class="md-nav__link">
+    Future to dataframe
+  </a>
+  
+</li>
+        
       </ul>
     </nav>
   
@@ -678,6 +685,18 @@
 
 
   <li class="md-nav__item">
+    <a href="../profit_loss_sum/" title="Profit Loss Sum" class="md-nav__link">
+      Profit Loss Sum
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
     <a href="../profit_loss_detail/" title="Profit Loss Detail" class="md-nav__link">
       Profit Loss Detail
     </a>
@@ -692,6 +711,30 @@
   <li class="md-nav__item">
     <a href="../settlement/" title="Settlement" class="md-nav__link">
       Settlement
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../settlements/" title="Settlements" class="md-nav__link">
+      Settlements
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../margin/" title="Margin" class="md-nav__link">
+      Margin
     </a>
   </li>
 
@@ -938,6 +981,13 @@
   
 </li>
         
+          <li class="md-nav__item">
+  <a href="#future-to-dataframe" class="md-nav__link">
+    Future to dataframe
+  </a>
+  
+</li>
+        
       </ul>
     </nav>
   
@@ -962,7 +1012,7 @@
                   <h1>Position</h1>
                 
                 <p>Query account of unrealized gain or loss</p>
-<h3 id="first-you-need-login"><a href="../../tutor/login">First, you need login.</a><a class="headerlink" href="#first-you-need-login" title="Permanent link">&para;</a></h3>
+<h3 id="first-you-need-login"><a href="../tutor/login">First, you need login.</a><a class="headerlink" href="#first-you-need-login" title="Permanent link">&para;</a></h3>
 <div class="admonition info">
 <p class="admonition-title">In</p>
 <div class="highlight"><pre><span></span><code><span class="n">api</span><span class="o">.</span><span class="n">list_positions</span><span class="err">?</span>
@@ -975,8 +1025,8 @@
     <span class="n">api</span><span class="o">.</span><span class="n">list_positions</span><span class="p">(</span>
     <span class="n">account</span><span class="p">:</span> <span class="n">shioaji</span><span class="o">.</span><span class="n">account</span><span class="o">.</span><span class="n">Account</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
     <span class="n">timeout</span><span class="p">:</span> <span class="nb">int</span> <span class="o">=</span> <span class="mi">5000</span><span class="p">,</span>
-    <span class="n">cb</span><span class="p">:</span> <span class="n">Callable</span><span class="p">[[</span><span class="n">List</span><span class="p">[</span><span class="n">shioaji</span><span class="o">.</span><span class="n">position</span><span class="o">.</span><span class="n">Position</span><span class="p">]],</span> <span class="n">NoneType</span><span class="p">]</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
-    <span class="p">)</span> <span class="o">-&gt;</span> <span class="n">List</span><span class="p">[</span><span class="n">shioaji</span><span class="o">.</span><span class="n">position</span><span class="o">.</span><span class="n">StockPosition</span><span class="p">]</span>
+    <span class="n">cb</span><span class="p">:</span> <span class="n">Callable</span><span class="p">[[</span><span class="n">List</span><span class="p">[</span><span class="n">Union</span><span class="p">[</span><span class="n">shioaji</span><span class="o">.</span><span class="n">position</span><span class="o">.</span><span class="n">StockPosition</span><span class="p">,</span> <span class="n">shioaji</span><span class="o">.</span><span class="n">position</span><span class="o">.</span><span class="n">FuturePosition</span><span class="p">]]],</span> <span class="n">NoneType</span><span class="p">]</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
+    <span class="p">)</span> <span class="o">-&gt;</span> <span class="n">List</span><span class="p">[</span><span class="n">Union</span><span class="p">[</span><span class="n">shioaji</span><span class="o">.</span><span class="n">position</span><span class="o">.</span><span class="n">StockPosition</span><span class="p">,</span> <span class="n">shioaji</span><span class="o">.</span><span class="n">position</span><span class="o">.</span><span class="n">FuturePosition</span><span class="p">]]</span>
 <span class="n">Docstring</span><span class="p">:</span>
     <span class="n">query</span> <span class="n">account</span> <span class="n">of</span> <span class="n">unrealized</span> <span class="n">gain</span> <span class="ow">or</span> <span class="n">loss</span>
     <span class="n">Args</span><span class="p">:</span>
@@ -994,7 +1044,7 @@
 </div>
 <div class="admonition done">
 <p class="admonition-title">Out</p>
-<div class="highlight"><pre><span></span><code><span class="p">[</span><span class="n">StockPosition</span><span class="p">(</span><span class="n">code</span><span class="o">=</span><span class="s1">&#39;2890&#39;</span><span class="p">,</span> <span class="n">direction</span><span class="o">=&lt;</span><span class="n">Action</span><span class="o">.</span><span class="n">Buy</span><span class="p">:</span> <span class="s1">&#39;Buy&#39;</span><span class="o">&gt;</span><span class="p">,</span> <span class="n">quantity</span><span class="o">=</span><span class="mi">10</span><span class="p">,</span> <span class="n">price</span><span class="o">=</span><span class="mf">10.1</span><span class="p">,</span> <span class="n">pnl</span><span class="o">=</span><span class="mf">1234.0</span><span class="p">,</span> <span class="n">yd_quantity</span><span class="o">=</span><span class="mi">10</span><span class="p">,</span><span class="n">margin_purchase_amount</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span> <span class="n">collateral</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span> <span class="n">short_sale_margin</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span> <span class="n">interest</span><span class="o">=</span><span class="mi">0</span><span class="p">)]</span>
+<div class="highlight"><pre><span></span><code><span class="n">stock_positions</span> <span class="o">=</span> <span class="p">[</span><span class="n">StockPosition</span><span class="p">(</span><span class="n">code</span><span class="o">=</span><span class="s1">&#39;2890&#39;</span><span class="p">,</span> <span class="n">direction</span><span class="o">=&lt;</span><span class="n">Action</span><span class="o">.</span><span class="n">Buy</span><span class="p">:</span> <span class="s1">&#39;Buy&#39;</span><span class="o">&gt;</span><span class="p">,</span> <span class="n">quantity</span><span class="o">=</span><span class="mi">10</span><span class="p">,</span> <span class="n">price</span><span class="o">=</span><span class="mf">10.1</span><span class="p">,</span> <span class="n">pnl</span><span class="o">=</span><span class="mf">1234.0</span><span class="p">,</span> <span class="n">yd_quantity</span><span class="o">=</span><span class="mi">10</span><span class="p">,</span><span class="n">margin_purchase_amount</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span> <span class="n">collateral</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span> <span class="n">short_sale_margin</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span> <span class="n">interest</span><span class="o">=</span><span class="mi">0</span><span class="p">)]</span>
 </code></pre></div>
 
 </div>
@@ -1007,15 +1057,23 @@
 </div>
 <div class="admonition done">
 <p class="admonition-title">Out</p>
-<div class="highlight"><pre><span></span><code><span class="p">[</span><span class="n">StockPosition</span><span class="p">(</span><span class="n">code</span><span class="o">=</span><span class="s1">&#39;2890&#39;</span><span class="p">,</span> <span class="n">direction</span><span class="o">=&lt;</span><span class="n">Action</span><span class="o">.</span><span class="n">Buy</span><span class="p">:</span> <span class="s1">&#39;Buy&#39;</span><span class="o">&gt;</span><span class="p">,</span> <span class="n">quantity</span><span class="o">=</span><span class="mi">10000</span><span class="p">,</span> <span class="n">price</span><span class="o">=</span><span class="mf">10.1</span><span class="p">,</span> <span class="n">pnl</span><span class="o">=</span><span class="mf">1234.0</span><span class="p">,</span> <span class="n">yd_quantity</span><span class="o">=</span><span class="mi">10000</span><span class="p">,</span> <span class="n">margin_purchase_amount</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span> <span class="n">collateral</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span> <span class="n">short_sale_margin</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span> <span class="n">interest</span><span class="o">=</span><span class="mi">0</span><span class="p">)]</span>
+</div>
+<div class="admonition info">
+<p class="admonition-title">In</p>
+<div class="highlight"><pre><span></span><code><span class="n">api</span><span class="o">.</span><span class="n">list_positions</span><span class="p">(</span><span class="n">api</span><span class="o">.</span><span class="n">future_account</span><span class="p">)</span>
+</code></pre></div>
+
+</div>
+<div class="admonition done">
+<p class="admonition-title">Out</p>
+<div class="highlight"><pre><span></span><code><span class="p">[</span><span class="n">StockPosition</span><span class="p">(</span><span class="n">code</span><span class="o">=</span><span class="s1">&#39;TX201370J2&#39;</span><span class="p">,</span> <span class="n">direction</span><span class="o">=&lt;</span><span class="n">Action</span><span class="o">.</span><span class="n">Buy</span><span class="p">:</span> <span class="s1">&#39;Buy&#39;</span><span class="o">&gt;</span><span class="p">,</span> <span class="n">quantity</span><span class="o">=</span><span class="mi">3</span><span class="p">,</span> <span class="n">price</span><span class="o">=</span><span class="mf">131.0000</span><span class="p">,</span> <span class="n">last_price</span><span class="o">=</span><span class="mf">126.0</span><span class="p">,</span> <span class="n">pnl</span><span class="o">=-</span><span class="mf">750.00</span><span class="p">)]</span>
 </code></pre></div>
 
 </div>
 <h4 id="stock-to-dataframe">Stock to dataframe<a class="headerlink" href="#stock-to-dataframe" title="Permanent link">&para;</a></h4>
 <div class="admonition info">
 <p class="admonition-title">In</p>
-<div class="highlight"><pre><span></span><code><span class="n">positions</span> <span class="o">=</span> <span class="n">api</span><span class="o">.</span><span class="n">list_positions</span><span class="p">(</span><span class="n">api</span><span class="o">.</span><span class="n">stock_account</span><span class="p">)</span>
-<span class="n">df</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">(</span><span class="n">positions</span><span class="p">)</span>
+<div class="highlight"><pre><span></span><code><span class="n">df</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">(</span><span class="n">s</span><span class="o">.</span><span class="vm">__dict__</span> <span class="k">for</span> <span class="n">s</span> <span class="ow">in</span> <span class="n">stock_positions</span><span class="p">)</span>
 <span class="n">df</span>
 </code></pre></div>
 
@@ -1025,11 +1083,13 @@
 <table>
 <thead>
 <tr>
+<th>id</th>
 <th>code</th>
 <th>cond</th>
 <th>direction</th>
 <th>pnl</th>
 <th>price</th>
+<th>last_price</th>
 <th>quantity</th>
 <th>yd_quantity</th>
 <th>margin_purchase_amount</th>
@@ -1040,11 +1100,13 @@
 </thead>
 <tbody>
 <tr>
+<td>0</td>
 <td>2890</td>
 <td>StockOrderCond.Cash</td>
 <td>Action.Buy</td>
 <td>-1234.0</td>
 <td>10.1</td>
+<td>12.0</td>
 <td>10</td>
 <td>10</td>
 <td>0</td>
@@ -1062,6 +1124,7 @@
     <span class="p">{</span><span class="n">Buy</span><span class="p">,</span> <span class="n">Sell</span><span class="p">}</span>
 <span class="n">quantity</span> <span class="p">(</span><span class="nb">int</span><span class="p">):</span> <span class="n">quantity</span><span class="o">.</span>
 <span class="n">price</span> <span class="p">(</span><span class="nb">float</span><span class="p">):</span> <span class="n">the</span> <span class="n">average</span> <span class="n">price</span><span class="o">.</span>
+<span class="n">last_price</span> <span class="p">(</span><span class="nb">float</span><span class="p">):</span> <span class="n">last</span> <span class="n">price</span><span class="o">.</span>
 <span class="n">pnl</span> <span class="p">(</span><span class="nb">float</span><span class="p">):</span> <span class="n">unrealized</span> <span class="n">profit</span><span class="o">.</span>
 <span class="n">yd_quantity</span> <span class="p">(</span><span class="nb">int</span><span class="p">):</span> <span class="n">yesterday</span>
 <span class="n">cond</span> <span class="p">(</span><span class="n">StockOrderCond</span><span class="p">):</span> <span class="n">Default</span> <span class="n">Cash</span><span class="o">.</span>
@@ -1070,6 +1133,54 @@
 <span class="n">collateral</span> <span class="p">(</span><span class="nb">int</span><span class="p">):</span> <span class="n">collateral</span><span class="o">.</span>
 <span class="n">short_sale_margin</span> <span class="p">(</span><span class="nb">int</span><span class="p">):</span> <span class="n">short_sale_margin</span><span class="o">.</span>
 <span class="n">interest</span> <span class="p">(</span><span class="nb">int</span><span class="p">):</span> <span class="n">interest</span><span class="o">.</span>
+</code></pre></div>
+
+</div>
+<h4 id="future-to-dataframe">Future to dataframe<a class="headerlink" href="#future-to-dataframe" title="Permanent link">&para;</a></h4>
+<div class="admonition info">
+<p class="admonition-title">In</p>
+<div class="highlight"><pre><span></span><code><span class="n">positions</span> <span class="o">=</span> <span class="n">api</span><span class="o">.</span><span class="n">list_positions</span><span class="p">(</span><span class="n">api</span><span class="o">.</span><span class="n">future_account</span><span class="p">)</span>
+<span class="n">df</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">(</span><span class="n">p</span><span class="o">.</span><span class="vm">__dict__</span> <span class="k">for</span> <span class="n">p</span> <span class="ow">in</span> <span class="n">positions</span><span class="p">)</span>
+<span class="n">df</span>
+</code></pre></div>
+
+</div>
+<div class="admonition done">
+<p class="admonition-title">Out</p>
+<table>
+<thead>
+<tr>
+<th>id</th>
+<th>code</th>
+<th>direction</th>
+<th>quantity</th>
+<th>price</th>
+<th>last_price</th>
+<th>pnl</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>0</td>
+<td>TX201370J2</td>
+<td>Action.Buy</td>
+<td>3</td>
+<td>131.0000</td>
+<td>126.0</td>
+<td>-750.00</td>
+</tr>
+</tbody>
+</table>
+</div>
+<div class="admonition example">
+<p class="admonition-title">Attributes:</p>
+<div class="highlight"><pre><span></span><code><span class="n">code</span> <span class="p">(</span><span class="nb">str</span><span class="p">):</span> <span class="n">contract</span> <span class="nb">id</span><span class="o">.</span>
+<span class="n">direction</span> <span class="p">(</span><span class="n">Action</span><span class="p">):</span> <span class="n">action</span><span class="o">.</span>
+    <span class="p">{</span><span class="n">Buy</span><span class="p">,</span> <span class="n">Sell</span><span class="p">}</span>
+<span class="n">quantity</span> <span class="p">(</span><span class="nb">int</span><span class="p">):</span> <span class="n">quantity</span><span class="o">.</span>
+<span class="n">price</span> <span class="p">(</span><span class="nb">float</span><span class="p">):</span> <span class="n">the</span> <span class="n">average</span> <span class="n">price</span><span class="o">.</span>
+<span class="n">last_price</span> <span class="p">(</span><span class="nb">float</span><span class="p">):</span> <span class="n">last</span> <span class="n">price</span><span class="o">.</span>
+<span class="n">pnl</span> <span class="p">(</span><span class="nb">float</span><span class="p">):</span> <span class="n">unrealized</span> <span class="n">profit</span><span class="o">.</span>
 </code></pre></div>
 
 </div>

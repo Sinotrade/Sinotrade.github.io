@@ -11,7 +11,7 @@
         <meta name="description" content="Shioaji is provided by SinoPac the most pythonic API for trading the Taiwan and global financial market. You can use your favorite Python packages such as NumPy, pandas, PyTorch or TensorFlow to build your trading model with integrated the Shioaji API on cross-platform.">
       
       
-        <link rel="canonical" href="https://sinotrade.github.io/tutor/accounting/profit_loss/">
+        <link rel="canonical" href="https://sinotrade.github.io/tutor/accounting/settlements/">
       
       
         <meta name="author" content="Yvictor, ">
@@ -21,7 +21,7 @@
     
     
       
-        <title>Profit Loss - Shioaji</title>
+        <title>Settlements - Shioaji</title>
       
     
     
@@ -94,7 +94,7 @@
           </span>
           <span class="md-header-nav__topic md-ellipsis">
             
-              Profit Loss
+              Settlements
             
           </span>
         </div>
@@ -599,49 +599,11 @@
           
           
 
-  
 
-
-  <li class="md-nav__item md-nav__item--active">
-    
-    <input class="md-nav__toggle md-toggle" data-md-toggle="toc" type="checkbox" id="__toc">
-    
-    
-      <label class="md-nav__link md-nav__link--active" for="__toc">
-        Profit Loss
-        <span class="md-nav__icon md-icon">
-          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 9h14V7H3v2m0 4h14v-2H3v2m0 4h14v-2H3v2m16 0h2v-2h-2v2m0-10v2h2V7h-2m0 6h2v-2h-2v2z"/></svg>
-        </span>
-      </label>
-    
-    <a href="./" title="Profit Loss" class="md-nav__link md-nav__link--active">
+  <li class="md-nav__item">
+    <a href="../profit_loss/" title="Profit Loss" class="md-nav__link">
       Profit Loss
     </a>
-    
-      
-<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
-  
-  
-  
-    <label class="md-nav__title" for="__toc">
-      <span class="md-nav__icon md-icon">
-        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11h12z"/></svg>
-      </span>
-      Table of contents
-    </label>
-    <ul class="md-nav__list" data-md-scrollfix>
-      
-        <li class="md-nav__item">
-  <a href="#first-you-need-login" class="md-nav__link">
-    First, you need login.
-  </a>
-  
-</li>
-      
-    </ul>
-  
-</nav>
-    
   </li>
 
         
@@ -685,11 +647,49 @@
           
           
 
+  
 
-  <li class="md-nav__item">
-    <a href="../settlements/" title="Settlements" class="md-nav__link">
+
+  <li class="md-nav__item md-nav__item--active">
+    
+    <input class="md-nav__toggle md-toggle" data-md-toggle="toc" type="checkbox" id="__toc">
+    
+    
+      <label class="md-nav__link md-nav__link--active" for="__toc">
+        Settlements
+        <span class="md-nav__icon md-icon">
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 9h14V7H3v2m0 4h14v-2H3v2m0 4h14v-2H3v2m16 0h2v-2h-2v2m0-10v2h2V7h-2m0 6h2v-2h-2v2z"/></svg>
+        </span>
+      </label>
+    
+    <a href="./" title="Settlements" class="md-nav__link md-nav__link--active">
       Settlements
     </a>
+    
+      
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11h12z"/></svg>
+      </span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#first-you-need-login" class="md-nav__link">
+    First, you need login.
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+    
   </li>
 
         
@@ -941,102 +941,58 @@
                   
                 
                 
-                  <h1>Profit Loss</h1>
+                  <h1>Settlements</h1>
                 
-                <p>Query account of profit loss</p>
+                <p>Query stock account of settlements </p>
 <h3 id="first-you-need-login"><a href="../../tutor/login">First, you need login.</a><a class="headerlink" href="#first-you-need-login" title="Permanent link">&para;</a></h3>
 <div class="admonition info">
 <p class="admonition-title">In</p>
-<div class="highlight"><pre><span></span><code><span class="n">api</span><span class="o">.</span><span class="n">list_profit_loss</span><span class="err">?</span>
+<div class="highlight"><pre><span></span><code><span class="n">api</span><span class="o">.</span><span class="n">settlements</span><span class="err">?</span>
 </code></pre></div>
 
 </div>
 <div class="admonition done">
 <p class="admonition-title">Out</p>
 <div class="highlight"><pre><span></span><code><span class="n">Signature</span><span class="p">:</span>
-    <span class="n">api</span><span class="o">.</span><span class="n">list_profit_loss</span><span class="p">(</span>
-        <span class="n">account</span><span class="p">:</span> <span class="n">shioaji</span><span class="o">.</span><span class="n">account</span><span class="o">.</span><span class="n">Account</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
-        <span class="n">begin_date</span><span class="p">:</span> <span class="nb">str</span> <span class="o">=</span> <span class="s1">&#39;&#39;</span><span class="p">,</span>
-        <span class="n">end_date</span><span class="p">:</span> <span class="nb">str</span> <span class="o">=</span> <span class="s1">&#39;&#39;</span><span class="p">,</span>
-        <span class="n">timeout</span><span class="p">:</span> <span class="nb">int</span> <span class="o">=</span> <span class="mi">5000</span><span class="p">,</span>
-        <span class="n">cb</span><span class="p">:</span> <span class="n">Callable</span><span class="p">[[</span><span class="n">List</span><span class="p">[</span><span class="n">shioaji</span><span class="o">.</span><span class="n">position</span><span class="o">.</span><span class="n">ProfitLoss</span><span class="p">]],</span> <span class="n">NoneType</span><span class="p">]</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
-    <span class="p">)</span> <span class="o">-&gt;</span> <span class="n">List</span><span class="p">[</span><span class="n">shioaji</span><span class="o">.</span><span class="n">position</span><span class="o">.</span><span class="n">ProfitLoss</span><span class="p">]</span>
-<span class="n">Docstring</span><span class="p">:</span>
-    <span class="n">query</span> <span class="n">account</span> <span class="n">of</span> <span class="n">profit</span> <span class="n">loss</span>
-
-    <span class="n">Args</span><span class="p">:</span>
-        <span class="n">account</span> <span class="p">(:</span><span class="n">obj</span><span class="p">:</span><span class="n">Account</span><span class="p">):</span> 
-            <span class="n">choice</span> <span class="n">the</span> <span class="n">account</span> <span class="kn">from</span> <span class="nn">listing</span> <span class="n">account</span> <span class="p">(</span><span class="n">Default</span><span class="p">:</span> <span class="n">stock</span> <span class="n">account</span><span class="p">)</span>
-        <span class="n">begin_date</span> <span class="p">(</span><span class="nb">str</span><span class="p">):</span> <span class="n">the</span> <span class="n">start</span> <span class="n">date</span> <span class="n">of</span> <span class="n">query</span> <span class="n">profit</span> <span class="n">loss</span> <span class="p">(</span><span class="n">Default</span><span class="p">:</span> <span class="n">today</span><span class="p">)</span>
-        <span class="n">end_date</span> <span class="p">(</span><span class="nb">str</span><span class="p">):</span> <span class="n">the</span> <span class="n">end</span> <span class="n">date</span> <span class="n">of</span> <span class="n">query</span> <span class="n">profit</span> <span class="n">loss</span> <span class="p">(</span><span class="n">Default</span><span class="p">:</span> <span class="n">today</span><span class="p">)</span>
+<span class="n">api</span><span class="o">.</span><span class="n">settlements</span><span class="p">(</span>
+    <span class="n">account</span><span class="p">:</span> <span class="n">shioaji</span><span class="o">.</span><span class="n">account</span><span class="o">.</span><span class="n">Account</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
+    <span class="n">timeout</span><span class="p">:</span> <span class="nb">int</span> <span class="o">=</span> <span class="mi">5000</span><span class="p">,</span>
+    <span class="n">cb</span><span class="p">:</span> <span class="n">Callable</span><span class="p">[[</span><span class="n">List</span><span class="p">[</span><span class="n">shioaji</span><span class="o">.</span><span class="n">position</span><span class="o">.</span><span class="n">Settlement</span><span class="p">]],</span> <span class="n">NoneType</span><span class="p">]</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
+<span class="p">)</span> <span class="o">-&gt;</span> <span class="n">List</span><span class="p">[</span><span class="n">shioaji</span><span class="o">.</span><span class="n">position</span><span class="o">.</span><span class="n">Settlement</span><span class="p">]</span>
+<span class="n">Docstring</span><span class="p">:</span> <span class="n">query</span> <span class="n">stock</span> <span class="n">account</span> <span class="n">of</span> <span class="n">settlements</span> 
 </code></pre></div>
 
 </div>
 <div class="admonition info">
 <p class="admonition-title">In</p>
-<div class="highlight"><pre><span></span><code><span class="n">api</span><span class="o">.</span><span class="n">list_profit_loss</span><span class="p">(</span><span class="n">api</span><span class="o">.</span><span class="n">stock_account</span><span class="p">,</span><span class="s1">&#39;2020-05-05&#39;</span><span class="p">,</span><span class="s1">&#39;2020-05-30&#39;</span><span class="p">)</span>
+<div class="highlight"><pre><span></span><code><span class="n">settlement</span> <span class="o">=</span> <span class="n">api</span><span class="o">.</span><span class="n">list_settlements</span><span class="p">(</span><span class="n">api</span><span class="o">.</span><span class="n">stock_account</span><span class="p">)</span>   
+<span class="n">settlement</span>
 </code></pre></div>
 
 </div>
 <div class="admonition done">
 <p class="admonition-title">Out</p>
-<div class="highlight"><pre><span></span><code><span class="p">[</span><span class="n">ProfitLoss</span><span class="p">(</span><span class="nb">id</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span> <span class="n">code</span><span class="o">=</span><span class="s1">&#39;2890&#39;</span><span class="p">,</span> <span class="n">seqno</span><span class="o">=</span><span class="s1">&#39;14816&#39;</span><span class="p">,</span> <span class="n">dseq</span><span class="o">=</span><span class="s1">&#39;ID111&#39;</span><span class="p">,</span> <span class="n">quantity</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span> <span class="n">price</span><span class="o">=</span><span class="mf">10.1</span><span class="p">,</span> <span class="n">pnl</span><span class="o">=</span><span class="mf">1234.0</span><span class="p">,</span> <span class="n">pr_ratio</span><span class="o">=</span><span class="mf">0.1237</span><span class="p">,</span> <span class="n">cond</span><span class="o">=</span><span class="s1">&#39;Cash&#39;</span><span class="p">,</span> <span class="n">date</span><span class="o">=</span><span class="s1">&#39;2020-05-22&#39;</span><span class="p">)]</span>
+<div class="highlight"><pre><span></span><code><span class="p">[</span><span class="n">SettlementV1</span><span class="p">(</span><span class="n">date</span><span class="o">=</span><span class="n">datetime</span><span class="o">.</span><span class="n">date</span><span class="p">(</span><span class="mi">2022</span><span class="p">,</span> <span class="mi">10</span><span class="p">,</span> <span class="mi">13</span><span class="p">),</span> <span class="n">amount</span><span class="o">=</span><span class="mf">0.0</span><span class="p">,</span> <span class="n">T</span><span class="o">=</span><span class="mi">0</span><span class="p">),</span>
+<span class="n">SettlementV1</span><span class="p">(</span><span class="n">date</span><span class="o">=</span><span class="n">datetime</span><span class="o">.</span><span class="n">date</span><span class="p">(</span><span class="mi">2022</span><span class="p">,</span> <span class="mi">10</span><span class="p">,</span> <span class="mi">14</span><span class="p">),</span> <span class="n">amount</span><span class="o">=</span><span class="mf">0.0</span><span class="p">,</span> <span class="n">T</span><span class="o">=</span><span class="mi">1</span><span class="p">),</span>
+<span class="n">SettlementV1</span><span class="p">(</span><span class="n">date</span><span class="o">=</span><span class="n">datetime</span><span class="o">.</span><span class="n">date</span><span class="p">(</span><span class="mi">2022</span><span class="p">,</span> <span class="mi">10</span><span class="p">,</span> <span class="mi">17</span><span class="p">),</span> <span class="n">amount</span><span class="o">=</span><span class="mf">0.0</span><span class="p">,</span> <span class="n">T</span><span class="o">=</span><span class="mi">2</span><span class="p">)]</span>
 </code></pre></div>
 
 </div>
 <div class="admonition info">
 <p class="admonition-title">In</p>
-<div class="highlight"><pre><span></span><code><span class="n">profitloss</span> <span class="o">=</span> <span class="n">api</span><span class="o">.</span><span class="n">list_profit_loss</span><span class="p">(</span><span class="n">api</span><span class="o">.</span><span class="n">stock_account</span><span class="p">,</span><span class="s1">&#39;2020-05-05&#39;</span><span class="p">,</span><span class="s1">&#39;2020-05-30&#39;</span><span class="p">)</span>   
-<span class="n">df</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">(</span><span class="n">profitloss</span><span class="p">)</span>     
-<span class="n">df</span>     
+<div class="highlight"><pre><span></span><code><span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">(</span><span class="n">s</span><span class="o">.</span><span class="vm">__dict__</span> <span class="k">for</span> <span class="n">s</span> <span class="ow">in</span> <span class="n">settlement</span><span class="p">)</span><span class="o">.</span><span class="n">set_index</span><span class="p">(</span><span class="s2">&quot;T&quot;</span><span class="p">)</span>
 </code></pre></div>
 
 </div>
 <div class="admonition done">
-<p class="admonition-title">Out</p>
-<table>
-<thead>
-<tr>
-<th>id</th>
-<th>code</th>
-<th>cond</th>
-<th>date</th>
-<th>pnl</th>
-<th>pr_ratio</th>
-<th>price</th>
-<th>quantity</th>
-<th>seqno</th>
-<th>dseq</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td>0</td>
-<td>2890</td>
-<td>StockOrderCond.Cash</td>
-<td>2020-05-22</td>
-<td>1000.0</td>
-<td>0.1237</td>
-<td>10.1</td>
-<td>1</td>
-<td>14816</td>
-<td>ID111</td>
-</tr>
-</tbody>
-</table>
+<p class="admonition-title">out</p>
+<p>|   T | date       |   amount |\n|----:|:-----------|---------:|\n|   0 | 2022-10-13 |        0 |\n|   1 | 2022-10-14 |        0 |\n|   2 | 2022-10-17 |        0 |</p>
 </div>
 <div class="admonition example">
 <p class="admonition-title">Attributes:</p>
-<div class="highlight"><pre><span></span><code><span class="nb">id</span> <span class="p">(</span><span class="nb">int</span><span class="p">):</span> <span class="n">use</span> <span class="n">to</span> <span class="n">find</span> <span class="n">detail</span><span class="o">.</span>
-<span class="n">code</span> <span class="p">(</span><span class="nb">str</span><span class="p">):</span> <span class="n">contract</span> <span class="nb">id</span><span class="o">.</span>
-<span class="n">seqno</span> <span class="p">(</span><span class="nb">str</span><span class="p">):</span> <span class="n">seqno</span> <span class="n">no</span><span class="o">.</span>
-<span class="n">dseq</span> <span class="p">(</span><span class="nb">str</span><span class="p">):</span> <span class="n">seqno</span> <span class="n">no</span><span class="o">.</span>
-<span class="n">quantity</span> <span class="p">(</span><span class="nb">int</span><span class="p">):</span> <span class="n">quantity</span><span class="o">.</span>
-<span class="n">price</span> <span class="p">(</span><span class="nb">float</span><span class="p">):</span> <span class="n">price</span><span class="o">.</span>
-<span class="n">pnl</span> <span class="p">(</span><span class="nb">float</span><span class="p">):</span> <span class="n">profit</span> <span class="ow">and</span> <span class="n">loss</span><span class="o">.</span>
-<span class="n">pr_ratio</span> <span class="p">(</span><span class="nb">float</span><span class="p">):</span> <span class="n">profit</span> <span class="n">rate</span><span class="o">.</span>
-<span class="n">cond</span> <span class="p">(</span><span class="n">StockOrderCond</span><span class="p">):</span> <span class="p">{</span><span class="n">Cash</span><span class="p">,</span> <span class="n">Netting</span><span class="p">,</span> <span class="n">MarginTrading</span><span class="p">,</span> <span class="n">ShortSelling</span><span class="p">}</span>
-<span class="n">date</span> <span class="p">(</span><span class="nb">str</span><span class="p">):</span> <span class="n">trade</span> <span class="n">date</span><span class="o">.</span>
+<div class="highlight"><pre><span></span><code><span class="n">date</span> <span class="p">(</span><span class="n">datetime</span><span class="o">.</span><span class="n">date</span><span class="p">):</span> <span class="n">date</span> <span class="n">of</span> <span class="n">Tday</span>
+<span class="n">amount</span> <span class="p">(</span><span class="nb">float</span><span class="p">):</span> <span class="n">settlement</span> <span class="n">amount</span>
+<span class="n">T</span> <span class="p">(</span><span class="nb">int</span><span class="p">):</span> <span class="n">Tday</span>
 </code></pre></div>
 
 </div>
@@ -1058,7 +1014,7 @@
     <div class="md-footer-nav">
       <nav class="md-footer-nav__inner md-grid" aria-label="Footer">
         
-          <a href="../position/" title="Position" class="md-footer-nav__link md-footer-nav__link--prev" rel="prev">
+          <a href="../settlement/" title="Settlement" class="md-footer-nav__link md-footer-nav__link--prev" rel="prev">
             <div class="md-footer-nav__button md-icon">
               <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11h12z"/></svg>
             </div>
@@ -1067,19 +1023,19 @@
                 <span class="md-footer-nav__direction">
                   Previous
                 </span>
-                Position
+                Settlement
               </div>
             </div>
           </a>
         
         
-          <a href="../profit_loss_sum/" title="Profit Loss Sum" class="md-footer-nav__link md-footer-nav__link--next" rel="next">
+          <a href="../margin/" title="Margin" class="md-footer-nav__link md-footer-nav__link--next" rel="next">
             <div class="md-footer-nav__title">
               <div class="md-ellipsis">
                 <span class="md-footer-nav__direction">
                   Next
                 </span>
-                Profit Loss Sum
+                Margin
               </div>
             </div>
             <div class="md-footer-nav__button md-icon">
