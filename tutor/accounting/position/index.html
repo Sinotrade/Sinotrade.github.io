@@ -67,7 +67,7 @@
     <div data-md-component="skip">
       
         
-        <a href="#stocks" class="md-skip">
+        <a href="#positions" class="md-skip">
           Skip to content
         </a>
       
@@ -632,30 +632,35 @@
     <ul class="md-nav__list" data-md-scrollfix>
       
         <li class="md-nav__item">
+  <a href="#positions" class="md-nav__link">
+    Positions
+  </a>
+  
+    <nav class="md-nav" aria-label="Positions">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
   <a href="#stocks" class="md-nav__link">
     Stocks
   </a>
   
-</li>
-      
-        <li class="md-nav__item">
+    <nav class="md-nav" aria-label="Stocks">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
   <a href="#shares" class="md-nav__link">
     Shares
   </a>
   
 </li>
-      
-        <li class="md-nav__item">
-  <a href="#stock-to-dataframe" class="md-nav__link">
-    Stock to dataframe
-  </a>
+        
+      </ul>
+    </nav>
   
 </li>
-      
-        <li class="md-nav__item">
-  <a href="#future-to-dataframe" class="md-nav__link">
-    Future to dataframe
-  </a>
+        
+      </ul>
+    </nav>
   
 </li>
       
@@ -674,18 +679,6 @@
   <li class="md-nav__item">
     <a href="../profit_loss/" title="Profit Loss" class="md-nav__link">
       Profit Loss
-    </a>
-  </li>
-
-        
-          
-          
-          
-
-
-  <li class="md-nav__item">
-    <a href="../profit_loss_sum/" title="Profit Loss Summary" class="md-nav__link">
-      Profit Loss Summary
     </a>
   </li>
 
@@ -904,30 +897,35 @@
     <ul class="md-nav__list" data-md-scrollfix>
       
         <li class="md-nav__item">
+  <a href="#positions" class="md-nav__link">
+    Positions
+  </a>
+  
+    <nav class="md-nav" aria-label="Positions">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
   <a href="#stocks" class="md-nav__link">
     Stocks
   </a>
   
-</li>
-      
-        <li class="md-nav__item">
+    <nav class="md-nav" aria-label="Stocks">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
   <a href="#shares" class="md-nav__link">
     Shares
   </a>
   
 </li>
-      
-        <li class="md-nav__item">
-  <a href="#stock-to-dataframe" class="md-nav__link">
-    Stock to dataframe
-  </a>
+        
+      </ul>
+    </nav>
   
 </li>
-      
-        <li class="md-nav__item">
-  <a href="#future-to-dataframe" class="md-nav__link">
-    Future to dataframe
-  </a>
+        
+      </ul>
+    </nav>
   
 </li>
       
@@ -949,7 +947,8 @@
                 
                   <h1>Position</h1>
                 
-                <p>The feature of list_positions is used to query unrealized gain or loss of account and you need to <a href="../../login">login</a> first.</p>
+                <h3 id="positions">Positions<a class="headerlink" href="#positions" title="Permanent link">&para;</a></h3>
+<p>The feature of list_positions is used to query unrealized gain or loss of account and you need to <a href="../../login">login</a> first.</p>
 <div class="admonition info">
 <p class="admonition-title">In</p>
 <div class="highlight"><pre><span></span><code><span class="n">api</span><span class="o">.</span><span class="n">list_positions</span><span class="err">?</span>
@@ -985,29 +984,7 @@
 </code></pre></div>
 
 </div>
-<h4 id="shares">Shares<a class="headerlink" href="#shares" title="Permanent link">&para;</a></h4>
-<div class="admonition info">
-<p class="admonition-title">In</p>
-<div class="highlight"><pre><span></span><code><span class="n">api</span><span class="o">.</span><span class="n">list_positions</span><span class="p">(</span><span class="n">api</span><span class="o">.</span><span class="n">stock_account</span><span class="p">,</span> <span class="n">unit</span><span class="o">=</span><span class="n">sj</span><span class="o">.</span><span class="n">constant</span><span class="o">.</span><span class="n">Unit</span><span class="o">.</span><span class="n">Share</span><span class="p">)</span>
-</code></pre></div>
-
-</div>
-<div class="admonition done">
-<p class="admonition-title">Out</p>
-</div>
-<div class="admonition info">
-<p class="admonition-title">In</p>
-<div class="highlight"><pre><span></span><code><span class="n">api</span><span class="o">.</span><span class="n">list_positions</span><span class="p">(</span><span class="n">api</span><span class="o">.</span><span class="n">futopt_account</span><span class="p">)</span>
-</code></pre></div>
-
-</div>
-<div class="admonition done">
-<p class="admonition-title">Out</p>
-<div class="highlight"><pre><span></span><code><span class="p">[</span><span class="n">StockPosition</span><span class="p">(</span><span class="n">code</span><span class="o">=</span><span class="s1">&#39;TX201370J2&#39;</span><span class="p">,</span> <span class="n">direction</span><span class="o">=&lt;</span><span class="n">Action</span><span class="o">.</span><span class="n">Buy</span><span class="p">:</span> <span class="s1">&#39;Buy&#39;</span><span class="o">&gt;</span><span class="p">,</span> <span class="n">quantity</span><span class="o">=</span><span class="mi">3</span><span class="p">,</span> <span class="n">price</span><span class="o">=</span><span class="mf">131.0000</span><span class="p">,</span> <span class="n">last_price</span><span class="o">=</span><span class="mf">126.0</span><span class="p">,</span> <span class="n">pnl</span><span class="o">=-</span><span class="mf">750.00</span><span class="p">)]</span>
-</code></pre></div>
-
-</div>
-<h4 id="stock-to-dataframe">Stock to dataframe<a class="headerlink" href="#stock-to-dataframe" title="Permanent link">&para;</a></h4>
+<p>Stock to dataframe</p>
 <div class="admonition info">
 <p class="admonition-title">In</p>
 <div class="highlight"><pre><span></span><code><span class="n">df</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">(</span><span class="n">s</span><span class="o">.</span><span class="vm">__dict__</span> <span class="k">for</span> <span class="n">s</span> <span class="ow">in</span> <span class="n">stock_positions</span><span class="p">)</span>
@@ -1073,7 +1050,32 @@
 </code></pre></div>
 
 </div>
-<h4 id="future-to-dataframe">Future to dataframe<a class="headerlink" href="#future-to-dataframe" title="Permanent link">&para;</a></h4>
+<h5 id="shares">Shares<a class="headerlink" href="#shares" title="Permanent link">&para;</a></h5>
+<div class="admonition info">
+<p class="admonition-title">In</p>
+<div class="highlight"><pre><span></span><code><span class="n">api</span><span class="o">.</span><span class="n">list_positions</span><span class="p">(</span><span class="n">api</span><span class="o">.</span><span class="n">stock_account</span><span class="p">,</span> <span class="n">unit</span><span class="o">=</span><span class="n">sj</span><span class="o">.</span><span class="n">constant</span><span class="o">.</span><span class="n">Unit</span><span class="o">.</span><span class="n">Share</span><span class="p">)</span>
+</code></pre></div>
+
+</div>
+<div class="admonition done">
+<p class="admonition-title">Out</p>
+<div class="highlight"><pre><span></span><code><span class="p">[</span><span class="n">StockPosition</span><span class="p">(</span><span class="nb">id</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span> <span class="n">code</span><span class="o">=</span><span class="s1">&#39;2890&#39;</span><span class="p">,</span> <span class="n">direction</span><span class="o">=&lt;</span><span class="n">Action</span><span class="o">.</span><span class="n">Buy</span><span class="p">:</span> <span class="s1">&#39;Buy&#39;</span><span class="o">&gt;</span><span class="p">,</span> <span class="n">quantity</span><span class="o">=</span><span class="mi">10000</span><span class="p">,</span> <span class="n">price</span><span class="o">=</span><span class="mf">10.1</span><span class="p">,</span> <span class="n">last_price</span><span class="o">=</span><span class="mf">12.0</span><span class="p">,</span> <span class="n">pnl</span><span class="o">=</span><span class="mf">1234.0</span><span class="p">,</span> <span class="n">yd_quantity</span><span class="o">=</span><span class="mi">10000</span><span class="p">,</span> <span class="n">margin_purchase_amount</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span> <span class="n">collateral</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span> <span class="n">short_sale_margin</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span> <span class="n">interest</span><span class="o">=</span><span class="mi">0</span><span class="p">)]</span>
+</code></pre></div>
+
+</div>
+<div class="admonition info">
+<p class="admonition-title">In</p>
+<div class="highlight"><pre><span></span><code><span class="n">api</span><span class="o">.</span><span class="n">list_positions</span><span class="p">(</span><span class="n">api</span><span class="o">.</span><span class="n">futopt_account</span><span class="p">)</span>
+</code></pre></div>
+
+</div>
+<div class="admonition done">
+<p class="admonition-title">Out</p>
+<div class="highlight"><pre><span></span><code><span class="p">[</span><span class="n">StockPosition</span><span class="p">(</span><span class="n">code</span><span class="o">=</span><span class="s1">&#39;TX201370J2&#39;</span><span class="p">,</span> <span class="n">direction</span><span class="o">=&lt;</span><span class="n">Action</span><span class="o">.</span><span class="n">Buy</span><span class="p">:</span> <span class="s1">&#39;Buy&#39;</span><span class="o">&gt;</span><span class="p">,</span> <span class="n">quantity</span><span class="o">=</span><span class="mi">3</span><span class="p">,</span> <span class="n">price</span><span class="o">=</span><span class="mf">131.0000</span><span class="p">,</span> <span class="n">last_price</span><span class="o">=</span><span class="mf">126.0</span><span class="p">,</span> <span class="n">pnl</span><span class="o">=-</span><span class="mf">750.00</span><span class="p">)]</span>
+</code></pre></div>
+
+</div>
+<p>Future to dataframe</p>
 <div class="admonition info">
 <p class="admonition-title">In</p>
 <div class="highlight"><pre><span></span><code><span class="n">positions</span> <span class="o">=</span> <span class="n">api</span><span class="o">.</span><span class="n">list_positions</span><span class="p">(</span><span class="n">api</span><span class="o">.</span><span class="n">futopt_account</span><span class="p">)</span>
