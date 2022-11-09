@@ -560,6 +560,19 @@
     Get trade list
   </a>
   
+    <nav class="md-nav" aria-label="Get trade list">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#orderstatus-object" class="md-nav__link">
+    OrderStatus Object
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
 </li>
       
     </ul>
@@ -903,6 +916,19 @@
     Get trade list
   </a>
   
+    <nav class="md-nav" aria-label="Get trade list">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#orderstatus-object" class="md-nav__link">
+    OrderStatus Object
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
 </li>
       
     </ul>
@@ -948,6 +974,20 @@
         <span class="n">status</span><span class="o">=</span><span class="n">OrderStatus</span><span class="p">(</span><span class="nb">id</span><span class="o">=</span><span class="s1">&#39;7808d809&#39;</span><span class="p">,</span> <span class="n">status</span><span class="o">=&lt;</span><span class="n">Status</span><span class="o">.</span><span class="n">Cancelled</span><span class="p">:</span> <span class="s1">&#39;Cancelled&#39;</span><span class="o">&gt;</span><span class="p">,</span> <span class="n">status_code</span><span class="o">=</span><span class="s1">&#39;0000&#39;</span><span class="p">,</span>  <span class="n">web_id</span><span class="o">=</span><span class="s1">&#39;137&#39;</span><span class="p">,</span> <span class="n">order_datetime</span><span class="o">=</span><span class="n">datetime</span><span class="o">.</span><span class="n">datetime</span><span class="p">(</span><span class="mi">2020</span><span class="p">,</span> <span class="mi">12</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">11</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">17</span><span class="p">),</span> <span class="n">modified_price</span><span class="o">=</span><span class="mf">13770.0</span><span class="p">,</span> <span class="n">cancel_quantity</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span> <span class="n">deals</span><span class="o">=</span><span class="p">[])</span>
     <span class="p">)</span>
 <span class="p">]</span>
+</code></pre></div>
+
+</div>
+<h4 id="orderstatus-object">OrderStatus Object<a class="headerlink" href="#orderstatus-object" title="Permanent link">&para;</a></h4>
+<div class="admonition example">
+<p class="admonition-title">Attributes:</p>
+<div class="highlight"><pre><span></span><code><span class="nb">id</span> <span class="p">(</span><span class="nb">str</span><span class="p">):</span> <span class="n">the</span> <span class="nb">id</span> <span class="n">uses</span> <span class="n">to</span> <span class="n">correlate</span> <span class="n">the</span> <span class="n">order</span> <span class="nb">object</span><span class="o">.</span>
+<span class="n">status</span> <span class="p">(:</span><span class="n">obj</span><span class="p">:</span><span class="n">Status</span><span class="p">):</span> <span class="n">the</span> <span class="n">status</span> <span class="n">of</span> <span class="n">order</span> <span class="p">{</span><span class="n">Cancelled</span><span class="p">,</span> <span class="n">Filled</span><span class="p">,</span> <span class="n">PartFilled</span><span class="p">,</span> <span class="n">Failed</span><span class="p">,</span> <span class="n">PendingSubmit</span><span class="p">,</span> <span class="n">PreSubmitted</span><span class="p">,</span> <span class="n">Submitted</span><span class="p">}</span> <span class="p">(</span><span class="n">已刪除</span><span class="p">,</span> <span class="n">完全成交</span><span class="p">,</span> <span class="n">部分成交</span><span class="p">,</span> <span class="n">失敗</span><span class="p">,</span> <span class="n">傳送中</span><span class="p">,</span> <span class="n">預約單</span><span class="p">,</span> <span class="n">傳送成功</span><span class="p">)</span><span class="o">.</span> 
+<span class="n">status_code</span> <span class="p">(</span><span class="nb">str</span><span class="p">):</span> <span class="n">the</span> <span class="n">code</span> <span class="n">of</span> <span class="n">status</span><span class="o">.</span>
+<span class="n">web_id</span> <span class="p">(</span><span class="nb">str</span><span class="p">):</span> <span class="n">the</span> <span class="n">platform</span> <span class="nb">id</span> <span class="n">of</span> <span class="n">order</span><span class="o">.</span>
+<span class="n">order_datetime</span> <span class="p">(</span><span class="n">datetime</span><span class="p">):</span> <span class="n">order</span> <span class="n">time</span><span class="o">.</span>
+<span class="n">modified_price</span> <span class="p">(</span><span class="nb">float</span><span class="p">):</span> <span class="n">the</span> <span class="n">price</span> <span class="n">of</span> <span class="n">modification</span><span class="o">.</span>
+<span class="n">cancel_quantity</span> <span class="p">(</span><span class="nb">int</span><span class="p">):</span> <span class="n">the</span> <span class="n">quantity</span> <span class="n">of</span> <span class="n">cancel</span><span class="o">.</span>
+<span class="n">deals</span> <span class="p">(:</span><span class="n">List</span><span class="p">:</span><span class="n">Deal</span><span class="p">):</span> <span class="n">information</span> <span class="n">of</span> <span class="n">filled</span> <span class="n">order</span><span class="o">.</span>
 </code></pre></div>
 
 </div>
