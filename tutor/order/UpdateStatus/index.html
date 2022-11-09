@@ -954,6 +954,25 @@
 <p>In order to use functions, like 1) <code>list_trades</code> 2) <code>cancel_order</code> 3) <code>update_order</code>, we have to call <code>update_status</code> first.</p>
 <div class="admonition info">
 <p class="admonition-title">In</p>
+<div class="highlight"><pre><span></span><code><span class="n">api</span><span class="o">.</span><span class="n">update_status</span><span class="err">?</span>
+</code></pre></div>
+
+</div>
+<div class="admonition done">
+<p class="admonition-title">Out</p>
+<div class="highlight"><pre><span></span><code><span class="n">Signature</span><span class="p">:</span>
+    <span class="n">api</span><span class="o">.</span><span class="n">update_status</span><span class="p">(</span>
+        <span class="n">account</span><span class="p">:</span> <span class="n">shioaji</span><span class="o">.</span><span class="n">account</span><span class="o">.</span><span class="n">Account</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
+        <span class="n">trade</span><span class="p">:</span> <span class="n">shioaji</span><span class="o">.</span><span class="n">order</span><span class="o">.</span><span class="n">Trade</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
+        <span class="n">timeout</span><span class="p">:</span> <span class="nb">int</span> <span class="o">=</span> <span class="mi">5000</span><span class="p">,</span>
+        <span class="n">cb</span><span class="p">:</span> <span class="n">Callable</span><span class="p">[[</span><span class="n">List</span><span class="p">[</span><span class="n">shioaji</span><span class="o">.</span><span class="n">order</span><span class="o">.</span><span class="n">Trade</span><span class="p">]],</span> <span class="n">NoneType</span><span class="p">]</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
+    <span class="p">)</span>
+<span class="n">Docstring</span><span class="p">:</span> <span class="n">update</span> <span class="n">status</span> <span class="n">of</span> <span class="nb">all</span> <span class="n">trades</span> <span class="n">you</span> <span class="n">have</span>
+</code></pre></div>
+
+</div>
+<div class="admonition info">
+<p class="admonition-title">In</p>
 <div class="highlight"><pre><span></span><code><span class="n">api</span><span class="o">.</span><span class="n">update_status</span><span class="p">()</span>
 <span class="n">api</span><span class="o">.</span><span class="n">list_trades</span><span class="p">()</span>
 </code></pre></div>
