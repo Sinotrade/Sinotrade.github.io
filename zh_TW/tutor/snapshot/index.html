@@ -71,11 +71,6 @@
     <label class="md-overlay" for="__drawer"></label>
     <div data-md-component="skip">
       
-        
-        <a href="#first-you-need-login" class="md-skip">
-          Skip to content
-        </a>
-      
     </div>
     <div data-md-component="announce">
       
@@ -491,52 +486,9 @@
       
       
       
-        <label class="md-nav__link md-nav__link--active" for="__toc">
-          快照
-          <span class="md-nav__icon md-icon"></span>
-        </label>
-      
       <a href="./" class="md-nav__link md-nav__link--active">
         快照
       </a>
-      
-        
-
-<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
-  
-  
-  
-  
-    <label class="md-nav__title" for="__toc">
-      <span class="md-nav__icon md-icon"></span>
-      Table of contents
-    </label>
-    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
-      
-        <li class="md-nav__item">
-  <a href="#first-you-need-login" class="md-nav__link">
-    First, you need login.
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#get-snapshot" class="md-nav__link">
-    Get Snapshot
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#snapshot-to-dataframe" class="md-nav__link">
-    Snapshot to DataFrame
-  </a>
-  
-</li>
-      
-    </ul>
-  
-</nav>
       
     </li>
   
@@ -985,35 +937,6 @@
   
   
   
-    <label class="md-nav__title" for="__toc">
-      <span class="md-nav__icon md-icon"></span>
-      Table of contents
-    </label>
-    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
-      
-        <li class="md-nav__item">
-  <a href="#first-you-need-login" class="md-nav__link">
-    First, you need login.
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#get-snapshot" class="md-nav__link">
-    Get Snapshot
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#snapshot-to-dataframe" class="md-nav__link">
-    Snapshot to DataFrame
-  </a>
-  
-</li>
-      
-    </ul>
-  
 </nav>
                   </div>
                 </div>
@@ -1029,9 +952,7 @@
 
   <h1>快照</h1>
 
-<p>Snapshot is a present stock, future, option info. It contain open, high, low, close, change price, average price, volume, total volume, buy price, buy volume, sell price, sell volume and yestoday volume.</p>
-<h3 id="first-you-need-login"><a href="../../tutor/login">First, you need login.</a><a class="headerlink" href="#first-you-need-login" title="Permanent link">&para;</a></h3>
-<h3 id="get-snapshot">Get Snapshot<a class="headerlink" href="#get-snapshot" title="Permanent link">&para;</a></h3>
+<p>當下證券、期貨及選擇權資訊。包含開盤價、最高價、最低價、收盤價、變動價、均價、成交量、總成交量、委買價、委買量、委賣價、委賣量和昨量。</p>
 <div class="admonition info">
 <p class="admonition-title">In</p>
 <div class="highlight"><pre><span></span><code><span class="n">contracts</span> <span class="o">=</span> <span class="p">[</span><span class="n">api</span><span class="o">.</span><span class="n">Contracts</span><span class="o">.</span><span class="n">Stocks</span><span class="p">[</span><span class="s1">&#39;2330&#39;</span><span class="p">],</span><span class="n">api</span><span class="o">.</span><span class="n">Contracts</span><span class="o">.</span><span class="n">Stocks</span><span class="p">[</span><span class="s1">&#39;2317&#39;</span><span class="p">]]</span>
@@ -1041,7 +962,6 @@
 </div>
 <div class="admonition done">
 <p class="admonition-title">Out</p>
-<div class="tabbed-set" data-tabs="1:2"><input checked="checked" id="__tabbed_1_1" name="__tabbed_1" type="radio" /><label for="__tabbed_1_1">version &gt;= 0.2.1.dev2</label><div class="tabbed-content">
 <div class="highlight"><pre><span></span><code><span class="p">[</span>
     <span class="n">Snapshot</span><span class="p">(</span>
         <span class="n">ts</span><span class="o">=</span><span class="mi">1589801466456000000</span><span class="p">,</span> 
@@ -1094,83 +1014,15 @@
 <span class="p">]</span>
 </code></pre></div>
 </div>
-<input id="__tabbed_1_2" name="__tabbed_1" type="radio" /><label for="__tabbed_1_2">version &lt; 0.2.1.dev2</label><div class="tabbed-content">
-<div class="highlight"><pre><span></span><code><span class="n">Snapshots</span><span class="p">(</span>
-    <span class="n">snapshot</span><span class="o">=</span><span class="p">[</span>
-        <span class="p">{</span>
-            <span class="s1">&#39;ts&#39;</span><span class="p">:</span> <span class="mi">1584437921673000000</span><span class="p">,</span> 
-            <span class="s1">&#39;code&#39;</span><span class="p">:</span> <span class="s1">&#39;2317&#39;</span><span class="p">,</span> 
-            <span class="s1">&#39;exchange&#39;</span><span class="p">:</span> <span class="s1">&#39;TSE&#39;</span><span class="p">,</span> 
-            <span class="s1">&#39;open&#39;</span><span class="p">:</span> <span class="mf">70.1</span><span class="p">,</span> 
-            <span class="s1">&#39;high&#39;</span><span class="p">:</span> <span class="mf">72.8</span><span class="p">,</span> 
-            <span class="s1">&#39;low&#39;</span><span class="p">:</span> <span class="mf">70.0</span><span class="p">,</span> 
-            <span class="s1">&#39;close&#39;</span><span class="p">:</span> <span class="mf">71.8</span><span class="p">,</span> 
-            <span class="s1">&#39;tick_type&#39;</span><span class="p">:</span> <span class="s1">&#39;Sell&#39;</span><span class="p">,</span> 
-            <span class="s1">&#39;change_price&#39;</span><span class="p">:</span> <span class="mf">0.7</span><span class="p">,</span> 
-            <span class="s1">&#39;change_rate&#39;</span><span class="p">:</span> <span class="mf">0.98</span><span class="p">,</span> 
-            <span class="s1">&#39;change_type&#39;</span><span class="p">:</span> <span class="s1">&#39;Up&#39;</span><span class="p">,</span> 
-            <span class="s1">&#39;avgerage_price&#39;</span><span class="p">:</span> <span class="mf">71.13</span><span class="p">,</span> 
-            <span class="s1">&#39;volume&#39;</span><span class="p">:</span> <span class="mi">16</span><span class="p">,</span> 
-            <span class="s1">&#39;total_volume&#39;</span><span class="p">:</span> <span class="mi">21019</span><span class="p">,</span> 
-            <span class="s1">&#39;amount&#39;</span><span class="p">:</span> <span class="mi">1148800</span><span class="p">,</span> 
-            <span class="s1">&#39;total_amount&#39;</span><span class="p">:</span> <span class="mi">1495047800</span><span class="p">,</span> 
-            <span class="s1">&#39;yestoday_volume&#39;</span><span class="p">:</span> <span class="mf">65223.0</span><span class="p">,</span> 
-            <span class="s1">&#39;buy_price&#39;</span><span class="p">:</span> <span class="mf">71.8</span><span class="p">,</span> 
-            <span class="s1">&#39;buy_volume&#39;</span><span class="p">:</span> <span class="mf">79.0</span><span class="p">,</span> 
-            <span class="s1">&#39;sell_price&#39;</span><span class="p">:</span> <span class="mf">71.9</span><span class="p">,</span> 
-            <span class="s1">&#39;sell_volume&#39;</span><span class="p">:</span> <span class="mi">38</span><span class="p">,</span> 
-            <span class="s1">&#39;volume_ratio&#39;</span><span class="p">:</span> <span class="mf">0.32</span>
-        <span class="p">},</span> 
-        <span class="p">{</span>
-            <span class="s1">&#39;ts&#39;</span><span class="p">:</span> <span class="mi">1584437921045000000</span><span class="p">,</span> 
-            <span class="s1">&#39;code&#39;</span><span class="p">:</span> <span class="s1">&#39;2330&#39;</span><span class="p">,</span> 
-            <span class="s1">&#39;exchange&#39;</span><span class="p">:</span> <span class="s1">&#39;TSE&#39;</span><span class="p">,</span> 
-            <span class="s1">&#39;open&#39;</span><span class="p">:</span> <span class="mf">265.0</span><span class="p">,</span> 
-            <span class="s1">&#39;high&#39;</span><span class="p">:</span> <span class="mf">276.5</span><span class="p">,</span> 
-            <span class="s1">&#39;low&#39;</span><span class="p">:</span> <span class="mf">265.0</span><span class="p">,</span> 
-            <span class="s1">&#39;close&#39;</span><span class="p">:</span> <span class="mf">273.5</span><span class="p">,</span> 
-            <span class="s1">&#39;tick_type&#39;</span><span class="p">:</span> <span class="s1">&#39;Sell&#39;</span><span class="p">,</span> 
-            <span class="s1">&#39;change_price&#39;</span><span class="p">:</span> <span class="o">-</span><span class="mf">3.0</span><span class="p">,</span> 
-            <span class="s1">&#39;change_rate&#39;</span><span class="p">:</span> <span class="o">-</span><span class="mf">1.08</span><span class="p">,</span> 
-            <span class="s1">&#39;change_type&#39;</span><span class="p">:</span> <span class="s1">&#39;Dowm&#39;</span><span class="p">,</span> 
-            <span class="s1">&#39;avgerage_price&#39;</span><span class="p">:</span> <span class="mf">269.39</span><span class="p">,</span> 
-            <span class="s1">&#39;volume&#39;</span><span class="p">:</span> <span class="mi">32</span><span class="p">,</span> 
-            <span class="s1">&#39;total_volume&#39;</span><span class="p">:</span> <span class="mi">38154</span><span class="p">,</span> 
-            <span class="s1">&#39;amount&#39;</span><span class="p">:</span> <span class="mi">8752000</span><span class="p">,</span> 
-            <span class="s1">&#39;total_amount&#39;</span><span class="p">:</span> <span class="mi">10278416500</span><span class="p">,</span> 
-            <span class="s1">&#39;yestoday_volume&#39;</span><span class="p">:</span> <span class="mf">103873.0</span><span class="p">,</span> 
-            <span class="s1">&#39;buy_price&#39;</span><span class="p">:</span> <span class="mf">273.5</span><span class="p">,</span> 
-            <span class="s1">&#39;buy_volume&#39;</span><span class="p">:</span> <span class="mf">123.0</span><span class="p">,</span> 
-            <span class="s1">&#39;sell_price&#39;</span><span class="p">:</span> <span class="mf">274.0</span><span class="p">,</span> 
-            <span class="s1">&#39;sell_volume&#39;</span><span class="p">:</span> <span class="mi">130</span><span class="p">,</span> 
-            <span class="s1">&#39;volume_ratio&#39;</span><span class="p">:</span> <span class="mf">0.37</span>
-        <span class="p">}</span>
-    <span class="p">]</span>
-<span class="p">)</span>
-</code></pre></div>
-</div>
-</div>
-</div>
-<h3 id="snapshot-to-dataframe">Snapshot to DataFrame<a class="headerlink" href="#snapshot-to-dataframe" title="Permanent link">&para;</a></h3>
+<p>轉成Dataframe</p>
 <div class="admonition info">
 <p class="admonition-title">In</p>
-<div class="tabbed-set" data-tabs="2:2"><input checked="checked" id="__tabbed_2_1" name="__tabbed_2" type="radio" /><label for="__tabbed_2_1">version &gt;= 0.2.1.dev2</label><div class="tabbed-content">
 <div class="highlight"><pre><span></span><code><span class="kn">import</span> <span class="nn">pandas</span> <span class="k">as</span> <span class="nn">pd</span>
 <span class="n">contracts</span> <span class="o">=</span> <span class="p">[</span><span class="n">api</span><span class="o">.</span><span class="n">Contracts</span><span class="o">.</span><span class="n">Stocks</span><span class="p">[</span><span class="s1">&#39;2330&#39;</span><span class="p">],</span><span class="n">api</span><span class="o">.</span><span class="n">Contracts</span><span class="o">.</span><span class="n">Stocks</span><span class="p">[</span><span class="s1">&#39;2317&#39;</span><span class="p">]]</span>
 <span class="n">snapshots</span> <span class="o">=</span> <span class="n">api</span><span class="o">.</span><span class="n">snapshots</span><span class="p">(</span><span class="n">contracts</span><span class="p">)</span>
-<span class="n">df</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">(</span><span class="n">snapshots</span><span class="p">)</span>
-<span class="n">df</span><span class="o">.</span><span class="n">ts</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">to_datetime</span><span class="p">(</span><span class="n">df</span><span class="o">.</span><span class="n">ts</span><span class="p">)</span>
+<span class="n">df</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">(</span><span class="n">s</span><span class="o">.</span><span class="vm">__dict__</span> <span class="k">for</span> <span class="n">s</span> <span class="ow">in</span> <span class="n">snapshots</span><span class="p">)</span>
+<span class="n">df</span>
 </code></pre></div>
-</div>
-<input id="__tabbed_2_2" name="__tabbed_2" type="radio" /><label for="__tabbed_2_2">version &lt; 0.2.1.dev2</label><div class="tabbed-content">
-<div class="highlight"><pre><span></span><code><span class="kn">import</span> <span class="nn">pandas</span> <span class="k">as</span> <span class="nn">pd</span>
-<span class="n">contracts</span> <span class="o">=</span> <span class="p">[</span><span class="n">api</span><span class="o">.</span><span class="n">Contracts</span><span class="o">.</span><span class="n">Stocks</span><span class="p">[</span><span class="s1">&#39;2330&#39;</span><span class="p">],</span><span class="n">api</span><span class="o">.</span><span class="n">Contracts</span><span class="o">.</span><span class="n">Stocks</span><span class="p">[</span><span class="s1">&#39;2317&#39;</span><span class="p">]]</span>
-<span class="n">snapshots</span> <span class="o">=</span> <span class="n">api</span><span class="o">.</span><span class="n">snapshots</span><span class="p">(</span><span class="n">contracts</span><span class="p">)</span>
-<span class="n">df</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">(</span><span class="n">snapshot</span><span class="o">.</span><span class="vm">__dict__</span> <span class="k">for</span> <span class="n">snapshot</span> <span class="ow">in</span> <span class="n">snapshots</span><span class="p">)</span>
-<span class="n">df</span><span class="o">.</span><span class="n">ts</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">to_datetime</span><span class="p">(</span><span class="n">df</span><span class="o">.</span><span class="n">ts</span><span class="p">)</span>
-</code></pre></div>
-</div>
-</div>
 </div>
 <div class="admonition done">
 <p class="admonition-title">Out</p>
@@ -1258,30 +1110,28 @@
 </div>
 <div class="admonition example">
 <p class="admonition-title">Attributes:</p>
-<div class="highlight"><pre><span></span><code><span class="n">ts</span> <span class="p">(</span><span class="nb">int</span><span class="p">):</span> <span class="n">TimeStamp</span><span class="o">.</span>
-<span class="n">code</span> <span class="p">(</span><span class="nb">str</span><span class="p">):</span> <span class="n">Contract</span> <span class="nb">id</span><span class="o">.</span>
-<span class="n">exchange</span> <span class="p">(</span><span class="n">Exchange</span><span class="p">):</span> <span class="n">Attributes</span> <span class="n">of</span> <span class="n">industry</span><span class="o">.</span>
-<span class="nb">open</span> <span class="p">(</span><span class="nb">float</span><span class="p">):</span> <span class="nb">open</span>
-<span class="n">high</span> <span class="p">(</span><span class="nb">float</span><span class="p">):</span> <span class="n">high</span>
-<span class="n">low</span> <span class="p">(</span><span class="nb">float</span><span class="p">):</span> <span class="n">low</span>
-<span class="n">close</span> <span class="p">(</span><span class="nb">float</span><span class="p">):</span> <span class="n">close</span>
-<span class="n">tick_type</span> <span class="p">(</span><span class="n">TickType</span><span class="p">):</span> <span class="n">Close</span> <span class="ow">is</span> <span class="n">buy</span> <span class="ow">or</span> <span class="n">sell</span> <span class="n">price</span><span class="o">.</span>
-    <span class="p">{</span><span class="kc">None</span><span class="p">,</span> <span class="n">Buy</span><span class="p">,</span> <span class="n">Sell</span><span class="p">}</span>
-<span class="n">change_price</span> <span class="p">(</span><span class="nb">float</span><span class="p">):</span> <span class="n">change</span> <span class="n">price</span><span class="o">.</span>
-<span class="n">change_rate</span> <span class="p">(</span><span class="nb">float</span><span class="p">):</span> <span class="n">change</span> <span class="n">rate</span><span class="o">.</span>
-<span class="n">change_type</span> <span class="p">(</span><span class="n">ChangeType</span><span class="p">):</span>
-    <span class="p">{</span><span class="n">LimitUp</span><span class="p">,</span> <span class="n">Up</span><span class="p">,</span> <span class="n">Unchanged</span><span class="p">,</span> <span class="n">Dowm</span><span class="p">,</span> <span class="n">LimitDown</span><span class="p">}</span>
-<span class="n">avgerage_price</span> <span class="p">(</span><span class="nb">float</span><span class="p">):</span> <span class="n">avgerage</span> <span class="n">of</span> <span class="n">price</span><span class="o">.</span>
-<span class="n">volume</span> <span class="p">(</span><span class="nb">int</span><span class="p">):</span> <span class="n">volume</span><span class="o">.</span>
-<span class="n">total_volume</span> <span class="p">(</span><span class="nb">int</span><span class="p">):</span> <span class="n">total</span> <span class="n">volume</span><span class="o">.</span>
-<span class="n">amount</span> <span class="p">(</span><span class="nb">int</span><span class="p">):</span> <span class="n">Deal</span> <span class="n">amount</span><span class="o">.</span>
-<span class="n">total_amount</span> <span class="p">(</span><span class="nb">int</span><span class="p">):</span> <span class="n">Total</span> <span class="n">deal</span> <span class="n">amount</span><span class="o">.</span>
-<span class="n">yestoday_volume</span> <span class="p">(</span><span class="nb">float</span><span class="p">):</span> <span class="n">Volume</span> <span class="n">of</span> <span class="n">yestoday</span><span class="o">.</span>
-<span class="n">buy_price</span> <span class="p">(</span><span class="nb">float</span><span class="p">):</span> <span class="n">Price</span> <span class="n">of</span> <span class="n">buy</span><span class="o">.</span>
-<span class="n">buy_volume</span> <span class="p">(</span><span class="nb">float</span><span class="p">):</span> <span class="n">Volume</span> <span class="n">of</span> <span class="n">sell</span><span class="o">.</span>
-<span class="n">sell_price</span> <span class="p">(</span><span class="nb">float</span><span class="p">):</span> <span class="n">Price</span> <span class="n">of</span> <span class="n">sell</span><span class="o">.</span>
-<span class="n">sell_volume</span> <span class="p">(</span><span class="nb">int</span><span class="p">):</span> <span class="n">Volume</span> <span class="n">of</span> <span class="n">sell</span><span class="o">.</span>
-<span class="n">volume_ratio</span> <span class="p">(</span><span class="nb">float</span><span class="p">):</span> <span class="n">total_volume</span><span class="o">/</span><span class="n">yestoday_volume</span><span class="o">.</span>
+<div class="highlight"><pre><span></span><code><span class="n">ts</span> <span class="p">(</span><span class="nb">int</span><span class="p">):</span> <span class="n">取得資訊timestamp</span><span class="o">.</span>
+<span class="n">code</span> <span class="p">(</span><span class="nb">str</span><span class="p">):</span> <span class="n">商品代碼</span>
+<span class="n">exchange</span> <span class="p">(</span><span class="n">Exchange</span><span class="p">):</span> <span class="n">交易所</span><span class="o">.</span>
+<span class="nb">open</span> <span class="p">(</span><span class="nb">float</span><span class="p">):</span> <span class="n">開盤價</span>
+<span class="n">high</span> <span class="p">(</span><span class="nb">float</span><span class="p">):</span> <span class="n">最高價</span>
+<span class="n">low</span> <span class="p">(</span><span class="nb">float</span><span class="p">):</span> <span class="n">最低價</span>
+<span class="n">close</span> <span class="p">(</span><span class="nb">float</span><span class="p">):</span> <span class="n">收盤價</span>
+<span class="n">tick_type</span> <span class="p">(</span><span class="n">TickType</span><span class="p">):</span> <span class="n">收盤買賣別</span> <span class="p">{</span><span class="kc">None</span><span class="p">,</span> <span class="n">Buy</span><span class="p">,</span> <span class="n">Sell</span><span class="p">}</span>
+<span class="n">change_price</span> <span class="p">(</span><span class="nb">float</span><span class="p">):</span> <span class="n">漲跌</span>
+<span class="n">change_rate</span> <span class="p">(</span><span class="nb">float</span><span class="p">):</span> <span class="n">漲跌幅</span>
+<span class="n">change_type</span> <span class="p">(</span><span class="n">ChangeType</span><span class="p">):</span> <span class="n">漲跌</span> <span class="p">{</span><span class="n">LimitUp</span><span class="p">,</span> <span class="n">Up</span><span class="p">,</span> <span class="n">Unchanged</span><span class="p">,</span> <span class="n">Dowm</span><span class="p">,</span> <span class="n">LimitDown</span><span class="p">}</span>
+<span class="n">avgerage_price</span> <span class="p">(</span><span class="nb">float</span><span class="p">):</span> <span class="n">均價</span>
+<span class="n">volume</span> <span class="p">(</span><span class="nb">int</span><span class="p">):</span> <span class="n">單量</span>
+<span class="n">total_volume</span> <span class="p">(</span><span class="nb">int</span><span class="p">):</span> <span class="n">成交量</span>
+<span class="n">amount</span> <span class="p">(</span><span class="nb">int</span><span class="p">):</span> <span class="n">單量成交金額</span>
+<span class="n">total_amount</span> <span class="p">(</span><span class="nb">int</span><span class="p">):</span> <span class="n">成交金額</span>
+<span class="n">yestoday_volume</span> <span class="p">(</span><span class="nb">float</span><span class="p">):</span> <span class="n">昨量</span>
+<span class="n">buy_price</span> <span class="p">(</span><span class="nb">float</span><span class="p">):</span> <span class="n">委買價</span>
+<span class="n">buy_volume</span> <span class="p">(</span><span class="nb">float</span><span class="p">):</span> <span class="n">委買量</span>
+<span class="n">sell_price</span> <span class="p">(</span><span class="nb">float</span><span class="p">):</span> <span class="n">賣出價</span>
+<span class="n">sell_volume</span> <span class="p">(</span><span class="nb">int</span><span class="p">):</span> <span class="n">委賣量</span>
+<span class="n">volume_ratio</span> <span class="p">(</span><span class="nb">float</span><span class="p">):</span> <span class="n">昨量比</span>
 </code></pre></div>
 </div>
 
