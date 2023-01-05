@@ -1178,7 +1178,7 @@
                   <span class="n">quantity</span><span class="o">=</span><span class="mi">10</span><span class="p">,</span>
                   <span class="n">action</span><span class="o">=</span><span class="n">sj</span><span class="o">.</span><span class="n">constant</span><span class="o">.</span><span class="n">Action</span><span class="o">.</span><span class="n">Buy</span><span class="p">,</span>
                   <span class="n">price_type</span><span class="o">=</span><span class="n">sj</span><span class="o">.</span><span class="n">constant</span><span class="o">.</span><span class="n">StockPriceType</span><span class="o">.</span><span class="n">LMT</span><span class="p">,</span>
-                  <span class="n">order_type</span><span class="o">=</span><span class="n">sj</span><span class="o">.</span><span class="n">constant</span><span class="o">.</span><span class="n">TFTOrderType</span><span class="o">.</span><span class="n">ROD</span><span class="p">,</span>
+                  <span class="n">order_type</span><span class="o">=</span><span class="n">sj</span><span class="o">.</span><span class="n">constant</span><span class="o">.</span><span class="n">OrderType</span><span class="o">.</span><span class="n">ROD</span><span class="p">,</span>
                   <span class="n">custom_field</span><span class="o">=</span><span class="s2">&quot;test&quot;</span><span class="p">,</span>
                   <span class="n">account</span><span class="o">=</span><span class="n">api</span><span class="o">.</span><span class="n">stock_account</span>
                   <span class="p">)</span>
@@ -1188,7 +1188,7 @@
 <div class="admonition info">
 <p class="admonition-title">委託回報</p>
 <div class="highlight"><pre><span></span><code><span class="n">my_place_callback</span>
-<span class="n">OrderState</span><span class="o">.</span><span class="n">TFTOrder</span> <span class="p">{</span>
+<span class="n">OrderState</span><span class="o">.</span><span class="n">SOrder</span> <span class="p">{</span>
     <span class="s1">&#39;operation&#39;</span><span class="p">:</span> <span class="p">{</span>
         <span class="s1">&#39;op_type&#39;</span><span class="p">:</span> <span class="s1">&#39;New&#39;</span><span class="p">,</span>
         <span class="s1">&#39;op_code&#39;</span><span class="p">:</span> <span class="s1">&#39;00&#39;</span><span class="p">,</span>
@@ -1228,7 +1228,7 @@
 <div class="admonition info">
 <p class="admonition-title">成交回報</p>
 <div class="highlight"><pre><span></span><code><span class="n">my_place_callback</span>
-<span class="n">OrderState</span><span class="o">.</span><span class="n">TFTDeal</span> <span class="p">{</span>
+<span class="n">OrderState</span><span class="o">.</span><span class="n">SDeal</span> <span class="p">{</span>
     <span class="s1">&#39;trade_id&#39;</span><span class="p">:</span> <span class="s1">&#39;12ab3456&#39;</span><span class="p">,</span> 
     <span class="s1">&#39;exchange_seq&#39;</span><span class="p">:</span> <span class="s1">&#39;123456&#39;</span><span class="p">,</span> 
     <span class="s1">&#39;broker_id&#39;</span><span class="p">:</span> <span class="s1">&#39;your_broker_id&#39;</span><span class="p">,</span> 
@@ -1236,7 +1236,7 @@
     <span class="s1">&#39;action&#39;</span><span class="p">:</span> <span class="o">&lt;</span><span class="n">Action</span><span class="o">.</span><span class="n">Buy</span><span class="p">:</span> <span class="s1">&#39;Buy&#39;</span><span class="o">&gt;</span><span class="p">,</span> 
     <span class="s1">&#39;code&#39;</span><span class="p">:</span> <span class="s1">&#39;2890&#39;</span><span class="p">,</span> 
     <span class="s1">&#39;order_cond&#39;</span><span class="p">:</span> <span class="o">&lt;</span><span class="n">StockOrderCond</span><span class="o">.</span><span class="n">Cash</span><span class="p">:</span> <span class="s1">&#39;Cash&#39;</span><span class="o">&gt;</span><span class="p">,</span> 
-    <span class="s1">&#39;order_lot&#39;</span><span class="p">:</span> <span class="o">&lt;</span><span class="n">TFTStockOrderLot</span><span class="o">.</span><span class="n">Common</span><span class="p">:</span> <span class="s1">&#39;Common&#39;</span><span class="o">&gt;</span><span class="p">,</span>
+    <span class="s1">&#39;order_lot&#39;</span><span class="p">:</span> <span class="o">&lt;</span><span class="n">StockOrderLot</span><span class="o">.</span><span class="n">Common</span><span class="p">:</span> <span class="s1">&#39;Common&#39;</span><span class="o">&gt;</span><span class="p">,</span>
     <span class="s1">&#39;price&#39;</span><span class="p">:</span> <span class="mi">12</span><span class="p">,</span> 
     <span class="s1">&#39;quantity&#39;</span><span class="p">:</span> <span class="mi">10</span><span class="p">,</span> 
     <span class="s1">&#39;web_id&#39;</span><span class="p">:</span> <span class="s1">&#39;137&#39;</span><span class="p">,</span>

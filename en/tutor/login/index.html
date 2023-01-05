@@ -1211,7 +1211,7 @@
 <p>Login must have a SinoPac Securities account. If you do not have a SinoPac Securities account yet. See the <a href="../prepare/open_account/">document</a> for details.</p>
 <div class="admonition attention">
 <p class="admonition-title">Token login</p>
-<p>After version 1.0, we are using token as our <code>login</code> method. You can be found in <a href="token.md">Token</a>. Before version 1.0, using person id and password.</p>
+<p>After version 1.0, we are using token as our <code>login</code> method. You can be found in <a href="../prepare/token/">Token</a>. Before version 1.0, using person id and password.</p>
 </div>
 <div class="admonition info">
 <p class="admonition-title">In</p>
@@ -1334,8 +1334,8 @@ In Order object, you need to specify which account you want to place order. For 
     <span class="n">quantity</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span> 
     <span class="n">action</span><span class="o">=</span><span class="n">sj</span><span class="o">.</span><span class="n">constant</span><span class="o">.</span><span class="n">Action</span><span class="o">.</span><span class="n">Buy</span><span class="p">,</span> 
     <span class="n">price_type</span><span class="o">=</span><span class="n">sj</span><span class="o">.</span><span class="n">constant</span><span class="o">.</span><span class="n">StockPriceType</span><span class="o">.</span><span class="n">LMT</span><span class="p">,</span> 
-    <span class="n">order_type</span><span class="o">=</span><span class="n">sj</span><span class="o">.</span><span class="n">constant</span><span class="o">.</span><span class="n">TFTOrderType</span><span class="o">.</span><span class="n">ROD</span><span class="p">,</span> 
-    <span class="n">order_lot</span><span class="o">=</span><span class="n">sj</span><span class="o">.</span><span class="n">constant</span><span class="o">.</span><span class="n">TFTStockOrderLot</span><span class="o">.</span><span class="n">Common</span><span class="p">,</span> 
+    <span class="n">order_type</span><span class="o">=</span><span class="n">sj</span><span class="o">.</span><span class="n">constant</span><span class="o">.</span><span class="n">OrderType</span><span class="o">.</span><span class="n">ROD</span><span class="p">,</span> 
+    <span class="n">order_lot</span><span class="o">=</span><span class="n">sj</span><span class="o">.</span><span class="n">constant</span><span class="o">.</span><span class="n">StockOrderLot</span><span class="o">.</span><span class="n">Common</span><span class="p">,</span> 
 <span class="hll">    <span class="n">account</span><span class="o">=</span><span class="n">api</span><span class="o">.</span><span class="n">stock_account</span>
 </span><span class="p">)</span>
 </code></pre></div>
