@@ -1032,76 +1032,21 @@
       
         <li class="md-nav__item">
   <a href="#_1" class="md-nav__link">
-    為什麼行情只能收幾行就斷掉了
+    下單
   </a>
   
 </li>
       
         <li class="md-nav__item">
-  <a href="#shioajilog" class="md-nav__link">
-    如何更改shioaji.log
+  <a href="#_2" class="md-nav__link">
+    行情
   </a>
   
 </li>
       
         <li class="md-nav__item">
-  <a href="#contracts" class="md-nav__link">
-    如何更改contracts下載路徑
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#mktmkp" class="md-nav__link">
-    如何下市價單(MKT)、範圍市價單(MKP)
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#rod" class="md-nav__link">
-    如何掛漲(跌)停限價ROD單
-  </a>
-  
-    <nav class="md-nav" aria-label="如何掛漲(跌)停限價ROD單">
-      <ul class="md-nav__list">
-        
-          <li class="md-nav__item">
-  <a href="#example-place-lmt-and-rod-order-at-limit-up-price" class="md-nav__link">
-    Example place LMT and ROD order at limit up price.
-  </a>
-  
-</li>
-        
-      </ul>
-    </nav>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#3" class="md-nav__link">
-    輸入密碼錯誤3次怎麼辦
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#simulation" class="md-nav__link">
-    Simulation無法登入
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#api" class="md-nav__link">
-    如何判斷API測試已完成
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#weve-migrate-qa-site-to-shioaji-forum" class="md-nav__link">
-    We've migrate QA site to Shioaji Forum
+  <a href="#_3" class="md-nav__link">
+    其他
   </a>
   
 </li>
@@ -1185,76 +1130,21 @@
       
         <li class="md-nav__item">
   <a href="#_1" class="md-nav__link">
-    為什麼行情只能收幾行就斷掉了
+    下單
   </a>
   
 </li>
       
         <li class="md-nav__item">
-  <a href="#shioajilog" class="md-nav__link">
-    如何更改shioaji.log
+  <a href="#_2" class="md-nav__link">
+    行情
   </a>
   
 </li>
       
         <li class="md-nav__item">
-  <a href="#contracts" class="md-nav__link">
-    如何更改contracts下載路徑
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#mktmkp" class="md-nav__link">
-    如何下市價單(MKT)、範圍市價單(MKP)
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#rod" class="md-nav__link">
-    如何掛漲(跌)停限價ROD單
-  </a>
-  
-    <nav class="md-nav" aria-label="如何掛漲(跌)停限價ROD單">
-      <ul class="md-nav__list">
-        
-          <li class="md-nav__item">
-  <a href="#example-place-lmt-and-rod-order-at-limit-up-price" class="md-nav__link">
-    Example place LMT and ROD order at limit up price.
-  </a>
-  
-</li>
-        
-      </ul>
-    </nav>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#3" class="md-nav__link">
-    輸入密碼錯誤3次怎麼辦
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#simulation" class="md-nav__link">
-    Simulation無法登入
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#api" class="md-nav__link">
-    如何判斷API測試已完成
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#weve-migrate-qa-site-to-shioaji-forum" class="md-nav__link">
-    We've migrate QA site to Shioaji Forum
+  <a href="#_3" class="md-nav__link">
+    其他
   </a>
   
 </li>
@@ -1276,58 +1166,9 @@
 
   <h1>問與答</h1>
 
-<h4 id="_1">為什麼行情只能收幾行就斷掉了<a class="headerlink" href="#_1" title="Permanent link">&para;</a></h4>
-<p>If your code something like this, and possibly run code on cmd/terminal with <code>python stream.py</code>.
-Then you definitely won't get any additional ticks, since the python program has already terminated.</p>
-<p><div class="highlight"><pre><span></span><code><span class="c1"># stream.py</span>
-<span class="kn">import</span> <span class="nn">shioaji</span> <span class="k">as</span> <span class="nn">sj</span>
-
-<span class="n">api</span> <span class="o">=</span> <span class="n">sj</span><span class="o">.</span><span class="n">Shioaji</span><span class="p">(</span><span class="n">simulation</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
-<span class="n">api</span><span class="o">.</span><span class="n">login</span><span class="p">(</span><span class="s1">&#39;YOUR_PERSON_ID&#39;</span><span class="p">,</span> <span class="s1">&#39;2222&#39;</span><span class="p">)</span>
-<span class="n">api</span><span class="o">.</span><span class="n">quote</span><span class="o">.</span><span class="n">subscribe</span><span class="p">(</span>
-    <span class="n">api</span><span class="o">.</span><span class="n">Contracts</span><span class="o">.</span><span class="n">Stocks</span><span class="p">[</span><span class="s2">&quot;2330&quot;</span><span class="p">],</span> 
-    <span class="n">quote_type</span> <span class="o">=</span> <span class="n">sj</span><span class="o">.</span><span class="n">constant</span><span class="o">.</span><span class="n">QuoteType</span><span class="o">.</span><span class="n">Tick</span>
-<span class="p">)</span>
-</code></pre></div>
-<br/></p>
-<p>If you wish your python program to survive, please modify you python script as below.</p>
-<p><div class="highlight"><pre><span></span><code><span class="c1"># stream.py</span>
-<span class="kn">import</span> <span class="nn">shioaji</span> <span class="k">as</span> <span class="nn">sj</span>
-<span class="kn">from</span> <span class="nn">threading</span> <span class="kn">import</span> <span class="n">Event</span>
-
-<span class="n">api</span> <span class="o">=</span> <span class="n">sj</span><span class="o">.</span><span class="n">Shioaji</span><span class="p">(</span><span class="n">simulation</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
-<span class="n">api</span><span class="o">.</span><span class="n">login</span><span class="p">(</span><span class="s1">&#39;YOUR_PERSON_ID&#39;</span><span class="p">,</span> <span class="s1">&#39;2222&#39;</span><span class="p">)</span>
-<span class="n">api</span><span class="o">.</span><span class="n">quote</span><span class="o">.</span><span class="n">subscribe</span><span class="p">(</span>
-    <span class="n">api</span><span class="o">.</span><span class="n">Contracts</span><span class="o">.</span><span class="n">Stocks</span><span class="p">[</span><span class="s2">&quot;2330&quot;</span><span class="p">],</span> 
-    <span class="n">quote_type</span> <span class="o">=</span> <span class="n">sj</span><span class="o">.</span><span class="n">constant</span><span class="o">.</span><span class="n">QuoteType</span><span class="o">.</span><span class="n">Tick</span>
-<span class="p">)</span>
-
-<span class="n">Event</span><span class="p">()</span><span class="o">.</span><span class="n">wait</span><span class="p">()</span>
-</code></pre></div>
-<br/></p>
-<h4 id="shioajilog">如何更改shioaji.log<a class="headerlink" href="#shioajilog" title="Permanent link">&para;</a></h4>
-<p>Please add environment variable before import shioaji. <code>(version &gt;= 0.3.3.dev0)</code></p>
-<p>linux or Mac OS:<br />
-<div class="highlight"><pre><span></span><code>export SJ_LOG_PATH=/path/to/shioaji.log
-</code></pre></div></p>
-<p>windows:<br />
-<div class="highlight"><pre><span></span><code>set SJ_LOG_PATH=C:\path\to\shioaji.log
-</code></pre></div>
-<br/></p>
-<h4 id="contracts">如何更改contracts下載路徑<a class="headerlink" href="#contracts" title="Permanent link">&para;</a></h4>
-<p>Please add environment variable before import shioaji. <code>(version &gt;= 0.3.4.dev2)</code></p>
-<p>linux or Mac OS:<br />
-<div class="highlight"><pre><span></span><code>export SJ_CONTRACTS_PATH=MY_PATH
-</code></pre></div></p>
-<p>windows:<br />
-<div class="highlight"><pre><span></span><code>set SJ_CONTRACTS_PATH=MY_PATH
-</code></pre></div></p>
-<p>python:
-<div class="highlight"><pre><span></span><code>os.environ[&quot;SJ_CONTRACTS_PATH&quot;]=MY_PATH
-</code></pre></div></p>
-<h4 id="mktmkp">如何下市價單(MKT)、範圍市價單(MKP)<a class="headerlink" href="#mktmkp" title="Permanent link">&para;</a></h4>
+<h3 id="_1">下單<a class="headerlink" href="#_1" title="Permanent link">&para;</a></h3>
 <div class="admonition info">
-<p class="admonition-title">In</p>
+<p class="admonition-title">如何下市價單(MKT)、範圍市價單(MKP)</p>
 <div class="highlight"><pre><span></span><code><span class="n">order</span> <span class="o">=</span> <span class="n">api</span><span class="o">.</span><span class="n">Order</span><span class="p">(</span>
     <span class="n">action</span><span class="o">=</span><span class="n">sj</span><span class="o">.</span><span class="n">constant</span><span class="o">.</span><span class="n">Action</span><span class="o">.</span><span class="n">Buy</span><span class="p">,</span>
 <span class="hll">    <span class="n">price</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span> <span class="c1"># MKT, MKP will not use price parameter</span>
@@ -1339,8 +1180,8 @@ Then you definitely won't get any additional ticks, since the python program has
 <span class="p">)</span>
 </code></pre></div>
 </div>
-<p><br/></p>
-<h4 id="rod">如何掛漲(跌)停限價ROD單<a class="headerlink" href="#rod" title="Permanent link">&para;</a></h4>
+<div class="admonition info">
+<p class="admonition-title">如何掛漲(跌)停限價ROD單</p>
 <p>First, we need to know the <code>limit up(limit down)</code> price of the security. Just take 
 a look at the <code>api.Contracts</code>, you will find the information you want.</p>
 <div class="admonition info">
@@ -1367,7 +1208,7 @@ a look at the <code>api.Contracts</code>, you will find the information you want
 <span class="p">)</span>
 </code></pre></div>
 </div>
-<h5 id="example-place-lmt-and-rod-order-at-limit-up-price">Example place LMT and ROD order at limit up price.<a class="headerlink" href="#example-place-lmt-and-rod-order-at-limit-up-price" title="Permanent link">&para;</a></h5>
+<p>Example place LMT and ROD order at limit up price.</p>
 <div class="admonition info">
 <p class="admonition-title">In</p>
 <div class="highlight"><pre><span></span><code><span class="n">contract</span> <span class="o">=</span> <span class="n">api</span><span class="o">.</span><span class="n">Contracts</span><span class="o">.</span><span class="n">Stocks</span><span class="o">.</span><span class="n">TSE</span><span class="p">[</span><span class="s1">&#39;TSE2330&#39;</span><span class="p">]</span>
@@ -1383,20 +1224,107 @@ a look at the <code>api.Contracts</code>, you will find the information you want
 <span class="p">)</span>
 </code></pre></div>
 </div>
-<p><br/></p>
-<h4 id="3">輸入密碼錯誤3次怎麼辦<a class="headerlink" href="#3" title="Permanent link">&para;</a></h4>
-<p><a href="https://www.sinotrade.com.tw/newweb/Service_ForgetPassword_Self/">線上解鎖</a><br />
-Note that you only have 2 chances to unlock your account online in a day. </p>
-<p><br/></p>
-<h4 id="simulation">Simulation無法登入<a class="headerlink" href="#simulation" title="Permanent link">&para;</a></h4>
-<p>simulation service time: 08:00 ~ 20:00, Mon - Fri<br />
-for more infomation, please refer to <a href="../tutor/simulation/">Simulation Mode</a></p>
-<p><br/></p>
-<h4 id="api">如何判斷API測試已完成<a class="headerlink" href="#api" title="Permanent link">&para;</a></h4>
-<p><a href="../tutor/simulation/#3-check-activation-of-signature">Check Activation of Signature</a></p>
-<p><br/></p>
-<h4 id="weve-migrate-qa-site-to-shioaji-forum">We've migrate QA site to <a href="https://sjapi.tw/">Shioaji Forum</a><a class="headerlink" href="#weve-migrate-qa-site-to-shioaji-forum" title="Permanent link">&para;</a></h4>
-<p><img alt="shioaji forum" src="https://raw.githubusercontent.com/Sinotrade/Sinotrade.github.io/master/img/sj_forum.png" /></p>
+</div>
+<h3 id="_2">行情<a class="headerlink" href="#_2" title="Permanent link">&para;</a></h3>
+<div class="admonition info">
+<p class="admonition-title">為什麼行情只能收幾行就斷掉了</p>
+<p>If your code something like this, and possibly run code on cmd/terminal with <code>python stream.py</code>.
+Then you definitely won't get any additional ticks, since the python program has already terminated.</p>
+<div class="tabbed-set tabbed-alternate" data-tabs="1:2"><input checked="checked" id="__tabbed_1_1" name="__tabbed_1" type="radio" /><input id="__tabbed_1_2" name="__tabbed_1" type="radio" /><div class="tabbed-labels"><label for="__tabbed_1_1">version&gt;=1.0</label><label for="__tabbed_1_2">version&lt;1.0</label></div>
+<div class="tabbed-content">
+<div class="tabbed-block">
+<div class="highlight"><pre><span></span><code><span class="kn">import</span> <span class="nn">shioaji</span> <span class="k">as</span> <span class="nn">sj</span>
+
+<span class="n">api</span> <span class="o">=</span> <span class="n">sj</span><span class="o">.</span><span class="n">Shioaji</span><span class="p">(</span><span class="n">simulation</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+<span class="n">api</span><span class="o">.</span><span class="n">login</span><span class="p">(</span><span class="s1">&#39;YOUR_API_KEY&#39;</span><span class="p">,</span> <span class="s1">&#39;YOUR_SECRET_KEY&#39;</span><span class="p">)</span>
+<span class="n">api</span><span class="o">.</span><span class="n">quote</span><span class="o">.</span><span class="n">subscribe</span><span class="p">(</span>
+    <span class="n">api</span><span class="o">.</span><span class="n">Contracts</span><span class="o">.</span><span class="n">Stocks</span><span class="p">[</span><span class="s2">&quot;2330&quot;</span><span class="p">],</span> 
+    <span class="n">quote_type</span> <span class="o">=</span> <span class="n">sj</span><span class="o">.</span><span class="n">constant</span><span class="o">.</span><span class="n">QuoteType</span><span class="o">.</span><span class="n">Tick</span>
+<span class="p">)</span>
+</code></pre></div>
+</div>
+<div class="tabbed-block">
+<div class="highlight"><pre><span></span><code><span class="c1"># stream.py</span>
+<span class="kn">import</span> <span class="nn">shioaji</span> <span class="k">as</span> <span class="nn">sj</span>
+
+<span class="n">api</span> <span class="o">=</span> <span class="n">sj</span><span class="o">.</span><span class="n">Shioaji</span><span class="p">(</span><span class="n">simulation</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+<span class="n">api</span><span class="o">.</span><span class="n">login</span><span class="p">(</span><span class="s1">&#39;YOUR_PERSON_ID&#39;</span><span class="p">,</span> <span class="s1">&#39;2222&#39;</span><span class="p">)</span>
+<span class="n">api</span><span class="o">.</span><span class="n">quote</span><span class="o">.</span><span class="n">subscribe</span><span class="p">(</span>
+    <span class="n">api</span><span class="o">.</span><span class="n">Contracts</span><span class="o">.</span><span class="n">Stocks</span><span class="p">[</span><span class="s2">&quot;2330&quot;</span><span class="p">],</span> 
+    <span class="n">quote_type</span> <span class="o">=</span> <span class="n">sj</span><span class="o">.</span><span class="n">constant</span><span class="o">.</span><span class="n">QuoteType</span><span class="o">.</span><span class="n">Tick</span>
+<span class="p">)</span>
+</code></pre></div>
+</div>
+</div>
+</div>
+<p>If you wish your python program to survive, please modify you python script as below.</p>
+<div class="tabbed-set tabbed-alternate" data-tabs="2:2"><input checked="checked" id="__tabbed_2_1" name="__tabbed_2" type="radio" /><input id="__tabbed_2_2" name="__tabbed_2" type="radio" /><div class="tabbed-labels"><label for="__tabbed_2_1">version&gt;=1.0</label><label for="__tabbed_2_2">version&lt;1.0</label></div>
+<div class="tabbed-content">
+<div class="tabbed-block">
+<div class="highlight"><pre><span></span><code><span class="c1"># stream.py</span>
+<span class="kn">import</span> <span class="nn">shioaji</span> <span class="k">as</span> <span class="nn">sj</span>
+<span class="kn">from</span> <span class="nn">threading</span> <span class="kn">import</span> <span class="n">Event</span>
+
+<span class="n">api</span> <span class="o">=</span> <span class="n">sj</span><span class="o">.</span><span class="n">Shioaji</span><span class="p">(</span><span class="n">simulation</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+<span class="n">api</span><span class="o">.</span><span class="n">login</span><span class="p">(</span><span class="s1">&#39;YOUR_API_KEY&#39;</span><span class="p">,</span> <span class="s1">&#39;YOUR_SECRET_KEY&#39;</span><span class="p">)</span>
+<span class="n">api</span><span class="o">.</span><span class="n">quote</span><span class="o">.</span><span class="n">subscribe</span><span class="p">(</span>
+    <span class="n">api</span><span class="o">.</span><span class="n">Contracts</span><span class="o">.</span><span class="n">Stocks</span><span class="p">[</span><span class="s2">&quot;2330&quot;</span><span class="p">],</span> 
+    <span class="n">quote_type</span> <span class="o">=</span> <span class="n">sj</span><span class="o">.</span><span class="n">constant</span><span class="o">.</span><span class="n">QuoteType</span><span class="o">.</span><span class="n">Tick</span>
+<span class="p">)</span>
+
+<span class="n">Event</span><span class="p">()</span><span class="o">.</span><span class="n">wait</span><span class="p">()</span>
+</code></pre></div>
+</div>
+<div class="tabbed-block">
+<div class="highlight"><pre><span></span><code><span class="c1"># stream.py</span>
+<span class="kn">import</span> <span class="nn">shioaji</span> <span class="k">as</span> <span class="nn">sj</span>
+<span class="kn">from</span> <span class="nn">threading</span> <span class="kn">import</span> <span class="n">Event</span>
+
+<span class="n">api</span> <span class="o">=</span> <span class="n">sj</span><span class="o">.</span><span class="n">Shioaji</span><span class="p">(</span><span class="n">simulation</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+<span class="n">api</span><span class="o">.</span><span class="n">login</span><span class="p">(</span><span class="s1">&#39;YOUR_PERSON_ID&#39;</span><span class="p">,</span> <span class="s1">&#39;2222&#39;</span><span class="p">)</span>
+<span class="n">api</span><span class="o">.</span><span class="n">quote</span><span class="o">.</span><span class="n">subscribe</span><span class="p">(</span>
+    <span class="n">api</span><span class="o">.</span><span class="n">Contracts</span><span class="o">.</span><span class="n">Stocks</span><span class="p">[</span><span class="s2">&quot;2330&quot;</span><span class="p">],</span> 
+    <span class="n">quote_type</span> <span class="o">=</span> <span class="n">sj</span><span class="o">.</span><span class="n">constant</span><span class="o">.</span><span class="n">QuoteType</span><span class="o">.</span><span class="n">Tick</span>
+<span class="p">)</span>
+
+<span class="n">Event</span><span class="p">()</span><span class="o">.</span><span class="n">wait</span><span class="p">()</span>
+</code></pre></div>
+</div>
+</div>
+</div>
+</div>
+<h3 id="_3">其他<a class="headerlink" href="#_3" title="Permanent link">&para;</a></h3>
+<div class="admonition info">
+<p class="admonition-title">如何更改shioaji.log</p>
+<p>Please add environment variable before import shioaji. <code>(version &gt;= 0.3.3.dev0)</code></p>
+<p>linux or Mac OS:<br />
+<div class="highlight"><pre><span></span><code>export SJ_LOG_PATH=/path/to/shioaji.log
+</code></pre></div></p>
+<p>windows:<br />
+<div class="highlight"><pre><span></span><code>set SJ_LOG_PATH=C:\path\to\shioaji.log
+</code></pre></div></p>
+</div>
+<div class="admonition info">
+<p class="admonition-title">如何更改contracts下載路徑</p>
+<p>Please add environment variable before import shioaji. <code>(version &gt;= 0.3.4.dev2)</code></p>
+<p>linux or Mac OS:<br />
+<div class="highlight"><pre><span></span><code>export SJ_CONTRACTS_PATH=MY_PATH
+</code></pre></div></p>
+<p>windows:<br />
+<div class="highlight"><pre><span></span><code>set SJ_CONTRACTS_PATH=MY_PATH
+</code></pre></div></p>
+<p>python:
+<div class="highlight"><pre><span></span><code>os.environ[&quot;SJ_CONTRACTS_PATH&quot;]=MY_PATH
+</code></pre></div></p>
+</div>
+<div class="admonition info">
+<p class="admonition-title">輸入密碼錯誤3次怎麼辦</p>
+<p><a href="https://www.sinotrade.com.tw/newweb/Service_ForgetPassword_Self/">線上解鎖</a></p>
+<p><strong> Note that you only have 2 chances to unlock your account online in a day. </strong></p>
+</div>
+<ul>
+<li>We've migrate QA site to <a href="https://sjapi.tw/">Shioaji Forum</a>*</li>
+</ul>
 
 
 
