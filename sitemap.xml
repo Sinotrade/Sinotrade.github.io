@@ -33,6 +33,14 @@
          
     </url>
     <url>
+         <loc>https://sinotrade.github.io/upgrade/</loc>
+         <lastmod>2023-01-05</lastmod>
+         <changefreq>daily</changefreq>
+         <xhtml:link rel="alternate" hreflang="en" href="https://sinotrade.github.io/en/upgrade/"/>
+         <xhtml:link rel="alternate" hreflang="zh_TW" href="https://sinotrade.github.io/zh_TW/upgrade/"/>
+         
+    </url>
+    <url>
          <loc>https://sinotrade.github.io/tutor/contract/</loc>
          <lastmod>2023-01-05</lastmod>
          <changefreq>daily</changefreq>
