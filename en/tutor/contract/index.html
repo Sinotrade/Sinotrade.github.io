@@ -420,26 +420,6 @@
     Get Contracts
   </a>
   
-    <nav class="md-nav" aria-label="Get Contracts">
-      <ul class="md-nav__list">
-        
-          <li class="md-nav__item">
-  <a href="#1-login-fetch-contracts" class="md-nav__link">
-    1. Login Fetch Contracts
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#2-use-fetch_contract" class="md-nav__link">
-    2. Use fetch_contract
-  </a>
-  
-</li>
-        
-      </ul>
-    </nav>
-  
 </li>
       
         <li class="md-nav__item">
@@ -1182,26 +1162,6 @@
     Get Contracts
   </a>
   
-    <nav class="md-nav" aria-label="Get Contracts">
-      <ul class="md-nav__list">
-        
-          <li class="md-nav__item">
-  <a href="#1-login-fetch-contracts" class="md-nav__link">
-    1. Login Fetch Contracts
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#2-use-fetch_contract" class="md-nav__link">
-    2. Use fetch_contract
-  </a>
-  
-</li>
-        
-      </ul>
-    </nav>
-  
 </li>
       
         <li class="md-nav__item">
@@ -1265,20 +1225,23 @@
 <p>Contract object will be used by a lot of place like place order, subscribe quote, etc.</p>
 <h3 id="get-contracts">Get Contracts<a class="headerlink" href="#get-contracts" title="Permanent link">&para;</a></h3>
 <p>The following provides two methods to get contracts:</p>
-<h4 id="1-login-fetch-contracts">1. <a href="../../tutor/login/">Login</a> Fetch Contracts<a class="headerlink" href="#1-login-fetch-contracts" title="Permanent link">&para;</a></h4>
-<p>&emsp;&emsp;After login success we will start to fetch all kind of contract but fetching will not block other action. So how to know the fetch action is done ? We have status of contracts download that you can use <code>Contracts.status</code>.</p>
-<p>&emsp;&emsp;If you set contracts_timeout inside <code>login</code> from 0 to 10000, it will block the fetch and wait 10 second until the contract is back. And If you set contract_cb (contract callback) as print, it will print <code>SecurityType.Index</code>,<code>SecurityType.Stock</code>,<code>SecurityType.Future</code>,<code>SecurityType.Option</code> until the contract is back.</p>
+<ul>
+<li>method 1:
+  After <a href="../../tutor/login/">Login</a> success we will start to fetch all kind of contract but fetching will not block other action. So how to know the fetch action is done ? We have status of contracts download that you can use <code>Contracts.status</code>. If you set contracts_timeout inside <code>login</code> set to 10000, it will block the fetch and wait 10 second until the contract is back.</li>
+</ul>
 <div class="admonition info">
 <p class="admonition-title">In</p>
 <div class="highlight"><pre><span></span><code><span class="n">api</span><span class="o">.</span><span class="n">login</span><span class="p">(</span>
     <span class="n">person_id</span><span class="o">=</span><span class="s1">&#39;YOUR_ID&#39;</span><span class="p">,</span> 
     <span class="n">passwd</span><span class="o">=</span><span class="s1">&#39;YOUR_PASSWORD&#39;</span><span class="p">,</span> 
     <span class="n">contracts_timeout</span><span class="o">=</span><span class="mi">10000</span><span class="p">,</span>
-    <span class="n">contracts_cb</span><span class="o">=</span><span class="nb">print</span><span class="p">,</span>
 <span class="p">)</span> 
 </code></pre></div>
 </div>
-<p>If fetch_contract inside <code>login</code> is set to False, it will not download contract.</p>
+<ul>
+<li>method 2:
+  If fetch_contract inside <code>login</code> is set to False, it will not download contract. You can use <code>fetch_contract</code> to download.</li>
+</ul>
 <div class="admonition info">
 <p class="admonition-title">In</p>
 <div class="highlight"><pre><span></span><code><span class="n">api</span><span class="o">.</span><span class="n">login</span><span class="p">(</span>
@@ -1286,12 +1249,7 @@
     <span class="n">passwd</span><span class="o">=</span><span class="s1">&#39;YOUR_PASSWORD&#39;</span><span class="p">,</span> 
     <span class="n">fetch_contract</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span>
 <span class="p">)</span> 
-</code></pre></div>
-</div>
-<h4 id="2-use-fetch_contract">2. Use <code>fetch_contract</code><a class="headerlink" href="#2-use-fetch_contract" title="Permanent link">&para;</a></h4>
-<div class="admonition info">
-<p class="admonition-title">In</p>
-<div class="highlight"><pre><span></span><code><span class="n">api</span><span class="o">.</span><span class="n">fetch_contracts</span><span class="p">()</span>
+<span class="n">api</span><span class="o">.</span><span class="n">fetch_contracts</span><span class="p">()</span>
 </code></pre></div>
 </div>
 <h3 id="contracts-information">Contracts Information<a class="headerlink" href="#contracts-information" title="Permanent link">&para;</a></h3>

@@ -72,7 +72,7 @@
     <div data-md-component="skip">
       
         
-        <a href="#login" class="md-skip">
+        <a href="#account" class="md-skip">
           Skip to content
         </a>
       
@@ -402,18 +402,11 @@
     <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
       
         <li class="md-nav__item">
-  <a href="#login" class="md-nav__link">
-    Login
+  <a href="#account" class="md-nav__link">
+    Account
   </a>
   
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#default-account" class="md-nav__link">
-    Default Account
-  </a>
-  
-    <nav class="md-nav" aria-label="Default Account">
+    <nav class="md-nav" aria-label="Account">
       <ul class="md-nav__list">
         
           <li class="md-nav__item">
@@ -424,22 +417,8 @@
 </li>
         
           <li class="md-nav__item">
-  <a href="#default-account_1" class="md-nav__link">
+  <a href="#default-account" class="md-nav__link">
     Default Account
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#default-account-in-order" class="md-nav__link">
-    Default Account in Order
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#set-default-account" class="md-nav__link">
-    Set Default Account
   </a>
   
 </li>
@@ -457,8 +436,8 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#logout-shioaji" class="md-nav__link">
-    Logout Shioaji
+  <a href="#logout" class="md-nav__link">
+    Logout
   </a>
   
 </li>
@@ -1172,18 +1151,11 @@
     <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
       
         <li class="md-nav__item">
-  <a href="#login" class="md-nav__link">
-    Login
+  <a href="#account" class="md-nav__link">
+    Account
   </a>
   
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#default-account" class="md-nav__link">
-    Default Account
-  </a>
-  
-    <nav class="md-nav" aria-label="Default Account">
+    <nav class="md-nav" aria-label="Account">
       <ul class="md-nav__list">
         
           <li class="md-nav__item">
@@ -1194,22 +1166,8 @@
 </li>
         
           <li class="md-nav__item">
-  <a href="#default-account_1" class="md-nav__link">
+  <a href="#default-account" class="md-nav__link">
     Default Account
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#default-account-in-order" class="md-nav__link">
-    Default Account in Order
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#set-default-account" class="md-nav__link">
-    Set Default Account
   </a>
   
 </li>
@@ -1227,8 +1185,8 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#logout-shioaji" class="md-nav__link">
-    Logout Shioaji
+  <a href="#logout" class="md-nav__link">
+    Logout
   </a>
   
 </li>
@@ -1250,12 +1208,11 @@
 
   <h1>Login</h1>
 
+<p>Login must have a SinoPac Securities account. If you do not have a SinoPac Securities account yet. See the <a href="../prepare/open_account/">document</a> for details.</p>
 <div class="admonition attention">
 <p class="admonition-title">Token login</p>
-<p>After version 1.0, we will use Token as our <code>login</code> method</p>
+<p>After version 1.0, we are using token as our <code>login</code> method. You can be found in <a href="token.md">Token</a>. Before version 1.0, using person id and password.</p>
 </div>
-<h3 id="login">Login<a class="headerlink" href="#login" title="Permanent link">&para;</a></h3>
-<p>After version&gt;=1.0, using token as our <code>login</code> method. you can be found in <a href="token.md">Token</a>. Before version&lt;1.0, using  person id and password.</p>
 <div class="admonition info">
 <p class="admonition-title">In</p>
 <div class="tabbed-set tabbed-alternate" data-tabs="1:2"><input checked="checked" id="__tabbed_1_1" name="__tabbed_1" type="radio" /><input id="__tabbed_1_2" name="__tabbed_1" type="radio" /><div class="tabbed-labels"><label for="__tabbed_1_1">version&gt;=1.0</label><label for="__tabbed_1_2">version&lt;1.0</label></div>
@@ -1278,16 +1235,25 @@
 <div class="admonition done">
 <p class="admonition-title">Out</p>
 <div class="highlight"><pre><span></span><code><span class="p">[</span><span class="n">FutureAccount</span><span class="p">(</span><span class="n">person_id</span><span class="o">=</span><span class="s1">&#39;&#39;</span><span class="p">,</span> <span class="n">broker_id</span><span class="o">=</span><span class="s1">&#39;&#39;</span><span class="p">,</span> <span class="n">account_id</span><span class="o">=</span><span class="s1">&#39;&#39;</span><span class="p">,</span> <span class="n">signed</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">username</span><span class="o">=</span><span class="s1">&#39;&#39;</span><span class="p">),</span>
-    <span class="n">StockAccount</span><span class="p">(</span><span class="n">person_id</span><span class="o">=</span><span class="s1">&#39;&#39;</span><span class="p">,</span> <span class="n">broker_id</span><span class="o">=</span><span class="s1">&#39;&#39;</span><span class="p">,</span> <span class="n">account_id</span><span class="o">=</span><span class="s1">&#39;&#39;</span><span class="p">,</span> <span class="n">signed</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">username</span><span class="o">=</span><span class="s1">&#39;&#39;</span><span class="p">)]</span>
-<span class="o">&lt;</span><span class="n">SecurityType</span><span class="o">.</span><span class="n">Index</span><span class="p">:</span> <span class="s1">&#39;IND&#39;</span><span class="o">&gt;</span> <span class="n">fetch</span> <span class="n">done</span><span class="o">.</span>
-<span class="o">&lt;</span><span class="n">SecurityType</span><span class="o">.</span><span class="n">Future</span><span class="p">:</span> <span class="s1">&#39;FUT&#39;</span><span class="o">&gt;</span> <span class="n">fetch</span> <span class="n">done</span><span class="o">.</span>
-<span class="o">&lt;</span><span class="n">SecurityType</span><span class="o">.</span><span class="n">Option</span><span class="p">:</span> <span class="s1">&#39;OPT&#39;</span><span class="o">&gt;</span> <span class="n">fetch</span> <span class="n">done</span><span class="o">.</span>
-<span class="o">&lt;</span><span class="n">SecurityType</span><span class="o">.</span><span class="n">Stock</span><span class="p">:</span> <span class="s1">&#39;STK&#39;</span><span class="o">&gt;</span> <span class="n">fetch</span> <span class="n">done</span><span class="o">.</span>
+<span class="n">StockAccount</span><span class="p">(</span><span class="n">person_id</span><span class="o">=</span><span class="s1">&#39;&#39;</span><span class="p">,</span> <span class="n">broker_id</span><span class="o">=</span><span class="s1">&#39;&#39;</span><span class="p">,</span> <span class="n">account_id</span><span class="o">=</span><span class="s1">&#39;&#39;</span><span class="p">,</span> <span class="n">signed</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">username</span><span class="o">=</span><span class="s1">&#39;&#39;</span><span class="p">)]</span>
 </code></pre></div>
 </div>
 <p>You can use <code>contracts_cb</code> as print to check contract download status.</p>
 <div class="admonition info">
 <p class="admonition-title">In</p>
+<div class="tabbed-set tabbed-alternate" data-tabs="2:2"><input checked="checked" id="__tabbed_2_1" name="__tabbed_2" type="radio" /><input id="__tabbed_2_2" name="__tabbed_2" type="radio" /><div class="tabbed-labels"><label for="__tabbed_2_1">version&gt;=1.0</label><label for="__tabbed_2_2">version&lt;1.0</label></div>
+<div class="tabbed-content">
+<div class="tabbed-block">
+<div class="highlight"><pre><span></span><code><span class="kn">import</span> <span class="nn">shioaji</span> <span class="k">as</span> <span class="nn">sj</span>
+<span class="n">api</span> <span class="o">=</span> <span class="n">sj</span><span class="o">.</span><span class="n">Shioaji</span><span class="p">()</span>
+<span class="n">api</span><span class="o">.</span><span class="n">login</span><span class="p">(</span>
+    <span class="n">key</span><span class="o">=</span><span class="s2">&quot;YOUR_API_KEY&quot;</span><span class="p">,</span> 
+    <span class="n">secret_key</span><span class="o">=</span><span class="s2">&quot;YOUR_SECRET_KEY&quot;</span><span class="p">,</span> 
+    <span class="n">contracts_cb</span><span class="o">=</span><span class="k">lambda</span> <span class="n">security_type</span><span class="p">:</span> <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="nb">repr</span><span class="p">(</span><span class="n">security_type</span><span class="p">)</span><span class="si">}</span><span class="s2"> fetch done.&quot;</span><span class="p">)</span>
+<span class="p">)</span>
+</code></pre></div>
+</div>
+<div class="tabbed-block">
 <div class="highlight"><pre><span></span><code><span class="kn">import</span> <span class="nn">shioaji</span> <span class="k">as</span> <span class="nn">sj</span>
 <span class="n">api</span> <span class="o">=</span> <span class="n">sj</span><span class="o">.</span><span class="n">Shioaji</span><span class="p">()</span>
 <span class="n">api</span><span class="o">.</span><span class="n">login</span><span class="p">(</span>
@@ -1296,6 +1262,9 @@
     <span class="n">contracts_cb</span><span class="o">=</span><span class="k">lambda</span> <span class="n">security_type</span><span class="p">:</span> <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="nb">repr</span><span class="p">(</span><span class="n">security_type</span><span class="p">)</span><span class="si">}</span><span class="s2"> fetch done.&quot;</span><span class="p">)</span>
 <span class="p">)</span>
 </code></pre></div>
+</div>
+</div>
+</div>
 </div>
 <div class="admonition done">
 <p class="admonition-title">Out</p>
@@ -1312,23 +1281,10 @@
 <ul>
 <li>If you cannot find <code>signed</code> in your accounts, please sign the <a href="./terms.md">document</a> first.</li>
 </ul>
-<h3 id="default-account">Default Account<a class="headerlink" href="#default-account" title="Permanent link">&para;</a></h3>
-<h4 id="list-accounts">List Accounts<a class="headerlink" href="#list-accounts" title="Permanent link">&para;</a></h4>
-<p>There are 2 ways you can get your accounts:  </p>
-<ol>
-<li><code>api.login</code>  </li>
-<li><code>api.list_accounts</code></li>
-</ol>
+<h3 id="account">Account<a class="headerlink" href="#account" title="Permanent link">&para;</a></h3>
+<h5 id="list-accounts">List Accounts<a class="headerlink" href="#list-accounts" title="Permanent link">&para;</a></h5>
 <div class="admonition info">
-<p class="admonition-title">In: login</p>
-<div class="highlight"><pre><span></span><code><span class="n">accounts</span> <span class="o">=</span> <span class="n">api</span><span class="o">.</span><span class="n">login</span><span class="p">(</span>
-    <span class="n">person_id</span><span class="o">=</span><span class="s2">&quot;YOUR_ID&quot;</span><span class="p">,</span> 
-    <span class="n">passwd</span><span class="o">=</span><span class="s2">&quot;YOUR_PASSWORD&quot;</span><span class="p">,</span> 
-<span class="p">)</span>
-</code></pre></div>
-</div>
-<div class="admonition info">
-<p class="admonition-title">In: list_accounts</p>
+<p class="admonition-title">In:</p>
 <div class="highlight"><pre><span></span><code><span class="n">accounts</span> <span class="o">=</span> <span class="n">api</span><span class="o">.</span><span class="n">list_accounts</span><span class="p">()</span>
 </code></pre></div>
 </div>
@@ -1344,34 +1300,36 @@
 </code></pre></div>
 </div>
 <ul>
-<li><code>signed</code> is invisible, such as ACCOUNT_ID_2, ACCOUNT_ID_3, if you haven't signed the api documents or haven't passed the api test in simulation mode. Please refer to <a href="./order/CA.md">CA &amp; Signature</a>.</li>
-<li><code>signed=True</code> means your signature has been activated, ex: ACCOUNT_ID_1, ACCOUNT_ID_4.
-<br/></li>
+<li>If <code>signed</code> does not appear in the account list, like ACCOUNT_ID_2 and ACCOUNT_ID_3, it means that the account has not signed or completed the test report in the simulation mode. Please refer to <a href="./turtor/prepare/terms.md">Terms of service</a>.</li>
 </ul>
-<h4 id="default-account_1">Default Account<a class="headerlink" href="#default-account_1" title="Permanent link">&para;</a></h4>
+<h5 id="default-account">Default Account<a class="headerlink" href="#default-account" title="Permanent link">&para;</a></h5>
 <div class="admonition info">
-<p class="admonition-title">In: login</p>
-<div class="highlight"><pre><span></span><code><span class="c1"># Stock default account</span>
-<span class="nb">print</span><span class="p">(</span><span class="n">api</span><span class="o">.</span><span class="n">stock_account</span><span class="p">)</span>
-
-<span class="c1"># Futures default account</span>
+<p class="admonition-title">In</p>
+<div class="highlight"><pre><span></span><code><span class="c1"># Futures default account</span>
 <span class="nb">print</span><span class="p">(</span><span class="n">api</span><span class="o">.</span><span class="n">futopt_account</span><span class="p">)</span>
 </code></pre></div>
 </div>
 <div class="admonition done">
 <p class="admonition-title">Out</p>
-<div class="highlight"><pre><span></span><code><span class="n">StockAccount</span><span class="p">(</span><span class="n">person_id</span><span class="o">=</span><span class="s1">&#39;PERSON_ID_3&#39;</span><span class="p">,</span> <span class="n">broker_id</span><span class="o">=</span><span class="s1">&#39;BROKER_ID_3&#39;</span><span class="p">,</span> <span class="n">account_id</span><span class="o">=</span><span class="s1">&#39;ACCOUNT_ID_3&#39;</span><span class="p">,</span> <span class="n">username</span><span class="o">=</span><span class="s1">&#39;USERNAME_3&#39;</span><span class="p">)</span>
-
-<span class="n">FutureAccount</span><span class="p">(</span><span class="n">person_id</span><span class="o">=</span><span class="s1">&#39;PERSON_ID_1&#39;</span><span class="p">,</span> <span class="n">broker_id</span><span class="o">=</span><span class="s1">&#39;BROKER_ID_1&#39;</span><span class="p">,</span> <span class="n">account_id</span><span class="o">=</span><span class="s1">&#39;ACCOUNT_ID_1&#39;</span><span class="p">,</span> <span class="n">signed</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">username</span><span class="o">=</span><span class="s1">&#39;USERNAME_1&#39;</span><span class="p">)</span>
+<div class="highlight"><pre><span></span><code><span class="n">FutureAccount</span><span class="p">(</span><span class="n">person_id</span><span class="o">=</span><span class="s1">&#39;PERSON_ID_1&#39;</span><span class="p">,</span> <span class="n">broker_id</span><span class="o">=</span><span class="s1">&#39;BROKER_ID_1&#39;</span><span class="p">,</span> <span class="n">account_id</span><span class="o">=</span><span class="s1">&#39;ACCOUNT_ID_1&#39;</span><span class="p">,</span> <span class="n">signed</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">username</span><span class="o">=</span><span class="s1">&#39;USERNAME_1&#39;</span><span class="p">)</span>
 </code></pre></div>
 </div>
-<p><br/></p>
-<h4 id="default-account-in-order">Default Account in Order<a class="headerlink" href="#default-account-in-order" title="Permanent link">&para;</a></h4>
-<p>In <code>Order</code> object, you need to specify which account you want to place order. For more information about <code>Order</code>, please refer to <a href="../order/Stock/">Stock Order</a> and <a href="../order/FutureOption/">Futures Order</a>.</p>
+<p>Set default account</p>
 <div class="admonition info">
 <p class="admonition-title">In</p>
-<div class="highlight"><pre><span></span><code><span class="c1"># stock order</span>
-<span class="n">order</span> <span class="o">=</span> <span class="n">api</span><span class="o">.</span><span class="n">Order</span><span class="p">(</span>
+<div class="highlight"><pre><span></span><code><span class="c1"># Default futures account switch to ACCOUNT_ID_2 from ACCOUNT_ID_1. </span>
+<span class="n">api</span><span class="o">.</span><span class="n">set_default_account</span><span class="p">(</span><span class="n">accounts</span><span class="p">[</span><span class="mi">1</span><span class="p">])</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">api</span><span class="o">.</span><span class="n">futopt_account</span><span class="p">)</span>
+</code></pre></div>
+</div>
+<div class="admonition done">
+<p class="admonition-title">Out</p>
+<div class="highlight"><pre><span></span><code><span class="n">FutureAccount</span><span class="p">(</span><span class="n">person_id</span><span class="o">=</span><span class="s1">&#39;PERSON_ID_2&#39;</span><span class="p">,</span> <span class="n">broker_id</span><span class="o">=</span><span class="s1">&#39;BROKER_ID_2&#39;</span><span class="p">,</span> <span class="n">account_id</span><span class="o">=</span><span class="s1">&#39;ACCOUNT_ID_2&#39;</span><span class="p">,</span> <span class="n">username</span><span class="o">=</span><span class="s1">&#39;USERNAME_2&#39;</span><span class="p">)</span>
+</code></pre></div>
+</div>
+<p><br/>
+In Order object, you need to specify which account you want to place order. For more information about Order, please refer to <a href="../order/Stock/">Stock Order</a> and <a href="../order/FutureOption/">Futures Order</a>.</p>
+<div class="highlight"><pre><span></span><code><span class="n">order</span> <span class="o">=</span> <span class="n">api</span><span class="o">.</span><span class="n">Order</span><span class="p">(</span>
     <span class="n">price</span><span class="o">=</span><span class="mi">12</span><span class="p">,</span> 
     <span class="n">quantity</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span> 
     <span class="n">action</span><span class="o">=</span><span class="n">sj</span><span class="o">.</span><span class="n">constant</span><span class="o">.</span><span class="n">Action</span><span class="o">.</span><span class="n">Buy</span><span class="p">,</span> 
@@ -1380,44 +1338,7 @@
     <span class="n">order_lot</span><span class="o">=</span><span class="n">sj</span><span class="o">.</span><span class="n">constant</span><span class="o">.</span><span class="n">TFTStockOrderLot</span><span class="o">.</span><span class="n">Common</span><span class="p">,</span> 
 <span class="hll">    <span class="n">account</span><span class="o">=</span><span class="n">api</span><span class="o">.</span><span class="n">stock_account</span>
 </span><span class="p">)</span>
-
-<span class="c1"># futures order</span>
-<span class="n">order</span> <span class="o">=</span> <span class="n">api</span><span class="o">.</span><span class="n">Order</span><span class="p">(</span>
-    <span class="n">action</span><span class="o">=</span><span class="n">sj</span><span class="o">.</span><span class="n">constant</span><span class="o">.</span><span class="n">Action</span><span class="o">.</span><span class="n">Buy</span><span class="p">,</span>
-    <span class="n">price</span><span class="o">=</span><span class="mi">10200</span><span class="p">,</span>
-    <span class="n">quantity</span><span class="o">=</span><span class="mi">2</span><span class="p">,</span>
-    <span class="n">price_type</span><span class="o">=</span><span class="n">sj</span><span class="o">.</span><span class="n">constant</span><span class="o">.</span><span class="n">StockPriceType</span><span class="o">.</span><span class="n">LMT</span><span class="p">,</span>
-    <span class="n">order_type</span><span class="o">=</span><span class="n">sj</span><span class="o">.</span><span class="n">constant</span><span class="o">.</span><span class="n">FuturesOrderType</span><span class="o">.</span><span class="n">ROD</span><span class="p">,</span> 
-    <span class="n">octype</span><span class="o">=</span><span class="n">sj</span><span class="o">.</span><span class="n">constant</span><span class="o">.</span><span class="n">FuturesOCType</span><span class="o">.</span><span class="n">Auto</span><span class="p">,</span>
-<span class="hll">    <span class="n">account</span><span class="o">=</span><span class="n">api</span><span class="o">.</span><span class="n">futopt_account</span>
-</span><span class="p">)</span>
 </code></pre></div>
-</div>
-<p><br/></p>
-<h4 id="set-default-account">Set Default Account<a class="headerlink" href="#set-default-account" title="Permanent link">&para;</a></h4>
-<div class="admonition info">
-<p class="admonition-title">In</p>
-<div class="highlight"><pre><span></span><code><span class="c1"># stock default account</span>
-<span class="n">api</span><span class="o">.</span><span class="n">set_default_account</span><span class="p">(</span><span class="n">accounts</span><span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">])</span>
-<span class="nb">print</span><span class="p">(</span><span class="n">api</span><span class="o">.</span><span class="n">stock_account</span><span class="p">)</span>
-
-<span class="c1"># futures default account</span>
-<span class="n">api</span><span class="o">.</span><span class="n">set_default_account</span><span class="p">(</span><span class="n">accounts</span><span class="p">[</span><span class="mi">1</span><span class="p">])</span>
-<span class="nb">print</span><span class="p">(</span><span class="n">api</span><span class="o">.</span><span class="n">futopt_account</span><span class="p">)</span>
-</code></pre></div>
-</div>
-<div class="admonition done">
-<p class="admonition-title">Out</p>
-<div class="highlight"><pre><span></span><code><span class="n">StockAccount</span><span class="p">(</span><span class="n">person_id</span><span class="o">=</span><span class="s1">&#39;PERSON_ID_4&#39;</span><span class="p">,</span> <span class="n">broker_id</span><span class="o">=</span><span class="s1">&#39;BROKER_ID_4&#39;</span><span class="p">,</span> <span class="n">account_id</span><span class="o">=</span><span class="s1">&#39;ACCOUNT_ID_4&#39;</span><span class="p">,</span> <span class="n">signed</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">username</span><span class="o">=</span><span class="s1">&#39;USERNAME_4&#39;</span><span class="p">)</span>
-
-<span class="n">FutureAccount</span><span class="p">(</span><span class="n">person_id</span><span class="o">=</span><span class="s1">&#39;PERSON_ID_2&#39;</span><span class="p">,</span> <span class="n">broker_id</span><span class="o">=</span><span class="s1">&#39;BROKER_ID_2&#39;</span><span class="p">,</span> <span class="n">account_id</span><span class="o">=</span><span class="s1">&#39;ACCOUNT_ID_2&#39;</span><span class="p">,</span> <span class="n">username</span><span class="o">=</span><span class="s1">&#39;USERNAME_2&#39;</span><span class="p">)</span>
-</code></pre></div>
-</div>
-<p>Note that:  </p>
-<ul>
-<li>Default stock account switch to ACCOUNT_ID_4 from ACCOUNT_ID_3.  </li>
-<li>Default futures account switch to ACCOUNT_ID_2 from ACCOUNT_ID_1.  </li>
-</ul>
 <h3 id="set-subscribe-trade-callback">set subscribe trade callback<a class="headerlink" href="#set-subscribe-trade-callback" title="Permanent link">&para;</a></h3>
 <p>The Default of subscribe trade callback is True.</p>
 <div class="admonition info">
@@ -1430,7 +1351,7 @@
 <div class="highlight"><pre><span></span><code><span class="n">api</span><span class="o">.</span><span class="n">unsubscribe_trade</span><span class="p">(</span><span class="n">account</span><span class="p">)</span>
 </code></pre></div>
 </div>
-<h2 id="logout-shioaji">Logout Shioaji<a class="headerlink" href="#logout-shioaji" title="Permanent link">&para;</a></h2>
+<h2 id="logout">Logout<a class="headerlink" href="#logout" title="Permanent link">&para;</a></h2>
 <p>Logout funciton will close the connection between the client and the server.<br />
 In order to provide high quality services, starting from 2021/08/06, 
 we've limit the <a href="../limit/">number of connections used</a>. It's a good practice 
