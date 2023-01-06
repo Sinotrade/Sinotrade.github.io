@@ -1301,29 +1301,6 @@
 <div class="tabbed-set tabbed-alternate" data-tabs="2:2"><input checked="checked" id="__tabbed_2_1" name="__tabbed_2" type="radio" /><input id="__tabbed_2_2" name="__tabbed_2" type="radio" /><div class="tabbed-labels"><label for="__tabbed_2_1">verion&gt;=1.0</label><label for="__tabbed_2_2">verion&lt;1.0</label></div>
 <div class="tabbed-content">
 <div class="tabbed-block">
-<div class="highlight"><pre><span></span><code><span class="hll"><span class="n">sj</span><span class="o">.</span><span class="n">order</span><span class="o">.</span><span class="n">TFTStockOrder</span><span class="err">?</span>
-</span>
-<span class="n">Init</span> <span class="n">signature</span><span class="p">:</span>
-<span class="hll"><span class="n">sj</span><span class="o">.</span><span class="n">order</span><span class="o">.</span><span class="n">TFTStockOrder</span><span class="p">(</span>
-</span>    <span class="o">*</span><span class="p">,</span>
-    <span class="n">action</span><span class="p">:</span> <span class="n">shioaji</span><span class="o">.</span><span class="n">constant</span><span class="o">.</span><span class="n">Action</span><span class="p">,</span>
-    <span class="n">price</span><span class="p">:</span> <span class="n">Union</span><span class="p">[</span><span class="n">pydantic</span><span class="o">.</span><span class="n">types</span><span class="o">.</span><span class="n">StrictInt</span><span class="p">,</span> <span class="nb">float</span><span class="p">],</span>
-    <span class="n">quantity</span><span class="p">:</span> <span class="n">shioaji</span><span class="o">.</span><span class="n">order</span><span class="o">.</span><span class="n">ConstrainedIntValue</span><span class="p">,</span>
-    <span class="nb">id</span><span class="p">:</span> <span class="nb">str</span> <span class="o">=</span> <span class="s1">&#39;&#39;</span><span class="p">,</span>
-    <span class="n">seqno</span><span class="p">:</span> <span class="nb">str</span> <span class="o">=</span> <span class="s1">&#39;&#39;</span><span class="p">,</span>
-    <span class="n">ordno</span><span class="p">:</span> <span class="nb">str</span> <span class="o">=</span> <span class="s1">&#39;&#39;</span><span class="p">,</span>
-    <span class="n">account</span><span class="p">:</span> <span class="n">shioaji</span><span class="o">.</span><span class="n">account</span><span class="o">.</span><span class="n">Account</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
-    <span class="n">custom_field</span><span class="p">:</span> <span class="n">shioaji</span><span class="o">.</span><span class="n">order</span><span class="o">.</span><span class="n">ConstrainedStrValue</span> <span class="o">=</span> <span class="s1">&#39;&#39;</span><span class="p">,</span>
-    <span class="n">ca</span><span class="p">:</span> <span class="nb">str</span> <span class="o">=</span> <span class="s1">&#39;&#39;</span><span class="p">,</span>
-<span class="hll">    <span class="n">price_type</span><span class="p">:</span> <span class="n">shioaji</span><span class="o">.</span><span class="n">constant</span><span class="o">.</span><span class="n">TFTStockPriceType</span><span class="p">,</span>
-</span><span class="hll">    <span class="n">order_type</span><span class="p">:</span> <span class="n">shioaji</span><span class="o">.</span><span class="n">constant</span><span class="o">.</span><span class="n">TFTOrderType</span><span class="p">,</span>
-</span><span class="hll">    <span class="n">order_lot</span><span class="p">:</span> <span class="n">shioaji</span><span class="o">.</span><span class="n">constant</span><span class="o">.</span><span class="n">TFTStockOrderLot</span> <span class="o">=</span> <span class="o">&lt;</span><span class="n">TFTStockOrderLot</span><span class="o">.</span><span class="n">Common</span><span class="p">:</span> <span class="s1">&#39;Common&#39;</span><span class="o">&gt;</span><span class="p">,</span>
-</span>    <span class="n">order_cond</span><span class="p">:</span> <span class="n">shioaji</span><span class="o">.</span><span class="n">constant</span><span class="o">.</span><span class="n">StockOrderCond</span> <span class="o">=</span> <span class="o">&lt;</span><span class="n">StockOrderCond</span><span class="o">.</span><span class="n">Cash</span><span class="p">:</span> <span class="s1">&#39;Cash&#39;</span><span class="o">&gt;</span><span class="p">,</span>
-<span class="hll">    <span class="n">first_sell</span><span class="p">:</span> <span class="n">shioaji</span><span class="o">.</span><span class="n">constant</span><span class="o">.</span><span class="n">StockFirstSell</span> <span class="o">=</span> <span class="o">&lt;</span><span class="n">StockFirstSell</span><span class="o">.</span><span class="n">No</span><span class="p">:</span> <span class="s1">&#39;false&#39;</span><span class="o">&gt;</span><span class="p">,</span>
-</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span>
-</code></pre></div>
-</div>
-<div class="tabbed-block">
 <div class="highlight"><pre><span></span><code><span class="hll"><span class="n">sj</span><span class="o">.</span><span class="n">order</span><span class="o">.</span><span class="n">StockOrder</span><span class="err">?</span>
 </span>
 <span class="n">Init</span> <span class="n">signature</span><span class="p">:</span>
@@ -1343,6 +1320,29 @@
 </span><span class="hll">    <span class="n">order_lot</span><span class="p">:</span> <span class="n">shioaji</span><span class="o">.</span><span class="n">constant</span><span class="o">.</span><span class="n">StockOrderLot</span> <span class="o">=</span> <span class="o">&lt;</span><span class="n">StockOrderLot</span><span class="o">.</span><span class="n">Common</span><span class="p">:</span> <span class="s1">&#39;Common&#39;</span><span class="o">&gt;</span><span class="p">,</span>
 </span>    <span class="n">order_cond</span><span class="p">:</span> <span class="n">shioaji</span><span class="o">.</span><span class="n">constant</span><span class="o">.</span><span class="n">StockOrderCond</span> <span class="o">=</span> <span class="o">&lt;</span><span class="n">StockOrderCond</span><span class="o">.</span><span class="n">Cash</span><span class="p">:</span> <span class="s1">&#39;Cash&#39;</span><span class="o">&gt;</span><span class="p">,</span>
 <span class="hll">    <span class="n">daytrade_short</span><span class="p">:</span> <span class="nb">bool</span> <span class="o">=</span> <span class="kc">False</span><span class="p">,</span>
+</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span>
+</code></pre></div>
+</div>
+<div class="tabbed-block">
+<div class="highlight"><pre><span></span><code><span class="hll"><span class="n">sj</span><span class="o">.</span><span class="n">order</span><span class="o">.</span><span class="n">TFTStockOrder</span><span class="err">?</span>
+</span>
+<span class="n">Init</span> <span class="n">signature</span><span class="p">:</span>
+<span class="hll"><span class="n">sj</span><span class="o">.</span><span class="n">order</span><span class="o">.</span><span class="n">TFTStockOrder</span><span class="p">(</span>
+</span>    <span class="o">*</span><span class="p">,</span>
+    <span class="n">action</span><span class="p">:</span> <span class="n">shioaji</span><span class="o">.</span><span class="n">constant</span><span class="o">.</span><span class="n">Action</span><span class="p">,</span>
+    <span class="n">price</span><span class="p">:</span> <span class="n">Union</span><span class="p">[</span><span class="n">pydantic</span><span class="o">.</span><span class="n">types</span><span class="o">.</span><span class="n">StrictInt</span><span class="p">,</span> <span class="nb">float</span><span class="p">],</span>
+    <span class="n">quantity</span><span class="p">:</span> <span class="n">shioaji</span><span class="o">.</span><span class="n">order</span><span class="o">.</span><span class="n">ConstrainedIntValue</span><span class="p">,</span>
+    <span class="nb">id</span><span class="p">:</span> <span class="nb">str</span> <span class="o">=</span> <span class="s1">&#39;&#39;</span><span class="p">,</span>
+    <span class="n">seqno</span><span class="p">:</span> <span class="nb">str</span> <span class="o">=</span> <span class="s1">&#39;&#39;</span><span class="p">,</span>
+    <span class="n">ordno</span><span class="p">:</span> <span class="nb">str</span> <span class="o">=</span> <span class="s1">&#39;&#39;</span><span class="p">,</span>
+    <span class="n">account</span><span class="p">:</span> <span class="n">shioaji</span><span class="o">.</span><span class="n">account</span><span class="o">.</span><span class="n">Account</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
+    <span class="n">custom_field</span><span class="p">:</span> <span class="n">shioaji</span><span class="o">.</span><span class="n">order</span><span class="o">.</span><span class="n">ConstrainedStrValue</span> <span class="o">=</span> <span class="s1">&#39;&#39;</span><span class="p">,</span>
+    <span class="n">ca</span><span class="p">:</span> <span class="nb">str</span> <span class="o">=</span> <span class="s1">&#39;&#39;</span><span class="p">,</span>
+<span class="hll">    <span class="n">price_type</span><span class="p">:</span> <span class="n">shioaji</span><span class="o">.</span><span class="n">constant</span><span class="o">.</span><span class="n">TFTStockPriceType</span><span class="p">,</span>
+</span><span class="hll">    <span class="n">order_type</span><span class="p">:</span> <span class="n">shioaji</span><span class="o">.</span><span class="n">constant</span><span class="o">.</span><span class="n">TFTOrderType</span><span class="p">,</span>
+</span><span class="hll">    <span class="n">order_lot</span><span class="p">:</span> <span class="n">shioaji</span><span class="o">.</span><span class="n">constant</span><span class="o">.</span><span class="n">TFTStockOrderLot</span> <span class="o">=</span> <span class="o">&lt;</span><span class="n">TFTStockOrderLot</span><span class="o">.</span><span class="n">Common</span><span class="p">:</span> <span class="s1">&#39;Common&#39;</span><span class="o">&gt;</span><span class="p">,</span>
+</span>    <span class="n">order_cond</span><span class="p">:</span> <span class="n">shioaji</span><span class="o">.</span><span class="n">constant</span><span class="o">.</span><span class="n">StockOrderCond</span> <span class="o">=</span> <span class="o">&lt;</span><span class="n">StockOrderCond</span><span class="o">.</span><span class="n">Cash</span><span class="p">:</span> <span class="s1">&#39;Cash&#39;</span><span class="o">&gt;</span><span class="p">,</span>
+<span class="hll">    <span class="n">first_sell</span><span class="p">:</span> <span class="n">shioaji</span><span class="o">.</span><span class="n">constant</span><span class="o">.</span><span class="n">StockFirstSell</span> <span class="o">=</span> <span class="o">&lt;</span><span class="n">StockFirstSell</span><span class="o">.</span><span class="n">No</span><span class="p">:</span> <span class="s1">&#39;false&#39;</span><span class="o">&gt;</span><span class="p">,</span>
 </span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span>
 </code></pre></div>
 </div>
@@ -1424,13 +1424,13 @@
 </div>
 <h3 id="_4">證券回報<a class="headerlink" href="#_4" title="Permanent link">&para;</a></h3>
 <h4 id="_5">委託回報<a class="headerlink" href="#_5" title="Permanent link">&para;</a></h4>
-<p><code>TFTOrder</code> 更改為 <code>SOrder</code></p>
+<p><code>TFTOrder</code> 更改為 <code>StockOrder</code></p>
 <div class="admonition info">
 <p class="admonition-title">Order Callback</p>
 <div class="tabbed-set tabbed-alternate" data-tabs="5:2"><input checked="checked" id="__tabbed_5_1" name="__tabbed_5" type="radio" /><input id="__tabbed_5_2" name="__tabbed_5" type="radio" /><div class="tabbed-labels"><label for="__tabbed_5_1">version&gt;=1.0</label><label for="__tabbed_5_2">version&lt;1.0</label></div>
 <div class="tabbed-content">
 <div class="tabbed-block">
-<div class="highlight"><pre><span></span><code><span class="hll"><span class="n">OrderState</span><span class="o">.</span><span class="n">SOrder</span> <span class="p">{</span>
+<div class="highlight"><pre><span></span><code><span class="hll"><span class="n">OrderState</span><span class="o">.</span><span class="n">StockOrder</span> <span class="p">{</span>
 </span>    <span class="s1">&#39;operation&#39;</span><span class="p">:</span> <span class="p">{</span>
         <span class="s1">&#39;op_type&#39;</span><span class="p">:</span> <span class="s1">&#39;New&#39;</span><span class="p">,</span>
         <span class="s1">&#39;op_code&#39;</span><span class="p">:</span> <span class="s1">&#39;00&#39;</span><span class="p">,</span>
@@ -1509,13 +1509,13 @@
 </div>
 </div>
 <h4 id="_6">成交回報<a class="headerlink" href="#_6" title="Permanent link">&para;</a></h4>
-<p><code>TFTDeal</code> 更改為 <code>SDeal</code></p>
+<p><code>TFTDeal</code> 更改為 <code>StockDeal</code></p>
 <div class="admonition info">
 <p class="admonition-title">Deal Callback</p>
 <div class="tabbed-set tabbed-alternate" data-tabs="6:2"><input checked="checked" id="__tabbed_6_1" name="__tabbed_6" type="radio" /><input id="__tabbed_6_2" name="__tabbed_6" type="radio" /><div class="tabbed-labels"><label for="__tabbed_6_1">version&gt;=1.0</label><label for="__tabbed_6_2">version&lt;1.0</label></div>
 <div class="tabbed-content">
 <div class="tabbed-block">
-<div class="highlight"><pre><span></span><code><span class="hll"><span class="n">OrderState</span><span class="o">.</span><span class="n">SDeal</span> <span class="p">{</span>
+<div class="highlight"><pre><span></span><code><span class="hll"><span class="n">OrderState</span><span class="o">.</span><span class="n">StockDeal</span> <span class="p">{</span>
 </span>    <span class="s1">&#39;trade_id&#39;</span><span class="p">:</span> <span class="s1">&#39;12ab3456&#39;</span><span class="p">,</span> 
     <span class="s1">&#39;exchange_seq&#39;</span><span class="p">:</span> <span class="s1">&#39;123456&#39;</span><span class="p">,</span> 
     <span class="s1">&#39;broker_id&#39;</span><span class="p">:</span> <span class="s1">&#39;your_broker_id&#39;</span><span class="p">,</span> 
