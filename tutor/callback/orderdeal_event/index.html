@@ -1165,6 +1165,22 @@
 </div>
 <div class="admonition info">
 <p class="admonition-title">Out</p>
+<div class="tabbed-set tabbed-alternate" data-tabs="1:2"><input checked="checked" id="__tabbed_1_1" name="__tabbed_1" type="radio" /><input id="__tabbed_1_2" name="__tabbed_1" type="radio" /><div class="tabbed-labels"><label for="__tabbed_1_1">version&gt;=1.0</label><label for="__tabbed_1_2">version&lt;1.0</label></div>
+<div class="tabbed-content">
+<div class="tabbed-block">
+<div class="highlight"><pre><span></span><code><span class="n">Signature</span><span class="p">:</span>
+    <span class="n">api</span><span class="o">.</span><span class="n">login</span><span class="p">(</span>
+        <span class="n">api_key</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span>
+        <span class="n">secret_key</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span>
+        <span class="n">hashed</span><span class="p">:</span> <span class="nb">bool</span> <span class="o">=</span> <span class="kc">False</span><span class="p">,</span>
+        <span class="n">fetch_contract</span><span class="p">:</span> <span class="nb">bool</span> <span class="o">=</span> <span class="kc">True</span><span class="p">,</span>
+        <span class="n">contracts_timeout</span><span class="p">:</span> <span class="nb">int</span> <span class="o">=</span> <span class="mi">0</span><span class="p">,</span>
+        <span class="n">contracts_cb</span><span class="p">:</span> <span class="n">Callable</span><span class="p">[[],</span> <span class="n">NoneType</span><span class="p">]</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
+<span class="hll">        <span class="n">subscribe_trade</span><span class="p">:</span> <span class="nb">bool</span> <span class="o">=</span> <span class="kc">True</span><span class="p">,</span>
+</span>    <span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span>
+</code></pre></div>
+</div>
+<div class="tabbed-block">
 <div class="highlight"><pre><span></span><code><span class="n">Signature</span><span class="p">:</span>
     <span class="n">api</span><span class="o">.</span><span class="n">login</span><span class="p">(</span>
         <span class="n">person_id</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span>
@@ -1173,11 +1189,12 @@
         <span class="n">fetch_contract</span><span class="p">:</span> <span class="nb">bool</span> <span class="o">=</span> <span class="kc">True</span><span class="p">,</span>
         <span class="n">contracts_timeout</span><span class="p">:</span> <span class="nb">int</span> <span class="o">=</span> <span class="mi">0</span><span class="p">,</span>
         <span class="n">contracts_cb</span><span class="p">:</span> <span class="n">Callable</span><span class="p">[[],</span> <span class="n">NoneType</span><span class="p">]</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
-        <span class="n">subscribe_trade</span><span class="p">:</span> <span class="nb">bool</span> <span class="o">=</span> <span class="kc">True</span><span class="p">,</span>
-    <span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span>
-<span class="n">Docstring</span><span class="p">:</span>
-    <span class="n">login</span> <span class="n">to</span> <span class="n">trading</span> <span class="n">server</span>
+<span class="hll">        <span class="n">subscribe_trade</span><span class="p">:</span> <span class="nb">bool</span> <span class="o">=</span> <span class="kc">True</span><span class="p">,</span>
+</span>    <span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span>
 </code></pre></div>
+</div>
+</div>
+</div>
 </div>
 <h3 id="set-order-callback">Set order callback<a class="headerlink" href="#set-order-callback" title="Permanent link">&para;</a></h3>
 <p>You can use <code>set_order_callback</code> to use the return information.  The example prints my_place_callback before receiving the event.</p>
@@ -1202,9 +1219,12 @@
 </div>
 <div class="admonition info">
 <p class="admonition-title">Order Event</p>
-<div class="highlight"><pre><span></span><code><span class="n">my_place_callback</span>
-<span class="n">OrderState</span><span class="o">.</span><span class="n">SOrder</span> <span class="p">{</span>
-    <span class="s1">&#39;operation&#39;</span><span class="p">:</span> <span class="p">{</span>
+<div class="tabbed-set tabbed-alternate" data-tabs="2:2"><input checked="checked" id="__tabbed_2_1" name="__tabbed_2" type="radio" /><input id="__tabbed_2_2" name="__tabbed_2" type="radio" /><div class="tabbed-labels"><label for="__tabbed_2_1">version&gt;=1.0</label><label for="__tabbed_2_2">version&lt;1.0</label></div>
+<div class="tabbed-content">
+<div class="tabbed-block">
+<div class="highlight"><pre><span></span><code><span class="hll"><span class="n">my_place_callback</span>
+</span><span class="hll"><span class="n">OrderState</span><span class="o">.</span><span class="n">StockOrder</span> <span class="p">{</span>
+</span>    <span class="s1">&#39;operation&#39;</span><span class="p">:</span> <span class="p">{</span>
         <span class="s1">&#39;op_type&#39;</span><span class="p">:</span> <span class="s1">&#39;New&#39;</span><span class="p">,</span>
         <span class="s1">&#39;op_code&#39;</span><span class="p">:</span> <span class="s1">&#39;00&#39;</span><span class="p">,</span>
         <span class="s1">&#39;op_msg&#39;</span><span class="p">:</span> <span class="s1">&#39;&#39;</span>
@@ -1240,11 +1260,56 @@
 <span class="p">}</span>
 </code></pre></div>
 </div>
+<div class="tabbed-block">
+<div class="highlight"><pre><span></span><code><span class="hll"><span class="n">my_place_callback</span>
+</span><span class="hll"><span class="n">OrderState</span><span class="o">.</span><span class="n">TFTOrder</span> <span class="p">{</span>
+</span>    <span class="s1">&#39;operation&#39;</span><span class="p">:</span> <span class="p">{</span>
+        <span class="s1">&#39;op_type&#39;</span><span class="p">:</span> <span class="s1">&#39;New&#39;</span><span class="p">,</span>
+        <span class="s1">&#39;op_code&#39;</span><span class="p">:</span> <span class="s1">&#39;00&#39;</span><span class="p">,</span>
+        <span class="s1">&#39;op_msg&#39;</span><span class="p">:</span> <span class="s1">&#39;&#39;</span>
+    <span class="p">},</span>
+    <span class="s1">&#39;order&#39;</span><span class="p">:</span> <span class="p">{</span>
+        <span class="s1">&#39;id&#39;</span><span class="p">:</span> <span class="s1">&#39;c21b876d&#39;</span><span class="p">,</span>
+        <span class="s1">&#39;seqno&#39;</span><span class="p">:</span> <span class="s1">&#39;429832&#39;</span><span class="p">,</span>
+        <span class="s1">&#39;ordno&#39;</span><span class="p">:</span> <span class="s1">&#39;W2892&#39;</span><span class="p">,</span>
+        <span class="s1">&#39;action&#39;</span><span class="p">:</span> <span class="s1">&#39;Buy&#39;</span><span class="p">,</span>
+        <span class="s1">&#39;price&#39;</span><span class="p">:</span> <span class="mf">12.0</span><span class="p">,</span>
+        <span class="s1">&#39;quantity&#39;</span><span class="p">:</span> <span class="mi">10</span><span class="p">,</span>
+        <span class="s1">&#39;order_cond&#39;</span><span class="p">:</span> <span class="s1">&#39;Cash&#39;</span><span class="p">,</span>
+        <span class="s1">&#39;order_lot&#39;</span><span class="p">:</span> <span class="s1">&#39;Common&#39;</span><span class="p">,</span>
+        <span class="s1">&#39;custom_field&#39;</span><span class="p">:</span> <span class="s1">&#39;test&#39;</span><span class="p">,</span>
+        <span class="s1">&#39;order_type&#39;</span><span class="p">:</span> <span class="s1">&#39;ROD&#39;</span><span class="p">,</span>
+        <span class="s1">&#39;price_type&#39;</span><span class="p">:</span> <span class="s1">&#39;LMT&#39;</span>
+    <span class="p">},</span>
+    <span class="s1">&#39;status&#39;</span><span class="p">:</span> <span class="p">{</span>
+        <span class="s1">&#39;id&#39;</span><span class="p">:</span> <span class="s1">&#39;c21b876d&#39;</span><span class="p">,</span>
+        <span class="s1">&#39;exchange_ts&#39;</span><span class="p">:</span> <span class="mi">1583828972</span><span class="p">,</span>
+        <span class="s1">&#39;modified_price&#39;</span><span class="p">:</span> <span class="mi">0</span><span class="p">,</span>
+        <span class="s1">&#39;cancel_quantity&#39;</span><span class="p">:</span> <span class="mi">0</span><span class="p">,</span>
+        <span class="s1">&#39;web_id&#39;</span><span class="p">:</span> <span class="s1">&#39;137&#39;</span>
+    <span class="p">},</span>
+    <span class="s1">&#39;contract&#39;</span><span class="p">:</span> <span class="p">{</span>
+        <span class="s1">&#39;security_type&#39;</span><span class="p">:</span> <span class="s1">&#39;STK&#39;</span><span class="p">,</span>
+        <span class="s1">&#39;exchange&#39;</span><span class="p">:</span> <span class="s1">&#39;TSE&#39;</span><span class="p">,</span>
+        <span class="s1">&#39;code&#39;</span><span class="p">:</span> <span class="s1">&#39;2890&#39;</span><span class="p">,</span>
+        <span class="s1">&#39;symbol&#39;</span><span class="p">:</span> <span class="s1">&#39;&#39;</span><span class="p">,</span>
+        <span class="s1">&#39;name&#39;</span><span class="p">:</span> <span class="s1">&#39;&#39;</span><span class="p">,</span>
+        <span class="s1">&#39;currency&#39;</span><span class="p">:</span> <span class="s1">&#39;TWD&#39;</span>
+    <span class="p">}</span>
+<span class="p">}</span>
+</code></pre></div>
+</div>
+</div>
+</div>
+</div>
 <div class="admonition info">
 <p class="admonition-title">Deal Event</p>
-<div class="highlight"><pre><span></span><code><span class="n">my_place_callback</span>
-<span class="n">OrderState</span><span class="o">.</span><span class="n">SDeal</span> <span class="p">{</span>
-    <span class="s1">&#39;trade_id&#39;</span><span class="p">:</span> <span class="s1">&#39;12ab3456&#39;</span><span class="p">,</span> 
+<div class="tabbed-set tabbed-alternate" data-tabs="3:2"><input checked="checked" id="__tabbed_3_1" name="__tabbed_3" type="radio" /><input id="__tabbed_3_2" name="__tabbed_3" type="radio" /><div class="tabbed-labels"><label for="__tabbed_3_1">version&gt;=1.0</label><label for="__tabbed_3_2">version&lt;1.0</label></div>
+<div class="tabbed-content">
+<div class="tabbed-block">
+<div class="highlight"><pre><span></span><code><span class="hll"><span class="n">my_place_callback</span>
+</span><span class="hll"><span class="n">OrderState</span><span class="o">.</span><span class="n">StockDeal</span> <span class="p">{</span>
+</span>    <span class="s1">&#39;trade_id&#39;</span><span class="p">:</span> <span class="s1">&#39;12ab3456&#39;</span><span class="p">,</span> 
     <span class="s1">&#39;exchange_seq&#39;</span><span class="p">:</span> <span class="s1">&#39;123456&#39;</span><span class="p">,</span> 
     <span class="s1">&#39;broker_id&#39;</span><span class="p">:</span> <span class="s1">&#39;your_broker_id&#39;</span><span class="p">,</span> 
     <span class="s1">&#39;account_id&#39;</span><span class="p">:</span> <span class="s1">&#39;your_account_id&#39;</span><span class="p">,</span> 
@@ -1259,6 +1324,28 @@
     <span class="s1">&#39;ts&#39;</span><span class="p">:</span> <span class="mi">1583828972</span>
 <span class="p">}</span>
 </code></pre></div>
+</div>
+<div class="tabbed-block">
+<div class="highlight"><pre><span></span><code><span class="hll"><span class="n">my_place_callback</span>
+</span><span class="hll"><span class="n">OrderState</span><span class="o">.</span><span class="n">TFTDeal</span> <span class="p">{</span>
+</span>    <span class="s1">&#39;trade_id&#39;</span><span class="p">:</span> <span class="s1">&#39;12ab3456&#39;</span><span class="p">,</span> 
+    <span class="s1">&#39;exchange_seq&#39;</span><span class="p">:</span> <span class="s1">&#39;123456&#39;</span><span class="p">,</span> 
+    <span class="s1">&#39;broker_id&#39;</span><span class="p">:</span> <span class="s1">&#39;your_broker_id&#39;</span><span class="p">,</span> 
+    <span class="s1">&#39;account_id&#39;</span><span class="p">:</span> <span class="s1">&#39;your_account_id&#39;</span><span class="p">,</span> 
+    <span class="s1">&#39;action&#39;</span><span class="p">:</span> <span class="o">&lt;</span><span class="n">Action</span><span class="o">.</span><span class="n">Buy</span><span class="p">:</span> <span class="s1">&#39;Buy&#39;</span><span class="o">&gt;</span><span class="p">,</span> 
+    <span class="s1">&#39;code&#39;</span><span class="p">:</span> <span class="s1">&#39;2890&#39;</span><span class="p">,</span> 
+    <span class="s1">&#39;order_cond&#39;</span><span class="p">:</span> <span class="o">&lt;</span><span class="n">StockOrderCond</span><span class="o">.</span><span class="n">Cash</span><span class="p">:</span> <span class="s1">&#39;Cash&#39;</span><span class="o">&gt;</span><span class="p">,</span> 
+    <span class="s1">&#39;order_lot&#39;</span><span class="p">:</span> <span class="o">&lt;</span><span class="n">StockOrderLot</span><span class="o">.</span><span class="n">Common</span><span class="p">:</span> <span class="s1">&#39;Common&#39;</span><span class="o">&gt;</span><span class="p">,</span>
+    <span class="s1">&#39;price&#39;</span><span class="p">:</span> <span class="mi">12</span><span class="p">,</span> 
+    <span class="s1">&#39;quantity&#39;</span><span class="p">:</span> <span class="mi">10</span><span class="p">,</span> 
+    <span class="s1">&#39;web_id&#39;</span><span class="p">:</span> <span class="s1">&#39;137&#39;</span><span class="p">,</span>
+    <span class="s1">&#39;custom_field&#39;</span><span class="p">:</span> <span class="s1">&#39;test&#39;</span><span class="p">,</span>
+    <span class="s1">&#39;ts&#39;</span><span class="p">:</span> <span class="mi">1583828972</span>
+<span class="p">}</span>
+</code></pre></div>
+</div>
+</div>
+</div>
 </div>
 
 

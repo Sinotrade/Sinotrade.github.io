@@ -1177,6 +1177,48 @@
 <p>當期交所收到委託將會回傳回報。在回報中分為四部分，包括operation、order、status及contract。以下我們會在進行詳細的說明。</p>
 <div class="admonition info">
 <p class="admonition-title">委託回報</p>
+<div class="tabbed-set tabbed-alternate" data-tabs="1:2"><input checked="checked" id="__tabbed_1_1" name="__tabbed_1" type="radio" /><input id="__tabbed_1_2" name="__tabbed_1" type="radio" /><div class="tabbed-labels"><label for="__tabbed_1_1">version&gt;=1.0</label><label for="__tabbed_1_2">version&lt;1.0</label></div>
+<div class="tabbed-content">
+<div class="tabbed-block">
+<div class="highlight"><pre><span></span><code><span class="hll"><span class="n">OrderState</span><span class="o">.</span><span class="n">FuturesOrder</span> <span class="p">{</span>
+</span>    <span class="s1">&#39;operation&#39;</span><span class="p">:</span> <span class="p">{</span>
+<span class="hll">        <span class="s1">&#39;op_type&#39;</span><span class="p">:</span> <span class="s1">&#39;New&#39;</span><span class="p">,</span> 
+</span>        <span class="s1">&#39;op_code&#39;</span><span class="p">:</span> <span class="s1">&#39;00&#39;</span><span class="p">,</span> 
+        <span class="s1">&#39;op_msg&#39;</span><span class="p">:</span> <span class="s1">&#39;&#39;</span>
+    <span class="p">},</span> 
+    <span class="s1">&#39;order&#39;</span><span class="p">:</span> <span class="p">{</span>
+        <span class="s1">&#39;id&#39;</span><span class="p">:</span> <span class="s1">&#39;02c347f7&#39;</span><span class="p">,</span> 
+        <span class="s1">&#39;seqno&#39;</span><span class="p">:</span> <span class="s1">&#39;956201&#39;</span><span class="p">,</span> 
+        <span class="s1">&#39;ordno&#39;</span><span class="p">:</span> <span class="s1">&#39;kY00H&#39;</span><span class="p">,</span> 
+        <span class="s1">&#39;action&#39;</span><span class="p">:</span> <span class="s1">&#39;Sell&#39;</span><span class="p">,</span> 
+        <span class="s1">&#39;price&#39;</span><span class="p">:</span> <span class="mf">17760.0</span><span class="p">,</span> 
+        <span class="s1">&#39;quantity&#39;</span><span class="p">:</span> <span class="mi">1</span><span class="p">,</span> 
+        <span class="s1">&#39;order_cond&#39;</span><span class="p">:</span> <span class="kc">None</span><span class="p">,</span> 
+        <span class="s1">&#39;order_type&#39;</span><span class="p">:</span> <span class="s1">&#39;ROD&#39;</span><span class="p">,</span> 
+        <span class="s1">&#39;price_type&#39;</span><span class="p">:</span> <span class="s1">&#39;LMT&#39;</span><span class="p">,</span> 
+        <span class="s1">&#39;market_type&#39;</span><span class="p">:</span> <span class="s1">&#39;Night&#39;</span><span class="p">,</span> 
+        <span class="s1">&#39;oc_type&#39;</span><span class="p">:</span> <span class="s1">&#39;New&#39;</span><span class="p">,</span> 
+        <span class="s1">&#39;subaccount&#39;</span><span class="p">:</span> <span class="s1">&#39;&#39;</span>
+    <span class="p">},</span> 
+    <span class="s1">&#39;status&#39;</span><span class="p">:</span> <span class="p">{</span>
+        <span class="s1">&#39;id&#39;</span><span class="p">:</span> <span class="s1">&#39;02c347f7&#39;</span><span class="p">,</span> 
+        <span class="s1">&#39;exchange_ts&#39;</span><span class="p">:</span> <span class="mi">1625729890</span><span class="p">,</span> 
+        <span class="s1">&#39;modified_price&#39;</span><span class="p">:</span> <span class="mf">0.0</span><span class="p">,</span> 
+        <span class="s1">&#39;cancel_quantity&#39;</span><span class="p">:</span> <span class="mi">0</span><span class="p">,</span>
+        <span class="s2">&quot;web_id&quot;</span><span class="p">:</span> <span class="s2">&quot;P&quot;</span>
+    <span class="p">},</span> 
+    <span class="s1">&#39;contract&#39;</span><span class="p">:</span> <span class="p">{</span>
+        <span class="s1">&#39;security_type&#39;</span><span class="p">:</span> <span class="s1">&#39;FUT&#39;</span><span class="p">,</span> 
+        <span class="s1">&#39;code&#39;</span><span class="p">:</span> <span class="s1">&#39;TXF&#39;</span><span class="p">,</span> 
+        <span class="s1">&#39;exchange&#39;</span><span class="p">:</span> <span class="s1">&#39;TIM&#39;</span><span class="p">,</span> 
+        <span class="s1">&#39;delivery_month&#39;</span><span class="p">:</span> <span class="s1">&#39;202107&#39;</span><span class="p">,</span> 
+        <span class="s1">&#39;strike_price&#39;</span><span class="p">:</span> <span class="mf">0.0</span><span class="p">,</span> 
+        <span class="s1">&#39;option_right&#39;</span><span class="p">:</span> <span class="s1">&#39;Future&#39;</span>
+    <span class="p">}</span>
+<span class="p">}</span>
+</code></pre></div>
+</div>
+<div class="tabbed-block">
 <div class="highlight"><pre><span></span><code><span class="hll"><span class="n">OrderState</span><span class="o">.</span><span class="n">FOrder</span> <span class="p">{</span>
 </span>    <span class="s1">&#39;operation&#39;</span><span class="p">:</span> <span class="p">{</span>
 <span class="hll">        <span class="s1">&#39;op_type&#39;</span><span class="p">:</span> <span class="s1">&#39;New&#39;</span><span class="p">,</span> 
@@ -1215,8 +1257,11 @@
 <span class="p">}</span>
 </code></pre></div>
 </div>
+</div>
+</div>
+</div>
 <div class="admonition example">
-<p class="admonition-title">FOrder</p>
+<p class="admonition-title">委託回報資訊</p>
 <p><strong>operation</strong>
 <div class="highlight"><pre><span></span><code><span class="n">op_type</span> <span class="p">(</span><span class="nb">str</span><span class="p">):</span> <span class="p">{</span><span class="s2">&quot;New&quot;</span><span class="p">:</span> <span class="n">新單</span><span class="p">,</span> <span class="s2">&quot;Cancel&quot;</span><span class="p">:</span> <span class="n">刪單</span><span class="p">,</span> <span class="s2">&quot;UpdatePrice&quot;</span><span class="p">:</span> <span class="n">改價</span><span class="p">,</span> <span class="s2">&quot;UpdateQty&quot;</span><span class="p">:</span> <span class="n">改量</span><span class="p">}</span>
 <span class="n">op_code</span> <span class="p">(</span><span class="nb">str</span><span class="p">):</span> <span class="p">{</span><span class="s2">&quot;00&quot;</span><span class="p">:</span> <span class="n">成功</span><span class="p">,</span> <span class="n">others</span><span class="p">:</span> <span class="n">失敗</span><span class="p">}</span>
@@ -1256,11 +1301,14 @@
 <p>當搓合成功，期交所會傳送成交回報告知。搓合成功包含部分成交以及完全成交，可以從委託回報中的<code>id</code>去對應成交回報中的<code>trade_id</code>去確認是否為同一筆委託單。</p>
 <div class="admonition info">
 <p class="admonition-title">成交回報</p>
-<div class="highlight"><pre><span></span><code><span class="hll"><span class="n">OrderState</span><span class="o">.</span><span class="n">FDeal</span> <span class="p">{</span>
-</span><span class="hll">    <span class="s2">&quot;trade_id&quot;</span><span class="p">:</span><span class="s2">&quot;aa78ef1f&quot;</span><span class="p">,</span>
-</span><span class="hll">    <span class="s2">&quot;seqno&quot;</span><span class="p">:</span><span class="s2">&quot;956344&quot;</span><span class="p">,</span>
-</span><span class="hll">    <span class="s2">&quot;ordno&quot;</span><span class="p">:</span><span class="s2">&quot;ky00N11O&quot;</span><span class="p">,</span>
-</span>    <span class="s2">&quot;exchange_seq&quot;</span><span class="p">:</span><span class="s2">&quot;a0000060&quot;</span><span class="p">,</span>
+<div class="tabbed-set tabbed-alternate" data-tabs="2:2"><input checked="checked" id="__tabbed_2_1" name="__tabbed_2" type="radio" /><input id="__tabbed_2_2" name="__tabbed_2" type="radio" /><div class="tabbed-labels"><label for="__tabbed_2_1">version&gt;=1.0</label><label for="__tabbed_2_2">version&lt;1.0</label></div>
+<div class="tabbed-content">
+<div class="tabbed-block">
+<div class="highlight"><pre><span></span><code><span class="hll"><span class="n">OrderState</span><span class="o">.</span><span class="n">FuturesDeal</span> <span class="p">{</span>
+</span><span class="hll">    <span class="s2">&quot;trade_id&quot;</span><span class="p">:</span><span class="s2">&quot;02c347f7&quot;</span><span class="p">,</span>
+</span>    <span class="s2">&quot;seqno&quot;</span><span class="p">:</span><span class="s2">&quot;956344&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;ordno&quot;</span><span class="p">:</span><span class="s2">&quot;ky00N11O&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;exchange_seq&quot;</span><span class="p">:</span><span class="s2">&quot;a0000060&quot;</span><span class="p">,</span>
     <span class="s2">&quot;broker_id&quot;</span><span class="p">:</span><span class="s2">&quot;F002000&quot;</span><span class="p">,</span>
     <span class="s2">&quot;account_id&quot;</span><span class="p">:</span><span class="s2">&quot;9104000&quot;</span><span class="p">,</span>
     <span class="s2">&quot;action&quot;</span><span class="p">:</span><span class="s2">&quot;Sell&quot;</span><span class="p">,</span>
@@ -1276,6 +1324,31 @@
     <span class="s2">&quot;ts&quot;</span><span class="p">:</span><span class="mi">1625800369</span>
 <span class="p">}</span>
 </code></pre></div>
+</div>
+<div class="tabbed-block">
+<div class="highlight"><pre><span></span><code><span class="hll"><span class="n">OrderState</span><span class="o">.</span><span class="n">FDeal</span> <span class="p">{</span>
+</span><span class="hll">    <span class="s2">&quot;trade_id&quot;</span><span class="p">:</span><span class="s2">&quot;02c347f7&quot;</span><span class="p">,</span>
+</span>    <span class="s2">&quot;seqno&quot;</span><span class="p">:</span><span class="s2">&quot;956344&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;ordno&quot;</span><span class="p">:</span><span class="s2">&quot;ky00N11O&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;exchange_seq&quot;</span><span class="p">:</span><span class="s2">&quot;a0000060&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;broker_id&quot;</span><span class="p">:</span><span class="s2">&quot;F002000&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;account_id&quot;</span><span class="p">:</span><span class="s2">&quot;9104000&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;action&quot;</span><span class="p">:</span><span class="s2">&quot;Sell&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;code&quot;</span><span class="p">:</span><span class="s2">&quot;TXF&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;price&quot;</span><span class="p">:</span><span class="mf">17650.0</span><span class="p">,</span>
+    <span class="s2">&quot;quantity&quot;</span><span class="p">:</span><span class="mi">4</span><span class="p">,</span>
+    <span class="s2">&quot;subaccount&quot;</span><span class="p">:</span><span class="s2">&quot;&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;security_type&quot;</span><span class="p">:</span><span class="s2">&quot;FUT&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;delivery_month&quot;</span><span class="p">:</span><span class="s2">&quot;202107&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;strike_price&quot;</span><span class="p">:</span><span class="mf">0.0</span><span class="p">,</span>
+    <span class="s2">&quot;option_right&quot;</span><span class="p">:</span><span class="s2">&quot;Future&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;market_type&quot;</span><span class="p">:</span><span class="s2">&quot;Day&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;ts&quot;</span><span class="p">:</span><span class="mi">1625800369</span>
+<span class="p">}</span>
+</code></pre></div>
+</div>
+</div>
+</div>
 </div>
 <div class="admonition example">
 <p class="admonition-title">成交回報</p>
