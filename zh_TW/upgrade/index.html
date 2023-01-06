@@ -72,7 +72,7 @@
     <div data-md-component="skip">
       
         
-        <a href="#github" class="md-skip">
+        <a href="#_1" class="md-skip">
           Skip to content
         </a>
       
@@ -299,13 +299,6 @@
     <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
       
         <li class="md-nav__item">
-  <a href="#github" class="md-nav__link">
-    Github
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
   <a href="#_1" class="md-nav__link">
     登入
   </a>
@@ -362,6 +355,13 @@
         <li class="md-nav__item">
   <a href="#_7" class="md-nav__link">
     期貨帳務資訊
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#github" class="md-nav__link">
+    Github
   </a>
   
 </li>
@@ -1191,13 +1191,6 @@
     <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
       
         <li class="md-nav__item">
-  <a href="#github" class="md-nav__link">
-    Github
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
   <a href="#_1" class="md-nav__link">
     登入
   </a>
@@ -1258,6 +1251,13 @@
   
 </li>
       
+        <li class="md-nav__item">
+  <a href="#github" class="md-nav__link">
+    Github
+  </a>
+  
+</li>
+      
     </ul>
   
 </nav>
@@ -1276,12 +1276,9 @@
   <h1>升版指南</h1>
 
 <p>1.0 版本為主要版本，本文檔幫助用戶遷移到 1.0 版。</p>
-<h2 id="github">Github<a class="headerlink" href="#github" title="Permanent link">&para;</a></h2>
-<p>請點擊星星支持我們 <a href="https://github.com/Sinotrade/Shioaji">Github</a>。</p>
-<p><img alt="github" src="https://raw.githubusercontent.com/Sinotrade/Sinotrade.github.io/master/img/github.JPG" /></p>
 <h2 id="_1">登入<a class="headerlink" href="#_1" title="Permanent link">&para;</a></h2>
-<p>1.0 版本用戶，請更新登入參數，<code>person_id</code> 及 <code>passwd</code> 變更為 <code>api_key</code> 及 <code>secret_key</code>。
-您可以在<a href="https://sinotrade.github.io/tutor/prepare/token/">API Key 教學頁面</a>學習如何申請API Key。</p>
+<p>登入參數<code>person_id</code> 及 <code>passwd</code> 變更為 <code>api_key</code> 及 <code>secret_key</code>。
+您可以在<a href="https://sinotrade.github.io/tutor/prepare/token/">API Key</a>深入了解如何取得Key。</p>
 <div class="admonition info">
 <p class="admonition-title">In</p>
 <div class="tabbed-set tabbed-alternate" data-tabs="1:2"><input checked="checked" id="__tabbed_1_1" name="__tabbed_1" type="radio" /><input id="__tabbed_1_2" name="__tabbed_1" type="radio" /><div class="tabbed-labels"><label for="__tabbed_1_1">version&gt;=1.0</label><label for="__tabbed_1_2">version&lt;1.0</label></div>
@@ -1309,7 +1306,7 @@
 </div>
 <h2 id="_2">下單<a class="headerlink" href="#_2" title="Permanent link">&para;</a></h2>
 <h3 id="_3">證券下單<a class="headerlink" href="#_3" title="Permanent link">&para;</a></h3>
-<p>變更 <code>first_sell</code> 為 <code>daytrade_short</code></p>
+<p><code>first_sell</code> 更改為 <code>daytrade_short</code>，型態更改為<code>Bool</code>。</p>
 <div class="admonition info">
 <p class="admonition-title">Daytrade Short</p>
 <div class="tabbed-set tabbed-alternate" data-tabs="2:2"><input checked="checked" id="__tabbed_2_1" name="__tabbed_2" type="radio" /><input id="__tabbed_2_2" name="__tabbed_2" type="radio" /><div class="tabbed-labels"><label for="__tabbed_2_1">version&gt;=1.0</label><label for="__tabbed_2_2">version&lt;1.0</label></div>
@@ -1345,7 +1342,8 @@
 </div>
 </div>
 </div>
-<p>變更 <code>TFT</code> 為 <code>Stock</code></p>
+<p><code>TFTOrderType</code> 更改為 <code>OrderType</code>
+<code>TFTStockOrderLot</code> 更改為 <code>StockOrderLot</code></p>
 <div class="admonition info">
 <p class="admonition-title">Stock</p>
 <div class="tabbed-set tabbed-alternate" data-tabs="3:2"><input checked="checked" id="__tabbed_3_1" name="__tabbed_3" type="radio" /><input id="__tabbed_3_2" name="__tabbed_3" type="radio" /><div class="tabbed-labels"><label for="__tabbed_3_1">version&gt;=1.0</label><label for="__tabbed_3_2">version&lt;1.0</label></div>
@@ -1381,7 +1379,7 @@
 </div>
 <h3 id="_4">證券回報<a class="headerlink" href="#_4" title="Permanent link">&para;</a></h3>
 <h4 id="_5">委託回報<a class="headerlink" href="#_5" title="Permanent link">&para;</a></h4>
-<p>變更 <code>TFTOrder</code> 為 <code>SOrder</code></p>
+<p><code>TFTOrder</code> 更改為 <code>SOrder</code></p>
 <div class="admonition info">
 <p class="admonition-title">Order Callback</p>
 <div class="tabbed-set tabbed-alternate" data-tabs="4:2"><input checked="checked" id="__tabbed_4_1" name="__tabbed_4" type="radio" /><input id="__tabbed_4_2" name="__tabbed_4" type="radio" /><div class="tabbed-labels"><label for="__tabbed_4_1">version&gt;=1.0</label><label for="__tabbed_4_2">version&lt;1.0</label></div>
@@ -1466,7 +1464,7 @@
 </div>
 </div>
 <h4 id="_6">成交回報<a class="headerlink" href="#_6" title="Permanent link">&para;</a></h4>
-<p>變更 <code>TFTDeal</code> 為 <code>SDeal</code></p>
+<p><code>TFTDeal</code> 更改為 <code>SDeal</code></p>
 <div class="admonition info">
 <p class="admonition-title">Deal Callback</p>
 <div class="tabbed-set tabbed-alternate" data-tabs="5:2"><input checked="checked" id="__tabbed_5_1" name="__tabbed_5" type="radio" /><input id="__tabbed_5_2" name="__tabbed_5" type="radio" /><div class="tabbed-labels"><label for="__tabbed_5_1">version&gt;=1.0</label><label for="__tabbed_5_2">version&lt;1.0</label></div>
@@ -1517,7 +1515,7 @@
 <span class="mf">3.</span><span class="w"> </span><span class="kr">get</span><span class="n">_account_settle_profitloss</span>
 </code></pre></div>
 
-<p>取而代之您可以使用的API </p>
+<p>取而代之</p>
 <div class="codehilite"><pre><span></span><code><span class="mf">1.</span><span class="w"> </span><span class="n">margin</span>
 <span class="mf">2.</span><span class="w"> </span><span class="kr">list</span><span class="n">_positions</span><span class="p">(</span><span class="err">`</span><span class="n">api</span><span class="mf">.</span><span class="n">futopt_account</span><span class="err">`</span><span class="p">)</span>
 <span class="mf">3.</span><span class="w"> </span><span class="kr">list</span><span class="n">_profit_loss</span><span class="p">(</span><span class="err">`</span><span class="n">api</span><span class="mf">.</span><span class="n">futopt_account</span><span class="err">`</span><span class="p">)</span>
@@ -1525,7 +1523,10 @@
 <span class="mf">5.</span><span class="w"> </span><span class="kr">list</span><span class="n">_profit_loss_summary</span><span class="p">(</span><span class="err">`</span><span class="n">api</span><span class="mf">.</span><span class="n">futopt_account</span><span class="err">`</span><span class="p">)</span>
 </code></pre></div>
 
-<p>欲瞭解更多期貨帳務API，請參考<a href="../tutor/accounting/position/">帳務資料</a>.</p>
+<p>欲瞭解更多期貨帳務API，請<a href="../tutor/accounting/position/">參見</a>。</p>
+<h2 id="github">Github<a class="headerlink" href="#github" title="Permanent link">&para;</a></h2>
+<p>請點擊<a href="https://github.com/Sinotrade/Shioaji">Github</a>星星支持我們。
+<img alt="github" src="https://raw.githubusercontent.com/Sinotrade/Sinotrade.github.io/master/img/github.JPG" /></p>
 
 
 
