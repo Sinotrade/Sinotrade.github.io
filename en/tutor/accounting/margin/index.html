@@ -907,7 +907,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../settlement/" class="md-nav__link">
+      <a href="../settlements/" class="md-nav__link">
         Settlements
       </a>
     </li>
@@ -1123,20 +1123,20 @@
     <span class="n">account</span><span class="p">:</span> <span class="n">shioaji</span><span class="o">.</span><span class="n">account</span><span class="o">.</span><span class="n">Account</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
     <span class="n">timeout</span><span class="p">:</span> <span class="nb">int</span> <span class="o">=</span> <span class="mi">5000</span><span class="p">,</span>
     <span class="n">cb</span><span class="p">:</span> <span class="n">Callable</span><span class="p">[[</span><span class="n">shioaji</span><span class="o">.</span><span class="n">position</span><span class="o">.</span><span class="n">Margin</span><span class="p">],</span> <span class="n">NoneType</span><span class="p">]</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
-<span class="p">)</span> <span class="o">-&gt;</span> <span class="n">List</span><span class="p">[</span><span class="n">shioaji</span><span class="o">.</span><span class="n">position</span><span class="o">.</span><span class="n">Margin</span><span class="p">]</span>
-<span class="n">Docstring</span><span class="p">:</span> <span class="n">query</span> <span class="n">future</span> <span class="n">account</span> <span class="n">of</span> <span class="n">margin</span> 
+<span class="p">)</span> <span class="o">-&gt;</span> <span class="n">shioaji</span><span class="o">.</span><span class="n">position</span><span class="o">.</span><span class="n">Margin</span>
+<span class="n">Docstring</span><span class="p">:</span> <span class="n">query</span> <span class="n">future</span> <span class="n">account</span> <span class="n">of</span> <span class="n">margin</span>
 </code></pre></div>
 </div>
 <div class="admonition info">
 <p class="admonition-title">In</p>
-<div class="highlight"><pre><span></span><code><span class="n">margin</span> <span class="o">=</span> <span class="n">api</span><span class="o">.</span><span class="n">margin</span><span class="p">(</span><span class="n">api</span><span class="o">.</span><span class="n">futopt_account</span><span class="p">)</span>   
-<span class="n">margin</span>     
+<div class="highlight"><pre><span></span><code><span class="n">api</span><span class="o">.</span><span class="n">margin</span><span class="p">(</span><span class="n">api</span><span class="o">.</span><span class="n">futopt_account</span><span class="p">)</span>
 </code></pre></div>
 </div>
 <div class="admonition done">
 <p class="admonition-title">Out</p>
 <div class="highlight"><pre><span></span><code><span class="n">Margin</span><span class="p">(</span>
-    <span class="n">status</span><span class="o">=&lt;</span><span class="n">FetchStatus</span><span class="o">.</span><span class="n">Fetched</span><span class="p">:</span> <span class="s1">&#39;Fetched&#39;</span><span class="o">&gt;</span><span class="p">,</span> <span class="n">yesterday_balance</span><span class="o">=</span><span class="mf">6000.0</span><span class="p">,</span> 
+    <span class="n">status</span><span class="o">=&lt;</span><span class="n">FetchStatus</span><span class="o">.</span><span class="n">Fetched</span><span class="p">:</span> <span class="s1">&#39;Fetched&#39;</span><span class="o">&gt;</span><span class="p">,</span> 
+    <span class="n">yesterday_balance</span><span class="o">=</span><span class="mf">6000.0</span><span class="p">,</span> 
     <span class="n">today_balance</span><span class="o">=</span><span class="mf">6000.0</span><span class="p">,</span> 
     <span class="n">deposit_withdrawal</span><span class="o">=</span><span class="mf">0.0</span><span class="p">,</span> 
     <span class="n">fee</span><span class="o">=</span><span class="mf">0.0</span><span class="p">,</span> 
@@ -1166,7 +1166,7 @@
 </div>
 <div class="admonition example">
 <p class="admonition-title">Margin</p>
-<div class="highlight"><pre><span></span><code><span class="n">status</span> <span class="p">(</span><span class="nb">str</span><span class="p">):</span> <span class="n">status</span> <span class="n">of</span> <span class="n">margin</span>
+<div class="highlight"><pre><span></span><code><span class="n">status</span> <span class="p">(</span><span class="n">FetchStatus</span><span class="p">):</span> <span class="n">fetch</span> <span class="n">status</span>
 <span class="n">yesterday_balance</span> <span class="p">(</span><span class="nb">float</span><span class="p">):</span> <span class="n">balance</span> <span class="n">of</span> <span class="n">yesterday</span>
 <span class="n">today_balance</span> <span class="p">(</span><span class="nb">float</span><span class="p">):</span> <span class="n">balance</span> <span class="n">of</span> <span class="n">today</span>
 <span class="n">deposit_withdrawal</span> <span class="p">(</span><span class="nb">float</span><span class="p">):</span> <span class="n">deposit</span> <span class="ow">and</span> <span class="n">withdrawal</span>
