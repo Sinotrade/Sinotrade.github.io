@@ -74,7 +74,7 @@
     <div data-md-component="skip">
       
         
-        <a href="#_1" class="md-skip">
+        <a href="#shioaji" class="md-skip">
           Skip to content
         </a>
       
@@ -301,6 +301,13 @@
     <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
       
         <li class="md-nav__item">
+  <a href="#shioaji" class="md-nav__link">
+    Shioaji 物件
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
   <a href="#_1" class="md-nav__link">
     登入
   </a>
@@ -349,13 +356,40 @@
   
 </li>
         
+          <li class="md-nav__item">
+  <a href="#_7" class="md-nav__link">
+    期貨回報
+  </a>
+  
+    <nav class="md-nav" aria-label="期貨回報">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#_8" class="md-nav__link">
+    委託回報
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_9" class="md-nav__link">
+    成交回報
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
       </ul>
     </nav>
   
 </li>
       
         <li class="md-nav__item">
-  <a href="#_7" class="md-nav__link">
+  <a href="#_10" class="md-nav__link">
     期貨帳務資訊
   </a>
   
@@ -1186,6 +1220,13 @@
     <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
       
         <li class="md-nav__item">
+  <a href="#shioaji" class="md-nav__link">
+    Shioaji 物件
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
   <a href="#_1" class="md-nav__link">
     登入
   </a>
@@ -1234,13 +1275,40 @@
   
 </li>
         
+          <li class="md-nav__item">
+  <a href="#_7" class="md-nav__link">
+    期貨回報
+  </a>
+  
+    <nav class="md-nav" aria-label="期貨回報">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#_8" class="md-nav__link">
+    委託回報
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_9" class="md-nav__link">
+    成交回報
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
       </ul>
     </nav>
   
 </li>
       
         <li class="md-nav__item">
-  <a href="#_7" class="md-nav__link">
+  <a href="#_10" class="md-nav__link">
     期貨帳務資訊
   </a>
   
@@ -1264,12 +1332,117 @@
   <h1>升版指南</h1>
 
 <p>1.0 為主要版本，本文檔幫助用戶遷移到版本 1.0 。</p>
+<h2 id="shioaji">Shioaji 物件<a class="headerlink" href="#shioaji" title="Permanent link">&para;</a></h2>
+<p>移除參數 <code>backend</code></p>
+<div class="admonition info">
+<p class="admonition-title">In</p>
+<div class="highlight"><pre><span></span><code><span class="kn">import</span> <span class="nn">shioaji</span> <span class="k">as</span> <span class="nn">sj</span>
+<span class="n">sj</span><span class="o">.</span><span class="n">Shioaji</span><span class="err">?</span>
+</code></pre></div>
+</div>
+<div class="admonition done">
+<p class="admonition-title">Out</p>
+<div class="tabbed-set tabbed-alternate" data-tabs="1:2"><input checked="checked" id="__tabbed_1_1" name="__tabbed_1" type="radio" /><input id="__tabbed_1_2" name="__tabbed_1" type="radio" /><div class="tabbed-labels"><label for="__tabbed_1_1">version&gt;=1.0</label><label for="__tabbed_1_2">version&lt;1.0</label></div>
+<div class="tabbed-content">
+<div class="tabbed-block">
+<div class="highlight"><pre><span></span><code><span class="n">Init</span> <span class="n">signature</span><span class="p">:</span>
+<span class="n">sj</span><span class="o">.</span><span class="n">Shioaji</span><span class="p">(</span>
+    <span class="n">simulation</span><span class="p">:</span> <span class="nb">bool</span> <span class="o">=</span> <span class="kc">False</span><span class="p">,</span>
+    <span class="n">proxies</span><span class="p">:</span> <span class="n">Dict</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="nb">str</span><span class="p">]</span> <span class="o">=</span> <span class="p">{},</span>
+    <span class="n">currency</span><span class="p">:</span> <span class="nb">str</span> <span class="o">=</span> <span class="s1">&#39;NTD&#39;</span><span class="p">,</span>
+<span class="p">)</span>
+<span class="n">Docstring</span><span class="p">:</span>     
+<span class="n">shioaji</span> <span class="n">api</span>
+
+<span class="n">Functions</span><span class="p">:</span>
+    <span class="n">login</span>
+    <span class="n">logout</span>
+    <span class="n">activate_ca</span>
+    <span class="n">list_accounts</span>
+    <span class="n">set_default_account</span>
+    <span class="n">get_account_margin</span>
+    <span class="n">get_account_openposition</span>
+    <span class="n">get_account_settle_profitloss</span>
+    <span class="n">get_stock_account_funds</span>
+    <span class="n">get_stock_account_unreal_profitloss</span>
+    <span class="n">get_stock_account_real_profitloss</span>
+    <span class="n">place_order</span>
+    <span class="n">update_order</span>
+    <span class="n">update_status</span>
+    <span class="n">list_trades</span>
+
+<span class="n">Objects</span><span class="p">:</span>
+    <span class="n">Quote</span>
+    <span class="n">Contracts</span>
+    <span class="n">Order</span>
+<span class="n">Init</span> <span class="n">docstring</span><span class="p">:</span>
+<span class="n">initialize</span> <span class="n">Shioaji</span> <span class="n">to</span> <span class="n">start</span> <span class="n">trading</span>
+
+<span class="n">Args</span><span class="p">:</span>
+    <span class="n">simulation</span> <span class="p">(</span><span class="nb">bool</span><span class="p">):</span>
+        <span class="o">-</span> <span class="kc">False</span><span class="p">:</span> <span class="n">to</span> <span class="n">trading</span> <span class="n">on</span> <span class="n">real</span> <span class="n">market</span> <span class="p">(</span><span class="n">just</span> <span class="n">use</span> <span class="n">your</span> <span class="n">Sinopac</span> <span class="n">account</span> <span class="n">to</span> <span class="n">start</span> <span class="n">trading</span><span class="p">)</span>
+        <span class="o">-</span> <span class="kc">True</span><span class="p">:</span> <span class="n">become</span> <span class="n">simulation</span> <span class="n">account</span><span class="p">(</span><span class="n">need</span> <span class="n">to</span> <span class="n">contract</span> <span class="k">as</span> <span class="n">to</span> <span class="nb">open</span> <span class="n">simulation</span> <span class="n">account</span><span class="p">)</span>
+    <span class="n">proxies</span> <span class="p">(</span><span class="nb">dict</span><span class="p">):</span> <span class="n">specific</span> <span class="n">the</span> <span class="n">proxies</span> <span class="n">of</span> <span class="n">your</span> <span class="n">https</span>
+        <span class="n">ex</span><span class="p">:</span> <span class="p">{</span><span class="s1">&#39;https&#39;</span><span class="p">:</span> <span class="s1">&#39;your-proxy-url&#39;</span><span class="p">}</span>
+    <span class="n">currency</span> <span class="p">(</span><span class="nb">str</span><span class="p">):</span> <span class="p">{</span><span class="n">NTX</span><span class="p">,</span> <span class="n">USX</span><span class="p">,</span> <span class="n">NTD</span><span class="p">,</span> <span class="n">USD</span><span class="p">,</span> <span class="n">HKD</span><span class="p">,</span> <span class="n">EUR</span><span class="p">,</span> <span class="n">JPY</span><span class="p">,</span> <span class="n">GBP</span><span class="p">}</span>
+        <span class="nb">set</span> <span class="n">the</span> <span class="n">default</span> <span class="n">currency</span> <span class="k">for</span> <span class="n">display</span>
+</code></pre></div>
+</div>
+<div class="tabbed-block">
+<div class="highlight"><pre><span></span><code><span class="n">Init</span> <span class="n">signature</span><span class="p">:</span>
+<span class="n">sj</span><span class="o">.</span><span class="n">Shioaji</span><span class="p">(</span>
+<span class="hll">    <span class="n">backend</span><span class="p">:</span> <span class="nb">str</span> <span class="o">=</span> <span class="s1">&#39;http&#39;</span><span class="p">,</span>
+</span>    <span class="n">simulation</span><span class="p">:</span> <span class="nb">bool</span> <span class="o">=</span> <span class="kc">False</span><span class="p">,</span>
+    <span class="n">proxies</span><span class="p">:</span> <span class="n">Dict</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="nb">str</span><span class="p">]</span> <span class="o">=</span> <span class="p">{},</span>
+    <span class="n">currency</span><span class="p">:</span> <span class="nb">str</span> <span class="o">=</span> <span class="s1">&#39;NTD&#39;</span><span class="p">,</span>
+<span class="p">)</span>
+<span class="n">Docstring</span><span class="p">:</span>
+<span class="n">shioaji</span> <span class="n">api</span>
+
+<span class="n">Functions</span><span class="p">:</span>
+    <span class="n">login</span>
+    <span class="n">activate_ca</span>
+    <span class="n">list_accounts</span>
+    <span class="n">set_default_account</span>
+    <span class="n">get_account_margin</span>
+    <span class="n">get_account_openposition</span>
+    <span class="n">get_account_settle_profitloss</span>
+    <span class="n">get_stock_account_funds</span>
+    <span class="n">get_stock_account_unreal_profitloss</span>
+    <span class="n">get_stock_account_real_profitloss</span>
+    <span class="n">place_order</span>
+    <span class="n">update_order</span>
+    <span class="n">update_status</span>
+    <span class="n">list_trades</span>
+
+<span class="n">Objects</span><span class="p">:</span>
+    <span class="n">Quote</span>
+    <span class="n">Contracts</span>
+    <span class="n">Order</span>
+<span class="n">Init</span> <span class="n">docstring</span><span class="p">:</span>
+<span class="n">initialize</span> <span class="n">Shioaji</span> <span class="n">to</span> <span class="n">start</span> <span class="n">trading</span>
+
+<span class="n">Args</span><span class="p">:</span>
+<span class="hll">    <span class="n">backend</span> <span class="p">(</span><span class="nb">str</span><span class="p">):</span> <span class="p">{</span><span class="n">http</span><span class="p">,</span> <span class="n">socket</span><span class="p">}</span>
+</span>        <span class="n">use</span> <span class="n">http</span> <span class="ow">or</span> <span class="n">socket</span> <span class="k">as</span> <span class="n">backend</span> <span class="n">currently</span> <span class="n">only</span> <span class="n">support</span> <span class="n">http</span><span class="p">,</span> <span class="k">async</span> <span class="n">socket</span> <span class="n">backend</span> <span class="n">coming</span> <span class="n">soon</span><span class="o">.</span>
+    <span class="n">simulation</span> <span class="p">(</span><span class="nb">bool</span><span class="p">):</span>
+        <span class="o">-</span> <span class="kc">False</span><span class="p">:</span> <span class="n">to</span> <span class="n">trading</span> <span class="n">on</span> <span class="n">real</span> <span class="n">market</span> <span class="p">(</span><span class="n">just</span> <span class="n">use</span> <span class="n">your</span> <span class="n">Sinopac</span> <span class="n">account</span> <span class="n">to</span> <span class="n">start</span> <span class="n">trading</span><span class="p">)</span>
+        <span class="o">-</span> <span class="kc">True</span><span class="p">:</span> <span class="n">become</span> <span class="n">simulation</span> <span class="n">account</span><span class="p">(</span><span class="n">need</span> <span class="n">to</span> <span class="n">contract</span> <span class="k">as</span> <span class="n">to</span> <span class="nb">open</span> <span class="n">simulation</span> <span class="n">account</span><span class="p">)</span>
+    <span class="n">proxies</span> <span class="p">(</span><span class="nb">dict</span><span class="p">):</span> <span class="n">specific</span> <span class="n">the</span> <span class="n">proxies</span> <span class="n">of</span> <span class="n">your</span> <span class="n">https</span>
+        <span class="n">ex</span><span class="p">:</span> <span class="p">{</span><span class="s1">&#39;https&#39;</span><span class="p">:</span> <span class="s1">&#39;your-proxy-url&#39;</span><span class="p">}</span>
+    <span class="n">currency</span> <span class="p">(</span><span class="nb">str</span><span class="p">):</span> <span class="p">{</span><span class="n">NTX</span><span class="p">,</span> <span class="n">USX</span><span class="p">,</span> <span class="n">NTD</span><span class="p">,</span> <span class="n">USD</span><span class="p">,</span> <span class="n">HKD</span><span class="p">,</span> <span class="n">EUR</span><span class="p">,</span> <span class="n">JPY</span><span class="p">,</span> <span class="n">GBP</span><span class="p">}</span>
+        <span class="nb">set</span> <span class="n">the</span> <span class="n">default</span> <span class="n">currency</span> <span class="k">for</span> <span class="n">display</span>
+</code></pre></div>
+</div>
+</div>
+</div>
+</div>
 <h2 id="_1">登入<a class="headerlink" href="#_1" title="Permanent link">&para;</a></h2>
 <p>登入參數<code>person_id</code> 及 <code>passwd</code> 變更為 <code>api_key</code> 及 <code>secret_key</code>。
 您可以在 <a href="https://sinotrade.github.io/tutor/prepare/token/">Token</a> 深入了解如何取得 API Key。</p>
 <div class="admonition info">
 <p class="admonition-title">In</p>
-<div class="tabbed-set tabbed-alternate" data-tabs="1:2"><input checked="checked" id="__tabbed_1_1" name="__tabbed_1" type="radio" /><input id="__tabbed_1_2" name="__tabbed_1" type="radio" /><div class="tabbed-labels"><label for="__tabbed_1_1">version&gt;=1.0</label><label for="__tabbed_1_2">version&lt;1.0</label></div>
+<div class="tabbed-set tabbed-alternate" data-tabs="2:2"><input checked="checked" id="__tabbed_2_1" name="__tabbed_2" type="radio" /><input id="__tabbed_2_2" name="__tabbed_2" type="radio" /><div class="tabbed-labels"><label for="__tabbed_2_1">version&gt;=1.0</label><label for="__tabbed_2_2">version&lt;1.0</label></div>
 <div class="tabbed-content">
 <div class="tabbed-block">
 <div class="highlight"><pre><span></span><code><span class="kn">import</span> <span class="nn">shioaji</span> <span class="k">as</span> <span class="nn">sj</span>
@@ -1298,7 +1471,7 @@
 <p><code>TFTStockOrder</code> 更改為 <code>StockOrder</code></p>
 <div class="admonition info">
 <p class="admonition-title">Order</p>
-<div class="tabbed-set tabbed-alternate" data-tabs="2:2"><input checked="checked" id="__tabbed_2_1" name="__tabbed_2" type="radio" /><input id="__tabbed_2_2" name="__tabbed_2" type="radio" /><div class="tabbed-labels"><label for="__tabbed_2_1">verion&gt;=1.0</label><label for="__tabbed_2_2">verion&lt;1.0</label></div>
+<div class="tabbed-set tabbed-alternate" data-tabs="3:2"><input checked="checked" id="__tabbed_3_1" name="__tabbed_3" type="radio" /><input id="__tabbed_3_2" name="__tabbed_3" type="radio" /><div class="tabbed-labels"><label for="__tabbed_3_1">verion&gt;=1.0</label><label for="__tabbed_3_2">verion&lt;1.0</label></div>
 <div class="tabbed-content">
 <div class="tabbed-block">
 <div class="highlight"><pre><span></span><code><span class="hll"><span class="n">sj</span><span class="o">.</span><span class="n">order</span><span class="o">.</span><span class="n">StockOrder</span><span class="err">?</span>
@@ -1353,7 +1526,7 @@
 <p><code>first_sell</code> 更改為 <code>daytrade_short</code>，型態更改為<code>Bool</code>。</p>
 <div class="admonition info">
 <p class="admonition-title">Daytrade Short</p>
-<div class="tabbed-set tabbed-alternate" data-tabs="3:2"><input checked="checked" id="__tabbed_3_1" name="__tabbed_3" type="radio" /><input id="__tabbed_3_2" name="__tabbed_3" type="radio" /><div class="tabbed-labels"><label for="__tabbed_3_1">version&gt;=1.0</label><label for="__tabbed_3_2">version&lt;1.0</label></div>
+<div class="tabbed-set tabbed-alternate" data-tabs="4:2"><input checked="checked" id="__tabbed_4_1" name="__tabbed_4" type="radio" /><input id="__tabbed_4_2" name="__tabbed_4" type="radio" /><div class="tabbed-labels"><label for="__tabbed_4_1">version&gt;=1.0</label><label for="__tabbed_4_2">version&lt;1.0</label></div>
 <div class="tabbed-content">
 <div class="tabbed-block">
 <div class="highlight"><pre><span></span><code><span class="n">order</span> <span class="o">=</span> <span class="n">api</span><span class="o">.</span><span class="n">Order</span><span class="p">(</span>
@@ -1391,7 +1564,7 @@
 <p><code>TFTStockOrderLot</code> 更改為 <code>StockOrderLot</code></p>
 <div class="admonition info">
 <p class="admonition-title">Stock</p>
-<div class="tabbed-set tabbed-alternate" data-tabs="4:2"><input checked="checked" id="__tabbed_4_1" name="__tabbed_4" type="radio" /><input id="__tabbed_4_2" name="__tabbed_4" type="radio" /><div class="tabbed-labels"><label for="__tabbed_4_1">version&gt;=1.0</label><label for="__tabbed_4_2">version&lt;1.0</label></div>
+<div class="tabbed-set tabbed-alternate" data-tabs="5:2"><input checked="checked" id="__tabbed_5_1" name="__tabbed_5" type="radio" /><input id="__tabbed_5_2" name="__tabbed_5" type="radio" /><div class="tabbed-labels"><label for="__tabbed_5_1">version&gt;=1.0</label><label for="__tabbed_5_2">version&lt;1.0</label></div>
 <div class="tabbed-content">
 <div class="tabbed-block">
 <div class="highlight"><pre><span></span><code><span class="n">order</span> <span class="o">=</span> <span class="n">api</span><span class="o">.</span><span class="n">Order</span><span class="p">(</span>
@@ -1427,7 +1600,7 @@
 <p><code>TFTOrder</code> 更改為 <code>StockOrder</code></p>
 <div class="admonition info">
 <p class="admonition-title">Order Callback</p>
-<div class="tabbed-set tabbed-alternate" data-tabs="5:2"><input checked="checked" id="__tabbed_5_1" name="__tabbed_5" type="radio" /><input id="__tabbed_5_2" name="__tabbed_5" type="radio" /><div class="tabbed-labels"><label for="__tabbed_5_1">version&gt;=1.0</label><label for="__tabbed_5_2">version&lt;1.0</label></div>
+<div class="tabbed-set tabbed-alternate" data-tabs="6:2"><input checked="checked" id="__tabbed_6_1" name="__tabbed_6" type="radio" /><input id="__tabbed_6_2" name="__tabbed_6" type="radio" /><div class="tabbed-labels"><label for="__tabbed_6_1">version&gt;=1.0</label><label for="__tabbed_6_2">version&lt;1.0</label></div>
 <div class="tabbed-content">
 <div class="tabbed-block">
 <div class="highlight"><pre><span></span><code><span class="hll"><span class="n">OrderState</span><span class="o">.</span><span class="n">StockOrder</span> <span class="p">{</span>
@@ -1512,7 +1685,7 @@
 <p><code>TFTDeal</code> 更改為 <code>StockDeal</code></p>
 <div class="admonition info">
 <p class="admonition-title">Deal Callback</p>
-<div class="tabbed-set tabbed-alternate" data-tabs="6:2"><input checked="checked" id="__tabbed_6_1" name="__tabbed_6" type="radio" /><input id="__tabbed_6_2" name="__tabbed_6" type="radio" /><div class="tabbed-labels"><label for="__tabbed_6_1">version&gt;=1.0</label><label for="__tabbed_6_2">version&lt;1.0</label></div>
+<div class="tabbed-set tabbed-alternate" data-tabs="7:2"><input checked="checked" id="__tabbed_7_1" name="__tabbed_7" type="radio" /><input id="__tabbed_7_2" name="__tabbed_7" type="radio" /><div class="tabbed-labels"><label for="__tabbed_7_1">version&gt;=1.0</label><label for="__tabbed_7_2">version&lt;1.0</label></div>
 <div class="tabbed-content">
 <div class="tabbed-block">
 <div class="highlight"><pre><span></span><code><span class="hll"><span class="n">OrderState</span><span class="o">.</span><span class="n">StockDeal</span> <span class="p">{</span>
@@ -1553,7 +1726,148 @@
 </div>
 </div>
 </div>
-<h2 id="_7">期貨帳務資訊<a class="headerlink" href="#_7" title="Permanent link">&para;</a></h2>
+<h3 id="_7">期貨回報<a class="headerlink" href="#_7" title="Permanent link">&para;</a></h3>
+<h4 id="_8">委託回報<a class="headerlink" href="#_8" title="Permanent link">&para;</a></h4>
+<p><code>FOrder</code> 更改為 <code>FuturesOrder</code></p>
+<div class="admonition info">
+<p class="admonition-title">Order Event</p>
+<div class="tabbed-set tabbed-alternate" data-tabs="8:2"><input checked="checked" id="__tabbed_8_1" name="__tabbed_8" type="radio" /><input id="__tabbed_8_2" name="__tabbed_8" type="radio" /><div class="tabbed-labels"><label for="__tabbed_8_1">version&gt;=1.0</label><label for="__tabbed_8_2">version&lt;1.0</label></div>
+<div class="tabbed-content">
+<div class="tabbed-block">
+<div class="highlight"><pre><span></span><code><span class="hll"><span class="n">OrderState</span><span class="o">.</span><span class="n">FuturesOrder</span> <span class="p">{</span>
+</span>    <span class="s1">&#39;operation&#39;</span><span class="p">:</span> <span class="p">{</span>
+        <span class="s1">&#39;op_type&#39;</span><span class="p">:</span> <span class="s1">&#39;New&#39;</span><span class="p">,</span> 
+        <span class="s1">&#39;op_code&#39;</span><span class="p">:</span> <span class="s1">&#39;00&#39;</span><span class="p">,</span> 
+        <span class="s1">&#39;op_msg&#39;</span><span class="p">:</span> <span class="s1">&#39;&#39;</span>
+    <span class="p">},</span> 
+    <span class="s1">&#39;order&#39;</span><span class="p">:</span> <span class="p">{</span>
+        <span class="s1">&#39;id&#39;</span><span class="p">:</span> <span class="s1">&#39;02c347f7&#39;</span><span class="p">,</span> 
+        <span class="s1">&#39;seqno&#39;</span><span class="p">:</span> <span class="s1">&#39;956201&#39;</span><span class="p">,</span> 
+        <span class="s1">&#39;ordno&#39;</span><span class="p">:</span> <span class="s1">&#39;kY00H&#39;</span><span class="p">,</span> 
+        <span class="s1">&#39;action&#39;</span><span class="p">:</span> <span class="s1">&#39;Sell&#39;</span><span class="p">,</span> 
+        <span class="s1">&#39;price&#39;</span><span class="p">:</span> <span class="mf">17760.0</span><span class="p">,</span> 
+        <span class="s1">&#39;quantity&#39;</span><span class="p">:</span> <span class="mi">1</span><span class="p">,</span> 
+        <span class="s1">&#39;order_cond&#39;</span><span class="p">:</span> <span class="kc">None</span><span class="p">,</span> 
+        <span class="s1">&#39;order_type&#39;</span><span class="p">:</span> <span class="s1">&#39;ROD&#39;</span><span class="p">,</span> 
+        <span class="s1">&#39;price_type&#39;</span><span class="p">:</span> <span class="s1">&#39;LMT&#39;</span><span class="p">,</span> 
+        <span class="s1">&#39;market_type&#39;</span><span class="p">:</span> <span class="s1">&#39;Night&#39;</span><span class="p">,</span> 
+        <span class="s1">&#39;oc_type&#39;</span><span class="p">:</span> <span class="s1">&#39;New&#39;</span><span class="p">,</span> 
+        <span class="s1">&#39;subaccount&#39;</span><span class="p">:</span> <span class="s1">&#39;&#39;</span>
+    <span class="p">},</span> 
+    <span class="s1">&#39;status&#39;</span><span class="p">:</span> <span class="p">{</span>
+        <span class="s1">&#39;id&#39;</span><span class="p">:</span> <span class="s1">&#39;02c347f7&#39;</span><span class="p">,</span> 
+        <span class="s1">&#39;exchange_ts&#39;</span><span class="p">:</span> <span class="mi">1625729890</span><span class="p">,</span> 
+        <span class="s1">&#39;modified_price&#39;</span><span class="p">:</span> <span class="mf">0.0</span><span class="p">,</span> 
+        <span class="s1">&#39;cancel_quantity&#39;</span><span class="p">:</span> <span class="mi">0</span><span class="p">,</span>
+        <span class="s2">&quot;web_id&quot;</span><span class="p">:</span> <span class="s2">&quot;P&quot;</span>
+    <span class="p">},</span> 
+    <span class="s1">&#39;contract&#39;</span><span class="p">:</span> <span class="p">{</span>
+        <span class="s1">&#39;security_type&#39;</span><span class="p">:</span> <span class="s1">&#39;FUT&#39;</span><span class="p">,</span> 
+        <span class="s1">&#39;code&#39;</span><span class="p">:</span> <span class="s1">&#39;TXF&#39;</span><span class="p">,</span> 
+        <span class="s1">&#39;exchange&#39;</span><span class="p">:</span> <span class="s1">&#39;TIM&#39;</span><span class="p">,</span> 
+        <span class="s1">&#39;delivery_month&#39;</span><span class="p">:</span> <span class="s1">&#39;202107&#39;</span><span class="p">,</span> 
+        <span class="s1">&#39;strike_price&#39;</span><span class="p">:</span> <span class="mf">0.0</span><span class="p">,</span> 
+        <span class="s1">&#39;option_right&#39;</span><span class="p">:</span> <span class="s1">&#39;Future&#39;</span>
+    <span class="p">}</span>
+<span class="p">}</span>
+</code></pre></div>
+</div>
+<div class="tabbed-block">
+<div class="highlight"><pre><span></span><code><span class="hll"><span class="n">OrderState</span><span class="o">.</span><span class="n">FOrder</span> <span class="p">{</span>
+</span>    <span class="s1">&#39;operation&#39;</span><span class="p">:</span> <span class="p">{</span>
+        <span class="s1">&#39;op_type&#39;</span><span class="p">:</span> <span class="s1">&#39;New&#39;</span><span class="p">,</span> 
+        <span class="s1">&#39;op_code&#39;</span><span class="p">:</span> <span class="s1">&#39;00&#39;</span><span class="p">,</span> 
+        <span class="s1">&#39;op_msg&#39;</span><span class="p">:</span> <span class="s1">&#39;&#39;</span>
+    <span class="p">},</span> 
+    <span class="s1">&#39;order&#39;</span><span class="p">:</span> <span class="p">{</span>
+        <span class="s1">&#39;id&#39;</span><span class="p">:</span> <span class="s1">&#39;02c347f7&#39;</span><span class="p">,</span> 
+        <span class="s1">&#39;seqno&#39;</span><span class="p">:</span> <span class="s1">&#39;956201&#39;</span><span class="p">,</span> 
+        <span class="s1">&#39;ordno&#39;</span><span class="p">:</span> <span class="s1">&#39;kY00H&#39;</span><span class="p">,</span> 
+        <span class="s1">&#39;action&#39;</span><span class="p">:</span> <span class="s1">&#39;Sell&#39;</span><span class="p">,</span> 
+        <span class="s1">&#39;price&#39;</span><span class="p">:</span> <span class="mf">17760.0</span><span class="p">,</span> 
+        <span class="s1">&#39;quantity&#39;</span><span class="p">:</span> <span class="mi">1</span><span class="p">,</span> 
+        <span class="s1">&#39;order_cond&#39;</span><span class="p">:</span> <span class="kc">None</span><span class="p">,</span> 
+        <span class="s1">&#39;order_type&#39;</span><span class="p">:</span> <span class="s1">&#39;ROD&#39;</span><span class="p">,</span> 
+        <span class="s1">&#39;price_type&#39;</span><span class="p">:</span> <span class="s1">&#39;LMT&#39;</span><span class="p">,</span> 
+        <span class="s1">&#39;market_type&#39;</span><span class="p">:</span> <span class="s1">&#39;Night&#39;</span><span class="p">,</span> 
+        <span class="s1">&#39;oc_type&#39;</span><span class="p">:</span> <span class="s1">&#39;New&#39;</span><span class="p">,</span> 
+        <span class="s1">&#39;subaccount&#39;</span><span class="p">:</span> <span class="s1">&#39;&#39;</span>
+    <span class="p">},</span> 
+    <span class="s1">&#39;status&#39;</span><span class="p">:</span> <span class="p">{</span>
+        <span class="s1">&#39;id&#39;</span><span class="p">:</span> <span class="s1">&#39;02c347f7&#39;</span><span class="p">,</span> 
+        <span class="s1">&#39;exchange_ts&#39;</span><span class="p">:</span> <span class="mi">1625729890</span><span class="p">,</span> 
+        <span class="s1">&#39;modified_price&#39;</span><span class="p">:</span> <span class="mf">0.0</span><span class="p">,</span> 
+        <span class="s1">&#39;cancel_quantity&#39;</span><span class="p">:</span> <span class="mi">0</span><span class="p">,</span>
+        <span class="s2">&quot;web_id&quot;</span><span class="p">:</span> <span class="s2">&quot;P&quot;</span>
+    <span class="p">},</span> 
+    <span class="s1">&#39;contract&#39;</span><span class="p">:</span> <span class="p">{</span>
+        <span class="s1">&#39;security_type&#39;</span><span class="p">:</span> <span class="s1">&#39;FUT&#39;</span><span class="p">,</span> 
+        <span class="s1">&#39;code&#39;</span><span class="p">:</span> <span class="s1">&#39;TXF&#39;</span><span class="p">,</span> 
+        <span class="s1">&#39;exchange&#39;</span><span class="p">:</span> <span class="s1">&#39;TIM&#39;</span><span class="p">,</span> 
+        <span class="s1">&#39;delivery_month&#39;</span><span class="p">:</span> <span class="s1">&#39;202107&#39;</span><span class="p">,</span> 
+        <span class="s1">&#39;strike_price&#39;</span><span class="p">:</span> <span class="mf">0.0</span><span class="p">,</span> 
+        <span class="s1">&#39;option_right&#39;</span><span class="p">:</span> <span class="s1">&#39;Future&#39;</span>
+    <span class="p">}</span>
+<span class="p">}</span>
+</code></pre></div>
+</div>
+</div>
+</div>
+</div>
+<h4 id="_9">成交回報<a class="headerlink" href="#_9" title="Permanent link">&para;</a></h4>
+<p><code>FDeal</code> 更改為 <code>FuturesDeal</code></p>
+<div class="admonition info">
+<p class="admonition-title">Deal Event</p>
+<div class="tabbed-set tabbed-alternate" data-tabs="9:2"><input checked="checked" id="__tabbed_9_1" name="__tabbed_9" type="radio" /><input id="__tabbed_9_2" name="__tabbed_9" type="radio" /><div class="tabbed-labels"><label for="__tabbed_9_1">version&gt;=1.0</label><label for="__tabbed_9_2">version&lt;1.0</label></div>
+<div class="tabbed-content">
+<div class="tabbed-block">
+<div class="highlight"><pre><span></span><code><span class="hll"><span class="n">OrderState</span><span class="o">.</span><span class="n">FuturesDeal</span> <span class="p">{</span>
+</span>    <span class="s2">&quot;trade_id&quot;</span><span class="p">:</span><span class="s2">&quot;02c347f7&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;seqno&quot;</span><span class="p">:</span><span class="s2">&quot;956344&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;ordno&quot;</span><span class="p">:</span><span class="s2">&quot;ky00N11O&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;exchange_seq&quot;</span><span class="p">:</span><span class="s2">&quot;a0000060&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;broker_id&quot;</span><span class="p">:</span><span class="s2">&quot;F002000&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;account_id&quot;</span><span class="p">:</span><span class="s2">&quot;9104000&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;action&quot;</span><span class="p">:</span><span class="s2">&quot;Sell&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;code&quot;</span><span class="p">:</span><span class="s2">&quot;TXF&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;price&quot;</span><span class="p">:</span><span class="mf">17650.0</span><span class="p">,</span>
+    <span class="s2">&quot;quantity&quot;</span><span class="p">:</span><span class="mi">4</span><span class="p">,</span>
+    <span class="s2">&quot;subaccount&quot;</span><span class="p">:</span><span class="s2">&quot;&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;security_type&quot;</span><span class="p">:</span><span class="s2">&quot;FUT&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;delivery_month&quot;</span><span class="p">:</span><span class="s2">&quot;202107&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;strike_price&quot;</span><span class="p">:</span><span class="mf">0.0</span><span class="p">,</span>
+    <span class="s2">&quot;option_right&quot;</span><span class="p">:</span><span class="s2">&quot;Future&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;market_type&quot;</span><span class="p">:</span><span class="s2">&quot;Day&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;ts&quot;</span><span class="p">:</span><span class="mi">1625800369</span>
+<span class="p">}</span>
+</code></pre></div>
+</div>
+<div class="tabbed-block">
+<div class="highlight"><pre><span></span><code><span class="hll"><span class="n">OrderState</span><span class="o">.</span><span class="n">FDeal</span> <span class="p">{</span>
+</span>    <span class="s2">&quot;trade_id&quot;</span><span class="p">:</span><span class="s2">&quot;02c347f7&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;seqno&quot;</span><span class="p">:</span><span class="s2">&quot;956344&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;ordno&quot;</span><span class="p">:</span><span class="s2">&quot;ky00N11O&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;exchange_seq&quot;</span><span class="p">:</span><span class="s2">&quot;a0000060&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;broker_id&quot;</span><span class="p">:</span><span class="s2">&quot;F002000&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;account_id&quot;</span><span class="p">:</span><span class="s2">&quot;9104000&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;action&quot;</span><span class="p">:</span><span class="s2">&quot;Sell&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;code&quot;</span><span class="p">:</span><span class="s2">&quot;TXF&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;price&quot;</span><span class="p">:</span><span class="mf">17650.0</span><span class="p">,</span>
+    <span class="s2">&quot;quantity&quot;</span><span class="p">:</span><span class="mi">4</span><span class="p">,</span>
+    <span class="s2">&quot;subaccount&quot;</span><span class="p">:</span><span class="s2">&quot;&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;security_type&quot;</span><span class="p">:</span><span class="s2">&quot;FUT&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;delivery_month&quot;</span><span class="p">:</span><span class="s2">&quot;202107&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;strike_price&quot;</span><span class="p">:</span><span class="mf">0.0</span><span class="p">,</span>
+    <span class="s2">&quot;option_right&quot;</span><span class="p">:</span><span class="s2">&quot;Future&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;market_type&quot;</span><span class="p">:</span><span class="s2">&quot;Day&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;ts&quot;</span><span class="p">:</span><span class="mi">1625800369</span>
+<span class="p">}</span>
+</code></pre></div>
+</div>
+</div>
+</div>
+</div>
+<h2 id="_10">期貨帳務資訊<a class="headerlink" href="#_10" title="Permanent link">&para;</a></h2>
 <p>移除以下API</p>
 <div class="codehilite"><pre><span></span><code><span class="mf">1.</span><span class="w"> </span><span class="kr">get</span><span class="n">_account_margin</span>
 <span class="mf">2.</span><span class="w"> </span><span class="kr">get</span><span class="n">_account_openposition</span>
@@ -1562,10 +1876,10 @@
 
 <p>取而代之</p>
 <div class="codehilite"><pre><span></span><code><span class="mf">1.</span><span class="w"> </span><span class="n">margin</span>
-<span class="mf">2.</span><span class="w"> </span><span class="kr">list</span><span class="n">_positions</span><span class="p">(</span><span class="err">`</span><span class="n">api</span><span class="mf">.</span><span class="n">futopt_account</span><span class="err">`</span><span class="p">)</span>
-<span class="mf">3.</span><span class="w"> </span><span class="kr">list</span><span class="n">_profit_loss</span><span class="p">(</span><span class="err">`</span><span class="n">api</span><span class="mf">.</span><span class="n">futopt_account</span><span class="err">`</span><span class="p">)</span>
-<span class="mf">4.</span><span class="w"> </span><span class="kr">list</span><span class="n">_profit_loss_detail</span><span class="p">(</span><span class="err">`</span><span class="n">api</span><span class="mf">.</span><span class="n">futopt_account</span><span class="err">`</span><span class="p">)</span>
-<span class="mf">5.</span><span class="w"> </span><span class="kr">list</span><span class="n">_profit_loss_summary</span><span class="p">(</span><span class="err">`</span><span class="n">api</span><span class="mf">.</span><span class="n">futopt_account</span><span class="err">`</span><span class="p">)</span>
+<span class="mf">2.</span><span class="w"> </span><span class="kr">list</span><span class="n">_positions</span><span class="p">(</span><span class="w"> </span><span class="n">api</span><span class="mf">.</span><span class="n">futopt_account</span><span class="w"> </span><span class="p">)</span>
+<span class="mf">3.</span><span class="w"> </span><span class="kr">list</span><span class="n">_profit_loss</span><span class="p">(</span><span class="w"> </span><span class="n">api</span><span class="mf">.</span><span class="n">futopt_account</span><span class="w"> </span><span class="p">)</span>
+<span class="mf">4.</span><span class="w"> </span><span class="kr">list</span><span class="n">_profit_loss_detail</span><span class="p">(</span><span class="w"> </span><span class="n">api</span><span class="mf">.</span><span class="n">futopt_account</span><span class="w"> </span><span class="p">)</span>
+<span class="mf">5.</span><span class="w"> </span><span class="kr">list</span><span class="n">_profit_loss_summary</span><span class="p">(</span><span class="w"> </span><span class="n">api</span><span class="mf">.</span><span class="n">futopt_account</span><span class="w"> </span><span class="p">)</span>
 </code></pre></div>
 
 <p>欲瞭解更多期貨帳務API，請<a href="../tutor/accounting/position/">參見</a>。</p>
