@@ -965,7 +965,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../callback/quote_binding/" class="md-nav__link">
+      <a href="../quote_binding/" class="md-nav__link">
         Quote-Binding Mode
       </a>
     </li>
@@ -1160,12 +1160,12 @@
   <h1>Touch Price Order</h1>
 
 <h2 id="touch-price-order">Touch Price Order<a class="headerlink" href="#touch-price-order" title="Permanent link">&para;</a></h2>
-<p>Here is a simple example that how to build your price monitor and when price touches the condition 
-will place the order.</p>
+<p>Here is a simple example that how to build your price monitor and when price touches the condition will place the order.</p>
 <div class="highlight"><pre><span></span><code><span class="kn">from</span> <span class="nn">pydantic</span> <span class="kn">import</span> <span class="n">BaseModel</span>
 
 <span class="k">class</span> <span class="nc">TouchOrderCond</span><span class="p">(</span><span class="n">BaseModel</span><span class="p">):</span>
     <span class="n">contract</span><span class="p">:</span> <span class="n">Contract</span>
+    <span class="n">order</span><span class="p">:</span> <span class="n">Order</span>
     <span class="n">order</span><span class="p">:</span> <span class="n">Order</span>
     <span class="n">touch_price</span><span class="p">:</span> <span class="nb">float</span>
 

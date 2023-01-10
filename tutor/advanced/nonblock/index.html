@@ -965,7 +965,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../callback/quote_binding/" class="md-nav__link">
+      <a href="../quote_binding/" class="md-nav__link">
         Quote-Binding Mode
       </a>
     </li>
@@ -1057,15 +1057,15 @@
   
 </li>
         
-          <li class="md-nav__item">
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
   <a href="#non-blocking-mode-supported-function" class="md-nav__link">
     Non-Blocking mode Supported Function
   </a>
-  
-</li>
-        
-      </ul>
-    </nav>
   
 </li>
       
@@ -1238,15 +1238,15 @@
   
 </li>
         
-          <li class="md-nav__item">
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
   <a href="#non-blocking-mode-supported-function" class="md-nav__link">
     Non-Blocking mode Supported Function
   </a>
-  
-</li>
-        
-      </ul>
-    </nav>
   
 </li>
       
@@ -1276,93 +1276,89 @@
 <p>To submit order in non-blocking mode is easy, just set <code>timeout = 0</code> in <code>place_order</code> function.</p>
 <div class="admonition info">
 <p class="admonition-title">In</p>
-<div class="highlight"><pre><span></span><code><span class="n">contract</span> <span class="o">=</span> <span class="n">api</span><span class="o">.</span><span class="n">Contracts</span><span class="o">.</span><span class="n">Futures</span><span class="o">.</span><span class="n">TXF</span><span class="p">[</span><span class="s1">&#39;TXF202108&#39;</span><span class="p">]</span>
+<div class="highlight"><pre><span></span><code><span class="n">contract</span> <span class="o">=</span> <span class="n">api</span><span class="o">.</span><span class="n">Contracts</span><span class="o">.</span><span class="n">Futures</span><span class="o">.</span><span class="n">TXF</span><span class="p">[</span><span class="s1">&#39;TXF202301&#39;</span><span class="p">]</span>
 <span class="n">order</span> <span class="o">=</span> <span class="n">api</span><span class="o">.</span><span class="n">Order</span><span class="p">(</span>
-    <span class="n">action</span><span class="o">=</span><span class="s1">&#39;Sell&#39;</span><span class="p">,</span>
-    <span class="n">price</span><span class="o">=</span><span class="mi">18500</span><span class="p">,</span>
+    <span class="n">action</span><span class="o">=</span><span class="n">sj</span><span class="o">.</span><span class="n">constant</span><span class="o">.</span><span class="n">Action</span><span class="o">.</span><span class="n">Sell</span><span class="p">,</span>
+    <span class="n">price</span><span class="o">=</span><span class="mi">14000</span><span class="p">,</span>
     <span class="n">quantity</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span>
-    <span class="n">price_type</span><span class="o">=</span><span class="s1">&#39;LMT&#39;</span><span class="p">,</span>
-    <span class="n">order_type</span><span class="o">=</span><span class="s1">&#39;ROD&#39;</span><span class="p">,</span> 
+    <span class="n">price_type</span><span class="o">=</span><span class="n">sj</span><span class="o">.</span><span class="n">constant</span><span class="o">.</span><span class="n">FuturesPriceType</span><span class="o">.</span><span class="n">LMT</span><span class="p">,</span>
+    <span class="n">order_type</span><span class="o">=</span><span class="n">sj</span><span class="o">.</span><span class="n">constant</span><span class="o">.</span><span class="n">OrderType</span><span class="o">.</span><span class="n">ROD</span><span class="p">,</span>
     <span class="n">octype</span><span class="o">=</span><span class="n">sj</span><span class="o">.</span><span class="n">constant</span><span class="o">.</span><span class="n">FuturesOCType</span><span class="o">.</span><span class="n">Auto</span><span class="p">,</span>
     <span class="n">account</span><span class="o">=</span><span class="n">api</span><span class="o">.</span><span class="n">futopt_account</span>
 <span class="p">)</span>
 <span class="hll"><span class="n">trade</span> <span class="o">=</span> <span class="n">api</span><span class="o">.</span><span class="n">place_order</span><span class="p">(</span><span class="n">contract</span><span class="p">,</span> <span class="n">order</span><span class="p">,</span> <span class="n">timeout</span><span class="o">=</span><span class="mi">0</span><span class="p">)</span>
-</span><span class="nb">print</span><span class="p">(</span><span class="n">trade</span><span class="p">)</span>
+</span><span class="n">trade</span>
 </code></pre></div>
 </div>
 <div class="admonition done">
 <p class="admonition-title">Out</p>
 <div class="highlight"><pre><span></span><code><span class="n">Trade</span><span class="p">(</span>
     <span class="n">contract</span><span class="o">=</span><span class="n">Future</span><span class="p">(</span>
-        <span class="n">code</span><span class="o">=</span><span class="s1">&#39;TXFH1&#39;</span><span class="p">,</span> 
-        <span class="n">symbol</span><span class="o">=</span><span class="s1">&#39;TXF202108&#39;</span><span class="p">,</span> 
-        <span class="n">name</span><span class="o">=</span><span class="s1">&#39;臺股期貨&#39;</span><span class="p">,</span> 
+        <span class="n">code</span><span class="o">=</span><span class="s1">&#39;TXFA3&#39;</span><span class="p">,</span> 
+        <span class="n">symbol</span><span class="o">=</span><span class="s1">&#39;TXF202301&#39;</span><span class="p">,</span> 
+        <span class="n">name</span><span class="o">=</span><span class="s1">&#39;臺股期貨01&#39;</span><span class="p">,</span> 
         <span class="n">category</span><span class="o">=</span><span class="s1">&#39;TXF&#39;</span><span class="p">,</span> 
-        <span class="n">delivery_month</span><span class="o">=</span><span class="s1">&#39;202108&#39;</span><span class="p">,</span>
+        <span class="n">delivery_month</span><span class="o">=</span><span class="s1">&#39;202301&#39;</span><span class="p">,</span> 
+        <span class="n">delivery_date</span><span class="o">=</span><span class="s1">&#39;2023/01/30&#39;</span><span class="p">,</span> 
         <span class="n">underlying_kind</span><span class="o">=</span><span class="s1">&#39;I&#39;</span><span class="p">,</span> 
-        <span class="n">unit</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span>
-        <span class="n">limit_up</span><span class="o">=</span><span class="mf">19412.0</span><span class="p">,</span> 
-        <span class="n">limit_down</span><span class="o">=</span><span class="mf">15884.0</span><span class="p">,</span> 
-        <span class="n">reference</span><span class="o">=</span><span class="mf">17648.0</span><span class="p">,</span> 
-        <span class="n">update_date</span><span class="o">=</span><span class="s1">&#39;2021/07/15&#39;</span>
+        <span class="n">unit</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span> 
+        <span class="n">limit_up</span><span class="o">=</span><span class="mf">16241.0</span><span class="p">,</span> 
+        <span class="n">limit_down</span><span class="o">=</span><span class="mf">13289.0</span><span class="p">,</span> 
+        <span class="n">reference</span><span class="o">=</span><span class="mf">14765.0</span><span class="p">,</span> 
+        <span class="n">update_date</span><span class="o">=</span><span class="s1">&#39;2023/01/10&#39;</span>
     <span class="p">),</span> 
 <span class="hll">    <span class="n">order</span><span class="o">=</span><span class="n">Order</span><span class="p">(</span>
 </span>        <span class="n">action</span><span class="o">=&lt;</span><span class="n">Action</span><span class="o">.</span><span class="n">Sell</span><span class="p">:</span> <span class="s1">&#39;Sell&#39;</span><span class="o">&gt;</span><span class="p">,</span> 
-        <span class="n">price</span><span class="o">=</span><span class="mi">18500</span><span class="p">,</span> 
+        <span class="n">price</span><span class="o">=</span><span class="mi">14000</span><span class="p">,</span> 
         <span class="n">quantity</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span> 
         <span class="n">account</span><span class="o">=</span><span class="n">FutureAccount</span><span class="p">(</span>
-            <span class="n">person_id</span><span class="o">=</span><span class="s1">&#39;PERSON_ID&#39;</span><span class="p">,</span> 
-            <span class="n">broker_id</span><span class="o">=</span><span class="s1">&#39;BROKER_ID&#39;</span><span class="p">,</span> 
-            <span class="n">account_id</span><span class="o">=</span><span class="s1">&#39;ACCOUNT_ID&#39;</span><span class="p">,</span> 
+            <span class="n">person_id</span><span class="o">=</span><span class="s1">&#39;F123456789&#39;</span><span class="p">,</span> 
+            <span class="n">broker_id</span><span class="o">=</span><span class="s1">&#39;F002000&#39;</span><span class="p">,</span> 
+            <span class="n">account_id</span><span class="o">=</span><span class="s1">&#39;1234567&#39;</span><span class="p">,</span> 
             <span class="n">signed</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> 
-            <span class="n">username</span><span class="o">=</span><span class="s1">&#39;USERNAME&#39;</span>
+            <span class="n">username</span><span class="o">=</span><span class="s1">&#39;PAPIUSER&#39;</span>
         <span class="p">),</span> 
         <span class="n">price_type</span><span class="o">=&lt;</span><span class="n">StockPriceType</span><span class="o">.</span><span class="n">LMT</span><span class="p">:</span> <span class="s1">&#39;LMT&#39;</span><span class="o">&gt;</span><span class="p">,</span> 
-        <span class="n">order_type</span><span class="o">=&lt;</span><span class="n">FuturesOrderType</span><span class="o">.</span><span class="n">ROD</span><span class="p">:</span> <span class="s1">&#39;ROD&#39;</span><span class="o">&gt;</span>
+        <span class="n">order_type</span><span class="o">=&lt;</span><span class="n">OrderType</span><span class="o">.</span><span class="n">ROD</span><span class="p">:</span> <span class="s1">&#39;ROD&#39;</span><span class="o">&gt;</span>
     <span class="p">),</span> 
-    <span class="n">status</span><span class="o">=</span><span class="n">OrderStatus</span><span class="p">(</span>
-<span class="hll">        <span class="n">status</span><span class="o">=&lt;</span><span class="n">Status</span><span class="o">.</span><span class="n">Inactive</span><span class="p">:</span> <span class="s1">&#39;Inactive&#39;</span><span class="o">&gt;</span>
-</span>    <span class="p">)</span>
-<span class="p">)</span>
+<span class="hll">    <span class="n">status</span><span class="o">=</span><span class="n">OrderStatus</span><span class="p">(</span><span class="n">status</span><span class="o">=&lt;</span><span class="n">Status</span><span class="o">.</span><span class="n">Inactive</span><span class="p">:</span> <span class="s1">&#39;Inactive&#39;</span><span class="o">&gt;</span><span class="p">)</span>
+</span><span class="p">)</span>
 </code></pre></div>
 </div>
-<p>Note that the <code>Trade</code> object is different from the one we get from blocking mode. First, there is no <code>id</code> and <code>seqno</code> in Order. Second, <code>id</code>, <code>status code</code>, <code>order_datetime</code> and <code>deals</code> are missing in OrderStatus. Finally, status is <code>Inactive</code>. That's because we hadn't really send the order to exchange. The order is still in transmission. Of course we know nothing about this order. Then it comes to a problem, how do we know this order is successfully submitted? We offer you two kinds of methods, <code>order event callback</code> and <code>non-blocking place order callback</code>.</p>
+<p>Note that the <code>Trade</code> object is different from the one we get from blocking mode. First, there is no <code>id</code> and <code>seqno</code> in Order. Second, <code>id</code>, <code>status_code</code>, <code>order_datetime</code> and <code>deals</code> are missing in OrderStatus. Finally, status is <code>Inactive</code>. That's because we hadn't really send the order to exchange. The order is still in transmission. Of course we know nothing about this order. Then it comes to a problem, how do we know this order is successfully submitted? We offer you two kinds of methods, <code>order event callback</code> and <code>non-blocking place order callback</code>.</p>
 <h4 id="order-event-callback">Order event callback<a class="headerlink" href="#order-event-callback" title="Permanent link">&para;</a></h4>
 <div class="admonition done">
 <p class="admonition-title">Out</p>
-<div class="highlight"><pre><span></span><code><span class="n">OrderState</span><span class="o">.</span><span class="n">FOrder</span> <span class="p">{</span>
+<div class="highlight"><pre><span></span><code><span class="n">OrderState</span><span class="o">.</span><span class="n">FuturesOrder</span> <span class="p">{</span>
     <span class="s1">&#39;operation&#39;</span><span class="p">:</span> <span class="p">{</span>
         <span class="s1">&#39;op_type&#39;</span><span class="p">:</span> <span class="s1">&#39;New&#39;</span><span class="p">,</span> 
         <span class="s1">&#39;op_code&#39;</span><span class="p">:</span> <span class="s1">&#39;00&#39;</span><span class="p">,</span> 
         <span class="s1">&#39;op_msg&#39;</span><span class="p">:</span> <span class="s1">&#39;&#39;</span>
     <span class="p">},</span> 
     <span class="s1">&#39;order&#39;</span><span class="p">:</span> <span class="p">{</span>
-<span class="hll">        <span class="s1">&#39;id&#39;</span><span class="p">:</span> <span class="s1">&#39;40fd85d6&#39;</span><span class="p">,</span> 
-</span><span class="hll">        <span class="s1">&#39;seqno&#39;</span><span class="p">:</span> <span class="s1">&#39;958433&#39;</span><span class="p">,</span> 
-</span><span class="hll">        <span class="s1">&#39;ordno&#39;</span><span class="p">:</span> <span class="s1">&#39;kY01g&#39;</span><span class="p">,</span> 
+<span class="hll">        <span class="s1">&#39;id&#39;</span><span class="p">:</span> <span class="s1">&#39;de616839&#39;</span><span class="p">,</span> 
+</span><span class="hll">        <span class="s1">&#39;seqno&#39;</span><span class="p">:</span> <span class="s1">&#39;500009&#39;</span><span class="p">,</span> 
+</span><span class="hll">        <span class="s1">&#39;ordno&#39;</span><span class="p">:</span> <span class="s1">&#39;000009&#39;</span><span class="p">,</span> 
 </span>        <span class="s1">&#39;action&#39;</span><span class="p">:</span> <span class="s1">&#39;Sell&#39;</span><span class="p">,</span> 
-        <span class="s1">&#39;price&#39;</span><span class="p">:</span> <span class="mf">18500.0</span><span class="p">,</span> 
+        <span class="s1">&#39;price&#39;</span><span class="p">:</span> <span class="mi">14000</span><span class="p">,</span> 
         <span class="s1">&#39;quantity&#39;</span><span class="p">:</span> <span class="mi">1</span><span class="p">,</span> 
-        <span class="s1">&#39;order_cond&#39;</span><span class="p">:</span> <span class="kc">None</span><span class="p">,</span> 
         <span class="s1">&#39;order_type&#39;</span><span class="p">:</span> <span class="s1">&#39;ROD&#39;</span><span class="p">,</span> 
         <span class="s1">&#39;price_type&#39;</span><span class="p">:</span> <span class="s1">&#39;LMT&#39;</span><span class="p">,</span> 
-        <span class="s1">&#39;market_type&#39;</span><span class="p">:</span> <span class="s1">&#39;Night&#39;</span><span class="p">,</span> 
-        <span class="s1">&#39;oc_type&#39;</span><span class="p">:</span> <span class="s1">&#39;Cover&#39;</span><span class="p">,</span> 
-        <span class="s1">&#39;subaccount&#39;</span><span class="p">:</span> <span class="s1">&#39;&#39;</span>
+        <span class="s1">&#39;oc_type&#39;</span><span class="p">:</span> <span class="s1">&#39;Auto&#39;</span><span class="p">,</span> 
+        <span class="s1">&#39;custom_field&#39;</span><span class="p">:</span> <span class="s1">&#39;&#39;</span>
     <span class="p">},</span> 
     <span class="s1">&#39;status&#39;</span><span class="p">:</span> <span class="p">{</span>
-<span class="hll">        <span class="s1">&#39;id&#39;</span><span class="p">:</span> <span class="s1">&#39;40fd85d6&#39;</span><span class="p">,</span> 
-</span><span class="hll">        <span class="s1">&#39;exchange_ts&#39;</span><span class="p">:</span> <span class="mi">1626354872</span><span class="p">,</span> 
-</span>        <span class="s1">&#39;modified_price&#39;</span><span class="p">:</span> <span class="mf">0.0</span><span class="p">,</span> 
-        <span class="s1">&#39;cancel_quantity&#39;</span><span class="p">:</span> <span class="mi">0</span>
+        <span class="s1">&#39;id&#39;</span><span class="p">:</span> <span class="s1">&#39;de616839&#39;</span><span class="p">,</span> 
+        <span class="s1">&#39;exchange_ts&#39;</span><span class="p">:</span> <span class="mf">1673334371.492948</span><span class="p">,</span> 
+        <span class="s1">&#39;order_quantity&#39;</span><span class="p">:</span> <span class="mi">1</span><span class="p">,</span> 
+        <span class="s1">&#39;modified_price&#39;</span><span class="p">:</span> <span class="mi">0</span><span class="p">,</span> 
+        <span class="s1">&#39;cancel_quantity&#39;</span><span class="p">:</span> <span class="mi">0</span><span class="p">,</span> 
+        <span class="s1">&#39;web_id&#39;</span><span class="p">:</span> <span class="s1">&#39;Z&#39;</span>
     <span class="p">},</span> 
     <span class="s1">&#39;contract&#39;</span><span class="p">:</span> <span class="p">{</span>
         <span class="s1">&#39;security_type&#39;</span><span class="p">:</span> <span class="s1">&#39;FUT&#39;</span><span class="p">,</span> 
-        <span class="s1">&#39;code&#39;</span><span class="p">:</span> <span class="s1">&#39;TXF&#39;</span><span class="p">,</span> 
-        <span class="s1">&#39;exchange&#39;</span><span class="p">:</span> <span class="s1">&#39;TIM&#39;</span><span class="p">,</span> 
-        <span class="s1">&#39;delivery_month&#39;</span><span class="p">:</span> <span class="s1">&#39;202108&#39;</span><span class="p">,</span> 
-        <span class="s1">&#39;strike_price&#39;</span><span class="p">:</span> <span class="mf">0.0</span><span class="p">,</span> 
-        <span class="s1">&#39;option_right&#39;</span><span class="p">:</span> <span class="s1">&#39;Future&#39;</span>
+        <span class="s1">&#39;exchange&#39;</span><span class="p">:</span> <span class="s1">&#39;TAIFEX&#39;</span><span class="p">,</span> 
+        <span class="s1">&#39;code&#39;</span><span class="p">:</span> <span class="s1">&#39;TXFA3&#39;</span>
     <span class="p">}</span>
 <span class="p">}</span>
 </code></pre></div>
@@ -1388,40 +1384,41 @@
 <p class="admonition-title">Out: place order callback</p>
 <div class="highlight"><pre><span></span><code><span class="n">__my_callback__</span>
 <span class="n">contract</span><span class="o">=</span><span class="n">Future</span><span class="p">(</span>
-    <span class="n">code</span><span class="o">=</span><span class="s1">&#39;TXFH1&#39;</span><span class="p">,</span> 
-    <span class="n">symbol</span><span class="o">=</span><span class="s1">&#39;TXF202108&#39;</span><span class="p">,</span> 
-    <span class="n">name</span><span class="o">=</span><span class="s1">&#39;臺股期貨&#39;</span><span class="p">,</span> 
+    <span class="n">code</span><span class="o">=</span><span class="s1">&#39;TXFA3&#39;</span><span class="p">,</span> 
+    <span class="n">symbol</span><span class="o">=</span><span class="s1">&#39;TXF202301&#39;</span><span class="p">,</span> 
+    <span class="n">name</span><span class="o">=</span><span class="s1">&#39;臺股期貨01&#39;</span><span class="p">,</span> 
     <span class="n">category</span><span class="o">=</span><span class="s1">&#39;TXF&#39;</span><span class="p">,</span> 
-    <span class="n">delivery_month</span><span class="o">=</span><span class="s1">&#39;202108&#39;</span><span class="p">,</span> 
+    <span class="n">delivery_month</span><span class="o">=</span><span class="s1">&#39;202301&#39;</span><span class="p">,</span> 
+    <span class="n">delivery_date</span><span class="o">=</span><span class="s1">&#39;2023/01/30&#39;</span><span class="p">,</span> 
     <span class="n">underlying_kind</span><span class="o">=</span><span class="s1">&#39;I&#39;</span><span class="p">,</span> 
     <span class="n">unit</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span> 
-    <span class="n">limit_up</span><span class="o">=</span><span class="mf">19412.0</span><span class="p">,</span> 
-    <span class="n">limit_down</span><span class="o">=</span><span class="mf">15884.0</span><span class="p">,</span> 
-    <span class="n">reference</span><span class="o">=</span><span class="mf">17648.0</span><span class="p">,</span> 
-    <span class="n">update_date</span><span class="o">=</span><span class="s1">&#39;2021/07/15&#39;</span>
+    <span class="n">limit_up</span><span class="o">=</span><span class="mf">16241.0</span><span class="p">,</span> 
+    <span class="n">limit_down</span><span class="o">=</span><span class="mf">13289.0</span><span class="p">,</span> 
+    <span class="n">reference</span><span class="o">=</span><span class="mf">14765.0</span><span class="p">,</span> 
+    <span class="n">update_date</span><span class="o">=</span><span class="s1">&#39;2023/01/10&#39;</span>
 <span class="p">),</span> 
 <span class="n">order</span><span class="o">=</span><span class="n">Order</span><span class="p">(</span>
     <span class="n">action</span><span class="o">=&lt;</span><span class="n">Action</span><span class="o">.</span><span class="n">Sell</span><span class="p">:</span> <span class="s1">&#39;Sell&#39;</span><span class="o">&gt;</span><span class="p">,</span> 
-    <span class="n">price</span><span class="o">=</span><span class="mi">18500</span><span class="p">,</span> 
+    <span class="n">price</span><span class="o">=</span><span class="mi">14000</span><span class="p">,</span> 
     <span class="n">quantity</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span> 
 <span class="hll">    <span class="nb">id</span><span class="o">=</span><span class="s1">&#39;40fd85d6&#39;</span><span class="p">,</span> 
 </span><span class="hll">    <span class="n">seqno</span><span class="o">=</span><span class="s1">&#39;958433&#39;</span><span class="p">,</span> 
 </span><span class="hll">    <span class="n">ordno</span><span class="o">=</span><span class="s1">&#39;kY01g&#39;</span><span class="p">,</span> 
-</span>    <span class="n">account</span><span class="o">=</span><span class="n">Account</span><span class="p">(</span>
-        <span class="n">account_type</span><span class="o">=&lt;</span><span class="n">AccountType</span><span class="o">.</span><span class="n">Future</span><span class="p">:</span> <span class="s1">&#39;F&#39;</span><span class="o">&gt;</span><span class="p">,</span> 
-        <span class="n">person_id</span><span class="o">=</span><span class="s1">&#39;PERSON_ID&#39;</span><span class="p">,</span> 
-        <span class="n">broker_id</span><span class="o">=</span><span class="s1">&#39;BROKER_ID&#39;</span><span class="p">,</span> 
-        <span class="n">account_id</span><span class="o">=</span><span class="s1">&#39;ACCOUNT_ID&#39;</span><span class="p">,</span> 
-        <span class="n">signed</span><span class="o">=</span><span class="kc">True</span>
+</span>    <span class="n">account</span><span class="o">=</span><span class="n">FutureAccount</span><span class="p">(</span>
+        <span class="n">person_id</span><span class="o">=</span><span class="s1">&#39;F123456789&#39;</span><span class="p">,</span> 
+        <span class="n">broker_id</span><span class="o">=</span><span class="s1">&#39;F002000&#39;</span><span class="p">,</span> 
+        <span class="n">account_id</span><span class="o">=</span><span class="s1">&#39;1234567&#39;</span><span class="p">,</span> 
+        <span class="n">signed</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> 
+        <span class="n">username</span><span class="o">=</span><span class="s1">&#39;PAPIUSER&#39;</span>
     <span class="p">),</span> 
     <span class="n">price_type</span><span class="o">=&lt;</span><span class="n">StockPriceType</span><span class="o">.</span><span class="n">LMT</span><span class="p">:</span> <span class="s1">&#39;LMT&#39;</span><span class="o">&gt;</span><span class="p">,</span> 
-    <span class="n">order_type</span><span class="o">=&lt;</span><span class="n">FuturesOrderType</span><span class="o">.</span><span class="n">ROD</span><span class="p">:</span> <span class="s1">&#39;ROD&#39;</span><span class="o">&gt;</span>
+    <span class="n">order_type</span><span class="o">=&lt;</span><span class="n">OrderType</span><span class="o">.</span><span class="n">ROD</span><span class="p">:</span> <span class="s1">&#39;ROD&#39;</span><span class="o">&gt;</span>
 <span class="p">),</span> 
 <span class="n">status</span><span class="o">=</span><span class="n">OrderStatus</span><span class="p">(</span>
 <span class="hll">    <span class="nb">id</span><span class="o">=</span><span class="s1">&#39;40fd85d6&#39;</span><span class="p">,</span> 
 </span><span class="hll">    <span class="n">status</span><span class="o">=&lt;</span><span class="n">Status</span><span class="o">.</span><span class="n">Submitted</span><span class="p">:</span> <span class="s1">&#39;Submitted&#39;</span><span class="o">&gt;</span><span class="p">,</span> 
 </span><span class="hll">    <span class="n">status_code</span><span class="o">=</span><span class="s1">&#39;    &#39;</span><span class="p">,</span> 
-</span><span class="hll">    <span class="n">order_datetime</span><span class="o">=</span><span class="n">datetime</span><span class="o">.</span><span class="n">datetime</span><span class="p">(</span><span class="mi">2021</span><span class="p">,</span> <span class="mi">7</span><span class="p">,</span> <span class="mi">15</span><span class="p">,</span> <span class="mi">21</span><span class="p">,</span> <span class="mi">14</span><span class="p">,</span> <span class="mi">32</span><span class="p">),</span> 
+</span><span class="hll">    <span class="n">order_datetime</span><span class="o">=</span><span class="n">datetime</span><span class="o">.</span><span class="n">datetime</span><span class="p">(</span><span class="mi">2023</span><span class="p">,</span> <span class="mi">01</span><span class="p">,</span> <span class="mi">10</span><span class="p">,</span> <span class="mi">15</span><span class="p">,</span> <span class="mi">14</span><span class="p">,</span> <span class="mi">32</span><span class="p">),</span> 
 </span><span class="hll">    <span class="n">deals</span><span class="o">=</span><span class="p">[]</span>
 </span><span class="p">)</span>
 </code></pre></div>
@@ -1430,10 +1427,10 @@
 <h3 id="blocking-non-blocking-comparison">Blocking &amp; Non-Blocking Comparison<a class="headerlink" href="#blocking-non-blocking-comparison" title="Permanent link">&para;</a></h3>
 <div class="admonition done">
 <p class="admonition-title">contract and order</p>
-<div class="highlight"><pre><span></span><code><span class="n">contract</span> <span class="o">=</span> <span class="n">api</span><span class="o">.</span><span class="n">Contracts</span><span class="o">.</span><span class="n">Futures</span><span class="o">.</span><span class="n">TXF</span><span class="p">[</span><span class="s1">&#39;TXF202108&#39;</span><span class="p">]</span>
+<div class="highlight"><pre><span></span><code><span class="n">contract</span> <span class="o">=</span> <span class="n">api</span><span class="o">.</span><span class="n">Contracts</span><span class="o">.</span><span class="n">Futures</span><span class="o">.</span><span class="n">TXF</span><span class="p">[</span><span class="s1">&#39;TXF202301&#39;</span><span class="p">]</span>
 <span class="n">order</span> <span class="o">=</span> <span class="n">api</span><span class="o">.</span><span class="n">Order</span><span class="p">(</span>
     <span class="n">action</span><span class="o">=</span><span class="s1">&#39;Sell&#39;</span><span class="p">,</span>
-    <span class="n">price</span><span class="o">=</span><span class="mi">18500</span><span class="p">,</span>
+    <span class="n">price</span><span class="o">=</span><span class="mi">14000</span><span class="p">,</span>
     <span class="n">quantity</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span>
     <span class="n">price_type</span><span class="o">=</span><span class="s1">&#39;LMT&#39;</span><span class="p">,</span>
     <span class="n">order_type</span><span class="o">=</span><span class="s1">&#39;ROD&#39;</span><span class="p">,</span> 
@@ -1459,20 +1456,23 @@
 </code></pre></div>
 </div>
 <p>As you cas see above, in non-blocking mode, it takes about 0.01 seconds to execute <code>place_order</code> function, which is 12x faster than the execution time in blocking mode. Remind again, though it's more efficient to place order in non-blocking mode, the order won't be active until the exchange confirms the order.  </p>
-<h3 id="non-blocking-mode-supported-function">Non-Blocking mode Supported Function<a class="headerlink" href="#non-blocking-mode-supported-function" title="Permanent link">&para;</a></h3>
+<h2 id="non-blocking-mode-supported-function">Non-Blocking mode Supported Function<a class="headerlink" href="#non-blocking-mode-supported-function" title="Permanent link">&para;</a></h2>
 <ul>
-<li>Function:<ul>
 <li>ticks</li>
 <li>place_order</li>
 <li>update_order</li>
 <li>cancel_order</li>
 <li>update_status </li>
-<li>list_positions      </li>
-</ul>
-</li>
-<li>Parameter: timeout</li>
-<li>Parameter type: int</li>
-<li>Default Mode: Block </li>
+<li>list_positions    </li>
+<li>list_position_detail</li>
+<li>list_profit_loss</li>
+<li>list_profit_loss_detail</li>
+<li>list_profit_loss_summary</li>
+<li>settlements</li>
+<li>margin</li>
+<li>ticks</li>
+<li>kbars</li>
+<li>...</li>
 </ul>
 
 
@@ -1494,7 +1494,7 @@
     <nav class="md-footer__inner md-grid" aria-label="Footer" >
       
         
-        <a href="../../callback/quote_binding/" class="md-footer__link md-footer__link--prev" aria-label="Previous: Quote-Binding Mode" rel="prev">
+        <a href="../quote_binding/" class="md-footer__link md-footer__link--prev" aria-label="Previous: Quote-Binding Mode" rel="prev">
           <div class="md-footer__button md-icon">
             <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11h12Z"/></svg>
           </div>
