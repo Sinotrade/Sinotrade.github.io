@@ -407,14 +407,41 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#_2" class="md-nav__link">
-    相關測試
+  <a href="#api" class="md-nav__link">
+    API測試
   </a>
+  
+    <nav class="md-nav" aria-label="API測試">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#_2" class="md-nav__link">
+    登入測試
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_3" class="md-nav__link">
+    證券下單測試
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_4" class="md-nav__link">
+    期貨下單測試
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
   
 </li>
       
         <li class="md-nav__item">
-  <a href="#_3" class="md-nav__link">
+  <a href="#_5" class="md-nav__link">
     憑證
   </a>
   
@@ -422,14 +449,14 @@
       <ul class="md-nav__list">
         
           <li class="md-nav__item">
-  <a href="#_4" class="md-nav__link">
+  <a href="#_6" class="md-nav__link">
     申請憑證
   </a>
   
 </li>
         
           <li class="md-nav__item">
-  <a href="#_5" class="md-nav__link">
+  <a href="#_7" class="md-nav__link">
     啟用憑證
   </a>
   
@@ -1177,14 +1204,41 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#_2" class="md-nav__link">
-    相關測試
+  <a href="#api" class="md-nav__link">
+    API測試
   </a>
+  
+    <nav class="md-nav" aria-label="API測試">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#_2" class="md-nav__link">
+    登入測試
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_3" class="md-nav__link">
+    證券下單測試
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_4" class="md-nav__link">
+    期貨下單測試
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
   
 </li>
       
         <li class="md-nav__item">
-  <a href="#_3" class="md-nav__link">
+  <a href="#_5" class="md-nav__link">
     憑證
   </a>
   
@@ -1192,14 +1246,14 @@
       <ul class="md-nav__list">
         
           <li class="md-nav__item">
-  <a href="#_4" class="md-nav__link">
+  <a href="#_6" class="md-nav__link">
     申請憑證
   </a>
   
 </li>
         
           <li class="md-nav__item">
-  <a href="#_5" class="md-nav__link">
+  <a href="#_7" class="md-nav__link">
     啟用憑證
   </a>
   
@@ -1232,50 +1286,112 @@
 <p class="admonition-title">開戶</p>
 <p>在開始之前必須先擁有<a href="https://www.sinotrade.com.tw/openact?utm_campaign=OP_inchannel&amp;utm_source=newweb&amp;utm_medium=button_top&amp;strProd=0037&amp;strWeb=0035">永豐金帳戶</a>。</p>
 </div>
-<h3 id="_1">簽署文件<a class="headerlink" href="#_1" title="Permanent link">&para;</a></h3>
+<h2 id="_1">簽署文件<a class="headerlink" href="#_1" title="Permanent link">&para;</a></h2>
 <p>&emsp;&emsp;請參見<a href="https://www.sinotrade.com.tw/newweb/Inside_Frame?URL=https://service.sinotrade.com.tw/signCenter/index/">簽署中心</a>並在簽署前<strong>仔細閱讀文件</strong>。
   <br/>
 <img alt="signature" src="https://raw.githubusercontent.com/Sinotrade/Sinotrade.github.io/master/img/signature.png" /></p>
-<h3 id="_2">相關測試<a class="headerlink" href="#_2" title="Permanent link">&para;</a></h3>
+<h2 id="api">API測試<a class="headerlink" href="#api" title="Permanent link">&para;</a></h2>
 <p>&emsp;&emsp;確保您完全理解如何使用，需在測試模式完成測試報告，內容包含以下功能:</p>
 <ul>
-<li>登入測試 </li>
+<li>登入測試 <code>login</code></li>
+<li>下單測試 <code>place_order</code></li>
 </ul>
+<div class="admonition attention">
+<p class="admonition-title">Attention</p>
+<p>可測試時間:</p>
+<ul>
+<li>因應公司資訊安全規定，測試報告服務為星期一至五 08:00 ~ 20:00</li>
+<li>18:00 ~ 20:00: 只允許台灣IP</li>
+<li>08:00 ~ 18:00: 沒有限制</li>
+</ul>
+<p>版本限制:  </p>
+<ul>
+<li>版本 &lt; 1.0: 必須使用 <strong>版本&gt;=0.5.0.dev2</strong></li>
+<li>版本 &gt;= 1.0: 無限制</li>
+</ul>
+<p>其他:  </p>
+<ul>
+<li>API下單簽署時間須早於API測試的時間，以利審核通過</li>
+<li>證券、期貨戶須各別測試</li>
+<li>證券/期貨下單測試，需間隔1秒以上，以利系統留存測試紀錄</li>
+</ul>
+</div>
+<h3 id="_2">登入測試<a class="headerlink" href="#_2" title="Permanent link">&para;</a></h3>
 <div class="admonition info">
 <p class="admonition-title">登入</p>
+<div class="tabbed-set tabbed-alternate" data-tabs="1:2"><input checked="checked" id="__tabbed_1_1" name="__tabbed_1" type="radio" /><input id="__tabbed_1_2" name="__tabbed_1" type="radio" /><div class="tabbed-labels"><label for="__tabbed_1_1">version&gt;=1.0</label><label for="__tabbed_1_2">version&lt;1.0</label></div>
+<div class="tabbed-content">
+<div class="tabbed-block">
 <div class="highlight"><pre><span></span><code><span class="kn">import</span> <span class="nn">shioaji</span> <span class="k">as</span> <span class="nn">sj</span>
-<span class="hll"><span class="n">api</span> <span class="o">=</span> <span class="n">sj</span><span class="o">.</span><span class="n">Shioaji</span><span class="p">(</span><span class="n">simulation</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
-</span><span class="n">api</span><span class="o">.</span><span class="n">login</span><span class="p">(</span>
-    <span class="n">person_id</span><span class="o">=</span><span class="s2">&quot;PERSON_ID&quot;</span><span class="p">,</span> <span class="c1">#個人專屬帳號 </span>
-    <span class="n">passwd</span><span class="o">=</span><span class="s2">&quot;PASSWORD&quot;</span><span class="p">,</span> 
+<span class="n">api</span> <span class="o">=</span> <span class="n">sj</span><span class="o">.</span><span class="n">Shioaji</span><span class="p">()</span>
+<span class="n">api</span><span class="o">.</span><span class="n">login</span><span class="p">(</span>
+    <span class="n">api_key</span><span class="o">=</span><span class="s2">&quot;YOUR_API_KEY&quot;</span><span class="p">,</span> 
+    <span class="n">secret_key</span><span class="o">=</span><span class="s2">&quot;YOUR_SECRET_KEY&quot;</span>
 <span class="p">)</span>
 </code></pre></div>
 </div>
-<ul>
-<li>下單測試 (版本&gt;= 0.3.6.dev7)</li>
-</ul>
-<p>&emsp;&emsp;下現貨的單為對現貨帳號進行測試報告，期貨亦然。</p>
+<div class="tabbed-block">
+<div class="highlight"><pre><span></span><code><span class="kn">import</span> <span class="nn">shioaji</span> <span class="k">as</span> <span class="nn">sj</span>
+<span class="n">api</span> <span class="o">=</span> <span class="n">sj</span><span class="o">.</span><span class="n">Shioaji</span><span class="p">()</span>
+<span class="n">api</span><span class="o">.</span><span class="n">login</span><span class="p">(</span>
+    <span class="n">person_id</span><span class="o">=</span><span class="s2">&quot;YOUR_PERSON_ID&quot;</span><span class="p">,</span> 
+    <span class="n">passwd</span><span class="o">=</span><span class="s2">&quot;YOUR_PASSWORD&quot;</span><span class="p">,</span>
+<span class="p">)</span>
+</code></pre></div>
+</div>
+</div>
+</div>
+</div>
+<h3 id="_3">證券下單測試<a class="headerlink" href="#_3" title="Permanent link">&para;</a></h3>
 <div class="admonition info">
-<p class="admonition-title">現貨下單</p>
+<p class="admonition-title">證券</p>
+<div class="tabbed-set tabbed-alternate" data-tabs="2:2"><input checked="checked" id="__tabbed_2_1" name="__tabbed_2" type="radio" /><input id="__tabbed_2_2" name="__tabbed_2" type="radio" /><div class="tabbed-labels"><label for="__tabbed_2_1">version&gt;=1.0</label><label for="__tabbed_2_2">version&lt;1.0</label></div>
+<div class="tabbed-content">
+<div class="tabbed-block">
 <div class="highlight"><pre><span></span><code><span class="hll"><span class="c1"># contract - edit it</span>
 </span><span class="n">contract</span> <span class="o">=</span> <span class="n">api</span><span class="o">.</span><span class="n">Contracts</span><span class="o">.</span><span class="n">Stocks</span><span class="o">.</span><span class="n">TSE</span><span class="p">[</span><span class="s2">&quot;2890&quot;</span><span class="p">]</span>
 
 <span class="hll"><span class="c1"># order - edit it</span>
 </span><span class="n">order</span> <span class="o">=</span> <span class="n">api</span><span class="o">.</span><span class="n">Order</span><span class="p">(</span>
-    <span class="n">action</span><span class="o">=</span><span class="n">sj</span><span class="o">.</span><span class="n">constant</span><span class="o">.</span><span class="n">Action</span><span class="o">.</span><span class="n">Buy</span><span class="p">,</span>
-    <span class="n">price</span><span class="o">=</span><span class="mi">20</span><span class="p">,</span> 
+    <span class="n">price</span><span class="o">=</span><span class="mi">18</span><span class="p">,</span> 
     <span class="n">quantity</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span> 
-    <span class="n">price_type</span><span class="o">=</span><span class="n">sj</span><span class="o">.</span><span class="n">constant</span><span class="o">.</span><span class="n">StockPriceType</span><span class="o">.</span><span class="n">LMT</span><span class="p">,</span>
-    <span class="n">order_type</span><span class="o">=</span><span class="n">sj</span><span class="o">.</span><span class="n">constant</span><span class="o">.</span><span class="n">OrderType</span><span class="o">.</span><span class="n">ROD</span><span class="p">,</span>
+    <span class="n">action</span><span class="o">=</span><span class="n">sj</span><span class="o">.</span><span class="n">constant</span><span class="o">.</span><span class="n">Action</span><span class="o">.</span><span class="n">Buy</span><span class="p">,</span> 
+    <span class="n">price_type</span><span class="o">=</span><span class="n">sj</span><span class="o">.</span><span class="n">constant</span><span class="o">.</span><span class="n">StockPriceType</span><span class="o">.</span><span class="n">LMT</span><span class="p">,</span> 
+    <span class="n">order_type</span><span class="o">=</span><span class="n">sj</span><span class="o">.</span><span class="n">constant</span><span class="o">.</span><span class="n">OrderType</span><span class="o">.</span><span class="n">ROD</span><span class="p">,</span> 
     <span class="n">account</span><span class="o">=</span><span class="n">api</span><span class="o">.</span><span class="n">stock_account</span>
 <span class="p">)</span>
 
 <span class="hll"><span class="c1"># place order</span>
-</span><span class="n">trade</span> <span class="o">=</span> <span class="n">api</span><span class="o">.</span><span class="n">place_order</span><span class="p">(</span><span class="n">contract</span><span class="p">,</span> <span class="n">order</span><span class="p">,</span> <span class="n">timeout</span><span class="o">=</span><span class="mi">0</span><span class="p">)</span>
+</span><span class="n">trade</span> <span class="o">=</span> <span class="n">api</span><span class="o">.</span><span class="n">place_order</span><span class="p">(</span><span class="n">contract</span><span class="p">,</span> <span class="n">order</span><span class="p">)</span>
 </code></pre></div>
 </div>
+<div class="tabbed-block">
+<div class="highlight"><pre><span></span><code><span class="hll"><span class="c1"># contract - edit it</span>
+</span><span class="n">contract</span> <span class="o">=</span> <span class="n">api</span><span class="o">.</span><span class="n">Contracts</span><span class="o">.</span><span class="n">Stocks</span><span class="o">.</span><span class="n">TSE</span><span class="p">[</span><span class="s2">&quot;2890&quot;</span><span class="p">]</span>
+
+<span class="hll"><span class="c1"># order - edit it</span>
+</span><span class="n">order</span> <span class="o">=</span> <span class="n">api</span><span class="o">.</span><span class="n">Order</span><span class="p">(</span>
+    <span class="n">price</span><span class="o">=</span><span class="mi">18</span><span class="p">,</span> 
+    <span class="n">quantity</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span> 
+    <span class="n">action</span><span class="o">=</span><span class="n">sj</span><span class="o">.</span><span class="n">constant</span><span class="o">.</span><span class="n">Action</span><span class="o">.</span><span class="n">Buy</span><span class="p">,</span> 
+    <span class="n">price_type</span><span class="o">=</span><span class="n">sj</span><span class="o">.</span><span class="n">constant</span><span class="o">.</span><span class="n">TFTStockPriceType</span><span class="o">.</span><span class="n">LMT</span><span class="p">,</span> 
+    <span class="n">order_type</span><span class="o">=</span><span class="n">sj</span><span class="o">.</span><span class="n">constant</span><span class="o">.</span><span class="n">TFTOrderType</span><span class="o">.</span><span class="n">ROD</span><span class="p">,</span> 
+    <span class="n">account</span><span class="o">=</span><span class="n">api</span><span class="o">.</span><span class="n">stock_account</span>
+<span class="p">)</span>
+
+<span class="hll"><span class="c1"># place order</span>
+</span><span class="n">trade</span> <span class="o">=</span> <span class="n">api</span><span class="o">.</span><span class="n">place_order</span><span class="p">(</span><span class="n">contract</span><span class="p">,</span> <span class="n">order</span><span class="p">)</span>
+</code></pre></div>
+</div>
+</div>
+</div>
+</div>
+<h3 id="_4">期貨下單測試<a class="headerlink" href="#_4" title="Permanent link">&para;</a></h3>
 <div class="admonition info">
-<p class="admonition-title">期貨下單</p>
+<p class="admonition-title">期貨</p>
+<div class="tabbed-set tabbed-alternate" data-tabs="3:2"><input checked="checked" id="__tabbed_3_1" name="__tabbed_3" type="radio" /><input id="__tabbed_3_2" name="__tabbed_3" type="radio" /><div class="tabbed-labels"><label for="__tabbed_3_1">verion&gt;=1.0</label><label for="__tabbed_3_2">verion&lt;1.0</label></div>
+<div class="tabbed-content">
+<div class="tabbed-block">
 <div class="highlight"><pre><span></span><code><span class="hll"><span class="c1"># near-month TXF - edit it</span>
 </span><span class="n">contract</span> <span class="o">=</span> <span class="nb">min</span><span class="p">(</span>
     <span class="p">[</span>
@@ -1288,29 +1404,49 @@
 <span class="hll"><span class="c1"># order - edit it</span>
 </span><span class="n">order</span> <span class="o">=</span> <span class="n">api</span><span class="o">.</span><span class="n">Order</span><span class="p">(</span>
     <span class="n">action</span><span class="o">=</span><span class="n">sj</span><span class="o">.</span><span class="n">constant</span><span class="o">.</span><span class="n">Action</span><span class="o">.</span><span class="n">Buy</span><span class="p">,</span>
-    <span class="n">price</span><span class="o">=</span><span class="mi">15000</span><span class="p">,</span> 
-    <span class="n">quantity</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span> 
-    <span class="n">price_type</span><span class="o">=</span><span class="n">sj</span><span class="o">.</span><span class="n">constant</span><span class="o">.</span><span class="n">StockPriceType</span><span class="o">.</span><span class="n">LMT</span><span class="p">,</span>
-    <span class="n">order_type</span><span class="o">=</span><span class="n">sj</span><span class="o">.</span><span class="n">constant</span><span class="o">.</span><span class="n">FuturesOrderType</span><span class="o">.</span><span class="n">ROD</span><span class="p">,</span>  
+    <span class="n">price</span><span class="o">=</span><span class="mi">15000</span><span class="p">,</span>
+    <span class="n">quantity</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span>
+    <span class="n">price_type</span><span class="o">=</span><span class="n">sj</span><span class="o">.</span><span class="n">constant</span><span class="o">.</span><span class="n">FuturesPriceType</span><span class="o">.</span><span class="n">LMT</span><span class="p">,</span>
+    <span class="n">order_type</span><span class="o">=</span><span class="n">sj</span><span class="o">.</span><span class="n">constant</span><span class="o">.</span><span class="n">OrderType</span><span class="o">.</span><span class="n">ROD</span><span class="p">,</span> 
     <span class="n">octype</span><span class="o">=</span><span class="n">sj</span><span class="o">.</span><span class="n">constant</span><span class="o">.</span><span class="n">FuturesOCType</span><span class="o">.</span><span class="n">Auto</span><span class="p">,</span>
     <span class="n">account</span><span class="o">=</span><span class="n">api</span><span class="o">.</span><span class="n">futopt_account</span>
 <span class="p">)</span>
 
 <span class="hll"><span class="c1"># place order</span>
-</span><span class="n">trade</span> <span class="o">=</span> <span class="n">api</span><span class="o">.</span><span class="n">place_order</span><span class="p">(</span><span class="n">contract</span><span class="p">,</span> <span class="n">order</span><span class="p">,</span> <span class="n">timeout</span><span class="o">=</span><span class="mi">0</span><span class="p">)</span>
+</span><span class="n">trade</span> <span class="o">=</span> <span class="n">api</span><span class="o">.</span><span class="n">place_order</span><span class="p">(</span><span class="n">contract</span><span class="p">,</span> <span class="n">order</span><span class="p">)</span>
 </code></pre></div>
 </div>
-<div class="admonition attention">
-<p class="admonition-title">Attention</p>
-<p>因應公司資訊安全規定，測試報告服務為星期一至五 08:00 ~ 20:00</p>
-<ul>
-<li>18:00 ~ 20:00: 只允許台灣IP</li>
-<li>08:00 ~ 18:00: 沒有限制</li>
-</ul>
+<div class="tabbed-block">
+<div class="highlight"><pre><span></span><code><span class="hll"><span class="c1"># near-month TXF - edit it</span>
+</span><span class="n">contract</span> <span class="o">=</span> <span class="nb">min</span><span class="p">(</span>
+    <span class="p">[</span>
+        <span class="n">x</span> <span class="k">for</span> <span class="n">x</span> <span class="ow">in</span> <span class="n">api</span><span class="o">.</span><span class="n">Contracts</span><span class="o">.</span><span class="n">Futures</span><span class="o">.</span><span class="n">TXF</span> 
+        <span class="k">if</span> <span class="n">x</span><span class="o">.</span><span class="n">code</span><span class="p">[</span><span class="o">-</span><span class="mi">2</span><span class="p">:]</span> <span class="ow">not</span> <span class="ow">in</span> <span class="p">[</span><span class="s2">&quot;R1&quot;</span><span class="p">,</span> <span class="s2">&quot;R2&quot;</span><span class="p">]</span>
+    <span class="p">],</span>
+    <span class="n">key</span><span class="o">=</span><span class="k">lambda</span> <span class="n">x</span><span class="p">:</span> <span class="n">x</span><span class="o">.</span><span class="n">delivery_date</span>
+<span class="p">)</span>
+
+<span class="hll"><span class="c1"># order - edit it</span>
+</span><span class="n">order</span> <span class="o">=</span> <span class="n">api</span><span class="o">.</span><span class="n">Order</span><span class="p">(</span>
+    <span class="n">action</span><span class="o">=</span><span class="n">sj</span><span class="o">.</span><span class="n">constant</span><span class="o">.</span><span class="n">Action</span><span class="o">.</span><span class="n">Buy</span><span class="p">,</span>
+    <span class="n">price</span><span class="o">=</span><span class="mi">15000</span><span class="p">,</span>
+    <span class="n">quantity</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span>
+    <span class="n">price_type</span><span class="o">=</span><span class="n">sj</span><span class="o">.</span><span class="n">constant</span><span class="o">.</span><span class="n">FuturesPriceType</span><span class="o">.</span><span class="n">LMT</span><span class="p">,</span>
+    <span class="n">order_type</span><span class="o">=</span><span class="n">sj</span><span class="o">.</span><span class="n">constant</span><span class="o">.</span><span class="n">FuturesOrderType</span><span class="o">.</span><span class="n">ROD</span><span class="p">,</span> 
+    <span class="n">octype</span><span class="o">=</span><span class="n">sj</span><span class="o">.</span><span class="n">constant</span><span class="o">.</span><span class="n">FuturesOCType</span><span class="o">.</span><span class="n">Auto</span><span class="p">,</span>
+    <span class="n">account</span><span class="o">=</span><span class="n">api</span><span class="o">.</span><span class="n">futopt_account</span>
+<span class="p">)</span>
+
+<span class="hll"><span class="c1"># place order</span>
+</span><span class="n">trade</span> <span class="o">=</span> <span class="n">api</span><span class="o">.</span><span class="n">place_order</span><span class="p">(</span><span class="n">contract</span><span class="p">,</span> <span class="n">order</span><span class="p">)</span>
+</code></pre></div>
 </div>
-<h3 id="_3">憑證<a class="headerlink" href="#_3" title="Permanent link">&para;</a></h3>
+</div>
+</div>
+</div>
+<h2 id="_5">憑證<a class="headerlink" href="#_5" title="Permanent link">&para;</a></h2>
 <p>&emsp;&emsp;下單前必須<strong>申請</strong>並<strong>啟用</strong>憑證</p>
-<h4 id="_4">申請憑證<a class="headerlink" href="#_4" title="Permanent link">&para;</a></h4>
+<h4 id="_6">申請憑證<a class="headerlink" href="#_6" title="Permanent link">&para;</a></h4>
 <ol>
 <li>
 <p>至<a href="https://www.sinotrade.com.tw/CSCenter/CSCenter_13_3">理財網</a>下載 eleader
@@ -1338,7 +1474,7 @@
    <img alt="CA_info" src="https://raw.githubusercontent.com/Sinotrade/Sinotrade.github.io/master/img/CA_info.png" /></p>
 </li>
 </ol>
-<h4 id="_5">啟用憑證<a class="headerlink" href="#_5" title="Permanent link">&para;</a></h4>
+<h4 id="_7">啟用憑證<a class="headerlink" href="#_7" title="Permanent link">&para;</a></h4>
 <p><font size=3></p>
 <ul>
 <li>若是使用測試帳號無需啟用憑證</li>

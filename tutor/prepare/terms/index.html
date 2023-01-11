@@ -411,6 +411,33 @@
     Test Report
   </a>
   
+    <nav class="md-nav" aria-label="Test Report">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#login-test" class="md-nav__link">
+    Login Test
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#place-order-test-stock" class="md-nav__link">
+    Place Order Test - Stock
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#place-order-test-futures" class="md-nav__link">
+    Place Order Test - Futures
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
 </li>
       
         <li class="md-nav__item">
@@ -1181,6 +1208,33 @@
     Test Report
   </a>
   
+    <nav class="md-nav" aria-label="Test Report">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#login-test" class="md-nav__link">
+    Login Test
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#place-order-test-stock" class="md-nav__link">
+    Place Order Test - Stock
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#place-order-test-futures" class="md-nav__link">
+    Place Order Test - Futures
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
 </li>
       
         <li class="md-nav__item">
@@ -1228,50 +1282,112 @@
   <h1>Terms of service</h1>
 
 <p>Restricted by Taiwan's financial regulations, new users need to sign relevant documents and complete a test report in the simulation mode before using it in a formal environment.</p>
-<h3 id="sign-documents">Sign Documents<a class="headerlink" href="#sign-documents" title="Permanent link">&para;</a></h3>
+<h2 id="sign-documents">Sign Documents<a class="headerlink" href="#sign-documents" title="Permanent link">&para;</a></h2>
 <p>Please refer to <a href="https://www.sinotrade.com.tw/newweb/Inside_Frame?URL=https://service.sinotrade.com.tw/signCenter/index/">sign center</a> and <strong>read the documents carefully</strong> before you sign. 
 <br/>
 <img alt="signature" src="https://raw.githubusercontent.com/Sinotrade/Sinotrade.github.io/master/img/signature.png" /></p>
-<h3 id="test-report">Test Report<a class="headerlink" href="#test-report" title="Permanent link">&para;</a></h3>
+<h2 id="test-report">Test Report<a class="headerlink" href="#test-report" title="Permanent link">&para;</a></h2>
 <p>To ensure that you fully understand how to use Shioaji, you need to complete the test report in the simulation mode, which includes the following functions:</p>
 <ul>
 <li><code>login</code></li>
+<li><code>place_order</code></li>
 </ul>
+<div class="admonition attention">
+<p class="admonition-title">Attention</p>
+<p>Service Hour:</p>
+<ul>
+<li>In response to the company's information security regulations, the test report service is Monday to Friday 08:00 ~ 20:00</li>
+<li>18:00 ~ 20:00: Only allow Taiwan IP</li>
+<li>08:00 ~ 18:00: No limit</li>
+</ul>
+<p>Version Restriction:  </p>
+<ul>
+<li>version &lt; 1.0: you have to use <strong>version&gt;=0.5.0.dev2</strong></li>
+<li>version &gt;= 1.0: no restrictions</li>
+</ul>
+<p>Others:  </p>
+<ul>
+<li>You should sign the API related document before you test!</li>
+<li>Stock and Futures account should be test separately.</li>
+<li>The time interval between stock place order test and futures place order test should be more than 1 second.</li>
+</ul>
+</div>
+<h3 id="login-test">Login Test<a class="headerlink" href="#login-test" title="Permanent link">&para;</a></h3>
 <div class="admonition info">
 <p class="admonition-title">Login</p>
+<div class="tabbed-set tabbed-alternate" data-tabs="1:2"><input checked="checked" id="__tabbed_1_1" name="__tabbed_1" type="radio" /><input id="__tabbed_1_2" name="__tabbed_1" type="radio" /><div class="tabbed-labels"><label for="__tabbed_1_1">version&gt;=1.0</label><label for="__tabbed_1_2">version&lt;1.0</label></div>
+<div class="tabbed-content">
+<div class="tabbed-block">
 <div class="highlight"><pre><span></span><code><span class="kn">import</span> <span class="nn">shioaji</span> <span class="k">as</span> <span class="nn">sj</span>
-<span class="hll"><span class="n">api</span> <span class="o">=</span> <span class="n">sj</span><span class="o">.</span><span class="n">Shioaji</span><span class="p">(</span><span class="n">simulation</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
-</span><span class="n">api</span><span class="o">.</span><span class="n">login</span><span class="p">(</span>
-    <span class="n">person_id</span><span class="o">=</span><span class="s2">&quot;PERSON_ID&quot;</span><span class="p">,</span> <span class="c1">#個人專屬帳號 </span>
-    <span class="n">passwd</span><span class="o">=</span><span class="s2">&quot;PASSWORD&quot;</span><span class="p">,</span> 
+<span class="n">api</span> <span class="o">=</span> <span class="n">sj</span><span class="o">.</span><span class="n">Shioaji</span><span class="p">()</span>
+<span class="n">api</span><span class="o">.</span><span class="n">login</span><span class="p">(</span>
+    <span class="n">api_key</span><span class="o">=</span><span class="s2">&quot;YOUR_API_KEY&quot;</span><span class="p">,</span> 
+    <span class="n">secret_key</span><span class="o">=</span><span class="s2">&quot;YOUR_SECRET_KEY&quot;</span>
 <span class="p">)</span>
 </code></pre></div>
 </div>
-<ul>
-<li><code>place_order</code> (version &gt;= 0.3.6.dev7)</li>
-</ul>
-<p>&emsp;&emsp;The stock order is a test report for the stock account, and the same is true for futures.</p>
+<div class="tabbed-block">
+<div class="highlight"><pre><span></span><code><span class="kn">import</span> <span class="nn">shioaji</span> <span class="k">as</span> <span class="nn">sj</span>
+<span class="n">api</span> <span class="o">=</span> <span class="n">sj</span><span class="o">.</span><span class="n">Shioaji</span><span class="p">()</span>
+<span class="n">api</span><span class="o">.</span><span class="n">login</span><span class="p">(</span>
+    <span class="n">person_id</span><span class="o">=</span><span class="s2">&quot;YOUR_PERSON_ID&quot;</span><span class="p">,</span> 
+    <span class="n">passwd</span><span class="o">=</span><span class="s2">&quot;YOUR_PASSWORD&quot;</span><span class="p">,</span>
+<span class="p">)</span>
+</code></pre></div>
+</div>
+</div>
+</div>
+</div>
+<h3 id="place-order-test-stock">Place Order Test - Stock<a class="headerlink" href="#place-order-test-stock" title="Permanent link">&para;</a></h3>
 <div class="admonition info">
 <p class="admonition-title">Stock Order</p>
+<div class="tabbed-set tabbed-alternate" data-tabs="2:2"><input checked="checked" id="__tabbed_2_1" name="__tabbed_2" type="radio" /><input id="__tabbed_2_2" name="__tabbed_2" type="radio" /><div class="tabbed-labels"><label for="__tabbed_2_1">version&gt;=1.0</label><label for="__tabbed_2_2">version&lt;1.0</label></div>
+<div class="tabbed-content">
+<div class="tabbed-block">
 <div class="highlight"><pre><span></span><code><span class="hll"><span class="c1"># contract - edit it</span>
 </span><span class="n">contract</span> <span class="o">=</span> <span class="n">api</span><span class="o">.</span><span class="n">Contracts</span><span class="o">.</span><span class="n">Stocks</span><span class="o">.</span><span class="n">TSE</span><span class="p">[</span><span class="s2">&quot;2890&quot;</span><span class="p">]</span>
 
 <span class="hll"><span class="c1"># order - edit it</span>
 </span><span class="n">order</span> <span class="o">=</span> <span class="n">api</span><span class="o">.</span><span class="n">Order</span><span class="p">(</span>
-    <span class="n">action</span><span class="o">=</span><span class="n">sj</span><span class="o">.</span><span class="n">constant</span><span class="o">.</span><span class="n">Action</span><span class="o">.</span><span class="n">Buy</span><span class="p">,</span>
-    <span class="n">price</span><span class="o">=</span><span class="mi">20</span><span class="p">,</span> 
+    <span class="n">price</span><span class="o">=</span><span class="mi">18</span><span class="p">,</span> 
     <span class="n">quantity</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span> 
-    <span class="n">price_type</span><span class="o">=</span><span class="n">sj</span><span class="o">.</span><span class="n">constant</span><span class="o">.</span><span class="n">StockPriceType</span><span class="o">.</span><span class="n">LMT</span><span class="p">,</span>
-    <span class="n">order_type</span><span class="o">=</span><span class="n">sj</span><span class="o">.</span><span class="n">constant</span><span class="o">.</span><span class="n">OrderType</span><span class="o">.</span><span class="n">ROD</span><span class="p">,</span>
+    <span class="n">action</span><span class="o">=</span><span class="n">sj</span><span class="o">.</span><span class="n">constant</span><span class="o">.</span><span class="n">Action</span><span class="o">.</span><span class="n">Buy</span><span class="p">,</span> 
+    <span class="n">price_type</span><span class="o">=</span><span class="n">sj</span><span class="o">.</span><span class="n">constant</span><span class="o">.</span><span class="n">StockPriceType</span><span class="o">.</span><span class="n">LMT</span><span class="p">,</span> 
+    <span class="n">order_type</span><span class="o">=</span><span class="n">sj</span><span class="o">.</span><span class="n">constant</span><span class="o">.</span><span class="n">OrderType</span><span class="o">.</span><span class="n">ROD</span><span class="p">,</span> 
     <span class="n">account</span><span class="o">=</span><span class="n">api</span><span class="o">.</span><span class="n">stock_account</span>
 <span class="p">)</span>
 
 <span class="hll"><span class="c1"># place order</span>
-</span><span class="n">trade</span> <span class="o">=</span> <span class="n">api</span><span class="o">.</span><span class="n">place_order</span><span class="p">(</span><span class="n">contract</span><span class="p">,</span> <span class="n">order</span><span class="p">,</span> <span class="n">timeout</span><span class="o">=</span><span class="mi">0</span><span class="p">)</span>
+</span><span class="n">trade</span> <span class="o">=</span> <span class="n">api</span><span class="o">.</span><span class="n">place_order</span><span class="p">(</span><span class="n">contract</span><span class="p">,</span> <span class="n">order</span><span class="p">)</span>
 </code></pre></div>
 </div>
+<div class="tabbed-block">
+<div class="highlight"><pre><span></span><code><span class="hll"><span class="c1"># contract - edit it</span>
+</span><span class="n">contract</span> <span class="o">=</span> <span class="n">api</span><span class="o">.</span><span class="n">Contracts</span><span class="o">.</span><span class="n">Stocks</span><span class="o">.</span><span class="n">TSE</span><span class="p">[</span><span class="s2">&quot;2890&quot;</span><span class="p">]</span>
+
+<span class="hll"><span class="c1"># order - edit it</span>
+</span><span class="n">order</span> <span class="o">=</span> <span class="n">api</span><span class="o">.</span><span class="n">Order</span><span class="p">(</span>
+    <span class="n">price</span><span class="o">=</span><span class="mi">18</span><span class="p">,</span> 
+    <span class="n">quantity</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span> 
+    <span class="n">action</span><span class="o">=</span><span class="n">sj</span><span class="o">.</span><span class="n">constant</span><span class="o">.</span><span class="n">Action</span><span class="o">.</span><span class="n">Buy</span><span class="p">,</span> 
+    <span class="n">price_type</span><span class="o">=</span><span class="n">sj</span><span class="o">.</span><span class="n">constant</span><span class="o">.</span><span class="n">TFTStockPriceType</span><span class="o">.</span><span class="n">LMT</span><span class="p">,</span> 
+    <span class="n">order_type</span><span class="o">=</span><span class="n">sj</span><span class="o">.</span><span class="n">constant</span><span class="o">.</span><span class="n">TFTOrderType</span><span class="o">.</span><span class="n">ROD</span><span class="p">,</span> 
+    <span class="n">account</span><span class="o">=</span><span class="n">api</span><span class="o">.</span><span class="n">stock_account</span>
+<span class="p">)</span>
+
+<span class="hll"><span class="c1"># place order</span>
+</span><span class="n">trade</span> <span class="o">=</span> <span class="n">api</span><span class="o">.</span><span class="n">place_order</span><span class="p">(</span><span class="n">contract</span><span class="p">,</span> <span class="n">order</span><span class="p">)</span>
+</code></pre></div>
+</div>
+</div>
+</div>
+</div>
+<h3 id="place-order-test-futures">Place Order Test - Futures<a class="headerlink" href="#place-order-test-futures" title="Permanent link">&para;</a></h3>
 <div class="admonition info">
 <p class="admonition-title">Future Order</p>
+<div class="tabbed-set tabbed-alternate" data-tabs="3:2"><input checked="checked" id="__tabbed_3_1" name="__tabbed_3" type="radio" /><input id="__tabbed_3_2" name="__tabbed_3" type="radio" /><div class="tabbed-labels"><label for="__tabbed_3_1">verion&gt;=1.0</label><label for="__tabbed_3_2">verion&lt;1.0</label></div>
+<div class="tabbed-content">
+<div class="tabbed-block">
 <div class="highlight"><pre><span></span><code><span class="hll"><span class="c1"># near-month TXF - edit it</span>
 </span><span class="n">contract</span> <span class="o">=</span> <span class="nb">min</span><span class="p">(</span>
     <span class="p">[</span>
@@ -1284,29 +1400,49 @@
 <span class="hll"><span class="c1"># order - edit it</span>
 </span><span class="n">order</span> <span class="o">=</span> <span class="n">api</span><span class="o">.</span><span class="n">Order</span><span class="p">(</span>
     <span class="n">action</span><span class="o">=</span><span class="n">sj</span><span class="o">.</span><span class="n">constant</span><span class="o">.</span><span class="n">Action</span><span class="o">.</span><span class="n">Buy</span><span class="p">,</span>
-    <span class="n">price</span><span class="o">=</span><span class="mi">15000</span><span class="p">,</span> 
-    <span class="n">quantity</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span> 
-    <span class="n">price_type</span><span class="o">=</span><span class="n">sj</span><span class="o">.</span><span class="n">constant</span><span class="o">.</span><span class="n">StockPriceType</span><span class="o">.</span><span class="n">LMT</span><span class="p">,</span>
-    <span class="n">order_type</span><span class="o">=</span><span class="n">sj</span><span class="o">.</span><span class="n">constant</span><span class="o">.</span><span class="n">FuturesOrderType</span><span class="o">.</span><span class="n">ROD</span><span class="p">,</span>  
+    <span class="n">price</span><span class="o">=</span><span class="mi">15000</span><span class="p">,</span>
+    <span class="n">quantity</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span>
+    <span class="n">price_type</span><span class="o">=</span><span class="n">sj</span><span class="o">.</span><span class="n">constant</span><span class="o">.</span><span class="n">FuturesPriceType</span><span class="o">.</span><span class="n">LMT</span><span class="p">,</span>
+    <span class="n">order_type</span><span class="o">=</span><span class="n">sj</span><span class="o">.</span><span class="n">constant</span><span class="o">.</span><span class="n">OrderType</span><span class="o">.</span><span class="n">ROD</span><span class="p">,</span> 
     <span class="n">octype</span><span class="o">=</span><span class="n">sj</span><span class="o">.</span><span class="n">constant</span><span class="o">.</span><span class="n">FuturesOCType</span><span class="o">.</span><span class="n">Auto</span><span class="p">,</span>
     <span class="n">account</span><span class="o">=</span><span class="n">api</span><span class="o">.</span><span class="n">futopt_account</span>
 <span class="p">)</span>
 
 <span class="hll"><span class="c1"># place order</span>
-</span><span class="n">trade</span> <span class="o">=</span> <span class="n">api</span><span class="o">.</span><span class="n">place_order</span><span class="p">(</span><span class="n">contract</span><span class="p">,</span> <span class="n">order</span><span class="p">,</span> <span class="n">timeout</span><span class="o">=</span><span class="mi">0</span><span class="p">)</span>
+</span><span class="n">trade</span> <span class="o">=</span> <span class="n">api</span><span class="o">.</span><span class="n">place_order</span><span class="p">(</span><span class="n">contract</span><span class="p">,</span> <span class="n">order</span><span class="p">)</span>
 </code></pre></div>
 </div>
-<div class="admonition attention">
-<p class="admonition-title">Attention</p>
-<p>In response to the company's information security regulations, the test report service is Monday to Friday 08:00 ~ 20:00</p>
-<ul>
-<li>18:00 ~ 20:00: Only allow Taiwan IP</li>
-<li>08:00 ~ 18:00: No limit</li>
-</ul>
+<div class="tabbed-block">
+<div class="highlight"><pre><span></span><code><span class="hll"><span class="c1"># near-month TXF - edit it</span>
+</span><span class="n">contract</span> <span class="o">=</span> <span class="nb">min</span><span class="p">(</span>
+    <span class="p">[</span>
+        <span class="n">x</span> <span class="k">for</span> <span class="n">x</span> <span class="ow">in</span> <span class="n">api</span><span class="o">.</span><span class="n">Contracts</span><span class="o">.</span><span class="n">Futures</span><span class="o">.</span><span class="n">TXF</span> 
+        <span class="k">if</span> <span class="n">x</span><span class="o">.</span><span class="n">code</span><span class="p">[</span><span class="o">-</span><span class="mi">2</span><span class="p">:]</span> <span class="ow">not</span> <span class="ow">in</span> <span class="p">[</span><span class="s2">&quot;R1&quot;</span><span class="p">,</span> <span class="s2">&quot;R2&quot;</span><span class="p">]</span>
+    <span class="p">],</span>
+    <span class="n">key</span><span class="o">=</span><span class="k">lambda</span> <span class="n">x</span><span class="p">:</span> <span class="n">x</span><span class="o">.</span><span class="n">delivery_date</span>
+<span class="p">)</span>
+
+<span class="hll"><span class="c1"># order - edit it</span>
+</span><span class="n">order</span> <span class="o">=</span> <span class="n">api</span><span class="o">.</span><span class="n">Order</span><span class="p">(</span>
+    <span class="n">action</span><span class="o">=</span><span class="n">sj</span><span class="o">.</span><span class="n">constant</span><span class="o">.</span><span class="n">Action</span><span class="o">.</span><span class="n">Buy</span><span class="p">,</span>
+    <span class="n">price</span><span class="o">=</span><span class="mi">15000</span><span class="p">,</span>
+    <span class="n">quantity</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span>
+    <span class="n">price_type</span><span class="o">=</span><span class="n">sj</span><span class="o">.</span><span class="n">constant</span><span class="o">.</span><span class="n">FuturesPriceType</span><span class="o">.</span><span class="n">LMT</span><span class="p">,</span>
+    <span class="n">order_type</span><span class="o">=</span><span class="n">sj</span><span class="o">.</span><span class="n">constant</span><span class="o">.</span><span class="n">FuturesOrderType</span><span class="o">.</span><span class="n">ROD</span><span class="p">,</span> 
+    <span class="n">octype</span><span class="o">=</span><span class="n">sj</span><span class="o">.</span><span class="n">constant</span><span class="o">.</span><span class="n">FuturesOCType</span><span class="o">.</span><span class="n">Auto</span><span class="p">,</span>
+    <span class="n">account</span><span class="o">=</span><span class="n">api</span><span class="o">.</span><span class="n">futopt_account</span>
+<span class="p">)</span>
+
+<span class="hll"><span class="c1"># place order</span>
+</span><span class="n">trade</span> <span class="o">=</span> <span class="n">api</span><span class="o">.</span><span class="n">place_order</span><span class="p">(</span><span class="n">contract</span><span class="p">,</span> <span class="n">order</span><span class="p">)</span>
+</code></pre></div>
 </div>
-<h3 id="ca">CA<a class="headerlink" href="#ca" title="Permanent link">&para;</a></h3>
+</div>
+</div>
+</div>
+<h2 id="ca">CA<a class="headerlink" href="#ca" title="Permanent link">&para;</a></h2>
 <p>You must <strong>apply</strong> and <strong>activate</strong> the CA before <code>place_order</code>.</p>
-<h4 id="apply-ca">Apply CA<a class="headerlink" href="#apply-ca" title="Permanent link">&para;</a></h4>
+<h3 id="apply-ca">Apply CA<a class="headerlink" href="#apply-ca" title="Permanent link">&para;</a></h3>
 <ol>
 <li>Go to <a href="https://www.sinotrade.com.tw/CSCenter/CSCenter_13_3">SinoPac Securities</a> to download eleader
 <img alt="eleader_download" src="https://raw.githubusercontent.com/Sinotrade/Sinotrade.github.io/master/img/eleader_download.png" /></li>
@@ -1320,7 +1456,7 @@
 <li>CA Operation steps
 <img alt="CA_info" src="https://raw.githubusercontent.com/Sinotrade/Sinotrade.github.io/master/img/CA_info.png" /></li>
 </ol>
-<h4 id="activate-ca">Activate CA<a class="headerlink" href="#activate-ca" title="Permanent link">&para;</a></h4>
+<h3 id="activate-ca">Activate CA<a class="headerlink" href="#activate-ca" title="Permanent link">&para;</a></h3>
 <ul>
 <li>If you use simulation account, you don't have to activate CA.</li>
 <li>If you are a macOS user, you may subject to version-issue. We suggest you to use <a href="https://github.com/Sinotrade/Shioaji">docker</a> and run shioaji service on docker.</li>
