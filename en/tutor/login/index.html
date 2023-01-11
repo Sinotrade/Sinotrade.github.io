@@ -74,7 +74,7 @@
     <div data-md-component="skip">
       
         
-        <a href="#account" class="md-skip">
+        <a href="#login" class="md-skip">
           Skip to content
         </a>
       
@@ -419,6 +419,33 @@
     <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
       
         <li class="md-nav__item">
+  <a href="#login" class="md-nav__link">
+    Login
+  </a>
+  
+    <nav class="md-nav" aria-label="Login">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#fetch-contracts-callback" class="md-nav__link">
+    Fetch Contracts Callback
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#subscribe-trade" class="md-nav__link">
+    Subscribe Trade
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
   <a href="#account" class="md-nav__link">
     Account
   </a>
@@ -442,13 +469,6 @@
         
       </ul>
     </nav>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#set-subscribe-trade-callback" class="md-nav__link">
-    set subscribe trade callback
-  </a>
   
 </li>
       
@@ -1168,6 +1188,33 @@
     <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
       
         <li class="md-nav__item">
+  <a href="#login" class="md-nav__link">
+    Login
+  </a>
+  
+    <nav class="md-nav" aria-label="Login">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#fetch-contracts-callback" class="md-nav__link">
+    Fetch Contracts Callback
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#subscribe-trade" class="md-nav__link">
+    Subscribe Trade
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
   <a href="#account" class="md-nav__link">
     Account
   </a>
@@ -1191,13 +1238,6 @@
         
       </ul>
     </nav>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#set-subscribe-trade-callback" class="md-nav__link">
-    set subscribe trade callback
-  </a>
   
 </li>
       
@@ -1226,6 +1266,7 @@
   <h1>Login</h1>
 
 <p>Login must have a SinoPac Securities account. If you do not have a SinoPac Securities account yet. See the <a href="../prepare/open_account/">document</a> for details.</p>
+<h2 id="login">Login<a class="headerlink" href="#login" title="Permanent link">&para;</a></h2>
 <div class="admonition attention">
 <p class="admonition-title">Token login</p>
 <p>After version 1.0, we are using token as our <code>login</code> method. You can be found in <a href="../prepare/token/">Token</a>. Before version 1.0, using person id and password.</p>
@@ -1237,13 +1278,19 @@
 <div class="tabbed-block">
 <div class="highlight"><pre><span></span><code><span class="kn">import</span> <span class="nn">shioaji</span> <span class="k">as</span> <span class="nn">sj</span>
 <span class="n">api</span> <span class="o">=</span> <span class="n">sj</span><span class="o">.</span><span class="n">Shioaji</span><span class="p">()</span>
-<span class="n">api</span><span class="o">.</span><span class="n">login</span><span class="p">(</span><span class="s2">&quot;YOUR_API_KEY&quot;</span><span class="p">,</span> <span class="s2">&quot;YOUR_SECRET_KEY&quot;</span><span class="p">)</span>
+<span class="n">api</span><span class="o">.</span><span class="n">login</span><span class="p">(</span>
+    <span class="n">api_key</span><span class="o">=</span><span class="s2">&quot;YOUR_API_KEY&quot;</span><span class="p">,</span> 
+    <span class="n">secret_key</span><span class="o">=</span><span class="s2">&quot;YOUR_SECRET_KEY&quot;</span>
+<span class="p">)</span>
 </code></pre></div>
 </div>
 <div class="tabbed-block">
 <div class="highlight"><pre><span></span><code><span class="kn">import</span> <span class="nn">shioaji</span> <span class="k">as</span> <span class="nn">sj</span>
 <span class="n">api</span> <span class="o">=</span> <span class="n">sj</span><span class="o">.</span><span class="n">Shioaji</span><span class="p">()</span>
-<span class="n">api</span><span class="o">.</span><span class="n">login</span><span class="p">(</span><span class="s2">&quot;YOUR_PERSON_ID&quot;</span><span class="p">,</span> <span class="s2">&quot;YOUR_PASSWORD&quot;</span><span class="p">)</span>
+<span class="n">api</span><span class="o">.</span><span class="n">login</span><span class="p">(</span>
+    <span class="n">person_id</span><span class="o">=</span><span class="s2">&quot;YOUR_PERSON_ID&quot;</span><span class="p">,</span> 
+    <span class="n">passwd</span><span class="o">=</span><span class="s2">&quot;YOUR_PASSWORD&quot;</span><span class="p">,</span>
+<span class="p">)</span>
 </code></pre></div>
 </div>
 </div>
@@ -1255,10 +1302,44 @@
 <span class="n">StockAccount</span><span class="p">(</span><span class="n">person_id</span><span class="o">=</span><span class="s1">&#39;&#39;</span><span class="p">,</span> <span class="n">broker_id</span><span class="o">=</span><span class="s1">&#39;&#39;</span><span class="p">,</span> <span class="n">account_id</span><span class="o">=</span><span class="s1">&#39;&#39;</span><span class="p">,</span> <span class="n">signed</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">username</span><span class="o">=</span><span class="s1">&#39;&#39;</span><span class="p">)]</span>
 </code></pre></div>
 </div>
+<ul>
+<li>If you cannot find <code>signed</code> in your accounts, please refer to <a href="../prepare/terms/">terms of service</a> first.</li>
+</ul>
+<div class="admonition example">
+<p class="admonition-title">Login Arguments</p>
+<div class="tabbed-set tabbed-alternate" data-tabs="2:2"><input checked="checked" id="__tabbed_2_1" name="__tabbed_2" type="radio" /><input id="__tabbed_2_2" name="__tabbed_2" type="radio" /><div class="tabbed-labels"><label for="__tabbed_2_1">version&gt;=1.0</label><label for="__tabbed_2_2">version&lt;1.0</label></div>
+<div class="tabbed-content">
+<div class="tabbed-block">
+<div class="highlight"><pre><span></span><code><span class="n">api_key</span> <span class="p">(</span><span class="nb">str</span><span class="p">):</span> <span class="n">API</span> <span class="n">Key</span>
+<span class="n">secret_key</span> <span class="p">(</span><span class="nb">str</span><span class="p">):</span> <span class="n">Secret</span> <span class="n">Key</span>
+<span class="n">fetch_contract</span> <span class="p">(</span><span class="nb">bool</span><span class="p">):</span> <span class="n">whether</span> <span class="n">to</span> <span class="n">load</span> <span class="n">contracts</span> <span class="kn">from</span> <span class="nn">cache</span> <span class="ow">or</span> <span class="n">server</span> <span class="p">(</span><span class="n">Default</span><span class="p">:</span> <span class="kc">True</span><span class="p">)</span>
+<span class="n">contracts_timeout</span> <span class="p">(</span><span class="nb">int</span><span class="p">):</span> <span class="n">fetch</span> <span class="n">contract</span> <span class="n">timeout</span> <span class="p">(</span><span class="n">Default</span><span class="p">:</span> <span class="mi">0</span> <span class="n">ms</span><span class="p">)</span>
+<span class="n">contracts_cb</span> <span class="p">(</span><span class="n">typing</span><span class="o">.</span><span class="n">Callable</span><span class="p">):</span> <span class="n">fetch</span> <span class="n">contract</span> <span class="n">callback</span> <span class="p">(</span><span class="n">Default</span><span class="p">:</span> <span class="kc">None</span><span class="p">)</span>
+<span class="n">subscribe_trade</span> <span class="p">(</span><span class="nb">bool</span><span class="p">):</span> <span class="n">whether</span> <span class="n">to</span> <span class="n">subscribe</span> <span class="n">Order</span><span class="o">/</span><span class="n">Deal</span> <span class="n">event</span> <span class="n">callback</span> <span class="p">(</span><span class="n">Default</span><span class="p">:</span> <span class="kc">True</span><span class="p">)</span>
+<span class="n">receive_window</span> <span class="p">(</span><span class="nb">int</span><span class="p">):</span> <span class="n">valid</span> <span class="n">duration</span> <span class="k">for</span> <span class="n">login</span> <span class="n">execution</span><span class="o">.</span> <span class="p">(</span><span class="n">Default</span><span class="p">:</span> <span class="mi">30</span><span class="p">,</span><span class="mi">000</span> <span class="n">ms</span><span class="p">)</span>
+</code></pre></div>
+</div>
+<div class="tabbed-block">
+<div class="highlight"><pre><span></span><code><span class="n">person_id</span> <span class="p">(</span><span class="nb">str</span><span class="p">):</span> <span class="n">person_id</span>
+<span class="n">passwd</span> <span class="p">(</span><span class="nb">str</span><span class="p">):</span> <span class="n">password</span>
+<span class="n">hashed</span> <span class="p">(</span><span class="nb">bool</span><span class="p">):</span> <span class="n">whether</span> <span class="n">password</span> <span class="n">has</span> <span class="n">been</span> <span class="n">hashed</span> <span class="p">(</span><span class="n">Default</span><span class="p">:</span> <span class="kc">False</span><span class="p">)</span>
+<span class="n">fetch_contract</span> <span class="p">(</span><span class="nb">bool</span><span class="p">):</span> <span class="n">whether</span> <span class="n">to</span> <span class="n">load</span> <span class="n">contracts</span> <span class="kn">from</span> <span class="nn">cache</span> <span class="ow">or</span> <span class="n">server</span> <span class="p">(</span><span class="n">Default</span><span class="p">:</span> <span class="kc">True</span><span class="p">)</span>
+<span class="n">contracts_timeout</span> <span class="p">(</span><span class="nb">int</span><span class="p">):</span> <span class="n">fetch</span> <span class="n">contract</span> <span class="n">timeout</span> <span class="p">(</span><span class="n">Default</span><span class="p">:</span> <span class="mi">0</span> <span class="n">ms</span><span class="p">)</span>
+<span class="n">contracts_cb</span> <span class="p">(</span><span class="n">typing</span><span class="o">.</span><span class="n">Callable</span><span class="p">):</span> <span class="n">fetch</span> <span class="n">contract</span> <span class="n">callback</span> <span class="p">(</span><span class="n">Default</span><span class="p">:</span> <span class="kc">None</span><span class="p">)</span>
+<span class="n">subscribe_trade</span> <span class="p">(</span><span class="nb">bool</span><span class="p">):</span> <span class="n">whether</span> <span class="n">to</span> <span class="n">subscribe</span> <span class="n">Order</span><span class="o">/</span><span class="n">Deal</span> <span class="n">event</span> <span class="n">callback</span> <span class="p">(</span><span class="n">Default</span><span class="p">:</span> <span class="kc">True</span><span class="p">)</span>
+</code></pre></div>
+</div>
+</div>
+</div>
+</div>
+<ul>
+<li>For <code>version &gt;= 1.0</code>, if you encounter <strong>Sign data is timeout</strong>, means that the time difference between your computer and server is too large, or it just took too long to login. If it's the former, you need to calibrate your computer time or just scale up <code>receive_window</code>.</li>
+</ul>
+<h3 id="fetch-contracts-callback">Fetch Contracts Callback<a class="headerlink" href="#fetch-contracts-callback" title="Permanent link">&para;</a></h3>
 <p>You can use <code>contracts_cb</code> as print to check contract download status.</p>
 <div class="admonition info">
 <p class="admonition-title">In</p>
-<div class="tabbed-set tabbed-alternate" data-tabs="2:2"><input checked="checked" id="__tabbed_2_1" name="__tabbed_2" type="radio" /><input id="__tabbed_2_2" name="__tabbed_2" type="radio" /><div class="tabbed-labels"><label for="__tabbed_2_1">version&gt;=1.0</label><label for="__tabbed_2_2">version&lt;1.0</label></div>
+<div class="tabbed-set tabbed-alternate" data-tabs="3:2"><input checked="checked" id="__tabbed_3_1" name="__tabbed_3" type="radio" /><input id="__tabbed_3_2" name="__tabbed_3" type="radio" /><div class="tabbed-labels"><label for="__tabbed_3_1">version&gt;=1.0</label><label for="__tabbed_3_2">version&lt;1.0</label></div>
 <div class="tabbed-content">
 <div class="tabbed-block">
 <div class="highlight"><pre><span></span><code><span class="kn">import</span> <span class="nn">shioaji</span> <span class="k">as</span> <span class="nn">sj</span>
@@ -1274,7 +1355,7 @@
 <div class="highlight"><pre><span></span><code><span class="kn">import</span> <span class="nn">shioaji</span> <span class="k">as</span> <span class="nn">sj</span>
 <span class="n">api</span> <span class="o">=</span> <span class="n">sj</span><span class="o">.</span><span class="n">Shioaji</span><span class="p">()</span>
 <span class="n">api</span><span class="o">.</span><span class="n">login</span><span class="p">(</span>
-    <span class="n">person_id</span><span class="o">=</span><span class="s2">&quot;YOUR_ID&quot;</span><span class="p">,</span> 
+    <span class="n">person_id</span><span class="o">=</span><span class="s2">&quot;YOUR_PERSON_ID&quot;</span><span class="p">,</span> 
     <span class="n">passwd</span><span class="o">=</span><span class="s2">&quot;YOUR_PASSWORD&quot;</span><span class="p">,</span> 
     <span class="n">contracts_cb</span><span class="o">=</span><span class="k">lambda</span> <span class="n">security_type</span><span class="p">:</span> <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="nb">repr</span><span class="p">(</span><span class="n">security_type</span><span class="p">)</span><span class="si">}</span><span class="s2"> fetch done.&quot;</span><span class="p">)</span>
 <span class="p">)</span>
@@ -1295,11 +1376,49 @@
 <span class="o">&lt;</span><span class="n">SecurityType</span><span class="o">.</span><span class="n">Stock</span><span class="p">:</span> <span class="s1">&#39;STK&#39;</span><span class="o">&gt;</span> <span class="n">fetch</span> <span class="n">done</span><span class="o">.</span>
 </code></pre></div>
 </div>
-<ul>
-<li>If you cannot find <code>signed</code> in your accounts, please sign the <a href="../prepare/terms/">document</a> first.</li>
-</ul>
-<h3 id="account">Account<a class="headerlink" href="#account" title="Permanent link">&para;</a></h3>
-<h5 id="list-accounts">List Accounts<a class="headerlink" href="#list-accounts" title="Permanent link">&para;</a></h5>
+<h3 id="subscribe-trade">Subscribe Trade<a class="headerlink" href="#subscribe-trade" title="Permanent link">&para;</a></h3>
+<p>There are 2 options that you can adjust whether to subscribe trade (Order/Deal Event Callback).<br />
+The first is <code>subscribe_trade</code> in login aruguments. Default value of <code>subscribe_trade</code> is <code>True</code>, and it will automatically subscribe trade from all accounts. You don't need to make any adjustments, if you would like to receive Order/Deal Events.</p>
+<div class="admonition info">
+<p class="admonition-title">In</p>
+<div class="tabbed-set tabbed-alternate" data-tabs="4:2"><input checked="checked" id="__tabbed_4_1" name="__tabbed_4" type="radio" /><input id="__tabbed_4_2" name="__tabbed_4" type="radio" /><div class="tabbed-labels"><label for="__tabbed_4_1">version&gt;=1.0</label><label for="__tabbed_4_2">version&lt;1.0</label></div>
+<div class="tabbed-content">
+<div class="tabbed-block">
+<div class="highlight"><pre><span></span><code><span class="kn">import</span> <span class="nn">shioaji</span> <span class="k">as</span> <span class="nn">sj</span>
+<span class="n">api</span> <span class="o">=</span> <span class="n">sj</span><span class="o">.</span><span class="n">Shioaji</span><span class="p">()</span>
+<span class="n">api</span><span class="o">.</span><span class="n">login</span><span class="p">(</span>
+    <span class="n">api_key</span><span class="o">=</span><span class="s2">&quot;YOUR_API_KEY&quot;</span><span class="p">,</span> 
+    <span class="n">secret_key</span><span class="o">=</span><span class="s2">&quot;YOUR_SECRET_KEY&quot;</span><span class="p">,</span> 
+    <span class="n">subscribe_trade</span><span class="o">=</span><span class="kc">True</span>
+<span class="p">)</span>
+</code></pre></div>
+</div>
+<div class="tabbed-block">
+<div class="highlight"><pre><span></span><code><span class="kn">import</span> <span class="nn">shioaji</span> <span class="k">as</span> <span class="nn">sj</span>
+<span class="n">api</span> <span class="o">=</span> <span class="n">sj</span><span class="o">.</span><span class="n">Shioaji</span><span class="p">()</span>
+<span class="n">api</span><span class="o">.</span><span class="n">login</span><span class="p">(</span>
+    <span class="n">person_id</span><span class="o">=</span><span class="s2">&quot;YOUR_PERSON_ID&quot;</span><span class="p">,</span> 
+    <span class="n">passwd</span><span class="o">=</span><span class="s2">&quot;YOUR_PASSWORD&quot;</span><span class="p">,</span> 
+    <span class="n">subscribe_trade</span><span class="o">=</span><span class="kc">True</span>
+<span class="p">)</span>
+</code></pre></div>
+</div>
+</div>
+</div>
+</div>
+<p>The second one is to manually use the API <code>subscribe_trade</code> and <code>unsubscribe_trade</code> for specific account.</p>
+<div class="admonition info">
+<p class="admonition-title">subscribe trade</p>
+<div class="highlight"><pre><span></span><code><span class="n">api</span><span class="o">.</span><span class="n">subscribe_trade</span><span class="p">(</span><span class="n">account</span><span class="p">)</span>
+</code></pre></div>
+</div>
+<div class="admonition info">
+<p class="admonition-title">unsubscribe trade</p>
+<div class="highlight"><pre><span></span><code><span class="n">api</span><span class="o">.</span><span class="n">unsubscribe_trade</span><span class="p">(</span><span class="n">account</span><span class="p">)</span>
+</code></pre></div>
+</div>
+<h2 id="account">Account<a class="headerlink" href="#account" title="Permanent link">&para;</a></h2>
+<h3 id="list-accounts">List Accounts<a class="headerlink" href="#list-accounts" title="Permanent link">&para;</a></h3>
 <div class="admonition info">
 <p class="admonition-title">In:</p>
 <div class="highlight"><pre><span></span><code><span class="n">accounts</span> <span class="o">=</span> <span class="n">api</span><span class="o">.</span><span class="n">list_accounts</span><span class="p">()</span>
@@ -1319,7 +1438,7 @@
 <ul>
 <li>If <code>signed</code> does not appear in the account list, like ACCOUNT_ID_2 and ACCOUNT_ID_3, it means that the account has not signed or completed the test report in the simulation mode. Please refer to <a href="../prepare/terms/">Terms of service</a>.</li>
 </ul>
-<h5 id="default-account">Default Account<a class="headerlink" href="#default-account" title="Permanent link">&para;</a></h5>
+<h3 id="default-account">Default Account<a class="headerlink" href="#default-account" title="Permanent link">&para;</a></h3>
 <div class="admonition info">
 <p class="admonition-title">In</p>
 <div class="highlight"><pre><span></span><code><span class="c1"># Futures default account</span>
@@ -1356,18 +1475,6 @@ In Order object, you need to specify which account you want to place order. For 
 <span class="hll">    <span class="n">account</span><span class="o">=</span><span class="n">api</span><span class="o">.</span><span class="n">stock_account</span>
 </span><span class="p">)</span>
 </code></pre></div>
-<h3 id="set-subscribe-trade-callback">set subscribe trade callback<a class="headerlink" href="#set-subscribe-trade-callback" title="Permanent link">&para;</a></h3>
-<p>The Default of subscribe trade callback is True.</p>
-<div class="admonition info">
-<p class="admonition-title">subscribe trade</p>
-<div class="highlight"><pre><span></span><code><span class="n">api</span><span class="o">.</span><span class="n">subscribe_trade</span><span class="p">(</span><span class="n">account</span><span class="p">)</span>
-</code></pre></div>
-</div>
-<div class="admonition info">
-<p class="admonition-title">unsubscribe trade</p>
-<div class="highlight"><pre><span></span><code><span class="n">api</span><span class="o">.</span><span class="n">unsubscribe_trade</span><span class="p">(</span><span class="n">account</span><span class="p">)</span>
-</code></pre></div>
-</div>
 <h2 id="logout">Logout<a class="headerlink" href="#logout" title="Permanent link">&para;</a></h2>
 <p>Logout funciton will close the connection between the client and the server.<br />
 In order to provide high quality services, starting from 2021/08/06, 

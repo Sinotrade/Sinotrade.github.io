@@ -316,36 +316,28 @@
       
         <li class="md-nav__item">
   <a href="#_2" class="md-nav__link">
-    下單
+    證券下單
   </a>
   
-    <nav class="md-nav" aria-label="下單">
+    <nav class="md-nav" aria-label="證券下單">
       <ul class="md-nav__list">
         
           <li class="md-nav__item">
   <a href="#_3" class="md-nav__link">
-    證券下單
+    下單
   </a>
   
 </li>
         
           <li class="md-nav__item">
   <a href="#_4" class="md-nav__link">
-    證券回報
-  </a>
-  
-    <nav class="md-nav" aria-label="證券回報">
-      <ul class="md-nav__list">
-        
-          <li class="md-nav__item">
-  <a href="#_5" class="md-nav__link">
     委託回報
   </a>
   
 </li>
         
           <li class="md-nav__item">
-  <a href="#_6" class="md-nav__link">
+  <a href="#_5" class="md-nav__link">
     成交回報
   </a>
   
@@ -355,14 +347,21 @@
     </nav>
   
 </li>
+      
+        <li class="md-nav__item">
+  <a href="#_6" class="md-nav__link">
+    期貨下單
+  </a>
+  
+    <nav class="md-nav" aria-label="期貨下單">
+      <ul class="md-nav__list">
         
           <li class="md-nav__item">
   <a href="#_7" class="md-nav__link">
-    期貨回報
+    下單
   </a>
   
-    <nav class="md-nav" aria-label="期貨回報">
-      <ul class="md-nav__list">
+</li>
         
           <li class="md-nav__item">
   <a href="#_8" class="md-nav__link">
@@ -375,11 +374,6 @@
   <a href="#_9" class="md-nav__link">
     成交回報
   </a>
-  
-</li>
-        
-      </ul>
-    </nav>
   
 </li>
         
@@ -1235,36 +1229,28 @@
       
         <li class="md-nav__item">
   <a href="#_2" class="md-nav__link">
-    下單
+    證券下單
   </a>
   
-    <nav class="md-nav" aria-label="下單">
+    <nav class="md-nav" aria-label="證券下單">
       <ul class="md-nav__list">
         
           <li class="md-nav__item">
   <a href="#_3" class="md-nav__link">
-    證券下單
+    下單
   </a>
   
 </li>
         
           <li class="md-nav__item">
   <a href="#_4" class="md-nav__link">
-    證券回報
-  </a>
-  
-    <nav class="md-nav" aria-label="證券回報">
-      <ul class="md-nav__list">
-        
-          <li class="md-nav__item">
-  <a href="#_5" class="md-nav__link">
     委託回報
   </a>
   
 </li>
         
           <li class="md-nav__item">
-  <a href="#_6" class="md-nav__link">
+  <a href="#_5" class="md-nav__link">
     成交回報
   </a>
   
@@ -1274,14 +1260,21 @@
     </nav>
   
 </li>
+      
+        <li class="md-nav__item">
+  <a href="#_6" class="md-nav__link">
+    期貨下單
+  </a>
+  
+    <nav class="md-nav" aria-label="期貨下單">
+      <ul class="md-nav__list">
         
           <li class="md-nav__item">
   <a href="#_7" class="md-nav__link">
-    期貨回報
+    下單
   </a>
   
-    <nav class="md-nav" aria-label="期貨回報">
-      <ul class="md-nav__list">
+</li>
         
           <li class="md-nav__item">
   <a href="#_8" class="md-nav__link">
@@ -1294,11 +1287,6 @@
   <a href="#_9" class="md-nav__link">
     成交回報
   </a>
-  
-</li>
-        
-      </ul>
-    </nav>
   
 </li>
         
@@ -1447,14 +1435,20 @@
 <div class="tabbed-block">
 <div class="highlight"><pre><span></span><code><span class="kn">import</span> <span class="nn">shioaji</span> <span class="k">as</span> <span class="nn">sj</span>
 <span class="n">api</span> <span class="o">=</span> <span class="n">sj</span><span class="o">.</span><span class="n">Shioaji</span><span class="p">()</span>
-<span class="hll"><span class="n">api</span><span class="o">.</span><span class="n">login</span><span class="p">(</span><span class="s2">&quot;YOUR_API_KEY&quot;</span><span class="p">,</span> <span class="s2">&quot;YOUR_SECRET_KEY&quot;</span><span class="p">)</span>
-</span></code></pre></div>
+<span class="hll"><span class="n">api</span><span class="o">.</span><span class="n">login</span><span class="p">(</span>
+</span>    <span class="n">api_key</span><span class="o">=</span><span class="s2">&quot;YOUR_API_KEY&quot;</span><span class="p">,</span> 
+    <span class="n">secret_key</span><span class="o">=</span><span class="s2">&quot;YOUR_SECRET_KEY&quot;</span>
+<span class="p">)</span>
+</code></pre></div>
 </div>
 <div class="tabbed-block">
 <div class="highlight"><pre><span></span><code><span class="kn">import</span> <span class="nn">shioaji</span> <span class="k">as</span> <span class="nn">sj</span>
 <span class="n">api</span> <span class="o">=</span> <span class="n">sj</span><span class="o">.</span><span class="n">Shioaji</span><span class="p">()</span>
-<span class="hll"><span class="n">api</span><span class="o">.</span><span class="n">login</span><span class="p">(</span><span class="s2">&quot;YOUR_PERSON_ID&quot;</span><span class="p">,</span> <span class="s2">&quot;YOUR_PASSWORD&quot;</span><span class="p">)</span>
-</span></code></pre></div>
+<span class="hll"><span class="n">api</span><span class="o">.</span><span class="n">login</span><span class="p">(</span>
+</span>    <span class="n">person_id</span><span class="o">=</span><span class="s2">&quot;YOUR_PERSON_ID&quot;</span><span class="p">,</span> 
+    <span class="n">passwd</span><span class="o">=</span><span class="s2">&quot;YOUR_PASSWORD&quot;</span><span class="p">,</span>
+<span class="p">)</span>
+</code></pre></div>
 </div>
 </div>
 </div>
@@ -1467,15 +1461,15 @@
 <span class="p">]</span>
 </code></pre></div>
 </div>
-<h2 id="_2">下單<a class="headerlink" href="#_2" title="Permanent link">&para;</a></h2>
+<h2 id="_2">證券下單<a class="headerlink" href="#_2" title="Permanent link">&para;</a></h2>
 <p><code>TFTStockOrder</code> 更改為 <code>StockOrder</code></p>
 <div class="admonition info">
-<p class="admonition-title">Order</p>
+<p class="admonition-title">StockOrder</p>
 <div class="tabbed-set tabbed-alternate" data-tabs="3:2"><input checked="checked" id="__tabbed_3_1" name="__tabbed_3" type="radio" /><input id="__tabbed_3_2" name="__tabbed_3" type="radio" /><div class="tabbed-labels"><label for="__tabbed_3_1">verion&gt;=1.0</label><label for="__tabbed_3_2">verion&lt;1.0</label></div>
 <div class="tabbed-content">
 <div class="tabbed-block">
-<div class="highlight"><pre><span></span><code><span class="hll"><span class="n">sj</span><span class="o">.</span><span class="n">order</span><span class="o">.</span><span class="n">StockOrder</span><span class="err">?</span>
-</span>
+<div class="highlight"><pre><span></span><code><span class="o">&gt;&gt;</span> <span class="n">sj</span><span class="o">.</span><span class="n">order</span><span class="o">.</span><span class="n">StockOrder</span><span class="err">?</span>
+
 <span class="n">Init</span> <span class="n">signature</span><span class="p">:</span>
 <span class="hll"><span class="n">sj</span><span class="o">.</span><span class="n">order</span><span class="o">.</span><span class="n">StockOrder</span><span class="p">(</span>
 </span>    <span class="o">*</span><span class="p">,</span>
@@ -1497,8 +1491,8 @@
 </code></pre></div>
 </div>
 <div class="tabbed-block">
-<div class="highlight"><pre><span></span><code><span class="hll"><span class="n">sj</span><span class="o">.</span><span class="n">order</span><span class="o">.</span><span class="n">TFTStockOrder</span><span class="err">?</span>
-</span>
+<div class="highlight"><pre><span></span><code><span class="o">&gt;&gt;</span> <span class="n">sj</span><span class="o">.</span><span class="n">order</span><span class="o">.</span><span class="n">TFTStockOrder</span><span class="err">?</span>
+
 <span class="n">Init</span> <span class="n">signature</span><span class="p">:</span>
 <span class="hll"><span class="n">sj</span><span class="o">.</span><span class="n">order</span><span class="o">.</span><span class="n">TFTStockOrder</span><span class="p">(</span>
 </span>    <span class="o">*</span><span class="p">,</span>
@@ -1522,49 +1516,16 @@
 </div>
 </div>
 </div>
-<h3 id="_3">證券下單<a class="headerlink" href="#_3" title="Permanent link">&para;</a></h3>
-<p><code>first_sell</code> 更改為 <code>daytrade_short</code>，型態更改為<code>Bool</code>。</p>
+<h3 id="_3">下單<a class="headerlink" href="#_3" title="Permanent link">&para;</a></h3>
+<ul>
+<li><code>TFTStockPriceType</code> 更改為 <code>StockPriceType</code></li>
+<li><code>TFTOrderType</code> 更改為 <code>OrderType</code></li>
+<li><code>TFTStockOrderLot</code> 更改為 <code>StockOrderLot</code></li>
+<li><code>first_sell</code> 更改為 <code>daytrade_short</code>，型態更改為<code>Bool</code></li>
+</ul>
 <div class="admonition info">
-<p class="admonition-title">Daytrade Short</p>
+<p class="admonition-title">Order</p>
 <div class="tabbed-set tabbed-alternate" data-tabs="4:2"><input checked="checked" id="__tabbed_4_1" name="__tabbed_4" type="radio" /><input id="__tabbed_4_2" name="__tabbed_4" type="radio" /><div class="tabbed-labels"><label for="__tabbed_4_1">version&gt;=1.0</label><label for="__tabbed_4_2">version&lt;1.0</label></div>
-<div class="tabbed-content">
-<div class="tabbed-block">
-<div class="highlight"><pre><span></span><code><span class="n">order</span> <span class="o">=</span> <span class="n">api</span><span class="o">.</span><span class="n">Order</span><span class="p">(</span>
-    <span class="n">price</span><span class="o">=</span><span class="mi">12</span><span class="p">,</span> 
-    <span class="n">quantity</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span> 
-    <span class="n">action</span><span class="o">=</span><span class="n">sj</span><span class="o">.</span><span class="n">constant</span><span class="o">.</span><span class="n">Action</span><span class="o">.</span><span class="n">Sell</span><span class="p">,</span>
-    <span class="n">price_type</span><span class="o">=</span><span class="n">sj</span><span class="o">.</span><span class="n">constant</span><span class="o">.</span><span class="n">StockPriceType</span><span class="o">.</span><span class="n">LMT</span><span class="p">,</span>
-    <span class="n">order_type</span><span class="o">=</span><span class="n">sj</span><span class="o">.</span><span class="n">constant</span><span class="o">.</span><span class="n">TFTOrderType</span><span class="o">.</span><span class="n">ROD</span><span class="p">,</span>
-    <span class="n">order_lot</span><span class="o">=</span><span class="n">sj</span><span class="o">.</span><span class="n">constant</span><span class="o">.</span><span class="n">TFTStockOrderLot</span><span class="o">.</span><span class="n">Common</span><span class="p">,</span>
-<span class="hll">    <span class="n">daytrade_short</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span>
-</span>    <span class="n">custom_field</span><span class="o">=</span><span class="s2">&quot;test&quot;</span><span class="p">,</span>
-    <span class="n">account</span><span class="o">=</span><span class="n">api</span><span class="o">.</span><span class="n">stock_account</span>
-<span class="p">)</span>
-</code></pre></div>
-</div>
-<div class="tabbed-block">
-<div class="highlight"><pre><span></span><code><span class="n">order</span> <span class="o">=</span> <span class="n">api</span><span class="o">.</span><span class="n">Order</span><span class="p">(</span>
-    <span class="n">price</span><span class="o">=</span><span class="mi">12</span><span class="p">,</span> 
-    <span class="n">quantity</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span> 
-    <span class="n">action</span><span class="o">=</span><span class="n">sj</span><span class="o">.</span><span class="n">constant</span><span class="o">.</span><span class="n">Action</span><span class="o">.</span><span class="n">Sell</span><span class="p">,</span>
-    <span class="n">price_type</span><span class="o">=</span><span class="n">sj</span><span class="o">.</span><span class="n">constant</span><span class="o">.</span><span class="n">StockPriceType</span><span class="o">.</span><span class="n">LMT</span><span class="p">,</span>
-    <span class="n">order_type</span><span class="o">=</span><span class="n">sj</span><span class="o">.</span><span class="n">constant</span><span class="o">.</span><span class="n">TFTOrderType</span><span class="o">.</span><span class="n">ROD</span><span class="p">,</span>
-    <span class="n">order_lot</span><span class="o">=</span><span class="n">sj</span><span class="o">.</span><span class="n">constant</span><span class="o">.</span><span class="n">TFTStockOrderLot</span><span class="o">.</span><span class="n">Common</span><span class="p">,</span>
-<span class="hll">    <span class="n">first_sell</span><span class="o">=</span><span class="n">sj</span><span class="o">.</span><span class="n">constant</span><span class="o">.</span><span class="n">StockFirstSell</span><span class="o">.</span><span class="n">Yes</span><span class="p">,</span>
-</span>    <span class="n">custom_field</span><span class="o">=</span><span class="s2">&quot;test&quot;</span><span class="p">,</span>
-    <span class="n">account</span><span class="o">=</span><span class="n">api</span><span class="o">.</span><span class="n">stock_account</span>
-<span class="p">)</span>
-</code></pre></div>
-</div>
-</div>
-</div>
-</div>
-<p><code>TFTStockPriceType</code> 更改為 <code>StockPriceType</code></p>
-<p><code>TFTOrderType</code> 更改為 <code>OrderType</code></p>
-<p><code>TFTStockOrderLot</code> 更改為 <code>StockOrderLot</code></p>
-<div class="admonition info">
-<p class="admonition-title">Stock</p>
-<div class="tabbed-set tabbed-alternate" data-tabs="5:2"><input checked="checked" id="__tabbed_5_1" name="__tabbed_5" type="radio" /><input id="__tabbed_5_2" name="__tabbed_5" type="radio" /><div class="tabbed-labels"><label for="__tabbed_5_1">version&gt;=1.0</label><label for="__tabbed_5_2">version&lt;1.0</label></div>
 <div class="tabbed-content">
 <div class="tabbed-block">
 <div class="highlight"><pre><span></span><code><span class="n">order</span> <span class="o">=</span> <span class="n">api</span><span class="o">.</span><span class="n">Order</span><span class="p">(</span>
@@ -1574,6 +1535,7 @@
 <span class="hll">    <span class="n">price_type</span><span class="o">=</span><span class="n">sj</span><span class="o">.</span><span class="n">constant</span><span class="o">.</span><span class="n">StockPriceType</span><span class="o">.</span><span class="n">LMT</span><span class="p">,</span> 
 </span><span class="hll">    <span class="n">order_type</span><span class="o">=</span><span class="n">sj</span><span class="o">.</span><span class="n">constant</span><span class="o">.</span><span class="n">OrderType</span><span class="o">.</span><span class="n">ROD</span><span class="p">,</span> 
 </span><span class="hll">    <span class="n">order_lot</span><span class="o">=</span><span class="n">sj</span><span class="o">.</span><span class="n">constant</span><span class="o">.</span><span class="n">StockOrderLot</span><span class="o">.</span><span class="n">Common</span><span class="p">,</span> 
+</span><span class="hll">    <span class="n">daytrade_short</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span>
 </span>    <span class="n">custom_field</span><span class="o">=</span><span class="s2">&quot;test&quot;</span><span class="p">,</span>
     <span class="n">account</span><span class="o">=</span><span class="n">api</span><span class="o">.</span><span class="n">stock_account</span>
 <span class="p">)</span>
@@ -1587,6 +1549,7 @@
 <span class="hll">    <span class="n">price_type</span><span class="o">=</span><span class="n">sj</span><span class="o">.</span><span class="n">constant</span><span class="o">.</span><span class="n">TFTStockPriceType</span><span class="o">.</span><span class="n">LMT</span><span class="p">,</span> 
 </span><span class="hll">    <span class="n">order_type</span><span class="o">=</span><span class="n">sj</span><span class="o">.</span><span class="n">constant</span><span class="o">.</span><span class="n">TFTOrderType</span><span class="o">.</span><span class="n">ROD</span><span class="p">,</span> 
 </span><span class="hll">    <span class="n">order_lot</span><span class="o">=</span><span class="n">sj</span><span class="o">.</span><span class="n">constant</span><span class="o">.</span><span class="n">TFTStockOrderLot</span><span class="o">.</span><span class="n">Common</span><span class="p">,</span> 
+</span><span class="hll">    <span class="n">first_sell</span><span class="o">=</span><span class="n">sj</span><span class="o">.</span><span class="n">constant</span><span class="o">.</span><span class="n">StockFirstSell</span><span class="o">.</span><span class="n">Yes</span><span class="p">,</span>
 </span>    <span class="n">custom_field</span><span class="o">=</span><span class="s2">&quot;test&quot;</span><span class="p">,</span>
     <span class="n">account</span><span class="o">=</span><span class="n">api</span><span class="o">.</span><span class="n">stock_account</span>
 <span class="p">)</span>
@@ -1595,12 +1558,11 @@
 </div>
 </div>
 </div>
-<h3 id="_4">證券回報<a class="headerlink" href="#_4" title="Permanent link">&para;</a></h3>
-<h4 id="_5">委託回報<a class="headerlink" href="#_5" title="Permanent link">&para;</a></h4>
+<h3 id="_4">委託回報<a class="headerlink" href="#_4" title="Permanent link">&para;</a></h3>
 <p><code>TFTOrder</code> 更改為 <code>StockOrder</code></p>
 <div class="admonition info">
 <p class="admonition-title">Order Callback</p>
-<div class="tabbed-set tabbed-alternate" data-tabs="6:2"><input checked="checked" id="__tabbed_6_1" name="__tabbed_6" type="radio" /><input id="__tabbed_6_2" name="__tabbed_6" type="radio" /><div class="tabbed-labels"><label for="__tabbed_6_1">version&gt;=1.0</label><label for="__tabbed_6_2">version&lt;1.0</label></div>
+<div class="tabbed-set tabbed-alternate" data-tabs="5:2"><input checked="checked" id="__tabbed_5_1" name="__tabbed_5" type="radio" /><input id="__tabbed_5_2" name="__tabbed_5" type="radio" /><div class="tabbed-labels"><label for="__tabbed_5_1">version&gt;=1.0</label><label for="__tabbed_5_2">version&lt;1.0</label></div>
 <div class="tabbed-content">
 <div class="tabbed-block">
 <div class="highlight"><pre><span></span><code><span class="hll"><span class="n">OrderState</span><span class="o">.</span><span class="n">StockOrder</span> <span class="p">{</span>
@@ -1681,11 +1643,11 @@
 </div>
 </div>
 </div>
-<h4 id="_6">成交回報<a class="headerlink" href="#_6" title="Permanent link">&para;</a></h4>
+<h3 id="_5">成交回報<a class="headerlink" href="#_5" title="Permanent link">&para;</a></h3>
 <p><code>TFTDeal</code> 更改為 <code>StockDeal</code></p>
 <div class="admonition info">
 <p class="admonition-title">Deal Callback</p>
-<div class="tabbed-set tabbed-alternate" data-tabs="7:2"><input checked="checked" id="__tabbed_7_1" name="__tabbed_7" type="radio" /><input id="__tabbed_7_2" name="__tabbed_7" type="radio" /><div class="tabbed-labels"><label for="__tabbed_7_1">version&gt;=1.0</label><label for="__tabbed_7_2">version&lt;1.0</label></div>
+<div class="tabbed-set tabbed-alternate" data-tabs="6:2"><input checked="checked" id="__tabbed_6_1" name="__tabbed_6" type="radio" /><input id="__tabbed_6_2" name="__tabbed_6" type="radio" /><div class="tabbed-labels"><label for="__tabbed_6_1">version&gt;=1.0</label><label for="__tabbed_6_2">version&lt;1.0</label></div>
 <div class="tabbed-content">
 <div class="tabbed-block">
 <div class="highlight"><pre><span></span><code><span class="hll"><span class="n">OrderState</span><span class="o">.</span><span class="n">StockDeal</span> <span class="p">{</span>
@@ -1726,12 +1688,94 @@
 </div>
 </div>
 </div>
-<h3 id="_7">期貨回報<a class="headerlink" href="#_7" title="Permanent link">&para;</a></h3>
-<h4 id="_8">委託回報<a class="headerlink" href="#_8" title="Permanent link">&para;</a></h4>
+<h2 id="_6">期貨下單<a class="headerlink" href="#_6" title="Permanent link">&para;</a></h2>
+<div class="admonition info">
+<p class="admonition-title">FuturesOrder</p>
+<div class="tabbed-set tabbed-alternate" data-tabs="7:2"><input checked="checked" id="__tabbed_7_1" name="__tabbed_7" type="radio" /><input id="__tabbed_7_2" name="__tabbed_7" type="radio" /><div class="tabbed-labels"><label for="__tabbed_7_1">verion&gt;=1.0</label><label for="__tabbed_7_2">verion&lt;1.0</label></div>
+<div class="tabbed-content">
+<div class="tabbed-block">
+<div class="highlight"><pre><span></span><code><span class="o">&gt;&gt;</span> <span class="n">sj</span><span class="o">.</span><span class="n">order</span><span class="o">.</span><span class="n">FuturesOrder</span><span class="err">?</span>
+
+<span class="n">Init</span> <span class="n">signature</span><span class="p">:</span>
+<span class="hll"><span class="n">sj</span><span class="o">.</span><span class="n">order</span><span class="o">.</span><span class="n">FuturesOrder</span><span class="p">(</span>
+</span>    <span class="o">*</span><span class="p">,</span>
+    <span class="n">action</span><span class="p">:</span> <span class="n">shioaji</span><span class="o">.</span><span class="n">constant</span><span class="o">.</span><span class="n">Action</span><span class="p">,</span>
+    <span class="n">price</span><span class="p">:</span> <span class="n">Union</span><span class="p">[</span><span class="n">pydantic</span><span class="o">.</span><span class="n">types</span><span class="o">.</span><span class="n">StrictInt</span><span class="p">,</span> <span class="nb">float</span><span class="p">],</span>
+    <span class="n">quantity</span><span class="p">:</span> <span class="n">shioaji</span><span class="o">.</span><span class="n">order</span><span class="o">.</span><span class="n">ConstrainedIntValue</span><span class="p">,</span>
+    <span class="nb">id</span><span class="p">:</span> <span class="nb">str</span> <span class="o">=</span> <span class="s1">&#39;&#39;</span><span class="p">,</span>
+    <span class="n">seqno</span><span class="p">:</span> <span class="nb">str</span> <span class="o">=</span> <span class="s1">&#39;&#39;</span><span class="p">,</span>
+    <span class="n">ordno</span><span class="p">:</span> <span class="nb">str</span> <span class="o">=</span> <span class="s1">&#39;&#39;</span><span class="p">,</span>
+    <span class="n">account</span><span class="p">:</span> <span class="n">shioaji</span><span class="o">.</span><span class="n">account</span><span class="o">.</span><span class="n">Account</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
+    <span class="n">custom_field</span><span class="p">:</span> <span class="n">shioaji</span><span class="o">.</span><span class="n">order</span><span class="o">.</span><span class="n">ConstrainedStrValue</span> <span class="o">=</span> <span class="s1">&#39;&#39;</span><span class="p">,</span>
+    <span class="n">ca</span><span class="p">:</span> <span class="nb">str</span> <span class="o">=</span> <span class="s1">&#39;&#39;</span><span class="p">,</span>
+    <span class="n">price_type</span><span class="p">:</span> <span class="n">shioaji</span><span class="o">.</span><span class="n">constant</span><span class="o">.</span><span class="n">FuturesPriceType</span><span class="p">,</span>
+<span class="hll">    <span class="n">order_type</span><span class="p">:</span> <span class="n">shioaji</span><span class="o">.</span><span class="n">constant</span><span class="o">.</span><span class="n">OrderType</span><span class="p">,</span>
+</span>    <span class="n">octype</span><span class="p">:</span> <span class="n">shioaji</span><span class="o">.</span><span class="n">constant</span><span class="o">.</span><span class="n">FuturesOCType</span> <span class="o">=</span> <span class="o">&lt;</span><span class="n">FuturesOCType</span><span class="o">.</span><span class="n">Auto</span><span class="p">:</span> <span class="s1">&#39;Auto&#39;</span><span class="o">&gt;</span><span class="p">,</span>
+<span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span>
+</code></pre></div>
+</div>
+<div class="tabbed-block">
+<div class="highlight"><pre><span></span><code><span class="o">&gt;&gt;</span> <span class="n">sj</span><span class="o">.</span><span class="n">order</span><span class="o">.</span><span class="n">FuturesOrder</span><span class="err">?</span>
+
+<span class="n">Init</span> <span class="n">signature</span><span class="p">:</span>
+<span class="hll"><span class="n">sj</span><span class="o">.</span><span class="n">order</span><span class="o">.</span><span class="n">FuturesOrder</span><span class="p">(</span>
+</span>    <span class="o">*</span><span class="p">,</span>
+    <span class="n">action</span><span class="p">:</span> <span class="n">shioaji</span><span class="o">.</span><span class="n">constant</span><span class="o">.</span><span class="n">Action</span><span class="p">,</span>
+    <span class="n">price</span><span class="p">:</span> <span class="n">Union</span><span class="p">[</span><span class="n">pydantic</span><span class="o">.</span><span class="n">types</span><span class="o">.</span><span class="n">StrictInt</span><span class="p">,</span> <span class="nb">float</span><span class="p">],</span>
+    <span class="n">quantity</span><span class="p">:</span> <span class="n">shioaji</span><span class="o">.</span><span class="n">order</span><span class="o">.</span><span class="n">ConstrainedIntValue</span><span class="p">,</span>
+    <span class="nb">id</span><span class="p">:</span> <span class="nb">str</span> <span class="o">=</span> <span class="s1">&#39;&#39;</span><span class="p">,</span>
+    <span class="n">seqno</span><span class="p">:</span> <span class="nb">str</span> <span class="o">=</span> <span class="s1">&#39;&#39;</span><span class="p">,</span>
+    <span class="n">ordno</span><span class="p">:</span> <span class="nb">str</span> <span class="o">=</span> <span class="s1">&#39;&#39;</span><span class="p">,</span>
+    <span class="n">account</span><span class="p">:</span> <span class="n">shioaji</span><span class="o">.</span><span class="n">account</span><span class="o">.</span><span class="n">Account</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
+    <span class="n">custom_field</span><span class="p">:</span> <span class="n">shioaji</span><span class="o">.</span><span class="n">order</span><span class="o">.</span><span class="n">ConstrainedStrValue</span> <span class="o">=</span> <span class="s1">&#39;&#39;</span><span class="p">,</span>
+    <span class="n">ca</span><span class="p">:</span> <span class="nb">str</span> <span class="o">=</span> <span class="s1">&#39;&#39;</span><span class="p">,</span>
+    <span class="n">price_type</span><span class="p">:</span> <span class="n">shioaji</span><span class="o">.</span><span class="n">constant</span><span class="o">.</span><span class="n">FuturesPriceType</span><span class="p">,</span>
+<span class="hll">    <span class="n">order_type</span><span class="p">:</span> <span class="n">shioaji</span><span class="o">.</span><span class="n">constant</span><span class="o">.</span><span class="n">FuturesOrderType</span><span class="p">,</span>
+</span>    <span class="n">octype</span><span class="p">:</span> <span class="n">shioaji</span><span class="o">.</span><span class="n">constant</span><span class="o">.</span><span class="n">FuturesOCType</span> <span class="o">=</span> <span class="o">&lt;</span><span class="n">FuturesOCType</span><span class="o">.</span><span class="n">Auto</span><span class="p">:</span> <span class="s1">&#39;Auto&#39;</span><span class="o">&gt;</span><span class="p">,</span>
+<span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span>
+</code></pre></div>
+</div>
+</div>
+</div>
+</div>
+<h3 id="_7">下單<a class="headerlink" href="#_7" title="Permanent link">&para;</a></h3>
+<p><code>FuturesOrderType</code> 更改為 <code>OrderType</code></p>
+<div class="admonition info">
+<p class="admonition-title">Order</p>
+<div class="tabbed-set tabbed-alternate" data-tabs="8:2"><input checked="checked" id="__tabbed_8_1" name="__tabbed_8" type="radio" /><input id="__tabbed_8_2" name="__tabbed_8" type="radio" /><div class="tabbed-labels"><label for="__tabbed_8_1">verion&gt;=1.0</label><label for="__tabbed_8_2">verion&lt;1.0</label></div>
+<div class="tabbed-content">
+<div class="tabbed-block">
+<div class="highlight"><pre><span></span><code><span class="n">order</span> <span class="o">=</span> <span class="n">api</span><span class="o">.</span><span class="n">Order</span><span class="p">(</span>
+    <span class="n">action</span><span class="o">=</span><span class="n">sj</span><span class="o">.</span><span class="n">constant</span><span class="o">.</span><span class="n">Action</span><span class="o">.</span><span class="n">Buy</span><span class="p">,</span>
+    <span class="n">price</span><span class="o">=</span><span class="mi">100</span><span class="p">,</span>
+    <span class="n">quantity</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span>
+    <span class="n">price_type</span><span class="o">=</span><span class="n">sj</span><span class="o">.</span><span class="n">constant</span><span class="o">.</span><span class="n">FuturesPriceType</span><span class="o">.</span><span class="n">LMT</span><span class="p">,</span>
+<span class="hll">    <span class="n">order_type</span><span class="o">=</span><span class="n">sj</span><span class="o">.</span><span class="n">constant</span><span class="o">.</span><span class="n">OrderType</span><span class="o">.</span><span class="n">ROD</span><span class="p">,</span> 
+</span>    <span class="n">octype</span><span class="o">=</span><span class="n">sj</span><span class="o">.</span><span class="n">constant</span><span class="o">.</span><span class="n">FuturesOCType</span><span class="o">.</span><span class="n">Auto</span><span class="p">,</span>
+    <span class="n">account</span><span class="o">=</span><span class="n">api</span><span class="o">.</span><span class="n">futopt_account</span>
+<span class="p">)</span>
+</code></pre></div>
+</div>
+<div class="tabbed-block">
+<div class="highlight"><pre><span></span><code><span class="n">order</span> <span class="o">=</span> <span class="n">api</span><span class="o">.</span><span class="n">Order</span><span class="p">(</span>
+    <span class="n">action</span><span class="o">=</span><span class="n">sj</span><span class="o">.</span><span class="n">constant</span><span class="o">.</span><span class="n">Action</span><span class="o">.</span><span class="n">Buy</span><span class="p">,</span>
+    <span class="n">price</span><span class="o">=</span><span class="mi">100</span><span class="p">,</span>
+    <span class="n">quantity</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span>
+    <span class="n">price_type</span><span class="o">=</span><span class="n">sj</span><span class="o">.</span><span class="n">constant</span><span class="o">.</span><span class="n">FuturesPriceType</span><span class="o">.</span><span class="n">LMT</span><span class="p">,</span>
+<span class="hll">    <span class="n">order_type</span><span class="o">=</span><span class="n">sj</span><span class="o">.</span><span class="n">constant</span><span class="o">.</span><span class="n">FuturesOrderType</span><span class="o">.</span><span class="n">ROD</span><span class="p">,</span> 
+</span>    <span class="n">octype</span><span class="o">=</span><span class="n">sj</span><span class="o">.</span><span class="n">constant</span><span class="o">.</span><span class="n">FuturesOCType</span><span class="o">.</span><span class="n">Auto</span><span class="p">,</span>
+    <span class="n">account</span><span class="o">=</span><span class="n">api</span><span class="o">.</span><span class="n">futopt_account</span>
+<span class="p">)</span>
+</code></pre></div>
+</div>
+</div>
+</div>
+</div>
+<h3 id="_8">委託回報<a class="headerlink" href="#_8" title="Permanent link">&para;</a></h3>
 <p><code>FOrder</code> 更改為 <code>FuturesOrder</code></p>
 <div class="admonition info">
 <p class="admonition-title">Order Event</p>
-<div class="tabbed-set tabbed-alternate" data-tabs="8:2"><input checked="checked" id="__tabbed_8_1" name="__tabbed_8" type="radio" /><input id="__tabbed_8_2" name="__tabbed_8" type="radio" /><div class="tabbed-labels"><label for="__tabbed_8_1">version&gt;=1.0</label><label for="__tabbed_8_2">version&lt;1.0</label></div>
+<div class="tabbed-set tabbed-alternate" data-tabs="9:2"><input checked="checked" id="__tabbed_9_1" name="__tabbed_9" type="radio" /><input id="__tabbed_9_2" name="__tabbed_9" type="radio" /><div class="tabbed-labels"><label for="__tabbed_9_1">version&gt;=1.0</label><label for="__tabbed_9_2">version&lt;1.0</label></div>
 <div class="tabbed-content">
 <div class="tabbed-block">
 <div class="highlight"><pre><span></span><code><span class="hll"><span class="n">OrderState</span><span class="o">.</span><span class="n">FuturesOrder</span> <span class="p">{</span>
@@ -1814,11 +1858,11 @@
 </div>
 </div>
 </div>
-<h4 id="_9">成交回報<a class="headerlink" href="#_9" title="Permanent link">&para;</a></h4>
+<h3 id="_9">成交回報<a class="headerlink" href="#_9" title="Permanent link">&para;</a></h3>
 <p><code>FDeal</code> 更改為 <code>FuturesDeal</code></p>
 <div class="admonition info">
 <p class="admonition-title">Deal Event</p>
-<div class="tabbed-set tabbed-alternate" data-tabs="9:2"><input checked="checked" id="__tabbed_9_1" name="__tabbed_9" type="radio" /><input id="__tabbed_9_2" name="__tabbed_9" type="radio" /><div class="tabbed-labels"><label for="__tabbed_9_1">version&gt;=1.0</label><label for="__tabbed_9_2">version&lt;1.0</label></div>
+<div class="tabbed-set tabbed-alternate" data-tabs="10:2"><input checked="checked" id="__tabbed_10_1" name="__tabbed_10" type="radio" /><input id="__tabbed_10_2" name="__tabbed_10" type="radio" /><div class="tabbed-labels"><label for="__tabbed_10_1">version&gt;=1.0</label><label for="__tabbed_10_2">version&lt;1.0</label></div>
 <div class="tabbed-content">
 <div class="tabbed-block">
 <div class="highlight"><pre><span></span><code><span class="hll"><span class="n">OrderState</span><span class="o">.</span><span class="n">FuturesDeal</span> <span class="p">{</span>

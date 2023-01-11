@@ -420,6 +420,33 @@
       
         <li class="md-nav__item">
   <a href="#_1" class="md-nav__link">
+    登入
+  </a>
+  
+    <nav class="md-nav" aria-label="登入">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#callback" class="md-nav__link">
+    獲取商品檔Callback
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_2" class="md-nav__link">
+    訂閱委託/成交回報
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_3" class="md-nav__link">
     帳號
   </a>
   
@@ -427,14 +454,14 @@
       <ul class="md-nav__list">
         
           <li class="md-nav__item">
-  <a href="#_2" class="md-nav__link">
+  <a href="#_4" class="md-nav__link">
     帳號列表
   </a>
   
 </li>
         
           <li class="md-nav__item">
-  <a href="#_3" class="md-nav__link">
+  <a href="#_5" class="md-nav__link">
     預設帳號
   </a>
   
@@ -446,14 +473,7 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#_4" class="md-nav__link">
-    設定訂閱回報
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#_5" class="md-nav__link">
+  <a href="#_6" class="md-nav__link">
     登出
   </a>
   
@@ -1169,6 +1189,33 @@
       
         <li class="md-nav__item">
   <a href="#_1" class="md-nav__link">
+    登入
+  </a>
+  
+    <nav class="md-nav" aria-label="登入">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#callback" class="md-nav__link">
+    獲取商品檔Callback
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_2" class="md-nav__link">
+    訂閱委託/成交回報
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_3" class="md-nav__link">
     帳號
   </a>
   
@@ -1176,14 +1223,14 @@
       <ul class="md-nav__list">
         
           <li class="md-nav__item">
-  <a href="#_2" class="md-nav__link">
+  <a href="#_4" class="md-nav__link">
     帳號列表
   </a>
   
 </li>
         
           <li class="md-nav__item">
-  <a href="#_3" class="md-nav__link">
+  <a href="#_5" class="md-nav__link">
     預設帳號
   </a>
   
@@ -1195,14 +1242,7 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#_4" class="md-nav__link">
-    設定訂閱回報
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#_5" class="md-nav__link">
+  <a href="#_6" class="md-nav__link">
     登出
   </a>
   
@@ -1226,6 +1266,7 @@
   <h1>登入</h1>
 
 <p>登入必須擁有永豐金帳戶。若你還沒有擁永豐金帳戶，可詳見<a href="../prepare/open_account/">開戶</a>。</p>
+<h2 id="_1">登入<a class="headerlink" href="#_1" title="Permanent link">&para;</a></h2>
 <div class="admonition attention">
 <p class="admonition-title">Token login</p>
 <p>在1.0版本之後，我們將使用Token作為我們的登入方式，申請KEY可參見<a href="../prepare/token/">文件</a>。當版本小於1.0，我們使用帳號密碼作為我們登入的方法。</p>
@@ -1237,13 +1278,19 @@
 <div class="tabbed-block">
 <div class="highlight"><pre><span></span><code><span class="kn">import</span> <span class="nn">shioaji</span> <span class="k">as</span> <span class="nn">sj</span>
 <span class="n">api</span> <span class="o">=</span> <span class="n">sj</span><span class="o">.</span><span class="n">Shioaji</span><span class="p">()</span>
-<span class="n">api</span><span class="o">.</span><span class="n">login</span><span class="p">(</span><span class="s2">&quot;YOUR_API_KEY&quot;</span><span class="p">,</span> <span class="s2">&quot;YOUR_SECRET_KEY&quot;</span><span class="p">)</span>
+<span class="n">api</span><span class="o">.</span><span class="n">login</span><span class="p">(</span>
+    <span class="n">api_key</span><span class="o">=</span><span class="s2">&quot;YOUR_API_KEY&quot;</span><span class="p">,</span> 
+    <span class="n">secret_key</span><span class="o">=</span><span class="s2">&quot;YOUR_SECRET_KEY&quot;</span>
+<span class="p">)</span>
 </code></pre></div>
 </div>
 <div class="tabbed-block">
 <div class="highlight"><pre><span></span><code><span class="kn">import</span> <span class="nn">shioaji</span> <span class="k">as</span> <span class="nn">sj</span>
 <span class="n">api</span> <span class="o">=</span> <span class="n">sj</span><span class="o">.</span><span class="n">Shioaji</span><span class="p">()</span>
-<span class="n">api</span><span class="o">.</span><span class="n">login</span><span class="p">(</span><span class="s2">&quot;YOUR_PERSON_ID&quot;</span><span class="p">,</span> <span class="s2">&quot;YOUR_PASSWORD&quot;</span><span class="p">)</span>
+<span class="n">api</span><span class="o">.</span><span class="n">login</span><span class="p">(</span>
+    <span class="n">person_id</span><span class="o">=</span><span class="s2">&quot;YOUR_PERSON_ID&quot;</span><span class="p">,</span> 
+    <span class="n">passwd</span><span class="o">=</span><span class="s2">&quot;YOUR_PASSWORD&quot;</span><span class="p">,</span>
+<span class="p">)</span>
 </code></pre></div>
 </div>
 </div>
@@ -1251,16 +1298,48 @@
 </div>
 <div class="admonition done">
 <p class="admonition-title">Out</p>
-<div class="highlight"><pre><span></span><code><span class="p">[</span>
-    <span class="n">FutureAccount</span><span class="p">(</span><span class="n">person_id</span><span class="o">=</span><span class="s1">&#39;&#39;</span><span class="p">,</span> <span class="n">broker_id</span><span class="o">=</span><span class="s1">&#39;&#39;</span><span class="p">,</span> <span class="n">account_id</span><span class="o">=</span><span class="s1">&#39;&#39;</span><span class="p">,</span> <span class="n">signed</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">username</span><span class="o">=</span><span class="s1">&#39;&#39;</span><span class="p">),</span>
-    <span class="n">StockAccount</span><span class="p">(</span><span class="n">person_id</span><span class="o">=</span><span class="s1">&#39;&#39;</span><span class="p">,</span> <span class="n">broker_id</span><span class="o">=</span><span class="s1">&#39;&#39;</span><span class="p">,</span> <span class="n">account_id</span><span class="o">=</span><span class="s1">&#39;&#39;</span><span class="p">,</span> <span class="n">signed</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">username</span><span class="o">=</span><span class="s1">&#39;&#39;</span><span class="p">)</span>
-<span class="p">]</span>
+<div class="highlight"><pre><span></span><code><span class="p">[</span><span class="n">FutureAccount</span><span class="p">(</span><span class="n">person_id</span><span class="o">=</span><span class="s1">&#39;&#39;</span><span class="p">,</span> <span class="n">broker_id</span><span class="o">=</span><span class="s1">&#39;&#39;</span><span class="p">,</span> <span class="n">account_id</span><span class="o">=</span><span class="s1">&#39;&#39;</span><span class="p">,</span> <span class="n">signed</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">username</span><span class="o">=</span><span class="s1">&#39;&#39;</span><span class="p">),</span>
+<span class="n">StockAccount</span><span class="p">(</span><span class="n">person_id</span><span class="o">=</span><span class="s1">&#39;&#39;</span><span class="p">,</span> <span class="n">broker_id</span><span class="o">=</span><span class="s1">&#39;&#39;</span><span class="p">,</span> <span class="n">account_id</span><span class="o">=</span><span class="s1">&#39;&#39;</span><span class="p">,</span> <span class="n">signed</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">username</span><span class="o">=</span><span class="s1">&#39;&#39;</span><span class="p">)]</span>
 </code></pre></div>
 </div>
-<p>您可以使用 <code>contracts_cb</code>設為<code>print</code>來檢查商品檔下載狀態。</p>
+<ul>
+<li>If you cannot find <code>signed</code> in your accounts, please sign the <a href="../prepare/terms/">document</a> first.</li>
+<li>如果在帳號清單中找不到 <code>signed</code>，請至<a href="../prepare/terms/">服務條款</a>了解使用API服務所需要步驟。</li>
+</ul>
+<div class="admonition example">
+<p class="admonition-title">Login Arguments</p>
+<div class="tabbed-set tabbed-alternate" data-tabs="2:2"><input checked="checked" id="__tabbed_2_1" name="__tabbed_2" type="radio" /><input id="__tabbed_2_2" name="__tabbed_2" type="radio" /><div class="tabbed-labels"><label for="__tabbed_2_1">version&gt;=1.0</label><label for="__tabbed_2_2">version&lt;1.0</label></div>
+<div class="tabbed-content">
+<div class="tabbed-block">
+<div class="highlight"><pre><span></span><code><span class="n">api_key</span> <span class="p">(</span><span class="nb">str</span><span class="p">):</span> <span class="n">API金鑰</span>
+<span class="n">secret_key</span> <span class="p">(</span><span class="nb">str</span><span class="p">):</span> <span class="n">密鑰</span>
+<span class="n">fetch_contract</span> <span class="p">(</span><span class="nb">bool</span><span class="p">):</span> <span class="n">是否從快取中讀取商品檔或從伺服器下載商品檔</span> <span class="p">(</span><span class="n">預設值</span><span class="p">:</span> <span class="kc">True</span><span class="p">)</span>
+<span class="n">contracts_timeout</span> <span class="p">(</span><span class="nb">int</span><span class="p">):</span> <span class="n">獲取商品檔</span> <span class="n">timeout</span> <span class="p">(</span><span class="n">預設值</span><span class="p">:</span> <span class="mi">0</span> <span class="n">ms</span><span class="p">)</span>
+<span class="n">contracts_cb</span> <span class="p">(</span><span class="n">typing</span><span class="o">.</span><span class="n">Callable</span><span class="p">):</span> <span class="n">獲取商品檔</span> <span class="n">callback</span> <span class="p">(</span><span class="n">預設值</span><span class="p">:</span> <span class="kc">None</span><span class="p">)</span>
+<span class="n">subscribe_trade</span> <span class="p">(</span><span class="nb">bool</span><span class="p">):</span> <span class="n">是否訂閱委託</span><span class="o">/</span><span class="n">成交回報</span> <span class="p">(</span><span class="n">預設值</span><span class="p">:</span> <span class="kc">True</span><span class="p">)</span>
+<span class="n">receive_window</span> <span class="p">(</span><span class="nb">int</span><span class="p">):</span> <span class="n">登入動作有效執行時間</span> <span class="p">(</span><span class="n">預設值</span><span class="p">:</span> <span class="mi">30</span><span class="p">,</span><span class="mi">000</span> <span class="n">毫秒</span><span class="p">)</span>
+</code></pre></div>
+</div>
+<div class="tabbed-block">
+<div class="highlight"><pre><span></span><code><span class="n">person_id</span> <span class="p">(</span><span class="nb">str</span><span class="p">):</span> <span class="n">身分證字號</span>
+<span class="n">passwd</span> <span class="p">(</span><span class="nb">str</span><span class="p">):</span> <span class="n">密碼</span>
+<span class="n">hashed</span> <span class="p">(</span><span class="nb">bool</span><span class="p">):</span> <span class="n">密碼是否已經被hashed</span> <span class="p">(</span><span class="n">預設值</span><span class="p">:</span> <span class="kc">False</span><span class="p">)</span>
+<span class="n">fetch_contract</span> <span class="p">(</span><span class="nb">bool</span><span class="p">):</span> <span class="n">是否從快取中讀取商品檔或從伺服器下載商品檔</span> <span class="p">(</span><span class="n">預設值</span><span class="p">:</span> <span class="kc">True</span><span class="p">)</span>
+<span class="n">contracts_timeout</span> <span class="p">(</span><span class="nb">int</span><span class="p">):</span> <span class="n">獲取商品檔</span> <span class="n">timeout</span> <span class="p">(</span><span class="n">預設值</span><span class="p">:</span> <span class="mi">0</span> <span class="n">ms</span><span class="p">)</span>
+<span class="n">contracts_cb</span> <span class="p">(</span><span class="n">typing</span><span class="o">.</span><span class="n">Callable</span><span class="p">):</span> <span class="n">獲取商品檔</span> <span class="n">callback</span> <span class="p">(</span><span class="n">預設值</span><span class="p">:</span> <span class="kc">None</span><span class="p">)</span>
+<span class="n">subscribe_trade</span> <span class="p">(</span><span class="nb">bool</span><span class="p">):</span> <span class="n">是否訂閱委託</span><span class="o">/</span><span class="n">成交回報</span> <span class="p">(</span><span class="n">預設值</span><span class="p">:</span> <span class="kc">True</span><span class="p">)</span>
+</code></pre></div>
+</div>
+</div>
+</div>
+</div>
+<ul>
+<li><code>version &gt;= 1.0</code>，如果遇到 <strong>Sign data is timeout</strong>，表示您電腦的時間與伺服器的時間相差過大，或者單純只是登入執行時間超過有效時間。若前者發生，您需要校準電腦的時間，或者將<code>receive_window</code>調高。</li>
+</ul>
+<h3 id="callback">獲取商品檔Callback<a class="headerlink" href="#callback" title="Permanent link">&para;</a></h3>
 <div class="admonition info">
 <p class="admonition-title">In</p>
-<div class="tabbed-set tabbed-alternate" data-tabs="2:2"><input checked="checked" id="__tabbed_2_1" name="__tabbed_2" type="radio" /><input id="__tabbed_2_2" name="__tabbed_2" type="radio" /><div class="tabbed-labels"><label for="__tabbed_2_1">version&gt;=1.0</label><label for="__tabbed_2_2">version&lt;1.0</label></div>
+<div class="tabbed-set tabbed-alternate" data-tabs="3:2"><input checked="checked" id="__tabbed_3_1" name="__tabbed_3" type="radio" /><input id="__tabbed_3_2" name="__tabbed_3" type="radio" /><div class="tabbed-labels"><label for="__tabbed_3_1">version&gt;=1.0</label><label for="__tabbed_3_2">version&lt;1.0</label></div>
 <div class="tabbed-content">
 <div class="tabbed-block">
 <div class="highlight"><pre><span></span><code><span class="kn">import</span> <span class="nn">shioaji</span> <span class="k">as</span> <span class="nn">sj</span>
@@ -1276,7 +1355,7 @@
 <div class="highlight"><pre><span></span><code><span class="kn">import</span> <span class="nn">shioaji</span> <span class="k">as</span> <span class="nn">sj</span>
 <span class="n">api</span> <span class="o">=</span> <span class="n">sj</span><span class="o">.</span><span class="n">Shioaji</span><span class="p">()</span>
 <span class="n">api</span><span class="o">.</span><span class="n">login</span><span class="p">(</span>
-    <span class="n">person_id</span><span class="o">=</span><span class="s2">&quot;YOUR_ID&quot;</span><span class="p">,</span> 
+    <span class="n">person_id</span><span class="o">=</span><span class="s2">&quot;YOUR_PERSON_ID&quot;</span><span class="p">,</span> 
     <span class="n">passwd</span><span class="o">=</span><span class="s2">&quot;YOUR_PASSWORD&quot;</span><span class="p">,</span> 
     <span class="n">contracts_cb</span><span class="o">=</span><span class="k">lambda</span> <span class="n">security_type</span><span class="p">:</span> <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="nb">repr</span><span class="p">(</span><span class="n">security_type</span><span class="p">)</span><span class="si">}</span><span class="s2"> fetch done.&quot;</span><span class="p">)</span>
 <span class="p">)</span>
@@ -1297,11 +1376,48 @@
 <span class="o">&lt;</span><span class="n">SecurityType</span><span class="o">.</span><span class="n">Stock</span><span class="p">:</span> <span class="s1">&#39;STK&#39;</span><span class="o">&gt;</span> <span class="n">fetch</span> <span class="n">done</span><span class="o">.</span>
 </code></pre></div>
 </div>
-<p><font size=3>
-若您的帳號尚未簽署，可參見<a href="../prepare/terms/">服務條款</a>進行簽署。
-<font></p>
-<h2 id="_1">帳號<a class="headerlink" href="#_1" title="Permanent link">&para;</a></h2>
-<h3 id="_2">帳號列表<a class="headerlink" href="#_2" title="Permanent link">&para;</a></h3>
+<h3 id="_2">訂閱委託/成交回報<a class="headerlink" href="#_2" title="Permanent link">&para;</a></h3>
+<p>我們提供2個方式讓您可以調整訂閱委託/成交回報。首先是於 <code>login</code> 的參數 <code>subscribe_trade</code>，預設值為 <code>True</code>，會自動為您訂閱所有帳號的委託/成交回報。</p>
+<div class="admonition info">
+<p class="admonition-title">In</p>
+<div class="tabbed-set tabbed-alternate" data-tabs="4:2"><input checked="checked" id="__tabbed_4_1" name="__tabbed_4" type="radio" /><input id="__tabbed_4_2" name="__tabbed_4" type="radio" /><div class="tabbed-labels"><label for="__tabbed_4_1">version&gt;=1.0</label><label for="__tabbed_4_2">version&lt;1.0</label></div>
+<div class="tabbed-content">
+<div class="tabbed-block">
+<div class="highlight"><pre><span></span><code><span class="kn">import</span> <span class="nn">shioaji</span> <span class="k">as</span> <span class="nn">sj</span>
+<span class="n">api</span> <span class="o">=</span> <span class="n">sj</span><span class="o">.</span><span class="n">Shioaji</span><span class="p">()</span>
+<span class="n">api</span><span class="o">.</span><span class="n">login</span><span class="p">(</span>
+    <span class="n">api_key</span><span class="o">=</span><span class="s2">&quot;YOUR_API_KEY&quot;</span><span class="p">,</span> 
+    <span class="n">secret_key</span><span class="o">=</span><span class="s2">&quot;YOUR_SECRET_KEY&quot;</span><span class="p">,</span> 
+    <span class="n">subscribe_trade</span><span class="o">=</span><span class="kc">True</span>
+<span class="p">)</span>
+</code></pre></div>
+</div>
+<div class="tabbed-block">
+<div class="highlight"><pre><span></span><code><span class="kn">import</span> <span class="nn">shioaji</span> <span class="k">as</span> <span class="nn">sj</span>
+<span class="n">api</span> <span class="o">=</span> <span class="n">sj</span><span class="o">.</span><span class="n">Shioaji</span><span class="p">()</span>
+<span class="n">api</span><span class="o">.</span><span class="n">login</span><span class="p">(</span>
+    <span class="n">person_id</span><span class="o">=</span><span class="s2">&quot;YOUR_PERSON_ID&quot;</span><span class="p">,</span> 
+    <span class="n">passwd</span><span class="o">=</span><span class="s2">&quot;YOUR_PASSWORD&quot;</span><span class="p">,</span> 
+    <span class="n">subscribe_trade</span><span class="o">=</span><span class="kc">True</span>
+<span class="p">)</span>
+</code></pre></div>
+</div>
+</div>
+</div>
+</div>
+<p>另一個方式是，對特定帳號使用API <code>subscribe_trade</code> 及 <code>unsubscribe_trade</code>，即可訂閱或取消訂閱訂閱委託/成交回報。</p>
+<div class="admonition info">
+<p class="admonition-title">subscribe trade</p>
+<div class="highlight"><pre><span></span><code><span class="n">api</span><span class="o">.</span><span class="n">subscribe_trade</span><span class="p">(</span><span class="n">account</span><span class="p">)</span>
+</code></pre></div>
+</div>
+<div class="admonition info">
+<p class="admonition-title">unsubscribe trade</p>
+<div class="highlight"><pre><span></span><code><span class="n">api</span><span class="o">.</span><span class="n">unsubscribe_trade</span><span class="p">(</span><span class="n">account</span><span class="p">)</span>
+</code></pre></div>
+</div>
+<h2 id="_3">帳號<a class="headerlink" href="#_3" title="Permanent link">&para;</a></h2>
+<h3 id="_4">帳號列表<a class="headerlink" href="#_4" title="Permanent link">&para;</a></h3>
 <div class="admonition info">
 <p class="admonition-title">In:</p>
 <div class="highlight"><pre><span></span><code><span class="n">accounts</span> <span class="o">=</span> <span class="n">api</span><span class="o">.</span><span class="n">list_accounts</span><span class="p">()</span>
@@ -1319,12 +1435,10 @@
 <span class="p">]</span>
 </code></pre></div>
 </div>
-<p><font size=3></p>
 <ul>
 <li>若<code>signed</code>在帳號列表中未出現，如同 ACCOUNT_ID_2 及 ACCOUNT_ID_3 ，代表該帳號尚未簽署或者尚未完成在測試模式中的測試報告。可參見<a href="../prepare/terms/">服務條款</a>。</li>
 </ul>
-<p><font></p>
-<h3 id="_3">預設帳號<a class="headerlink" href="#_3" title="Permanent link">&para;</a></h3>
+<h3 id="_5">預設帳號<a class="headerlink" href="#_5" title="Permanent link">&para;</a></h3>
 <div class="admonition info">
 <p class="admonition-title">In</p>
 <div class="highlight"><pre><span></span><code><span class="c1"># 期貨預設帳號</span>
@@ -1361,19 +1475,7 @@
 <span class="hll">    <span class="n">account</span><span class="o">=</span><span class="n">api</span><span class="o">.</span><span class="n">stock_account</span>
 </span><span class="p">)</span>
 </code></pre></div>
-<h2 id="_4">設定訂閱回報<a class="headerlink" href="#_4" title="Permanent link">&para;</a></h2>
-<p><font size=3>預設為訂閱成交委託回報 <font></p>
-<div class="admonition info">
-<p class="admonition-title">訂閱回報</p>
-<div class="highlight"><pre><span></span><code><span class="n">api</span><span class="o">.</span><span class="n">subscribe_trade</span><span class="p">(</span><span class="n">account</span><span class="p">)</span>
-</code></pre></div>
-</div>
-<div class="admonition info">
-<p class="admonition-title">取消訂閱回報</p>
-<div class="highlight"><pre><span></span><code><span class="n">api</span><span class="o">.</span><span class="n">unsubscribe_trade</span><span class="p">(</span><span class="n">account</span><span class="p">)</span>
-</code></pre></div>
-</div>
-<h2 id="_5">登出<a class="headerlink" href="#_5" title="Permanent link">&para;</a></h2>
+<h2 id="_6">登出<a class="headerlink" href="#_6" title="Permanent link">&para;</a></h2>
 <p><font size=3>登出功能將關閉客戶端及服務端之間的連接。為了提供優質的服務，我們從2021/08/06開始將<a href="../limit/">限制</a>連線數。在不使用的時候終止程式是一個良好的習慣。<font></p>
 <div class="highlight"><pre><span></span><code><span class="n">api</span><span class="o">.</span><span class="n">logout</span><span class="p">()</span>
 <span class="c1"># True</span>

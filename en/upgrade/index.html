@@ -315,27 +315,19 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#order" class="md-nav__link">
-    Order
-  </a>
-  
-    <nav class="md-nav" aria-label="Order">
-      <ul class="md-nav__list">
-        
-          <li class="md-nav__item">
   <a href="#stock-order" class="md-nav__link">
     Stock Order
   </a>
   
-</li>
+    <nav class="md-nav" aria-label="Stock Order">
+      <ul class="md-nav__list">
         
           <li class="md-nav__item">
-  <a href="#stock-callback" class="md-nav__link">
-    Stock Callback
+  <a href="#order" class="md-nav__link">
+    Order
   </a>
   
-    <nav class="md-nav" aria-label="Stock Callback">
-      <ul class="md-nav__list">
+</li>
         
           <li class="md-nav__item">
   <a href="#order-callback" class="md-nav__link">
@@ -355,14 +347,21 @@
     </nav>
   
 </li>
-        
-          <li class="md-nav__item">
-  <a href="#futures-callback" class="md-nav__link">
-    Futures Callback
+      
+        <li class="md-nav__item">
+  <a href="#futures-order" class="md-nav__link">
+    Futures Order
   </a>
   
-    <nav class="md-nav" aria-label="Futures Callback">
+    <nav class="md-nav" aria-label="Futures Order">
       <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#order_1" class="md-nav__link">
+    Order
+  </a>
+  
+</li>
         
           <li class="md-nav__item">
   <a href="#order-callback_1" class="md-nav__link">
@@ -375,11 +374,6 @@
   <a href="#deal-callback_1" class="md-nav__link">
     Deal Callback
   </a>
-  
-</li>
-        
-      </ul>
-    </nav>
   
 </li>
         
@@ -1234,27 +1228,19 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#order" class="md-nav__link">
-    Order
-  </a>
-  
-    <nav class="md-nav" aria-label="Order">
-      <ul class="md-nav__list">
-        
-          <li class="md-nav__item">
   <a href="#stock-order" class="md-nav__link">
     Stock Order
   </a>
   
-</li>
+    <nav class="md-nav" aria-label="Stock Order">
+      <ul class="md-nav__list">
         
           <li class="md-nav__item">
-  <a href="#stock-callback" class="md-nav__link">
-    Stock Callback
+  <a href="#order" class="md-nav__link">
+    Order
   </a>
   
-    <nav class="md-nav" aria-label="Stock Callback">
-      <ul class="md-nav__list">
+</li>
         
           <li class="md-nav__item">
   <a href="#order-callback" class="md-nav__link">
@@ -1274,14 +1260,21 @@
     </nav>
   
 </li>
-        
-          <li class="md-nav__item">
-  <a href="#futures-callback" class="md-nav__link">
-    Futures Callback
+      
+        <li class="md-nav__item">
+  <a href="#futures-order" class="md-nav__link">
+    Futures Order
   </a>
   
-    <nav class="md-nav" aria-label="Futures Callback">
+    <nav class="md-nav" aria-label="Futures Order">
       <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#order_1" class="md-nav__link">
+    Order
+  </a>
+  
+</li>
         
           <li class="md-nav__item">
   <a href="#order-callback_1" class="md-nav__link">
@@ -1294,11 +1287,6 @@
   <a href="#deal-callback_1" class="md-nav__link">
     Deal Callback
   </a>
-  
-</li>
-        
-      </ul>
-    </nav>
   
 </li>
         
@@ -1446,14 +1434,20 @@
 <div class="tabbed-block">
 <div class="highlight"><pre><span></span><code><span class="kn">import</span> <span class="nn">shioaji</span> <span class="k">as</span> <span class="nn">sj</span>
 <span class="n">api</span> <span class="o">=</span> <span class="n">sj</span><span class="o">.</span><span class="n">Shioaji</span><span class="p">()</span>
-<span class="hll"><span class="n">api</span><span class="o">.</span><span class="n">login</span><span class="p">(</span><span class="s2">&quot;YOUR_API_KEY&quot;</span><span class="p">,</span> <span class="s2">&quot;YOUR_SECRET_KEY&quot;</span><span class="p">)</span>
-</span></code></pre></div>
+<span class="hll"><span class="n">api</span><span class="o">.</span><span class="n">login</span><span class="p">(</span>
+</span>    <span class="n">api_key</span><span class="o">=</span><span class="s2">&quot;YOUR_API_KEY&quot;</span><span class="p">,</span> 
+    <span class="n">secret_key</span><span class="o">=</span><span class="s2">&quot;YOUR_SECRET_KEY&quot;</span>
+<span class="p">)</span>
+</code></pre></div>
 </div>
 <div class="tabbed-block">
 <div class="highlight"><pre><span></span><code><span class="kn">import</span> <span class="nn">shioaji</span> <span class="k">as</span> <span class="nn">sj</span>
 <span class="n">api</span> <span class="o">=</span> <span class="n">sj</span><span class="o">.</span><span class="n">Shioaji</span><span class="p">()</span>
-<span class="hll"><span class="n">api</span><span class="o">.</span><span class="n">login</span><span class="p">(</span><span class="s2">&quot;YOUR_PERSON_ID&quot;</span><span class="p">,</span> <span class="s2">&quot;YOUR_PASSWORD&quot;</span><span class="p">)</span>
-</span></code></pre></div>
+<span class="hll"><span class="n">api</span><span class="o">.</span><span class="n">login</span><span class="p">(</span>
+</span>    <span class="n">person_id</span><span class="o">=</span><span class="s2">&quot;YOUR_PERSON_ID&quot;</span><span class="p">,</span> 
+    <span class="n">passwd</span><span class="o">=</span><span class="s2">&quot;YOUR_PASSWORD&quot;</span><span class="p">,</span>
+<span class="p">)</span>
+</code></pre></div>
 </div>
 </div>
 </div>
@@ -1466,15 +1460,15 @@
 <span class="p">]</span>
 </code></pre></div>
 </div>
-<h2 id="order">Order<a class="headerlink" href="#order" title="Permanent link">&para;</a></h2>
+<h2 id="stock-order">Stock Order<a class="headerlink" href="#stock-order" title="Permanent link">&para;</a></h2>
 <p>Rename <code>TFTStockOrder</code> to <code>StockOrder</code></p>
 <div class="admonition info">
-<p class="admonition-title">Order</p>
+<p class="admonition-title">StockOrder</p>
 <div class="tabbed-set tabbed-alternate" data-tabs="3:2"><input checked="checked" id="__tabbed_3_1" name="__tabbed_3" type="radio" /><input id="__tabbed_3_2" name="__tabbed_3" type="radio" /><div class="tabbed-labels"><label for="__tabbed_3_1">verion&gt;=1.0</label><label for="__tabbed_3_2">verion&lt;1.0</label></div>
 <div class="tabbed-content">
 <div class="tabbed-block">
-<div class="highlight"><pre><span></span><code><span class="hll"><span class="n">sj</span><span class="o">.</span><span class="n">order</span><span class="o">.</span><span class="n">StockOrder</span><span class="err">?</span>
-</span>
+<div class="highlight"><pre><span></span><code><span class="o">&gt;&gt;</span> <span class="n">sj</span><span class="o">.</span><span class="n">order</span><span class="o">.</span><span class="n">StockOrder</span><span class="err">?</span>
+
 <span class="n">Init</span> <span class="n">signature</span><span class="p">:</span>
 <span class="hll"><span class="n">sj</span><span class="o">.</span><span class="n">order</span><span class="o">.</span><span class="n">StockOrder</span><span class="p">(</span>
 </span>    <span class="o">*</span><span class="p">,</span>
@@ -1496,8 +1490,8 @@
 </code></pre></div>
 </div>
 <div class="tabbed-block">
-<div class="highlight"><pre><span></span><code><span class="hll"><span class="n">sj</span><span class="o">.</span><span class="n">order</span><span class="o">.</span><span class="n">TFTStockOrder</span><span class="err">?</span>
-</span>
+<div class="highlight"><pre><span></span><code><span class="o">&gt;&gt;</span> <span class="n">sj</span><span class="o">.</span><span class="n">order</span><span class="o">.</span><span class="n">TFTStockOrder</span><span class="err">?</span>
+
 <span class="n">Init</span> <span class="n">signature</span><span class="p">:</span>
 <span class="hll"><span class="n">sj</span><span class="o">.</span><span class="n">order</span><span class="o">.</span><span class="n">TFTStockOrder</span><span class="p">(</span>
 </span>    <span class="o">*</span><span class="p">,</span>
@@ -1521,49 +1515,17 @@
 </div>
 </div>
 </div>
-<h3 id="stock-order">Stock Order<a class="headerlink" href="#stock-order" title="Permanent link">&para;</a></h3>
-<p>Rename <code>first_sell</code> to <code>daytrade_short</code>, and type changed to <code>Bool</code>.</p>
+<h3 id="order">Order<a class="headerlink" href="#order" title="Permanent link">&para;</a></h3>
+<p>Rename  </p>
+<ul>
+<li><code>TFTStockPriceType</code> to <code>StockPriceType</code>  </li>
+<li><code>TFTOrderType</code> to <code>OrderType</code>  </li>
+<li><code>TFTStockOrderLot</code> to <code>StockOrderLot</code>  </li>
+<li><code>first_sell</code> to <code>daytrade_short</code>, and type changed to <code>Bool</code>.</li>
+</ul>
 <div class="admonition info">
-<p class="admonition-title">Daytrade Short</p>
+<p class="admonition-title">Order</p>
 <div class="tabbed-set tabbed-alternate" data-tabs="4:2"><input checked="checked" id="__tabbed_4_1" name="__tabbed_4" type="radio" /><input id="__tabbed_4_2" name="__tabbed_4" type="radio" /><div class="tabbed-labels"><label for="__tabbed_4_1">version&gt;=1.0</label><label for="__tabbed_4_2">version&lt;1.0</label></div>
-<div class="tabbed-content">
-<div class="tabbed-block">
-<div class="highlight"><pre><span></span><code><span class="n">order</span> <span class="o">=</span> <span class="n">api</span><span class="o">.</span><span class="n">Order</span><span class="p">(</span>
-    <span class="n">price</span><span class="o">=</span><span class="mi">12</span><span class="p">,</span> 
-    <span class="n">quantity</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span> 
-    <span class="n">action</span><span class="o">=</span><span class="n">sj</span><span class="o">.</span><span class="n">constant</span><span class="o">.</span><span class="n">Action</span><span class="o">.</span><span class="n">Sell</span><span class="p">,</span>
-    <span class="n">price_type</span><span class="o">=</span><span class="n">sj</span><span class="o">.</span><span class="n">constant</span><span class="o">.</span><span class="n">StockPriceType</span><span class="o">.</span><span class="n">LMT</span><span class="p">,</span>
-    <span class="n">order_type</span><span class="o">=</span><span class="n">sj</span><span class="o">.</span><span class="n">constant</span><span class="o">.</span><span class="n">TFTOrderType</span><span class="o">.</span><span class="n">ROD</span><span class="p">,</span>
-    <span class="n">order_lot</span><span class="o">=</span><span class="n">sj</span><span class="o">.</span><span class="n">constant</span><span class="o">.</span><span class="n">TFTStockOrderLot</span><span class="o">.</span><span class="n">Common</span><span class="p">,</span>
-<span class="hll">    <span class="n">daytrade_short</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span>
-</span>    <span class="n">custom_field</span><span class="o">=</span><span class="s2">&quot;test&quot;</span><span class="p">,</span>
-    <span class="n">account</span><span class="o">=</span><span class="n">api</span><span class="o">.</span><span class="n">stock_account</span>
-<span class="p">)</span>
-</code></pre></div>
-</div>
-<div class="tabbed-block">
-<div class="highlight"><pre><span></span><code><span class="n">order</span> <span class="o">=</span> <span class="n">api</span><span class="o">.</span><span class="n">Order</span><span class="p">(</span>
-    <span class="n">price</span><span class="o">=</span><span class="mi">12</span><span class="p">,</span> 
-    <span class="n">quantity</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span> 
-    <span class="n">action</span><span class="o">=</span><span class="n">sj</span><span class="o">.</span><span class="n">constant</span><span class="o">.</span><span class="n">Action</span><span class="o">.</span><span class="n">Sell</span><span class="p">,</span>
-    <span class="n">price_type</span><span class="o">=</span><span class="n">sj</span><span class="o">.</span><span class="n">constant</span><span class="o">.</span><span class="n">StockPriceType</span><span class="o">.</span><span class="n">LMT</span><span class="p">,</span>
-    <span class="n">order_type</span><span class="o">=</span><span class="n">sj</span><span class="o">.</span><span class="n">constant</span><span class="o">.</span><span class="n">TFTOrderType</span><span class="o">.</span><span class="n">ROD</span><span class="p">,</span>
-    <span class="n">order_lot</span><span class="o">=</span><span class="n">sj</span><span class="o">.</span><span class="n">constant</span><span class="o">.</span><span class="n">TFTStockOrderLot</span><span class="o">.</span><span class="n">Common</span><span class="p">,</span>
-<span class="hll">    <span class="n">first_sell</span><span class="o">=</span><span class="n">sj</span><span class="o">.</span><span class="n">constant</span><span class="o">.</span><span class="n">StockFirstSell</span><span class="o">.</span><span class="n">Yes</span><span class="p">,</span>
-</span>    <span class="n">custom_field</span><span class="o">=</span><span class="s2">&quot;test&quot;</span><span class="p">,</span>
-    <span class="n">account</span><span class="o">=</span><span class="n">api</span><span class="o">.</span><span class="n">stock_account</span>
-<span class="p">)</span>
-</code></pre></div>
-</div>
-</div>
-</div>
-</div>
-<p>Rename <code>TFTStockPriceType</code> to <code>StockPriceType</code></p>
-<p>Rename <code>TFTOrderType</code> to <code>OrderType</code></p>
-<p>Rename <code>TFTStockOrderLot</code> to <code>StockOrderLot</code></p>
-<div class="admonition info">
-<p class="admonition-title">Stock</p>
-<div class="tabbed-set tabbed-alternate" data-tabs="5:2"><input checked="checked" id="__tabbed_5_1" name="__tabbed_5" type="radio" /><input id="__tabbed_5_2" name="__tabbed_5" type="radio" /><div class="tabbed-labels"><label for="__tabbed_5_1">version&gt;=1.0</label><label for="__tabbed_5_2">version&lt;1.0</label></div>
 <div class="tabbed-content">
 <div class="tabbed-block">
 <div class="highlight"><pre><span></span><code><span class="n">order</span> <span class="o">=</span> <span class="n">api</span><span class="o">.</span><span class="n">Order</span><span class="p">(</span>
@@ -1573,6 +1535,7 @@
 <span class="hll">    <span class="n">price_type</span><span class="o">=</span><span class="n">sj</span><span class="o">.</span><span class="n">constant</span><span class="o">.</span><span class="n">StockPriceType</span><span class="o">.</span><span class="n">LMT</span><span class="p">,</span> 
 </span><span class="hll">    <span class="n">order_type</span><span class="o">=</span><span class="n">sj</span><span class="o">.</span><span class="n">constant</span><span class="o">.</span><span class="n">OrderType</span><span class="o">.</span><span class="n">ROD</span><span class="p">,</span> 
 </span><span class="hll">    <span class="n">order_lot</span><span class="o">=</span><span class="n">sj</span><span class="o">.</span><span class="n">constant</span><span class="o">.</span><span class="n">StockOrderLot</span><span class="o">.</span><span class="n">Common</span><span class="p">,</span> 
+</span><span class="hll">    <span class="n">daytrade_short</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span>
 </span>    <span class="n">custom_field</span><span class="o">=</span><span class="s2">&quot;test&quot;</span><span class="p">,</span>
     <span class="n">account</span><span class="o">=</span><span class="n">api</span><span class="o">.</span><span class="n">stock_account</span>
 <span class="p">)</span>
@@ -1586,6 +1549,7 @@
 <span class="hll">    <span class="n">price_type</span><span class="o">=</span><span class="n">sj</span><span class="o">.</span><span class="n">constant</span><span class="o">.</span><span class="n">TFTStockPriceType</span><span class="o">.</span><span class="n">LMT</span><span class="p">,</span> 
 </span><span class="hll">    <span class="n">order_type</span><span class="o">=</span><span class="n">sj</span><span class="o">.</span><span class="n">constant</span><span class="o">.</span><span class="n">TFTOrderType</span><span class="o">.</span><span class="n">ROD</span><span class="p">,</span> 
 </span><span class="hll">    <span class="n">order_lot</span><span class="o">=</span><span class="n">sj</span><span class="o">.</span><span class="n">constant</span><span class="o">.</span><span class="n">TFTStockOrderLot</span><span class="o">.</span><span class="n">Common</span><span class="p">,</span> 
+</span><span class="hll">    <span class="n">first_sell</span><span class="o">=</span><span class="n">sj</span><span class="o">.</span><span class="n">constant</span><span class="o">.</span><span class="n">StockFirstSell</span><span class="o">.</span><span class="n">Yes</span><span class="p">,</span>
 </span>    <span class="n">custom_field</span><span class="o">=</span><span class="s2">&quot;test&quot;</span><span class="p">,</span>
     <span class="n">account</span><span class="o">=</span><span class="n">api</span><span class="o">.</span><span class="n">stock_account</span>
 <span class="p">)</span>
@@ -1594,12 +1558,11 @@
 </div>
 </div>
 </div>
-<h3 id="stock-callback">Stock Callback<a class="headerlink" href="#stock-callback" title="Permanent link">&para;</a></h3>
-<h4 id="order-callback">Order Callback<a class="headerlink" href="#order-callback" title="Permanent link">&para;</a></h4>
+<h3 id="order-callback">Order Callback<a class="headerlink" href="#order-callback" title="Permanent link">&para;</a></h3>
 <p>Rename <code>TFTOrder</code> to <code>StockOrder</code></p>
 <div class="admonition info">
 <p class="admonition-title">Order Callback</p>
-<div class="tabbed-set tabbed-alternate" data-tabs="6:2"><input checked="checked" id="__tabbed_6_1" name="__tabbed_6" type="radio" /><input id="__tabbed_6_2" name="__tabbed_6" type="radio" /><div class="tabbed-labels"><label for="__tabbed_6_1">version&gt;=1.0</label><label for="__tabbed_6_2">version&lt;1.0</label></div>
+<div class="tabbed-set tabbed-alternate" data-tabs="5:2"><input checked="checked" id="__tabbed_5_1" name="__tabbed_5" type="radio" /><input id="__tabbed_5_2" name="__tabbed_5" type="radio" /><div class="tabbed-labels"><label for="__tabbed_5_1">version&gt;=1.0</label><label for="__tabbed_5_2">version&lt;1.0</label></div>
 <div class="tabbed-content">
 <div class="tabbed-block">
 <div class="highlight"><pre><span></span><code><span class="hll"><span class="n">OrderState</span><span class="o">.</span><span class="n">StockOrder</span> <span class="p">{</span>
@@ -1680,11 +1643,11 @@
 </div>
 </div>
 </div>
-<h4 id="deal-callback">Deal Callback<a class="headerlink" href="#deal-callback" title="Permanent link">&para;</a></h4>
+<h3 id="deal-callback">Deal Callback<a class="headerlink" href="#deal-callback" title="Permanent link">&para;</a></h3>
 <p>Rename <code>TFTDeal</code> to <code>StockDeal</code></p>
 <div class="admonition info">
 <p class="admonition-title">Deal Callback</p>
-<div class="tabbed-set tabbed-alternate" data-tabs="7:2"><input checked="checked" id="__tabbed_7_1" name="__tabbed_7" type="radio" /><input id="__tabbed_7_2" name="__tabbed_7" type="radio" /><div class="tabbed-labels"><label for="__tabbed_7_1">version&gt;=1.0</label><label for="__tabbed_7_2">version&lt;1.0</label></div>
+<div class="tabbed-set tabbed-alternate" data-tabs="6:2"><input checked="checked" id="__tabbed_6_1" name="__tabbed_6" type="radio" /><input id="__tabbed_6_2" name="__tabbed_6" type="radio" /><div class="tabbed-labels"><label for="__tabbed_6_1">version&gt;=1.0</label><label for="__tabbed_6_2">version&lt;1.0</label></div>
 <div class="tabbed-content">
 <div class="tabbed-block">
 <div class="highlight"><pre><span></span><code><span class="hll"><span class="n">OrderState</span><span class="o">.</span><span class="n">StockDeal</span> <span class="p">{</span>
@@ -1725,12 +1688,94 @@
 </div>
 </div>
 </div>
-<h3 id="futures-callback">Futures Callback<a class="headerlink" href="#futures-callback" title="Permanent link">&para;</a></h3>
-<h4 id="order-callback_1">Order Callback<a class="headerlink" href="#order-callback_1" title="Permanent link">&para;</a></h4>
+<h2 id="futures-order">Futures Order<a class="headerlink" href="#futures-order" title="Permanent link">&para;</a></h2>
+<div class="admonition info">
+<p class="admonition-title">FuturesOrder</p>
+<div class="tabbed-set tabbed-alternate" data-tabs="7:2"><input checked="checked" id="__tabbed_7_1" name="__tabbed_7" type="radio" /><input id="__tabbed_7_2" name="__tabbed_7" type="radio" /><div class="tabbed-labels"><label for="__tabbed_7_1">verion&gt;=1.0</label><label for="__tabbed_7_2">verion&lt;1.0</label></div>
+<div class="tabbed-content">
+<div class="tabbed-block">
+<div class="highlight"><pre><span></span><code><span class="o">&gt;&gt;</span> <span class="n">sj</span><span class="o">.</span><span class="n">order</span><span class="o">.</span><span class="n">FuturesOrder</span><span class="err">?</span>
+
+<span class="n">Init</span> <span class="n">signature</span><span class="p">:</span>
+<span class="hll"><span class="n">sj</span><span class="o">.</span><span class="n">order</span><span class="o">.</span><span class="n">FuturesOrder</span><span class="p">(</span>
+</span>    <span class="o">*</span><span class="p">,</span>
+    <span class="n">action</span><span class="p">:</span> <span class="n">shioaji</span><span class="o">.</span><span class="n">constant</span><span class="o">.</span><span class="n">Action</span><span class="p">,</span>
+    <span class="n">price</span><span class="p">:</span> <span class="n">Union</span><span class="p">[</span><span class="n">pydantic</span><span class="o">.</span><span class="n">types</span><span class="o">.</span><span class="n">StrictInt</span><span class="p">,</span> <span class="nb">float</span><span class="p">],</span>
+    <span class="n">quantity</span><span class="p">:</span> <span class="n">shioaji</span><span class="o">.</span><span class="n">order</span><span class="o">.</span><span class="n">ConstrainedIntValue</span><span class="p">,</span>
+    <span class="nb">id</span><span class="p">:</span> <span class="nb">str</span> <span class="o">=</span> <span class="s1">&#39;&#39;</span><span class="p">,</span>
+    <span class="n">seqno</span><span class="p">:</span> <span class="nb">str</span> <span class="o">=</span> <span class="s1">&#39;&#39;</span><span class="p">,</span>
+    <span class="n">ordno</span><span class="p">:</span> <span class="nb">str</span> <span class="o">=</span> <span class="s1">&#39;&#39;</span><span class="p">,</span>
+    <span class="n">account</span><span class="p">:</span> <span class="n">shioaji</span><span class="o">.</span><span class="n">account</span><span class="o">.</span><span class="n">Account</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
+    <span class="n">custom_field</span><span class="p">:</span> <span class="n">shioaji</span><span class="o">.</span><span class="n">order</span><span class="o">.</span><span class="n">ConstrainedStrValue</span> <span class="o">=</span> <span class="s1">&#39;&#39;</span><span class="p">,</span>
+    <span class="n">ca</span><span class="p">:</span> <span class="nb">str</span> <span class="o">=</span> <span class="s1">&#39;&#39;</span><span class="p">,</span>
+    <span class="n">price_type</span><span class="p">:</span> <span class="n">shioaji</span><span class="o">.</span><span class="n">constant</span><span class="o">.</span><span class="n">FuturesPriceType</span><span class="p">,</span>
+<span class="hll">    <span class="n">order_type</span><span class="p">:</span> <span class="n">shioaji</span><span class="o">.</span><span class="n">constant</span><span class="o">.</span><span class="n">OrderType</span><span class="p">,</span>
+</span>    <span class="n">octype</span><span class="p">:</span> <span class="n">shioaji</span><span class="o">.</span><span class="n">constant</span><span class="o">.</span><span class="n">FuturesOCType</span> <span class="o">=</span> <span class="o">&lt;</span><span class="n">FuturesOCType</span><span class="o">.</span><span class="n">Auto</span><span class="p">:</span> <span class="s1">&#39;Auto&#39;</span><span class="o">&gt;</span><span class="p">,</span>
+<span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span>
+</code></pre></div>
+</div>
+<div class="tabbed-block">
+<div class="highlight"><pre><span></span><code><span class="o">&gt;&gt;</span> <span class="n">sj</span><span class="o">.</span><span class="n">order</span><span class="o">.</span><span class="n">FuturesOrder</span><span class="err">?</span>
+
+<span class="n">Init</span> <span class="n">signature</span><span class="p">:</span>
+<span class="hll"><span class="n">sj</span><span class="o">.</span><span class="n">order</span><span class="o">.</span><span class="n">FuturesOrder</span><span class="p">(</span>
+</span>    <span class="o">*</span><span class="p">,</span>
+    <span class="n">action</span><span class="p">:</span> <span class="n">shioaji</span><span class="o">.</span><span class="n">constant</span><span class="o">.</span><span class="n">Action</span><span class="p">,</span>
+    <span class="n">price</span><span class="p">:</span> <span class="n">Union</span><span class="p">[</span><span class="n">pydantic</span><span class="o">.</span><span class="n">types</span><span class="o">.</span><span class="n">StrictInt</span><span class="p">,</span> <span class="nb">float</span><span class="p">],</span>
+    <span class="n">quantity</span><span class="p">:</span> <span class="n">shioaji</span><span class="o">.</span><span class="n">order</span><span class="o">.</span><span class="n">ConstrainedIntValue</span><span class="p">,</span>
+    <span class="nb">id</span><span class="p">:</span> <span class="nb">str</span> <span class="o">=</span> <span class="s1">&#39;&#39;</span><span class="p">,</span>
+    <span class="n">seqno</span><span class="p">:</span> <span class="nb">str</span> <span class="o">=</span> <span class="s1">&#39;&#39;</span><span class="p">,</span>
+    <span class="n">ordno</span><span class="p">:</span> <span class="nb">str</span> <span class="o">=</span> <span class="s1">&#39;&#39;</span><span class="p">,</span>
+    <span class="n">account</span><span class="p">:</span> <span class="n">shioaji</span><span class="o">.</span><span class="n">account</span><span class="o">.</span><span class="n">Account</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
+    <span class="n">custom_field</span><span class="p">:</span> <span class="n">shioaji</span><span class="o">.</span><span class="n">order</span><span class="o">.</span><span class="n">ConstrainedStrValue</span> <span class="o">=</span> <span class="s1">&#39;&#39;</span><span class="p">,</span>
+    <span class="n">ca</span><span class="p">:</span> <span class="nb">str</span> <span class="o">=</span> <span class="s1">&#39;&#39;</span><span class="p">,</span>
+    <span class="n">price_type</span><span class="p">:</span> <span class="n">shioaji</span><span class="o">.</span><span class="n">constant</span><span class="o">.</span><span class="n">FuturesPriceType</span><span class="p">,</span>
+<span class="hll">    <span class="n">order_type</span><span class="p">:</span> <span class="n">shioaji</span><span class="o">.</span><span class="n">constant</span><span class="o">.</span><span class="n">FuturesOrderType</span><span class="p">,</span>
+</span>    <span class="n">octype</span><span class="p">:</span> <span class="n">shioaji</span><span class="o">.</span><span class="n">constant</span><span class="o">.</span><span class="n">FuturesOCType</span> <span class="o">=</span> <span class="o">&lt;</span><span class="n">FuturesOCType</span><span class="o">.</span><span class="n">Auto</span><span class="p">:</span> <span class="s1">&#39;Auto&#39;</span><span class="o">&gt;</span><span class="p">,</span>
+<span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span>
+</code></pre></div>
+</div>
+</div>
+</div>
+</div>
+<h3 id="order_1">Order<a class="headerlink" href="#order_1" title="Permanent link">&para;</a></h3>
+<p>Rename <code>FuturesOrderType</code> to <code>OrderType</code></p>
+<div class="admonition info">
+<p class="admonition-title">Order</p>
+<div class="tabbed-set tabbed-alternate" data-tabs="8:2"><input checked="checked" id="__tabbed_8_1" name="__tabbed_8" type="radio" /><input id="__tabbed_8_2" name="__tabbed_8" type="radio" /><div class="tabbed-labels"><label for="__tabbed_8_1">verion&gt;=1.0</label><label for="__tabbed_8_2">verion&lt;1.0</label></div>
+<div class="tabbed-content">
+<div class="tabbed-block">
+<div class="highlight"><pre><span></span><code><span class="n">order</span> <span class="o">=</span> <span class="n">api</span><span class="o">.</span><span class="n">Order</span><span class="p">(</span>
+    <span class="n">action</span><span class="o">=</span><span class="n">sj</span><span class="o">.</span><span class="n">constant</span><span class="o">.</span><span class="n">Action</span><span class="o">.</span><span class="n">Buy</span><span class="p">,</span>
+    <span class="n">price</span><span class="o">=</span><span class="mi">100</span><span class="p">,</span>
+    <span class="n">quantity</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span>
+    <span class="n">price_type</span><span class="o">=</span><span class="n">sj</span><span class="o">.</span><span class="n">constant</span><span class="o">.</span><span class="n">FuturesPriceType</span><span class="o">.</span><span class="n">LMT</span><span class="p">,</span>
+<span class="hll">    <span class="n">order_type</span><span class="o">=</span><span class="n">sj</span><span class="o">.</span><span class="n">constant</span><span class="o">.</span><span class="n">OrderType</span><span class="o">.</span><span class="n">ROD</span><span class="p">,</span> 
+</span>    <span class="n">octype</span><span class="o">=</span><span class="n">sj</span><span class="o">.</span><span class="n">constant</span><span class="o">.</span><span class="n">FuturesOCType</span><span class="o">.</span><span class="n">Auto</span><span class="p">,</span>
+    <span class="n">account</span><span class="o">=</span><span class="n">api</span><span class="o">.</span><span class="n">futopt_account</span>
+<span class="p">)</span>
+</code></pre></div>
+</div>
+<div class="tabbed-block">
+<div class="highlight"><pre><span></span><code><span class="n">order</span> <span class="o">=</span> <span class="n">api</span><span class="o">.</span><span class="n">Order</span><span class="p">(</span>
+    <span class="n">action</span><span class="o">=</span><span class="n">sj</span><span class="o">.</span><span class="n">constant</span><span class="o">.</span><span class="n">Action</span><span class="o">.</span><span class="n">Buy</span><span class="p">,</span>
+    <span class="n">price</span><span class="o">=</span><span class="mi">100</span><span class="p">,</span>
+    <span class="n">quantity</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span>
+    <span class="n">price_type</span><span class="o">=</span><span class="n">sj</span><span class="o">.</span><span class="n">constant</span><span class="o">.</span><span class="n">FuturesPriceType</span><span class="o">.</span><span class="n">LMT</span><span class="p">,</span>
+<span class="hll">    <span class="n">order_type</span><span class="o">=</span><span class="n">sj</span><span class="o">.</span><span class="n">constant</span><span class="o">.</span><span class="n">FuturesOrderType</span><span class="o">.</span><span class="n">ROD</span><span class="p">,</span> 
+</span>    <span class="n">octype</span><span class="o">=</span><span class="n">sj</span><span class="o">.</span><span class="n">constant</span><span class="o">.</span><span class="n">FuturesOCType</span><span class="o">.</span><span class="n">Auto</span><span class="p">,</span>
+    <span class="n">account</span><span class="o">=</span><span class="n">api</span><span class="o">.</span><span class="n">futopt_account</span>
+<span class="p">)</span>
+</code></pre></div>
+</div>
+</div>
+</div>
+</div>
+<h3 id="order-callback_1">Order Callback<a class="headerlink" href="#order-callback_1" title="Permanent link">&para;</a></h3>
 <p>Rename <code>FOrder</code> to <code>FuturesOrder</code></p>
 <div class="admonition info">
 <p class="admonition-title">Order Event</p>
-<div class="tabbed-set tabbed-alternate" data-tabs="8:2"><input checked="checked" id="__tabbed_8_1" name="__tabbed_8" type="radio" /><input id="__tabbed_8_2" name="__tabbed_8" type="radio" /><div class="tabbed-labels"><label for="__tabbed_8_1">version&gt;=1.0</label><label for="__tabbed_8_2">version&lt;1.0</label></div>
+<div class="tabbed-set tabbed-alternate" data-tabs="9:2"><input checked="checked" id="__tabbed_9_1" name="__tabbed_9" type="radio" /><input id="__tabbed_9_2" name="__tabbed_9" type="radio" /><div class="tabbed-labels"><label for="__tabbed_9_1">version&gt;=1.0</label><label for="__tabbed_9_2">version&lt;1.0</label></div>
 <div class="tabbed-content">
 <div class="tabbed-block">
 <div class="highlight"><pre><span></span><code><span class="hll"><span class="n">OrderState</span><span class="o">.</span><span class="n">FuturesOrder</span> <span class="p">{</span>
@@ -1813,11 +1858,11 @@
 </div>
 </div>
 </div>
-<h4 id="deal-callback_1">Deal Callback<a class="headerlink" href="#deal-callback_1" title="Permanent link">&para;</a></h4>
+<h3 id="deal-callback_1">Deal Callback<a class="headerlink" href="#deal-callback_1" title="Permanent link">&para;</a></h3>
 <p>Rename <code>FDeal</code> to <code>FuturesDeal</code></p>
 <div class="admonition info">
 <p class="admonition-title">Deal Event</p>
-<div class="tabbed-set tabbed-alternate" data-tabs="9:2"><input checked="checked" id="__tabbed_9_1" name="__tabbed_9" type="radio" /><input id="__tabbed_9_2" name="__tabbed_9" type="radio" /><div class="tabbed-labels"><label for="__tabbed_9_1">version&gt;=1.0</label><label for="__tabbed_9_2">version&lt;1.0</label></div>
+<div class="tabbed-set tabbed-alternate" data-tabs="10:2"><input checked="checked" id="__tabbed_10_1" name="__tabbed_10" type="radio" /><input id="__tabbed_10_2" name="__tabbed_10" type="radio" /><div class="tabbed-labels"><label for="__tabbed_10_1">version&gt;=1.0</label><label for="__tabbed_10_2">version&lt;1.0</label></div>
 <div class="tabbed-content">
 <div class="tabbed-block">
 <div class="highlight"><pre><span></span><code><span class="hll"><span class="n">OrderState</span><span class="o">.</span><span class="n">FuturesDeal</span> <span class="p">{</span>
