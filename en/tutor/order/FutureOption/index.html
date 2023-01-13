@@ -74,7 +74,7 @@
     <div data-md-component="skip">
       
         
-        <a href="#place-order" class="md-skip">
+        <a href="#futures-order" class="md-skip">
           Skip to content
         </a>
       
@@ -653,6 +653,13 @@
     <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
       
         <li class="md-nav__item">
+  <a href="#futures-order" class="md-nav__link">
+    Futures Order
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
   <a href="#place-order" class="md-nav__link">
     Place Order
   </a>
@@ -664,6 +671,26 @@
     Update Order
   </a>
   
+    <nav class="md-nav" aria-label="Update Order">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#update-price" class="md-nav__link">
+    Update Price
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#update-quantity-reduce" class="md-nav__link">
+    Update Quantity (Reduce)
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
 </li>
       
         <li class="md-nav__item">
@@ -674,16 +701,23 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#example" class="md-nav__link">
-    Example
+  <a href="#deal" class="md-nav__link">
+    Deal
   </a>
   
-    <nav class="md-nav" aria-label="Example">
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#examples" class="md-nav__link">
+    Examples
+  </a>
+  
+    <nav class="md-nav" aria-label="Examples">
       <ul class="md-nav__list">
         
           <li class="md-nav__item">
-  <a href="#buy" class="md-nav__link">
-    Buy
+  <a href="#action" class="md-nav__link">
+    Action
   </a>
   
 </li>
@@ -1177,6 +1211,13 @@
     <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
       
         <li class="md-nav__item">
+  <a href="#futures-order" class="md-nav__link">
+    Futures Order
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
   <a href="#place-order" class="md-nav__link">
     Place Order
   </a>
@@ -1188,6 +1229,26 @@
     Update Order
   </a>
   
+    <nav class="md-nav" aria-label="Update Order">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#update-price" class="md-nav__link">
+    Update Price
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#update-quantity-reduce" class="md-nav__link">
+    Update Quantity (Reduce)
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
 </li>
       
         <li class="md-nav__item">
@@ -1198,16 +1259,23 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#example" class="md-nav__link">
-    Example
+  <a href="#deal" class="md-nav__link">
+    Deal
   </a>
   
-    <nav class="md-nav" aria-label="Example">
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#examples" class="md-nav__link">
+    Examples
+  </a>
+  
+    <nav class="md-nav" aria-label="Examples">
       <ul class="md-nav__list">
         
           <li class="md-nav__item">
-  <a href="#buy" class="md-nav__link">
-    Buy
+  <a href="#action" class="md-nav__link">
+    Action
   </a>
   
 </li>
@@ -1245,9 +1313,27 @@
 <p class="admonition-title">Reminder </p>
 <p>First, you need to <a href="../../login/">login</a> and <a href="../../prepare/terms/">activate CA</a>.</p>
 </div>
+<h3 id="futures-order">Futures Order<a class="headerlink" href="#futures-order" title="Permanent link">&para;</a></h3>
+<div class="admonition example">
+<p class="admonition-title">Order Attributes</p>
+<div class="highlight"><pre><span></span><code><span class="n">price</span> <span class="p">(</span><span class="nb">float</span> <span class="ow">or</span> <span class="nb">int</span><span class="p">):</span> <span class="n">the</span> <span class="n">price</span> <span class="n">of</span> <span class="n">order</span>
+<span class="n">quantity</span> <span class="p">(</span><span class="nb">int</span><span class="p">):</span> <span class="n">the</span> <span class="n">quantity</span> <span class="n">of</span> <span class="n">order</span>
+<span class="n">action</span> <span class="p">(</span><span class="nb">str</span><span class="p">):</span> <span class="n">order</span> <span class="n">action</span> <span class="n">to</span> <span class="n">buy</span> <span class="ow">or</span> <span class="n">sell</span>
+    <span class="p">{</span><span class="n">Buy</span><span class="p">,</span> <span class="n">Sell</span><span class="p">}</span>
+<span class="n">price_type</span> <span class="p">(</span><span class="nb">str</span><span class="p">):</span> <span class="n">pricing</span> <span class="nb">type</span> <span class="n">of</span> <span class="n">order</span>
+    <span class="p">{</span><span class="n">LMT</span><span class="p">,</span> <span class="n">MKT</span><span class="p">,</span> <span class="n">MKP</span><span class="p">}</span>
+<span class="n">order_type</span> <span class="p">(</span><span class="nb">str</span><span class="p">):</span> <span class="n">the</span> <span class="nb">type</span> <span class="n">of</span> <span class="n">order</span>
+    <span class="p">{</span><span class="n">ROD</span><span class="p">,</span> <span class="n">IOC</span><span class="p">,</span> <span class="n">FOK</span><span class="p">}</span>
+<span class="n">octype</span> <span class="p">(</span><span class="nb">str</span><span class="p">):</span> <span class="n">the</span> <span class="nb">type</span> <span class="ow">or</span> <span class="n">order</span> <span class="n">to</span> <span class="nb">open</span> <span class="n">new</span> <span class="n">position</span> <span class="ow">or</span> <span class="n">close</span> <span class="n">position</span> <span class="n">future</span> <span class="n">only</span>
+    <span class="p">{</span><span class="n">Auto</span><span class="p">,</span> <span class="n">New</span><span class="p">,</span> <span class="n">Cover</span><span class="p">,</span> <span class="n">DayTrade</span><span class="p">}</span> <span class="p">(</span><span class="n">自動</span><span class="err">、</span><span class="n">新倉</span><span class="err">、</span><span class="n">平倉</span><span class="err">、</span><span class="n">當沖</span><span class="p">)</span>
+<span class="n">account</span> <span class="p">(:</span><span class="n">obj</span><span class="p">:</span><span class="n">Account</span><span class="p">):</span> <span class="n">which</span> <span class="n">account</span> <span class="n">to</span> <span class="n">place</span> <span class="n">this</span> <span class="n">order</span>
+<span class="n">ca</span> <span class="p">(</span><span class="n">binary</span><span class="p">):</span> <span class="n">the</span> <span class="n">ca</span> <span class="n">of</span> <span class="n">this</span> <span class="n">order</span>
+</code></pre></div>
+</div>
 <h3 id="place-order">Place Order<a class="headerlink" href="#place-order" title="Permanent link">&para;</a></h3>
-<div class="admonition info">
-<p class="admonition-title">place_order</p>
+<p>Product information ( <code>contract</code>) and order information ( <code>order</code>) must be provided when placing an order.</p>
+<div class="admonition example">
+<p class="admonition-title">Place Order</p>
 <div class="highlight"><pre><span></span><code><span class="n">api</span><span class="o">.</span><span class="n">place_order</span><span class="err">?</span>
 
     <span class="n">Signature</span><span class="p">:</span>
@@ -1261,76 +1347,139 @@
     <span class="n">placing</span> <span class="n">order</span>
 </code></pre></div>
 </div>
-<p>Product information ( <code>contract</code>) and order information ( <code>order</code>) must be provided when placing an order.</p>
 <div class="admonition info">
-<p class="admonition-title">contract</p>
-<div class="highlight"><pre><span></span><code><span class="n">contract</span> <span class="o">=</span> <span class="n">api</span><span class="o">.</span><span class="n">Contracts</span><span class="o">.</span><span class="n">Futures</span><span class="o">.</span><span class="n">TXF</span><span class="o">.</span><span class="n">TXF202004</span>
+<p class="admonition-title">Contract</p>
+<div class="highlight"><pre><span></span><code><span class="n">contract</span> <span class="o">=</span> <span class="n">api</span><span class="o">.</span><span class="n">Contracts</span><span class="o">.</span><span class="n">Futures</span><span class="o">.</span><span class="n">TXF</span><span class="o">.</span><span class="n">TXF202301</span>
 </code></pre></div>
 </div>
 <div class="admonition info">
 <p class="admonition-title">Order</p>
-<div class="highlight"><pre><span></span><code><span class="n">order</span> <span class="o">=</span> <span class="n">api</span><span class="o">.</span><span class="n">Order</span><span class="p">(</span><span class="n">action</span><span class="o">=</span><span class="n">sj</span><span class="o">.</span><span class="n">constant</span><span class="o">.</span><span class="n">Action</span><span class="o">.</span><span class="n">Buy</span><span class="p">,</span>
-                  <span class="n">price</span><span class="o">=</span><span class="mi">10200</span><span class="p">,</span>
-                  <span class="n">quantity</span><span class="o">=</span><span class="mi">2</span><span class="p">,</span>
-                  <span class="n">price_type</span><span class="o">=</span><span class="n">sj</span><span class="o">.</span><span class="n">constant</span><span class="o">.</span><span class="n">StockPriceType</span><span class="o">.</span><span class="n">LMT</span><span class="p">,</span>
-                  <span class="n">order_type</span><span class="o">=</span><span class="n">sj</span><span class="o">.</span><span class="n">constant</span><span class="o">.</span><span class="n">OrderType</span><span class="o">.</span><span class="n">ROD</span><span class="p">,</span> 
-                  <span class="n">octype</span><span class="o">=</span><span class="n">sj</span><span class="o">.</span><span class="n">constant</span><span class="o">.</span><span class="n">FuturesOCType</span><span class="o">.</span><span class="n">Auto</span><span class="p">,</span>
-                  <span class="n">account</span><span class="o">=</span><span class="n">api</span><span class="o">.</span><span class="n">futopt_account</span><span class="p">)</span>
+<div class="tabbed-set tabbed-alternate" data-tabs="1:2"><input checked="checked" id="__tabbed_1_1" name="__tabbed_1" type="radio" /><input id="__tabbed_1_2" name="__tabbed_1" type="radio" /><div class="tabbed-labels"><label for="__tabbed_1_1">version&gt;=1.0</label><label for="__tabbed_1_2">version&lt;1.0</label></div>
+<div class="tabbed-content">
+<div class="tabbed-block">
+<div class="highlight"><pre><span></span><code><span class="n">order</span> <span class="o">=</span> <span class="n">api</span><span class="o">.</span><span class="n">Order</span><span class="p">(</span>
+    <span class="n">action</span><span class="o">=</span><span class="n">sj</span><span class="o">.</span><span class="n">constant</span><span class="o">.</span><span class="n">Action</span><span class="o">.</span><span class="n">Buy</span><span class="p">,</span>
+    <span class="n">price</span><span class="o">=</span><span class="mi">14400</span><span class="p">,</span>
+    <span class="n">quantity</span><span class="o">=</span><span class="mi">3</span><span class="p">,</span>
+    <span class="n">price_type</span><span class="o">=</span><span class="n">sj</span><span class="o">.</span><span class="n">constant</span><span class="o">.</span><span class="n">FuturesPriceType</span><span class="o">.</span><span class="n">LMT</span><span class="p">,</span>
+    <span class="n">order_type</span><span class="o">=</span><span class="n">sj</span><span class="o">.</span><span class="n">constant</span><span class="o">.</span><span class="n">OrderType</span><span class="o">.</span><span class="n">ROD</span><span class="p">,</span> 
+    <span class="n">octype</span><span class="o">=</span><span class="n">sj</span><span class="o">.</span><span class="n">constant</span><span class="o">.</span><span class="n">FuturesOCType</span><span class="o">.</span><span class="n">Auto</span><span class="p">,</span>
+    <span class="n">account</span><span class="o">=</span><span class="n">api</span><span class="o">.</span><span class="n">futopt_account</span>
+<span class="p">)</span>
 </code></pre></div>
 </div>
-<div class="admonition example">
-<p class="admonition-title">Attributes:</p>
-<div class="highlight"><pre><span></span><code><span class="n">price</span> <span class="p">(</span><span class="nb">float</span> <span class="ow">or</span> <span class="nb">int</span><span class="p">):</span> <span class="n">the</span> <span class="n">price</span> <span class="n">of</span> <span class="n">order</span>
-<span class="n">quantity</span> <span class="p">(</span><span class="nb">int</span><span class="p">):</span> <span class="n">the</span> <span class="n">quantity</span> <span class="n">of</span> <span class="n">order</span>
-<span class="n">action</span> <span class="p">(</span><span class="nb">str</span><span class="p">):</span> <span class="n">order</span> <span class="n">action</span> <span class="n">to</span> <span class="n">buy</span> <span class="ow">or</span> <span class="n">sell</span>
-    <span class="p">{</span><span class="n">Buy</span><span class="p">,</span> <span class="n">Sell</span><span class="p">}</span>
-<span class="n">price_type</span> <span class="p">(</span><span class="nb">str</span><span class="p">):</span> <span class="n">pricing</span> <span class="nb">type</span> <span class="n">of</span> <span class="n">order</span>
-    <span class="p">{</span><span class="n">LMT</span><span class="p">,</span> <span class="n">MKT</span><span class="p">,</span> <span class="n">MKP</span><span class="p">}</span> <span class="p">(</span><span class="n">限價</span><span class="err">、</span><span class="n">市價</span><span class="err">、</span><span class="n">範圍市價</span><span class="p">)</span>
-<span class="n">order_type</span> <span class="p">(</span><span class="nb">str</span><span class="p">):</span> <span class="n">the</span> <span class="nb">type</span> <span class="n">of</span> <span class="n">order</span>
-    <span class="p">{</span><span class="n">ROD</span><span class="p">,</span> <span class="n">IOC</span><span class="p">,</span> <span class="n">FOK</span><span class="p">}</span>
-<span class="n">octype</span> <span class="p">(</span><span class="nb">str</span><span class="p">):</span> <span class="n">the</span> <span class="nb">type</span> <span class="ow">or</span> <span class="n">order</span> <span class="n">to</span> <span class="nb">open</span> <span class="n">new</span> <span class="n">position</span> <span class="ow">or</span> <span class="n">close</span> <span class="n">position</span> <span class="n">future</span> <span class="n">only</span>
-    <span class="p">{</span><span class="n">Auto</span><span class="p">,</span> <span class="n">New</span><span class="p">,</span> <span class="n">Cover</span><span class="p">,</span> <span class="n">DayTrade</span><span class="p">}</span> <span class="p">(</span><span class="n">自動</span><span class="err">、</span><span class="n">新倉</span><span class="err">、</span><span class="n">平倉</span><span class="err">、</span><span class="n">當沖</span><span class="p">)</span>
-<span class="n">account</span> <span class="p">(:</span><span class="n">obj</span><span class="p">:</span><span class="n">Account</span><span class="p">):</span> <span class="n">which</span> <span class="n">account</span> <span class="n">to</span> <span class="n">place</span> <span class="n">this</span> <span class="n">order</span>
-<span class="n">ca</span> <span class="p">(</span><span class="n">binary</span><span class="p">):</span> <span class="n">the</span> <span class="n">ca</span> <span class="n">of</span> <span class="n">this</span> <span class="n">order</span>
+<div class="tabbed-block">
+<div class="highlight"><pre><span></span><code><span class="n">order</span> <span class="o">=</span> <span class="n">api</span><span class="o">.</span><span class="n">Order</span><span class="p">(</span>
+    <span class="n">action</span><span class="o">=</span><span class="n">sj</span><span class="o">.</span><span class="n">constant</span><span class="o">.</span><span class="n">Action</span><span class="o">.</span><span class="n">Buy</span><span class="p">,</span>
+    <span class="n">price</span><span class="o">=</span><span class="mi">14400</span><span class="p">,</span>
+    <span class="n">quantity</span><span class="o">=</span><span class="mi">3</span><span class="p">,</span>
+    <span class="n">price_type</span><span class="o">=</span><span class="n">sj</span><span class="o">.</span><span class="n">constant</span><span class="o">.</span><span class="n">FuturesPriceType</span><span class="o">.</span><span class="n">LMT</span><span class="p">,</span>
+    <span class="n">order_type</span><span class="o">=</span><span class="n">sj</span><span class="o">.</span><span class="n">constant</span><span class="o">.</span><span class="n">FuturesOrderType</span><span class="o">.</span><span class="n">ROD</span><span class="p">,</span> 
+    <span class="n">octype</span><span class="o">=</span><span class="n">sj</span><span class="o">.</span><span class="n">constant</span><span class="o">.</span><span class="n">FuturesOCType</span><span class="o">.</span><span class="n">Auto</span><span class="p">,</span>
+    <span class="n">account</span><span class="o">=</span><span class="n">api</span><span class="o">.</span><span class="n">futopt_account</span>
+<span class="p">)</span>
 </code></pre></div>
+</div>
+</div>
+</div>
 </div>
 <div class="admonition info">
-<p class="admonition-title">In</p>
+<p class="admonition-title">Place Order</p>
 <div class="highlight"><pre><span></span><code><span class="n">trade</span> <span class="o">=</span> <span class="n">api</span><span class="o">.</span><span class="n">place_order</span><span class="p">(</span><span class="n">contract</span><span class="p">,</span> <span class="n">order</span><span class="p">)</span>
+<span class="n">trade</span>
 </code></pre></div>
 </div>
 <div class="admonition done">
 <p class="admonition-title">Out</p>
 <div class="highlight"><pre><span></span><code><span class="n">Trade</span><span class="p">(</span>
     <span class="n">contract</span><span class="o">=</span><span class="n">Future</span><span class="p">(</span>
-        <span class="n">code</span><span class="o">=</span><span class="s1">&#39;TXFD0&#39;</span><span class="p">,</span> 
-        <span class="n">symbol</span><span class="o">=</span><span class="s1">&#39;TXF202004&#39;</span><span class="p">,</span>
-        <span class="n">name</span><span class="o">=</span><span class="s1">&#39;臺股期貨&#39;</span><span class="p">,</span> 
+        <span class="n">code</span><span class="o">=</span><span class="s1">&#39;TXFA3&#39;</span><span class="p">,</span> 
+        <span class="n">symbol</span><span class="o">=</span><span class="s1">&#39;TXF202301&#39;</span><span class="p">,</span> 
+        <span class="n">name</span><span class="o">=</span><span class="s1">&#39;臺股期貨01&#39;</span><span class="p">,</span> 
         <span class="n">category</span><span class="o">=</span><span class="s1">&#39;TXF&#39;</span><span class="p">,</span> 
-        <span class="n">delivery_month</span><span class="o">=</span><span class="s1">&#39;202004&#39;</span><span class="p">,</span> 
-        <span class="n">underlying_kind</span><span class="o">=</span><span class="s1">&#39;I&#39;</span>
+        <span class="n">delivery_month</span><span class="o">=</span><span class="s1">&#39;202301&#39;</span><span class="p">,</span> 
+        <span class="n">delivery_date</span><span class="o">=</span><span class="s1">&#39;2023/01/30&#39;</span><span class="p">,</span> 
+        <span class="n">underlying_kind</span><span class="o">=</span><span class="s1">&#39;I&#39;</span><span class="p">,</span> 
+        <span class="n">unit</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span> 
+        <span class="n">limit_up</span><span class="o">=</span><span class="mf">16270.0</span><span class="p">,</span> 
+        <span class="n">limit_down</span><span class="o">=</span><span class="mf">13312.0</span><span class="p">,</span> 
+        <span class="n">reference</span><span class="o">=</span><span class="mf">14791.0</span><span class="p">,</span> 
+        <span class="n">update_date</span><span class="o">=</span><span class="s1">&#39;2023/01/12&#39;</span>
     <span class="p">),</span> 
     <span class="n">order</span><span class="o">=</span><span class="n">Order</span><span class="p">(</span>
         <span class="n">action</span><span class="o">=&lt;</span><span class="n">Action</span><span class="o">.</span><span class="n">Buy</span><span class="p">:</span> <span class="s1">&#39;Buy&#39;</span><span class="o">&gt;</span><span class="p">,</span> 
-        <span class="n">price</span><span class="o">=</span><span class="mf">10200.0</span><span class="p">,</span> 
-        <span class="n">quantity</span><span class="o">=</span><span class="mi">2</span><span class="p">,</span> 
-        <span class="nb">id</span><span class="o">=</span><span class="s1">&#39;f691f576&#39;</span><span class="p">,</span> 
-        <span class="n">seqno</span><span class="o">=</span><span class="s1">&#39;862631&#39;</span><span class="p">,</span> 
-        <span class="n">account</span><span class="o">=</span><span class="n">Account</span><span class="p">(</span>
-            <span class="n">account_type</span><span class="o">=&lt;</span><span class="n">AccountType</span><span class="o">.</span><span class="n">Stock</span><span class="p">:</span> <span class="s1">&#39;F&#39;</span><span class="o">&gt;</span><span class="p">,</span> 
-            <span class="n">person_id</span><span class="o">=</span><span class="s1">&#39;RBCCJCBIGB&#39;</span><span class="p">,</span> 
-            <span class="n">broker_id</span><span class="o">=</span><span class="s1">&#39;9A95&#39;</span><span class="p">,</span> 
-            <span class="n">account_id</span><span class="o">=</span><span class="s1">&#39;9809975&#39;</span><span class="p">,</span> 
+        <span class="n">price</span><span class="o">=</span><span class="mi">14400</span><span class="p">,</span> 
+        <span class="n">quantity</span><span class="o">=</span><span class="mi">3</span><span class="p">,</span> 
+<span class="hll">        <span class="nb">id</span><span class="o">=</span><span class="s1">&#39;5efffde1&#39;</span><span class="p">,</span> 
+</span><span class="hll">        <span class="n">seqno</span><span class="o">=</span><span class="s1">&#39;000004&#39;</span><span class="p">,</span> 
+</span><span class="hll">        <span class="n">ordno</span><span class="o">=</span><span class="s1">&#39;000003&#39;</span><span class="p">,</span> 
+</span>        <span class="n">account</span><span class="o">=</span><span class="n">Account</span><span class="p">(</span>
+            <span class="n">account_type</span><span class="o">=&lt;</span><span class="n">AccountType</span><span class="o">.</span><span class="n">Future</span><span class="p">:</span> <span class="s1">&#39;F&#39;</span><span class="o">&gt;</span><span class="p">,</span>
+            <span class="n">person_id</span><span class="o">=</span><span class="s1">&#39;A123456789&#39;</span><span class="p">,</span> 
+            <span class="n">broker_id</span><span class="o">=</span><span class="s1">&#39;F002000&#39;</span><span class="p">,</span> 
+            <span class="n">account_id</span><span class="o">=</span><span class="s1">&#39;1234567&#39;</span><span class="p">,</span> 
             <span class="n">signed</span><span class="o">=</span><span class="kc">True</span>
         <span class="p">),</span> 
         <span class="n">price_type</span><span class="o">=&lt;</span><span class="n">StockPriceType</span><span class="o">.</span><span class="n">LMT</span><span class="p">:</span> <span class="s1">&#39;LMT&#39;</span><span class="o">&gt;</span><span class="p">,</span> 
         <span class="n">order_type</span><span class="o">=&lt;</span><span class="n">OrderType</span><span class="o">.</span><span class="n">ROD</span><span class="p">:</span> <span class="s1">&#39;ROD&#39;</span><span class="o">&gt;</span>
     <span class="p">),</span> 
     <span class="n">status</span><span class="o">=</span><span class="n">OrderStatus</span><span class="p">(</span>
-        <span class="nb">id</span><span class="o">=</span><span class="s1">&#39;f691f576&#39;</span><span class="p">,</span> 
-        <span class="n">status</span><span class="o">=&lt;</span><span class="n">Status</span><span class="o">.</span><span class="n">PendingSubmit</span><span class="p">:</span> <span class="s1">&#39;PendingSubmit&#39;</span><span class="o">&gt;</span><span class="p">,</span> 
-        <span class="n">status_code</span><span class="o">=</span><span class="s1">&#39;    &#39;</span><span class="p">,</span> 
-        <span class="n">order_datetime</span><span class="o">=</span><span class="n">datetime</span><span class="o">.</span><span class="n">datetime</span><span class="p">(</span><span class="mi">2020</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="mi">5</span><span class="p">,</span> <span class="mi">10</span><span class="p">,</span> <span class="mi">24</span><span class="p">,</span> <span class="mi">13</span><span class="p">),</span> 
+<span class="hll">        <span class="nb">id</span><span class="o">=</span><span class="s1">&#39;5efffde1&#39;</span><span class="p">,</span> 
+</span><span class="hll">        <span class="n">status</span><span class="o">=&lt;</span><span class="n">Status</span><span class="o">.</span><span class="n">PendingSubmit</span><span class="p">:</span> <span class="s1">&#39;PendingSubmit&#39;</span><span class="o">&gt;</span><span class="p">,</span> 
+</span>        <span class="n">status_code</span><span class="o">=</span><span class="s1">&#39;00&#39;</span><span class="p">,</span> 
+        <span class="n">order_datetime</span><span class="o">=</span><span class="n">datetime</span><span class="o">.</span><span class="n">datetime</span><span class="p">(</span><span class="mi">2023</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">12</span><span class="p">,</span> <span class="mi">14</span><span class="p">,</span> <span class="mi">56</span><span class="p">,</span> <span class="mi">13</span><span class="p">,</span> <span class="mi">995651</span><span class="p">),</span> 
+        <span class="n">deals</span><span class="o">=</span><span class="p">[]</span>
+    <span class="p">)</span>
+<span class="p">)</span>
+</code></pre></div>
+</div>
+<p>After <code>place_order</code>, you will also receive the information sent back from the exchange. For details, please refer to <a href="../order_deal_event/stocks/">Order &amp; Deal Event</a>.</p>
+<p>To update the <code>trade</code> status, you need to call <code>update_status</code>.</p>
+<div class="admonition info">
+<p class="admonition-title">Update Status</p>
+<div class="highlight"><pre><span></span><code><span class="n">api</span><span class="o">.</span><span class="n">update_status</span><span class="p">(</span><span class="n">api</span><span class="o">.</span><span class="n">futopt_account</span><span class="p">)</span>
+<span class="n">trade</span>
+</code></pre></div>
+</div>
+<div class="admonition done">
+<p class="admonition-title">Out</p>
+<div class="highlight"><pre><span></span><code><span class="n">Trade</span><span class="p">(</span>
+    <span class="n">contract</span><span class="o">=</span><span class="n">Future</span><span class="p">(</span>
+        <span class="n">code</span><span class="o">=</span><span class="s1">&#39;TXFA3&#39;</span><span class="p">,</span> 
+        <span class="n">symbol</span><span class="o">=</span><span class="s1">&#39;TXF202301&#39;</span><span class="p">,</span> 
+        <span class="n">name</span><span class="o">=</span><span class="s1">&#39;臺股期貨01&#39;</span><span class="p">,</span> 
+        <span class="n">category</span><span class="o">=</span><span class="s1">&#39;TXF&#39;</span><span class="p">,</span> 
+        <span class="n">delivery_month</span><span class="o">=</span><span class="s1">&#39;202301&#39;</span><span class="p">,</span> 
+        <span class="n">delivery_date</span><span class="o">=</span><span class="s1">&#39;2023/01/30&#39;</span><span class="p">,</span> 
+        <span class="n">underlying_kind</span><span class="o">=</span><span class="s1">&#39;I&#39;</span><span class="p">,</span> 
+        <span class="n">unit</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span> 
+        <span class="n">limit_up</span><span class="o">=</span><span class="mf">16270.0</span><span class="p">,</span> 
+        <span class="n">limit_down</span><span class="o">=</span><span class="mf">13312.0</span><span class="p">,</span> 
+        <span class="n">reference</span><span class="o">=</span><span class="mf">14791.0</span><span class="p">,</span> 
+        <span class="n">update_date</span><span class="o">=</span><span class="s1">&#39;2023/01/12&#39;</span>
+    <span class="p">),</span> 
+    <span class="n">order</span><span class="o">=</span><span class="n">Order</span><span class="p">(</span>
+        <span class="n">action</span><span class="o">=&lt;</span><span class="n">Action</span><span class="o">.</span><span class="n">Buy</span><span class="p">:</span> <span class="s1">&#39;Buy&#39;</span><span class="o">&gt;</span><span class="p">,</span> 
+        <span class="n">price</span><span class="o">=</span><span class="mi">14400</span><span class="p">,</span> 
+        <span class="n">quantity</span><span class="o">=</span><span class="mi">3</span><span class="p">,</span> 
+        <span class="nb">id</span><span class="o">=</span><span class="s1">&#39;5efffde1&#39;</span><span class="p">,</span> 
+        <span class="n">seqno</span><span class="o">=</span><span class="s1">&#39;000004&#39;</span><span class="p">,</span> 
+        <span class="n">ordno</span><span class="o">=</span><span class="s1">&#39;000003&#39;</span><span class="p">,</span> 
+        <span class="n">account</span><span class="o">=</span><span class="n">Account</span><span class="p">(</span>
+            <span class="n">account_type</span><span class="o">=&lt;</span><span class="n">AccountType</span><span class="o">.</span><span class="n">Future</span><span class="p">:</span> <span class="s1">&#39;F&#39;</span><span class="o">&gt;</span><span class="p">,</span>
+            <span class="n">person_id</span><span class="o">=</span><span class="s1">&#39;A123456789&#39;</span><span class="p">,</span> 
+            <span class="n">broker_id</span><span class="o">=</span><span class="s1">&#39;F002000&#39;</span><span class="p">,</span> 
+            <span class="n">account_id</span><span class="o">=</span><span class="s1">&#39;1234567&#39;</span><span class="p">,</span> 
+            <span class="n">signed</span><span class="o">=</span><span class="kc">True</span>
+        <span class="p">),</span> 
+        <span class="n">price_type</span><span class="o">=&lt;</span><span class="n">StockPriceType</span><span class="o">.</span><span class="n">LMT</span><span class="p">:</span> <span class="s1">&#39;LMT&#39;</span><span class="o">&gt;</span><span class="p">,</span> 
+        <span class="n">order_type</span><span class="o">=&lt;</span><span class="n">OrderType</span><span class="o">.</span><span class="n">ROD</span><span class="p">:</span> <span class="s1">&#39;ROD&#39;</span><span class="o">&gt;</span>
+    <span class="p">),</span> 
+    <span class="n">status</span><span class="o">=</span><span class="n">OrderStatus</span><span class="p">(</span>
+        <span class="nb">id</span><span class="o">=</span><span class="s1">&#39;5efffde1&#39;</span><span class="p">,</span> 
+<span class="hll">        <span class="n">status</span><span class="o">=&lt;</span><span class="n">Status</span><span class="o">.</span><span class="n">Submitted</span><span class="p">:</span> <span class="s1">&#39;Submitted&#39;</span><span class="o">&gt;</span><span class="p">,</span>
+</span>        <span class="n">status_code</span><span class="o">=</span><span class="s1">&#39;00&#39;</span><span class="p">,</span> 
+        <span class="n">order_datetime</span><span class="o">=</span><span class="n">datetime</span><span class="o">.</span><span class="n">datetime</span><span class="p">(</span><span class="mi">2023</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">12</span><span class="p">,</span> <span class="mi">14</span><span class="p">,</span> <span class="mi">56</span><span class="p">,</span> <span class="mi">13</span><span class="p">,</span> <span class="mi">995651</span><span class="p">),</span> 
         <span class="n">deals</span><span class="o">=</span><span class="p">[]</span>
     <span class="p">)</span>
 <span class="p">)</span>
@@ -1348,11 +1497,9 @@
 <li><code>Filling</code>: Part Fill</li>
 </ul>
 </div>
-<p>After <code>place_order</code>, you will also receive the information sent back from the exchange. For details, please refer to <a href="../order_deal_event/stocks/">Order &amp; Deal Event</a>.</p>
 <h3 id="update-order">Update Order<a class="headerlink" href="#update-order" title="Permanent link">&para;</a></h3>
-<p>When the transaction is not completed, the order status of the uncompleted part can be changed. The change order includes price change and quantity change. For price change, <code>price</code> is set to the pre-modified price, and for quantity change, <code>qty</code> is set to the pre-deleted quantity.</p>
-<div class="admonition info">
-<p class="admonition-title">update_order</p>
+<div class="admonition example">
+<p class="admonition-title">Update Order</p>
 <div class="highlight"><pre><span></span><code><span class="n">api</span><span class="o">.</span><span class="n">update_order</span><span class="err">?</span>
 
     <span class="n">Signature</span><span class="p">:</span>
@@ -1366,125 +1513,11 @@
     <span class="n">Docstring</span><span class="p">:</span> <span class="n">update</span> <span class="n">the</span> <span class="n">order</span> <span class="n">price</span> <span class="ow">or</span> <span class="n">qty</span>
 </code></pre></div>
 </div>
-<p><code>Trade</code> is the order to be modified, which can be obtained from the <a href="../UpdateStatus/"><code>update_status</code></a>.</p>
+<h4 id="update-price">Update Price<a class="headerlink" href="#update-price" title="Permanent link">&para;</a></h4>
 <div class="admonition info">
-<p class="admonition-title">In</p>
-<div class="highlight"><pre><span></span><code><span class="n">api</span><span class="o">.</span><span class="n">update_order</span><span class="p">(</span><span class="n">trade</span><span class="o">=</span><span class="n">trade</span><span class="p">,</span> <span class="n">price</span><span class="o">=</span><span class="mi">10200</span><span class="p">,</span> <span class="n">qty</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
-</code></pre></div>
-</div>
-<div class="admonition done">
-<p class="admonition-title">Out</p>
-<div class="highlight"><pre><span></span><code><span class="n">Trade</span><span class="p">(</span>
-    <span class="n">contract</span><span class="o">=</span><span class="n">Future</span><span class="p">(</span>
-        <span class="n">code</span><span class="o">=</span><span class="s1">&#39;TXFD0&#39;</span><span class="p">,</span>
-        <span class="n">symbol</span><span class="o">=</span><span class="s1">&#39;TXF202004&#39;</span><span class="p">,</span> 
-        <span class="n">name</span><span class="o">=</span><span class="s1">&#39;臺股期貨&#39;</span><span class="p">,</span> 
-        <span class="n">category</span><span class="o">=</span><span class="s1">&#39;TXF&#39;</span><span class="p">,</span> 
-        <span class="n">delivery_month</span><span class="o">=</span><span class="s1">&#39;202004&#39;</span><span class="p">,</span> 
-        <span class="n">underlying_kind</span><span class="o">=</span><span class="s1">&#39;I&#39;</span>
-    <span class="p">),</span> 
-    <span class="n">order</span><span class="o">=</span><span class="n">Order</span><span class="p">(</span>
-        <span class="n">action</span><span class="o">=&lt;</span><span class="n">Action</span><span class="o">.</span><span class="n">Buy</span><span class="p">:</span> <span class="s1">&#39;Buy&#39;</span><span class="o">&gt;</span><span class="p">,</span> 
-        <span class="n">price</span><span class="o">=</span><span class="mf">10200.0</span><span class="p">,</span> 
-        <span class="n">quantity</span><span class="o">=</span><span class="mi">2</span><span class="p">,</span> 
-        <span class="nb">id</span><span class="o">=</span><span class="s1">&#39;f691f576&#39;</span><span class="p">,</span> 
-        <span class="n">seqno</span><span class="o">=</span><span class="s1">&#39;862631&#39;</span><span class="p">,</span> 
-        <span class="n">ordno</span><span class="o">=</span><span class="s1">&#39;ta0FG&#39;</span><span class="p">,</span> 
-        <span class="n">account</span><span class="o">=</span><span class="n">Account</span><span class="p">(</span>
-            <span class="n">account_type</span><span class="o">=&lt;</span><span class="n">AccountType</span><span class="o">.</span><span class="n">Stock</span><span class="p">:</span> <span class="s1">&#39;F&#39;</span><span class="o">&gt;</span><span class="p">,</span> 
-            <span class="n">person_id</span><span class="o">=</span><span class="s1">&#39;RBCCJCBIGB&#39;</span><span class="p">,</span> 
-            <span class="n">broker_id</span><span class="o">=</span><span class="s1">&#39;9A95&#39;</span><span class="p">,</span> 
-            <span class="n">account_id</span><span class="o">=</span><span class="s1">&#39;9809975&#39;</span><span class="p">,</span> 
-            <span class="n">signed</span><span class="o">=</span><span class="kc">True</span>
-        <span class="p">),</span> 
-        <span class="n">price_type</span><span class="o">=&lt;</span><span class="n">StockPriceType</span><span class="o">.</span><span class="n">LMT</span><span class="p">:</span> <span class="s1">&#39;LMT&#39;</span><span class="o">&gt;</span><span class="p">,</span> 
-        <span class="n">order_type</span><span class="o">=&lt;</span><span class="n">OrderType</span><span class="o">.</span><span class="n">ROD</span><span class="p">:</span> <span class="s1">&#39;ROD&#39;</span><span class="o">&gt;</span>
-    <span class="p">),</span> 
-    <span class="n">status</span><span class="o">=</span><span class="n">OrderStatus</span><span class="p">(</span>
-        <span class="nb">id</span><span class="o">=</span><span class="s1">&#39;f691f576&#39;</span><span class="p">,</span> 
-        <span class="n">status</span><span class="o">=&lt;</span><span class="n">Status</span><span class="o">.</span><span class="n">Submitted</span><span class="p">:</span> <span class="s1">&#39;Submitted&#39;</span><span class="o">&gt;</span><span class="p">,</span> 
-        <span class="n">status_code</span><span class="o">=</span><span class="s1">&#39;0000&#39;</span><span class="p">,</span> 
-        <span class="n">order_datetime</span><span class="o">=</span><span class="n">datetime</span><span class="o">.</span><span class="n">datetime</span><span class="p">(</span><span class="mi">2020</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="mi">5</span><span class="p">,</span> <span class="mi">10</span><span class="p">,</span> <span class="mi">24</span><span class="p">,</span> <span class="mi">15</span><span class="p">),</span> 
-        <span class="n">modified_price</span><span class="o">=</span><span class="mf">10200.0</span><span class="p">,</span> 
-        <span class="n">cancel_quantity</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span>
-        <span class="n">deals</span><span class="o">=</span><span class="p">[]</span>
-    <span class="p">)</span>
-<span class="p">)</span>
-</code></pre></div>
-</div>
-<h3 id="cancel-order">Cancel Order<a class="headerlink" href="#cancel-order" title="Permanent link">&para;</a></h3>
-<p><code>Trade</code> is the order to be modified, which can be obtained from the <a href="../UpdateStatus/"><code>update_status</code></a>.</p>
-<div class="admonition info">
-<p class="admonition-title">In</p>
-<div class="highlight"><pre><span></span><code><span class="n">api</span><span class="o">.</span><span class="n">cancel_order</span><span class="p">(</span><span class="n">trade</span><span class="p">)</span>
-</code></pre></div>
-</div>
-<div class="admonition done">
-<p class="admonition-title">Out</p>
-<div class="highlight"><pre><span></span><code><span class="n">Trade</span><span class="p">(</span>
-    <span class="n">contract</span><span class="o">=</span><span class="n">Future</span><span class="p">(</span>
-        <span class="n">code</span><span class="o">=</span><span class="s1">&#39;TXFD0&#39;</span><span class="p">,</span> 
-        <span class="n">symbol</span><span class="o">=</span><span class="s1">&#39;TXF202004&#39;</span><span class="p">,</span> 
-        <span class="n">name</span><span class="o">=</span><span class="s1">&#39;臺股期貨&#39;</span><span class="p">,</span> 
-        <span class="n">category</span><span class="o">=</span><span class="s1">&#39;TXF&#39;</span><span class="p">,</span> 
-        <span class="n">delivery_month</span><span class="o">=</span><span class="s1">&#39;202004&#39;</span><span class="p">,</span> 
-        <span class="n">underlying_kind</span><span class="o">=</span><span class="s1">&#39;I&#39;</span>
-    <span class="p">),</span> 
-    <span class="n">order</span><span class="o">=</span><span class="n">Order</span><span class="p">(</span>
-        <span class="n">action</span><span class="o">=&lt;</span><span class="n">Action</span><span class="o">.</span><span class="n">Buy</span><span class="p">:</span> <span class="s1">&#39;Buy&#39;</span><span class="o">&gt;</span><span class="p">,</span> 
-        <span class="n">price</span><span class="o">=</span><span class="mf">10200.0</span><span class="p">,</span> 
-        <span class="n">quantity</span><span class="o">=</span><span class="mi">2</span><span class="p">,</span> 
-        <span class="nb">id</span><span class="o">=</span><span class="s1">&#39;f691f576&#39;</span><span class="p">,</span> 
-        <span class="n">seqno</span><span class="o">=</span><span class="s1">&#39;862631&#39;</span><span class="p">,</span> 
-        <span class="n">ordno</span><span class="o">=</span><span class="s1">&#39;ta0FG&#39;</span><span class="p">,</span> 
-        <span class="n">account</span><span class="o">=</span><span class="n">Account</span><span class="p">(</span>
-            <span class="n">account_type</span><span class="o">=&lt;</span><span class="n">AccountType</span><span class="o">.</span><span class="n">Stock</span><span class="p">:</span> <span class="s1">&#39;F&#39;</span><span class="o">&gt;</span><span class="p">,</span> 
-            <span class="n">person_id</span><span class="o">=</span><span class="s1">&#39;RBCCJCBIGB&#39;</span><span class="p">,</span> 
-            <span class="n">broker_id</span><span class="o">=</span><span class="s1">&#39;9A95&#39;</span><span class="p">,</span> 
-            <span class="n">account_id</span><span class="o">=</span><span class="s1">&#39;9809975&#39;</span><span class="p">,</span> 
-            <span class="n">signed</span><span class="o">=</span><span class="kc">True</span>
-        <span class="p">),</span> 
-        <span class="n">price_type</span><span class="o">=&lt;</span><span class="n">StockPriceType</span><span class="o">.</span><span class="n">LMT</span><span class="p">:</span> <span class="s1">&#39;LMT&#39;</span><span class="o">&gt;</span><span class="p">,</span> 
-        <span class="n">order_type</span><span class="o">=&lt;</span><span class="n">OrderType</span><span class="o">.</span><span class="n">ROD</span><span class="p">:</span> <span class="s1">&#39;ROD&#39;</span><span class="o">&gt;</span>
-    <span class="p">),</span> 
-    <span class="n">status</span><span class="o">=</span><span class="n">OrderStatus</span><span class="p">(</span>
-        <span class="nb">id</span><span class="o">=</span><span class="s1">&#39;f691f576&#39;</span><span class="p">,</span> 
-        <span class="n">status</span><span class="o">=&lt;</span><span class="n">Status</span><span class="o">.</span><span class="n">Submitted</span><span class="p">:</span> <span class="s1">&#39;Submitted&#39;</span><span class="o">&gt;</span><span class="p">,</span> 
-        <span class="n">status_code</span><span class="o">=</span><span class="s1">&#39;0000&#39;</span><span class="p">,</span> 
-        <span class="n">order_datetime</span><span class="o">=</span><span class="n">datetime</span><span class="o">.</span><span class="n">datetime</span><span class="p">(</span><span class="mi">2020</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="mi">5</span><span class="p">,</span> <span class="mi">10</span><span class="p">,</span> <span class="mi">24</span><span class="p">,</span> <span class="mi">15</span><span class="p">),</span> 
-        <span class="n">modified_price</span><span class="o">=</span><span class="mf">10200.0</span><span class="p">,</span> 
-        <span class="n">cancel_quantity</span><span class="o">=</span><span class="mi">2</span><span class="p">,</span> 
-        <span class="n">deals</span><span class="o">=</span><span class="p">[]</span>
-    <span class="p">)</span>
-<span class="p">)</span>
-</code></pre></div>
-</div>
-<h2 id="example">Example<a class="headerlink" href="#example" title="Permanent link">&para;</a></h2>
-<p><a href="https://nbviewer.jupyter.org/github/Sinotrade/Sinotrade.github.io/blob/master/tutorial/future_and_option.ipynb">Future and Option place order jupyter link</a></p>
-<h3 id="buy">Buy<a class="headerlink" href="#buy" title="Permanent link">&para;</a></h3>
-<div class="admonition info">
-<p class="admonition-title">In</p>
-<div class="highlight"><pre><span></span><code><span class="hll"><span class="n">order</span> <span class="o">=</span> <span class="n">api</span><span class="o">.</span><span class="n">Order</span><span class="p">(</span><span class="n">action</span><span class="o">=</span><span class="n">sj</span><span class="o">.</span><span class="n">constant</span><span class="o">.</span><span class="n">Action</span><span class="o">.</span><span class="n">Buy</span><span class="p">,</span>
-</span>                  <span class="n">price</span><span class="o">=</span><span class="mi">10200</span><span class="p">,</span>
-                  <span class="n">quantity</span><span class="o">=</span><span class="mi">2</span><span class="p">,</span>
-                  <span class="n">price_type</span><span class="o">=</span><span class="n">sj</span><span class="o">.</span><span class="n">constant</span><span class="o">.</span><span class="n">StockPriceType</span><span class="o">.</span><span class="n">LMT</span><span class="p">,</span>
-                  <span class="n">order_type</span><span class="o">=</span><span class="n">sj</span><span class="o">.</span><span class="n">constant</span><span class="o">.</span><span class="n">OrderType</span><span class="o">.</span><span class="n">ROD</span><span class="p">,</span> 
-                  <span class="n">octype</span><span class="o">=</span><span class="n">sj</span><span class="o">.</span><span class="n">constant</span><span class="o">.</span><span class="n">FuturesOCType</span><span class="o">.</span><span class="n">Auto</span><span class="p">,</span>
-                  <span class="n">account</span><span class="o">=</span><span class="n">api</span><span class="o">.</span><span class="n">futopt_account</span><span class="p">)</span>
-</code></pre></div>
-</div>
-<h3 id="rod-lmt">ROD + LMT<a class="headerlink" href="#rod-lmt" title="Permanent link">&para;</a></h3>
-<div class="admonition info">
-<p class="admonition-title">In</p>
-<div class="highlight"><pre><span></span><code><span class="n">contract</span> <span class="o">=</span> <span class="n">api</span><span class="o">.</span><span class="n">Contracts</span><span class="o">.</span><span class="n">Futures</span><span class="o">.</span><span class="n">TXF</span><span class="o">.</span><span class="n">TXF202004</span>
-<span class="n">order</span> <span class="o">=</span> <span class="n">api</span><span class="o">.</span><span class="n">Order</span><span class="p">(</span><span class="n">action</span><span class="o">=</span><span class="n">sj</span><span class="o">.</span><span class="n">constant</span><span class="o">.</span><span class="n">Action</span><span class="o">.</span><span class="n">Buy</span><span class="p">,</span>
-                    <span class="n">price</span><span class="o">=</span><span class="mi">10200</span><span class="p">,</span>
-                    <span class="n">quantity</span><span class="o">=</span><span class="mi">2</span><span class="p">,</span>
-<span class="hll">                    <span class="n">price_type</span><span class="o">=</span><span class="n">sj</span><span class="o">.</span><span class="n">constant</span><span class="o">.</span><span class="n">StockPriceType</span><span class="o">.</span><span class="n">LMT</span><span class="p">,</span>
-</span><span class="hll">                    <span class="n">order_type</span><span class="o">=</span><span class="n">sj</span><span class="o">.</span><span class="n">constant</span><span class="o">.</span><span class="n">OrderType</span><span class="o">.</span><span class="n">ROD</span><span class="p">,</span>  
-</span>                    <span class="n">octype</span><span class="o">=</span><span class="n">sj</span><span class="o">.</span><span class="n">constant</span><span class="o">.</span><span class="n">FuturesOCType</span><span class="o">.</span><span class="n">Auto</span><span class="p">,</span>
-                    <span class="n">account</span><span class="o">=</span><span class="n">api</span><span class="o">.</span><span class="n">futopt_account</span><span class="p">)</span>
-<span class="n">trade</span> <span class="o">=</span> <span class="n">api</span><span class="o">.</span><span class="n">place_order</span><span class="p">(</span><span class="n">contract</span><span class="p">,</span> <span class="n">order</span><span class="p">)</span>
+<p class="admonition-title">Update Price</p>
+<div class="highlight"><pre><span></span><code><span class="n">api</span><span class="o">.</span><span class="n">update_order</span><span class="p">(</span><span class="n">trade</span><span class="o">=</span><span class="n">trade</span><span class="p">,</span> <span class="n">price</span><span class="o">=</span><span class="mi">14450</span><span class="p">)</span>
+<span class="n">api</span><span class="o">.</span><span class="n">update_status</span><span class="p">(</span><span class="n">api</span><span class="o">.</span><span class="n">futopt_account</span><span class="p">)</span>
 <span class="n">trade</span>
 </code></pre></div>
 </div>
@@ -1492,36 +1525,251 @@
 <p class="admonition-title">Out</p>
 <div class="highlight"><pre><span></span><code><span class="n">Trade</span><span class="p">(</span>
     <span class="n">contract</span><span class="o">=</span><span class="n">Future</span><span class="p">(</span>
-        <span class="n">code</span><span class="o">=</span><span class="s1">&#39;TXFD0&#39;</span><span class="p">,</span> 
-        <span class="n">symbol</span><span class="o">=</span><span class="s1">&#39;TXF202004&#39;</span><span class="p">,</span>
-        <span class="n">name</span><span class="o">=</span><span class="s1">&#39;臺股期貨&#39;</span><span class="p">,</span> 
+        <span class="n">code</span><span class="o">=</span><span class="s1">&#39;TXFA3&#39;</span><span class="p">,</span> 
+        <span class="n">symbol</span><span class="o">=</span><span class="s1">&#39;TXF202301&#39;</span><span class="p">,</span> 
+        <span class="n">name</span><span class="o">=</span><span class="s1">&#39;臺股期貨01&#39;</span><span class="p">,</span> 
         <span class="n">category</span><span class="o">=</span><span class="s1">&#39;TXF&#39;</span><span class="p">,</span> 
-        <span class="n">delivery_month</span><span class="o">=</span><span class="s1">&#39;202004&#39;</span><span class="p">,</span> 
-        <span class="n">underlying_kind</span><span class="o">=</span><span class="s1">&#39;I&#39;</span>
+        <span class="n">delivery_month</span><span class="o">=</span><span class="s1">&#39;202301&#39;</span><span class="p">,</span> 
+        <span class="n">delivery_date</span><span class="o">=</span><span class="s1">&#39;2023/01/30&#39;</span><span class="p">,</span> 
+        <span class="n">underlying_kind</span><span class="o">=</span><span class="s1">&#39;I&#39;</span><span class="p">,</span> 
+        <span class="n">unit</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span> 
+        <span class="n">limit_up</span><span class="o">=</span><span class="mf">16270.0</span><span class="p">,</span> 
+        <span class="n">limit_down</span><span class="o">=</span><span class="mf">13312.0</span><span class="p">,</span> 
+        <span class="n">reference</span><span class="o">=</span><span class="mf">14791.0</span><span class="p">,</span> 
+        <span class="n">update_date</span><span class="o">=</span><span class="s1">&#39;2023/01/12&#39;</span>
     <span class="p">),</span> 
     <span class="n">order</span><span class="o">=</span><span class="n">Order</span><span class="p">(</span>
         <span class="n">action</span><span class="o">=&lt;</span><span class="n">Action</span><span class="o">.</span><span class="n">Buy</span><span class="p">:</span> <span class="s1">&#39;Buy&#39;</span><span class="o">&gt;</span><span class="p">,</span> 
-        <span class="n">price</span><span class="o">=</span><span class="mf">10200.0</span><span class="p">,</span> 
-        <span class="n">quantity</span><span class="o">=</span><span class="mi">2</span><span class="p">,</span> 
-        <span class="nb">id</span><span class="o">=</span><span class="s1">&#39;f691f576&#39;</span><span class="p">,</span> 
-        <span class="n">seqno</span><span class="o">=</span><span class="s1">&#39;862631&#39;</span><span class="p">,</span> 
+        <span class="n">price</span><span class="o">=</span><span class="mi">14400</span><span class="p">,</span> 
+        <span class="n">quantity</span><span class="o">=</span><span class="mi">3</span><span class="p">,</span> 
+        <span class="nb">id</span><span class="o">=</span><span class="s1">&#39;5efffde1&#39;</span><span class="p">,</span> 
+        <span class="n">seqno</span><span class="o">=</span><span class="s1">&#39;000004&#39;</span><span class="p">,</span> 
+        <span class="n">ordno</span><span class="o">=</span><span class="s1">&#39;000003&#39;</span><span class="p">,</span> 
         <span class="n">account</span><span class="o">=</span><span class="n">Account</span><span class="p">(</span>
-            <span class="n">account_type</span><span class="o">=&lt;</span><span class="n">AccountType</span><span class="o">.</span><span class="n">Stock</span><span class="p">:</span> <span class="s1">&#39;F&#39;</span><span class="o">&gt;</span><span class="p">,</span> 
-            <span class="n">person_id</span><span class="o">=</span><span class="s1">&#39;RBCCJCBIGB&#39;</span><span class="p">,</span> 
-            <span class="n">broker_id</span><span class="o">=</span><span class="s1">&#39;9A95&#39;</span><span class="p">,</span> 
-            <span class="n">account_id</span><span class="o">=</span><span class="s1">&#39;9809975&#39;</span><span class="p">,</span> 
+            <span class="n">account_type</span><span class="o">=&lt;</span><span class="n">AccountType</span><span class="o">.</span><span class="n">Future</span><span class="p">:</span> <span class="s1">&#39;F&#39;</span><span class="o">&gt;</span><span class="p">,</span>
+            <span class="n">person_id</span><span class="o">=</span><span class="s1">&#39;A123456789&#39;</span><span class="p">,</span> 
+            <span class="n">broker_id</span><span class="o">=</span><span class="s1">&#39;F002000&#39;</span><span class="p">,</span> 
+            <span class="n">account_id</span><span class="o">=</span><span class="s1">&#39;1234567&#39;</span><span class="p">,</span> 
             <span class="n">signed</span><span class="o">=</span><span class="kc">True</span>
         <span class="p">),</span> 
         <span class="n">price_type</span><span class="o">=&lt;</span><span class="n">StockPriceType</span><span class="o">.</span><span class="n">LMT</span><span class="p">:</span> <span class="s1">&#39;LMT&#39;</span><span class="o">&gt;</span><span class="p">,</span> 
         <span class="n">order_type</span><span class="o">=&lt;</span><span class="n">OrderType</span><span class="o">.</span><span class="n">ROD</span><span class="p">:</span> <span class="s1">&#39;ROD&#39;</span><span class="o">&gt;</span>
     <span class="p">),</span> 
     <span class="n">status</span><span class="o">=</span><span class="n">OrderStatus</span><span class="p">(</span>
-        <span class="nb">id</span><span class="o">=</span><span class="s1">&#39;f691f576&#39;</span><span class="p">,</span> 
-        <span class="n">status</span><span class="o">=&lt;</span><span class="n">Status</span><span class="o">.</span><span class="n">PendingSubmit</span><span class="p">:</span> <span class="s1">&#39;PendingSubmit&#39;</span><span class="o">&gt;</span><span class="p">,</span> 
-        <span class="n">status_code</span><span class="o">=</span><span class="s1">&#39;    &#39;</span><span class="p">,</span> 
-        <span class="n">order_datetime</span><span class="o">=</span><span class="n">datetime</span><span class="o">.</span><span class="n">datetime</span><span class="p">(</span><span class="mi">2020</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="mi">5</span><span class="p">,</span> <span class="mi">10</span><span class="p">,</span> <span class="mi">24</span><span class="p">,</span> <span class="mi">13</span><span class="p">),</span> 
+        <span class="nb">id</span><span class="o">=</span><span class="s1">&#39;5efffde1&#39;</span><span class="p">,</span> 
+        <span class="n">status</span><span class="o">=&lt;</span><span class="n">Status</span><span class="o">.</span><span class="n">Submitted</span><span class="p">:</span> <span class="s1">&#39;Submitted&#39;</span><span class="o">&gt;</span><span class="p">,</span>
+        <span class="n">status_code</span><span class="o">=</span><span class="s1">&#39;00&#39;</span><span class="p">,</span> 
+        <span class="n">order_datetime</span><span class="o">=</span><span class="n">datetime</span><span class="o">.</span><span class="n">datetime</span><span class="p">(</span><span class="mi">2023</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">12</span><span class="p">,</span> <span class="mi">14</span><span class="p">,</span> <span class="mi">56</span><span class="p">,</span> <span class="mi">13</span><span class="p">,</span> <span class="mi">995651</span><span class="p">),</span> 
+<span class="hll">        <span class="n">modified_price</span><span class="o">=</span><span class="mi">14450</span><span class="p">,</span>
+</span>        <span class="n">order_quantity</span><span class="o">=</span><span class="mi">3</span><span class="p">,</span>
         <span class="n">deals</span><span class="o">=</span><span class="p">[]</span>
     <span class="p">)</span>
+<span class="p">)</span>
+</code></pre></div>
+</div>
+<h4 id="update-quantity-reduce">Update Quantity (Reduce)<a class="headerlink" href="#update-quantity-reduce" title="Permanent link">&para;</a></h4>
+<p><code>update_order</code> can only reduce the quantity of the order.</p>
+<div class="admonition info">
+<p class="admonition-title">Update Quantity</p>
+<div class="highlight"><pre><span></span><code><span class="n">api</span><span class="o">.</span><span class="n">update_order</span><span class="p">(</span><span class="n">trade</span><span class="o">=</span><span class="n">trade</span><span class="p">,</span> <span class="n">qty</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
+<span class="n">api</span><span class="o">.</span><span class="n">update_status</span><span class="p">(</span><span class="n">api</span><span class="o">.</span><span class="n">futopt_account</span><span class="p">)</span>
+<span class="n">trade</span>
+</code></pre></div>
+</div>
+<div class="admonition done">
+<p class="admonition-title">Out</p>
+<div class="highlight"><pre><span></span><code><span class="n">Trade</span><span class="p">(</span>
+    <span class="n">contract</span><span class="o">=</span><span class="n">Future</span><span class="p">(</span>
+        <span class="n">code</span><span class="o">=</span><span class="s1">&#39;TXFA3&#39;</span><span class="p">,</span> 
+        <span class="n">symbol</span><span class="o">=</span><span class="s1">&#39;TXF202301&#39;</span><span class="p">,</span> 
+        <span class="n">name</span><span class="o">=</span><span class="s1">&#39;臺股期貨01&#39;</span><span class="p">,</span> 
+        <span class="n">category</span><span class="o">=</span><span class="s1">&#39;TXF&#39;</span><span class="p">,</span> 
+        <span class="n">delivery_month</span><span class="o">=</span><span class="s1">&#39;202301&#39;</span><span class="p">,</span> 
+        <span class="n">delivery_date</span><span class="o">=</span><span class="s1">&#39;2023/01/30&#39;</span><span class="p">,</span> 
+        <span class="n">underlying_kind</span><span class="o">=</span><span class="s1">&#39;I&#39;</span><span class="p">,</span> 
+        <span class="n">unit</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span> 
+        <span class="n">limit_up</span><span class="o">=</span><span class="mf">16270.0</span><span class="p">,</span> 
+        <span class="n">limit_down</span><span class="o">=</span><span class="mf">13312.0</span><span class="p">,</span> 
+        <span class="n">reference</span><span class="o">=</span><span class="mf">14791.0</span><span class="p">,</span> 
+        <span class="n">update_date</span><span class="o">=</span><span class="s1">&#39;2023/01/12&#39;</span>
+    <span class="p">),</span> 
+    <span class="n">order</span><span class="o">=</span><span class="n">Order</span><span class="p">(</span>
+        <span class="n">action</span><span class="o">=&lt;</span><span class="n">Action</span><span class="o">.</span><span class="n">Buy</span><span class="p">:</span> <span class="s1">&#39;Buy&#39;</span><span class="o">&gt;</span><span class="p">,</span> 
+        <span class="n">price</span><span class="o">=</span><span class="mi">14400</span><span class="p">,</span> 
+        <span class="n">quantity</span><span class="o">=</span><span class="mi">3</span><span class="p">,</span> 
+        <span class="nb">id</span><span class="o">=</span><span class="s1">&#39;5efffde1&#39;</span><span class="p">,</span> 
+        <span class="n">seqno</span><span class="o">=</span><span class="s1">&#39;000004&#39;</span><span class="p">,</span> 
+        <span class="n">ordno</span><span class="o">=</span><span class="s1">&#39;000003&#39;</span><span class="p">,</span> 
+        <span class="n">account</span><span class="o">=</span><span class="n">Account</span><span class="p">(</span>
+            <span class="n">account_type</span><span class="o">=&lt;</span><span class="n">AccountType</span><span class="o">.</span><span class="n">Future</span><span class="p">:</span> <span class="s1">&#39;F&#39;</span><span class="o">&gt;</span><span class="p">,</span>
+            <span class="n">person_id</span><span class="o">=</span><span class="s1">&#39;A123456789&#39;</span><span class="p">,</span> 
+            <span class="n">broker_id</span><span class="o">=</span><span class="s1">&#39;F002000&#39;</span><span class="p">,</span> 
+            <span class="n">account_id</span><span class="o">=</span><span class="s1">&#39;1234567&#39;</span><span class="p">,</span> 
+            <span class="n">signed</span><span class="o">=</span><span class="kc">True</span>
+        <span class="p">),</span> 
+        <span class="n">price_type</span><span class="o">=&lt;</span><span class="n">StockPriceType</span><span class="o">.</span><span class="n">LMT</span><span class="p">:</span> <span class="s1">&#39;LMT&#39;</span><span class="o">&gt;</span><span class="p">,</span> 
+        <span class="n">order_type</span><span class="o">=&lt;</span><span class="n">OrderType</span><span class="o">.</span><span class="n">ROD</span><span class="p">:</span> <span class="s1">&#39;ROD&#39;</span><span class="o">&gt;</span>
+    <span class="p">),</span> 
+    <span class="n">status</span><span class="o">=</span><span class="n">OrderStatus</span><span class="p">(</span>
+        <span class="nb">id</span><span class="o">=</span><span class="s1">&#39;5efffde1&#39;</span><span class="p">,</span> 
+        <span class="n">status</span><span class="o">=&lt;</span><span class="n">Status</span><span class="o">.</span><span class="n">Submitted</span><span class="p">:</span> <span class="s1">&#39;Submitted&#39;</span><span class="o">&gt;</span><span class="p">,</span>
+        <span class="n">status_code</span><span class="o">=</span><span class="s1">&#39;00&#39;</span><span class="p">,</span> 
+        <span class="n">order_datetime</span><span class="o">=</span><span class="n">datetime</span><span class="o">.</span><span class="n">datetime</span><span class="p">(</span><span class="mi">2023</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">12</span><span class="p">,</span> <span class="mi">14</span><span class="p">,</span> <span class="mi">56</span><span class="p">,</span> <span class="mi">13</span><span class="p">,</span> <span class="mi">995651</span><span class="p">),</span> 
+        <span class="n">order_quantity</span><span class="o">=</span><span class="mi">3</span><span class="p">,</span>
+<span class="hll">        <span class="n">cancel_quantity</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span>
+</span>        <span class="n">deals</span><span class="o">=</span><span class="p">[]</span>
+    <span class="p">)</span>
+<span class="p">)</span>
+</code></pre></div>
+</div>
+<h3 id="cancel-order">Cancel Order<a class="headerlink" href="#cancel-order" title="Permanent link">&para;</a></h3>
+<div class="admonition info">
+<p class="admonition-title">Cancel Order</p>
+<div class="highlight"><pre><span></span><code><span class="n">api</span><span class="o">.</span><span class="n">cancel_order</span><span class="p">(</span><span class="n">trade</span><span class="p">)</span>
+<span class="n">api</span><span class="o">.</span><span class="n">update_status</span><span class="p">(</span><span class="n">api</span><span class="o">.</span><span class="n">futopt_account</span><span class="p">)</span>
+<span class="n">trade</span>
+</code></pre></div>
+</div>
+<div class="admonition done">
+<p class="admonition-title">Out</p>
+<div class="highlight"><pre><span></span><code><span class="n">Trade</span><span class="p">(</span>
+    <span class="n">contract</span><span class="o">=</span><span class="n">Future</span><span class="p">(</span>
+        <span class="n">code</span><span class="o">=</span><span class="s1">&#39;TXFA3&#39;</span><span class="p">,</span> 
+        <span class="n">symbol</span><span class="o">=</span><span class="s1">&#39;TXF202301&#39;</span><span class="p">,</span> 
+        <span class="n">name</span><span class="o">=</span><span class="s1">&#39;臺股期貨01&#39;</span><span class="p">,</span> 
+        <span class="n">category</span><span class="o">=</span><span class="s1">&#39;TXF&#39;</span><span class="p">,</span> 
+        <span class="n">delivery_month</span><span class="o">=</span><span class="s1">&#39;202301&#39;</span><span class="p">,</span> 
+        <span class="n">delivery_date</span><span class="o">=</span><span class="s1">&#39;2023/01/30&#39;</span><span class="p">,</span> 
+        <span class="n">underlying_kind</span><span class="o">=</span><span class="s1">&#39;I&#39;</span><span class="p">,</span> 
+        <span class="n">unit</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span> 
+        <span class="n">limit_up</span><span class="o">=</span><span class="mf">16270.0</span><span class="p">,</span> 
+        <span class="n">limit_down</span><span class="o">=</span><span class="mf">13312.0</span><span class="p">,</span> 
+        <span class="n">reference</span><span class="o">=</span><span class="mf">14791.0</span><span class="p">,</span> 
+        <span class="n">update_date</span><span class="o">=</span><span class="s1">&#39;2023/01/12&#39;</span>
+    <span class="p">),</span> 
+    <span class="n">order</span><span class="o">=</span><span class="n">Order</span><span class="p">(</span>
+        <span class="n">action</span><span class="o">=&lt;</span><span class="n">Action</span><span class="o">.</span><span class="n">Buy</span><span class="p">:</span> <span class="s1">&#39;Buy&#39;</span><span class="o">&gt;</span><span class="p">,</span> 
+        <span class="n">price</span><span class="o">=</span><span class="mi">14400</span><span class="p">,</span> 
+        <span class="n">quantity</span><span class="o">=</span><span class="mi">3</span><span class="p">,</span> 
+        <span class="nb">id</span><span class="o">=</span><span class="s1">&#39;5efffde1&#39;</span><span class="p">,</span> 
+        <span class="n">seqno</span><span class="o">=</span><span class="s1">&#39;000004&#39;</span><span class="p">,</span> 
+        <span class="n">ordno</span><span class="o">=</span><span class="s1">&#39;000003&#39;</span><span class="p">,</span> 
+        <span class="n">account</span><span class="o">=</span><span class="n">Account</span><span class="p">(</span>
+            <span class="n">account_type</span><span class="o">=&lt;</span><span class="n">AccountType</span><span class="o">.</span><span class="n">Future</span><span class="p">:</span> <span class="s1">&#39;F&#39;</span><span class="o">&gt;</span><span class="p">,</span>
+            <span class="n">person_id</span><span class="o">=</span><span class="s1">&#39;A123456789&#39;</span><span class="p">,</span> 
+            <span class="n">broker_id</span><span class="o">=</span><span class="s1">&#39;F002000&#39;</span><span class="p">,</span> 
+            <span class="n">account_id</span><span class="o">=</span><span class="s1">&#39;1234567&#39;</span><span class="p">,</span> 
+            <span class="n">signed</span><span class="o">=</span><span class="kc">True</span>
+        <span class="p">),</span> 
+        <span class="n">price_type</span><span class="o">=&lt;</span><span class="n">StockPriceType</span><span class="o">.</span><span class="n">LMT</span><span class="p">:</span> <span class="s1">&#39;LMT&#39;</span><span class="o">&gt;</span><span class="p">,</span> 
+        <span class="n">order_type</span><span class="o">=&lt;</span><span class="n">OrderType</span><span class="o">.</span><span class="n">ROD</span><span class="p">:</span> <span class="s1">&#39;ROD&#39;</span><span class="o">&gt;</span>
+    <span class="p">),</span> 
+    <span class="n">status</span><span class="o">=</span><span class="n">OrderStatus</span><span class="p">(</span>
+        <span class="nb">id</span><span class="o">=</span><span class="s1">&#39;5efffde1&#39;</span><span class="p">,</span> 
+<span class="hll">        <span class="n">status</span><span class="o">=&lt;</span><span class="n">Status</span><span class="o">.</span><span class="n">Cancelled</span><span class="p">:</span> <span class="s1">&#39;Cancelled&#39;</span><span class="o">&gt;</span><span class="p">,</span> 
+</span>        <span class="n">status_code</span><span class="o">=</span><span class="s1">&#39;00&#39;</span><span class="p">,</span> 
+        <span class="n">order_datetime</span><span class="o">=</span><span class="n">datetime</span><span class="o">.</span><span class="n">datetime</span><span class="p">(</span><span class="mi">2023</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">12</span><span class="p">,</span> <span class="mi">14</span><span class="p">,</span> <span class="mi">56</span><span class="p">,</span> <span class="mi">13</span><span class="p">,</span> <span class="mi">995651</span><span class="p">),</span> 
+        <span class="n">order_quantity</span><span class="o">=</span><span class="mi">3</span><span class="p">,</span>
+<span class="hll">        <span class="n">cancel_quantity</span><span class="o">=</span><span class="mi">3</span><span class="p">,</span>
+</span>        <span class="n">deals</span><span class="o">=</span><span class="p">[]</span>
+    <span class="p">)</span>
+<span class="p">)</span>
+</code></pre></div>
+</div>
+<h3 id="deal">Deal<a class="headerlink" href="#deal" title="Permanent link">&para;</a></h3>
+<div class="admonition info">
+<p class="admonition-title">Update Status</p>
+<div class="highlight"><pre><span></span><code><span class="n">api</span><span class="o">.</span><span class="n">update_status</span><span class="p">(</span><span class="n">api</span><span class="o">.</span><span class="n">futopt_account</span><span class="p">)</span>
+<span class="n">trade</span>
+</code></pre></div>
+</div>
+<div class="admonition done">
+<p class="admonition-title">Out</p>
+<div class="highlight"><pre><span></span><code><span class="n">Trade</span><span class="p">(</span>
+    <span class="n">contract</span><span class="o">=</span><span class="n">Future</span><span class="p">(</span>
+        <span class="n">code</span><span class="o">=</span><span class="s1">&#39;TXFA3&#39;</span><span class="p">,</span> 
+        <span class="n">symbol</span><span class="o">=</span><span class="s1">&#39;TXF202301&#39;</span><span class="p">,</span> 
+        <span class="n">name</span><span class="o">=</span><span class="s1">&#39;臺股期貨01&#39;</span><span class="p">,</span> 
+        <span class="n">category</span><span class="o">=</span><span class="s1">&#39;TXF&#39;</span><span class="p">,</span> 
+        <span class="n">delivery_month</span><span class="o">=</span><span class="s1">&#39;202301&#39;</span><span class="p">,</span> 
+        <span class="n">delivery_date</span><span class="o">=</span><span class="s1">&#39;2023/01/30&#39;</span><span class="p">,</span> 
+        <span class="n">underlying_kind</span><span class="o">=</span><span class="s1">&#39;I&#39;</span><span class="p">,</span> 
+        <span class="n">unit</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span> 
+        <span class="n">limit_up</span><span class="o">=</span><span class="mf">16270.0</span><span class="p">,</span> 
+        <span class="n">limit_down</span><span class="o">=</span><span class="mf">13312.0</span><span class="p">,</span> 
+        <span class="n">reference</span><span class="o">=</span><span class="mf">14791.0</span><span class="p">,</span> 
+        <span class="n">update_date</span><span class="o">=</span><span class="s1">&#39;2023/01/12&#39;</span>
+    <span class="p">),</span> 
+    <span class="n">order</span><span class="o">=</span><span class="n">Order</span><span class="p">(</span>
+        <span class="n">action</span><span class="o">=&lt;</span><span class="n">Action</span><span class="o">.</span><span class="n">Buy</span><span class="p">:</span> <span class="s1">&#39;Buy&#39;</span><span class="o">&gt;</span><span class="p">,</span> 
+        <span class="n">price</span><span class="o">=</span><span class="mi">14400</span><span class="p">,</span> 
+        <span class="n">quantity</span><span class="o">=</span><span class="mi">3</span><span class="p">,</span> 
+        <span class="nb">id</span><span class="o">=</span><span class="s1">&#39;5efffde1&#39;</span><span class="p">,</span> 
+        <span class="n">seqno</span><span class="o">=</span><span class="s1">&#39;000004&#39;</span><span class="p">,</span> 
+        <span class="n">ordno</span><span class="o">=</span><span class="s1">&#39;000003&#39;</span><span class="p">,</span> 
+        <span class="n">account</span><span class="o">=</span><span class="n">Account</span><span class="p">(</span>
+            <span class="n">account_type</span><span class="o">=&lt;</span><span class="n">AccountType</span><span class="o">.</span><span class="n">Future</span><span class="p">:</span> <span class="s1">&#39;F&#39;</span><span class="o">&gt;</span><span class="p">,</span>
+            <span class="n">person_id</span><span class="o">=</span><span class="s1">&#39;A123456789&#39;</span><span class="p">,</span> 
+            <span class="n">broker_id</span><span class="o">=</span><span class="s1">&#39;F002000&#39;</span><span class="p">,</span> 
+            <span class="n">account_id</span><span class="o">=</span><span class="s1">&#39;1234567&#39;</span><span class="p">,</span> 
+            <span class="n">signed</span><span class="o">=</span><span class="kc">True</span>
+        <span class="p">),</span> 
+        <span class="n">price_type</span><span class="o">=&lt;</span><span class="n">StockPriceType</span><span class="o">.</span><span class="n">LMT</span><span class="p">:</span> <span class="s1">&#39;LMT&#39;</span><span class="o">&gt;</span><span class="p">,</span> 
+        <span class="n">order_type</span><span class="o">=&lt;</span><span class="n">OrderType</span><span class="o">.</span><span class="n">ROD</span><span class="p">:</span> <span class="s1">&#39;ROD&#39;</span><span class="o">&gt;</span>
+    <span class="p">),</span> 
+    <span class="n">status</span><span class="o">=</span><span class="n">OrderStatus</span><span class="p">(</span>
+        <span class="nb">id</span><span class="o">=</span><span class="s1">&#39;5efffde1&#39;</span><span class="p">,</span> 
+<span class="hll">        <span class="n">status</span><span class="o">=&lt;</span><span class="n">Status</span><span class="o">.</span><span class="n">Filled</span><span class="p">:</span> <span class="s1">&#39;Filled&#39;</span><span class="o">&gt;</span><span class="p">,</span>
+</span>        <span class="n">status_code</span><span class="o">=</span><span class="s1">&#39;00&#39;</span><span class="p">,</span> 
+        <span class="n">order_datetime</span><span class="o">=</span><span class="n">datetime</span><span class="o">.</span><span class="n">datetime</span><span class="p">(</span><span class="mi">2023</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">12</span><span class="p">,</span> <span class="mi">14</span><span class="p">,</span> <span class="mi">56</span><span class="p">,</span> <span class="mi">13</span><span class="p">,</span> <span class="mi">995651</span><span class="p">),</span> 
+        <span class="n">order_quantity</span><span class="o">=</span><span class="mi">3</span><span class="p">,</span>
+<span class="hll">        <span class="n">deals</span><span class="o">=</span><span class="p">[</span>
+</span><span class="hll">            <span class="n">Deal</span><span class="p">(</span><span class="n">seq</span><span class="o">=</span><span class="s1">&#39;000001&#39;</span><span class="p">,</span> <span class="n">price</span><span class="o">=</span><span class="mi">14400</span><span class="p">,</span> <span class="n">quantity</span><span class="o">=</span><span class="mi">3</span><span class="p">,</span> <span class="n">ts</span><span class="o">=</span><span class="mf">1673501631.62918</span><span class="p">)</span>
+</span><span class="hll">        <span class="p">]</span>
+</span>    <span class="p">)</span>
+<span class="p">)</span>
+</code></pre></div>
+</div>
+<h2 id="examples">Examples<a class="headerlink" href="#examples" title="Permanent link">&para;</a></h2>
+<p><a href="https://nbviewer.jupyter.org/github/Sinotrade/Sinotrade.github.io/blob/master/tutorial/future_and_option.ipynb">Future and Option place order jupyter link</a></p>
+<h3 id="action">Action<a class="headerlink" href="#action" title="Permanent link">&para;</a></h3>
+<div class="admonition info">
+<p class="admonition-title">Buy</p>
+<div class="highlight"><pre><span></span><code><span class="n">order</span> <span class="o">=</span> <span class="n">api</span><span class="o">.</span><span class="n">Order</span><span class="p">(</span>
+<span class="hll">    <span class="n">action</span><span class="o">=</span><span class="n">sj</span><span class="o">.</span><span class="n">constant</span><span class="o">.</span><span class="n">Action</span><span class="o">.</span><span class="n">Buy</span><span class="p">,</span>
+</span>    <span class="n">price</span><span class="o">=</span><span class="mi">14400</span><span class="p">,</span>
+    <span class="n">quantity</span><span class="o">=</span><span class="mi">2</span><span class="p">,</span>
+    <span class="n">price_type</span><span class="o">=</span><span class="n">sj</span><span class="o">.</span><span class="n">constant</span><span class="o">.</span><span class="n">FuturesPriceType</span><span class="o">.</span><span class="n">LMT</span><span class="p">,</span>
+    <span class="n">order_type</span><span class="o">=</span><span class="n">sj</span><span class="o">.</span><span class="n">constant</span><span class="o">.</span><span class="n">OrderType</span><span class="o">.</span><span class="n">ROD</span><span class="p">,</span> 
+    <span class="n">octype</span><span class="o">=</span><span class="n">sj</span><span class="o">.</span><span class="n">constant</span><span class="o">.</span><span class="n">FuturesOCType</span><span class="o">.</span><span class="n">Auto</span><span class="p">,</span>
+    <span class="n">account</span><span class="o">=</span><span class="n">api</span><span class="o">.</span><span class="n">futopt_account</span>
+<span class="p">)</span>
+</code></pre></div>
+</div>
+<div class="admonition info">
+<p class="admonition-title">Sell</p>
+<div class="highlight"><pre><span></span><code><span class="n">order</span> <span class="o">=</span> <span class="n">api</span><span class="o">.</span><span class="n">Order</span><span class="p">(</span>
+<span class="hll">    <span class="n">action</span><span class="o">=</span><span class="n">sj</span><span class="o">.</span><span class="n">constant</span><span class="o">.</span><span class="n">Action</span><span class="o">.</span><span class="n">Sell</span><span class="p">,</span>
+</span>    <span class="n">price</span><span class="o">=</span><span class="mi">14400</span><span class="p">,</span>
+    <span class="n">quantity</span><span class="o">=</span><span class="mi">2</span><span class="p">,</span>
+    <span class="n">price_type</span><span class="o">=</span><span class="n">sj</span><span class="o">.</span><span class="n">constant</span><span class="o">.</span><span class="n">FuturesPriceType</span><span class="o">.</span><span class="n">LMT</span><span class="p">,</span>
+    <span class="n">order_type</span><span class="o">=</span><span class="n">sj</span><span class="o">.</span><span class="n">constant</span><span class="o">.</span><span class="n">OrderType</span><span class="o">.</span><span class="n">ROD</span><span class="p">,</span> 
+    <span class="n">octype</span><span class="o">=</span><span class="n">sj</span><span class="o">.</span><span class="n">constant</span><span class="o">.</span><span class="n">FuturesOCType</span><span class="o">.</span><span class="n">Auto</span><span class="p">,</span>
+    <span class="n">account</span><span class="o">=</span><span class="n">api</span><span class="o">.</span><span class="n">futopt_account</span>
+<span class="p">)</span>
+</code></pre></div>
+</div>
+<h3 id="rod-lmt">ROD + LMT<a class="headerlink" href="#rod-lmt" title="Permanent link">&para;</a></h3>
+<div class="admonition info">
+<p class="admonition-title">ROD + LMT</p>
+<div class="highlight"><pre><span></span><code><span class="n">order</span> <span class="o">=</span> <span class="n">api</span><span class="o">.</span><span class="n">Order</span><span class="p">(</span>
+    <span class="n">action</span><span class="o">=</span><span class="n">sj</span><span class="o">.</span><span class="n">constant</span><span class="o">.</span><span class="n">Action</span><span class="o">.</span><span class="n">Sell</span><span class="p">,</span>
+    <span class="n">price</span><span class="o">=</span><span class="mi">14400</span><span class="p">,</span>
+    <span class="n">quantity</span><span class="o">=</span><span class="mi">2</span><span class="p">,</span>
+<span class="hll">    <span class="n">price_type</span><span class="o">=</span><span class="n">sj</span><span class="o">.</span><span class="n">constant</span><span class="o">.</span><span class="n">FuturesPriceType</span><span class="o">.</span><span class="n">LMT</span><span class="p">,</span>
+</span><span class="hll">    <span class="n">order_type</span><span class="o">=</span><span class="n">sj</span><span class="o">.</span><span class="n">constant</span><span class="o">.</span><span class="n">OrderType</span><span class="o">.</span><span class="n">ROD</span><span class="p">,</span> 
+</span>    <span class="n">octype</span><span class="o">=</span><span class="n">sj</span><span class="o">.</span><span class="n">constant</span><span class="o">.</span><span class="n">FuturesOCType</span><span class="o">.</span><span class="n">Auto</span><span class="p">,</span>
+    <span class="n">account</span><span class="o">=</span><span class="n">api</span><span class="o">.</span><span class="n">futopt_account</span>
 <span class="p">)</span>
 </code></pre></div>
 </div>

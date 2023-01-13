@@ -764,6 +764,13 @@
   
 </li>
       
+        <li class="md-nav__item">
+  <a href="#handle-callback" class="md-nav__link">
+    Handle Callback
+  </a>
+  
+</li>
+      
     </ul>
   
 </nav>
@@ -1158,6 +1165,13 @@
   
 </li>
       
+        <li class="md-nav__item">
+  <a href="#handle-callback" class="md-nav__link">
+    Handle Callback
+  </a>
+  
+</li>
+      
     </ul>
   
 </nav>
@@ -1184,36 +1198,44 @@
 <div class="tabbed-block">
 <div class="highlight"><pre><span></span><code><span class="hll"><span class="n">OrderState</span><span class="o">.</span><span class="n">StockOrder</span> <span class="p">{</span>
 </span>    <span class="s1">&#39;operation&#39;</span><span class="p">:</span> <span class="p">{</span>
-<span class="hll">        <span class="s1">&#39;op_type&#39;</span><span class="p">:</span> <span class="s1">&#39;New&#39;</span><span class="p">,</span>
-</span>        <span class="s1">&#39;op_code&#39;</span><span class="p">:</span> <span class="s1">&#39;00&#39;</span><span class="p">,</span>
+<span class="hll">        <span class="s1">&#39;op_type&#39;</span><span class="p">:</span> <span class="s1">&#39;New&#39;</span><span class="p">,</span> 
+</span>        <span class="s1">&#39;op_code&#39;</span><span class="p">:</span> <span class="s1">&#39;00&#39;</span><span class="p">,</span> 
         <span class="s1">&#39;op_msg&#39;</span><span class="p">:</span> <span class="s1">&#39;&#39;</span>
-    <span class="p">},</span>
+    <span class="p">},</span> 
     <span class="s1">&#39;order&#39;</span><span class="p">:</span> <span class="p">{</span>
-        <span class="s1">&#39;id&#39;</span><span class="p">:</span> <span class="s1">&#39;c21b876d&#39;</span><span class="p">,</span>
-        <span class="s1">&#39;seqno&#39;</span><span class="p">:</span> <span class="s1">&#39;429832&#39;</span><span class="p">,</span>
-        <span class="s1">&#39;ordno&#39;</span><span class="p">:</span> <span class="s1">&#39;W2892&#39;</span><span class="p">,</span>
-        <span class="s1">&#39;action&#39;</span><span class="p">:</span> <span class="s1">&#39;Buy&#39;</span><span class="p">,</span>
-        <span class="s1">&#39;price&#39;</span><span class="p">:</span> <span class="mf">12.0</span><span class="p">,</span>
-        <span class="s1">&#39;quantity&#39;</span><span class="p">:</span> <span class="mi">10</span><span class="p">,</span>
-        <span class="s1">&#39;order_cond&#39;</span><span class="p">:</span> <span class="s1">&#39;Cash&#39;</span><span class="p">,</span>
-        <span class="s1">&#39;order_lot&#39;</span><span class="p">:</span> <span class="s1">&#39;Common&#39;</span><span class="p">,</span>
-        <span class="s1">&#39;custom_field&#39;</span><span class="p">:</span> <span class="s1">&#39;test&#39;</span><span class="p">,</span>
-        <span class="s1">&#39;order_type&#39;</span><span class="p">:</span> <span class="s1">&#39;ROD&#39;</span><span class="p">,</span>
-        <span class="s1">&#39;price_type&#39;</span><span class="p">:</span> <span class="s1">&#39;LMT&#39;</span>
-    <span class="p">},</span>
+        <span class="s1">&#39;id&#39;</span><span class="p">:</span> <span class="s1">&#39;97b63e2f&#39;</span><span class="p">,</span> 
+        <span class="s1">&#39;seqno&#39;</span><span class="p">:</span> <span class="s1">&#39;267677&#39;</span><span class="p">,</span> 
+        <span class="s1">&#39;ordno&#39;</span><span class="p">:</span> <span class="s1">&#39;IM394&#39;</span><span class="p">,</span> 
+        <span class="s1">&#39;account&#39;</span><span class="p">:</span> <span class="p">{</span>
+            <span class="s1">&#39;account_type&#39;</span><span class="p">:</span> <span class="s1">&#39;S&#39;</span><span class="p">,</span> 
+            <span class="s1">&#39;person_id&#39;</span><span class="p">:</span> <span class="s1">&#39;&#39;</span><span class="p">,</span> 
+            <span class="s1">&#39;broker_id&#39;</span><span class="p">:</span> <span class="s1">&#39;9A95&#39;</span><span class="p">,</span> 
+            <span class="s1">&#39;account_id&#39;</span><span class="p">:</span> <span class="s1">&#39;1234567&#39;</span><span class="p">,</span> 
+            <span class="s1">&#39;signed&#39;</span><span class="p">:</span> <span class="kc">True</span>
+        <span class="p">},</span> 
+        <span class="s1">&#39;action&#39;</span><span class="p">:</span> <span class="s1">&#39;Buy&#39;</span><span class="p">,</span> 
+        <span class="s1">&#39;price&#39;</span><span class="p">:</span> <span class="mf">16.0</span><span class="p">,</span> 
+        <span class="s1">&#39;quantity&#39;</span><span class="p">:</span> <span class="mi">1</span><span class="p">,</span> 
+        <span class="s1">&#39;order_type&#39;</span><span class="p">:</span> <span class="s1">&#39;ROD&#39;</span><span class="p">,</span> 
+        <span class="s1">&#39;price_type&#39;</span><span class="p">:</span> <span class="s1">&#39;LMT&#39;</span><span class="p">,</span> 
+        <span class="s1">&#39;order_cond&#39;</span><span class="p">:</span> <span class="s1">&#39;Cash&#39;</span><span class="p">,</span> 
+        <span class="s1">&#39;order_lot&#39;</span><span class="p">:</span> <span class="s1">&#39;Common&#39;</span><span class="p">,</span> 
+        <span class="s1">&#39;custom_field&#39;</span><span class="p">:</span> <span class="s1">&#39;test&#39;</span>
+    <span class="p">},</span> 
     <span class="s1">&#39;status&#39;</span><span class="p">:</span> <span class="p">{</span>
-        <span class="s1">&#39;id&#39;</span><span class="p">:</span> <span class="s1">&#39;c21b876d&#39;</span><span class="p">,</span>
-        <span class="s1">&#39;exchange_ts&#39;</span><span class="p">:</span> <span class="mi">1583828972</span><span class="p">,</span>
-        <span class="s1">&#39;modified_price&#39;</span><span class="p">:</span> <span class="mi">0</span><span class="p">,</span>
-        <span class="s1">&#39;cancel_quantity&#39;</span><span class="p">:</span> <span class="mi">0</span><span class="p">,</span>
+        <span class="s1">&#39;id&#39;</span><span class="p">:</span> <span class="s1">&#39;97b63e2f&#39;</span><span class="p">,</span> 
+        <span class="s1">&#39;exchange_ts&#39;</span><span class="p">:</span> <span class="mf">1673576134.038</span><span class="p">,</span> 
+        <span class="s1">&#39;modified_price&#39;</span><span class="p">:</span> <span class="mf">0.0</span><span class="p">,</span> 
+        <span class="s1">&#39;cancel_quantity&#39;</span><span class="p">:</span> <span class="mi">0</span><span class="p">,</span> 
+        <span class="s1">&#39;order_quantity&#39;</span><span class="p">:</span> <span class="mi">1</span><span class="p">,</span> 
         <span class="s1">&#39;web_id&#39;</span><span class="p">:</span> <span class="s1">&#39;137&#39;</span>
-    <span class="p">},</span>
+    <span class="p">},</span> 
     <span class="s1">&#39;contract&#39;</span><span class="p">:</span> <span class="p">{</span>
-        <span class="s1">&#39;security_type&#39;</span><span class="p">:</span> <span class="s1">&#39;STK&#39;</span><span class="p">,</span>
-        <span class="s1">&#39;exchange&#39;</span><span class="p">:</span> <span class="s1">&#39;TSE&#39;</span><span class="p">,</span>
-        <span class="s1">&#39;code&#39;</span><span class="p">:</span> <span class="s1">&#39;2890&#39;</span><span class="p">,</span>
-        <span class="s1">&#39;symbol&#39;</span><span class="p">:</span> <span class="s1">&#39;&#39;</span><span class="p">,</span>
-        <span class="s1">&#39;name&#39;</span><span class="p">:</span> <span class="s1">&#39;&#39;</span><span class="p">,</span>
+        <span class="s1">&#39;security_type&#39;</span><span class="p">:</span> <span class="s1">&#39;STK&#39;</span><span class="p">,</span> 
+        <span class="s1">&#39;exchange&#39;</span><span class="p">:</span> <span class="s1">&#39;TSE&#39;</span><span class="p">,</span> 
+        <span class="s1">&#39;code&#39;</span><span class="p">:</span> <span class="s1">&#39;2890&#39;</span><span class="p">,</span> 
+        <span class="s1">&#39;symbol&#39;</span><span class="p">:</span> <span class="s1">&#39;&#39;</span><span class="p">,</span> 
+        <span class="s1">&#39;name&#39;</span><span class="p">:</span> <span class="s1">&#39;&#39;</span><span class="p">,</span> 
         <span class="s1">&#39;currency&#39;</span><span class="p">:</span> <span class="s1">&#39;TWD&#39;</span>
     <span class="p">}</span>
 <span class="p">}</span>
@@ -1222,36 +1244,44 @@
 <div class="tabbed-block">
 <div class="highlight"><pre><span></span><code><span class="hll"><span class="n">OrderState</span><span class="o">.</span><span class="n">TFTOrder</span> <span class="p">{</span>
 </span>    <span class="s1">&#39;operation&#39;</span><span class="p">:</span> <span class="p">{</span>
-<span class="hll">        <span class="s1">&#39;op_type&#39;</span><span class="p">:</span> <span class="s1">&#39;New&#39;</span><span class="p">,</span>
-</span>        <span class="s1">&#39;op_code&#39;</span><span class="p">:</span> <span class="s1">&#39;00&#39;</span><span class="p">,</span>
+<span class="hll">        <span class="s1">&#39;op_type&#39;</span><span class="p">:</span> <span class="s1">&#39;New&#39;</span><span class="p">,</span> 
+</span>        <span class="s1">&#39;op_code&#39;</span><span class="p">:</span> <span class="s1">&#39;00&#39;</span><span class="p">,</span> 
         <span class="s1">&#39;op_msg&#39;</span><span class="p">:</span> <span class="s1">&#39;&#39;</span>
-    <span class="p">},</span>
+    <span class="p">},</span> 
     <span class="s1">&#39;order&#39;</span><span class="p">:</span> <span class="p">{</span>
-        <span class="s1">&#39;id&#39;</span><span class="p">:</span> <span class="s1">&#39;c21b876d&#39;</span><span class="p">,</span>
-        <span class="s1">&#39;seqno&#39;</span><span class="p">:</span> <span class="s1">&#39;429832&#39;</span><span class="p">,</span>
-        <span class="s1">&#39;ordno&#39;</span><span class="p">:</span> <span class="s1">&#39;W2892&#39;</span><span class="p">,</span>
-        <span class="s1">&#39;action&#39;</span><span class="p">:</span> <span class="s1">&#39;Buy&#39;</span><span class="p">,</span>
-        <span class="s1">&#39;price&#39;</span><span class="p">:</span> <span class="mf">12.0</span><span class="p">,</span>
-        <span class="s1">&#39;quantity&#39;</span><span class="p">:</span> <span class="mi">10</span><span class="p">,</span>
-        <span class="s1">&#39;order_cond&#39;</span><span class="p">:</span> <span class="s1">&#39;Cash&#39;</span><span class="p">,</span>
-        <span class="s1">&#39;order_lot&#39;</span><span class="p">:</span> <span class="s1">&#39;Common&#39;</span><span class="p">,</span>
-        <span class="s1">&#39;custom_field&#39;</span><span class="p">:</span> <span class="s1">&#39;test&#39;</span><span class="p">,</span>
-        <span class="s1">&#39;order_type&#39;</span><span class="p">:</span> <span class="s1">&#39;ROD&#39;</span><span class="p">,</span>
-        <span class="s1">&#39;price_type&#39;</span><span class="p">:</span> <span class="s1">&#39;LMT&#39;</span>
-    <span class="p">},</span>
+        <span class="s1">&#39;id&#39;</span><span class="p">:</span> <span class="s1">&#39;97b63e2f&#39;</span><span class="p">,</span> 
+        <span class="s1">&#39;seqno&#39;</span><span class="p">:</span> <span class="s1">&#39;267677&#39;</span><span class="p">,</span> 
+        <span class="s1">&#39;ordno&#39;</span><span class="p">:</span> <span class="s1">&#39;IM394&#39;</span><span class="p">,</span> 
+        <span class="s1">&#39;account&#39;</span><span class="p">:</span> <span class="p">{</span>
+            <span class="s1">&#39;account_type&#39;</span><span class="p">:</span> <span class="s1">&#39;S&#39;</span><span class="p">,</span> 
+            <span class="s1">&#39;person_id&#39;</span><span class="p">:</span> <span class="s1">&#39;&#39;</span><span class="p">,</span> 
+            <span class="s1">&#39;broker_id&#39;</span><span class="p">:</span> <span class="s1">&#39;9A95&#39;</span><span class="p">,</span> 
+            <span class="s1">&#39;account_id&#39;</span><span class="p">:</span> <span class="s1">&#39;1234567&#39;</span><span class="p">,</span> 
+            <span class="s1">&#39;signed&#39;</span><span class="p">:</span> <span class="kc">True</span>
+        <span class="p">},</span> 
+        <span class="s1">&#39;action&#39;</span><span class="p">:</span> <span class="s1">&#39;Buy&#39;</span><span class="p">,</span> 
+        <span class="s1">&#39;price&#39;</span><span class="p">:</span> <span class="mf">16.0</span><span class="p">,</span> 
+        <span class="s1">&#39;quantity&#39;</span><span class="p">:</span> <span class="mi">1</span><span class="p">,</span> 
+        <span class="s1">&#39;order_type&#39;</span><span class="p">:</span> <span class="s1">&#39;ROD&#39;</span><span class="p">,</span> 
+        <span class="s1">&#39;price_type&#39;</span><span class="p">:</span> <span class="s1">&#39;LMT&#39;</span><span class="p">,</span> 
+        <span class="s1">&#39;order_cond&#39;</span><span class="p">:</span> <span class="s1">&#39;Cash&#39;</span><span class="p">,</span> 
+        <span class="s1">&#39;order_lot&#39;</span><span class="p">:</span> <span class="s1">&#39;Common&#39;</span><span class="p">,</span> 
+        <span class="s1">&#39;custom_field&#39;</span><span class="p">:</span> <span class="s1">&#39;test&#39;</span>
+    <span class="p">},</span> 
     <span class="s1">&#39;status&#39;</span><span class="p">:</span> <span class="p">{</span>
-        <span class="s1">&#39;id&#39;</span><span class="p">:</span> <span class="s1">&#39;c21b876d&#39;</span><span class="p">,</span>
-        <span class="s1">&#39;exchange_ts&#39;</span><span class="p">:</span> <span class="mi">1583828972</span><span class="p">,</span>
-        <span class="s1">&#39;modified_price&#39;</span><span class="p">:</span> <span class="mi">0</span><span class="p">,</span>
-        <span class="s1">&#39;cancel_quantity&#39;</span><span class="p">:</span> <span class="mi">0</span><span class="p">,</span>
+        <span class="s1">&#39;id&#39;</span><span class="p">:</span> <span class="s1">&#39;97b63e2f&#39;</span><span class="p">,</span> 
+        <span class="s1">&#39;exchange_ts&#39;</span><span class="p">:</span> <span class="mf">1673576134.038</span><span class="p">,</span> 
+        <span class="s1">&#39;modified_price&#39;</span><span class="p">:</span> <span class="mf">0.0</span><span class="p">,</span> 
+        <span class="s1">&#39;cancel_quantity&#39;</span><span class="p">:</span> <span class="mi">0</span><span class="p">,</span> 
+        <span class="s1">&#39;order_quantity&#39;</span><span class="p">:</span> <span class="mi">1</span><span class="p">,</span> 
         <span class="s1">&#39;web_id&#39;</span><span class="p">:</span> <span class="s1">&#39;137&#39;</span>
-    <span class="p">},</span>
+    <span class="p">},</span> 
     <span class="s1">&#39;contract&#39;</span><span class="p">:</span> <span class="p">{</span>
-        <span class="s1">&#39;security_type&#39;</span><span class="p">:</span> <span class="s1">&#39;STK&#39;</span><span class="p">,</span>
-        <span class="s1">&#39;exchange&#39;</span><span class="p">:</span> <span class="s1">&#39;TSE&#39;</span><span class="p">,</span>
-        <span class="s1">&#39;code&#39;</span><span class="p">:</span> <span class="s1">&#39;2890&#39;</span><span class="p">,</span>
-        <span class="s1">&#39;symbol&#39;</span><span class="p">:</span> <span class="s1">&#39;&#39;</span><span class="p">,</span>
-        <span class="s1">&#39;name&#39;</span><span class="p">:</span> <span class="s1">&#39;&#39;</span><span class="p">,</span>
+        <span class="s1">&#39;security_type&#39;</span><span class="p">:</span> <span class="s1">&#39;STK&#39;</span><span class="p">,</span> 
+        <span class="s1">&#39;exchange&#39;</span><span class="p">:</span> <span class="s1">&#39;TSE&#39;</span><span class="p">,</span> 
+        <span class="s1">&#39;code&#39;</span><span class="p">:</span> <span class="s1">&#39;2890&#39;</span><span class="p">,</span> 
+        <span class="s1">&#39;symbol&#39;</span><span class="p">:</span> <span class="s1">&#39;&#39;</span><span class="p">,</span> 
+        <span class="s1">&#39;name&#39;</span><span class="p">:</span> <span class="s1">&#39;&#39;</span><span class="p">,</span> 
         <span class="s1">&#39;currency&#39;</span><span class="p">:</span> <span class="s1">&#39;TWD&#39;</span>
     <span class="p">}</span>
 <span class="p">}</span>
@@ -1263,8 +1293,12 @@
 <div class="admonition example">
 <p class="admonition-title">Order CallBack Info.</p>
 <p><strong>operation</strong>
-<div class="highlight"><pre><span></span><code><span class="n">op_type</span> <span class="p">(</span><span class="nb">str</span><span class="p">):</span> <span class="p">{</span><span class="s2">&quot;New&quot;</span><span class="p">:</span> <span class="n">new</span> <span class="n">order</span><span class="p">,</span> <span class="s2">&quot;Cancel&quot;</span><span class="p">:</span> <span class="n">cancel</span> <span class="n">order</span><span class="p">,</span> 
-            <span class="s2">&quot;UpdatePrice&quot;</span><span class="p">:</span> <span class="n">update</span> <span class="n">price</span><span class="p">,</span> <span class="s2">&quot;UpdateQty&quot;</span><span class="p">:</span> <span class="n">update</span> <span class="n">quantity</span><span class="p">}</span>
+<div class="highlight"><pre><span></span><code><span class="n">op_type</span> <span class="p">(</span><span class="nb">str</span><span class="p">):</span> <span class="p">{</span>
+        <span class="s2">&quot;New&quot;</span><span class="p">:</span> <span class="n">new</span> <span class="n">order</span><span class="p">,</span> 
+        <span class="s2">&quot;Cancel&quot;</span><span class="p">:</span> <span class="n">cancel</span> <span class="n">order</span><span class="p">,</span> 
+        <span class="s2">&quot;UpdatePrice&quot;</span><span class="p">:</span> <span class="n">update</span> <span class="n">price</span><span class="p">,</span> 
+        <span class="s2">&quot;UpdateQty&quot;</span><span class="p">:</span> <span class="n">update</span> <span class="n">quantity</span>
+    <span class="p">}</span>
 <span class="n">op_code</span> <span class="p">(</span><span class="nb">str</span><span class="p">):</span> <span class="p">{</span><span class="s2">&quot;00&quot;</span><span class="p">:</span> <span class="n">success</span><span class="p">,</span> <span class="n">others</span><span class="p">:</span> <span class="n">fail</span><span class="p">}</span>
 <span class="n">op_msg</span> <span class="p">(</span><span class="nb">str</span><span class="p">):</span> <span class="n">error</span> <span class="n">message</span>
 </code></pre></div>
@@ -1272,24 +1306,35 @@
 <div class="highlight"><pre><span></span><code><span class="nb">id</span> <span class="p">(</span><span class="nb">str</span><span class="p">):</span> <span class="n">same</span> <span class="k">as</span> <span class="n">the</span> <span class="n">trade_id</span> <span class="ow">in</span> <span class="n">SDeal</span>
 <span class="n">seqno</span> <span class="p">(</span><span class="nb">str</span><span class="p">):</span> <span class="n">sequence</span> <span class="n">number</span>
 <span class="n">ordno</span> <span class="p">(</span><span class="nb">str</span><span class="p">):</span> <span class="n">order</span> <span class="n">number</span>
-<span class="n">action</span> <span class="p">(</span><span class="nb">str</span><span class="p">):</span> <span class="n">buy</span><span class="o">/</span><span class="n">sell</span>
+<span class="n">account</span> <span class="p">(</span><span class="nb">dict</span><span class="p">):</span> <span class="n">account</span> <span class="n">info</span>
+<span class="n">action</span> <span class="p">(</span><span class="nb">str</span><span class="p">):</span> <span class="p">{</span><span class="n">Buy</span><span class="p">,</span> <span class="n">Sell</span><span class="p">}</span>
 <span class="n">price</span> <span class="p">(</span><span class="nb">float</span> <span class="ow">or</span> <span class="nb">int</span><span class="p">):</span> <span class="n">order</span> <span class="n">price</span>
 <span class="n">quantity</span> <span class="p">(</span><span class="nb">int</span><span class="p">):</span> <span class="n">order</span> <span class="n">quantity</span>
-<span class="n">order_cond</span> <span class="p">(</span><span class="nb">str</span><span class="p">):</span> <span class="p">{</span><span class="n">Cash</span><span class="p">:</span> <span class="n">現股</span><span class="p">,</span> <span class="n">MarginTrading</span><span class="p">:</span> <span class="n">融資</span><span class="p">,</span> <span class="n">ShortSelling</span><span class="p">:</span> <span class="n">融券</span><span class="p">}</span>
-<span class="n">order_lot</span> <span class="p">(</span><span class="nb">str</span><span class="p">):</span> <span class="p">{</span><span class="n">Common</span><span class="p">:</span> <span class="n">整股</span><span class="p">,</span> <span class="n">Fixing</span><span class="p">:</span> <span class="n">定盤</span><span class="p">,</span> <span class="n">Odd</span><span class="p">:</span> <span class="n">盤後零股</span><span class="p">,</span> <span class="n">IntradayOdd</span><span class="p">:</span> <span class="n">盤中零股</span><span class="p">}</span>
-<span class="n">custom_field</span> <span class="p">(</span><span class="nb">str</span><span class="p">):</span> <span class="n">memo</span> <span class="n">field</span>
 <span class="n">order_type</span> <span class="p">(</span><span class="nb">str</span><span class="p">):</span> <span class="n">the</span> <span class="nb">type</span> <span class="n">of</span> <span class="n">order</span> <span class="p">{</span><span class="n">ROD</span><span class="p">,</span> <span class="n">IOC</span><span class="p">,</span> <span class="n">FOK</span><span class="p">}</span>
-<span class="n">price_type</span> <span class="p">(</span><span class="nb">str</span><span class="p">):</span> <span class="n">pricing</span> <span class="nb">type</span> <span class="n">of</span> <span class="n">order</span> <span class="p">{</span><span class="n">LMT</span><span class="p">:</span> <span class="n">限價</span><span class="p">,</span> <span class="n">MKT</span><span class="p">:</span> <span class="n">市價</span><span class="p">,</span> <span class="n">MKP</span><span class="p">:</span> <span class="n">範圍市價</span><span class="p">}</span>
+<span class="n">price_type</span> <span class="p">(</span><span class="nb">str</span><span class="p">):</span> <span class="n">pricing</span> <span class="nb">type</span> <span class="n">of</span> <span class="n">order</span> <span class="p">{</span><span class="n">LMT</span><span class="p">,</span> <span class="n">MKT</span><span class="p">,</span> <span class="n">MKP</span><span class="p">}</span>
+<span class="n">order_cond</span> <span class="p">(</span><span class="nb">str</span><span class="p">):</span> <span class="p">{</span>
+            <span class="n">Cash</span><span class="p">:</span> <span class="n">現股</span><span class="p">,</span> 
+            <span class="n">MarginTrading</span><span class="p">:</span> <span class="n">融資</span><span class="p">,</span> 
+            <span class="n">ShortSelling</span><span class="p">:</span> <span class="n">融券</span>
+        <span class="p">}</span>
+<span class="n">order_lot</span> <span class="p">(</span><span class="nb">str</span><span class="p">):</span> <span class="p">{</span>
+            <span class="n">Common</span><span class="p">:</span> <span class="n">整股</span><span class="p">,</span> 
+            <span class="n">Fixing</span><span class="p">:</span> <span class="n">定盤</span><span class="p">,</span> 
+            <span class="n">Odd</span><span class="p">:</span> <span class="n">盤後零股</span><span class="p">,</span> 
+            <span class="n">IntradayOdd</span><span class="p">:</span> <span class="n">盤中零股</span>
+        <span class="p">}</span>
+<span class="n">custom_field</span> <span class="p">(</span><span class="nb">str</span><span class="p">):</span> <span class="n">memo</span> <span class="n">field</span>
 </code></pre></div>
 <strong>status</strong>
 <div class="highlight"><pre><span></span><code><span class="nb">id</span> <span class="p">(</span><span class="nb">str</span><span class="p">):</span> <span class="n">same</span> <span class="k">as</span> <span class="n">the</span> <span class="n">trade_id</span> <span class="ow">in</span> <span class="n">SDeal</span>
 <span class="n">exchange_ts</span> <span class="p">(</span><span class="nb">int</span><span class="p">):</span> <span class="n">exchange</span> <span class="n">time</span>
 <span class="n">modified_price</span> <span class="p">(</span><span class="nb">float</span> <span class="ow">or</span> <span class="nb">int</span><span class="p">):</span> <span class="n">modified</span> <span class="n">price</span>
 <span class="n">cancel_quantity</span> <span class="p">(</span><span class="nb">int</span><span class="p">):</span> <span class="n">cancel</span> <span class="n">quantity</span>
+<span class="n">order_quantity</span> <span class="p">(</span><span class="nb">int</span><span class="p">):</span> <span class="n">order</span> <span class="n">quantity</span>
 <span class="n">web_id</span> <span class="p">(</span><span class="nb">str</span><span class="p">):</span> <span class="n">web</span> <span class="nb">id</span>
 </code></pre></div>
 <strong>contract</strong>
-<div class="highlight"><pre><span></span><code><span class="n">security_type</span> <span class="p">(</span><span class="nb">str</span><span class="p">):</span> <span class="n">category</span>
+<div class="highlight"><pre><span></span><code><span class="n">security_type</span> <span class="p">(</span><span class="nb">str</span><span class="p">):</span> <span class="n">security</span> <span class="nb">type</span>
 <span class="n">exchange</span> <span class="p">(</span><span class="nb">str</span><span class="p">):</span> <span class="n">exchange</span>
 <span class="n">code</span> <span class="p">(</span><span class="nb">str</span><span class="p">):</span> <span class="n">code</span> <span class="nb">id</span>
 <span class="n">symbol</span> <span class="p">(</span><span class="nb">str</span><span class="p">):</span> <span class="n">symbol</span>
@@ -1305,37 +1350,41 @@
 <div class="tabbed-content">
 <div class="tabbed-block">
 <div class="highlight"><pre><span></span><code><span class="hll"><span class="n">OrderState</span><span class="o">.</span><span class="n">StockDeal</span> <span class="p">{</span>
-</span>    <span class="s1">&#39;trade_id&#39;</span><span class="p">:</span> <span class="s1">&#39;c21b876d&#39;</span><span class="p">,</span> 
-    <span class="s1">&#39;exchange_seq&#39;</span><span class="p">:</span> <span class="s1">&#39;123456&#39;</span><span class="p">,</span> 
-    <span class="s1">&#39;broker_id&#39;</span><span class="p">:</span> <span class="s1">&#39;your_broker_id&#39;</span><span class="p">,</span> 
-    <span class="s1">&#39;account_id&#39;</span><span class="p">:</span> <span class="s1">&#39;your_account_id&#39;</span><span class="p">,</span> 
-    <span class="s1">&#39;action&#39;</span><span class="p">:</span> <span class="o">&lt;</span><span class="n">Action</span><span class="o">.</span><span class="n">Buy</span><span class="p">:</span> <span class="s1">&#39;Buy&#39;</span><span class="o">&gt;</span><span class="p">,</span> 
+</span>    <span class="s1">&#39;trade_id&#39;</span><span class="p">:</span> <span class="s1">&#39;9c6ae2eb&#39;</span><span class="p">,</span> 
+    <span class="s1">&#39;seqno&#39;</span><span class="p">:</span> <span class="s1">&#39;269866&#39;</span><span class="p">,</span> 
+    <span class="s1">&#39;ordno&#39;</span><span class="p">:</span> <span class="s1">&#39;IN497&#39;</span><span class="p">,</span> 
+    <span class="s1">&#39;exchange_seq&#39;</span><span class="p">:</span> <span class="s1">&#39;669915&#39;</span><span class="p">,</span> 
+    <span class="s1">&#39;broker_id&#39;</span><span class="p">:</span> <span class="s1">&#39;9A95&#39;</span><span class="p">,</span> 
+    <span class="s1">&#39;account_id&#39;</span><span class="p">:</span> <span class="s1">&#39;1234567&#39;</span><span class="p">,</span> 
+    <span class="s1">&#39;action&#39;</span><span class="p">:</span> <span class="s1">&#39;Buy&#39;</span><span class="p">,</span> 
     <span class="s1">&#39;code&#39;</span><span class="p">:</span> <span class="s1">&#39;2890&#39;</span><span class="p">,</span> 
-    <span class="s1">&#39;order_cond&#39;</span><span class="p">:</span> <span class="o">&lt;</span><span class="n">StockOrderCond</span><span class="o">.</span><span class="n">Cash</span><span class="p">:</span> <span class="s1">&#39;Cash&#39;</span><span class="o">&gt;</span><span class="p">,</span> 
-    <span class="s1">&#39;order_lot&#39;</span><span class="p">:</span> <span class="o">&lt;</span><span class="n">StockOrderLot</span><span class="o">.</span><span class="n">Common</span><span class="p">:</span> <span class="s1">&#39;Common&#39;</span><span class="o">&gt;</span><span class="p">,</span>
-    <span class="s1">&#39;price&#39;</span><span class="p">:</span> <span class="mi">12</span><span class="p">,</span> 
-    <span class="s1">&#39;quantity&#39;</span><span class="p">:</span> <span class="mi">10</span><span class="p">,</span>
-    <span class="s1">&#39;web_id&#39;</span><span class="p">:</span> <span class="s1">&#39;137&#39;</span><span class="p">,</span>
-    <span class="s1">&#39;custom_field&#39;</span><span class="p">:</span> <span class="s1">&#39;test&#39;</span><span class="p">,</span>
-    <span class="s1">&#39;ts&#39;</span><span class="p">:</span> <span class="mi">1583828972</span>
+    <span class="s1">&#39;order_cond&#39;</span><span class="p">:</span> <span class="s1">&#39;Cash&#39;</span><span class="p">,</span> 
+    <span class="s1">&#39;order_lot&#39;</span><span class="p">:</span> <span class="s1">&#39;IntradayOdd&#39;</span><span class="p">,</span> 
+    <span class="s1">&#39;price&#39;</span><span class="p">:</span> <span class="mf">267.5</span><span class="p">,</span> 
+    <span class="s1">&#39;quantity&#39;</span><span class="p">:</span> <span class="mi">3</span><span class="p">,</span> 
+    <span class="s1">&#39;web_id&#39;</span><span class="p">:</span> <span class="s1">&#39;137&#39;</span><span class="p">,</span> 
+    <span class="s1">&#39;custom_field&#39;</span><span class="p">:</span> <span class="s1">&#39;test&#39;</span><span class="p">,</span> 
+    <span class="s1">&#39;ts&#39;</span><span class="p">:</span> <span class="mf">1673577256.354</span>
 <span class="p">}</span>
 </code></pre></div>
 </div>
 <div class="tabbed-block">
 <div class="highlight"><pre><span></span><code><span class="hll"><span class="n">OrderState</span><span class="o">.</span><span class="n">TFTDeal</span> <span class="p">{</span>
-</span>    <span class="s1">&#39;trade_id&#39;</span><span class="p">:</span> <span class="s1">&#39;c21b876d&#39;</span><span class="p">,</span> 
-    <span class="s1">&#39;exchange_seq&#39;</span><span class="p">:</span> <span class="s1">&#39;123456&#39;</span><span class="p">,</span> 
-    <span class="s1">&#39;broker_id&#39;</span><span class="p">:</span> <span class="s1">&#39;your_broker_id&#39;</span><span class="p">,</span> 
-    <span class="s1">&#39;account_id&#39;</span><span class="p">:</span> <span class="s1">&#39;your_account_id&#39;</span><span class="p">,</span> 
-    <span class="s1">&#39;action&#39;</span><span class="p">:</span> <span class="o">&lt;</span><span class="n">Action</span><span class="o">.</span><span class="n">Buy</span><span class="p">:</span> <span class="s1">&#39;Buy&#39;</span><span class="o">&gt;</span><span class="p">,</span> 
+</span>    <span class="s1">&#39;trade_id&#39;</span><span class="p">:</span> <span class="s1">&#39;9c6ae2eb&#39;</span><span class="p">,</span> 
+    <span class="s1">&#39;seqno&#39;</span><span class="p">:</span> <span class="s1">&#39;269866&#39;</span><span class="p">,</span> 
+    <span class="s1">&#39;ordno&#39;</span><span class="p">:</span> <span class="s1">&#39;IN497&#39;</span><span class="p">,</span> 
+    <span class="s1">&#39;exchange_seq&#39;</span><span class="p">:</span> <span class="s1">&#39;669915&#39;</span><span class="p">,</span> 
+    <span class="s1">&#39;broker_id&#39;</span><span class="p">:</span> <span class="s1">&#39;9A95&#39;</span><span class="p">,</span> 
+    <span class="s1">&#39;account_id&#39;</span><span class="p">:</span> <span class="s1">&#39;1234567&#39;</span><span class="p">,</span> 
+    <span class="s1">&#39;action&#39;</span><span class="p">:</span> <span class="s1">&#39;Buy&#39;</span><span class="p">,</span> 
     <span class="s1">&#39;code&#39;</span><span class="p">:</span> <span class="s1">&#39;2890&#39;</span><span class="p">,</span> 
-    <span class="s1">&#39;order_cond&#39;</span><span class="p">:</span> <span class="o">&lt;</span><span class="n">StockOrderCond</span><span class="o">.</span><span class="n">Cash</span><span class="p">:</span> <span class="s1">&#39;Cash&#39;</span><span class="o">&gt;</span><span class="p">,</span> 
-    <span class="s1">&#39;order_lot&#39;</span><span class="p">:</span> <span class="o">&lt;</span><span class="n">StockOrderLot</span><span class="o">.</span><span class="n">Common</span><span class="p">:</span> <span class="s1">&#39;Common&#39;</span><span class="o">&gt;</span><span class="p">,</span>
-    <span class="s1">&#39;price&#39;</span><span class="p">:</span> <span class="mi">12</span><span class="p">,</span> 
-    <span class="s1">&#39;quantity&#39;</span><span class="p">:</span> <span class="mi">10</span><span class="p">,</span>
-    <span class="s1">&#39;web_id&#39;</span><span class="p">:</span> <span class="s1">&#39;137&#39;</span><span class="p">,</span>
-    <span class="s1">&#39;custom_field&#39;</span><span class="p">:</span> <span class="s1">&#39;test&#39;</span><span class="p">,</span>
-    <span class="s1">&#39;ts&#39;</span><span class="p">:</span> <span class="mi">1583828972</span>
+    <span class="s1">&#39;order_cond&#39;</span><span class="p">:</span> <span class="s1">&#39;Cash&#39;</span><span class="p">,</span> 
+    <span class="s1">&#39;order_lot&#39;</span><span class="p">:</span> <span class="s1">&#39;IntradayOdd&#39;</span><span class="p">,</span> 
+    <span class="s1">&#39;price&#39;</span><span class="p">:</span> <span class="mf">267.5</span><span class="p">,</span> 
+    <span class="s1">&#39;quantity&#39;</span><span class="p">:</span> <span class="mi">3</span><span class="p">,</span> 
+    <span class="s1">&#39;web_id&#39;</span><span class="p">:</span> <span class="s1">&#39;137&#39;</span><span class="p">,</span> 
+    <span class="s1">&#39;custom_field&#39;</span><span class="p">:</span> <span class="s1">&#39;test&#39;</span><span class="p">,</span> 
+    <span class="s1">&#39;ts&#39;</span><span class="p">:</span> <span class="mf">1673577256.354</span>
 <span class="p">}</span>
 </code></pre></div>
 </div>
@@ -1344,14 +1393,25 @@
 </div>
 <div class="admonition example">
 <p class="admonition-title">Deal Callback Info.</p>
-<div class="highlight"><pre><span></span><code><span class="n">trade_id</span> <span class="p">(</span><span class="nb">str</span><span class="p">):</span> <span class="n">same</span> <span class="k">as</span> <span class="n">the</span> <span class="nb">id</span> <span class="ow">in</span> <span class="n">SOrder</span>
+<div class="highlight"><pre><span></span><code><span class="n">trade_id</span> <span class="p">(</span><span class="nb">str</span><span class="p">):</span> <span class="n">same</span> <span class="k">as</span> <span class="n">the</span> <span class="nb">id</span> <span class="ow">in</span> <span class="n">StockOrder</span>
+<span class="n">seqno</span> <span class="p">(</span><span class="nb">str</span><span class="p">):</span> <span class="n">sequence</span> <span class="n">number</span>
+<span class="n">ordno</span> <span class="p">(</span><span class="nb">str</span><span class="p">):</span> <span class="n">The</span> <span class="n">first</span> <span class="mi">5</span> <span class="n">characters</span> <span class="ow">is</span> <span class="n">the</span> <span class="n">same</span> <span class="k">as</span> <span class="n">ordno</span> <span class="ow">in</span> <span class="n">StockOrder</span><span class="o">.</span> <span class="n">The</span> <span class="n">last</span> <span class="mi">3</span> <span class="n">characters</span> <span class="n">represent</span> <span class="n">the</span> <span class="n">deal</span> <span class="n">sequence</span> <span class="n">number</span><span class="o">.</span>
 <span class="n">exchange_seq</span> <span class="p">(</span><span class="nb">str</span><span class="p">):</span> <span class="n">exchange</span> <span class="n">sequence</span> <span class="n">number</span>
 <span class="n">broker_id</span> <span class="p">(</span><span class="nb">str</span><span class="p">):</span> <span class="n">broker</span> <span class="nb">id</span>
 <span class="n">account_id</span> <span class="p">(</span><span class="nb">str</span><span class="p">):</span> <span class="n">account</span>
-<span class="n">action</span> <span class="p">(</span><span class="nb">str</span><span class="p">):</span> <span class="n">buy</span><span class="o">/</span><span class="n">sell</span>
+<span class="n">action</span> <span class="p">(</span><span class="nb">str</span><span class="p">):</span> <span class="p">{</span><span class="n">Buy</span><span class="p">,</span> <span class="n">Sell</span><span class="p">}</span>
 <span class="n">code</span> <span class="p">(</span><span class="nb">str</span><span class="p">):</span> <span class="n">code</span> <span class="nb">id</span>
-<span class="n">order_cond</span> <span class="p">(</span><span class="nb">str</span><span class="p">):</span> <span class="p">{</span><span class="n">Cash</span><span class="p">:</span> <span class="n">現股</span><span class="p">,</span> <span class="n">MarginTrading</span><span class="p">:</span> <span class="n">融資</span><span class="p">,</span> <span class="n">ShortSelling</span><span class="p">:</span> <span class="n">融券</span><span class="p">}</span>
-<span class="n">order_lot</span> <span class="p">(</span><span class="nb">str</span><span class="p">):</span> <span class="p">{</span><span class="n">Common</span><span class="p">:</span> <span class="n">整股</span><span class="p">,</span> <span class="n">Fixing</span><span class="p">:</span> <span class="n">定盤</span><span class="p">,</span> <span class="n">Odd</span><span class="p">:</span> <span class="n">盤後零股</span><span class="p">,</span> <span class="n">IntradayOdd</span><span class="p">:</span> <span class="n">盤中零股</span><span class="p">}</span>
+<span class="n">order_cond</span> <span class="p">(</span><span class="nb">str</span><span class="p">):</span> <span class="p">{</span>
+            <span class="n">Cash</span><span class="p">:</span> <span class="n">現股</span><span class="p">,</span> 
+            <span class="n">MarginTrading</span><span class="p">:</span> <span class="n">融資</span><span class="p">,</span> 
+            <span class="n">ShortSelling</span><span class="p">:</span> <span class="n">融券</span>
+        <span class="p">}</span>
+<span class="n">order_lot</span> <span class="p">(</span><span class="nb">str</span><span class="p">):</span> <span class="p">{</span>
+            <span class="n">Common</span><span class="p">:</span> <span class="n">整股</span><span class="p">,</span> 
+            <span class="n">Fixing</span><span class="p">:</span> <span class="n">定盤</span><span class="p">,</span> 
+            <span class="n">Odd</span><span class="p">:</span> <span class="n">盤後零股</span><span class="p">,</span> 
+            <span class="n">IntradayOdd</span><span class="p">:</span> <span class="n">盤中零股</span>
+        <span class="p">}</span>
 <span class="n">price</span> <span class="p">(</span><span class="nb">float</span> <span class="ow">or</span> <span class="nb">int</span><span class="p">):</span> <span class="n">deal</span> <span class="n">price</span>
 <span class="n">quantity</span> <span class="p">(</span><span class="nb">int</span><span class="p">):</span> <span class="n">deal</span> <span class="n">quantity</span>
 <span class="n">web_id</span> <span class="p">(</span><span class="nb">str</span><span class="p">):</span> <span class="n">web</span> <span class="nb">id</span>
@@ -1363,7 +1423,8 @@
 <p class="admonition-title">Note</p>
 <p>you "may" recieve the deal event sooner than the order event due to message priority in exchange.</p>
 </div>
-<p>The report information can be used in an advanced manner. For details, please refer to <a href="../../../callback/orderdeal_event/">Callback</a>.</p>
+<h3 id="handle-callback">Handle Callback<a class="headerlink" href="#handle-callback" title="Permanent link">&para;</a></h3>
+<p>If you would like to handle callback info, please refer to <a href="../../../callback/orderdeal_event/">Callback</a>.</p>
 
 
 
