@@ -1213,8 +1213,8 @@
 
   <h1>非阻塞模式範例</h1>
 
-<p>阻塞(Blocking)模式為函數必須等待某事完成。每個函數都是等待的，不管是在做 I/O 還是在做 CPU 任務。舉例來說，如果函數試圖從資料庫中獲取數據，那麼它需要停下來等待回傳結果，收到回傳結果後，才會繼續處理接下來的任務。相反地，非阻塞(non-blocking)模式，不會等待操作完成。如果您嘗試在短時間內發送批量操作，則非阻塞模式非常有用。我們提供以下範例讓您更了解之間的區別。
-切換阻塞/非阻塞模式為利用參數<code>timeout</code>。將API參數<code>timeout</code>設置為<code>0</code>為非阻塞模式。<code>timeout</code>預設值為 5000（毫秒），表示該函數最多等待 5 秒。</p>
+<p>阻塞(Blocking)模式為函數必須等待某事完成。每個函數都是等待的，不管是在做 I/O 還是在做 CPU 任務。舉例來說，如果函數試圖從資料庫中獲取數據，那麼它需要停下來等待回傳結果，收到回傳結果後，才會繼續處理接下來的任務。相反地，非阻塞(non-blocking)模式，不會等待操作完成。如果您嘗試在短時間內發送批量操作，則非阻塞模式非常有用。我們提供以下範例讓您更了解之間的區別。</p>
+<p>切換阻塞/非阻塞模式為利用參數<code>timeout</code>。將API參數<code>timeout</code>設置為<code>0</code>為非阻塞模式。<code>timeout</code>預設值為 5000（毫秒），表示該函數最多等待 5 秒。</p>
 <h3 id="_1">非阻塞模式下單<a class="headerlink" href="#_1" title="Permanent link">&para;</a></h3>
 <p>將<code>place_order</code> 函數中設置 <code>timeout = 0</code>。</p>
 <div class="admonition info">
@@ -1401,19 +1401,19 @@
 </div>
 <div class="admonition example">
 <p class="admonition-title">支援非等待模式的函數</p>
-<p><strong>ticks</strong>
-<strong>place_order</strong>
-<strong>update_order</strong>
-<strong>cancel_order</strong>
-<strong>update_status</strong>
-<strong>list_positions</strong>  <br />
-<strong>list_position_detail</strong>
-<strong>list_profit_loss</strong>
-<strong>list_profit_loss_detail</strong>
-<strong>list_profit_loss_summary</strong>
-<strong>settlements</strong>
-<strong>margin</strong>
-<strong>tickskbars</strong></p>
+<p>-<code>ticks</code>
+-<code>place_order</code>
+-<code>update_order</code>
+-<code>cancel_order</code>
+-<code>update_status</code>
+-<code>list_positions**</code>
+-<code>list_position_detail</code>
+-<code>list_profit_loss</code>
+-<code>list_profit_loss_detail</code>
+-<code>list_profit_loss_summary</code>
+-<code>settlements</code>
+-<code>margin</code>
+-<code>tickskbars</code></p>
 </div>
 
 
