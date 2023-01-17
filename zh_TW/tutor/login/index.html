@@ -1333,9 +1333,10 @@
 </div>
 </div>
 </div>
-<ul>
-<li><code>version &gt;= 1.0</code>，如果遇到 <strong>Sign data is timeout</strong>，表示您電腦的時間與伺服器的時間相差過大，或者單純只是登入執行時間超過有效時間。若前者發生，您需要校準電腦的時間，或者將<code>receive_window</code>調高。</li>
-</ul>
+<div class="admonition attention">
+<p class="admonition-title">注意</p>
+<p>當版本大於1.0時，可能在登入時遇到<strong>Sign data is timeout</strong>，這表示登入超過有效執行時間。可能是<u>您的電腦時間與伺服器時間相差過大</u>，需校準電腦的時間。或者<u>登入執行時間超過有效時間</u>，可將<code>receive_window</code>調高。</p>
+</div>
 <h3 id="callback">獲取商品檔Callback<a class="headerlink" href="#callback" title="Permanent link">&para;</a></h3>
 <div class="admonition info">
 <p class="admonition-title">In</p>

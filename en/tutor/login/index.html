@@ -1332,9 +1332,10 @@
 </div>
 </div>
 </div>
-<ul>
-<li>For <code>version &gt;= 1.0</code>, if you encounter <strong>Sign data is timeout</strong>, means that the time difference between your computer and server is too large, or it just took too long to login. If it's the former, you need to calibrate your computer time or just scale up <code>receive_window</code>.</li>
-</ul>
+<div class="admonition attention">
+<p class="admonition-title">Warning</p>
+<p>When the version is greater than 1.0, you may receive <strong>Sign data is timeout</strong> when login. That is, login has exceeded the effective execution time. It may be that <u>the time difference between your computer and server is too large</u>, you need to calibrate your computer time. Or <u>login execution time exceeds valid time</u>, you can increase <code>receive_window</code>.</p>
+</div>
 <h3 id="fetch-contracts-callback">Fetch Contracts Callback<a class="headerlink" href="#fetch-contracts-callback" title="Permanent link">&para;</a></h3>
 <p>You can use <code>contracts_cb</code> as print to check contract download status.</p>
 <div class="admonition info">
