@@ -19,7 +19,7 @@
     
     
       
-        <title>非等待模式範例 - Shioaji</title>
+        <title>非阻塞模式範例 - Shioaji</title>
       
     
     
@@ -106,7 +106,7 @@
         <div class="md-header__topic" data-md-component="header-topic">
           <span class="md-ellipsis">
             
-              非等待模式範例
+              非阻塞模式範例
             
           </span>
         </div>
@@ -987,12 +987,12 @@
       
       
         <label class="md-nav__link md-nav__link--active" for="__toc">
-          非等待模式範例
+          非阻塞模式範例
           <span class="md-nav__icon md-icon"></span>
         </label>
       
       <a href="./" class="md-nav__link md-nav__link--active">
-        非等待模式範例
+        非阻塞模式範例
       </a>
       
         
@@ -1010,49 +1010,22 @@
       
         <li class="md-nav__item">
   <a href="#_1" class="md-nav__link">
-    非等待模式 (非阻塞模式)
+    非阻塞模式下單
   </a>
   
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#shioaji" class="md-nav__link">
-    Shioaji 等待 &amp; 非等待模式
-  </a>
-  
-    <nav class="md-nav" aria-label="Shioaji 等待 &amp; 非等待模式">
+    <nav class="md-nav" aria-label="非阻塞模式下單">
       <ul class="md-nav__list">
         
           <li class="md-nav__item">
   <a href="#_2" class="md-nav__link">
-    非等待模式下單
+    委託回報
   </a>
-  
-    <nav class="md-nav" aria-label="非等待模式下單">
-      <ul class="md-nav__list">
-        
-          <li class="md-nav__item">
-  <a href="#order-event-callback" class="md-nav__link">
-    委託事件回調 (Order event callback)
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#non-blocking-place-order-callback" class="md-nav__link">
-    非等待模式下單回調 (Non-blocking place order callback)
-  </a>
-  
-</li>
-        
-      </ul>
-    </nav>
   
 </li>
         
           <li class="md-nav__item">
   <a href="#_3" class="md-nav__link">
-    比較等待及非等待模式下單
+    非阻塞模式下單回調
   </a>
   
 </li>
@@ -1064,7 +1037,7 @@
       
         <li class="md-nav__item">
   <a href="#_4" class="md-nav__link">
-    支援非等待模式的函數
+    比較阻塞及非阻塞模式下單
   </a>
   
 </li>
@@ -1191,49 +1164,22 @@
       
         <li class="md-nav__item">
   <a href="#_1" class="md-nav__link">
-    非等待模式 (非阻塞模式)
+    非阻塞模式下單
   </a>
   
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#shioaji" class="md-nav__link">
-    Shioaji 等待 &amp; 非等待模式
-  </a>
-  
-    <nav class="md-nav" aria-label="Shioaji 等待 &amp; 非等待模式">
+    <nav class="md-nav" aria-label="非阻塞模式下單">
       <ul class="md-nav__list">
         
           <li class="md-nav__item">
   <a href="#_2" class="md-nav__link">
-    非等待模式下單
+    委託回報
   </a>
-  
-    <nav class="md-nav" aria-label="非等待模式下單">
-      <ul class="md-nav__list">
-        
-          <li class="md-nav__item">
-  <a href="#order-event-callback" class="md-nav__link">
-    委託事件回調 (Order event callback)
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#non-blocking-place-order-callback" class="md-nav__link">
-    非等待模式下單回調 (Non-blocking place order callback)
-  </a>
-  
-</li>
-        
-      </ul>
-    </nav>
   
 </li>
         
           <li class="md-nav__item">
   <a href="#_3" class="md-nav__link">
-    比較等待及非等待模式下單
+    非阻塞模式下單回調
   </a>
   
 </li>
@@ -1245,7 +1191,7 @@
       
         <li class="md-nav__item">
   <a href="#_4" class="md-nav__link">
-    支援非等待模式的函數
+    比較阻塞及非阻塞模式下單
   </a>
   
 </li>
@@ -1265,15 +1211,12 @@
                   
 
 
-  <h1>非等待模式範例</h1>
+  <h1>非阻塞模式範例</h1>
 
-<h2 id="_1">非等待模式 (非阻塞模式)<a class="headerlink" href="#_1" title="Permanent link">&para;</a></h2>
-<p>首先讓我們看看什麼是阻塞(Blocking)? 如果一個函數必須等待某事完成，它就是阻塞的。每個函數都是阻塞的 - 不管你是在做 I/O 還是在做 CPU 任務。一切都需要一些時間。舉例來說，如果一個函數試圖從資料庫中獲取數據，那麼它會停下來等待回傳結果，收到回傳結果後，才會繼續處理接下來的任務。</p>
-<p>相反地，當您進行非阻塞操作時(non-blocking)，它不會等待操作完成。如果您嘗試在短時間內發送批量操作，則非阻塞模式非常有用。為了讓您了解阻塞模式和非阻塞模式之間的區別，我們將向您展示比較示例。</p>
-<h2 id="shioaji">Shioaji 等待 &amp; 非等待模式<a class="headerlink" href="#shioaji" title="Permanent link">&para;</a></h2>
-<p>Shioaji 提供等待及非等待模式，將API參數<code>timeout</code>設置為<code>0</code>即可切換成非等待模式。<code>timeout</code>默認值為 5000（毫秒），表示該函數將等待最多 5 秒的響應。</p>
-<h3 id="_2">非等待模式下單<a class="headerlink" href="#_2" title="Permanent link">&para;</a></h3>
-<p>要以非等待模式提交委託單非常容易，只需在 <code>place_order</code> 函數中設置 <code>timeout = 0</code> 即可。</p>
+<p>阻塞(Blocking)模式為函數必須等待某事完成。每個函數都是等待的，不管是在做 I/O 還是在做 CPU 任務。舉例來說，如果函數試圖從資料庫中獲取數據，那麼它需要停下來等待回傳結果，收到回傳結果後，才會繼續處理接下來的任務。相反地，非阻塞(non-blocking)模式，不會等待操作完成。如果您嘗試在短時間內發送批量操作，則非阻塞模式非常有用。我們提供以下範例讓您更了解之間的區別。</p>
+<p>切換阻塞/非阻塞模式為利用參數<code>timeout</code>。將API參數<code>timeout</code>設置為<code>0</code>為非阻塞模式。<code>timeout</code>預設值為 5000（毫秒），表示該函數最多等待 5 秒。</p>
+<h3 id="_1">非阻塞模式下單<a class="headerlink" href="#_1" title="Permanent link">&para;</a></h3>
+<p>將<code>place_order</code> 函數中設置 <code>timeout = 0</code>。</p>
 <div class="admonition info">
 <p class="admonition-title">In</p>
 <div class="highlight"><pre><span></span><code><span class="n">contract</span> <span class="o">=</span> <span class="n">api</span><span class="o">.</span><span class="n">Contracts</span><span class="o">.</span><span class="n">Futures</span><span class="o">.</span><span class="n">TXF</span><span class="p">[</span><span class="s1">&#39;TXF202301&#39;</span><span class="p">]</span>
@@ -1325,8 +1268,8 @@
 </span><span class="p">)</span>
 </code></pre></div>
 </div>
-<p>請注意，<code>Trade</code>物件與我們在等待模式中獲得的不同。首先，Order 沒有<code>id</code>和<code>seqno</code>。其次，OrderStatus 缺少 <code>id</code>、<code>status_code</code>、<code>order_datetime</code> 和 <code>deals</code>。最後，<code>status</code>為<code>Inactive</code>。那是因為我們還沒有真正將委託單發送到交易所。委託單仍在傳輸中。當然，我們對這個命令一無所知。那麼問題來了，我們怎麼知道這個委託成功了呢?我們為您提供兩種方式，<code>委託事件回調</code>和<code>非等待模式下單回調</code>。</p>
-<h4 id="order-event-callback">委託事件回調 (Order event callback)<a class="headerlink" href="#order-event-callback" title="Permanent link">&para;</a></h4>
+<p>在非阻塞模式中取得的<code>Trade</code>物件，因為委託單仍在傳輸中還未送至交易所，所以會缺少一些資訊。在<code>Order</code>物件中沒有<code>id</code>和<code>seqno</code>，<code>OrderStatus</code>物件中沒有 <code>id</code>、<code>status_code</code>、<code>order_datetime</code> 和 <code>deals</code>，<code>status</code>顯示為<code>Inactive</code>。在非阻塞模式中要取得上述提到的資訊可利用<code>委託回報</code>和<code>非阻塞模式下單回調</code>兩種方式。</p>
+<h4 id="_2">委託回報<a class="headerlink" href="#_2" title="Permanent link">&para;</a></h4>
 <div class="admonition done">
 <p class="admonition-title">Out</p>
 <div class="highlight"><pre><span></span><code><span class="n">OrderState</span><span class="o">.</span><span class="n">FuturesOrder</span> <span class="p">{</span>
@@ -1363,7 +1306,7 @@
 <span class="p">}</span>
 </code></pre></div>
 </div>
-<h4 id="non-blocking-place-order-callback">非等待模式下單回調 (Non-blocking place order callback)<a class="headerlink" href="#non-blocking-place-order-callback" title="Permanent link">&para;</a></h4>
+<h4 id="_3">非阻塞模式下單回調<a class="headerlink" href="#_3" title="Permanent link">&para;</a></h4>
 <div class="admonition info">
 <p class="admonition-title">In</p>
 <div class="highlight"><pre><span></span><code><span class="kn">from</span> <span class="nn">shioaji.order</span> <span class="kn">import</span> <span class="n">Trade</span>
@@ -1424,7 +1367,8 @@
 </code></pre></div>
 </div>
 <p></br></p>
-<h3 id="_3">比較等待及非等待模式下單<a class="headerlink" href="#_3" title="Permanent link">&para;</a></h3>
+<h3 id="_4">比較阻塞及非阻塞模式下單<a class="headerlink" href="#_4" title="Permanent link">&para;</a></h3>
+<p>在非阻塞模式下，執行 <code>place_order</code> 大約需要 0.01 秒，這比阻塞模式下的執行時間快 12 倍。雖然非阻塞模式下單效率更高，需等待交易所收到委託後，委託單才會生效。</p>
 <div class="admonition done">
 <p class="admonition-title">contract and order</p>
 <div class="highlight"><pre><span></span><code><span class="n">contract</span> <span class="o">=</span> <span class="n">api</span><span class="o">.</span><span class="n">Contracts</span><span class="o">.</span><span class="n">Futures</span><span class="o">.</span><span class="n">TXF</span><span class="p">[</span><span class="s1">&#39;TXF202301&#39;</span><span class="p">]</span>
@@ -1455,25 +1399,24 @@
 <span class="c1"># 0.011670351028442383 &lt;- may be different</span>
 </code></pre></div>
 </div>
-<p>正如上面看到的，在非等待模式下，執行 <code>place_order</code> 大約需要 0.01 秒，這比等模式下的執行時間快 12 倍。再次提醒，雖然非等待模式下單效率更高，但需等待交易所收到委託後，委託單才會生效。</p>
-<h2 id="_4">支援非等待模式的函數<a class="headerlink" href="#_4" title="Permanent link">&para;</a></h2>
-<ul>
-<li>ticks</li>
-<li>place_order</li>
-<li>update_order</li>
-<li>cancel_order</li>
-<li>update_status </li>
-<li>list_positions    </li>
-<li>list_position_detail</li>
-<li>list_profit_loss</li>
-<li>list_profit_loss_detail</li>
-<li>list_profit_loss_summary</li>
-<li>settlements</li>
-<li>margin</li>
-<li>ticks</li>
-<li>kbars</li>
-<li>...</li>
-</ul>
+<div class="admonition example">
+<p class="admonition-title">支援非等待模式的函數</p>
+<div class="highlight"><pre><span></span><code><span class="n">ticks</span>
+<span class="n">place_order</span>
+<span class="n">update_order</span>
+<span class="n">cancel_order</span>
+<span class="n">update_status</span> 
+<span class="n">list_positions</span>    
+<span class="n">list_position_detail</span>
+<span class="n">list_profit_loss</span>
+<span class="n">list_profit_loss_detail</span>
+<span class="n">list_profit_loss_summary</span>
+<span class="n">settlements</span>
+<span class="n">margin</span>
+<span class="n">tickskbars</span>
+<span class="o">...</span>
+</code></pre></div>
+</div>
 
 
 

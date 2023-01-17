@@ -74,7 +74,7 @@
     <div data-md-component="skip">
       
         
-        <a href="#what-is-non-blocking" class="md-skip">
+        <a href="#non-blocking-place-order" class="md-skip">
           Skip to content
         </a>
       
@@ -1009,21 +1009,6 @@
     <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
       
         <li class="md-nav__item">
-  <a href="#what-is-non-blocking" class="md-nav__link">
-    What is Non-blocking?
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#shioaji-blocking-non-blocking-mode" class="md-nav__link">
-    Shioaji Blocking &amp; Non-blocking Mode
-  </a>
-  
-    <nav class="md-nav" aria-label="Shioaji Blocking &amp; Non-blocking Mode">
-      <ul class="md-nav__list">
-        
-          <li class="md-nav__item">
   <a href="#non-blocking-place-order" class="md-nav__link">
     Non-Blocking Place Order
   </a>
@@ -1049,22 +1034,10 @@
     </nav>
   
 </li>
-        
-          <li class="md-nav__item">
-  <a href="#blocking-non-blocking-comparison" class="md-nav__link">
-    Blocking &amp; Non-Blocking Comparison
-  </a>
-  
-</li>
-        
-      </ul>
-    </nav>
-  
-</li>
       
         <li class="md-nav__item">
-  <a href="#non-blocking-mode-supported-function" class="md-nav__link">
-    Non-Blocking mode Supported Function
+  <a href="#blocking-non-blocking-comparison" class="md-nav__link">
+    Blocking &amp; Non-Blocking Comparison
   </a>
   
 </li>
@@ -1190,21 +1163,6 @@
     <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
       
         <li class="md-nav__item">
-  <a href="#what-is-non-blocking" class="md-nav__link">
-    What is Non-blocking?
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#shioaji-blocking-non-blocking-mode" class="md-nav__link">
-    Shioaji Blocking &amp; Non-blocking Mode
-  </a>
-  
-    <nav class="md-nav" aria-label="Shioaji Blocking &amp; Non-blocking Mode">
-      <ul class="md-nav__list">
-        
-          <li class="md-nav__item">
   <a href="#non-blocking-place-order" class="md-nav__link">
     Non-Blocking Place Order
   </a>
@@ -1230,22 +1188,10 @@
     </nav>
   
 </li>
-        
-          <li class="md-nav__item">
-  <a href="#blocking-non-blocking-comparison" class="md-nav__link">
-    Blocking &amp; Non-Blocking Comparison
-  </a>
-  
-</li>
-        
-      </ul>
-    </nav>
-  
-</li>
       
         <li class="md-nav__item">
-  <a href="#non-blocking-mode-supported-function" class="md-nav__link">
-    Non-Blocking mode Supported Function
+  <a href="#blocking-non-blocking-comparison" class="md-nav__link">
+    Blocking &amp; Non-Blocking Comparison
   </a>
   
 </li>
@@ -1267,13 +1213,10 @@
 
   <h1>Non-blocking Mode</h1>
 
-<h2 id="what-is-non-blocking">What is Non-blocking?<a class="headerlink" href="#what-is-non-blocking" title="Permanent link">&para;</a></h2>
-<p>First lets see what is Blocking? A function is blocking if it has to wait for something to complete. Yes, every function is blocking — no matter if you are doing I/O or doing CPU task. Everything takes some time. If a function is doing some task which is making the CPU work, then it is blocking the function from returning. Similarly, if a function is trying to get something from the database, then it is going to wait for the result to come and will block until then to continue the processing.</p>
-<p>Conversely, when you make a non-blocking operation, it will never wait for the operation to complete. Non-blocking mode is extreamly useful if you try to send a bulk orders in a short period of time. To make you understand what's diffenrence between blocking and non-block mode, we show you examples of comparison.</p>
-<h2 id="shioaji-blocking-non-blocking-mode">Shioaji Blocking &amp; Non-blocking Mode<a class="headerlink" href="#shioaji-blocking-non-blocking-mode" title="Permanent link">&para;</a></h2>
-<p>Shioaji provides blocking and non-blocking mode, by simply changing the value of timeout. Default value of timeout is 5000 (ms) which means the function will wait for the response up to 5 seconds. If the execution time exceeds 5 seconds, the function will raise error. However, some api function like tick may takes more than 5 seconds. At this circumstance, just scale up timeout or use non-blocking mode by setting the <code>timeout = 0</code>. </p>
+<p>Blocking is a pattern where a function must wait for something to complete. Every function is waiting, whether it is doing I/O or doing CPU tasks. For example, if the function tries to get data from the database, it needs to stop and wait for the return result, and then continue processing the next task after receiving the return result. In contrast, non-blocking mode does not wait for operations to complete. Non-blocking mode is useful if you are trying to send batch operation in a short period of time. We provide the following examples to give you a better understanding of the difference.</p>
+<p>To switch blocking/non-blocking mode use parameter <code>timeout</code>. Set the API parameter <code>timeout</code> to <code>0</code> for non-blocking mode. The default value of <code>timeout</code> is 5000 (milliseconds), which means the function waits for up to 5 seconds.</p>
 <h3 id="non-blocking-place-order">Non-Blocking Place Order<a class="headerlink" href="#non-blocking-place-order" title="Permanent link">&para;</a></h3>
-<p>To submit order in non-blocking mode is easy, just set <code>timeout = 0</code> in <code>place_order</code> function.</p>
+<p>Set <code>timeout = 0</code> in <code>place_order</code> function.</p>
 <div class="admonition info">
 <p class="admonition-title">In</p>
 <div class="highlight"><pre><span></span><code><span class="n">contract</span> <span class="o">=</span> <span class="n">api</span><span class="o">.</span><span class="n">Contracts</span><span class="o">.</span><span class="n">Futures</span><span class="o">.</span><span class="n">TXF</span><span class="p">[</span><span class="s1">&#39;TXF202301&#39;</span><span class="p">]</span>
@@ -1325,7 +1268,7 @@
 </span><span class="p">)</span>
 </code></pre></div>
 </div>
-<p>Note that the <code>Trade</code> object is different from the one we get from blocking mode. First, there is no <code>id</code> and <code>seqno</code> in Order. Second, <code>id</code>, <code>status_code</code>, <code>order_datetime</code> and <code>deals</code> are missing in OrderStatus. Finally, status is <code>Inactive</code>. That's because we hadn't really send the order to exchange. The order is still in transmission. Of course we know nothing about this order. Then it comes to a problem, how do we know this order is successfully submitted? We offer you two kinds of methods, <code>order event callback</code> and <code>non-blocking place order callback</code>.</p>
+<p>The <code>Trade</code> object obtained in non-blocking mode will lack some information because the order is still in transit and has not been sent to the exchange. There are no <code>id</code> and <code>seqno</code> in the <code>Order</code> object, <code>id</code>, <code>status_code</code>, <code>order_datetime</code> and <code>deals</code> are missing in the <code>OrderStatus</code> object, and <code>status</code> is displayed as <code>Inactive</code>. In the non-blocking mode, there are two ways to obtain the above-mentioned information: <code>`order event callback</code> and <code>non-blocking place order callback</code>.</p>
 <h4 id="order-event-callback">Order event callback<a class="headerlink" href="#order-event-callback" title="Permanent link">&para;</a></h4>
 <div class="admonition done">
 <p class="admonition-title">Out</p>
@@ -1425,6 +1368,7 @@
 </div>
 <p></br></p>
 <h3 id="blocking-non-blocking-comparison">Blocking &amp; Non-Blocking Comparison<a class="headerlink" href="#blocking-non-blocking-comparison" title="Permanent link">&para;</a></h3>
+<p>In non-wait mode, executing <code>place_order</code> takes about 0.01 seconds, which is 12 times faster than the execution time in blocking mode. Although it is more efficient to place order in the non-blocking mode, the order will not take effect until the exchange receives the order.  </p>
 <div class="admonition done">
 <p class="admonition-title">contract and order</p>
 <div class="highlight"><pre><span></span><code><span class="n">contract</span> <span class="o">=</span> <span class="n">api</span><span class="o">.</span><span class="n">Contracts</span><span class="o">.</span><span class="n">Futures</span><span class="o">.</span><span class="n">TXF</span><span class="p">[</span><span class="s1">&#39;TXF202301&#39;</span><span class="p">]</span>
@@ -1455,25 +1399,24 @@
 <span class="c1"># 0.011670351028442383 &lt;- may be different</span>
 </code></pre></div>
 </div>
-<p>As you cas see above, in non-blocking mode, it takes about 0.01 seconds to execute <code>place_order</code> function, which is 12x faster than the execution time in blocking mode. Remind again, though it's more efficient to place order in non-blocking mode, the order won't be active until the exchange confirms the order.  </p>
-<h2 id="non-blocking-mode-supported-function">Non-Blocking mode Supported Function<a class="headerlink" href="#non-blocking-mode-supported-function" title="Permanent link">&para;</a></h2>
-<ul>
-<li>ticks</li>
-<li>place_order</li>
-<li>update_order</li>
-<li>cancel_order</li>
-<li>update_status </li>
-<li>list_positions    </li>
-<li>list_position_detail</li>
-<li>list_profit_loss</li>
-<li>list_profit_loss_detail</li>
-<li>list_profit_loss_summary</li>
-<li>settlements</li>
-<li>margin</li>
-<li>ticks</li>
-<li>kbars</li>
-<li>...</li>
-</ul>
+<div class="admonition example">
+<p class="admonition-title">Non-Blocking mode Supported Function</p>
+<div class="highlight"><pre><span></span><code><span class="n">ticks</span>
+<span class="n">place_order</span>
+<span class="n">update_order</span>
+<span class="n">cancel_order</span>
+<span class="n">update_status</span> 
+<span class="n">list_positions</span>    
+<span class="n">list_position_detail</span>
+<span class="n">list_profit_loss</span>
+<span class="n">list_profit_loss_detail</span>
+<span class="n">list_profit_loss_summary</span>
+<span class="n">settlements</span>
+<span class="n">margin</span>
+<span class="n">tickskbars</span>
+<span class="o">...</span>
+</code></pre></div>
+</div>
 
 
 
