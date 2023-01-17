@@ -1036,8 +1036,8 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#blocking-non-blocking-comparison" class="md-nav__link">
-    Blocking &amp; Non-Blocking Comparison
+  <a href="#compare-both-modes" class="md-nav__link">
+    Compare both modes
   </a>
   
 </li>
@@ -1190,8 +1190,8 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#blocking-non-blocking-comparison" class="md-nav__link">
-    Blocking &amp; Non-Blocking Comparison
+  <a href="#compare-both-modes" class="md-nav__link">
+    Compare both modes
   </a>
   
 </li>
@@ -1367,7 +1367,7 @@
 </code></pre></div>
 </div>
 <p></br></p>
-<h3 id="blocking-non-blocking-comparison">Blocking &amp; Non-Blocking Comparison<a class="headerlink" href="#blocking-non-blocking-comparison" title="Permanent link">&para;</a></h3>
+<h3 id="compare-both-modes">Compare both modes<a class="headerlink" href="#compare-both-modes" title="Permanent link">&para;</a></h3>
 <p>In non-wait mode, executing <code>place_order</code> takes about 0.01 seconds, which is 12 times faster than the execution time in blocking mode. Although it is more efficient to place order in the non-blocking mode, the order will not take effect until the exchange receives the order.  </p>
 <div class="admonition done">
 <p class="admonition-title">contract and order</p>
@@ -1401,20 +1401,19 @@
 </div>
 <div class="admonition example">
 <p class="admonition-title">Non-Blocking mode Supported Function</p>
-<div class="highlight"><pre><span></span><code><span class="n">ticks</span>
-<span class="n">place_order</span>
-<span class="n">update_order</span>
-<span class="n">cancel_order</span>
-<span class="n">update_status</span> 
-<span class="n">list_positions</span>    
-<span class="n">list_position_detail</span>
-<span class="n">list_profit_loss</span>
-<span class="n">list_profit_loss_detail</span>
-<span class="n">list_profit_loss_summary</span>
-<span class="n">settlements</span>
-<span class="n">margin</span>
-<span class="n">tickskbars</span>
-<span class="o">...</span>
+<div class="highlight"><pre><span></span><code><span class="o">-</span> <span class="o">*</span><span class="n">ticks</span><span class="o">*</span>
+<span class="o">-</span> <span class="o">*</span><span class="n">place_order</span><span class="o">*</span>
+<span class="o">-</span> <span class="o">*</span><span class="n">update_order</span><span class="o">*</span>
+<span class="o">-</span> <span class="o">*</span><span class="n">cancel_order</span><span class="o">*</span>
+<span class="o">-</span> <span class="o">*</span><span class="n">update_status</span><span class="o">*</span>
+<span class="o">-</span> <span class="o">*</span><span class="n">list_positions</span><span class="o">*</span>    
+<span class="o">-</span> <span class="o">*</span><span class="n">list_position_detail</span><span class="o">*</span>
+<span class="o">-</span> <span class="o">*</span><span class="n">list_profit_loss</span><span class="o">*</span>
+<span class="o">-</span> <span class="o">*</span><span class="n">list_profit_loss_detail</span><span class="o">*</span>
+<span class="o">-</span> <span class="o">*</span><span class="n">list_profit_loss_summary</span><span class="o">*</span>
+<span class="o">-</span> <span class="o">*</span><span class="n">settlements</span><span class="o">*</span>
+<span class="o">-</span> <span class="o">*</span><span class="n">margin</span><span class="o">*</span>
+<span class="o">-</span> <span class="o">*</span><span class="n">tickskbars</span><span class="o">*</span>
 </code></pre></div>
 </div>
 

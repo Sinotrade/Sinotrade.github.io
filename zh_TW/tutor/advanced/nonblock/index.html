@@ -1037,7 +1037,7 @@
       
         <li class="md-nav__item">
   <a href="#_4" class="md-nav__link">
-    比較阻塞及非阻塞模式下單
+    比較兩者模式
   </a>
   
 </li>
@@ -1191,7 +1191,7 @@
       
         <li class="md-nav__item">
   <a href="#_4" class="md-nav__link">
-    比較阻塞及非阻塞模式下單
+    比較兩者模式
   </a>
   
 </li>
@@ -1367,7 +1367,7 @@
 </code></pre></div>
 </div>
 <p></br></p>
-<h3 id="_4">比較阻塞及非阻塞模式下單<a class="headerlink" href="#_4" title="Permanent link">&para;</a></h3>
+<h3 id="_4">比較兩者模式<a class="headerlink" href="#_4" title="Permanent link">&para;</a></h3>
 <p>在非阻塞模式下，執行 <code>place_order</code> 大約需要 0.01 秒，這比阻塞模式下的執行時間快 12 倍。雖然非阻塞模式下單效率更高，需等待交易所收到委託後，委託單才會生效。</p>
 <div class="admonition done">
 <p class="admonition-title">contract and order</p>
@@ -1401,20 +1401,19 @@
 </div>
 <div class="admonition example">
 <p class="admonition-title">支援非等待模式的函數</p>
-<div class="highlight"><pre><span></span><code><span class="n">ticks</span>
-<span class="n">place_order</span>
-<span class="n">update_order</span>
-<span class="n">cancel_order</span>
-<span class="n">update_status</span> 
-<span class="n">list_positions</span>    
-<span class="n">list_position_detail</span>
-<span class="n">list_profit_loss</span>
-<span class="n">list_profit_loss_detail</span>
-<span class="n">list_profit_loss_summary</span>
-<span class="n">settlements</span>
-<span class="n">margin</span>
-<span class="n">tickskbars</span>
-<span class="o">...</span>
+<div class="highlight"><pre><span></span><code><span class="o">-</span> <span class="o">*</span><span class="n">ticks</span><span class="o">*</span>
+<span class="o">-</span> <span class="o">*</span><span class="n">place_order</span><span class="o">*</span>
+<span class="o">-</span> <span class="o">*</span><span class="n">update_order</span><span class="o">*</span>
+<span class="o">-</span> <span class="o">*</span><span class="n">cancel_order</span><span class="o">*</span>
+<span class="o">-</span> <span class="o">*</span><span class="n">update_status</span><span class="o">*</span>
+<span class="o">-</span> <span class="o">*</span><span class="n">list_positions</span><span class="o">*</span>    
+<span class="o">-</span> <span class="o">*</span><span class="n">list_position_detail</span><span class="o">*</span>
+<span class="o">-</span> <span class="o">*</span><span class="n">list_profit_loss</span><span class="o">*</span>
+<span class="o">-</span> <span class="o">*</span><span class="n">list_profit_loss_detail</span><span class="o">*</span>
+<span class="o">-</span> <span class="o">*</span><span class="n">list_profit_loss_summary</span><span class="o">*</span>
+<span class="o">-</span> <span class="o">*</span><span class="n">settlements</span><span class="o">*</span>
+<span class="o">-</span> <span class="o">*</span><span class="n">margin</span><span class="o">*</span>
+<span class="o">-</span> <span class="o">*</span><span class="n">tickskbars</span><span class="o">*</span>
 </code></pre></div>
 </div>
 
