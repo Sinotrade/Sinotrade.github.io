@@ -1321,99 +1321,147 @@
 <h4 id="stock">Stock<a class="headerlink" href="#stock" title="Permanent link">&para;</a></h4>
 <div class="admonition info">
 <p class="admonition-title">In</p>
-<div class="highlight"><pre><span></span><code><span class="n">contract_2890</span> <span class="o">=</span> <span class="n">api</span><span class="o">.</span><span class="n">Contracts</span><span class="o">.</span><span class="n">Stocks</span><span class="p">[</span><span class="s2">&quot;2890&quot;</span><span class="p">]</span>
-<span class="n">contract_2890</span>
+<div class="highlight"><pre><span></span><code><span class="n">api</span><span class="o">.</span><span class="n">Contracts</span><span class="o">.</span><span class="n">Stocks</span><span class="p">[</span><span class="s2">&quot;2890&quot;</span><span class="p">]</span>
+<span class="c1"># or api.Contracts.Stocks.TSE.TSE2890</span>
 </code></pre></div>
 </div>
 <div class="admonition done">
 <p class="admonition-title">Out</p>
-<div class="highlight"><pre><span></span><code><span class="n">Stock</span><span class="p">(</span><span class="n">exchange</span><span class="o">=&lt;</span><span class="n">Exchange</span><span class="o">.</span><span class="n">TSE</span><span class="p">:</span> <span class="s1">&#39;TSE&#39;</span><span class="o">&gt;</span><span class="p">,</span> <span class="n">code</span><span class="o">=</span><span class="s1">&#39;2890&#39;</span><span class="p">,</span> <span class="n">symbol</span><span class="o">=</span><span class="s1">&#39;TSE2890&#39;</span><span class="p">,</span> <span class="n">name</span><span class="o">=</span><span class="s1">&#39;永豐金&#39;</span><span class="p">,</span> <span class="n">category</span><span class="o">=</span><span class="s1">&#39;17&#39;</span><span class="p">,</span> <span class="n">limit_up</span><span class="o">=</span><span class="mf">11.3</span><span class="p">,</span> <span class="n">limit_down</span><span class="o">=</span><span class="mf">9.27</span><span class="p">,</span> <span class="n">update_date</span><span class="o">=</span><span class="s1">&#39;2020/03/18&#39;</span><span class="p">,</span> <span class="n">day_trade</span><span class="o">=&lt;</span><span class="n">DayTrade</span><span class="o">.</span><span class="n">Yes</span><span class="p">:</span> <span class="s1">&#39;Yes&#39;</span><span class="o">&gt;</span><span class="p">)</span>
+<div class="highlight"><pre><span></span><code><span class="n">Stock</span><span class="p">(</span>
+    <span class="n">exchange</span><span class="o">=&lt;</span><span class="n">Exchange</span><span class="o">.</span><span class="n">TSE</span><span class="p">:</span> <span class="s1">&#39;TSE&#39;</span><span class="o">&gt;</span><span class="p">,</span> 
+    <span class="n">code</span><span class="o">=</span><span class="s1">&#39;2890&#39;</span><span class="p">,</span> 
+    <span class="n">symbol</span><span class="o">=</span><span class="s1">&#39;TSE2890&#39;</span><span class="p">,</span> 
+    <span class="n">name</span><span class="o">=</span><span class="s1">&#39;永豐金&#39;</span><span class="p">,</span> 
+    <span class="n">category</span><span class="o">=</span><span class="s1">&#39;17&#39;</span><span class="p">,</span> 
+    <span class="n">unit</span><span class="o">=</span><span class="mi">1000</span><span class="p">,</span> 
+    <span class="n">limit_up</span><span class="o">=</span><span class="mf">19.1</span><span class="p">,</span> 
+    <span class="n">limit_down</span><span class="o">=</span><span class="mf">15.7</span><span class="p">,</span> 
+    <span class="n">reference</span><span class="o">=</span><span class="mf">17.4</span><span class="p">,</span> 
+    <span class="n">update_date</span><span class="o">=</span><span class="s1">&#39;2023/01/17&#39;</span><span class="p">,</span> 
+    <span class="n">day_trade</span><span class="o">=&lt;</span><span class="n">DayTrade</span><span class="o">.</span><span class="n">Yes</span><span class="p">:</span> <span class="s1">&#39;Yes&#39;</span><span class="o">&gt;</span>
+<span class="p">)</span>
 </code></pre></div>
 </div>
 <div class="admonition example">
-<p class="admonition-title">Attributes:</p>
-<div class="highlight"><pre><span></span><code><span class="n">exchange</span> <span class="p">(</span><span class="n">Exchange</span><span class="p">):</span> <span class="n">Attributes</span> <span class="n">of</span> <span class="n">industry</span><span class="o">.</span>
+<p class="admonition-title">Stock</p>
+<div class="highlight"><pre><span></span><code><span class="n">exchange</span> <span class="p">(</span><span class="n">Exchange</span><span class="p">):</span> <span class="n">Attributes</span> <span class="n">of</span> <span class="n">industry</span>
     <span class="p">{</span><span class="n">OES</span><span class="p">,</span> <span class="n">OTC</span><span class="p">,</span> <span class="n">TSE</span> <span class="o">...</span><span class="n">etc</span><span class="p">}</span>
-<span class="n">code</span> <span class="p">(</span><span class="nb">str</span><span class="p">):</span> <span class="n">Id</span><span class="o">.</span>
-<span class="n">symbol</span> <span class="p">(</span><span class="nb">str</span><span class="p">):</span> <span class="n">Symbol</span><span class="o">.</span>
-<span class="n">name</span> <span class="p">(</span><span class="nb">str</span><span class="p">):</span> <span class="n">Name</span><span class="o">.</span>
-<span class="n">category</span> <span class="p">(</span><span class="nb">str</span><span class="p">):</span> <span class="n">Category</span><span class="o">.</span>
-<span class="n">limit_up</span> <span class="p">(</span><span class="nb">float</span><span class="p">):</span> <span class="n">Limit</span> <span class="n">up</span><span class="o">.</span>
-<span class="n">limit_down</span> <span class="p">(</span><span class="nb">float</span><span class="p">):</span> <span class="n">Limit</span> <span class="n">down</span><span class="o">.</span>
-<span class="n">reference</span> <span class="p">(</span><span class="nb">float</span><span class="p">):</span> <span class="n">Reference</span> <span class="n">price</span><span class="o">.</span>
-<span class="n">update_date</span> <span class="p">(</span><span class="nb">str</span><span class="p">):</span> <span class="n">Update</span> <span class="n">date</span><span class="o">.</span>
-<span class="n">margin_trading_balance</span> <span class="p">(</span><span class="nb">int</span><span class="p">):</span> <span class="n">Margin</span> <span class="n">trading</span> <span class="n">balance</span><span class="o">.</span>
-<span class="n">short_selling_balance</span> <span class="p">(</span><span class="nb">int</span><span class="p">):</span> <span class="n">Short</span> <span class="n">selling</span> <span class="n">balance</span><span class="o">.</span>
-<span class="n">day_trade</span> <span class="p">(</span><span class="n">DayTrade</span><span class="p">):</span> <span class="n">Day</span> <span class="n">trade</span><span class="o">.</span>
+<span class="n">code</span> <span class="p">(</span><span class="nb">str</span><span class="p">):</span> <span class="n">Id</span>
+<span class="n">symbol</span> <span class="p">(</span><span class="nb">str</span><span class="p">):</span> <span class="n">Symbol</span>
+<span class="n">name</span> <span class="p">(</span><span class="nb">str</span><span class="p">):</span> <span class="n">Name</span>
+<span class="n">category</span> <span class="p">(</span><span class="nb">str</span><span class="p">):</span> <span class="n">Category</span>
+<span class="n">unit</span> <span class="p">(</span><span class="nb">int</span><span class="p">):</span> <span class="n">Unit</span>
+<span class="n">limit_up</span> <span class="p">(</span><span class="nb">float</span><span class="p">):</span> <span class="n">Limit</span> <span class="n">up</span>
+<span class="n">limit_down</span> <span class="p">(</span><span class="nb">float</span><span class="p">):</span> <span class="n">Limit</span> <span class="n">down</span>
+<span class="n">reference</span> <span class="p">(</span><span class="nb">float</span><span class="p">):</span> <span class="n">Reference</span> <span class="n">price</span>
+<span class="n">update_date</span> <span class="p">(</span><span class="nb">str</span><span class="p">):</span> <span class="n">Update</span> <span class="n">date</span>
+<span class="n">margin_trading_balance</span> <span class="p">(</span><span class="nb">int</span><span class="p">):</span> <span class="n">Margin</span> <span class="n">trading</span> <span class="n">balance</span>
+<span class="n">short_selling_balance</span> <span class="p">(</span><span class="nb">int</span><span class="p">):</span> <span class="n">Short</span> <span class="n">selling</span> <span class="n">balance</span>
+<span class="n">day_trade</span> <span class="p">(</span><span class="n">DayTrade</span><span class="p">):</span> <span class="n">Day</span> <span class="n">trade</span>
     <span class="p">{</span><span class="n">Yes</span><span class="p">,</span> <span class="n">No</span><span class="p">,</span> <span class="n">OnlyBuy</span><span class="p">}</span>
-</code></pre></div>
-</div>
-<p>There are two ways to get the same contract below, as well as other categories</p>
-<div class="admonition info">
-<p class="admonition-title">In</p>
-<div class="highlight"><pre><span></span><code><span class="hll"><span class="n">contract_tse_1</span> <span class="o">=</span> <span class="n">api</span><span class="o">.</span><span class="n">Contracts</span><span class="o">.</span><span class="n">Stocks</span><span class="p">[</span><span class="s2">&quot;2890&quot;</span><span class="p">]</span>
-</span>
-<span class="hll"><span class="n">contract_tse_2</span> <span class="o">=</span> <span class="n">api</span><span class="o">.</span><span class="n">Contracts</span><span class="o">.</span><span class="n">Stocks</span><span class="o">.</span><span class="n">TSE</span><span class="o">.</span><span class="n">TSE2890</span>
-</span><span class="n">contract_tse_1</span>
 </code></pre></div>
 </div>
 <div class="admonition done">
 <p class="admonition-title">Out</p>
-<div class="highlight"><pre><span></span><code><span class="n">Stock</span><span class="p">(</span><span class="n">exchange</span><span class="o">=</span><span class="s1">&#39;TSE&#39;</span><span class="o">&gt;</span><span class="p">,</span> <span class="n">code</span><span class="o">=</span><span class="s1">&#39;2890&#39;</span><span class="p">,</span> <span class="n">symbol</span><span class="o">=</span><span class="s1">&#39;TSE2890&#39;</span><span class="p">,</span> <span class="n">name</span><span class="o">=</span><span class="s1">&#39;永豐金&#39;</span><span class="p">,</span> <span class="n">category</span><span class="o">=</span><span class="s1">&#39;17&#39;</span><span class="p">,</span> <span class="n">unit</span><span class="o">=</span><span class="mi">1000</span><span class="p">,</span> <span class="n">limit_up</span><span class="o">=</span><span class="mf">19.35</span><span class="p">,</span> <span class="n">limit_down</span><span class="o">=</span><span class="mf">15.85</span><span class="p">,</span> <span class="n">reference</span><span class="o">=</span><span class="mf">17.6</span><span class="p">,</span> <span class="n">update_date</span><span class="o">=</span><span class="s1">&#39;2022/12/15&#39;</span><span class="p">,</span> <span class="n">day_trade</span><span class="o">=</span><span class="s1">&#39;Yes&#39;</span><span class="p">)</span>
+<div class="highlight"><pre><span></span><code><span class="n">Stock</span><span class="p">(</span>
+    <span class="n">exchange</span><span class="o">=&lt;</span><span class="n">Exchange</span><span class="o">.</span><span class="n">TSE</span><span class="p">:</span> <span class="s1">&#39;TSE&#39;</span><span class="o">&gt;</span><span class="p">,</span> 
+    <span class="n">code</span><span class="o">=</span><span class="s1">&#39;2890&#39;</span><span class="p">,</span> 
+    <span class="n">symbol</span><span class="o">=</span><span class="s1">&#39;TSE2890&#39;</span><span class="p">,</span> 
+    <span class="n">name</span><span class="o">=</span><span class="s1">&#39;永豐金&#39;</span><span class="p">,</span> 
+    <span class="n">category</span><span class="o">=</span><span class="s1">&#39;17&#39;</span><span class="p">,</span> 
+    <span class="n">unit</span><span class="o">=</span><span class="mi">1000</span><span class="p">,</span> 
+    <span class="n">limit_up</span><span class="o">=</span><span class="mf">19.1</span><span class="p">,</span> 
+    <span class="n">limit_down</span><span class="o">=</span><span class="mf">15.7</span><span class="p">,</span> 
+    <span class="n">reference</span><span class="o">=</span><span class="mf">17.4</span><span class="p">,</span> 
+    <span class="n">update_date</span><span class="o">=</span><span class="s1">&#39;2023/01/17&#39;</span><span class="p">,</span> 
+    <span class="n">day_trade</span><span class="o">=&lt;</span><span class="n">DayTrade</span><span class="o">.</span><span class="n">Yes</span><span class="p">:</span> <span class="s1">&#39;Yes&#39;</span><span class="o">&gt;</span>
+<span class="p">)</span>
 </code></pre></div>
 </div>
 <h4 id="futures">Futures<a class="headerlink" href="#futures" title="Permanent link">&para;</a></h4>
 <div class="admonition info">
 <p class="admonition-title">In</p>
-<div class="highlight"><pre><span></span><code><span class="n">contract_txf</span> <span class="o">=</span> <span class="n">api</span><span class="o">.</span><span class="n">Contracts</span><span class="o">.</span><span class="n">Futures</span><span class="o">.</span><span class="n">TXF</span><span class="o">.</span><span class="n">TXF202003</span>
-<span class="n">contract_txf</span>
+<div class="highlight"><pre><span></span><code><span class="n">api</span><span class="o">.</span><span class="n">Contracts</span><span class="o">.</span><span class="n">Futures</span><span class="p">[</span><span class="s2">&quot;TXFA3&quot;</span><span class="p">]</span>
+<span class="c1"># or api.Contracts.Futures.TXF.TXF202301</span>
 </code></pre></div>
 </div>
 <div class="admonition done">
 <p class="admonition-title">Out</p>
-<div class="highlight"><pre><span></span><code><span class="n">Future</span><span class="p">(</span><span class="n">code</span><span class="o">=</span><span class="s1">&#39;TXFC0&#39;</span><span class="p">,</span> <span class="n">symbol</span><span class="o">=</span><span class="s1">&#39;TXF202003&#39;</span><span class="p">,</span> <span class="n">name</span><span class="o">=</span><span class="s1">&#39;臺股期貨&#39;</span><span class="p">,</span> <span class="n">category</span><span class="o">=</span><span class="s1">&#39;TXF&#39;</span><span class="p">,</span> <span class="n">delivery_month</span><span class="o">=</span><span class="s1">&#39;202003&#39;</span><span class="p">,</span> <span class="n">underlying_kind</span><span class="o">=</span><span class="s1">&#39;I&#39;</span><span class="p">,</span> <span class="n">limit_up</span><span class="o">=</span><span class="mf">10308.0</span><span class="p">,</span> <span class="n">limit_down</span><span class="o">=</span><span class="mf">8434.0</span><span class="p">,</span> <span class="n">update_date</span><span class="o">=</span><span class="s1">&#39;2020/03/18&#39;</span><span class="p">)</span>
+<div class="highlight"><pre><span></span><code><span class="n">Future</span><span class="p">(</span>
+    <span class="n">code</span><span class="o">=</span><span class="s1">&#39;TXFA3&#39;</span><span class="p">,</span> 
+    <span class="n">symbol</span><span class="o">=</span><span class="s1">&#39;TXF202301&#39;</span><span class="p">,</span> 
+    <span class="n">name</span><span class="o">=</span><span class="s1">&#39;臺股期貨01&#39;</span><span class="p">,</span> 
+    <span class="n">category</span><span class="o">=</span><span class="s1">&#39;TXF&#39;</span><span class="p">,</span> 
+    <span class="n">delivery_month</span><span class="o">=</span><span class="s1">&#39;202301&#39;</span><span class="p">,</span> 
+    <span class="n">delivery_date</span><span class="o">=</span><span class="s1">&#39;2023/01/30&#39;</span><span class="p">,</span> 
+    <span class="n">underlying_kind</span><span class="o">=</span><span class="s1">&#39;I&#39;</span><span class="p">,</span> 
+    <span class="n">unit</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span> 
+    <span class="n">limit_up</span><span class="o">=</span><span class="mf">16417.0</span><span class="p">,</span> 
+    <span class="n">limit_down</span><span class="o">=</span><span class="mf">13433.0</span><span class="p">,</span> 
+    <span class="n">reference</span><span class="o">=</span><span class="mf">14925.0</span><span class="p">,</span> 
+    <span class="n">update_date</span><span class="o">=</span><span class="s1">&#39;2023/01/18&#39;</span>
+<span class="p">)</span>
 </code></pre></div>
 </div>
 <div class="admonition example">
-<p class="admonition-title">Attributes:</p>
-<div class="highlight"><pre><span></span><code><span class="n">code</span> <span class="p">(</span><span class="nb">str</span><span class="p">):</span> <span class="n">Id</span><span class="o">.</span>
-<span class="n">symbol</span> <span class="p">(</span><span class="nb">str</span><span class="p">):</span> <span class="n">Symbol</span><span class="o">.</span>
-<span class="n">name</span> <span class="p">(</span><span class="nb">str</span><span class="p">):</span> <span class="n">Name</span><span class="o">.</span>
-<span class="n">category</span> <span class="p">(</span><span class="nb">str</span><span class="p">):</span> <span class="n">Category</span><span class="o">.</span>
-<span class="n">limit_up</span> <span class="p">(</span><span class="nb">float</span><span class="p">):</span> <span class="n">Limit</span> <span class="n">up</span><span class="o">.</span>
-<span class="n">limit_down</span> <span class="p">(</span><span class="nb">float</span><span class="p">):</span> <span class="n">Limit</span> <span class="n">down</span><span class="o">.</span>
-<span class="n">reference</span> <span class="p">(</span><span class="nb">float</span><span class="p">):</span> <span class="n">Reference</span> <span class="n">price</span><span class="o">.</span>
-<span class="n">update_date</span> <span class="p">(</span><span class="nb">str</span><span class="p">):</span> <span class="n">Update</span> <span class="n">date</span><span class="o">.</span>
-<span class="n">delivery_month</span> <span class="p">(</span><span class="nb">str</span><span class="p">):</span> <span class="n">Delivery</span> <span class="n">Month</span><span class="o">.</span>
-<span class="n">underlying_kind</span> <span class="p">(</span><span class="nb">str</span><span class="p">):</span> <span class="n">Underlying</span> <span class="n">Kind</span><span class="o">.</span>
+<p class="admonition-title">Future</p>
+<div class="highlight"><pre><span></span><code><span class="n">code</span> <span class="p">(</span><span class="nb">str</span><span class="p">):</span> <span class="n">Id</span>
+<span class="n">symbol</span> <span class="p">(</span><span class="nb">str</span><span class="p">):</span> <span class="n">Symbol</span>
+<span class="n">name</span> <span class="p">(</span><span class="nb">str</span><span class="p">):</span> <span class="n">Name</span>
+<span class="n">category</span> <span class="p">(</span><span class="nb">str</span><span class="p">):</span> <span class="n">Category</span>
+<span class="n">delivery_month</span> <span class="p">(</span><span class="nb">str</span><span class="p">):</span> <span class="n">Delivery</span> <span class="n">Month</span>
+<span class="n">delivery_date</span> <span class="p">(</span><span class="nb">str</span><span class="p">):</span> <span class="n">Delivery</span> <span class="n">Date</span>
+<span class="n">underlying_kind</span> <span class="p">(</span><span class="nb">str</span><span class="p">):</span> <span class="n">Underlying</span> <span class="n">Kind</span>
+<span class="n">unit</span> <span class="p">(</span><span class="nb">int</span><span class="p">):</span> <span class="n">Unit</span>
+<span class="n">limit_up</span> <span class="p">(</span><span class="nb">float</span><span class="p">):</span> <span class="n">Limit</span> <span class="n">up</span>
+<span class="n">limit_down</span> <span class="p">(</span><span class="nb">float</span><span class="p">):</span> <span class="n">Limit</span> <span class="n">down</span>
+<span class="n">reference</span> <span class="p">(</span><span class="nb">float</span><span class="p">):</span> <span class="n">Reference</span> <span class="n">price</span>
+<span class="n">update_date</span> <span class="p">(</span><span class="nb">str</span><span class="p">):</span> <span class="n">Update</span> <span class="n">date</span>
 </code></pre></div>
 </div>
 <h4 id="options">Options<a class="headerlink" href="#options" title="Permanent link">&para;</a></h4>
-<p>Get put options with readable way.</p>
 <div class="admonition info">
 <p class="admonition-title">In</p>
-<div class="highlight"><pre><span></span><code><span class="n">api</span><span class="o">.</span><span class="n">Contracts</span><span class="o">.</span><span class="n">Options</span><span class="o">.</span><span class="n">TXO</span><span class="o">.</span><span class="n">TXO202003010000P</span>
+<div class="highlight"><pre><span></span><code><span class="n">api</span><span class="o">.</span><span class="n">Contracts</span><span class="o">.</span><span class="n">Options</span><span class="p">[</span><span class="s2">&quot;TXO18000R3&quot;</span><span class="p">]</span>
+<span class="c1"># or api.Contracts.Options.TXO.TXO20230618000P</span>
 </code></pre></div>
 </div>
 <div class="admonition done">
 <p class="admonition-title">Out</p>
-<div class="highlight"><pre><span></span><code><span class="n">Option</span><span class="p">(</span><span class="n">code</span><span class="o">=</span><span class="s1">&#39;TXO10000O0&#39;</span><span class="p">,</span> <span class="n">symbol</span><span class="o">=</span><span class="s1">&#39;TXO202003010000P&#39;</span><span class="p">,</span> <span class="n">name</span><span class="o">=</span><span class="s1">&#39;臺指選擇權&#39;</span><span class="p">,</span> <span class="n">category</span><span class="o">=</span><span class="s1">&#39;TXO&#39;</span><span class="p">,</span> <span class="n">delivery_month</span><span class="o">=</span><span class="s1">&#39;202003&#39;</span><span class="p">,</span> <span class="n">strike_price</span><span class="o">=</span><span class="mf">10000.0</span><span class="p">,</span> <span class="n">option_right</span><span class="o">=&lt;</span><span class="n">OptionRight</span><span class="o">.</span><span class="n">Put</span><span class="p">:</span> <span class="s1">&#39;P&#39;</span><span class="o">&gt;</span><span class="p">,</span> <span class="n">underlying_kind</span><span class="o">=</span><span class="s1">&#39;I&#39;</span><span class="p">,</span> <span class="n">limit_up</span><span class="o">=</span><span class="mf">1570.0</span><span class="p">,</span> <span class="n">limit_down</span><span class="o">=</span><span class="mf">0.1</span><span class="p">,</span> <span class="n">update_date</span><span class="o">=</span><span class="s1">&#39;2020/03/18&#39;</span><span class="p">)</span>
+<div class="highlight"><pre><span></span><code><span class="n">Option</span><span class="p">(</span>
+    <span class="n">code</span><span class="o">=</span><span class="s1">&#39;TXO18000R3&#39;</span><span class="p">,</span> 
+    <span class="n">symbol</span><span class="o">=</span><span class="s1">&#39;TXO20230618000P&#39;</span><span class="p">,</span> 
+    <span class="n">name</span><span class="o">=</span><span class="s1">&#39;臺指選擇權06月 18000P&#39;</span><span class="p">,</span> 
+    <span class="n">category</span><span class="o">=</span><span class="s1">&#39;TXO&#39;</span><span class="p">,</span> 
+    <span class="n">delivery_month</span><span class="o">=</span><span class="s1">&#39;202306&#39;</span><span class="p">,</span> 
+    <span class="n">delivery_date</span><span class="o">=</span><span class="s1">&#39;2023/06/21&#39;</span><span class="p">,</span> 
+    <span class="n">strike_price</span><span class="o">=</span><span class="mi">18000</span><span class="p">,</span> 
+    <span class="n">option_right</span><span class="o">=&lt;</span><span class="n">OptionRight</span><span class="o">.</span><span class="n">Put</span><span class="p">:</span> <span class="s1">&#39;P&#39;</span><span class="o">&gt;</span><span class="p">,</span> 
+    <span class="n">underlying_kind</span><span class="o">=</span><span class="s1">&#39;I&#39;</span><span class="p">,</span> 
+    <span class="n">unit</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span> 
+    <span class="n">limit_up</span><span class="o">=</span><span class="mf">4720.0</span><span class="p">,</span> 
+    <span class="n">limit_down</span><span class="o">=</span><span class="mf">1740.0</span><span class="p">,</span> 
+    <span class="n">reference</span><span class="o">=</span><span class="mf">3230.0</span><span class="p">,</span> 
+    <span class="n">update_date</span><span class="o">=</span><span class="s1">&#39;2023/01/18&#39;</span>
+<span class="p">)</span>
 </code></pre></div>
 </div>
 <div class="admonition example">
-<p class="admonition-title">Attributes:</p>
-<div class="highlight"><pre><span></span><code><span class="n">code</span> <span class="p">(</span><span class="nb">str</span><span class="p">):</span> <span class="n">Id</span><span class="o">.</span>
-<span class="n">symbol</span> <span class="p">(</span><span class="nb">str</span><span class="p">):</span> <span class="n">Symbol</span><span class="o">.</span>
-<span class="n">name</span> <span class="p">(</span><span class="nb">str</span><span class="p">):</span> <span class="n">Name</span><span class="o">.</span>
-<span class="n">category</span> <span class="p">(</span><span class="nb">str</span><span class="p">):</span> <span class="n">Category</span><span class="o">.</span>
-<span class="n">limit_up</span> <span class="p">(</span><span class="nb">float</span><span class="p">):</span> <span class="n">Limit</span> <span class="n">up</span><span class="o">.</span>
-<span class="n">limit_down</span> <span class="p">(</span><span class="nb">float</span><span class="p">):</span> <span class="n">Limit</span> <span class="n">down</span><span class="o">.</span>
-<span class="n">reference</span> <span class="p">(</span><span class="nb">float</span><span class="p">):</span> <span class="n">Reference</span> <span class="n">price</span><span class="o">.</span>
-<span class="n">update_date</span> <span class="p">(</span><span class="nb">str</span><span class="p">):</span> <span class="n">Update</span> <span class="n">date</span><span class="o">.</span>
-<span class="n">delivery_month</span> <span class="p">(</span><span class="nb">str</span><span class="p">):</span> <span class="n">Delivery</span> <span class="n">Month</span><span class="o">.</span>
-<span class="n">strike_price</span> <span class="p">(</span><span class="nb">int</span> <span class="ow">or</span> <span class="nb">float</span><span class="p">):</span> <span class="n">Strike</span> <span class="n">Price</span><span class="o">.</span>
-<span class="n">option_right</span> <span class="p">(</span><span class="n">OptionRight</span><span class="p">):</span> <span class="n">Option</span> <span class="n">Right</span><span class="o">.</span>
-<span class="n">underlying_kind</span> <span class="p">(</span><span class="nb">str</span><span class="p">):</span> <span class="n">Underlying</span> <span class="n">Kind</span><span class="o">.</span>
+<p class="admonition-title">Option</p>
+<div class="highlight"><pre><span></span><code><span class="n">code</span> <span class="p">(</span><span class="nb">str</span><span class="p">):</span> <span class="n">Id</span>
+<span class="n">symbol</span> <span class="p">(</span><span class="nb">str</span><span class="p">):</span> <span class="n">Symbol</span>
+<span class="n">name</span> <span class="p">(</span><span class="nb">str</span><span class="p">):</span> <span class="n">Name</span>
+<span class="n">category</span> <span class="p">(</span><span class="nb">str</span><span class="p">):</span> <span class="n">Category</span>
+<span class="n">delivery_month</span> <span class="p">(</span><span class="nb">str</span><span class="p">):</span> <span class="n">Delivery</span> <span class="n">Month</span>
+<span class="n">delivery_date</span> <span class="p">(</span><span class="nb">str</span><span class="p">):</span> <span class="n">Delivery</span> <span class="n">Date</span>
+<span class="n">strike_price</span> <span class="p">(</span><span class="nb">int</span> <span class="ow">or</span> <span class="nb">float</span><span class="p">):</span> <span class="n">Strike</span> <span class="n">Price</span>
+<span class="n">option_right</span> <span class="p">(</span><span class="n">OptionRight</span><span class="p">):</span> <span class="n">Option</span> <span class="n">Right</span>
+<span class="n">underlying_kind</span> <span class="p">(</span><span class="nb">str</span><span class="p">):</span> <span class="n">Underlying</span> <span class="n">Kind</span>
+<span class="n">unit</span> <span class="p">(</span><span class="nb">int</span><span class="p">):</span> <span class="n">Unit</span>
+<span class="n">limit_up</span> <span class="p">(</span><span class="nb">float</span><span class="p">):</span> <span class="n">Limit</span> <span class="n">up</span>
+<span class="n">limit_down</span> <span class="p">(</span><span class="nb">float</span><span class="p">):</span> <span class="n">Limit</span> <span class="n">down</span>
+<span class="n">reference</span> <span class="p">(</span><span class="nb">float</span><span class="p">):</span> <span class="n">Reference</span> <span class="n">price</span>
+<span class="n">update_date</span> <span class="p">(</span><span class="nb">str</span><span class="p">):</span> <span class="n">Update</span> <span class="n">date</span>
 </code></pre></div>
 </div>
 <h4 id="index">Index<a class="headerlink" href="#index" title="Permanent link">&para;</a></h4>
@@ -1430,21 +1478,27 @@
 </div>
 <div class="admonition info">
 <p class="admonition-title">In</p>
-<div class="highlight"><pre><span></span><code><span class="n">api</span><span class="o">.</span><span class="n">Contracts</span><span class="o">.</span><span class="n">Indexs</span><span class="o">.</span><span class="n">TSE</span><span class="o">.</span><span class="n">TSE001</span>
+<div class="highlight"><pre><span></span><code><span class="n">api</span><span class="o">.</span><span class="n">Contracts</span><span class="o">.</span><span class="n">Indexs</span><span class="o">.</span><span class="n">TSE</span><span class="p">[</span><span class="s2">&quot;001&quot;</span><span class="p">]</span>
+<span class="c1"># or api.Contracts.Indexs.TSE.TSE001</span>
 </code></pre></div>
 </div>
 <div class="admonition done">
 <p class="admonition-title">Out</p>
-<div class="highlight"><pre><span></span><code><span class="n">Index</span><span class="p">(</span><span class="n">exchange</span><span class="o">=&lt;</span><span class="n">Exchange</span><span class="o">.</span><span class="n">TSE</span><span class="p">:</span> <span class="s1">&#39;TSE&#39;</span><span class="o">&gt;</span><span class="p">,</span> <span class="n">code</span><span class="o">=</span><span class="s1">&#39;001&#39;</span><span class="p">,</span> <span class="n">symbol</span><span class="o">=</span><span class="s1">&#39;TSE001&#39;</span><span class="p">,</span> <span class="n">name</span><span class="o">=</span><span class="s1">&#39;加權&#39;</span><span class="p">)</span>
+<div class="highlight"><pre><span></span><code><span class="n">Index</span><span class="p">(</span>
+    <span class="n">exchange</span><span class="o">=&lt;</span><span class="n">Exchange</span><span class="o">.</span><span class="n">TSE</span><span class="p">:</span> <span class="s1">&#39;TSE&#39;</span><span class="o">&gt;</span><span class="p">,</span> 
+    <span class="n">code</span><span class="o">=</span><span class="s1">&#39;001&#39;</span><span class="p">,</span> 
+    <span class="n">symbol</span><span class="o">=</span><span class="s1">&#39;TSE001&#39;</span><span class="p">,</span> 
+    <span class="n">name</span><span class="o">=</span><span class="s1">&#39;加權指數&#39;</span>
+<span class="p">)</span>
 </code></pre></div>
 </div>
 <div class="admonition example">
-<p class="admonition-title">Attributes:</p>
-<div class="highlight"><pre><span></span><code><span class="n">exchange</span> <span class="p">(</span><span class="n">Exchange</span><span class="p">):</span> <span class="n">Attributes</span> <span class="n">of</span> <span class="n">industry</span><span class="o">.</span>
+<p class="admonition-title">Index</p>
+<div class="highlight"><pre><span></span><code><span class="n">exchange</span> <span class="p">(</span><span class="n">Exchange</span><span class="p">):</span> <span class="n">exchange</span>
     <span class="p">{</span><span class="n">OES</span><span class="p">,</span> <span class="n">OTC</span><span class="p">,</span> <span class="n">TSE</span> <span class="o">...</span><span class="n">etc</span><span class="p">}</span>
-<span class="n">code</span> <span class="p">(</span><span class="nb">str</span><span class="p">):</span> <span class="n">Id</span><span class="o">.</span>
-<span class="n">symbol</span> <span class="p">(</span><span class="nb">str</span><span class="p">):</span> <span class="n">Symbol</span><span class="o">.</span>
-<span class="n">name</span> <span class="p">(</span><span class="nb">str</span><span class="p">):</span> <span class="n">Name</span><span class="o">.</span>
+<span class="n">code</span> <span class="p">(</span><span class="nb">str</span><span class="p">):</span> <span class="n">Code</span>
+<span class="n">symbol</span> <span class="p">(</span><span class="nb">str</span><span class="p">):</span> <span class="n">Symbol</span>
+<span class="n">name</span> <span class="p">(</span><span class="nb">str</span><span class="p">):</span> <span class="n">Name</span>
 </code></pre></div>
 </div>
 
