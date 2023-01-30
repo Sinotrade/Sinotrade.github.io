@@ -73,6 +73,11 @@
     <label class="md-overlay" for="__drawer"></label>
     <div data-md-component="skip">
       
+        
+        <a href="#_1" class="md-skip">
+          Skip to content
+        </a>
+      
     </div>
     <div data-md-component="announce">
       
@@ -522,9 +527,45 @@
       
       
       
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          市場快照
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
       <a href="./" class="md-nav__link md-nav__link--active">
         市場快照
       </a>
+      
+        
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#_1" class="md-nav__link">
+    範例
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_2" class="md-nav__link">
+    屬性
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
       
     </li>
   
@@ -1095,6 +1136,28 @@
   
   
   
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#_1" class="md-nav__link">
+    範例
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_2" class="md-nav__link">
+    屬性
+  </a>
+  
+</li>
+      
+    </ul>
+  
 </nav>
                   </div>
                 </div>
@@ -1111,8 +1174,23 @@
   <h1>市場快照</h1>
 
 <p>當下證券、期貨及選擇權資訊。包含開盤價、最高價、最低價、收盤價、變動價、均價、成交量、總成交量、委買價、委買量、委賣價、委賣量和昨量。</p>
-<div class="admonition info">
+<div class="admonition example">
 <p class="admonition-title">市場快照</p>
+<div class="highlight"><pre><span></span><code><span class="o">&gt;&gt;</span> <span class="n">api</span><span class="o">.</span><span class="n">snapshots</span><span class="err">?</span>
+
+<span class="n">Signature</span><span class="p">:</span>
+<span class="n">api</span><span class="o">.</span><span class="n">snapshots</span><span class="p">(</span>
+    <span class="n">contracts</span><span class="p">:</span> <span class="n">List</span><span class="p">[</span><span class="n">Union</span><span class="p">[</span><span class="n">shioaji</span><span class="o">.</span><span class="n">contracts</span><span class="o">.</span><span class="n">Option</span><span class="p">,</span> <span class="n">shioaji</span><span class="o">.</span><span class="n">contracts</span><span class="o">.</span><span class="n">Future</span><span class="p">,</span> <span class="n">shioaji</span><span class="o">.</span><span class="n">contracts</span><span class="o">.</span><span class="n">Stock</span><span class="p">,</span> <span class="n">shioaji</span><span class="o">.</span><span class="n">contracts</span><span class="o">.</span><span class="n">Index</span><span class="p">]],</span>
+    <span class="n">timeout</span><span class="p">:</span> <span class="nb">int</span> <span class="o">=</span> <span class="mi">30000</span><span class="p">,</span>
+    <span class="n">cb</span><span class="p">:</span> <span class="n">Callable</span><span class="p">[[</span><span class="n">shioaji</span><span class="o">.</span><span class="n">data</span><span class="o">.</span><span class="n">Snapshot</span><span class="p">],</span> <span class="n">NoneType</span><span class="p">]</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
+<span class="p">)</span> <span class="o">-&gt;</span> <span class="n">List</span><span class="p">[</span><span class="n">shioaji</span><span class="o">.</span><span class="n">data</span><span class="o">.</span><span class="n">Snapshot</span><span class="p">]</span>
+<span class="n">Docstring</span><span class="p">:</span>
+<span class="n">get</span> <span class="n">contract</span> <span class="n">snapshot</span> <span class="n">info</span>
+</code></pre></div>
+</div>
+<h2 id="_1">範例<a class="headerlink" href="#_1" title="Permanent link">&para;</a></h2>
+<div class="admonition info">
+<p class="admonition-title">In</p>
 <div class="highlight"><pre><span></span><code><span class="n">contracts</span> <span class="o">=</span> <span class="p">[</span><span class="n">api</span><span class="o">.</span><span class="n">Contracts</span><span class="o">.</span><span class="n">Stocks</span><span class="p">[</span><span class="s1">&#39;2330&#39;</span><span class="p">],</span><span class="n">api</span><span class="o">.</span><span class="n">Contracts</span><span class="o">.</span><span class="n">Stocks</span><span class="p">[</span><span class="s1">&#39;2317&#39;</span><span class="p">]]</span>
 <span class="n">snapshots</span> <span class="o">=</span> <span class="n">api</span><span class="o">.</span><span class="n">snapshots</span><span class="p">(</span><span class="n">contracts</span><span class="p">)</span>
 <span class="n">snapshots</span>
@@ -1174,7 +1252,7 @@
 </div>
 <p>轉成Dataframe</p>
 <div class="admonition info">
-<p class="admonition-title">轉成DataFrame</p>
+<p class="admonition-title">In</p>
 <div class="highlight"><pre><span></span><code><span class="n">df</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">(</span><span class="n">s</span><span class="o">.</span><span class="vm">__dict__</span> <span class="k">for</span> <span class="n">s</span> <span class="ow">in</span> <span class="n">snapshots</span><span class="p">)</span>
 <span class="n">df</span><span class="o">.</span><span class="n">ts</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">to_datetime</span><span class="p">(</span><span class="n">df</span><span class="o">.</span><span class="n">ts</span><span class="p">)</span>
 <span class="n">df</span>
@@ -1261,8 +1339,9 @@
 </tbody>
 </table>
 </div>
+<h2 id="_2">屬性<a class="headerlink" href="#_2" title="Permanent link">&para;</a></h2>
 <div class="admonition example">
-<p class="admonition-title">市場快照</p>
+<p class="admonition-title">Snapshot</p>
 <div class="highlight"><pre><span></span><code><span class="n">ts</span> <span class="p">(</span><span class="nb">int</span><span class="p">):</span> <span class="n">取得資訊時間戳記</span>
 <span class="n">code</span> <span class="p">(</span><span class="nb">str</span><span class="p">):</span> <span class="n">商品代碼</span>
 <span class="n">exchange</span> <span class="p">(</span><span class="n">Exchange</span><span class="p">):</span> <span class="n">交易所</span>

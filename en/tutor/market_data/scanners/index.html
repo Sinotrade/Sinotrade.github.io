@@ -73,6 +73,11 @@
     <label class="md-overlay" for="__drawer"></label>
     <div data-md-component="skip">
       
+        
+        <a href="#example" class="md-skip">
+          Skip to content
+        </a>
+      
     </div>
     <div data-md-component="announce">
       
@@ -564,9 +569,45 @@
       
       
       
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          Scanners
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
       <a href="./" class="md-nav__link md-nav__link--active">
         Scanners
       </a>
+      
+        
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#example" class="md-nav__link">
+    Example
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#attributes" class="md-nav__link">
+    Attributes
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
       
     </li>
   
@@ -1095,6 +1136,28 @@
   
   
   
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#example" class="md-nav__link">
+    Example
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#attributes" class="md-nav__link">
+    Attributes
+  </a>
+  
+</li>
+      
+    </ul>
+  
 </nav>
                   </div>
                 </div>
@@ -1111,7 +1174,7 @@
   <h1>Scanners</h1>
 
 <p>Scanners can use parameter of scannertype to get the rank of ChangePercent, ChangePrice, DayRange, Volume and Amount. </p>
-<div class="admonition done">
+<div class="admonition example">
 <p class="admonition-title">Scanners</p>
 <div class="highlight"><pre><span></span><code><span class="o">&gt;&gt;</span> <span class="n">api</span><span class="o">.</span><span class="n">scanners</span><span class="err">?</span>
 
@@ -1136,8 +1199,9 @@
 <span class="n">AmountRank</span><span class="p">:</span> <span class="n">rank</span> <span class="n">by</span> <span class="n">amount</span>
 </code></pre></div>
 </div>
+<h2 id="example">Example<a class="headerlink" href="#example" title="Permanent link">&para;</a></h2>
 <div class="admonition info">
-<p class="admonition-title">Change Percent Rank</p>
+<p class="admonition-title">ChangePercentRank</p>
 <div class="highlight"><pre><span></span><code><span class="n">scanners</span> <span class="o">=</span> <span class="n">api</span><span class="o">.</span><span class="n">scanners</span><span class="p">(</span>
     <span class="n">scanner_type</span><span class="o">=</span><span class="n">sj</span><span class="o">.</span><span class="n">constant</span><span class="o">.</span><span class="n">ScannerType</span><span class="o">.</span><span class="n">ChangePercentRank</span><span class="p">,</span>
     <span class="n">count</span><span class="o">=</span><span class="mi">1</span>
@@ -1375,6 +1439,7 @@
 </tbody>
 </table>
 </div>
+<h2 id="attributes">Attributes<a class="headerlink" href="#attributes" title="Permanent link">&para;</a></h2>
 <div class="admonition example">
 <p class="admonition-title">ChangePercentRank</p>
 <div class="highlight"><pre><span></span><code><span class="n">date</span> <span class="p">(</span><span class="nb">str</span><span class="p">):</span> <span class="n">date</span> 

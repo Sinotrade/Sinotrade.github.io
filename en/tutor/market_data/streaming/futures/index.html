@@ -521,12 +521,52 @@
     Tick
   </a>
   
+    <nav class="md-nav" aria-label="Tick">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#example" class="md-nav__link">
+    Example
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#attributes" class="md-nav__link">
+    Attributes
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
 </li>
       
         <li class="md-nav__item">
   <a href="#bidask" class="md-nav__link">
     BidAsk
   </a>
+  
+    <nav class="md-nav" aria-label="BidAsk">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#example_1" class="md-nav__link">
+    Example
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#attributes_1" class="md-nav__link">
+    Attributes
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
   
 </li>
       
@@ -554,13 +594,6 @@
         
       </ul>
     </nav>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#quote-format" class="md-nav__link">
-    Quote Format
-  </a>
   
 </li>
       
@@ -1183,12 +1216,52 @@
     Tick
   </a>
   
+    <nav class="md-nav" aria-label="Tick">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#example" class="md-nav__link">
+    Example
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#attributes" class="md-nav__link">
+    Attributes
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
 </li>
       
         <li class="md-nav__item">
   <a href="#bidask" class="md-nav__link">
     BidAsk
   </a>
+  
+    <nav class="md-nav" aria-label="BidAsk">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#example_1" class="md-nav__link">
+    Example
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#attributes_1" class="md-nav__link">
+    Attributes
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
   
 </li>
       
@@ -1219,13 +1292,6 @@
   
 </li>
       
-        <li class="md-nav__item">
-  <a href="#quote-format" class="md-nav__link">
-    Quote Format
-  </a>
-  
-</li>
-      
     </ul>
   
 </nav>
@@ -1244,7 +1310,7 @@
   <h1>Futures</h1>
 
 <p>To subscribe quotes is very easy, just call <code>subscribe</code> function with <a href="../../../contract/">contract</a> which we've discussed in previous topic.</p>
-<div class="admonition info">
+<div class="admonition example">
 <p class="admonition-title">Subscribe</p>
 <div class="highlight"><pre><span></span><code><span class="n">api</span><span class="o">.</span><span class="n">quote</span><span class="o">.</span><span class="n">subscribe</span><span class="err">?</span>
 
@@ -1261,21 +1327,22 @@
 </div>
 <div class="admonition done">
 <p class="admonition-title">Quote Parameters:</p>
-<div class="highlight"><pre><span></span><code>quote_type: tick price or bid/ask price to subscribe.
+<div class="highlight"><pre><span></span><code>quote_type: tick price or bid/ask price to subscribe
     {&#39;tick&#39;, &#39;bidask&#39;}
 intraday_odd: 盤中零股
     {True, False}
-version: version of quote format.
+version: version of quote format
     {&#39;v1&#39;, &#39;v0&#39;}
 </code></pre></div>
 </div>
-<h3 id="tick">Tick<a class="headerlink" href="#tick" title="Permanent link">&para;</a></h3>
+<h2 id="tick">Tick<a class="headerlink" href="#tick" title="Permanent link">&para;</a></h2>
+<h3 id="example">Example<a class="headerlink" href="#example" title="Permanent link">&para;</a></h3>
 <div class="admonition info">
 <p class="admonition-title">In</p>
 <div class="highlight"><pre><span></span><code><span class="n">api</span><span class="o">.</span><span class="n">quote</span><span class="o">.</span><span class="n">subscribe</span><span class="p">(</span>
     <span class="n">api</span><span class="o">.</span><span class="n">Contracts</span><span class="o">.</span><span class="n">Futures</span><span class="o">.</span><span class="n">TXF</span><span class="p">[</span><span class="s1">&#39;TXF202107&#39;</span><span class="p">],</span>
-<span class="hll">    <span class="n">quote_type</span> <span class="o">=</span> <span class="n">sj</span><span class="o">.</span><span class="n">constant</span><span class="o">.</span><span class="n">QuoteType</span><span class="o">.</span><span class="n">Tick</span><span class="p">,</span> <span class="c1"># or &#39;tick&#39;</span>
-</span>    <span class="n">version</span> <span class="o">=</span> <span class="n">sj</span><span class="o">.</span><span class="n">constant</span><span class="o">.</span><span class="n">QuoteVersion</span><span class="o">.</span><span class="n">v1</span><span class="p">,</span> <span class="c1"># or &#39;v1&#39;</span>
+<span class="hll">    <span class="n">quote_type</span> <span class="o">=</span> <span class="n">sj</span><span class="o">.</span><span class="n">constant</span><span class="o">.</span><span class="n">QuoteType</span><span class="o">.</span><span class="n">Tick</span><span class="p">,</span>
+</span>    <span class="n">version</span> <span class="o">=</span> <span class="n">sj</span><span class="o">.</span><span class="n">constant</span><span class="o">.</span><span class="n">QuoteVersion</span><span class="o">.</span><span class="n">v1</span><span class="p">,</span>
 <span class="p">)</span>
 </code></pre></div>
 </div>
@@ -1340,19 +1407,72 @@ version: version of quote format.
 </div>
 </div>
 </div>
-<h3 id="bidask">BidAsk<a class="headerlink" href="#bidask" title="Permanent link">&para;</a></h3>
+<h3 id="attributes">Attributes<a class="headerlink" href="#attributes" title="Permanent link">&para;</a></h3>
+<div class="admonition example">
+<p class="admonition-title">Tick</p>
+<div class="tabbed-set tabbed-alternate" data-tabs="2:2"><input checked="checked" id="__tabbed_2_1" name="__tabbed_2" type="radio" /><input id="__tabbed_2_2" name="__tabbed_2" type="radio" /><div class="tabbed-labels"><label for="__tabbed_2_1">QuoteVersion.v1</label><label for="__tabbed_2_2">QuoteVersion.v0</label></div>
+<div class="tabbed-content">
+<div class="tabbed-block">
+<div class="highlight"><pre><span></span><code>code (str): 商品代碼
+datetime (datetime.datetime): 日期
+open (Decimal): 開盤價
+underlying_price (Decimal): 標的物價格
+bid_side_total_vol(int): 買盤成交總量 (lot)
+ask_side_total_vol(int): 賣盤成交總量 (lot)
+avg_price (Decimal): 均價
+close (Decimal): 成交價
+high (Decimal): 最高價(自開盤)
+low (Decimal): 最低價(自開盤)
+amount (Decimal): 成交額 (NTD)
+total_amount (Decimal): 總成交額 (NTD)
+volume (int): 成交量 (lot)
+total_volume (int): 總成交量 (lot)
+tick_type (int): 內外盤別{1: 內盤, 2: 外盤, 0: 無法判定}
+chg_type (int): 漲跌註記{1: 漲停, 2: 漲, 3: 平盤, 4: 跌, 5: 跌停}
+price_chg (Decimal): 漲跌
+pct_chg (Decimal): 漲跌幅 (%)
+simtrade (int): 試撮
+</code></pre></div>
+</div>
+<div class="tabbed-block">
+<div class="highlight"><pre><span></span><code>Amount (list of float): 成交額 (成交價)
+AmountSum (list of float): 總成交額 (總成交價)
+AvgPrice (list of float): 均價
+Close (list of float): 成交價
+Code (str): 商品代碼
+Date (str): 日期 (yyyy/MM/dd)
+DiffPrice (list of float): 漲跌
+DiffRate (list of float): 漲跌幅 (%)
+DiffType (list of int): 漲跌註記{1: 漲停, 2: 漲, 3: 平盤, 4: 跌, 5: 跌停}
+High (list of float): 最高價(自開盤)
+Low (list of float): 最低價(自開盤)
+Open (float): 開盤價
+TargetKindPrice float: 標的物價格
+TickType (:list:int): 內外盤別{1: 內盤, 2: 外盤, 0: 無法判定}
+Time (str): 時間 (HH:mm:ss.ffffff)
+TradeAskVolSum (int): 賣盤成交總量 (lot)
+TradeBidVolSum (int): 買盤成交總量 (lot)
+VolSum (list of int): 總成交量 (lot)
+Volume (list of int): 成交量 (lot)
+</code></pre></div>
+</div>
+</div>
+</div>
+</div>
+<h2 id="bidask">BidAsk<a class="headerlink" href="#bidask" title="Permanent link">&para;</a></h2>
+<h3 id="example_1">Example<a class="headerlink" href="#example_1" title="Permanent link">&para;</a></h3>
 <div class="admonition info">
 <p class="admonition-title">In</p>
 <div class="highlight"><pre><span></span><code><span class="n">api</span><span class="o">.</span><span class="n">quote</span><span class="o">.</span><span class="n">subscribe</span><span class="p">(</span>
     <span class="n">api</span><span class="o">.</span><span class="n">Contracts</span><span class="o">.</span><span class="n">Futures</span><span class="o">.</span><span class="n">TXF</span><span class="p">[</span><span class="s1">&#39;TXF202107&#39;</span><span class="p">],</span>
-<span class="hll">    <span class="n">quote_type</span> <span class="o">=</span> <span class="n">sj</span><span class="o">.</span><span class="n">constant</span><span class="o">.</span><span class="n">QuoteType</span><span class="o">.</span><span class="n">BidAsk</span><span class="p">,</span> <span class="c1"># or &#39;bidask&#39;</span>
-</span>    <span class="n">version</span> <span class="o">=</span> <span class="n">sj</span><span class="o">.</span><span class="n">constant</span><span class="o">.</span><span class="n">QuoteVersion</span><span class="o">.</span><span class="n">v1</span> <span class="c1"># or &#39;v1&#39;</span>
+<span class="hll">    <span class="n">quote_type</span> <span class="o">=</span> <span class="n">sj</span><span class="o">.</span><span class="n">constant</span><span class="o">.</span><span class="n">QuoteType</span><span class="o">.</span><span class="n">BidAsk</span><span class="p">,</span>
+</span>    <span class="n">version</span> <span class="o">=</span> <span class="n">sj</span><span class="o">.</span><span class="n">constant</span><span class="o">.</span><span class="n">QuoteVersion</span><span class="o">.</span><span class="n">v1</span>
 <span class="p">)</span>
 </code></pre></div>
 </div>
 <div class="admonition done">
 <p class="admonition-title">Out</p>
-<div class="tabbed-set tabbed-alternate" data-tabs="2:2"><input checked="checked" id="__tabbed_2_1" name="__tabbed_2" type="radio" /><input id="__tabbed_2_2" name="__tabbed_2" type="radio" /><div class="tabbed-labels"><label for="__tabbed_2_1">QuoteVersion.v1</label><label for="__tabbed_2_2">QuoteVersion.v0</label></div>
+<div class="tabbed-set tabbed-alternate" data-tabs="3:2"><input checked="checked" id="__tabbed_3_1" name="__tabbed_3" type="radio" /><input id="__tabbed_3_2" name="__tabbed_3" type="radio" /><div class="tabbed-labels"><label for="__tabbed_3_1">QuoteVersion.v1</label><label for="__tabbed_3_2">QuoteVersion.v0</label></div>
 <div class="tabbed-content">
 <div class="tabbed-block">
 <div class="highlight"><pre><span></span><code><span class="n">Response</span> <span class="n">Code</span><span class="p">:</span> <span class="mi">200</span> <span class="o">|</span> <span class="n">Event</span> <span class="n">Code</span><span class="p">:</span> <span class="mi">16</span> <span class="o">|</span> <span class="n">Info</span><span class="p">:</span> <span class="n">QUO</span><span class="o">/</span><span class="n">v1</span><span class="o">/</span><span class="n">FOP</span><span class="o">/*/</span><span class="n">TFE</span><span class="o">/</span><span class="n">TXFG1</span> <span class="o">|</span> <span class="n">Event</span><span class="p">:</span> <span class="n">Subscribe</span> <span class="ow">or</span> <span class="n">Unsubscribe</span> <span class="n">ok</span>
@@ -1407,12 +1527,60 @@ version: version of quote format.
 </div>
 </div>
 </div>
-<h3 id="callback">Callback<a class="headerlink" href="#callback" title="Permanent link">&para;</a></h3>
+<h3 id="attributes_1">Attributes<a class="headerlink" href="#attributes_1" title="Permanent link">&para;</a></h3>
+<div class="admonition example">
+<p class="admonition-title">BidAsk</p>
+<div class="tabbed-set tabbed-alternate" data-tabs="4:2"><input checked="checked" id="__tabbed_4_1" name="__tabbed_4" type="radio" /><input id="__tabbed_4_2" name="__tabbed_4" type="radio" /><div class="tabbed-labels"><label for="__tabbed_4_1">QuoteVersion.v1</label><label for="__tabbed_4_2">QuoteVersion.v0</label></div>
+<div class="tabbed-content">
+<div class="tabbed-block">
+<div class="highlight"><pre><span></span><code>code (str): 商品代碼
+datetime (datetime.datetime): 時間
+bid_total_vol (int): 委買量總計 (lot)
+ask_total_vol (int): 委賣量總計 (lot)
+bid_price (:List:decimal): 委買價
+bid_volume (:List:int): 委買量 (lot)
+diff_bid_vol (:List:int): 委買價增減量 (lot)
+ask_price (:List:decimal): 委賣價
+ask_volume (:List:int): 委賣量 (lot)
+diff_ask_vol (:List:int): 委賣價增減量 (lot)
+first_derived_bid_price (decimal): 衍生一檔委買價
+first_derived_ask_price (decimal): 衍生一檔委賣價
+first_derived_bid_vol (int): 衍生一檔委買量
+first_derived_ask_vol (int): 衍生一檔委賣量
+underlying_price (decimal): 標的物價格
+simtrade (int): 試撮
+</code></pre></div>
+</div>
+<div class="tabbed-block">
+<div class="highlight"><pre><span></span><code>AskPrice (:List:float): 委賣價
+AskVolSum (int): 委賣量總計(lot)
+AskVolume (:List:int): 委賣量
+BidPrice (:List:float): 委買價
+BidVolSum (int): 委買量總計(lot)
+BidVolume (:List:int): 委買量
+Code (str): 商品代碼
+Date (str): 日期 (yyyy/MM/dd)
+DiffAskVol (:List:int): 賣價增減量(lot)
+DiffAskVolSum (int): 
+DiffBidVol (:List:int): 買價增減量(lot)
+DiffBidVolSum (int): 
+FirstDerivedAskPrice (float): 衍生一檔委賣價
+FirstDerivedAskVolume (int): 衍生一檔委賣量
+FirstDerivedBidPrice (float): 衍生一檔委買價
+FirstDerivedBidVolume (int): 衍生一檔委買量
+TargetKindPrice (float): 標的物價格
+Time (str): 時間 (HH:mm:ss.ffffff)
+</code></pre></div>
+</div>
+</div>
+</div>
+</div>
+<h2 id="callback">Callback<a class="headerlink" href="#callback" title="Permanent link">&para;</a></h2>
 <p>In default, we set quote callback as print function. You can modify callback function as you wish. Just remember, always avoid making calulations inside the callback function.</p>
-<h4 id="tick_1">Tick<a class="headerlink" href="#tick_1" title="Permanent link">&para;</a></h4>
+<h3 id="tick_1">Tick<a class="headerlink" href="#tick_1" title="Permanent link">&para;</a></h3>
 <div class="admonition info">
 <p class="admonition-title">In: pythonic way by using decorator</p>
-<div class="tabbed-set tabbed-alternate" data-tabs="3:2"><input checked="checked" id="__tabbed_3_1" name="__tabbed_3" type="radio" /><input id="__tabbed_3_2" name="__tabbed_3" type="radio" /><div class="tabbed-labels"><label for="__tabbed_3_1">QuoteVersion.v1</label><label for="__tabbed_3_2">QuoteVersion.v0</label></div>
+<div class="tabbed-set tabbed-alternate" data-tabs="5:2"><input checked="checked" id="__tabbed_5_1" name="__tabbed_5" type="radio" /><input id="__tabbed_5_2" name="__tabbed_5" type="radio" /><div class="tabbed-labels"><label for="__tabbed_5_1">QuoteVersion.v1</label><label for="__tabbed_5_2">QuoteVersion.v0</label></div>
 <div class="tabbed-content">
 <div class="tabbed-block">
 <div class="highlight"><pre><span></span><code><span class="kn">from</span> <span class="nn">shioaji</span> <span class="kn">import</span> <span class="n">TickFOPv1</span><span class="p">,</span> <span class="n">Exchange</span>
@@ -1433,7 +1601,7 @@ version: version of quote format.
 </div>
 <div class="admonition info">
 <p class="admonition-title">In: traditional way</p>
-<div class="tabbed-set tabbed-alternate" data-tabs="4:2"><input checked="checked" id="__tabbed_4_1" name="__tabbed_4" type="radio" /><input id="__tabbed_4_2" name="__tabbed_4" type="radio" /><div class="tabbed-labels"><label for="__tabbed_4_1">QuoteVersion.v1</label><label for="__tabbed_4_2">QuoteVersion.v0</label></div>
+<div class="tabbed-set tabbed-alternate" data-tabs="6:2"><input checked="checked" id="__tabbed_6_1" name="__tabbed_6" type="radio" /><input id="__tabbed_6_2" name="__tabbed_6" type="radio" /><div class="tabbed-labels"><label for="__tabbed_6_1">QuoteVersion.v1</label><label for="__tabbed_6_2">QuoteVersion.v0</label></div>
 <div class="tabbed-content">
 <div class="tabbed-block">
 <div class="highlight"><pre><span></span><code><span class="kn">from</span> <span class="nn">shioaji</span> <span class="kn">import</span> <span class="n">TickFOPv1</span><span class="p">,</span> <span class="n">Exchange</span>
@@ -1456,7 +1624,7 @@ version: version of quote format.
 </div>
 <div class="admonition done">
 <p class="admonition-title">Out</p>
-<div class="tabbed-set tabbed-alternate" data-tabs="5:2"><input checked="checked" id="__tabbed_5_1" name="__tabbed_5" type="radio" /><input id="__tabbed_5_2" name="__tabbed_5" type="radio" /><div class="tabbed-labels"><label for="__tabbed_5_1">QuoteVersion.v1</label><label for="__tabbed_5_2">QuoteVersion.v0</label></div>
+<div class="tabbed-set tabbed-alternate" data-tabs="7:2"><input checked="checked" id="__tabbed_7_1" name="__tabbed_7" type="radio" /><input id="__tabbed_7_2" name="__tabbed_7" type="radio" /><div class="tabbed-labels"><label for="__tabbed_7_1">QuoteVersion.v1</label><label for="__tabbed_7_2">QuoteVersion.v0</label></div>
 <div class="tabbed-content">
 <div class="tabbed-block">
 <div class="highlight"><pre><span></span><code><span class="n">Exchange</span><span class="p">:</span> <span class="n">Exchange</span><span class="o">.</span><span class="n">TAIFEX</span><span class="p">,</span> <span class="n">Tick</span><span class="p">:</span> <span class="n">Tick</span><span class="p">(</span><span class="n">code</span><span class="o">=</span><span class="s1">&#39;TXFG1&#39;</span><span class="p">,</span> <span class="n">datetime</span><span class="o">=</span><span class="n">datetime</span><span class="o">.</span><span class="n">datetime</span><span class="p">(</span><span class="mi">2021</span><span class="p">,</span> <span class="mi">7</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">13</span><span class="p">,</span> <span class="mi">17</span><span class="p">,</span> <span class="mi">22</span><span class="p">,</span> <span class="mi">784000</span><span class="p">),</span> <span class="nb">open</span><span class="o">=</span><span class="n">Decimal</span><span class="p">(</span><span class="s1">&#39;17651&#39;</span><span class="p">),</span> <span class="n">underlying_price</span><span class="o">=</span><span class="n">Decimal</span><span class="p">(</span><span class="s1">&#39;17727.12&#39;</span><span class="p">),</span> <span class="n">trade_bid_total_vol</span><span class="o">=</span><span class="mi">61550</span><span class="p">,</span> <span class="n">trade_ask_volume</span><span class="o">=</span><span class="mi">60914</span><span class="p">,</span> <span class="n">avg_price</span><span class="o">=</span><span class="n">Decimal</span><span class="p">(</span><span class="s1">&#39;17657.959752&#39;</span><span class="p">),</span> <span class="n">close</span><span class="o">=</span><span class="n">Decimal</span><span class="p">(</span><span class="s1">&#39;17653&#39;</span><span class="p">),</span> <span class="n">high</span><span class="o">=</span><span class="n">Decimal</span><span class="p">(</span><span class="s1">&#39;17724&#39;</span><span class="p">),</span> <span class="n">low</span><span class="o">=</span><span class="n">Decimal</span><span class="p">(</span><span class="s1">&#39;17588&#39;</span><span class="p">),</span> <span class="n">amount</span><span class="o">=</span><span class="n">Decimal</span><span class="p">(</span><span class="s1">&#39;35306&#39;</span><span class="p">),</span> <span class="n">total_amount</span><span class="o">=</span><span class="n">Decimal</span><span class="p">(</span><span class="s1">&#39;1683421593&#39;</span><span class="p">),</span> <span class="n">volume</span><span class="o">=</span><span class="mi">2</span><span class="p">,</span> <span class="n">total_volume</span><span class="o">=</span><span class="mi">95335</span><span class="p">,</span> <span class="n">tick_type</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span> <span class="n">chg_type</span><span class="o">=</span><span class="mi">2</span><span class="p">,</span> <span class="n">price_chg</span><span class="o">=</span><span class="n">Decimal</span><span class="p">(</span><span class="s1">&#39;7&#39;</span><span class="p">),</span> <span class="n">pct_chg</span><span class="o">=</span><span class="n">Decimal</span><span class="p">(</span><span class="s1">&#39;0.039669&#39;</span><span class="p">),</span> <span class="n">simtrade</span><span class="o">=</span><span class="mi">0</span><span class="p">)</span>
@@ -1469,10 +1637,10 @@ version: version of quote format.
 </div>
 </div>
 </div>
-<h4 id="bidask_1">BidAsk<a class="headerlink" href="#bidask_1" title="Permanent link">&para;</a></h4>
+<h3 id="bidask_1">BidAsk<a class="headerlink" href="#bidask_1" title="Permanent link">&para;</a></h3>
 <div class="admonition info">
 <p class="admonition-title">In: pythonic way by using decorator</p>
-<div class="tabbed-set tabbed-alternate" data-tabs="6:2"><input checked="checked" id="__tabbed_6_1" name="__tabbed_6" type="radio" /><input id="__tabbed_6_2" name="__tabbed_6" type="radio" /><div class="tabbed-labels"><label for="__tabbed_6_1">QuoteVersion.v1</label><label for="__tabbed_6_2">QuoteVersion.v0</label></div>
+<div class="tabbed-set tabbed-alternate" data-tabs="8:2"><input checked="checked" id="__tabbed_8_1" name="__tabbed_8" type="radio" /><input id="__tabbed_8_2" name="__tabbed_8" type="radio" /><div class="tabbed-labels"><label for="__tabbed_8_1">QuoteVersion.v1</label><label for="__tabbed_8_2">QuoteVersion.v0</label></div>
 <div class="tabbed-content">
 <div class="tabbed-block">
 <div class="highlight"><pre><span></span><code><span class="kn">from</span> <span class="nn">shioaji</span> <span class="kn">import</span> <span class="n">BidAskFOPv1</span><span class="p">,</span> <span class="n">Exchange</span>
@@ -1493,7 +1661,7 @@ version: version of quote format.
 </div>
 <div class="admonition info">
 <p class="admonition-title">In: traditional way</p>
-<div class="tabbed-set tabbed-alternate" data-tabs="7:2"><input checked="checked" id="__tabbed_7_1" name="__tabbed_7" type="radio" /><input id="__tabbed_7_2" name="__tabbed_7" type="radio" /><div class="tabbed-labels"><label for="__tabbed_7_1">QuoteVersion.v1</label><label for="__tabbed_7_2">QuoteVersion.v0</label></div>
+<div class="tabbed-set tabbed-alternate" data-tabs="9:2"><input checked="checked" id="__tabbed_9_1" name="__tabbed_9" type="radio" /><input id="__tabbed_9_2" name="__tabbed_9" type="radio" /><div class="tabbed-labels"><label for="__tabbed_9_1">QuoteVersion.v1</label><label for="__tabbed_9_2">QuoteVersion.v0</label></div>
 <div class="tabbed-content">
 <div class="tabbed-block">
 <div class="highlight"><pre><span></span><code><span class="kn">from</span> <span class="nn">shioaji</span> <span class="kn">import</span> <span class="n">BidAskFOPv1</span><span class="p">,</span> <span class="n">Exchange</span>
@@ -1516,7 +1684,7 @@ version: version of quote format.
 </div>
 <div class="admonition done">
 <p class="admonition-title">Out</p>
-<div class="tabbed-set tabbed-alternate" data-tabs="8:2"><input checked="checked" id="__tabbed_8_1" name="__tabbed_8" type="radio" /><input id="__tabbed_8_2" name="__tabbed_8" type="radio" /><div class="tabbed-labels"><label for="__tabbed_8_1">QuoteVersion.v1</label><label for="__tabbed_8_2">QuoteVersion.v0</label></div>
+<div class="tabbed-set tabbed-alternate" data-tabs="10:2"><input checked="checked" id="__tabbed_10_1" name="__tabbed_10" type="radio" /><input id="__tabbed_10_2" name="__tabbed_10" type="radio" /><div class="tabbed-labels"><label for="__tabbed_10_1">QuoteVersion.v1</label><label for="__tabbed_10_2">QuoteVersion.v0</label></div>
 <div class="tabbed-content">
 <div class="tabbed-block">
 <div class="highlight"><pre><span></span><code><span class="n">Exchange</span><span class="p">:</span> <span class="n">Exchange</span><span class="o">.</span><span class="n">TAIFEX</span><span class="p">,</span> <span class="n">BidAsk</span><span class="p">:</span> <span class="n">BidAsk</span><span class="p">(</span><span class="n">code</span><span class="o">=</span><span class="s1">&#39;TXFG1&#39;</span><span class="p">,</span> <span class="n">datetime</span><span class="o">=</span><span class="n">datetime</span><span class="o">.</span><span class="n">datetime</span><span class="p">(</span><span class="mi">2021</span><span class="p">,</span> <span class="mi">7</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">13</span><span class="p">,</span> <span class="mi">18</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">684000</span><span class="p">),</span> <span class="n">bid_total_vol</span><span class="o">=</span><span class="mi">69</span><span class="p">,</span> <span class="n">ask_total_vol</span><span class="o">=</span><span class="mi">94</span><span class="p">,</span> <span class="n">bid_price</span><span class="o">=</span><span class="p">[</span><span class="n">Decimal</span><span class="p">(</span><span class="s1">&#39;17651&#39;</span><span class="p">),</span> <span class="n">Decimal</span><span class="p">(</span><span class="s1">&#39;17650&#39;</span><span class="p">),</span> <span class="n">Decimal</span><span class="p">(</span><span class="s1">&#39;17649&#39;</span><span class="p">),</span> <span class="n">Decimal</span><span class="p">(</span><span class="s1">&#39;17648&#39;</span><span class="p">),</span> <span class="n">Decimal</span><span class="p">(</span><span class="s1">&#39;17647&#39;</span><span class="p">)],</span> <span class="n">bid_volume</span><span class="o">=</span><span class="p">[</span><span class="mi">10</span><span class="p">,</span> <span class="mi">12</span><span class="p">,</span> <span class="mi">18</span><span class="p">,</span> <span class="mi">18</span><span class="p">,</span> <span class="mi">11</span><span class="p">],</span> <span class="n">diff_bid_vol</span><span class="o">=</span><span class="p">[</span><span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">],</span> <span class="n">ask_price</span><span class="o">=</span><span class="p">[</span><span class="n">Decimal</span><span class="p">(</span><span class="s1">&#39;17653&#39;</span><span class="p">),</span> <span class="n">Decimal</span><span class="p">(</span><span class="s1">&#39;17654&#39;</span><span class="p">),</span> <span class="n">Decimal</span><span class="p">(</span><span class="s1">&#39;17655&#39;</span><span class="p">),</span> <span class="n">Decimal</span><span class="p">(</span><span class="s1">&#39;17656&#39;</span><span class="p">),</span> <span class="n">Decimal</span><span class="p">(</span><span class="s1">&#39;17657&#39;</span><span class="p">)],</span> <span class="n">ask_volume</span><span class="o">=</span><span class="p">[</span><span class="mi">6</span><span class="p">,</span> <span class="mi">17</span><span class="p">,</span> <span class="mi">29</span><span class="p">,</span> <span class="mi">22</span><span class="p">,</span> <span class="mi">20</span><span class="p">],</span> <span class="n">diff_ask_vol</span><span class="o">=</span><span class="p">[</span><span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">],</span> <span class="n">first_derived_bid_price</span><span class="o">=</span><span class="n">Decimal</span><span class="p">(</span><span class="s1">&#39;17647&#39;</span><span class="p">),</span> <span class="n">first_derived_ask_price</span><span class="o">=</span><span class="n">Decimal</span><span class="p">(</span><span class="s1">&#39;17657&#39;</span><span class="p">),</span> <span class="n">first_derived_bid_vol</span><span class="o">=</span><span class="mi">2</span><span class="p">,</span> <span class="n">first_derived_ask_vol</span><span class="o">=</span><span class="mi">3</span><span class="p">,</span> <span class="n">underlying_price</span><span class="o">=</span><span class="n">Decimal</span><span class="p">(</span><span class="s1">&#39;17725.5&#39;</span><span class="p">),</span> <span class="n">simtrade</span><span class="o">=</span><span class="mi">0</span><span class="p">)</span>
@@ -1532,105 +1700,6 @@ version: version of quote format.
 <ul>
 <li>Advanced quote callback settings please refer to <a href="../../../advanced/quote_binding/">Quote-Binding Mode</a>.</li>
 </ul>
-<h3 id="quote-format">Quote Format<a class="headerlink" href="#quote-format" title="Permanent link">&para;</a></h3>
-<div class="admonition example">
-<p class="admonition-title">Tick</p>
-<div class="tabbed-set tabbed-alternate" data-tabs="9:2"><input checked="checked" id="__tabbed_9_1" name="__tabbed_9" type="radio" /><input id="__tabbed_9_2" name="__tabbed_9" type="radio" /><div class="tabbed-labels"><label for="__tabbed_9_1">QuoteVersion.v1</label><label for="__tabbed_9_2">QuoteVersion.v0</label></div>
-<div class="tabbed-content">
-<div class="tabbed-block">
-<div class="highlight"><pre><span></span><code>code (str): 商品代碼
-datetime (datetime.datetime): 日期
-open (Decimal): 開盤
-underlying_price (Decimal): 標的物價格
-bid_side_total_vol(int): 買盤成交總量 (lot)
-ask_side_total_vol(int): 賣盤成交總量 (lot)
-avg_price (Decimal): 均價
-close (Decimal): 成交價
-high (Decimal): 今高
-low (Decimal): 今低
-amount (Decimal): 成交額 (成交價)
-total_amount (Decimal): 總成交額 (總成交價)
-volume (int): volume (lot)
-total_volume (int): total volume (lot)
-tick_type (int): 內外盤別{1: 內盤, 2: 外盤, 0: 無法判定}
-chg_type (int): 漲跌註記{1: 漲停, 2: 漲, 3: 平盤, 4: 跌, 5: 跌停}
-price_chg (Decimal): 漲跌
-pct_chg (Decimal): 漲跌幅 (%)
-simtrade (int): 試撮
-</code></pre></div>
-</div>
-<div class="tabbed-block">
-<div class="highlight"><pre><span></span><code>Amount (list of float): 成交額 (成交價)
-AmountSum (list of float): 總成交額 (總成交價)
-AvgPrice (list of float): 均價
-Close (list of float): 成交價
-Code (str): 商品代碼
-Date (str): 日期 (yyyy/MM/dd)
-DiffPrice (list of float): 漲跌
-DiffRate (list of float): 漲跌幅 (%)
-DiffType (list of int): 漲跌註記{1: 漲停, 2: 漲, 3: 平盤, 4: 跌, 5: 跌停}
-High (list of float): 今高
-Low (list of float): 今低
-Open (float): 開盤價
-TargetKindPrice float: 標的物價格
-TickType (:list:int): 內外盤別{1: 內盤, 2: 外盤, 0: 無法判定}
-Time (str): 時間 (HH:mm:ss.ffffff)
-TradeAskVolSum (int): 賣盤成交總量 (lot)
-TradeBidVolSum (int): 買盤成交總量 (lot)
-VolSum (list of int): 成交總量 (lot)
-Volume (list of int): 成交量 (lot)
-</code></pre></div>
-</div>
-</div>
-</div>
-</div>
-<div class="admonition example">
-<p class="admonition-title">BidAsk</p>
-<div class="tabbed-set tabbed-alternate" data-tabs="10:2"><input checked="checked" id="__tabbed_10_1" name="__tabbed_10" type="radio" /><input id="__tabbed_10_2" name="__tabbed_10" type="radio" /><div class="tabbed-labels"><label for="__tabbed_10_1">QuoteVersion.v1</label><label for="__tabbed_10_2">QuoteVersion.v0</label></div>
-<div class="tabbed-content">
-<div class="tabbed-block">
-<div class="highlight"><pre><span></span><code>code (str): 商品代碼
-datetime (datetime.datetime): 時間
-bid_total_vol (int): 買量總計 (lot)
-ask_total_vol (int): 賣量總計 (lot)
-bid_price (:List:decimal): 買價
-bid_volume (:List:int): 買量 (lot)
-diff_bid_vol (:List:int): 買價增減量 (lot)
-ask_price (:List:decimal): 賣價
-ask_volume (:List:int): 賣量 (lot)
-diff_ask_vol (:List:int): 賣價增減量 (lot)
-first_derived_bid_price (decimal): 衍生一檔買價
-first_derived_ask_price (decimal): 衍生一檔賣價
-first_derived_bid_vol (int): 衍生一檔買量
-first_derived_ask_vol (int): 衍生一檔賣量
-underlying_price (decimal): 標的物價格
-simtrade (int): 試撮
-</code></pre></div>
-</div>
-<div class="tabbed-block">
-<div class="highlight"><pre><span></span><code>AskPrice (:List:float): 賣價
-AskVolSum (int): 賣量總計(lot)
-AskVolume (:List:int): 賣量
-BidPrice (:List:float): 買價
-BidVolSum (int): 買量總計(lot)
-BidVolume (:List:int): 買量
-Code (str): 商品代碼
-Date (str): 日期 (yyyy/MM/dd)
-DiffAskVol (:List:int): 賣價增減量(lot)
-DiffAskVolSum (int): 
-DiffBidVol (:List:int): 買價增減量(lot)
-DiffBidVolSum (int): 
-FirstDerivedAskPrice (float): 衍生一檔賣價
-FirstDerivedAskVolume (int): 衍生一檔賣量
-FirstDerivedBidPrice (float): 衍生一檔買價
-FirstDerivedBidVolume (int): 衍生一檔買量
-TargetKindPrice (float): 標的物價格
-Time (str): 時間 (HH:mm:ss.ffffff)
-</code></pre></div>
-</div>
-</div>
-</div>
-</div>
 
 
 

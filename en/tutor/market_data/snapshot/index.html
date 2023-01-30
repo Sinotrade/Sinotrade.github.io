@@ -73,6 +73,11 @@
     <label class="md-overlay" for="__drawer"></label>
     <div data-md-component="skip">
       
+        
+        <a href="#example" class="md-skip">
+          Skip to content
+        </a>
+      
     </div>
     <div data-md-component="announce">
       
@@ -522,9 +527,45 @@
       
       
       
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          Snapshot
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
       <a href="./" class="md-nav__link md-nav__link--active">
         Snapshot
       </a>
+      
+        
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#example" class="md-nav__link">
+    Example
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#attributes" class="md-nav__link">
+    Attributes
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
       
     </li>
   
@@ -1095,6 +1136,28 @@
   
   
   
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#example" class="md-nav__link">
+    Example
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#attributes" class="md-nav__link">
+    Attributes
+  </a>
+  
+</li>
+      
+    </ul>
+  
 </nav>
                   </div>
                 </div>
@@ -1111,9 +1174,27 @@
   <h1>Snapshot</h1>
 
 <p>Snapshot is a present stock, future, option info. It contain open, high, low, close, change price, average price, volume, total volume, buy price, buy volume, sell price, sell volume and yestoday volume.</p>
-<div class="admonition info">
+<div class="admonition example">
 <p class="admonition-title">Snapshots</p>
-<div class="highlight"><pre><span></span><code><span class="n">contracts</span> <span class="o">=</span> <span class="p">[</span><span class="n">api</span><span class="o">.</span><span class="n">Contracts</span><span class="o">.</span><span class="n">Stocks</span><span class="p">[</span><span class="s1">&#39;2330&#39;</span><span class="p">],</span><span class="n">api</span><span class="o">.</span><span class="n">Contracts</span><span class="o">.</span><span class="n">Stocks</span><span class="p">[</span><span class="s1">&#39;2317&#39;</span><span class="p">]]</span>
+<div class="highlight"><pre><span></span><code><span class="o">&gt;&gt;</span> <span class="n">api</span><span class="o">.</span><span class="n">snapshots</span><span class="err">?</span>
+
+<span class="n">Signature</span><span class="p">:</span>
+<span class="n">api</span><span class="o">.</span><span class="n">snapshots</span><span class="p">(</span>
+    <span class="n">contracts</span><span class="p">:</span> <span class="n">List</span><span class="p">[</span><span class="n">Union</span><span class="p">[</span><span class="n">shioaji</span><span class="o">.</span><span class="n">contracts</span><span class="o">.</span><span class="n">Option</span><span class="p">,</span> <span class="n">shioaji</span><span class="o">.</span><span class="n">contracts</span><span class="o">.</span><span class="n">Future</span><span class="p">,</span> <span class="n">shioaji</span><span class="o">.</span><span class="n">contracts</span><span class="o">.</span><span class="n">Stock</span><span class="p">,</span> <span class="n">shioaji</span><span class="o">.</span><span class="n">contracts</span><span class="o">.</span><span class="n">Index</span><span class="p">]],</span>
+    <span class="n">timeout</span><span class="p">:</span> <span class="nb">int</span> <span class="o">=</span> <span class="mi">30000</span><span class="p">,</span>
+    <span class="n">cb</span><span class="p">:</span> <span class="n">Callable</span><span class="p">[[</span><span class="n">shioaji</span><span class="o">.</span><span class="n">data</span><span class="o">.</span><span class="n">Snapshot</span><span class="p">],</span> <span class="n">NoneType</span><span class="p">]</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
+<span class="p">)</span> <span class="o">-&gt;</span> <span class="n">List</span><span class="p">[</span><span class="n">shioaji</span><span class="o">.</span><span class="n">data</span><span class="o">.</span><span class="n">Snapshot</span><span class="p">]</span>
+<span class="n">Docstring</span><span class="p">:</span>
+<span class="n">get</span> <span class="n">contract</span> <span class="n">snapshot</span> <span class="n">info</span>
+</code></pre></div>
+</div>
+<h2 id="example">Example<a class="headerlink" href="#example" title="Permanent link">&para;</a></h2>
+<div class="admonition info">
+<p class="admonition-title">In</p>
+<div class="highlight"><pre><span></span><code><span class="n">contracts</span> <span class="o">=</span> <span class="p">[</span>
+    <span class="n">api</span><span class="o">.</span><span class="n">Contracts</span><span class="o">.</span><span class="n">Stocks</span><span class="p">[</span><span class="s1">&#39;2330&#39;</span><span class="p">],</span> 
+    <span class="n">api</span><span class="o">.</span><span class="n">Contracts</span><span class="o">.</span><span class="n">Stocks</span><span class="p">[</span><span class="s1">&#39;2317&#39;</span><span class="p">]</span>
+<span class="p">]</span>
 <span class="n">snapshots</span> <span class="o">=</span> <span class="n">api</span><span class="o">.</span><span class="n">snapshots</span><span class="p">(</span><span class="n">contracts</span><span class="p">)</span>
 <span class="n">snapshots</span>
 </code></pre></div>
@@ -1174,7 +1255,7 @@
 </div>
 <p>To DataFrame</p>
 <div class="admonition info">
-<p class="admonition-title">To DataFrame</p>
+<p class="admonition-title">In</p>
 <div class="highlight"><pre><span></span><code><span class="n">df</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">(</span><span class="n">s</span><span class="o">.</span><span class="vm">__dict__</span> <span class="k">for</span> <span class="n">s</span> <span class="ow">in</span> <span class="n">snapshots</span><span class="p">)</span>
 <span class="n">df</span><span class="o">.</span><span class="n">ts</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">to_datetime</span><span class="p">(</span><span class="n">df</span><span class="o">.</span><span class="n">ts</span><span class="p">)</span>
 <span class="n">df</span>
@@ -1261,6 +1342,7 @@
 </tbody>
 </table>
 </div>
+<h2 id="attributes">Attributes<a class="headerlink" href="#attributes" title="Permanent link">&para;</a></h2>
 <div class="admonition example">
 <p class="admonition-title">Snapshot</p>
 <div class="highlight"><pre><span></span><code><span class="n">ts</span> <span class="p">(</span><span class="nb">int</span><span class="p">):</span> <span class="n">TimeStamp</span>

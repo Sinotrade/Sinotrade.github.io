@@ -73,6 +73,11 @@
     <label class="md-overlay" for="__drawer"></label>
     <div data-md-component="skip">
       
+        
+        <a href="#_1" class="md-skip">
+          Skip to content
+        </a>
+      
     </div>
     <div data-md-component="announce">
       
@@ -564,9 +569,45 @@
       
       
       
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          排行
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
       <a href="./" class="md-nav__link md-nav__link--active">
         排行
       </a>
+      
+        
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#_1" class="md-nav__link">
+    範例
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_2" class="md-nav__link">
+    屬性
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
       
     </li>
   
@@ -1095,6 +1136,28 @@
   
   
   
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#_1" class="md-nav__link">
+    範例
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_2" class="md-nav__link">
+    屬性
+  </a>
+  
+</li>
+      
+    </ul>
+  
 </nav>
                   </div>
                 </div>
@@ -1111,7 +1174,7 @@
   <h1>排行</h1>
 
 <p>包含漲跌幅、漲跌、高低價差、成交量及成交金額排行。<code>Scanners</code>利用<code>scanner_type</code>去取得不同類型的排行。</p>
-<div class="admonition done">
+<div class="admonition example">
 <p class="admonition-title">Scanners</p>
 <div class="highlight"><pre><span></span><code><span class="o">&gt;&gt;</span> <span class="n">api</span><span class="o">.</span><span class="n">scanners</span><span class="err">?</span>
 
@@ -1136,6 +1199,7 @@
 <span class="n">AmountRank</span><span class="p">:</span> <span class="n">依成交金額排序</span>
 </code></pre></div>
 </div>
+<h2 id="_1">範例<a class="headerlink" href="#_1" title="Permanent link">&para;</a></h2>
 <div class="admonition info">
 <p class="admonition-title">依價格漲跌幅排序</p>
 <div class="highlight"><pre><span></span><code><span class="n">scanners</span> <span class="o">=</span> <span class="n">api</span><span class="o">.</span><span class="n">scanners</span><span class="p">(</span>
@@ -1375,6 +1439,7 @@
 </tbody>
 </table>
 </div>
+<h2 id="_2">屬性<a class="headerlink" href="#_2" title="Permanent link">&para;</a></h2>
 <div class="admonition example">
 <p class="admonition-title">ChangePercentRank</p>
 <div class="highlight"><pre><span></span><code><span class="n">date</span> <span class="p">(</span><span class="nb">str</span><span class="p">):</span> <span class="n">交易日</span> 

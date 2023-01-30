@@ -73,6 +73,11 @@
     <label class="md-overlay" for="__drawer"></label>
     <div data-md-component="skip">
       
+        
+        <a href="#example" class="md-skip">
+          Skip to content
+        </a>
+      
     </div>
     <div data-md-component="announce">
       
@@ -536,9 +541,45 @@
       
       
       
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          Short Stock Source
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
       <a href="./" class="md-nav__link md-nav__link--active">
         Short Stock Source
       </a>
+      
+        
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#example" class="md-nav__link">
+    Example
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#attributes" class="md-nav__link">
+    Attributes
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
       
     </li>
   
@@ -1095,6 +1136,28 @@
   
   
   
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#example" class="md-nav__link">
+    Example
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#attributes" class="md-nav__link">
+    Attributes
+  </a>
+  
+</li>
+      
+    </ul>
+  
 </nav>
                   </div>
                 </div>
@@ -1110,24 +1173,41 @@
 
   <h1>Short Stock Source</h1>
 
+<div class="admonition example">
+<p class="admonition-title">Short Stock Sources</p>
+<div class="highlight"><pre><span></span><code><span class="o">&gt;&gt;</span> <span class="n">api</span><span class="o">.</span><span class="n">short_stock_sources</span><span class="err">?</span>
+
+<span class="n">Signature</span><span class="p">:</span>
+<span class="n">api</span><span class="o">.</span><span class="n">short_stock_sources</span><span class="p">(</span>
+    <span class="n">contracts</span><span class="p">:</span> <span class="n">List</span><span class="p">[</span><span class="n">shioaji</span><span class="o">.</span><span class="n">contracts</span><span class="o">.</span><span class="n">Stock</span><span class="p">],</span>
+    <span class="n">timeout</span><span class="p">:</span> <span class="nb">int</span> <span class="o">=</span> <span class="mi">5000</span><span class="p">,</span>
+    <span class="n">cb</span><span class="p">:</span> <span class="n">Callable</span><span class="p">[[</span><span class="n">shioaji</span><span class="o">.</span><span class="n">data</span><span class="o">.</span><span class="n">ShortStockSource</span><span class="p">],</span> <span class="n">NoneType</span><span class="p">]</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
+<span class="p">)</span> <span class="o">-&gt;</span> <span class="n">List</span><span class="p">[</span><span class="n">shioaji</span><span class="o">.</span><span class="n">data</span><span class="o">.</span><span class="n">ShortStockSource</span><span class="p">]</span>
+</code></pre></div>
+</div>
+<h2 id="example">Example<a class="headerlink" href="#example" title="Permanent link">&para;</a></h2>
 <div class="admonition info">
 <p class="admonition-title">In</p>
-<div class="highlight"><pre><span></span><code><span class="n">contracts</span> <span class="o">=</span> <span class="p">[</span><span class="n">api</span><span class="o">.</span><span class="n">Contracts</span><span class="o">.</span><span class="n">Stocks</span><span class="p">[</span><span class="s1">&#39;2330&#39;</span><span class="p">],</span><span class="n">api</span><span class="o">.</span><span class="n">Contracts</span><span class="o">.</span><span class="n">Stocks</span><span class="p">[</span><span class="s1">&#39;2317&#39;</span><span class="p">]]</span>
+<div class="highlight"><pre><span></span><code><span class="n">contracts</span> <span class="o">=</span> <span class="p">[</span>
+    <span class="n">api</span><span class="o">.</span><span class="n">Contracts</span><span class="o">.</span><span class="n">Stocks</span><span class="p">[</span><span class="s1">&#39;2330&#39;</span><span class="p">],</span> 
+    <span class="n">api</span><span class="o">.</span><span class="n">Contracts</span><span class="o">.</span><span class="n">Stocks</span><span class="p">[</span><span class="s1">&#39;2317&#39;</span><span class="p">]</span>
+<span class="p">]</span>
 <span class="n">short_stock_sources</span> <span class="o">=</span> <span class="n">api</span><span class="o">.</span><span class="n">short_stock_sources</span><span class="p">(</span><span class="n">contracts</span><span class="p">)</span>
 <span class="n">short_stock_sources</span>
 </code></pre></div>
 </div>
 <div class="admonition done">
 <p class="admonition-title">Out</p>
-<div class="highlight"><pre><span></span><code><span class="p">[</span><span class="n">ShortStockSource</span><span class="p">(</span><span class="n">code</span><span class="o">=</span><span class="s1">&#39;2330&#39;</span><span class="p">,</span> <span class="n">short_stock_source</span><span class="o">=</span><span class="mi">12678</span><span class="p">,</span> <span class="n">ts</span><span class="o">=</span><span class="mi">1589797829000000000</span><span class="p">),</span> <span class="n">ShortStockSource</span><span class="p">(</span><span class="n">code</span><span class="o">=</span><span class="s1">&#39;2317&#39;</span><span class="p">,</span> <span class="n">short_stock_source</span><span class="o">=</span><span class="mi">20093</span><span class="p">,</span> <span class="n">ts</span><span class="o">=</span><span class="mi">1589797829000000000</span><span class="p">)]</span>
+<div class="highlight"><pre><span></span><code><span class="p">[</span>
+    <span class="n">ShortStockSource</span><span class="p">(</span><span class="n">code</span><span class="o">=</span><span class="s1">&#39;2330&#39;</span><span class="p">,</span> <span class="n">short_stock_source</span><span class="o">=</span><span class="mi">58260</span><span class="p">,</span> <span class="n">ts</span><span class="o">=</span><span class="mi">1673943433000000000</span><span class="p">),</span>
+    <span class="n">ShortStockSource</span><span class="p">(</span><span class="n">code</span><span class="o">=</span><span class="s1">&#39;2317&#39;</span><span class="p">,</span> <span class="n">short_stock_source</span><span class="o">=</span><span class="mi">75049</span><span class="p">,</span> <span class="n">ts</span><span class="o">=</span><span class="mi">1673943433000000000</span><span class="p">)</span>
+<span class="p">]</span>
 </code></pre></div>
 </div>
 <p>To DataFrame</p>
 <div class="admonition info">
 <p class="admonition-title">In</p>
-<div class="highlight"><pre><span></span><code><span class="n">contracts</span> <span class="o">=</span> <span class="p">[</span><span class="n">api</span><span class="o">.</span><span class="n">Contracts</span><span class="o">.</span><span class="n">Stocks</span><span class="p">[</span><span class="s1">&#39;2330&#39;</span><span class="p">],</span><span class="n">api</span><span class="o">.</span><span class="n">Contracts</span><span class="o">.</span><span class="n">Stocks</span><span class="p">[</span><span class="s1">&#39;2317&#39;</span><span class="p">]]</span>
-<span class="n">short_stock_sources</span> <span class="o">=</span> <span class="n">api</span><span class="o">.</span><span class="n">short_stock_sources</span><span class="p">(</span><span class="n">contracts</span><span class="p">)</span>
-<span class="n">df</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">(</span><span class="n">s</span><span class="o">.</span><span class="vm">__dict__</span> <span class="k">for</span> <span class="n">s</span> <span class="ow">in</span> <span class="n">short_stock_sources</span><span class="p">)</span>
+<div class="highlight"><pre><span></span><code><span class="n">df</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">(</span><span class="n">s</span><span class="o">.</span><span class="vm">__dict__</span> <span class="k">for</span> <span class="n">s</span> <span class="ow">in</span> <span class="n">short_stock_sources</span><span class="p">)</span>
 <span class="n">df</span><span class="o">.</span><span class="n">ts</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">to_datetime</span><span class="p">(</span><span class="n">df</span><span class="o">.</span><span class="n">ts</span><span class="p">)</span>
 <span class="n">df</span>
 </code></pre></div>
@@ -1137,33 +1217,31 @@
 <table>
 <thead>
 <tr>
-<th></th>
-<th>code</th>
-<th>short_stock_source</th>
-<th>ts</th>
+<th align="right">code</th>
+<th align="right">short_stock_source</th>
+<th align="left">ts</th>
 </tr>
 </thead>
 <tbody>
 <tr>
-<td>0</td>
-<td>2330</td>
-<td>12678</td>
-<td>2020-05-18 10:30:29</td>
+<td align="right">2330</td>
+<td align="right">58260</td>
+<td align="left">2023-01-17 08:17:13</td>
 </tr>
 <tr>
-<td>1</td>
-<td>2317</td>
-<td>20093</td>
-<td>2020-05-18 10:30:29</td>
+<td align="right">2317</td>
+<td align="right">75049</td>
+<td align="left">2023-01-17 08:17:13</td>
 </tr>
 </tbody>
 </table>
 </div>
+<h2 id="attributes">Attributes<a class="headerlink" href="#attributes" title="Permanent link">&para;</a></h2>
 <div class="admonition example">
-<p class="admonition-title">Attributes:</p>
-<div class="highlight"><pre><span></span><code><span class="n">code</span> <span class="p">(</span><span class="nb">str</span><span class="p">):</span> <span class="n">Contract</span> <span class="nb">id</span><span class="o">.</span>
-<span class="n">short_stock_source</span> <span class="p">(</span><span class="nb">float</span><span class="p">):</span> <span class="n">short_stock_source</span>
-<span class="n">ts</span> <span class="p">(</span><span class="nb">int</span><span class="p">):</span> <span class="n">TimeStamp</span><span class="o">.</span>
+<p class="admonition-title">ShortStockSource</p>
+<div class="highlight"><pre><span></span><code><span class="n">code</span> <span class="p">(</span><span class="nb">str</span><span class="p">):</span> <span class="n">contract</span> <span class="nb">id</span>
+<span class="n">short_stock_source</span> <span class="p">(</span><span class="nb">float</span><span class="p">):</span> <span class="n">short</span> <span class="n">stock</span> <span class="n">source</span>
+<span class="n">ts</span> <span class="p">(</span><span class="nb">int</span><span class="p">):</span> <span class="n">timeStamp</span>
 </code></pre></div>
 </div>
 
