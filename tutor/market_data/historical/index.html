@@ -540,11 +540,52 @@
     Ticks
   </a>
   
+    <nav class="md-nav" aria-label="Ticks">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#by-date" class="md-nav__link">
+    By Date
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#range-time" class="md-nav__link">
+    Range Time
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#last-count" class="md-nav__link">
+    Last Count
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
 </li>
       
         <li class="md-nav__item">
   <a href="#kbar" class="md-nav__link">
     KBar
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#historical-periods" class="md-nav__link">
+    Historical Periods
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#continuous-futures" class="md-nav__link">
+    Continuous Futures
   </a>
   
 </li>
@@ -564,7 +605,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../snapshot/" class="md-nav__link">
+      <a href="../snapshot/" class="md-nav__link">
         Snapshot
       </a>
     </li>
@@ -1147,11 +1188,52 @@
     Ticks
   </a>
   
+    <nav class="md-nav" aria-label="Ticks">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#by-date" class="md-nav__link">
+    By Date
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#range-time" class="md-nav__link">
+    Range Time
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#last-count" class="md-nav__link">
+    Last Count
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
 </li>
       
         <li class="md-nav__item">
   <a href="#kbar" class="md-nav__link">
     KBar
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#historical-periods" class="md-nav__link">
+    Historical Periods
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#continuous-futures" class="md-nav__link">
+    Continuous Futures
   </a>
   
 </li>
@@ -1173,7 +1255,7 @@
 
   <h1>Historical Market Data</h1>
 
-<h3 id="ticks">Ticks<a class="headerlink" href="#ticks" title="Permanent link">&para;</a></h3>
+<h2 id="ticks">Ticks<a class="headerlink" href="#ticks" title="Permanent link">&para;</a></h2>
 <p>Ticks can get all day, period of time or last counts of the day. The default is get ticks of last trade day . </p>
 <div class="admonition info">
 <p class="admonition-title">Ticks</p>
@@ -1194,12 +1276,12 @@
     <span class="n">get</span> <span class="n">contract</span> <span class="n">tick</span> <span class="n">volumn</span>
 </code></pre></div>
 </div>
-<p>Get ticks all day</p>
+<h3 id="by-date">By Date<a class="headerlink" href="#by-date" title="Permanent link">&para;</a></h3>
 <div class="admonition info">
 <p class="admonition-title">In</p>
 <div class="highlight"><pre><span></span><code><span class="n">ticks</span> <span class="o">=</span> <span class="n">api</span><span class="o">.</span><span class="n">ticks</span><span class="p">(</span>
     <span class="n">contract</span><span class="o">=</span><span class="n">api</span><span class="o">.</span><span class="n">Contracts</span><span class="o">.</span><span class="n">Stocks</span><span class="p">[</span><span class="s2">&quot;2330&quot;</span><span class="p">],</span> 
-    <span class="n">date</span><span class="o">=</span><span class="s2">&quot;2020-03-04&quot;</span>
+    <span class="n">date</span><span class="o">=</span><span class="s2">&quot;2023-01-16&quot;</span>
 <span class="p">)</span>
 <span class="n">ticks</span>
 </code></pre></div>
@@ -1207,18 +1289,19 @@
 <div class="admonition done">
 <p class="admonition-title">Out</p>
 <div class="highlight"><pre><span></span><code><span class="n">Ticks</span><span class="p">(</span>
-    <span class="n">ts</span><span class="o">=</span><span class="p">[</span><span class="mi">1583312400821000000</span><span class="p">,</span> <span class="mi">1583312405836000000</span><span class="p">,</span> <span class="mi">1583312410849000000</span><span class="p">,</span> <span class="mi">1583312415864000000</span><span class="p">,</span> <span class="mi">1583312420877000000</span><span class="p">],</span> 
-    <span class="n">close</span><span class="o">=</span><span class="p">[</span><span class="mf">322.0</span><span class="p">,</span> <span class="mf">321.5</span><span class="p">,</span> <span class="mf">321.0</span><span class="p">,</span> <span class="mf">321.0</span><span class="p">,</span> <span class="mf">321.0</span><span class="p">],</span>
-    <span class="n">volume</span><span class="o">=</span><span class="p">[</span><span class="mi">5098</span><span class="p">,</span> <span class="mi">91</span><span class="p">,</span> <span class="mi">126</span><span class="p">,</span> <span class="mi">59</span><span class="p">,</span> <span class="mi">90</span><span class="p">],</span>
-    <span class="n">bid_price</span><span class="o">=</span><span class="p">[</span><span class="mf">321.5</span><span class="p">,</span> <span class="mf">321.0</span><span class="p">,</span> <span class="mf">321.0</span><span class="p">,</span> <span class="mf">321.0</span><span class="p">,</span> <span class="mf">321.0</span><span class="p">],</span>
-    <span class="n">bid_volume</span><span class="o">=</span><span class="p">[</span><span class="mi">5</span><span class="p">,</span> <span class="mi">100</span><span class="p">,</span> <span class="mi">94</span><span class="p">,</span> <span class="mi">78</span><span class="p">,</span> <span class="mi">20</span><span class="p">],</span>
-    <span class="n">ask_price</span><span class="o">=</span><span class="p">[</span><span class="mf">322.0</span><span class="p">,</span> <span class="mf">321.5</span><span class="p">,</span> <span class="mf">321.5</span><span class="p">,</span> <span class="mf">321.5</span><span class="p">,</span> <span class="mf">321.5</span><span class="p">],</span>
-    <span class="n">ask_volume</span><span class="o">=</span><span class="p">[</span><span class="mi">646</span><span class="p">,</span> <span class="mi">13</span><span class="p">,</span> <span class="mi">31</span><span class="p">,</span> <span class="mi">86</span><span class="p">,</span> <span class="mi">199</span><span class="p">]</span>
+    <span class="n">ts</span><span class="o">=</span><span class="p">[</span><span class="mi">1673859600113699000</span><span class="p">,</span> <span class="mi">1673859600228800000</span><span class="p">,</span> <span class="mi">1673859600244294000</span><span class="p">,</span> <span class="mi">1673859600308595000</span><span class="p">],</span> 
+    <span class="n">close</span><span class="o">=</span><span class="p">[</span><span class="mf">506.0</span><span class="p">,</span> <span class="mf">505.0</span><span class="p">,</span> <span class="mf">506.0</span><span class="p">,</span> <span class="mf">506.0</span><span class="p">],</span>
+    <span class="n">volume</span><span class="o">=</span><span class="p">[</span><span class="mi">3340</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">17</span><span class="p">,</span> <span class="mi">2</span><span class="p">],</span>
+    <span class="n">bid_price</span><span class="o">=</span><span class="p">[</span><span class="mf">505.0</span><span class="p">,</span> <span class="mf">505.0</span><span class="p">,</span> <span class="mf">506.0</span><span class="p">,</span> <span class="mf">506.0</span><span class="p">],</span>
+    <span class="n">bid_volume</span><span class="o">=</span><span class="p">[</span><span class="mi">122</span><span class="p">,</span> <span class="mi">320</span><span class="p">,</span> <span class="mi">60</span><span class="p">,</span> <span class="mi">58</span><span class="p">],</span>
+    <span class="n">ask_price</span><span class="o">=</span><span class="p">[</span><span class="mf">506.0</span><span class="p">,</span> <span class="mf">506.0</span><span class="p">,</span> <span class="mf">507.0</span><span class="p">,</span> <span class="mf">507.0</span><span class="p">],</span>
+    <span class="n">ask_volume</span><span class="o">=</span><span class="p">[</span><span class="mi">13</span><span class="p">,</span> <span class="mi">22</span><span class="p">,</span> <span class="mi">702</span><span class="p">,</span> <span class="mi">702</span><span class="p">]</span>
+    <span class="n">tick_type</span><span class="o">=</span><span class="p">[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">]</span>
 <span class="p">)</span>
 </code></pre></div>
 </div>
 <div class="admonition example">
-<p class="admonition-title">Attributes:</p>
+<p class="admonition-title">Ticks</p>
 <div class="highlight"><pre><span></span><code><span class="n">ts</span> <span class="p">(</span><span class="nb">int</span><span class="p">):</span> <span class="n">timestamp</span>
 <span class="n">close</span> <span class="p">(</span><span class="nb">float</span><span class="p">):</span> <span class="n">close</span>
 <span class="n">volume</span> <span class="p">(</span><span class="nb">int</span><span class="p">):</span> <span class="n">volume</span>
@@ -1226,6 +1309,7 @@
 <span class="n">bid_volume</span> <span class="p">(</span><span class="nb">int</span><span class="p">):</span> <span class="n">bid</span> <span class="n">volume</span>
 <span class="n">ask_price</span> <span class="p">(</span><span class="nb">float</span><span class="p">):</span> <span class="n">ask</span> <span class="n">price</span>
 <span class="n">ask_volume</span> <span class="p">(</span><span class="nb">int</span><span class="p">):</span> <span class="n">ask</span> <span class="n">volume</span>
+<span class="n">tick_type</span> <span class="p">(</span><span class="nb">int</span><span class="p">):</span> <span class="n">內外盤別</span><span class="p">{</span><span class="mi">1</span><span class="p">:</span> <span class="n">內盤</span><span class="p">,</span> <span class="mi">2</span><span class="p">:</span> <span class="n">外盤</span><span class="p">,</span> <span class="mi">0</span><span class="p">:</span> <span class="n">無法判定</span><span class="p">}</span>
 </code></pre></div>
 </div>
 <p>To DataFrame</p>
@@ -1242,76 +1326,66 @@
 <table>
 <thead>
 <tr>
-<th align="right"></th>
 <th align="left">ts</th>
-<th align="left">ask_volume</th>
-<th align="left">ask_price</th>
-<th align="left">close</th>
-<th align="left">bid_price</th>
-<th align="left">bid_volume</th>
-<th align="left">volume</th>
+<th align="right">ask_price</th>
+<th align="right">close</th>
+<th align="right">bid_volume</th>
+<th align="right">volume</th>
+<th align="right">ask_volume</th>
+<th align="right">tick_type</th>
+<th align="right">bid_price</th>
 </tr>
 </thead>
 <tbody>
 <tr>
-<td align="right">0</td>
-<td align="left">2020-03-04 09:00:00.821</td>
-<td align="left">646</td>
-<td align="left">322.0</td>
-<td align="left">322.0</td>
-<td align="left">321.5</td>
-<td align="left">5</td>
-<td align="left">5098</td>
-</tr>
-<tr>
+<td align="left">2023-01-16 09:00:00.113699</td>
+<td align="right">506</td>
+<td align="right">506</td>
+<td align="right">122</td>
+<td align="right">3340</td>
+<td align="right">13</td>
 <td align="right">1</td>
-<td align="left">2020-03-04 09:00:05.836</td>
-<td align="left">13</td>
-<td align="left">321.5</td>
-<td align="left">321.5</td>
-<td align="left">321.0</td>
-<td align="left">100</td>
-<td align="left">91</td>
+<td align="right">505</td>
 </tr>
 <tr>
+<td align="left">2023-01-16 09:00:00.228800</td>
+<td align="right">506</td>
+<td align="right">505</td>
+<td align="right">320</td>
+<td align="right">1</td>
+<td align="right">22</td>
 <td align="right">2</td>
-<td align="left">2020-03-04 09:00:10.849</td>
-<td align="left">31</td>
-<td align="left">321.5</td>
-<td align="left">321.0</td>
-<td align="left">321.0</td>
-<td align="left">94</td>
-<td align="left">126</td>
+<td align="right">505</td>
 </tr>
 <tr>
-<td align="right">3</td>
-<td align="left">2020-03-04 09:00:15.864</td>
-<td align="left">86</td>
-<td align="left">321.5</td>
-<td align="left">321.0</td>
-<td align="left">321.0</td>
-<td align="left">78</td>
-<td align="left">59</td>
+<td align="left">2023-01-16 09:00:00.244294</td>
+<td align="right">507</td>
+<td align="right">506</td>
+<td align="right">60</td>
+<td align="right">17</td>
+<td align="right">702</td>
+<td align="right">1</td>
+<td align="right">506</td>
 </tr>
 <tr>
-<td align="right">4</td>
-<td align="left">2020-03-04 09:00:20.877</td>
-<td align="left">199</td>
-<td align="left">321.5</td>
-<td align="left">321.0</td>
-<td align="left">321.0</td>
-<td align="left">20</td>
-<td align="left">90</td>
+<td align="left">2023-01-16 09:00:00.308595</td>
+<td align="right">507</td>
+<td align="right">506</td>
+<td align="right">58</td>
+<td align="right">2</td>
+<td align="right">702</td>
+<td align="right">2</td>
+<td align="right">506</td>
 </tr>
 </tbody>
 </table>
 </div>
-<p>Get ticks range time</p>
+<h3 id="range-time">Range Time<a class="headerlink" href="#range-time" title="Permanent link">&para;</a></h3>
 <div class="admonition info">
 <p class="admonition-title">In</p>
 <div class="highlight"><pre><span></span><code><span class="n">ticks</span> <span class="o">=</span> <span class="n">api</span><span class="o">.</span><span class="n">ticks</span><span class="p">(</span>
     <span class="n">contract</span><span class="o">=</span><span class="n">api</span><span class="o">.</span><span class="n">Contracts</span><span class="o">.</span><span class="n">Stocks</span><span class="p">[</span><span class="s2">&quot;2330&quot;</span><span class="p">],</span> 
-    <span class="n">date</span><span class="o">=</span><span class="s2">&quot;2020-03-04&quot;</span><span class="p">,</span> 
+    <span class="n">date</span><span class="o">=</span><span class="s2">&quot;2023-01-16&quot;</span>
 <span class="hll">    <span class="n">query_type</span><span class="o">=</span><span class="n">sj</span><span class="o">.</span><span class="n">constant</span><span class="o">.</span><span class="n">TicksQueryType</span><span class="o">.</span><span class="n">RangeTime</span><span class="p">,</span>
 </span><span class="hll">    <span class="n">time_start</span><span class="o">=</span><span class="s2">&quot;09:00:00&quot;</span><span class="p">,</span>
 </span><span class="hll">    <span class="n">time_end</span><span class="o">=</span><span class="s2">&quot;09:20:01&quot;</span>
@@ -1322,24 +1396,25 @@
 <div class="admonition done">
 <p class="admonition-title">Out</p>
 <div class="highlight"><pre><span></span><code><span class="n">Ticks</span><span class="p">(</span>
-    <span class="n">ts</span><span class="o">=</span><span class="p">[</span><span class="mi">1621846804161286000</span><span class="p">,</span> <span class="mi">1621846804261371000</span><span class="p">,</span> <span class="mi">1621846808136002000</span><span class="p">,</span> <span class="mi">1621846809658787000</span><span class="p">,</span> <span class="mi">1621846809753537000</span><span class="p">],</span> 
-    <span class="n">close</span><span class="o">=</span><span class="p">[</span><span class="mf">570.0</span><span class="p">,</span> <span class="mf">570.0</span><span class="p">,</span> <span class="mf">569.0</span><span class="p">,</span> <span class="mf">569.0</span><span class="p">,</span> <span class="mf">569.0</span><span class="p">],</span>
-    <span class="n">volume</span><span class="o">=</span><span class="p">[</span><span class="mi">1121</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="mi">1</span><span class="p">],</span>
-    <span class="n">bid_price</span><span class="o">=</span><span class="p">[</span><span class="mf">569.0</span><span class="p">,</span> <span class="mf">569.0</span><span class="p">,</span> <span class="mf">569.0</span><span class="p">,</span> <span class="mf">569.0</span><span class="p">,</span> <span class="mf">569.0</span><span class="p">],</span>
-    <span class="n">bid_volume</span><span class="o">=</span><span class="p">[</span><span class="mi">15</span><span class="p">,</span> <span class="mi">15</span><span class="p">,</span> <span class="mi">60</span><span class="p">,</span> <span class="mi">79</span><span class="p">,</span> <span class="mi">78</span><span class="p">],</span>
-    <span class="n">ask_price</span><span class="o">=</span><span class="p">[</span><span class="mf">570.0</span><span class="p">,</span> <span class="mf">570.0</span><span class="p">,</span> <span class="mf">570.0</span><span class="p">,</span> <span class="mf">570.0</span><span class="p">,</span> <span class="mf">570.0</span><span class="p">],</span>
-    <span class="n">ask_volume</span><span class="o">=</span><span class="p">[</span><span class="mi">27</span><span class="p">,</span> <span class="mi">27</span><span class="p">,</span> <span class="mi">59</span><span class="p">,</span> <span class="mi">92</span><span class="p">,</span> <span class="mi">92</span><span class="p">]</span>
+    <span class="n">ts</span><span class="o">=</span><span class="p">[</span><span class="mi">1673859600113699000</span><span class="p">,</span> <span class="mi">1673859600228800000</span><span class="p">,</span> <span class="mi">1673859600244294000</span><span class="p">,</span> <span class="mi">1673859600308595000</span><span class="p">],</span> 
+    <span class="n">close</span><span class="o">=</span><span class="p">[</span><span class="mf">506.0</span><span class="p">,</span> <span class="mf">505.0</span><span class="p">,</span> <span class="mf">506.0</span><span class="p">,</span> <span class="mf">506.0</span><span class="p">],</span>
+    <span class="n">volume</span><span class="o">=</span><span class="p">[</span><span class="mi">3340</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">17</span><span class="p">,</span> <span class="mi">2</span><span class="p">],</span>
+    <span class="n">bid_price</span><span class="o">=</span><span class="p">[</span><span class="mf">505.0</span><span class="p">,</span> <span class="mf">505.0</span><span class="p">,</span> <span class="mf">506.0</span><span class="p">,</span> <span class="mf">506.0</span><span class="p">],</span>
+    <span class="n">bid_volume</span><span class="o">=</span><span class="p">[</span><span class="mi">122</span><span class="p">,</span> <span class="mi">320</span><span class="p">,</span> <span class="mi">60</span><span class="p">,</span> <span class="mi">58</span><span class="p">],</span>
+    <span class="n">ask_price</span><span class="o">=</span><span class="p">[</span><span class="mf">506.0</span><span class="p">,</span> <span class="mf">506.0</span><span class="p">,</span> <span class="mf">507.0</span><span class="p">,</span> <span class="mf">507.0</span><span class="p">],</span>
+    <span class="n">ask_volume</span><span class="o">=</span><span class="p">[</span><span class="mi">13</span><span class="p">,</span> <span class="mi">22</span><span class="p">,</span> <span class="mi">702</span><span class="p">,</span> <span class="mi">702</span><span class="p">]</span>
+    <span class="n">tick_type</span><span class="o">=</span><span class="p">[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">]</span>
 <span class="p">)</span>
 </code></pre></div>
 </div>
-<p>Get ticks last count</p>
+<h3 id="last-count">Last Count<a class="headerlink" href="#last-count" title="Permanent link">&para;</a></h3>
 <div class="admonition info">
 <p class="admonition-title">In</p>
 <div class="highlight"><pre><span></span><code><span class="n">ticks</span> <span class="o">=</span> <span class="n">api</span><span class="o">.</span><span class="n">ticks</span><span class="p">(</span>
     <span class="n">contract</span><span class="o">=</span><span class="n">api</span><span class="o">.</span><span class="n">Contracts</span><span class="o">.</span><span class="n">Stocks</span><span class="p">[</span><span class="s2">&quot;2330&quot;</span><span class="p">],</span> 
-    <span class="n">date</span><span class="o">=</span><span class="s2">&quot;2020-03-04&quot;</span><span class="p">,</span> 
+    <span class="n">date</span><span class="o">=</span><span class="s2">&quot;2023-01-16&quot;</span>
 <span class="hll">    <span class="n">query_type</span><span class="o">=</span><span class="n">sj</span><span class="o">.</span><span class="n">constant</span><span class="o">.</span><span class="n">TicksQueryType</span><span class="o">.</span><span class="n">LastCount</span><span class="p">,</span>
-</span><span class="hll">    <span class="n">last_cnt</span><span class="o">=</span><span class="mi">5</span><span class="p">,</span>
+</span><span class="hll">    <span class="n">last_cnt</span><span class="o">=</span><span class="mi">4</span><span class="p">,</span>
 </span><span class="p">)</span>
 <span class="n">ticks</span>
 </code></pre></div>
@@ -1347,43 +1422,73 @@
 <div class="admonition done">
 <p class="admonition-title">Out</p>
 <div class="highlight"><pre><span></span><code><span class="n">Ticks</span><span class="p">(</span>
-    <span class="n">ts</span><span class="o">=</span><span class="p">[</span><span class="mi">1621855608734606000</span><span class="p">,</span> <span class="mi">1621855614383711000</span><span class="p">,</span> <span class="mi">1621855616839500000</span><span class="p">,</span> <span class="mi">1621855627880863000</span><span class="p">,</span> <span class="mi">1621855640085704000</span><span class="p">],</span> 
-    <span class="n">close</span><span class="o">=</span><span class="p">[</span><span class="mf">571.0</span><span class="p">,</span> <span class="mf">570.0</span><span class="p">,</span> <span class="mf">570.0</span><span class="p">,</span> <span class="mf">571.0</span><span class="p">,</span> <span class="mf">570.0</span><span class="p">],</span>
-    <span class="n">volume</span><span class="o">=</span><span class="p">[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">5</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">],</span>
-    <span class="n">bid_price</span><span class="o">=</span><span class="p">[</span><span class="mf">570.0</span><span class="p">,</span> <span class="mf">570.0</span><span class="p">,</span> <span class="mf">570.0</span><span class="p">,</span> <span class="mf">570.0</span><span class="p">,</span> <span class="mf">570.0</span><span class="p">],</span>
-    <span class="n">bid_volume</span><span class="o">=</span><span class="p">[</span><span class="mi">99</span><span class="p">,</span> <span class="mi">98</span><span class="p">,</span> <span class="mi">93</span><span class="p">,</span> <span class="mi">95</span><span class="p">,</span> <span class="mi">98</span><span class="p">],</span>
-    <span class="n">ask_price</span><span class="o">=</span><span class="p">[</span><span class="mf">571.0</span><span class="p">,</span> <span class="mf">571.0</span><span class="p">,</span> <span class="mf">571.0</span><span class="p">,</span> <span class="mf">571.0</span><span class="p">,</span> <span class="mf">571.0</span><span class="p">],</span>
-    <span class="n">ask_volume</span><span class="o">=</span><span class="p">[</span><span class="mi">193</span><span class="p">,</span> <span class="mi">197</span><span class="p">,</span> <span class="mi">197</span><span class="p">,</span> <span class="mi">195</span><span class="p">,</span> <span class="mi">197</span><span class="p">]</span>
+    <span class="n">ts</span><span class="o">=</span><span class="p">[</span><span class="mi">1673859600113699000</span><span class="p">,</span> <span class="mi">1673859600228800000</span><span class="p">,</span> <span class="mi">1673859600244294000</span><span class="p">,</span> <span class="mi">1673859600308595000</span><span class="p">],</span> 
+    <span class="n">close</span><span class="o">=</span><span class="p">[</span><span class="mf">506.0</span><span class="p">,</span> <span class="mf">505.0</span><span class="p">,</span> <span class="mf">506.0</span><span class="p">,</span> <span class="mf">506.0</span><span class="p">],</span>
+    <span class="n">volume</span><span class="o">=</span><span class="p">[</span><span class="mi">3340</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">17</span><span class="p">,</span> <span class="mi">2</span><span class="p">],</span>
+    <span class="n">bid_price</span><span class="o">=</span><span class="p">[</span><span class="mf">505.0</span><span class="p">,</span> <span class="mf">505.0</span><span class="p">,</span> <span class="mf">506.0</span><span class="p">,</span> <span class="mf">506.0</span><span class="p">],</span>
+    <span class="n">bid_volume</span><span class="o">=</span><span class="p">[</span><span class="mi">122</span><span class="p">,</span> <span class="mi">320</span><span class="p">,</span> <span class="mi">60</span><span class="p">,</span> <span class="mi">58</span><span class="p">],</span>
+    <span class="n">ask_price</span><span class="o">=</span><span class="p">[</span><span class="mf">506.0</span><span class="p">,</span> <span class="mf">506.0</span><span class="p">,</span> <span class="mf">507.0</span><span class="p">,</span> <span class="mf">507.0</span><span class="p">],</span>
+    <span class="n">ask_volume</span><span class="o">=</span><span class="p">[</span><span class="mi">13</span><span class="p">,</span> <span class="mi">22</span><span class="p">,</span> <span class="mi">702</span><span class="p">,</span> <span class="mi">702</span><span class="p">]</span>
+    <span class="n">tick_type</span><span class="o">=</span><span class="p">[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">]</span>
 <span class="p">)</span>
 </code></pre></div>
 </div>
-<h3 id="kbar">KBar<a class="headerlink" href="#kbar" title="Permanent link">&para;</a></h3>
+<h2 id="kbar">KBar<a class="headerlink" href="#kbar" title="Permanent link">&para;</a></h2>
+<div class="admonition done">
+<p class="admonition-title">Kbars</p>
+<div class="highlight"><pre><span></span><code><span class="n">api</span><span class="o">.</span><span class="n">kbars</span><span class="err">?</span>
+
+<span class="n">Signature</span><span class="p">:</span>
+<span class="n">api</span><span class="o">.</span><span class="n">kbars</span><span class="p">(</span>
+    <span class="n">contract</span><span class="p">:</span> <span class="n">shioaji</span><span class="o">.</span><span class="n">contracts</span><span class="o">.</span><span class="n">BaseContract</span><span class="p">,</span>
+    <span class="n">start</span><span class="p">:</span> <span class="nb">str</span> <span class="o">=</span> <span class="s1">&#39;2023-01-15&#39;</span><span class="p">,</span>
+    <span class="n">end</span><span class="p">:</span> <span class="nb">str</span> <span class="o">=</span> <span class="s1">&#39;2023-01-16&#39;</span><span class="p">,</span>
+    <span class="n">timeout</span><span class="p">:</span> <span class="nb">int</span> <span class="o">=</span> <span class="mi">30000</span><span class="p">,</span>
+    <span class="n">cb</span><span class="p">:</span> <span class="n">Callable</span><span class="p">[[</span><span class="n">shioaji</span><span class="o">.</span><span class="n">data</span><span class="o">.</span><span class="n">Kbars</span><span class="p">],</span> <span class="n">NoneType</span><span class="p">]</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
+<span class="p">)</span> <span class="o">-&gt;</span> <span class="n">shioaji</span><span class="o">.</span><span class="n">data</span><span class="o">.</span><span class="n">Kbars</span>
+<span class="n">Docstring</span><span class="p">:</span>
+<span class="n">get</span> <span class="n">Kbar</span>
+</code></pre></div>
+</div>
 <div class="admonition info">
 <p class="admonition-title">In</p>
-<div class="highlight"><pre><span></span><code><span class="kn">from</span> <span class="nn">shioaji.data</span> <span class="kn">import</span> <span class="n">Kbars</span>
-<span class="n">Kbars</span><span class="err">??</span>
+<div class="highlight"><pre><span></span><code><span class="n">kbars</span> <span class="o">=</span> <span class="n">api</span><span class="o">.</span><span class="n">kbars</span><span class="p">(</span>
+    <span class="n">contract</span><span class="o">=</span><span class="n">api</span><span class="o">.</span><span class="n">Contracts</span><span class="o">.</span><span class="n">Stocks</span><span class="p">[</span><span class="s2">&quot;2330&quot;</span><span class="p">],</span> 
+    <span class="n">start</span><span class="o">=</span><span class="s2">&quot;2023-01-15&quot;</span><span class="p">,</span> 
+    <span class="n">end</span><span class="o">=</span><span class="s2">&quot;2023-01-16&quot;</span><span class="p">,</span> 
+<span class="p">)</span>
+<span class="n">kbars</span>
 </code></pre></div>
 </div>
 <div class="admonition done">
 <p class="admonition-title">Out</p>
-<div class="highlight"><pre><span></span><code><span class="n">Init</span> <span class="n">signature</span><span class="p">:</span> <span class="n">Kbars</span><span class="p">(</span><span class="o">**</span><span class="n">data</span><span class="p">:</span> <span class="n">Any</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span>
-<span class="n">Docstring</span><span class="p">:</span>      <span class="o">&lt;</span><span class="n">no</span> <span class="n">docstring</span><span class="o">&gt;</span>
-<span class="n">Source</span><span class="p">:</span>        
-<span class="k">class</span> <span class="nc">Kbars</span><span class="p">(</span><span class="n">BaseMapping</span><span class="p">):</span>
-    <span class="n">ts</span><span class="p">:</span> <span class="n">typing</span><span class="o">.</span><span class="n">List</span><span class="p">[</span><span class="nb">int</span><span class="p">]</span>
-    <span class="n">Open</span><span class="p">:</span> <span class="n">typing</span><span class="o">.</span><span class="n">List</span><span class="p">[</span><span class="nb">float</span><span class="p">]</span>
-    <span class="n">High</span><span class="p">:</span> <span class="n">typing</span><span class="o">.</span><span class="n">List</span><span class="p">[</span><span class="nb">float</span><span class="p">]</span>
-    <span class="n">Low</span><span class="p">:</span> <span class="n">typing</span><span class="o">.</span><span class="n">List</span><span class="p">[</span><span class="nb">float</span><span class="p">]</span>
-    <span class="n">Close</span><span class="p">:</span> <span class="n">typing</span><span class="o">.</span><span class="n">List</span><span class="p">[</span><span class="nb">float</span><span class="p">]</span>
-    <span class="n">Volume</span><span class="p">:</span> <span class="n">typing</span><span class="o">.</span><span class="n">List</span><span class="p">[</span><span class="nb">int</span><span class="p">]</span>
+<div class="highlight"><pre><span></span><code><span class="n">Kbars</span><span class="p">(</span>
+    <span class="n">ts</span><span class="o">=</span><span class="p">[</span><span class="mi">1673859660000000000</span><span class="p">,</span> <span class="mi">1673859720000000000</span><span class="p">,</span> <span class="mi">1673859780000000000</span><span class="p">,</span> <span class="mi">1673859840000000000</span><span class="p">],</span>
+    <span class="n">Open</span><span class="o">=</span><span class="p">[</span><span class="mf">506.0</span><span class="p">,</span> <span class="mf">505.0</span><span class="p">,</span> <span class="mf">505.0</span><span class="p">,</span> <span class="mf">504.0</span><span class="p">],</span>
+    <span class="n">High</span><span class="o">=</span><span class="p">[</span><span class="mf">508.0</span><span class="p">,</span> <span class="mf">506.0</span><span class="p">,</span> <span class="mf">506.0</span><span class="p">,</span> <span class="mf">505.0</span><span class="p">],</span>
+    <span class="n">Low</span><span class="o">=</span><span class="p">[</span><span class="mf">505.0</span><span class="p">,</span> <span class="mf">505.0</span><span class="p">,</span> <span class="mf">504.0</span><span class="p">,</span> <span class="mf">504.0</span><span class="p">],</span>
+    <span class="n">Close</span><span class="o">=</span><span class="p">[</span><span class="mf">505.0</span><span class="p">,</span> <span class="mf">505.0</span><span class="p">,</span> <span class="mf">504.0</span><span class="p">,</span> <span class="mf">504.0</span><span class="p">],</span>
+    <span class="n">Volume</span><span class="o">=</span><span class="p">[</span><span class="mi">5308</span><span class="p">,</span> <span class="mi">1018</span><span class="p">,</span> <span class="mi">543</span><span class="p">,</span> <span class="mi">209</span><span class="p">]</span>
+<span class="p">)</span>
 </code></pre></div>
 </div>
+<div class="admonition example">
+<p class="admonition-title">Kbars</p>
+<div class="highlight"><pre><span></span><code><span class="n">ts</span> <span class="p">(</span><span class="nb">int</span><span class="p">):</span> <span class="n">timestamp</span>
+<span class="n">Open</span> <span class="p">(</span><span class="nb">float</span><span class="p">):</span> <span class="nb">open</span> <span class="n">price</span>
+<span class="n">High</span> <span class="p">(</span><span class="nb">float</span><span class="p">):</span> <span class="n">the</span> <span class="n">highest</span> <span class="n">price</span>
+<span class="n">Low</span><span class="p">:</span> <span class="p">(</span><span class="nb">float</span><span class="p">):</span> <span class="n">the</span> <span class="n">lowest</span> <span class="n">price</span>
+<span class="n">Close</span> <span class="p">(</span><span class="nb">float</span><span class="p">):</span> <span class="n">close</span> <span class="n">price</span>
+<span class="n">Volume</span> <span class="p">(</span><span class="nb">int</span><span class="p">):</span> <span class="n">volume</span>
+</code></pre></div>
+</div>
+<p>To DataFrame</p>
 <div class="admonition info">
 <p class="admonition-title">In</p>
-<div class="highlight"><pre><span></span><code><span class="n">kbars</span> <span class="o">=</span> <span class="n">api</span><span class="o">.</span><span class="n">kbars</span><span class="p">(</span><span class="n">api</span><span class="o">.</span><span class="n">Contracts</span><span class="o">.</span><span class="n">Stocks</span><span class="p">[</span><span class="s2">&quot;2330&quot;</span><span class="p">],</span> <span class="n">start</span><span class="o">=</span><span class="s2">&quot;2020-06-01&quot;</span><span class="p">,</span> <span class="n">end</span><span class="o">=</span><span class="s2">&quot;2020-07-01&quot;</span><span class="p">)</span>
+<div class="highlight"><pre><span></span><code><span class="kn">import</span> <span class="nn">pandas</span> <span class="k">as</span> <span class="nn">pd</span>
 <span class="n">df</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">({</span><span class="o">**</span><span class="n">kbars</span><span class="p">})</span>
 <span class="n">df</span><span class="o">.</span><span class="n">ts</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">to_datetime</span><span class="p">(</span><span class="n">df</span><span class="o">.</span><span class="n">ts</span><span class="p">)</span>
-<span class="n">df</span>
+<span class="n">df</span><span class="o">.</span><span class="n">head</span><span class="p">()</span>
 </code></pre></div>
 </div>
 <div class="admonition done">
@@ -1391,72 +1496,133 @@
 <table>
 <thead>
 <tr>
-<th></th>
-<th>ts</th>
-<th>Close</th>
-<th>Open</th>
-<th>High</th>
-<th>Volume</th>
-<th>Low</th>
+<th align="right">Close</th>
+<th align="right">Amount</th>
+<th align="right">Low</th>
+<th align="right">Volume</th>
+<th align="left">ts</th>
+<th align="right">Open</th>
+<th align="right">High</th>
 </tr>
 </thead>
 <tbody>
 <tr>
-<td>0</td>
-<td>2020-06-01 09:01:00</td>
-<td>294.0</td>
-<td>294.0</td>
-<td>294.0</td>
-<td>3187</td>
-<td>293.5</td>
+<td align="right">505</td>
+<td align="right">2.68731e+09</td>
+<td align="right">505</td>
+<td align="right">5308</td>
+<td align="left">2023-01-16 09:01:00</td>
+<td align="right">506</td>
+<td align="right">508</td>
 </tr>
 <tr>
-<td>1</td>
-<td>2020-06-01 09:02:00</td>
-<td>293.5</td>
-<td>293.5</td>
-<td>294.0</td>
-<td>201</td>
-<td>293.5</td>
+<td align="right">505</td>
+<td align="right">5.14132e+08</td>
+<td align="right">505</td>
+<td align="right">1018</td>
+<td align="left">2023-01-16 09:02:00</td>
+<td align="right">505</td>
+<td align="right">506</td>
 </tr>
 <tr>
-<td>2</td>
-<td>2020-06-01 09:03:00</td>
-<td>294.0</td>
-<td>293.5</td>
-<td>294.0</td>
-<td>267</td>
-<td>293.5</td>
+<td align="right">504</td>
+<td align="right">2.74112e+08</td>
+<td align="right">504</td>
+<td align="right">543</td>
+<td align="left">2023-01-16 09:03:00</td>
+<td align="right">505</td>
+<td align="right">506</td>
 </tr>
 <tr>
-<td>3</td>
-<td>2020-06-01 09:04:00</td>
-<td>294.5</td>
-<td>294.0</td>
-<td>294.5</td>
-<td>624</td>
-<td>293.5</td>
-</tr>
-<tr>
-<td>4</td>
-<td>2020-06-01 09:05:00</td>
-<td>294.0</td>
-<td>294.0</td>
-<td>294.5</td>
-<td>419</td>
-<td>293.5</td>
+<td align="right">504</td>
+<td align="right">1.0542e+08</td>
+<td align="right">504</td>
+<td align="right">209</td>
+<td align="left">2023-01-16 09:04:00</td>
+<td align="right">504</td>
+<td align="right">505</td>
 </tr>
 </tbody>
 </table>
 </div>
-<div class="admonition example">
-<p class="admonition-title">Attributes:</p>
-<div class="highlight"><pre><span></span><code><span class="n">ts</span> <span class="p">(</span><span class="nb">int</span><span class="p">):</span> <span class="n">timestamp</span>
-<span class="n">Open</span> <span class="p">(</span><span class="nb">float</span><span class="p">):</span> <span class="nb">open</span> <span class="n">price</span>
-<span class="n">High</span> <span class="p">(</span><span class="nb">float</span><span class="p">):</span> <span class="n">the</span> <span class="n">highest</span> <span class="n">price</span>
-<span class="n">Low</span><span class="p">:</span> <span class="p">(</span><span class="nb">float</span><span class="p">):</span> <span class="n">the</span> <span class="n">lowest</span> <span class="n">price</span>
-<span class="n">Close</span> <span class="p">(</span><span class="nb">float</span><span class="p">):</span> <span class="n">close</span> <span class="n">price</span>
-<span class="n">Volume</span> <span class="p">(</span><span class="nb">int</span><span class="p">):</span> <span class="n">volume</span>
+<h2 id="historical-periods">Historical Periods<a class="headerlink" href="#historical-periods" title="Permanent link">&para;</a></h2>
+<div class="admonition done">
+<p class="admonition-title">Historical Periods</p>
+<table>
+<thead>
+<tr>
+<th align="left"></th>
+<th align="left">Start Date</th>
+<th align="left">End Date</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td align="left">Index</td>
+<td align="left">2020-03-02</td>
+<td align="left">Today</td>
+</tr>
+<tr>
+<td align="left">Stock</td>
+<td align="left">2020-03-02</td>
+<td align="left">Today</td>
+</tr>
+<tr>
+<td align="left">Futures</td>
+<td align="left">2020-03-22</td>
+<td align="left">Today</td>
+</tr>
+</tbody>
+</table>
+</div>
+<h2 id="continuous-futures">Continuous Futures<a class="headerlink" href="#continuous-futures" title="Permanent link">&para;</a></h2>
+<p>Once a futures contract passes its expiration date, the contract is invalid, and it will not exist in your <code>api.Contracts</code>. 
+In order to get historical data for expired futures contract, we provide continuous futures contracts. <code>R1</code>, <code>R2</code> are continuous near-month and next-to-near-month futures contracts respectively. They will automatically roll contracts on delivery date. You can get historical data by using <code>R1</code>, <code>R2</code> contracts, ex <code>api.Contracts.Futures.TXF.TXFR1</code>. We show examples below.</p>
+<p>Ticks </p>
+<div class="admonition info">
+<p class="admonition-title">Ticks</p>
+<div class="highlight"><pre><span></span><code><span class="n">ticks</span> <span class="o">=</span> <span class="n">api</span><span class="o">.</span><span class="n">ticks</span><span class="p">(</span>
+<span class="hll">    <span class="n">contract</span><span class="o">=</span><span class="n">api</span><span class="o">.</span><span class="n">Contracts</span><span class="o">.</span><span class="n">Futures</span><span class="o">.</span><span class="n">TXF</span><span class="o">.</span><span class="n">TXFR1</span><span class="p">,</span> 
+</span>    <span class="n">date</span><span class="o">=</span><span class="s2">&quot;2020-03-22&quot;</span>
+<span class="p">)</span>
+<span class="n">ticks</span>
+</code></pre></div>
+</div>
+<div class="admonition done">
+<p class="admonition-title">Out</p>
+<div class="highlight"><pre><span></span><code><span class="n">Ticks</span><span class="p">(</span>
+    <span class="n">ts</span><span class="o">=</span><span class="p">[</span><span class="mi">1616166000030000000</span><span class="p">,</span> <span class="mi">1616166000140000000</span><span class="p">,</span> <span class="mi">1616166000140000000</span><span class="p">,</span> <span class="mi">1616166000190000000</span><span class="p">],</span> 
+    <span class="n">close</span><span class="o">=</span><span class="p">[</span><span class="mf">16011.0</span><span class="p">,</span> <span class="mf">16013.0</span><span class="p">,</span> <span class="mf">16014.0</span><span class="p">,</span> <span class="mf">16011.0</span><span class="p">],</span>
+    <span class="n">volume</span><span class="o">=</span><span class="p">[</span><span class="mi">49</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">1</span><span class="p">],</span>
+    <span class="n">bid_price</span><span class="o">=</span><span class="p">[</span><span class="mf">0.0</span><span class="p">,</span> <span class="mf">16011.0</span><span class="p">,</span> <span class="mf">16011.0</span><span class="p">,</span> <span class="mf">16011.0</span><span class="p">],</span>
+    <span class="n">bid_volume</span><span class="o">=</span><span class="p">[</span><span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">],</span>
+    <span class="n">ask_price</span><span class="o">=</span><span class="p">[</span><span class="mf">0.0</span><span class="p">,</span> <span class="mf">16013.0</span><span class="p">,</span> <span class="mf">16013.0</span><span class="p">,</span> <span class="mf">16013.0</span><span class="p">],</span>
+    <span class="n">ask_volume</span><span class="o">=</span><span class="p">[</span><span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">]</span>
+    <span class="n">tick_type</span><span class="o">=</span><span class="p">[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">]</span>
+<span class="p">)</span>
+</code></pre></div>
+</div>
+<p>Kbars </p>
+<div class="admonition info">
+<p class="admonition-title">Kbars</p>
+<div class="highlight"><pre><span></span><code><span class="n">kbars</span> <span class="o">=</span> <span class="n">api</span><span class="o">.</span><span class="n">kbars</span><span class="p">(</span>
+<span class="hll">    <span class="n">contract</span><span class="o">=</span><span class="n">api</span><span class="o">.</span><span class="n">Contracts</span><span class="o">.</span><span class="n">Futures</span><span class="o">.</span><span class="n">TXF</span><span class="o">.</span><span class="n">TXFR1</span><span class="p">,</span>
+</span>    <span class="n">start</span><span class="o">=</span><span class="s2">&quot;2023-01-15&quot;</span><span class="p">,</span> 
+    <span class="n">end</span><span class="o">=</span><span class="s2">&quot;2023-01-16&quot;</span><span class="p">,</span> 
+<span class="p">)</span>
+<span class="n">kbars</span>
+</code></pre></div>
+</div>
+<div class="admonition done">
+<p class="admonition-title">Out</p>
+<div class="highlight"><pre><span></span><code><span class="n">Kbars</span><span class="p">(</span>
+    <span class="n">ts</span><span class="o">=</span><span class="p">[</span><span class="mi">1616402760000000000</span><span class="p">,</span> <span class="mi">1616402820000000000</span><span class="p">,</span> <span class="mi">1616402880000000000</span><span class="p">,</span> <span class="mi">1616402940000000000</span><span class="p">],</span>
+    <span class="n">Open</span><span class="o">=</span><span class="p">[</span><span class="mf">16018.0</span><span class="p">,</span> <span class="mf">16018.0</span><span class="p">,</span> <span class="mf">16000.0</span><span class="p">,</span> <span class="mf">15992.0</span><span class="p">],</span>
+    <span class="n">High</span><span class="o">=</span><span class="p">[</span><span class="mf">16022.0</span><span class="p">,</span> <span class="mf">16020.0</span><span class="p">,</span> <span class="mf">16005.0</span><span class="p">,</span> <span class="mf">15999.0</span><span class="p">],</span>
+    <span class="n">Low</span><span class="o">=</span><span class="p">[</span><span class="mf">16004.0</span><span class="p">,</span> <span class="mf">16000.0</span><span class="p">,</span> <span class="mf">15975.0</span><span class="p">,</span> <span class="mf">15989.0</span><span class="p">],</span>
+    <span class="n">Close</span><span class="o">=</span><span class="p">[</span><span class="mf">16019.0</span><span class="p">,</span> <span class="mf">16002.0</span><span class="p">,</span> <span class="mf">15992.0</span><span class="p">,</span> <span class="mf">15994.0</span><span class="p">],</span>
+    <span class="n">Volume</span><span class="o">=</span><span class="p">[</span><span class="mi">1791</span><span class="p">,</span> <span class="mi">864</span><span class="p">,</span> <span class="mi">1183</span><span class="p">,</span> <span class="mi">342</span><span class="p">]</span>
+<span class="p">)</span>
 </code></pre></div>
 </div>
 
@@ -1495,7 +1661,7 @@
       
       
         
-        <a href="../../snapshot/" class="md-footer__link md-footer__link--next" aria-label="Next: Snapshot" rel="next">
+        <a href="../snapshot/" class="md-footer__link md-footer__link--next" aria-label="Next: Snapshot" rel="next">
           <div class="md-footer__title">
             <div class="md-ellipsis">
               <span class="md-footer__direction">
