@@ -1319,43 +1319,41 @@
 <div class="tabbed-set tabbed-alternate" data-tabs="1:2"><input checked="checked" id="__tabbed_1_1" name="__tabbed_1" type="radio" /><input id="__tabbed_1_2" name="__tabbed_1" type="radio" /><div class="tabbed-labels"><label for="__tabbed_1_1">version&gt;=1.0</label><label for="__tabbed_1_2">version&lt;1.0</label></div>
 <div class="tabbed-content">
 <div class="tabbed-block">
-<div class="highlight"><pre><span></span><code><span class="n">price</span> <span class="p">(</span><span class="nb">float</span> <span class="ow">or</span> <span class="nb">int</span><span class="p">):</span> <span class="n">the</span> <span class="n">price</span> <span class="n">of</span> <span class="n">order</span>
-<span class="n">quantity</span> <span class="p">(</span><span class="nb">int</span><span class="p">):</span> <span class="n">the</span> <span class="n">quantity</span> <span class="n">of</span> <span class="n">order</span>
-<span class="n">action</span> <span class="p">(</span><span class="nb">str</span><span class="p">):</span> <span class="n">order</span> <span class="n">action</span> <span class="n">to</span> <span class="n">buy</span> <span class="ow">or</span> <span class="n">sell</span>
-    <span class="p">{</span><span class="n">Buy</span><span class="p">,</span> <span class="n">Sell</span><span class="p">}</span>
-<span class="n">price_type</span> <span class="p">(</span><span class="nb">str</span><span class="p">):</span> <span class="n">pricing</span> <span class="nb">type</span> <span class="n">of</span> <span class="n">order</span>
-    <span class="p">{</span><span class="n">LMT</span><span class="p">,</span> <span class="n">MKT</span><span class="p">,</span> <span class="n">MKP</span><span class="p">}</span> <span class="p">(</span><span class="n">限價</span><span class="err">、</span><span class="n">市價</span><span class="err">、</span><span class="n">範圍市價</span><span class="p">)</span>
-<span class="n">order_type</span> <span class="p">(</span><span class="nb">str</span><span class="p">):</span> <span class="n">the</span> <span class="nb">type</span> <span class="n">of</span> <span class="n">order</span>
-    <span class="p">{</span><span class="n">ROD</span><span class="p">,</span> <span class="n">IOC</span><span class="p">,</span> <span class="n">FOK</span><span class="p">}</span>
-<span class="n">order_cond</span> <span class="p">(</span><span class="nb">str</span><span class="p">):</span> <span class="n">order</span> <span class="n">condition</span> <span class="n">stock</span> <span class="n">only</span>
-    <span class="p">{</span><span class="n">Cash</span><span class="p">,</span> <span class="n">MarginTrading</span><span class="p">,</span> <span class="n">ShortSelling</span><span class="p">}</span> <span class="p">(</span><span class="n">現股</span><span class="err">、</span><span class="n">融資</span><span class="err">、</span><span class="n">融券</span><span class="p">)</span>
-<span class="n">order_lot</span> <span class="p">(</span><span class="nb">str</span><span class="p">):</span> <span class="n">the</span> <span class="nb">type</span> <span class="n">of</span> <span class="n">order</span>
-    <span class="p">{</span><span class="n">Common</span><span class="p">,</span> <span class="n">Fixing</span><span class="p">,</span> <span class="n">Odd</span><span class="p">,</span> <span class="n">IntradayOdd</span><span class="p">}</span> <span class="p">(</span><span class="n">整股</span><span class="err">、</span><span class="n">定盤</span><span class="err">、</span><span class="n">盤後零股</span><span class="err">、</span><span class="n">盤中零股</span><span class="p">)</span>
-<span class="n">daytrade_short</span> <span class="p">{</span><span class="nb">bool</span><span class="p">}:</span> <span class="n">the</span> <span class="nb">type</span> <span class="n">of</span> <span class="n">first</span> <span class="n">sell</span>
-    <span class="p">{</span><span class="kc">True</span><span class="p">,</span> <span class="kc">False</span><span class="p">}</span>
-<span class="n">custom_field</span> <span class="p">{</span><span class="nb">str</span><span class="p">}:</span> <span class="n">memo</span> <span class="n">field</span>
-<span class="n">account</span> <span class="p">(:</span><span class="n">obj</span><span class="p">:</span><span class="n">Account</span><span class="p">):</span> <span class="n">which</span> <span class="n">account</span> <span class="n">to</span> <span class="n">place</span> <span class="n">this</span> <span class="n">order</span>
-<span class="n">ca</span> <span class="p">(</span><span class="n">binary</span><span class="p">):</span> <span class="n">the</span> <span class="n">ca</span> <span class="n">of</span> <span class="n">this</span> <span class="n">order</span>
+<div class="highlight"><pre><span></span><code><span class="n">price</span> <span class="p">(</span><span class="nb">float</span> <span class="ow">or</span> <span class="nb">int</span><span class="p">):</span> <span class="n">價格</span>
+<span class="n">quantity</span> <span class="p">(</span><span class="nb">int</span><span class="p">):</span> <span class="n">委託數量</span>
+<span class="n">action</span> <span class="p">(</span><span class="nb">str</span><span class="p">):</span> <span class="p">{</span><span class="n">Buy</span><span class="p">:</span> <span class="n">買</span><span class="p">,</span> <span class="n">Sell</span><span class="p">:</span> <span class="n">賣</span><span class="p">}</span>
+<span class="n">price_type</span> <span class="p">(</span><span class="nb">str</span><span class="p">):</span> <span class="p">{</span><span class="n">LMT</span><span class="p">:</span> <span class="n">限價</span><span class="p">,</span> <span class="n">MKT</span><span class="p">:</span> <span class="n">市價</span><span class="p">,</span> <span class="n">MKP</span><span class="p">:</span> <span class="n">範圍市價</span><span class="p">}</span>
+<span class="n">order_type</span> <span class="p">(</span><span class="nb">str</span><span class="p">):</span> <span class="n">委託類別</span> <span class="p">{</span><span class="n">ROD</span><span class="p">,</span> <span class="n">IOC</span><span class="p">,</span> <span class="n">FOK</span><span class="p">}</span>
+<span class="n">order_cond</span> <span class="p">(</span><span class="nb">str</span><span class="p">):</span> <span class="p">{</span><span class="n">Cash</span><span class="p">:</span><span class="n">現股</span><span class="p">,</span> <span class="n">MarginTrading</span><span class="p">:</span><span class="n">融資</span><span class="p">,</span> <span class="n">ShortSelling</span><span class="p">:</span><span class="n">融券</span><span class="p">}</span>
+<span class="n">order_lot</span> <span class="p">(</span><span class="nb">str</span><span class="p">):</span> <span class="p">{</span>
+        <span class="n">Common</span><span class="p">:</span><span class="n">整股</span><span class="p">,</span> 
+        <span class="n">Fixing</span><span class="p">:</span><span class="n">定盤</span><span class="p">,</span> 
+        <span class="n">Odd</span><span class="p">:</span><span class="n">盤後零股</span><span class="p">,</span> 
+        <span class="n">IntradayOdd</span><span class="p">:</span><span class="n">盤中零股</span>
+    <span class="p">}</span>
+<span class="n">daytrade_short</span> <span class="p">(</span><span class="nb">bool</span><span class="p">):</span> <span class="n">先賣後買</span>
+<span class="n">custom_field</span> <span class="p">(</span><span class="nb">str</span><span class="p">):</span> <span class="n">備註</span>
+<span class="n">account</span> <span class="p">(:</span><span class="n">obj</span><span class="p">:</span><span class="n">Account</span><span class="p">):</span> <span class="n">下單帳號</span>
+<span class="n">ca</span> <span class="p">(</span><span class="n">binary</span><span class="p">):</span> <span class="n">憑證</span>
 </code></pre></div>
 </div>
 <div class="tabbed-block">
-<div class="highlight"><pre><span></span><code><span class="n">price</span> <span class="p">(</span><span class="nb">float</span> <span class="ow">or</span> <span class="nb">int</span><span class="p">):</span> <span class="n">the</span> <span class="n">price</span> <span class="n">of</span> <span class="n">order</span>
-<span class="n">quantity</span> <span class="p">(</span><span class="nb">int</span><span class="p">):</span> <span class="n">the</span> <span class="n">quantity</span> <span class="n">of</span> <span class="n">order</span>
-<span class="n">action</span> <span class="p">(</span><span class="nb">str</span><span class="p">):</span> <span class="n">order</span> <span class="n">action</span> <span class="n">to</span> <span class="n">buy</span> <span class="ow">or</span> <span class="n">sell</span>
-    <span class="p">{</span><span class="n">Buy</span><span class="p">,</span> <span class="n">Sell</span><span class="p">}</span>
-<span class="n">price_type</span> <span class="p">(</span><span class="nb">str</span><span class="p">):</span> <span class="n">pricing</span> <span class="nb">type</span> <span class="n">of</span> <span class="n">order</span>
-    <span class="p">{</span><span class="n">LMT</span><span class="p">,</span> <span class="n">MKT</span><span class="p">,</span> <span class="n">MKP</span><span class="p">}</span> <span class="p">(</span><span class="n">限價</span><span class="err">、</span><span class="n">市價</span><span class="err">、</span><span class="n">範圍市價</span><span class="p">)</span>
-<span class="n">order_type</span> <span class="p">(</span><span class="nb">str</span><span class="p">):</span> <span class="n">the</span> <span class="nb">type</span> <span class="n">of</span> <span class="n">order</span>
-    <span class="p">{</span><span class="n">ROD</span><span class="p">,</span> <span class="n">IOC</span><span class="p">,</span> <span class="n">FOK</span><span class="p">}</span>
-<span class="n">order_cond</span> <span class="p">(</span><span class="nb">str</span><span class="p">):</span> <span class="n">order</span> <span class="n">condition</span> <span class="n">stock</span> <span class="n">only</span>
-    <span class="p">{</span><span class="n">Cash</span><span class="p">,</span> <span class="n">MarginTrading</span><span class="p">,</span> <span class="n">ShortSelling</span><span class="p">}</span> <span class="p">(</span><span class="n">現股</span><span class="err">、</span><span class="n">融資</span><span class="err">、</span><span class="n">融券</span><span class="p">)</span>
-<span class="n">order_lot</span> <span class="p">(</span><span class="nb">str</span><span class="p">):</span> <span class="n">the</span> <span class="nb">type</span> <span class="n">of</span> <span class="n">order</span>
-    <span class="p">{</span><span class="n">Common</span><span class="p">,</span> <span class="n">Fixing</span><span class="p">,</span> <span class="n">Odd</span><span class="p">,</span> <span class="n">IntradayOdd</span><span class="p">}</span> <span class="p">(</span><span class="n">整股</span><span class="err">、</span><span class="n">定盤</span><span class="err">、</span><span class="n">盤後零股</span><span class="err">、</span><span class="n">盤中零股</span><span class="p">)</span>
-<span class="n">first_sell</span> <span class="p">{</span><span class="nb">str</span><span class="p">}:</span> <span class="n">the</span> <span class="nb">type</span> <span class="n">of</span> <span class="n">first</span> <span class="n">sell</span>
-    <span class="p">{</span><span class="n">true</span><span class="p">,</span> <span class="n">false</span><span class="p">}</span>
-<span class="n">custom_field</span> <span class="p">{</span><span class="nb">str</span><span class="p">}:</span> <span class="n">memo</span> <span class="n">field</span>
-<span class="n">account</span> <span class="p">(:</span><span class="n">obj</span><span class="p">:</span><span class="n">Account</span><span class="p">):</span> <span class="n">which</span> <span class="n">account</span> <span class="n">to</span> <span class="n">place</span> <span class="n">this</span> <span class="n">order</span>
-<span class="n">ca</span> <span class="p">(</span><span class="n">binary</span><span class="p">):</span> <span class="n">the</span> <span class="n">ca</span> <span class="n">of</span> <span class="n">this</span> <span class="n">order</span>
+<div class="highlight"><pre><span></span><code><span class="n">price</span> <span class="p">(</span><span class="nb">float</span> <span class="ow">or</span> <span class="nb">int</span><span class="p">):</span> <span class="n">價格</span>
+<span class="n">quantity</span> <span class="p">(</span><span class="nb">int</span><span class="p">):</span> <span class="n">委託數量</span>
+<span class="n">action</span> <span class="p">(</span><span class="nb">str</span><span class="p">):</span> <span class="p">{</span><span class="n">Buy</span><span class="p">:</span> <span class="n">買</span><span class="p">,</span> <span class="n">Sell</span><span class="p">:</span> <span class="n">賣</span><span class="p">}</span>
+<span class="n">price_type</span> <span class="p">(</span><span class="nb">str</span><span class="p">):</span> <span class="p">{</span><span class="n">LMT</span><span class="p">:</span> <span class="n">限價</span><span class="p">,</span> <span class="n">MKT</span><span class="p">:</span> <span class="n">市價</span><span class="p">,</span> <span class="n">MKP</span><span class="p">:</span> <span class="n">範圍市價</span><span class="p">}</span>
+<span class="n">order_type</span> <span class="p">(</span><span class="nb">str</span><span class="p">):</span> <span class="n">委託類別</span> <span class="p">{</span><span class="n">ROD</span><span class="p">,</span> <span class="n">IOC</span><span class="p">,</span> <span class="n">FOK</span><span class="p">}</span>
+<span class="n">order_cond</span> <span class="p">(</span><span class="nb">str</span><span class="p">):</span> <span class="p">{</span><span class="n">Cash</span><span class="p">:</span><span class="n">現股</span><span class="p">,</span> <span class="n">MarginTrading</span><span class="p">:</span><span class="n">融資</span><span class="p">,</span> <span class="n">ShortSelling</span><span class="p">:</span><span class="n">融券</span><span class="p">}</span>
+<span class="n">order_lot</span> <span class="p">(</span><span class="nb">str</span><span class="p">):</span> <span class="p">{</span>
+        <span class="n">Common</span><span class="p">:</span><span class="n">整股</span><span class="p">,</span> 
+        <span class="n">Fixing</span><span class="p">:</span><span class="n">定盤</span><span class="p">,</span> 
+        <span class="n">Odd</span><span class="p">:</span><span class="n">盤後零股</span><span class="p">,</span> 
+        <span class="n">IntradayOdd</span><span class="p">:</span><span class="n">盤中零股</span>
+    <span class="p">}</span>
+<span class="n">first_sell</span> <span class="p">(</span><span class="nb">str</span><span class="p">):</span> <span class="n">先賣後買</span> <span class="p">{</span><span class="n">true</span><span class="p">,</span> <span class="n">false</span><span class="p">}</span>
+<span class="n">custom_field</span> <span class="p">(</span><span class="nb">str</span><span class="p">):</span> <span class="n">備註</span>
+<span class="n">account</span> <span class="p">(:</span><span class="n">obj</span><span class="p">:</span><span class="n">Account</span><span class="p">):</span> <span class="n">下單帳號</span>
+<span class="n">ca</span> <span class="p">(</span><span class="n">binary</span><span class="p">):</span> <span class="n">憑證</span>
 </code></pre></div>
 </div>
 </div>
@@ -1409,8 +1407,8 @@
     <span class="n">price_type</span><span class="o">=</span><span class="n">sj</span><span class="o">.</span><span class="n">constant</span><span class="o">.</span><span class="n">TFTStockPriceType</span><span class="o">.</span><span class="n">LMT</span><span class="p">,</span> 
     <span class="n">order_type</span><span class="o">=</span><span class="n">sj</span><span class="o">.</span><span class="n">constant</span><span class="o">.</span><span class="n">TFTOrderType</span><span class="o">.</span><span class="n">ROD</span><span class="p">,</span> 
     <span class="n">order_lot</span><span class="o">=</span><span class="n">sj</span><span class="o">.</span><span class="n">constant</span><span class="o">.</span><span class="n">TFTStockOrderLot</span><span class="o">.</span><span class="n">Common</span><span class="p">,</span> 
-    <span class="n">first_sell</span><span class="o">=</span><span class="n">sj</span><span class="o">.</span><span class="n">constant</span><span class="o">.</span><span class="n">StockFirstSell</span><span class="o">.</span><span class="n">No</span><span class="p">,</span>
-    <span class="c1"># custom_field=&quot;test&quot;,</span>
+    <span class="c1"># first_sell=sj.constant.StockFirstSell.No,</span>
+    <span class="n">custom_field</span><span class="o">=</span><span class="s2">&quot;test&quot;</span><span class="p">,</span>
     <span class="n">account</span><span class="o">=</span><span class="n">api</span><span class="o">.</span><span class="n">stock_account</span>
 <span class="p">)</span>
 </code></pre></div>

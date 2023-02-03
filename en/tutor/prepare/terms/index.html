@@ -415,6 +415,13 @@
       <ul class="md-nav__list">
         
           <li class="md-nav__item">
+  <a href="#version-check" class="md-nav__link">
+    Version Check
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
   <a href="#login-test" class="md-nav__link">
     Login Test
   </a>
@@ -1212,6 +1219,13 @@
       <ul class="md-nav__list">
         
           <li class="md-nav__item">
+  <a href="#version-check" class="md-nav__link">
+    Version Check
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
   <a href="#login-test" class="md-nav__link">
     Login Test
   </a>
@@ -1302,8 +1316,10 @@
 </ul>
 <p>Version Restriction:  </p>
 <ul>
-<li>version &lt; 1.0: you have to use <strong>version&gt;=0.5.0.dev2</strong></li>
-<li>version &gt;= 1.0: no restrictions</li>
+<li>version &lt; 1.0: you have to use <strong>version&gt;=0.5.0.dev2</strong><br />
+    install command: <code>pip install shioaji==0.5.0.dev2</code></li>
+<li>version &gt;= 1.0: no restrictions<br />
+    install command: <code>pip install -U shioaji</code></li>
 </ul>
 <p>Others:  </p>
 <ul>
@@ -1312,32 +1328,46 @@
 <li>The time interval between stock place order test and futures place order test should be more than 1 second.</li>
 </ul>
 </div>
+<h3 id="version-check">Version Check<a class="headerlink" href="#version-check" title="Permanent link">&para;</a></h3>
+<div class="admonition info">
+<p class="admonition-title">version</p>
+<div class="highlight"><pre><span></span><code><span class="kn">import</span> <span class="nn">shioaji</span> <span class="k">as</span> <span class="nn">sj</span>
+
+<span class="nb">print</span><span class="p">(</span><span class="n">sj</span><span class="o">.</span><span class="n">__version__</span><span class="p">)</span>
+<span class="c1"># 1.0.0</span>
+</code></pre></div>
+</div>
+<ul>
+<li>please note the <strong>Version Restriction</strong>.</li>
+</ul>
 <h3 id="login-test">Login Test<a class="headerlink" href="#login-test" title="Permanent link">&para;</a></h3>
 <div class="admonition info">
 <p class="admonition-title">Login</p>
 <div class="tabbed-set tabbed-alternate" data-tabs="1:2"><input checked="checked" id="__tabbed_1_1" name="__tabbed_1" type="radio" /><input id="__tabbed_1_2" name="__tabbed_1" type="radio" /><div class="tabbed-labels"><label for="__tabbed_1_1">version&gt;=1.0</label><label for="__tabbed_1_2">version&lt;1.0</label></div>
 <div class="tabbed-content">
 <div class="tabbed-block">
-<div class="highlight"><pre><span></span><code><span class="kn">import</span> <span class="nn">shioaji</span> <span class="k">as</span> <span class="nn">sj</span>
-<span class="n">api</span> <span class="o">=</span> <span class="n">sj</span><span class="o">.</span><span class="n">Shioaji</span><span class="p">()</span>
+<div class="highlight"><pre><span></span><code><span class="n">api</span> <span class="o">=</span> <span class="n">sj</span><span class="o">.</span><span class="n">Shioaji</span><span class="p">(</span><span class="n">simulation</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>   <span class="c1"># Simulation Mode</span>
 <span class="n">api</span><span class="o">.</span><span class="n">login</span><span class="p">(</span>
-    <span class="n">api_key</span><span class="o">=</span><span class="s2">&quot;YOUR_API_KEY&quot;</span><span class="p">,</span> 
-    <span class="n">secret_key</span><span class="o">=</span><span class="s2">&quot;YOUR_SECRET_KEY&quot;</span>
-<span class="p">)</span>
+<span class="hll">    <span class="n">api_key</span><span class="o">=</span><span class="s2">&quot;YOUR_API_KEY&quot;</span><span class="p">,</span>         <span class="c1"># edit it</span>
+</span><span class="hll">    <span class="n">secret_key</span><span class="o">=</span><span class="s2">&quot;YOUR_SECRET_KEY&quot;</span>    <span class="c1"># edit it</span>
+</span><span class="p">)</span>
 </code></pre></div>
 </div>
 <div class="tabbed-block">
-<div class="highlight"><pre><span></span><code><span class="kn">import</span> <span class="nn">shioaji</span> <span class="k">as</span> <span class="nn">sj</span>
-<span class="n">api</span> <span class="o">=</span> <span class="n">sj</span><span class="o">.</span><span class="n">Shioaji</span><span class="p">()</span>
+<div class="highlight"><pre><span></span><code><span class="n">api</span> <span class="o">=</span> <span class="n">sj</span><span class="o">.</span><span class="n">Shioaji</span><span class="p">(</span><span class="n">simulation</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>   <span class="c1"># Simulation Mode</span>
 <span class="n">api</span><span class="o">.</span><span class="n">login</span><span class="p">(</span>
-    <span class="n">person_id</span><span class="o">=</span><span class="s2">&quot;YOUR_PERSON_ID&quot;</span><span class="p">,</span> 
-    <span class="n">passwd</span><span class="o">=</span><span class="s2">&quot;YOUR_PASSWORD&quot;</span><span class="p">,</span>
-<span class="p">)</span>
+<span class="hll">    <span class="n">person_id</span><span class="o">=</span><span class="s2">&quot;YOUR_PERSON_ID&quot;</span><span class="p">,</span>     <span class="c1"># edit it</span>
+</span><span class="hll">    <span class="n">passwd</span><span class="o">=</span><span class="s2">&quot;YOUR_PASSWORD&quot;</span><span class="p">,</span>         <span class="c1"># edit it</span>
+</span><span class="p">)</span>
 </code></pre></div>
 </div>
 </div>
 </div>
 </div>
+<ul>
+<li>version &gt;= 1.0: use <code>api_key</code> to login, if you haven't applied for the API Key, please refer to <a href="../token/">Token</a> section.</li>
+<li>version &lt; 1.0: use <code>person_id</code> to login.</li>
+</ul>
 <h3 id="place-order-test-stock">Place Order Test - Stock<a class="headerlink" href="#place-order-test-stock" title="Permanent link">&para;</a></h3>
 <div class="admonition info">
 <p class="admonition-title">Stock Order</p>
@@ -1382,6 +1412,10 @@
 </div>
 </div>
 </div>
+<ul>
+<li><a href="../../contract/">Contract</a></li>
+<li><a href="../../order/Stock/">Stock Order</a></li>
+</ul>
 <h3 id="place-order-test-futures">Place Order Test - Futures<a class="headerlink" href="#place-order-test-futures" title="Permanent link">&para;</a></h3>
 <div class="admonition info">
 <p class="admonition-title">Future Order</p>
@@ -1440,6 +1474,10 @@
 </div>
 </div>
 </div>
+<ul>
+<li><a href="../../contract/">Contract</a></li>
+<li><a href="../../order/FutureOption/">Future Order</a></li>
+</ul>
 <h2 id="ca">CA<a class="headerlink" href="#ca" title="Permanent link">&para;</a></h2>
 <p>You must <strong>apply</strong> and <strong>activate</strong> the CA before <code>place_order</code>.</p>
 <h3 id="apply-ca">Apply CA<a class="headerlink" href="#apply-ca" title="Permanent link">&para;</a></h3>
