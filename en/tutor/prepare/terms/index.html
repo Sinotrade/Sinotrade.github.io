@@ -428,6 +428,13 @@
   
 </li>
         
+          <li class="md-nav__item">
+  <a href="#check-if-api-tests-has-passed" class="md-nav__link">
+    Check if API tests has passed
+  </a>
+  
+</li>
+        
       </ul>
     </nav>
   
@@ -1246,6 +1253,13 @@
   
 </li>
         
+          <li class="md-nav__item">
+  <a href="#check-if-api-tests-has-passed" class="md-nav__link">
+    Check if API tests has passed
+  </a>
+  
+</li>
+        
       </ul>
     </nav>
   
@@ -1301,7 +1315,7 @@
 <br/>
 <img alt="signature" src="https://raw.githubusercontent.com/Sinotrade/Sinotrade.github.io/master/img/signature.png" /></p>
 <h2 id="test-report">Test Report<a class="headerlink" href="#test-report" title="Permanent link">&para;</a></h2>
-<p>To ensure that you fully understand how to use Shioaji, you need to complete the test report in the simulation mode, which includes the following functions:</p>
+<p>To ensure that you fully understand how to use Shioaji, you need to complete the test in the simulation mode, which includes the following functions:</p>
 <ul>
 <li><code>login</code></li>
 <li><code>place_order</code></li>
@@ -1310,7 +1324,7 @@
 <p class="admonition-title">Attention</p>
 <p>Service Hour:</p>
 <ul>
-<li>In response to the company's information security regulations, the test report service is Monday to Friday 08:00 ~ 20:00</li>
+<li>In response to the company's information security regulations, the test service is Monday to Friday 08:00 ~ 20:00</li>
 <li>18:00 ~ 20:00: Only allow Taiwan IP</li>
 <li>08:00 ~ 18:00: No limit</li>
 </ul>
@@ -1389,6 +1403,7 @@
 
 <span class="hll"><span class="c1"># place order</span>
 </span><span class="n">trade</span> <span class="o">=</span> <span class="n">api</span><span class="o">.</span><span class="n">place_order</span><span class="p">(</span><span class="n">contract</span><span class="p">,</span> <span class="n">order</span><span class="p">)</span>
+<span class="n">trade</span>
 </code></pre></div>
 </div>
 <div class="tabbed-block">
@@ -1407,12 +1422,42 @@
 
 <span class="hll"><span class="c1"># place order</span>
 </span><span class="n">trade</span> <span class="o">=</span> <span class="n">api</span><span class="o">.</span><span class="n">place_order</span><span class="p">(</span><span class="n">contract</span><span class="p">,</span> <span class="n">order</span><span class="p">)</span>
+<span class="n">trade</span>
 </code></pre></div>
 </div>
 </div>
 </div>
 </div>
+<div class="admonition done">
+<p class="admonition-title">Out</p>
+<div class="highlight"><pre><span></span><code><span class="hll"><span class="n">Response</span> <span class="n">Code</span><span class="p">:</span> <span class="mi">0</span> <span class="o">|</span> <span class="n">Event</span> <span class="n">Code</span><span class="p">:</span> <span class="mi">0</span> <span class="o">|</span> <span class="n">Info</span><span class="p">:</span> <span class="n">host</span> <span class="s1">&#39;218.32.76.102:80&#39;</span><span class="p">,</span> <span class="n">IP</span> <span class="mf">218.32.76.102</span><span class="p">:</span><span class="mi">80</span> <span class="p">(</span><span class="n">host</span> <span class="mi">1</span> <span class="n">of</span> <span class="mi">1</span><span class="p">)</span> <span class="p">(</span><span class="n">host</span> <span class="n">connection</span> <span class="n">attempt</span> <span class="mi">1</span> <span class="n">of</span> <span class="mi">1</span><span class="p">)</span> <span class="p">(</span><span class="n">total</span> <span class="n">connection</span> <span class="n">attempt</span> <span class="mi">1</span> <span class="n">of</span> <span class="mi">1</span><span class="p">)</span> <span class="o">|</span> <span class="n">Event</span><span class="p">:</span> <span class="n">Session</span> <span class="n">up</span>
+</span>
+<span class="n">Trade</span><span class="p">(</span>
+    <span class="n">contract</span><span class="o">=</span><span class="n">Stock</span><span class="p">(</span><span class="o">...</span><span class="p">),</span> 
+    <span class="n">order</span><span class="o">=</span><span class="n">Order</span><span class="p">(</span><span class="o">...</span><span class="p">),</span>
+    <span class="n">status</span><span class="o">=</span><span class="n">OrderStatus</span><span class="p">(</span>
+        <span class="nb">id</span><span class="o">=</span><span class="s1">&#39;531e27af&#39;</span><span class="p">,</span> 
+<span class="hll">        <span class="n">status</span><span class="o">=&lt;</span><span class="n">Status</span><span class="o">.</span><span class="n">Submitted</span><span class="p">:</span> <span class="s1">&#39;Submitted&#39;</span><span class="o">&gt;</span><span class="p">,</span> 
+</span>        <span class="n">status_code</span><span class="o">=</span><span class="s1">&#39;00&#39;</span><span class="p">,</span> 
+        <span class="n">order_datetime</span><span class="o">=</span><span class="n">datetime</span><span class="o">.</span><span class="n">datetime</span><span class="p">(</span><span class="mi">2023</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">12</span><span class="p">,</span> <span class="mi">11</span><span class="p">,</span> <span class="mi">18</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="mi">867490</span><span class="p">),</span> 
+        <span class="n">order_quantity</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span>
+        <span class="n">deals</span><span class="o">=</span><span class="p">[]</span>
+    <span class="p">)</span>
+<span class="p">)</span>
+</code></pre></div>
+</div>
 <ul>
+<li>
+<p>You should receive the message, <code>Response Code: 0 | Event Code: 0 | Info: host '218.32.76.102:80' ...</code>, which means that you have successfully connected to our testing server. The message will only appear on your first order. If you don't receive the connected message, please confirm that all the following conditions are met.</p>
+<ol>
+<li>Doing test in the service hour</li>
+<li>Version restriction</li>
+<li><code>signed</code> is not present in your account</li>
+</ol>
+</li>
+<li>
+<p>order status should <strong>NOT</strong> be <code>Failed</code>. If you got <code>Failed</code> status, please modify your order correctly and then <code>place_order</code> again.</p>
+</li>
 <li><a href="../../contract/">Contract</a></li>
 <li><a href="../../order/Stock/">Stock Order</a></li>
 </ul>
@@ -1444,6 +1489,7 @@
 
 <span class="hll"><span class="c1"># place order</span>
 </span><span class="n">trade</span> <span class="o">=</span> <span class="n">api</span><span class="o">.</span><span class="n">place_order</span><span class="p">(</span><span class="n">contract</span><span class="p">,</span> <span class="n">order</span><span class="p">)</span>
+<span class="n">trade</span>
 </code></pre></div>
 </div>
 <div class="tabbed-block">
@@ -1469,14 +1515,96 @@
 
 <span class="hll"><span class="c1"># place order</span>
 </span><span class="n">trade</span> <span class="o">=</span> <span class="n">api</span><span class="o">.</span><span class="n">place_order</span><span class="p">(</span><span class="n">contract</span><span class="p">,</span> <span class="n">order</span><span class="p">)</span>
+<span class="n">trade</span>
 </code></pre></div>
 </div>
 </div>
 </div>
 </div>
+<div class="admonition done">
+<p class="admonition-title">Out</p>
+<div class="highlight"><pre><span></span><code><span class="hll"><span class="n">Response</span> <span class="n">Code</span><span class="p">:</span> <span class="mi">0</span> <span class="o">|</span> <span class="n">Event</span> <span class="n">Code</span><span class="p">:</span> <span class="mi">0</span> <span class="o">|</span> <span class="n">Info</span><span class="p">:</span> <span class="n">host</span> <span class="s1">&#39;218.32.76.102:80&#39;</span><span class="p">,</span> <span class="n">IP</span> <span class="mf">218.32.76.102</span><span class="p">:</span><span class="mi">80</span> <span class="p">(</span><span class="n">host</span> <span class="mi">1</span> <span class="n">of</span> <span class="mi">1</span><span class="p">)</span> <span class="p">(</span><span class="n">host</span> <span class="n">connection</span> <span class="n">attempt</span> <span class="mi">1</span> <span class="n">of</span> <span class="mi">1</span><span class="p">)</span> <span class="p">(</span><span class="n">total</span> <span class="n">connection</span> <span class="n">attempt</span> <span class="mi">1</span> <span class="n">of</span> <span class="mi">1</span><span class="p">)</span> <span class="o">|</span> <span class="n">Event</span><span class="p">:</span> <span class="n">Session</span> <span class="n">up</span>
+</span>
+<span class="n">Trade</span><span class="p">(</span>
+    <span class="n">contract</span><span class="o">=</span><span class="n">Future</span><span class="p">(</span><span class="o">...</span><span class="p">),</span> 
+    <span class="n">order</span><span class="o">=</span><span class="n">Order</span><span class="p">(</span><span class="o">...</span><span class="p">),</span>
+    <span class="n">status</span><span class="o">=</span><span class="n">OrderStatus</span><span class="p">(</span>
+        <span class="nb">id</span><span class="o">=</span><span class="s1">&#39;531e27af&#39;</span><span class="p">,</span> 
+<span class="hll">        <span class="n">status</span><span class="o">=&lt;</span><span class="n">Status</span><span class="o">.</span><span class="n">Submitted</span><span class="p">:</span> <span class="s1">&#39;Submitted&#39;</span><span class="o">&gt;</span><span class="p">,</span> 
+</span>        <span class="n">status_code</span><span class="o">=</span><span class="s1">&#39;00&#39;</span><span class="p">,</span> 
+        <span class="n">order_datetime</span><span class="o">=</span><span class="n">datetime</span><span class="o">.</span><span class="n">datetime</span><span class="p">(</span><span class="mi">2023</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">12</span><span class="p">,</span> <span class="mi">11</span><span class="p">,</span> <span class="mi">18</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="mi">867490</span><span class="p">),</span> 
+        <span class="n">order_quantity</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span>
+        <span class="n">deals</span><span class="o">=</span><span class="p">[]</span>
+    <span class="p">)</span>
+<span class="p">)</span>
+</code></pre></div>
+</div>
 <ul>
+<li>
+<p>You should receive the message, <code>Response Code: 0 | Event Code: 0 | Info: host '218.32.76.102:80' ...</code>, which means that you have successfully connected to our testing server. The message will only appear on your first order. If you don't receive the connected message, please confirm that all the following conditions are met.</p>
+<ol>
+<li>Doing test in the service hour</li>
+<li>Version restriction</li>
+<li><code>signed</code> is not present in your account</li>
+</ol>
+</li>
+<li>
+<p>order status should <strong>NOT</strong> be <code>Failed</code>. If you got <code>Failed</code> status, please modify your order correctly and then <code>place_order</code> again.</p>
+</li>
 <li><a href="../../contract/">Contract</a></li>
 <li><a href="../../order/FutureOption/">Future Order</a></li>
+</ul>
+<h3 id="check-if-api-tests-has-passed">Check if API tests has passed<a class="headerlink" href="#check-if-api-tests-has-passed" title="Permanent link">&para;</a></h3>
+<div class="admonition attention">
+<p class="admonition-title">Attention</p>
+<p>Before you check, please confirm the following conditions are met.    </p>
+<ul>
+<li>Sign the API related document before you test, or you will not pass the test.</li>
+<li>Doing test in service hour.</li>
+<li>Stock accounts and Futures accounts should be tested separately.</li>
+<li>Waiting for reviewing your tests at least 5 minutes.</li>
+</ul>
+</div>
+<div class="admonition info">
+<p class="admonition-title">Sign Status</p>
+<div class="tabbed-set tabbed-alternate" data-tabs="4:2"><input checked="checked" id="__tabbed_4_1" name="__tabbed_4" type="radio" /><input id="__tabbed_4_2" name="__tabbed_4" type="radio" /><div class="tabbed-labels"><label for="__tabbed_4_1">version&gt;=1.0</label><label for="__tabbed_4_2">version&lt;1.0</label></div>
+<div class="tabbed-content">
+<div class="tabbed-block">
+<div class="highlight"><pre><span></span><code><span class="kn">import</span> <span class="nn">shioaji</span> <span class="k">as</span> <span class="nn">sj</span>
+
+<span class="hll"><span class="n">api</span> <span class="o">=</span> <span class="n">sj</span><span class="o">.</span><span class="n">Shioaji</span><span class="p">(</span><span class="n">simulation</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>   <span class="c1"># Production Mode</span>
+</span><span class="n">accounts</span> <span class="o">=</span> <span class="n">api</span><span class="o">.</span><span class="n">login</span><span class="p">(</span>
+    <span class="n">api_key</span><span class="o">=</span><span class="s2">&quot;YOUR_API_KEY&quot;</span><span class="p">,</span>         <span class="c1"># edit it</span>
+    <span class="n">secret_key</span><span class="o">=</span><span class="s2">&quot;YOUR_SECRET_KEY&quot;</span>    <span class="c1"># edit it</span>
+<span class="p">)</span>
+<span class="n">accounts</span>
+</code></pre></div>
+</div>
+<div class="tabbed-block">
+<div class="highlight"><pre><span></span><code><span class="kn">import</span> <span class="nn">shioaji</span> <span class="k">as</span> <span class="nn">sj</span>
+
+<span class="hll"><span class="n">api</span> <span class="o">=</span> <span class="n">sj</span><span class="o">.</span><span class="n">Shioaji</span><span class="p">(</span><span class="n">simulation</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>   <span class="c1"># Production Mode</span>
+</span><span class="n">accounts</span> <span class="o">=</span> <span class="n">api</span><span class="o">.</span><span class="n">login</span><span class="p">(</span>
+    <span class="n">person_id</span><span class="o">=</span><span class="s2">&quot;YOUR_PERSON_ID&quot;</span><span class="p">,</span>     <span class="c1"># edit it</span>
+    <span class="n">passwd</span><span class="o">=</span><span class="s2">&quot;YOUR_PASSWORD&quot;</span><span class="p">,</span>         <span class="c1"># edit it</span>
+<span class="p">)</span>
+<span class="n">accounts</span>
+</code></pre></div>
+</div>
+</div>
+</div>
+</div>
+<div class="admonition done">
+<p class="admonition-title">Out</p>
+<div class="highlight"><pre><span></span><code><span class="hll"><span class="n">Response</span> <span class="n">Code</span><span class="p">:</span> <span class="mi">0</span> <span class="o">|</span> <span class="n">Event</span> <span class="n">Code</span><span class="p">:</span> <span class="mi">0</span> <span class="o">|</span> <span class="n">Info</span><span class="p">:</span> <span class="n">host</span> <span class="s1">&#39;203.66.91.161:80&#39;</span><span class="p">,</span> <span class="n">hostname</span> <span class="s1">&#39;203.66.91.161:80&#39;</span> <span class="n">IP</span> <span class="mf">203.66.91.161</span><span class="p">:</span><span class="mi">80</span> <span class="p">(</span><span class="n">host</span> <span class="mi">1</span> <span class="n">of</span> <span class="mi">1</span><span class="p">)</span> <span class="p">(</span><span class="n">host</span> <span class="n">connection</span> <span class="n">attempt</span> <span class="mi">1</span> <span class="n">of</span> <span class="mi">1</span><span class="p">)</span> <span class="p">(</span><span class="n">total</span> <span class="n">connection</span> <span class="n">attempt</span> <span class="mi">1</span> <span class="n">of</span> <span class="mi">1</span><span class="p">)</span> <span class="o">|</span> <span class="n">Event</span><span class="p">:</span> <span class="n">Session</span> <span class="n">up</span>
+</span>
+<span class="p">[</span><span class="n">FutureAccount</span><span class="p">(</span><span class="n">person_id</span><span class="o">=</span><span class="s1">&#39;QBCCAIGJBJ&#39;</span><span class="p">,</span> <span class="n">broker_id</span><span class="o">=</span><span class="s1">&#39;F002000&#39;</span><span class="p">,</span> <span class="n">account_id</span><span class="o">=</span><span class="s1">&#39;9100020&#39;</span><span class="p">,</span> <span class="n">signed</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">username</span><span class="o">=</span><span class="s1">&#39;PAPIUSER01&#39;</span><span class="p">),</span>
+<span class="n">StockAccount</span><span class="p">(</span><span class="n">person_id</span><span class="o">=</span><span class="s1">&#39;QBCCAIGJBJ&#39;</span><span class="p">,</span> <span class="n">broker_id</span><span class="o">=</span><span class="s1">&#39;9A95&#39;</span><span class="p">,</span> <span class="n">account_id</span><span class="o">=</span><span class="s1">&#39;0504350&#39;</span><span class="p">,</span> <span class="n">username</span><span class="o">=</span><span class="s1">&#39;PAPIUSER01&#39;</span><span class="p">)]</span>
+</code></pre></div>
+</div>
+<ul>
+<li><code>signed=True</code>: Congrats, done! Ex: FutureAccount.</li>
+<li><code>signed=False</code> or <code>signed</code> not present: the account haven't passed the api tests or haven't been signed the api documents. Ex: StockAccount.</li>
 </ul>
 <h2 id="ca">CA<a class="headerlink" href="#ca" title="Permanent link">&para;</a></h2>
 <p>You must <strong>apply</strong> and <strong>activate</strong> the CA before <code>place_order</code>.</p>

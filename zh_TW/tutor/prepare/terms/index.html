@@ -428,6 +428,13 @@
   
 </li>
         
+          <li class="md-nav__item">
+  <a href="#api_1" class="md-nav__link">
+    查詢是否通過API測試
+  </a>
+  
+</li>
+        
       </ul>
     </nav>
   
@@ -1246,6 +1253,13 @@
   
 </li>
         
+          <li class="md-nav__item">
+  <a href="#api_1" class="md-nav__link">
+    查詢是否通過API測試
+  </a>
+  
+</li>
+        
       </ul>
     </nav>
   
@@ -1393,6 +1407,7 @@
 
 <span class="hll"><span class="c1"># 下單</span>
 </span><span class="n">trade</span> <span class="o">=</span> <span class="n">api</span><span class="o">.</span><span class="n">place_order</span><span class="p">(</span><span class="n">contract</span><span class="p">,</span> <span class="n">order</span><span class="p">)</span>
+<span class="n">trade</span>
 </code></pre></div>
 </div>
 <div class="tabbed-block">
@@ -1411,12 +1426,42 @@
 
 <span class="hll"><span class="c1"># 下單</span>
 </span><span class="n">trade</span> <span class="o">=</span> <span class="n">api</span><span class="o">.</span><span class="n">place_order</span><span class="p">(</span><span class="n">contract</span><span class="p">,</span> <span class="n">order</span><span class="p">)</span>
+<span class="n">trade</span>
 </code></pre></div>
 </div>
 </div>
 </div>
 </div>
+<div class="admonition done">
+<p class="admonition-title">Out</p>
+<div class="highlight"><pre><span></span><code><span class="hll"><span class="n">Response</span> <span class="n">Code</span><span class="p">:</span> <span class="mi">0</span> <span class="o">|</span> <span class="n">Event</span> <span class="n">Code</span><span class="p">:</span> <span class="mi">0</span> <span class="o">|</span> <span class="n">Info</span><span class="p">:</span> <span class="n">host</span> <span class="s1">&#39;218.32.76.102:80&#39;</span><span class="p">,</span> <span class="n">IP</span> <span class="mf">218.32.76.102</span><span class="p">:</span><span class="mi">80</span> <span class="p">(</span><span class="n">host</span> <span class="mi">1</span> <span class="n">of</span> <span class="mi">1</span><span class="p">)</span> <span class="p">(</span><span class="n">host</span> <span class="n">connection</span> <span class="n">attempt</span> <span class="mi">1</span> <span class="n">of</span> <span class="mi">1</span><span class="p">)</span> <span class="p">(</span><span class="n">total</span> <span class="n">connection</span> <span class="n">attempt</span> <span class="mi">1</span> <span class="n">of</span> <span class="mi">1</span><span class="p">)</span> <span class="o">|</span> <span class="n">Event</span><span class="p">:</span> <span class="n">Session</span> <span class="n">up</span>
+</span>
+<span class="n">Trade</span><span class="p">(</span>
+    <span class="n">contract</span><span class="o">=</span><span class="n">Stock</span><span class="p">(</span><span class="o">...</span><span class="p">),</span> 
+    <span class="n">order</span><span class="o">=</span><span class="n">Order</span><span class="p">(</span><span class="o">...</span><span class="p">),</span>
+    <span class="n">status</span><span class="o">=</span><span class="n">OrderStatus</span><span class="p">(</span>
+        <span class="nb">id</span><span class="o">=</span><span class="s1">&#39;531e27af&#39;</span><span class="p">,</span> 
+<span class="hll">        <span class="n">status</span><span class="o">=&lt;</span><span class="n">Status</span><span class="o">.</span><span class="n">Submitted</span><span class="p">:</span> <span class="s1">&#39;Submitted&#39;</span><span class="o">&gt;</span><span class="p">,</span> 
+</span>        <span class="n">status_code</span><span class="o">=</span><span class="s1">&#39;00&#39;</span><span class="p">,</span> 
+        <span class="n">order_datetime</span><span class="o">=</span><span class="n">datetime</span><span class="o">.</span><span class="n">datetime</span><span class="p">(</span><span class="mi">2023</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">12</span><span class="p">,</span> <span class="mi">11</span><span class="p">,</span> <span class="mi">18</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="mi">867490</span><span class="p">),</span> 
+        <span class="n">order_quantity</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span>
+        <span class="n">deals</span><span class="o">=</span><span class="p">[]</span>
+    <span class="p">)</span>
+<span class="p">)</span>
+</code></pre></div>
+</div>
 <ul>
+<li>
+<p>收到此訊息，<code>Response Code: 0 | Event Code: 0 | Info: host '218.32.76.102:80' ...</code>，代表您成功連結上測試伺服器。此訊息只有首次下單會顯示。若您未收到此訊息，請確認一下狀況均符合</p>
+<ol>
+<li>在<code>可測試時間</code>進行測試</li>
+<li>版本限制</li>
+<li><code>signed</code> 未在您的帳號中顯示</li>
+</ol>
+</li>
+<li>
+<p>委託單狀態不應為<code>Failed</code>，若您的委託單狀態<code>Failed</code>，請正確的修改委託單然後再次執行<code>place_order</code></p>
+</li>
 <li><a href="../../contract/">商品檔</a></li>
 <li><a href="../../order/Stock/">證券委託下單</a></li>
 </ul>
@@ -1478,9 +1523,90 @@
 </div>
 </div>
 </div>
+<div class="admonition done">
+<p class="admonition-title">Out</p>
+<div class="highlight"><pre><span></span><code><span class="hll"><span class="n">Response</span> <span class="n">Code</span><span class="p">:</span> <span class="mi">0</span> <span class="o">|</span> <span class="n">Event</span> <span class="n">Code</span><span class="p">:</span> <span class="mi">0</span> <span class="o">|</span> <span class="n">Info</span><span class="p">:</span> <span class="n">host</span> <span class="s1">&#39;218.32.76.102:80&#39;</span><span class="p">,</span> <span class="n">IP</span> <span class="mf">218.32.76.102</span><span class="p">:</span><span class="mi">80</span> <span class="p">(</span><span class="n">host</span> <span class="mi">1</span> <span class="n">of</span> <span class="mi">1</span><span class="p">)</span> <span class="p">(</span><span class="n">host</span> <span class="n">connection</span> <span class="n">attempt</span> <span class="mi">1</span> <span class="n">of</span> <span class="mi">1</span><span class="p">)</span> <span class="p">(</span><span class="n">total</span> <span class="n">connection</span> <span class="n">attempt</span> <span class="mi">1</span> <span class="n">of</span> <span class="mi">1</span><span class="p">)</span> <span class="o">|</span> <span class="n">Event</span><span class="p">:</span> <span class="n">Session</span> <span class="n">up</span>
+</span>
+<span class="n">Trade</span><span class="p">(</span>
+    <span class="n">contract</span><span class="o">=</span><span class="n">Stock</span><span class="p">(</span><span class="o">...</span><span class="p">),</span> 
+    <span class="n">order</span><span class="o">=</span><span class="n">Order</span><span class="p">(</span><span class="o">...</span><span class="p">),</span>
+    <span class="n">status</span><span class="o">=</span><span class="n">OrderStatus</span><span class="p">(</span>
+        <span class="nb">id</span><span class="o">=</span><span class="s1">&#39;531e27af&#39;</span><span class="p">,</span> 
+<span class="hll">        <span class="n">status</span><span class="o">=&lt;</span><span class="n">Status</span><span class="o">.</span><span class="n">Submitted</span><span class="p">:</span> <span class="s1">&#39;Submitted&#39;</span><span class="o">&gt;</span><span class="p">,</span> 
+</span>        <span class="n">status_code</span><span class="o">=</span><span class="s1">&#39;00&#39;</span><span class="p">,</span> 
+        <span class="n">order_datetime</span><span class="o">=</span><span class="n">datetime</span><span class="o">.</span><span class="n">datetime</span><span class="p">(</span><span class="mi">2023</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">12</span><span class="p">,</span> <span class="mi">11</span><span class="p">,</span> <span class="mi">18</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="mi">867490</span><span class="p">),</span> 
+        <span class="n">order_quantity</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span>
+        <span class="n">deals</span><span class="o">=</span><span class="p">[]</span>
+    <span class="p">)</span>
+<span class="p">)</span>
+</code></pre></div>
+</div>
 <ul>
+<li>
+<p>收到此訊息，<code>Response Code: 0 | Event Code: 0 | Info: host '218.32.76.102:80' ...</code>，代表您成功連結上測試伺服器。此訊息只有首次下單會顯示。若您未收到此訊息，請確認一下狀況均符合  </p>
+<ol>
+<li>在<code>可測試時間</code>進行測試</li>
+<li>版本限制</li>
+<li><code>signed</code> 未在您的帳號中顯示</li>
+</ol>
+</li>
+<li>
+<p>委託單狀態不應為<code>Failed</code>，若您的委託單狀態<code>Failed</code>，請正確的修改委託單然後再次執行<code>place_order</code></p>
+</li>
 <li><a href="../../contract/">商品檔</a></li>
 <li><a href="../../order/FutureOption/">期貨委託下單</a></li>
+</ul>
+<h3 id="api_1">查詢是否通過API測試<a class="headerlink" href="#api_1" title="Permanent link">&para;</a></h3>
+<div class="admonition attention">
+<p class="admonition-title">Attention</p>
+<p>在查詢前，請確認以下狀況均符合  </p>
+<ul>
+<li>API下單簽署時間須早於API測試的時間，以利審核通過</li>
+<li>在可測試時間進行測試</li>
+<li>證券、期貨戶須各別測試</li>
+<li>等待API測試審核(約5分鐘)</li>
+</ul>
+</div>
+<div class="admonition info">
+<p class="admonition-title">簽署狀態</p>
+<div class="tabbed-set tabbed-alternate" data-tabs="4:2"><input checked="checked" id="__tabbed_4_1" name="__tabbed_4" type="radio" /><input id="__tabbed_4_2" name="__tabbed_4" type="radio" /><div class="tabbed-labels"><label for="__tabbed_4_1">version&gt;=1.0</label><label for="__tabbed_4_2">version&lt;1.0</label></div>
+<div class="tabbed-content">
+<div class="tabbed-block">
+<div class="highlight"><pre><span></span><code><span class="kn">import</span> <span class="nn">shioaji</span> <span class="k">as</span> <span class="nn">sj</span>
+
+<span class="hll"><span class="n">api</span> <span class="o">=</span> <span class="n">sj</span><span class="o">.</span><span class="n">Shioaji</span><span class="p">(</span><span class="n">simulation</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>   <span class="c1"># Production Mode</span>
+</span><span class="n">accounts</span> <span class="o">=</span> <span class="n">api</span><span class="o">.</span><span class="n">login</span><span class="p">(</span>
+    <span class="n">api_key</span><span class="o">=</span><span class="s2">&quot;YOUR_API_KEY&quot;</span><span class="p">,</span>         <span class="c1"># edit it</span>
+    <span class="n">secret_key</span><span class="o">=</span><span class="s2">&quot;YOUR_SECRET_KEY&quot;</span>    <span class="c1"># edit it</span>
+<span class="p">)</span>
+<span class="n">accounts</span>
+</code></pre></div>
+</div>
+<div class="tabbed-block">
+<div class="highlight"><pre><span></span><code><span class="kn">import</span> <span class="nn">shioaji</span> <span class="k">as</span> <span class="nn">sj</span>
+
+<span class="hll"><span class="n">api</span> <span class="o">=</span> <span class="n">sj</span><span class="o">.</span><span class="n">Shioaji</span><span class="p">(</span><span class="n">simulation</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>   <span class="c1"># Production Mode</span>
+</span><span class="n">accounts</span> <span class="o">=</span> <span class="n">api</span><span class="o">.</span><span class="n">login</span><span class="p">(</span>
+    <span class="n">person_id</span><span class="o">=</span><span class="s2">&quot;YOUR_PERSON_ID&quot;</span><span class="p">,</span>     <span class="c1"># edit it</span>
+    <span class="n">passwd</span><span class="o">=</span><span class="s2">&quot;YOUR_PASSWORD&quot;</span><span class="p">,</span>         <span class="c1"># edit it</span>
+<span class="p">)</span>
+<span class="n">accounts</span>
+</code></pre></div>
+</div>
+</div>
+</div>
+</div>
+<div class="admonition done">
+<p class="admonition-title">Out</p>
+<div class="highlight"><pre><span></span><code><span class="hll"><span class="n">Response</span> <span class="n">Code</span><span class="p">:</span> <span class="mi">0</span> <span class="o">|</span> <span class="n">Event</span> <span class="n">Code</span><span class="p">:</span> <span class="mi">0</span> <span class="o">|</span> <span class="n">Info</span><span class="p">:</span> <span class="n">host</span> <span class="s1">&#39;203.66.91.161:80&#39;</span><span class="p">,</span> <span class="n">hostname</span> <span class="s1">&#39;203.66.91.161:80&#39;</span> <span class="n">IP</span> <span class="mf">203.66.91.161</span><span class="p">:</span><span class="mi">80</span> <span class="p">(</span><span class="n">host</span> <span class="mi">1</span> <span class="n">of</span> <span class="mi">1</span><span class="p">)</span> <span class="p">(</span><span class="n">host</span> <span class="n">connection</span> <span class="n">attempt</span> <span class="mi">1</span> <span class="n">of</span> <span class="mi">1</span><span class="p">)</span> <span class="p">(</span><span class="n">total</span> <span class="n">connection</span> <span class="n">attempt</span> <span class="mi">1</span> <span class="n">of</span> <span class="mi">1</span><span class="p">)</span> <span class="o">|</span> <span class="n">Event</span><span class="p">:</span> <span class="n">Session</span> <span class="n">up</span>
+</span>
+<span class="p">[</span><span class="n">FutureAccount</span><span class="p">(</span><span class="n">person_id</span><span class="o">=</span><span class="s1">&#39;QBCCAIGJBJ&#39;</span><span class="p">,</span> <span class="n">broker_id</span><span class="o">=</span><span class="s1">&#39;F002000&#39;</span><span class="p">,</span> <span class="n">account_id</span><span class="o">=</span><span class="s1">&#39;9100020&#39;</span><span class="p">,</span> <span class="n">signed</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">username</span><span class="o">=</span><span class="s1">&#39;PAPIUSER01&#39;</span><span class="p">),</span>
+<span class="n">StockAccount</span><span class="p">(</span><span class="n">person_id</span><span class="o">=</span><span class="s1">&#39;QBCCAIGJBJ&#39;</span><span class="p">,</span> <span class="n">broker_id</span><span class="o">=</span><span class="s1">&#39;9A95&#39;</span><span class="p">,</span> <span class="n">account_id</span><span class="o">=</span><span class="s1">&#39;0504350&#39;</span><span class="p">,</span> <span class="n">username</span><span class="o">=</span><span class="s1">&#39;PAPIUSER01&#39;</span><span class="p">)]</span>
+</code></pre></div>
+</div>
+<ul>
+<li><code>signed=True</code>: 恭喜完成測試! Ex: FutureAccount.</li>
+<li><code>signed=False</code> 或 <code>signed</code> 未顯示: 此帳號尚未通過API測試或尚未簽署API下單文件. Ex: StockAccount.</li>
 </ul>
 <h2 id="_6">憑證<a class="headerlink" href="#_6" title="Permanent link">&para;</a></h2>
 <p>&emsp;&emsp;下單前必須<strong>申請</strong>並<strong>啟用</strong>憑證</p>
