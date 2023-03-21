@@ -384,6 +384,46 @@
       
         <li class="md-nav__item">
   <a href="#_10" class="md-nav__link">
+    行情資料
+  </a>
+  
+    <nav class="md-nav" aria-label="行情資料">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#callback" class="md-nav__link">
+    Callback
+  </a>
+  
+    <nav class="md-nav" aria-label="Callback">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#tick" class="md-nav__link">
+    Tick
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#bidask" class="md-nav__link">
+    BidAsk
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_11" class="md-nav__link">
     期貨帳務資訊
   </a>
   
@@ -1297,6 +1337,46 @@
       
         <li class="md-nav__item">
   <a href="#_10" class="md-nav__link">
+    行情資料
+  </a>
+  
+    <nav class="md-nav" aria-label="行情資料">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#callback" class="md-nav__link">
+    Callback
+  </a>
+  
+    <nav class="md-nav" aria-label="Callback">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#tick" class="md-nav__link">
+    Tick
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#bidask" class="md-nav__link">
+    BidAsk
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_11" class="md-nav__link">
     期貨帳務資訊
   </a>
   
@@ -1911,7 +1991,133 @@
 </div>
 </div>
 </div>
-<h2 id="_10">期貨帳務資訊<a class="headerlink" href="#_10" title="Permanent link">&para;</a></h2>
+<h2 id="_10">行情資料<a class="headerlink" href="#_10" title="Permanent link">&para;</a></h2>
+<div class="admonition attention">
+<p class="admonition-title">注意</p>
+<p><strong>版本&gt;=1.1將不再提供QuoteVersion.v0，請更改至QuoteVersion.v1。</strong></p>
+</div>
+<h3 id="callback">Callback<a class="headerlink" href="#callback" title="Permanent link">&para;</a></h3>
+<h4 id="tick">Tick<a class="headerlink" href="#tick" title="Permanent link">&para;</a></h4>
+<div class="admonition info">
+<p class="admonition-title">decorator方式</p>
+<div class="tabbed-set tabbed-alternate" data-tabs="11:2"><input checked="checked" id="__tabbed_11_1" name="__tabbed_11" type="radio" /><input id="__tabbed_11_2" name="__tabbed_11" type="radio" /><div class="tabbed-labels"><label for="__tabbed_11_1">QuoteVersion.v1.1</label><label for="__tabbed_11_2">QuoteVersion.v0</label></div>
+<div class="tabbed-content">
+<div class="tabbed-block">
+<div class="highlight"><pre><span></span><code><span class="kn">from</span> <span class="nn">shioaji</span> <span class="kn">import</span> <span class="n">TickSTKv1</span><span class="p">,</span> <span class="n">Exchange</span>
+
+<span class="nd">@api</span><span class="o">.</span><span class="n">on_tick_stk_v1</span><span class="p">()</span>
+<span class="k">def</span> <span class="nf">quote_callback</span><span class="p">(</span><span class="n">exchange</span><span class="p">:</span> <span class="n">Exchange</span><span class="p">,</span> <span class="n">tick</span><span class="p">:</span><span class="n">TickSTKv1</span><span class="p">):</span>
+    <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Exchange: </span><span class="si">{</span><span class="n">exchange</span><span class="si">}</span><span class="s2">, Tick: </span><span class="si">{</span><span class="n">tick</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+</code></pre></div>
+</div>
+<div class="tabbed-block">
+<div class="highlight"><pre><span></span><code><span class="nd">@api</span><span class="o">.</span><span class="n">quote</span><span class="o">.</span><span class="n">on_quote</span>
+<span class="k">def</span> <span class="nf">quote_callback</span><span class="p">(</span><span class="n">topic</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span> <span class="n">quote</span><span class="p">:</span> <span class="nb">dict</span><span class="p">):</span>
+    <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Topic: </span><span class="si">{</span><span class="n">topic</span><span class="si">}</span><span class="s2">, Quote: </span><span class="si">{</span><span class="n">quote</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+</code></pre></div>
+</div>
+</div>
+</div>
+</div>
+<div class="admonition info">
+<p class="admonition-title">傳統方式</p>
+<div class="tabbed-set tabbed-alternate" data-tabs="12:2"><input checked="checked" id="__tabbed_12_1" name="__tabbed_12" type="radio" /><input id="__tabbed_12_2" name="__tabbed_12" type="radio" /><div class="tabbed-labels"><label for="__tabbed_12_1">QuoteVersion.v1.1</label><label for="__tabbed_12_2">QuoteVersion.v0</label></div>
+<div class="tabbed-content">
+<div class="tabbed-block">
+<div class="highlight"><pre><span></span><code><span class="kn">from</span> <span class="nn">shioaji</span> <span class="kn">import</span> <span class="n">TickSTKv1</span><span class="p">,</span> <span class="n">Exchange</span>
+
+<span class="k">def</span> <span class="nf">quote_callback</span><span class="p">(</span><span class="n">exchange</span><span class="p">:</span> <span class="n">Exchange</span><span class="p">,</span> <span class="n">tick</span><span class="p">:</span><span class="n">TickSTKv1</span><span class="p">):</span>
+    <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Exchange: </span><span class="si">{</span><span class="n">exchange</span><span class="si">}</span><span class="s2">, Tick: </span><span class="si">{</span><span class="n">tick</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+
+<span class="n">api</span><span class="o">.</span><span class="n">quote</span><span class="o">.</span><span class="n">set_on_tick_stk_v1_callback</span><span class="p">(</span><span class="n">quote_callback</span><span class="p">)</span>
+</code></pre></div>
+</div>
+<div class="tabbed-block">
+<div class="highlight"><pre><span></span><code><span class="k">def</span> <span class="nf">quote_callback</span><span class="p">(</span><span class="n">topic</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span> <span class="n">quote</span><span class="p">:</span> <span class="nb">dict</span><span class="p">):</span>
+    <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Topic: </span><span class="si">{</span><span class="n">topic</span><span class="si">}</span><span class="s2">, Quote: </span><span class="si">{</span><span class="n">quote</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+
+<span class="n">api</span><span class="o">.</span><span class="n">quote</span><span class="o">.</span><span class="n">set_quote_callback</span><span class="p">(</span><span class="n">quote_callback</span><span class="p">)</span>
+</code></pre></div>
+</div>
+</div>
+</div>
+</div>
+<div class="admonition done">
+<p class="admonition-title">Out</p>
+<div class="tabbed-set tabbed-alternate" data-tabs="13:2"><input checked="checked" id="__tabbed_13_1" name="__tabbed_13" type="radio" /><input id="__tabbed_13_2" name="__tabbed_13" type="radio" /><div class="tabbed-labels"><label for="__tabbed_13_1">QuoteVersion.v1.1</label><label for="__tabbed_13_2">QuoteVersion.v0</label></div>
+<div class="tabbed-content">
+<div class="tabbed-block">
+<div class="highlight"><pre><span></span><code><span class="n">Exchange</span><span class="p">:</span> <span class="n">Exchange</span><span class="o">.</span><span class="n">TSE</span><span class="p">,</span> <span class="n">Tick</span><span class="p">:</span> <span class="n">Tick</span><span class="p">(</span><span class="n">code</span><span class="o">=</span><span class="s1">&#39;2330&#39;</span><span class="p">,</span> <span class="n">datetime</span><span class="o">=</span><span class="n">datetime</span><span class="o">.</span><span class="n">datetime</span><span class="p">(</span><span class="mi">2021</span><span class="p">,</span> <span class="mi">7</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">13</span><span class="p">,</span> <span class="mi">16</span><span class="p">,</span> <span class="mi">35</span><span class="p">,</span> <span class="mi">92970</span><span class="p">),</span> <span class="nb">open</span><span class="o">=</span><span class="n">Decimal</span><span class="p">(</span><span class="s1">&#39;590&#39;</span><span class="p">),</span> <span class="n">avg_price</span><span class="o">=</span><span class="n">Decimal</span><span class="p">(</span><span class="s1">&#39;589.05&#39;</span><span class="p">),</span> <span class="n">close</span><span class="o">=</span><span class="n">Decimal</span><span class="p">(</span><span class="s1">&#39;590&#39;</span><span class="p">),</span> <span class="n">high</span><span class="o">=</span><span class="n">Decimal</span><span class="p">(</span><span class="s1">&#39;593&#39;</span><span class="p">),</span> <span class="n">low</span><span class="o">=</span><span class="n">Decimal</span><span class="p">(</span><span class="s1">&#39;587&#39;</span><span class="p">),</span> <span class="n">amount</span><span class="o">=</span><span class="n">Decimal</span><span class="p">(</span><span class="s1">&#39;590000&#39;</span><span class="p">),</span> <span class="n">total_amount</span><span class="o">=</span><span class="n">Decimal</span><span class="p">(</span><span class="s1">&#39;8540101000&#39;</span><span class="p">),</span> <span class="n">volume</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span> <span class="n">total_volume</span><span class="o">=</span><span class="mi">14498</span><span class="p">,</span> <span class="n">tick_type</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span> <span class="n">chg_type</span><span class="o">=</span><span class="mi">4</span><span class="p">,</span> <span class="n">price_chg</span><span class="o">=</span><span class="n">Decimal</span><span class="p">(</span><span class="s1">&#39;-3&#39;</span><span class="p">),</span> <span class="n">pct_chg</span><span class="o">=</span><span class="n">Decimal</span><span class="p">(</span><span class="s1">&#39;-0.505902&#39;</span><span class="p">),</span> <span class="n">trade_bid_volume</span><span class="o">=</span><span class="mi">6638</span><span class="p">,</span> <span class="n">ask_side_total_vol</span><span class="o">=</span><span class="mi">7860</span><span class="p">,</span> <span class="n">bid_side_total_cnt</span><span class="o">=</span><span class="mi">2694</span><span class="p">,</span> <span class="n">ask_side_total_cnt</span><span class="o">=</span><span class="mi">2705</span><span class="p">,</span> <span class="n">closing_oddlot_shares</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span> <span class="n">fixed_trade_vol</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span> <span class="n">suspend</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span> <span class="n">simtrade</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span> <span class="n">intraday_odd</span><span class="o">=</span><span class="mi">0</span><span class="p">)</span>
+</code></pre></div>
+</div>
+<div class="tabbed-block">
+<div class="highlight"><pre><span></span><code><span class="n">Topic</span><span class="p">:</span> <span class="n">MKT</span><span class="o">/*/</span><span class="n">TSE</span><span class="o">/</span><span class="mi">2330</span><span class="p">,</span> <span class="n">Quote</span><span class="p">:</span> <span class="p">{</span><span class="s1">&#39;AmountSum&#39;</span><span class="p">:</span> <span class="p">[</span><span class="mf">4739351000.0</span><span class="p">],</span> <span class="s1">&#39;Close&#39;</span><span class="p">:</span> <span class="p">[</span><span class="mf">596.0</span><span class="p">],</span> <span class="s1">&#39;Date&#39;</span><span class="p">:</span> <span class="s1">&#39;2021/03/30&#39;</span><span class="p">,</span> <span class="s1">&#39;TickType&#39;</span><span class="p">:</span> <span class="p">[</span><span class="mi">2</span><span class="p">],</span> <span class="s1">&#39;Time&#39;</span><span class="p">:</span> <span class="s1">&#39;10:01:33.349431&#39;</span><span class="p">,</span> <span class="s1">&#39;VolSum&#39;</span><span class="p">:</span> <span class="p">[</span><span class="mi">7932</span><span class="p">],</span> <span class="s1">&#39;Volume&#39;</span><span class="p">:</span> <span class="p">[</span><span class="mi">1</span><span class="p">]}</span>
+</code></pre></div>
+</div>
+</div>
+</div>
+</div>
+<h3 id="bidask">BidAsk<a class="headerlink" href="#bidask" title="Permanent link">&para;</a></h3>
+<div class="admonition info">
+<p class="admonition-title">decorator方式</p>
+<div class="tabbed-set tabbed-alternate" data-tabs="14:2"><input checked="checked" id="__tabbed_14_1" name="__tabbed_14" type="radio" /><input id="__tabbed_14_2" name="__tabbed_14" type="radio" /><div class="tabbed-labels"><label for="__tabbed_14_1">QuoteVersion.v1.1</label><label for="__tabbed_14_2">QuoteVersion.v0</label></div>
+<div class="tabbed-content">
+<div class="tabbed-block">
+<div class="highlight"><pre><span></span><code><span class="kn">from</span> <span class="nn">shioaji</span> <span class="kn">import</span> <span class="n">BidAskSTKv1</span><span class="p">,</span> <span class="n">Exchange</span>
+
+<span class="nd">@api</span><span class="o">.</span><span class="n">on_bidask_stk_v1</span><span class="p">()</span>
+<span class="k">def</span> <span class="nf">quote_callback</span><span class="p">(</span><span class="n">exchange</span><span class="p">:</span> <span class="n">Exchange</span><span class="p">,</span> <span class="n">bidask</span><span class="p">:</span><span class="n">BidAskSTKv1</span><span class="p">):</span>
+    <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Exchange: </span><span class="si">{</span><span class="n">exchange</span><span class="si">}</span><span class="s2">, BidAsk: </span><span class="si">{</span><span class="n">bidask</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+</code></pre></div>
+</div>
+<div class="tabbed-block">
+<div class="highlight"><pre><span></span><code><span class="nd">@api</span><span class="o">.</span><span class="n">quote</span><span class="o">.</span><span class="n">on_quote</span>
+<span class="k">def</span> <span class="nf">quote_callback</span><span class="p">(</span><span class="n">topic</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span> <span class="n">quote</span><span class="p">:</span> <span class="nb">dict</span><span class="p">):</span>
+    <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Topic: </span><span class="si">{</span><span class="n">topic</span><span class="si">}</span><span class="s2">, Quote: </span><span class="si">{</span><span class="n">quote</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+</code></pre></div>
+</div>
+</div>
+</div>
+</div>
+<div class="admonition info">
+<p class="admonition-title">傳統方式</p>
+<div class="tabbed-set tabbed-alternate" data-tabs="15:2"><input checked="checked" id="__tabbed_15_1" name="__tabbed_15" type="radio" /><input id="__tabbed_15_2" name="__tabbed_15" type="radio" /><div class="tabbed-labels"><label for="__tabbed_15_1">QuoteVersion.v1.1</label><label for="__tabbed_15_2">QuoteVersion.v0</label></div>
+<div class="tabbed-content">
+<div class="tabbed-block">
+<div class="highlight"><pre><span></span><code><span class="kn">from</span> <span class="nn">shioaji</span> <span class="kn">import</span> <span class="n">BidAskSTKv1</span><span class="p">,</span> <span class="n">Exchange</span>
+
+<span class="k">def</span> <span class="nf">quote_callback</span><span class="p">(</span><span class="n">exchange</span><span class="p">:</span> <span class="n">Exchange</span><span class="p">,</span> <span class="n">bidask</span><span class="p">:</span><span class="n">BidAskSTKv1</span><span class="p">):</span>
+    <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Exchange: </span><span class="si">{</span><span class="n">exchange</span><span class="si">}</span><span class="s2">, BidAsk: </span><span class="si">{</span><span class="n">bidask</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+
+<span class="n">api</span><span class="o">.</span><span class="n">quote</span><span class="o">.</span><span class="n">set_on_bidask_stk_v1_callback</span><span class="p">(</span><span class="n">quote_callback</span><span class="p">)</span>
+</code></pre></div>
+</div>
+<div class="tabbed-block">
+<div class="highlight"><pre><span></span><code><span class="k">def</span> <span class="nf">quote_callback</span><span class="p">(</span><span class="n">topic</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span> <span class="n">quote</span><span class="p">:</span> <span class="nb">dict</span><span class="p">):</span>
+    <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Topic: </span><span class="si">{</span><span class="n">topic</span><span class="si">}</span><span class="s2">, Quote: </span><span class="si">{</span><span class="n">quote</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+
+<span class="n">api</span><span class="o">.</span><span class="n">quote</span><span class="o">.</span><span class="n">set_quote_callback</span><span class="p">(</span><span class="n">quote_callback</span><span class="p">)</span>
+</code></pre></div>
+</div>
+</div>
+</div>
+</div>
+<div class="admonition done">
+<p class="admonition-title">Out</p>
+<div class="tabbed-set tabbed-alternate" data-tabs="16:2"><input checked="checked" id="__tabbed_16_1" name="__tabbed_16" type="radio" /><input id="__tabbed_16_2" name="__tabbed_16" type="radio" /><div class="tabbed-labels"><label for="__tabbed_16_1">QuoteVersion.v1.1</label><label for="__tabbed_16_2">QuoteVersion.v0</label></div>
+<div class="tabbed-content">
+<div class="tabbed-block">
+<div class="highlight"><pre><span></span><code><span class="n">Exchange</span><span class="p">:</span> <span class="n">Exchange</span><span class="o">.</span><span class="n">TSE</span><span class="p">,</span> <span class="n">BidAsk</span><span class="p">:</span> <span class="n">BidAsk</span><span class="p">(</span><span class="n">code</span><span class="o">=</span><span class="s1">&#39;2330&#39;</span><span class="p">,</span> <span class="n">datetime</span><span class="o">=</span><span class="n">datetime</span><span class="o">.</span><span class="n">datetime</span><span class="p">(</span><span class="mi">2021</span><span class="p">,</span> <span class="mi">7</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">13</span><span class="p">,</span> <span class="mi">17</span><span class="p">,</span> <span class="mi">29</span><span class="p">,</span> <span class="mi">726428</span><span class="p">),</span> <span class="n">bid_price</span><span class="o">=</span><span class="p">[</span><span class="n">Decimal</span><span class="p">(</span><span class="s1">&#39;589&#39;</span><span class="p">),</span> <span class="n">Decimal</span><span class="p">(</span><span class="s1">&#39;588&#39;</span><span class="p">),</span> <span class="n">Decimal</span><span class="p">(</span><span class="s1">&#39;587&#39;</span><span class="p">),</span> <span class="n">Decimal</span><span class="p">(</span><span class="s1">&#39;586&#39;</span><span class="p">),</span> <span class="n">Decimal</span><span class="p">(</span><span class="s1">&#39;585&#39;</span><span class="p">)],</span> <span class="n">bid_volume</span><span class="o">=</span><span class="p">[</span><span class="mi">223</span><span class="p">,</span> <span class="mi">761</span><span class="p">,</span> <span class="mi">1003</span><span class="p">,</span> <span class="mi">809</span><span class="p">,</span> <span class="mi">1274</span><span class="p">],</span> <span class="n">diff_bid_vol</span><span class="o">=</span><span class="p">[</span><span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">],</span> <span class="n">ask_price</span><span class="o">=</span><span class="p">[</span><span class="n">Decimal</span><span class="p">(</span><span class="s1">&#39;590&#39;</span><span class="p">),</span> <span class="n">Decimal</span><span class="p">(</span><span class="s1">&#39;591&#39;</span><span class="p">),</span> <span class="n">Decimal</span><span class="p">(</span><span class="s1">&#39;592&#39;</span><span class="p">),</span> <span class="n">Decimal</span><span class="p">(</span><span class="s1">&#39;593&#39;</span><span class="p">),</span> <span class="n">Decimal</span><span class="p">(</span><span class="s1">&#39;594&#39;</span><span class="p">)],</span> <span class="n">ask_volume</span><span class="o">=</span><span class="p">[</span><span class="mi">304</span><span class="p">,</span> <span class="mi">232</span><span class="p">,</span> <span class="mi">183</span><span class="p">,</span> <span class="mi">242</span><span class="p">,</span> <span class="mi">131</span><span class="p">],</span> <span class="n">diff_ask_vol</span><span class="o">=</span><span class="p">[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">],</span> <span class="n">suspend</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span> <span class="n">simtrade</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span> <span class="n">intraday_odd</span><span class="o">=</span><span class="mi">0</span><span class="p">)</span>
+</code></pre></div>
+</div>
+<div class="tabbed-block">
+<div class="highlight"><pre><span></span><code><span class="n">Topic</span><span class="p">:</span> <span class="n">QUT</span><span class="o">/</span><span class="n">idcdmzpcr01</span><span class="o">/</span><span class="n">TSE</span><span class="o">/</span><span class="mi">2330</span><span class="p">,</span> <span class="n">Quote</span><span class="p">:</span> <span class="p">{</span><span class="s1">&#39;AskPrice&#39;</span><span class="p">:</span> <span class="p">[</span><span class="mf">590.0</span><span class="p">,</span> <span class="mf">591.0</span><span class="p">,</span> <span class="mf">592.0</span><span class="p">,</span> <span class="mf">593.0</span><span class="p">,</span> <span class="mf">594.0</span><span class="p">],</span> <span class="s1">&#39;AskVolume&#39;</span><span class="p">:</span> <span class="p">[</span><span class="mi">303</span><span class="p">,</span> <span class="mi">232</span><span class="p">,</span> <span class="mi">183</span><span class="p">,</span> <span class="mi">242</span><span class="p">,</span> <span class="mi">131</span><span class="p">],</span> <span class="s1">&#39;BidPrice&#39;</span><span class="p">:</span> <span class="p">[</span><span class="mf">589.0</span><span class="p">,</span> <span class="mf">588.0</span><span class="p">,</span> <span class="mf">587.0</span><span class="p">,</span> <span class="mf">586.0</span><span class="p">,</span> <span class="mf">585.0</span><span class="p">],</span> <span class="s1">&#39;BidVolume&#39;</span><span class="p">:</span> <span class="p">[</span><span class="mi">224</span><span class="p">,</span> <span class="mi">762</span><span class="p">,</span> <span class="mi">1003</span><span class="p">,</span> <span class="mi">809</span><span class="p">,</span> <span class="mi">1274</span><span class="p">],</span> <span class="s1">&#39;Date&#39;</span><span class="p">:</span> <span class="s1">&#39;2021/07/02&#39;</span><span class="p">,</span> <span class="s1">&#39;Time&#39;</span><span class="p">:</span> <span class="s1">&#39;13:17:26.391840&#39;</span><span class="p">}</span>
+</code></pre></div>
+</div>
+</div>
+</div>
+</div>
+<h2 id="_11">期貨帳務資訊<a class="headerlink" href="#_11" title="Permanent link">&para;</a></h2>
 <p>移除以下API</p>
 <div class="codehilite"><pre><span></span><code><span class="mf">1.</span><span class="w"> </span><span class="kr">get</span><span class="n">_account_margin</span>
 <span class="mf">2.</span><span class="w"> </span><span class="kr">get</span><span class="n">_account_openposition</span>
