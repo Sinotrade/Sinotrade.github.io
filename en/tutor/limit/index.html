@@ -1113,7 +1113,9 @@
 <li>
 <p>Data : </p>
 <p><code>credit_enquire</code>, <code>short_stock_sources</code>, <code>snapshots</code>, <code>ticks</code>, <code>kbars</code></p>
-<p>The total amount of inquiries above is limited to 500 times within 5 seconds.</p>
+<p>The total amount of inquiries above is limited to 50 times within 5 seconds.
+During trading hours, it is prohibited to query <code>ticks</code> more than 10 times.
+During trading hours, it is prohibited to query <code>kbars</code> more than 270 times.</p>
 </li>
 <li>
 <p>Portfolio :</p>
