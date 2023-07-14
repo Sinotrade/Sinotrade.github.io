@@ -1201,6 +1201,7 @@
         <span class="n">account</span><span class="p">:</span> <span class="n">shioaji</span><span class="o">.</span><span class="n">account</span><span class="o">.</span><span class="n">Account</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
         <span class="n">begin_date</span><span class="p">:</span> <span class="nb">str</span> <span class="o">=</span> <span class="s1">&#39;&#39;</span><span class="p">,</span>
         <span class="n">end_date</span><span class="p">:</span> <span class="nb">str</span> <span class="o">=</span> <span class="s1">&#39;&#39;</span><span class="p">,</span>
+        <span class="n">unit</span><span class="p">:</span> <span class="n">shioaji</span><span class="o">.</span><span class="n">constant</span><span class="o">.</span><span class="n">Unit</span> <span class="o">=</span> <span class="o">&lt;</span><span class="n">Unit</span><span class="o">.</span><span class="n">Common</span><span class="p">:</span> <span class="s1">&#39;Common&#39;</span><span class="o">&gt;</span><span class="p">,</span>
         <span class="n">timeout</span><span class="p">:</span> <span class="nb">int</span> <span class="o">=</span> <span class="mi">5000</span><span class="p">,</span>
         <span class="n">cb</span><span class="p">:</span> <span class="n">Callable</span><span class="p">[[</span><span class="n">List</span><span class="p">[</span><span class="n">shioaji</span><span class="o">.</span><span class="n">position</span><span class="o">.</span><span class="n">ProfitLoss</span><span class="p">]],</span> <span class="n">NoneType</span><span class="p">]</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
     <span class="p">)</span> <span class="o">-&gt;</span> <span class="n">List</span><span class="p">[</span><span class="n">shioaji</span><span class="o">.</span><span class="n">position</span><span class="o">.</span><span class="n">ProfitLoss</span><span class="p">]</span>
@@ -1214,7 +1215,7 @@
         <span class="n">end_date</span> <span class="p">(</span><span class="nb">str</span><span class="p">):</span> <span class="n">the</span> <span class="n">end</span> <span class="n">date</span> <span class="n">of</span> <span class="n">query</span> <span class="n">profit</span> <span class="n">loss</span> <span class="p">(</span><span class="n">Default</span><span class="p">:</span> <span class="n">today</span><span class="p">)</span>
 </code></pre></div>
 </div>
-<p>帶入想查詢的時間區間。<code>begin_date</code>為起始時間，<code>end_date</code>為結束時間。</p>
+<p>帶入想查詢的時間區間。<code>begin_date</code>為起始時間，<code>end_date</code>為結束時間。<code>unit</code>為數量單位，<code>Common</code>為整股，<code>Share</code>為零股。</p>
 <div class="admonition info">
 <p class="admonition-title">In</p>
 <div class="highlight"><pre><span></span><code><span class="n">profitloss</span> <span class="o">=</span> <span class="n">api</span><span class="o">.</span><span class="n">list_profit_loss</span><span class="p">(</span><span class="n">api</span><span class="o">.</span><span class="n">stock_account</span><span class="p">,</span><span class="s1">&#39;2020-05-05&#39;</span><span class="p">,</span><span class="s1">&#39;2020-05-30&#39;</span><span class="p">)</span>

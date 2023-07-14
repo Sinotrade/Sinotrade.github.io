@@ -1109,8 +1109,71 @@
 <p>In order to avoid affecting other users' connections, please follow the following usage rules. </p>
 <div class="admonition info">
 <p class="admonition-title">Rules</p>
+</div>
 <ul>
 <li>
+<p>Traffic :
+    Stock:</p>
+<table>
+<thead>
+<tr>
+<th align="right">Trading volume by API in the past 30 days</th>
+<th align="left">Daily Traffic Limit</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td align="right">0</td>
+<td align="left">500MB</td>
+</tr>
+<tr>
+<td align="right">1 - 1E</td>
+<td align="left">2GB</td>
+</tr>
+<tr>
+<td align="right">&gt;   1E</td>
+<td align="left">10GB</td>
+</tr>
+</tbody>
+</table>
+<p>Future:</p>
+<table>
+<thead>
+<tr>
+<th align="right">Trading volume by API in the past 30 days</th>
+<th align="left">Daily Traffic Limit</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td align="right">0</td>
+<td align="left">500MB</td>
+</tr>
+<tr>
+<td align="right">1 - TXF 1000 contracts / MXF 4000 contracts</td>
+<td align="left">2GB</td>
+</tr>
+<tr>
+<td align="right">&gt;   TXF 1000 contracts / MXF 4000 contracts</td>
+<td align="left">10GB</td>
+</tr>
+</tbody>
+</table>
+<div class="admonition info">
+<p class="admonition-title">Traffic query</p>
+</div>
+<div class="highlight"><pre><span></span><code><span class="n">api</span><span class="o">.</span><span class="n">usage</span><span class="p">()</span>
+</code></pre></div>
+<div class="admonition done">
+<p class="admonition-title">Out</p>
+</div>
+<div class="highlight"><pre><span></span><code><span class="n">UsageStatus</span><span class="p">(</span><span class="n">connections</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span> <span class="nb">bytes</span><span class="o">=</span><span class="mi">12309253</span><span class="p">)</span>
+</code></pre></div>
+<p><code>connection</code> is connection count.</p>
+<p><code>bytes</code> is traffic.</p>
+</li>
+<li>
+<p>Count:</p>
 <p>Data : </p>
 <p><code>credit_enquire</code>, <code>short_stock_sources</code>, <code>snapshots</code>, <code>ticks</code>, <code>kbars</code></p>
 <ul>
@@ -1118,34 +1181,34 @@
 <li>During trading hours, it is prohibited to query <code>ticks</code> more than 10 times.</li>
 <li>During trading hours, it is prohibited to query <code>kbars</code> more than 270 times.</li>
 </ul>
-</li>
-<li>
 <p>Portfolio :</p>
 <p><code>list_profit_loss_detail</code>,<code>account_balance</code>, <code>list_settlements</code>, <code>list_profit_loss</code>, <code>list_positions</code></p>
 <p>The total amount of inquiries above is limited to 25 times within 5 seconds.</p>
-</li>
-<li>
 <p>Order :</p>
 <p><code>place_order</code>, <code>update_status</code>, <code>update_qty</code>, <code>update_price</code>, <code>cancel_order</code></p>
 <p>The total amount of inquiries above is limited to 500 times within 10 seconds.</p>
-</li>
-<li>
-<p>Connect : </p>
+<p>Connect :</p>
 <p>The same SinoPac Securities <code>person_id</code> can only use up to 5 connections.</p>
 <p>note. <code>api.login()</code>create a connection.</p>
-</li>
-<li>
 <p>Login : </p>
 <p>Up to 1000 times per day.</p>
 </li>
 </ul>
-</div>
 <div class="admonition attention">
 <p class="admonition-title">Warn</p>
 <ul>
-<li>If the usage exceeds the limit, the service will be suspended for one minute.</li>
-<li>If the limit is exceeded multiple times in a row on the same day, the company will suspend the right to use the IP and ID.</li>
-<li>If the ID is suspended, please contact Shioaji management staff</li>
+<li>
+<p>If the traffic exceeds the limit, query requests for market data such as <code>ticks</code>, <code>snapshots</code>, and <code>kbars</code> will return empty values, while other functionalities remain unaffected.</p>
+</li>
+<li>
+<p>If the usage(request count) exceeds the limit, the service will be suspended for one minute.</p>
+</li>
+<li>
+<p>If the limit is exceeded multiple times in a row on the same day, the company will suspend the right to use the IP and ID.</p>
+</li>
+<li>
+<p>If the ID is suspended, please contact Shioaji management staff</p>
+</li>
 </ul>
 </div>
 

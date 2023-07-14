@@ -1109,8 +1109,71 @@
 <p>為避免影響其他使用者連線，請遵守以下使用規範</p>
 <div class="admonition info">
 <p class="admonition-title">Rules</p>
+</div>
 <ul>
 <li>
+<p>流量 :</p>
+<p>現貨:</p>
+<table>
+<thead>
+<tr>
+<th align="right">近 30 日使用 API 成交金額</th>
+<th align="left">每日流量限制</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td align="right">0</td>
+<td align="left">500MB</td>
+</tr>
+<tr>
+<td align="right">1 - 1E</td>
+<td align="left">2GB</td>
+</tr>
+<tr>
+<td align="right">&gt;   1E</td>
+<td align="left">10GB</td>
+</tr>
+</tbody>
+</table>
+<p>期貨:</p>
+<table>
+<thead>
+<tr>
+<th align="right">近 30 日使用 API 成交金額</th>
+<th align="left">每日流量限制</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td align="right">0</td>
+<td align="left">500MB</td>
+</tr>
+<tr>
+<td align="right">1 - 大台1000口 / 小台4000口</td>
+<td align="left">2GB</td>
+</tr>
+<tr>
+<td align="right">&gt;   大台1000口 / 小台4000口</td>
+<td align="left">10G</td>
+</tr>
+</tbody>
+</table>
+<div class="admonition info">
+<p class="admonition-title">流量及連線數查詢</p>
+<div class="highlight"><pre><span></span><code><span class="n">api</span><span class="o">.</span><span class="n">usage</span><span class="p">()</span>
+</code></pre></div>
+</div>
+<div class="admonition done">
+<p class="admonition-title">Out</p>
+<div class="highlight"><pre><span></span><code><span class="n">UsageStatus</span><span class="p">(</span><span class="n">connections</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span> <span class="nb">bytes</span><span class="o">=</span><span class="mi">12309253</span><span class="p">)</span>
+</code></pre></div>
+</div>
+<p><code>connection</code>為連線數量</p>
+<p><code>bytes</code>為流量</p>
+</li>
+<li>
+<p>次數 :</p>
 <p>行情 : </p>
 <p><code>credit_enquire</code>, <code>short_stock_sources</code>, <code>snapshots</code>, <code>ticks</code>, <code>kbars</code></p>
 <ul>
@@ -1118,34 +1181,34 @@
 <li>盤中查詢 <code>ticks</code> 次數不得超過 10 次</li>
 <li>盤中查詢 <code>kbars</code> 次數不得超過 270 次</li>
 </ul>
-</li>
-<li>
 <p>帳務 : </p>
 <p><code>list_profit_loss_detail</code>,<code>account_balance</code>, <code>list_settlements</code>, <code>list_profit_loss</code>, <code>list_positions</code></p>
 <p>以上查詢總次數 5 秒上限 25 次</p>
-</li>
-<li>
-<p>委託 : </p>
+<p>委託 :</p>
 <p><code>place_order</code>, <code>update_status</code>, <code>update_qty</code>, <code>update_price</code>, <code>cancel_order</code></p>
 <p>以上查詢總次數 10 秒上限 500 次</p>
-</li>
-<li>
-<p>連線 : </p>
+<p>連線 :</p>
 <p>同一永豐金證券<code>person_id</code>，僅可使用最多5個連線。
-注意: <code>api.login()</code>即建立一個連線</p>
-</li>
-<li>
+  注意: <code>api.login()</code>即建立一個連線</p>
 <p>登入 : </p>
 <p><code>api.login()</code>一天上限1000次</p>
 </li>
 </ul>
-</div>
 <div class="admonition attention">
 <p class="admonition-title">Warn</p>
 <ul>
-<li>若使用量超過限制，將暫停服務一分鐘</li>
-<li>若當日連續多次超過限制，本公司將暫停該 IP 及 ID 使用權</li>
-<li>若 ID 被暫停使用，請洽 Shioaji 管理人員</li>
+<li>
+<p>若流量超過限制，行情(ticks、snapshots、kbars)類查詢將回傳空值，其他功能不受影響</p>
+</li>
+<li>
+<p>若使用量(次數)超過限制，將暫停服務一分鐘</p>
+</li>
+<li>
+<p>若當日連續多次超過限制，本公司將暫停該 IP 及 ID 使用權</p>
+</li>
+<li>
+<p>若 ID 被暫停使用，請洽 Shioaji 管理人員</p>
+</li>
 </ul>
 </div>
 
