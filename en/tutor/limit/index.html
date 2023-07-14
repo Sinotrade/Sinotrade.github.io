@@ -1109,97 +1109,43 @@
 <p>In order to avoid affecting other users' connections, please follow the following usage rules. </p>
 <div class="admonition info">
 <p class="admonition-title">Rules</p>
-<p>Traffic:</p>
-<div class="codehilite"><pre><span></span><code><span class="nv">Stock</span><span class="o">:</span>
-
-<span class="p">|</span> <span class="nv">Trading</span> <span class="s s-Atom">volume</span> <span class="s s-Atom">by</span> <span class="nv">API</span> <span class="s s-Atom">in</span> <span class="s s-Atom">the</span> <span class="s s-Atom">past</span> <span class="mi">30</span> <span class="s s-Atom">days</span>    <span class="p">|</span>  <span class="nv">Daily</span> <span class="nv">Traffic</span> <span class="nv">Limit</span>  <span class="p">|</span>
-<span class="p">|</span><span class="s s-Atom">---------------------------------------------:</span><span class="p">|</span><span class="o">:-</span><span class="s s-Atom">---------------------</span><span class="p">|</span>
-<span class="p">|</span> <span class="mi">0</span>                                            <span class="p">|</span>                <span class="mi">500</span><span class="nv">MB</span>  <span class="p">|</span>  
-<span class="p">|</span> <span class="mi">1</span> <span class="o">-</span> <span class="mi">1</span><span class="nv">E</span>                                       <span class="p">|</span>                  <span class="mi">2</span><span class="nv">GB</span>  <span class="p">|</span>  
-<span class="p">|</span> <span class="o">&gt;</span>   <span class="mi">1</span><span class="nv">E</span>                                       <span class="p">|</span>                 <span class="mi">10</span><span class="nv">GB</span>  <span class="p">|</span>
-
-<span class="nv">Future</span><span class="o">:</span>
-
-<span class="p">|</span> <span class="nv">Trading</span> <span class="s s-Atom">volume</span> <span class="s s-Atom">by</span> <span class="nv">API</span> <span class="s s-Atom">in</span> <span class="s s-Atom">the</span> <span class="s s-Atom">past</span> <span class="mi">30</span> <span class="s s-Atom">days</span>    <span class="p">|</span>  <span class="nv">Daily</span> <span class="nv">Traffic</span> <span class="nv">Limit</span>  <span class="p">|</span>
-<span class="p">|</span><span class="s s-Atom">---------------------------------------------:</span><span class="p">|</span><span class="o">:-</span><span class="s s-Atom">---------------------</span><span class="p">|</span>
-<span class="p">|</span> <span class="mi">0</span>                                            <span class="p">|</span>                <span class="mi">500</span><span class="nv">MB</span>  <span class="p">|</span>  
-<span class="p">|</span> <span class="mi">1</span> <span class="o">-</span> <span class="nv">TXF</span> <span class="mi">1000</span> <span class="s s-Atom">contracts</span> <span class="o">/</span> <span class="nv">MXF</span> <span class="mi">4000</span> <span class="s s-Atom">contracts</span>  <span class="p">|</span>                  <span class="mi">2</span><span class="nv">GB</span>  <span class="p">|</span>  
-<span class="p">|</span> <span class="o">&gt;</span>   <span class="nv">TXF</span> <span class="mi">1000</span> <span class="s s-Atom">contracts</span> <span class="o">/</span> <span class="nv">MXF</span> <span class="mi">4000</span> <span class="s s-Atom">contracts</span>  <span class="p">|</span>                 <span class="mi">10</span><span class="nv">GB</span>  <span class="p">|</span>
-
-<span class="p">!!!</span> <span class="s s-Atom">info</span> <span class="s2">&quot;Traffic query&quot;</span>
-    <span class="err">```</span><span class="s s-Atom">python</span>
-    <span class="s s-Atom">api</span><span class="p">.</span><span class="nf">usage</span><span class="p">()</span>
-    <span class="err">```</span>
-
-<span class="p">!!!</span> <span class="s s-Atom">done</span> <span class="s2">&quot;Out&quot;</span>
-    <span class="err">```</span><span class="s s-Atom">python</span> 
-    <span class="nv">UsageStatus</span><span class="p">(</span><span class="s s-Atom">connections</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span> <span class="s s-Atom">bytes</span><span class="o">=</span><span class="mi">12309253</span><span class="p">)</span>
-    <span class="err">```</span>
-
-<span class="err">`</span><span class="s s-Atom">connection</span><span class="err">`</span> <span class="o">is</span> <span class="s s-Atom">connection</span> <span class="s s-Atom">count</span><span class="p">.</span>
-
-<span class="err">`</span><span class="s s-Atom">bytes</span><span class="err">`</span> <span class="o">is</span> <span class="s s-Atom">traffic</span><span class="p">.</span>
-</code></pre></div>
-
-<p>Count:</p>
 <ul>
 <li>
-<p>Data: </p>
-<div class="codehilite"><pre><span></span><code><span class="n n-Quoted">`credit_enquire`</span><span class="p">,</span><span class="w"> </span><span class="n n-Quoted">`short_stock_sources`</span><span class="p">,</span><span class="w"> </span><span class="n n-Quoted">`snapshots`</span><span class="p">,</span><span class="w"> </span><span class="n n-Quoted">`ticks`</span><span class="p">,</span><span class="w"> </span><span class="n n-Quoted">`kbars`</span>
-
-<span class="o">-</span><span class="w"> </span><span class="n">The</span><span class="w"> </span><span class="n">total</span><span class="w"> </span><span class="n">amount</span><span class="w"> </span><span class="k">of</span><span class="w"> </span><span class="n">inquiries</span><span class="w"> </span><span class="n">above</span><span class="w"> </span><span class="k">is</span><span class="w"> </span><span class="n">limited</span><span class="w"> </span><span class="k">to</span><span class="w"> </span><span class="mi">50</span><span class="w"> </span><span class="n">times</span><span class="w"> </span><span class="n">within</span><span class="w"> </span><span class="mi">5</span><span class="w"> </span><span class="n">seconds</span><span class="p">.</span>
-<span class="o">-</span><span class="w"> </span><span class="n">During</span><span class="w"> </span><span class="n">trading</span><span class="w"> </span><span class="n">hours</span><span class="p">,</span><span class="w"> </span><span class="n">it</span><span class="w"> </span><span class="k">is</span><span class="w"> </span><span class="n">prohibited</span><span class="w"> </span><span class="k">to</span><span class="w"> </span><span class="k">query</span><span class="w"> </span><span class="n n-Quoted">`ticks`</span><span class="w"> </span><span class="n">more</span><span class="w"> </span><span class="k">than</span><span class="w"> </span><span class="mi">10</span><span class="w"> </span><span class="n">times</span><span class="p">.</span>
-<span class="o">-</span><span class="w"> </span><span class="n">During</span><span class="w"> </span><span class="n">trading</span><span class="w"> </span><span class="n">hours</span><span class="p">,</span><span class="w"> </span><span class="n">it</span><span class="w"> </span><span class="k">is</span><span class="w"> </span><span class="n">prohibited</span><span class="w"> </span><span class="k">to</span><span class="w"> </span><span class="k">query</span><span class="w"> </span><span class="n n-Quoted">`kbars`</span><span class="w"> </span><span class="n">more</span><span class="w"> </span><span class="k">than</span><span class="w"> </span><span class="mi">270</span><span class="w"> </span><span class="n">times</span><span class="p">.</span>
-</code></pre></div>
-
+<p>Data : </p>
+<p><code>credit_enquire</code>, <code>short_stock_sources</code>, <code>snapshots</code>, <code>ticks</code>, <code>kbars</code></p>
+<ul>
+<li>The total amount of inquiries above is limited to 50 times within 5 seconds.</li>
+<li>During trading hours, it is prohibited to query <code>ticks</code> more than 10 times.</li>
+<li>During trading hours, it is prohibited to query <code>kbars</code> more than 270 times.</li>
+</ul>
 </li>
 <li>
 <p>Portfolio :</p>
-<div class="codehilite"><pre><span></span><code><span class="n n-Quoted">`list_profit_loss_detail`</span><span class="p">,</span><span class="n n-Quoted">`account_balance`</span><span class="p">,</span><span class="w"> </span><span class="n n-Quoted">`list_settlements`</span><span class="p">,</span><span class="w"> </span><span class="n n-Quoted">`list_profit_loss`</span><span class="p">,</span><span class="w"> </span><span class="n n-Quoted">`list_positions`</span>
-
-<span class="n">The</span><span class="w"> </span><span class="n">total</span><span class="w"> </span><span class="n">amount</span><span class="w"> </span><span class="k">of</span><span class="w"> </span><span class="n">inquiries</span><span class="w"> </span><span class="n">above</span><span class="w"> </span><span class="k">is</span><span class="w"> </span><span class="n">limited</span><span class="w"> </span><span class="k">to</span><span class="w"> </span><span class="mi">25</span><span class="w"> </span><span class="n">times</span><span class="w"> </span><span class="n">within</span><span class="w"> </span><span class="mi">5</span><span class="w"> </span><span class="n">seconds</span><span class="p">.</span>
-</code></pre></div>
-
+<p><code>list_profit_loss_detail</code>,<code>account_balance</code>, <code>list_settlements</code>, <code>list_profit_loss</code>, <code>list_positions</code></p>
+<p>The total amount of inquiries above is limited to 25 times within 5 seconds.</p>
 </li>
 <li>
 <p>Order :</p>
-<div class="codehilite"><pre><span></span><code><span class="n n-Quoted">`place_order`</span><span class="p">,</span><span class="w"> </span><span class="n n-Quoted">`update_status`</span><span class="p">,</span><span class="w"> </span><span class="n n-Quoted">`update_qty`</span><span class="p">,</span><span class="w"> </span><span class="n n-Quoted">`update_price`</span><span class="p">,</span><span class="w"> </span><span class="n n-Quoted">`cancel_order`</span>
-
-<span class="n">The</span><span class="w"> </span><span class="n">total</span><span class="w"> </span><span class="n">amount</span><span class="w"> </span><span class="k">of</span><span class="w"> </span><span class="n">inquiries</span><span class="w"> </span><span class="n">above</span><span class="w"> </span><span class="k">is</span><span class="w"> </span><span class="n">limited</span><span class="w"> </span><span class="k">to</span><span class="w"> </span><span class="mi">500</span><span class="w"> </span><span class="n">times</span><span class="w"> </span><span class="n">within</span><span class="w"> </span><span class="mi">10</span><span class="w"> </span><span class="n">seconds</span><span class="p">.</span>
-</code></pre></div>
-
+<p><code>place_order</code>, <code>update_status</code>, <code>update_qty</code>, <code>update_price</code>, <code>cancel_order</code></p>
+<p>The total amount of inquiries above is limited to 500 times within 10 seconds.</p>
 </li>
 <li>
-<p>Connect :</p>
-<div class="codehilite"><pre><span></span><code><span class="n">The</span><span class="w"> </span><span class="n">same</span><span class="w"> </span><span class="n">SinoPac</span><span class="w"> </span><span class="n">Securities</span><span class="w"> </span><span class="n n-Quoted">`person_id`</span><span class="w"> </span><span class="n">can</span><span class="w"> </span><span class="k">only</span><span class="w"> </span><span class="k">use</span><span class="w"> </span><span class="n">up</span><span class="w"> </span><span class="k">to</span><span class="w"> </span><span class="mi">5</span><span class="w"> </span><span class="n">connections</span><span class="p">.</span>
-
-<span class="n">note</span><span class="p">.</span><span class="w"> </span><span class="n n-Quoted">`api.login()`</span><span class="k">create</span><span class="w"> </span><span class="n">a</span><span class="w"> </span><span class="k">connection</span><span class="p">.</span>
-</code></pre></div>
-
+<p>Connect : </p>
+<p>The same SinoPac Securities <code>person_id</code> can only use up to 5 connections.</p>
+<p>note. <code>api.login()</code>create a connection.</p>
 </li>
 <li>
 <p>Login : </p>
-<div class="codehilite"><pre><span></span><code>Up to 1000 times per day.
-</code></pre></div>
-
+<p>Up to 1000 times per day.</p>
 </li>
 </ul>
 </div>
 <div class="admonition attention">
 <p class="admonition-title">Warn</p>
 <ul>
-<li>
-<p>If the traffic exceeds the limit, query requests for market data such as <code>ticks</code>, <code>snapshots</code>, and <code>kbars</code> will return empty values, while other functionalities remain unaffected.</p>
-</li>
-<li>
-<p>If the usage(request count) exceeds the limit, the service will be suspended for one minute.</p>
-</li>
-<li>
-<p>If the limit is exceeded multiple times in a row on the same day, the company will suspend the right to use the IP and ID.</p>
-</li>
-<li>
-<p>If the ID is suspended, please contact Shioaji management staff</p>
-</li>
+<li>If the usage exceeds the limit, the service will be suspended for one minute.</li>
+<li>If the limit is exceeded multiple times in a row on the same day, the company will suspend the right to use the IP and ID.</li>
+<li>If the ID is suspended, please contact Shioaji management staff</li>
 </ul>
 </div>
 
