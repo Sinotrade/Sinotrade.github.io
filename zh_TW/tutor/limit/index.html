@@ -1159,39 +1159,52 @@
 </tr>
 </tbody>
 </table>
-<div class="admonition info">
-<p class="admonition-title">流量及連線數查詢</p>
-<div class="highlight"><pre><span></span><code><span class="n">api</span><span class="o">.</span><span class="n">usage</span><span class="p">()</span>
+<p>!!! info "流量及連線數查詢"</p>
+<div class="codehilite"><pre><span></span><code>  ```python
+  api.usage()
+  ```
 </code></pre></div>
-</div>
-<div class="admonition done">
-<p class="admonition-title">Out</p>
-<div class="highlight"><pre><span></span><code><span class="n">UsageStatus</span><span class="p">(</span><span class="n">connections</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span> <span class="nb">bytes</span><span class="o">=</span><span class="mi">12309253</span><span class="p">)</span>
+
+<p>!!! done "Out"</p>
+<div class="codehilite"><pre><span></span><code>  ```python 
+  UsageStatus(connections=1, bytes=12309253)
+  ```
 </code></pre></div>
-</div>
+
 <p><code>connection</code>為連線數量</p>
 <p><code>bytes</code>為流量</p>
 </li>
 <li>
 <p>次數 :</p>
 <p>行情 : </p>
-<p><code>credit_enquire</code>, <code>short_stock_sources</code>, <code>snapshots</code>, <code>ticks</code>, <code>kbars</code></p>
-<ul>
-<li>以上查詢總次數 5 秒上限 50 次</li>
-<li>盤中查詢 <code>ticks</code> 次數不得超過 10 次</li>
-<li>盤中查詢 <code>kbars</code> 次數不得超過 270 次</li>
-</ul>
+<div class="codehilite"><pre><span></span><code><span class="n n-Quoted">`credit_enquire`</span><span class="p">,</span><span class="w"> </span><span class="n n-Quoted">`short_stock_sources`</span><span class="p">,</span><span class="w"> </span><span class="n n-Quoted">`snapshots`</span><span class="p">,</span><span class="w"> </span><span class="n n-Quoted">`ticks`</span><span class="p">,</span><span class="w"> </span><span class="n n-Quoted">`kbars`</span>
+
+<span class="o">-</span><span class="w"> </span><span class="n">以上查詢總次數</span><span class="w"> </span><span class="mi">5</span><span class="w"> </span><span class="n">秒上限</span><span class="w"> </span><span class="mi">50</span><span class="w"> </span><span class="n">次</span>
+<span class="o">-</span><span class="w"> </span><span class="n">盤中查詢</span><span class="w"> </span><span class="n n-Quoted">`ticks`</span><span class="w"> </span><span class="n">次數不得超過</span><span class="w"> </span><span class="mi">10</span><span class="w"> </span><span class="n">次</span>
+<span class="o">-</span><span class="w"> </span><span class="n">盤中查詢</span><span class="w"> </span><span class="n n-Quoted">`kbars`</span><span class="w"> </span><span class="n">次數不得超過</span><span class="w"> </span><span class="mi">270</span><span class="w"> </span><span class="n">次</span>
+</code></pre></div>
+
 <p>帳務 : </p>
-<p><code>list_profit_loss_detail</code>,<code>account_balance</code>, <code>list_settlements</code>, <code>list_profit_loss</code>, <code>list_positions</code></p>
-<p>以上查詢總次數 5 秒上限 25 次</p>
+<div class="codehilite"><pre><span></span><code><span class="n n-Quoted">`list_profit_loss_detail`</span><span class="p">,</span><span class="n n-Quoted">`account_balance`</span><span class="p">,</span><span class="w"> </span><span class="n n-Quoted">`list_settlements`</span><span class="p">,</span><span class="w"> </span><span class="n n-Quoted">`list_profit_loss`</span><span class="p">,</span><span class="w"> </span><span class="n n-Quoted">`list_positions`</span>
+
+<span class="n">以上查詢總次數</span><span class="w"> </span><span class="mi">5</span><span class="w"> </span><span class="n">秒上限</span><span class="w"> </span><span class="mi">25</span><span class="w"> </span><span class="n">次</span>
+</code></pre></div>
+
 <p>委託 :</p>
-<p><code>place_order</code>, <code>update_status</code>, <code>update_qty</code>, <code>update_price</code>, <code>cancel_order</code></p>
-<p>以上查詢總次數 10 秒上限 500 次</p>
+<div class="codehilite"><pre><span></span><code><span class="n n-Quoted">`place_order`</span><span class="p">,</span><span class="w"> </span><span class="n n-Quoted">`update_status`</span><span class="p">,</span><span class="w"> </span><span class="n n-Quoted">`update_qty`</span><span class="p">,</span><span class="w"> </span><span class="n n-Quoted">`update_price`</span><span class="p">,</span><span class="w"> </span><span class="n n-Quoted">`cancel_order`</span>
+
+<span class="n">以上查詢總次數</span><span class="w"> </span><span class="mi">10</span><span class="w"> </span><span class="n">秒上限</span><span class="w"> </span><span class="mi">500</span><span class="w"> </span><span class="n">次</span>
+</code></pre></div>
+
 <p>連線 :</p>
-<p>同一永豐金證券<code>person_id</code>，僅可使用最多5個連線。
-  注意: <code>api.login()</code>即建立一個連線</p>
+<div class="codehilite"><pre><span></span><code><span class="n">同一永豐金證券</span><span class="n n-Quoted">`person_id`</span><span class="n">，僅可使用最多5個連線。</span>
+<span class="n">注意</span><span class="o">:</span><span class="w"> </span><span class="n n-Quoted">`api.login()`</span><span class="n">即建立一個連線</span>
+</code></pre></div>
+
 <p>登入 : </p>
-<p><code>api.login()</code>一天上限1000次</p>
+<div class="codehilite"><pre><span></span><code>`api.login()`一天上限1000次
+</code></pre></div>
+
 </li>
 </ul>
 <div class="admonition attention">
