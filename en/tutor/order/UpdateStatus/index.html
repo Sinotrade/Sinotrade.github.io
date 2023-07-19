@@ -1206,6 +1206,7 @@
 <p>First, you need to <a href="../../login/">login</a> and <a href="../../prepare/terms/">activate CA</a>.</p>
 </div>
 <p>Before obtaining the <code>Trade</code> status, it must be updated with <code>update_status</code>. If you cannot successfully <code>update_order</code> or <code>cancel_order</code>, you can use <code>update_status</code> to update the specific <code>trade</code> status, and check the <code>OrderStatus</code> in <code>trade</code>, whether it is available to modify the order.</p>
+<p>The update_status defaults to querying all accounts under the user's name. If you wish to inquire about a specific account, provide the account as a parameter to account.</p>
 <div class="admonition info">
 <p class="admonition-title">Update Status</p>
 <div class="highlight"><pre><span></span><code><span class="n">api</span><span class="o">.</span><span class="n">update_status</span><span class="err">?</span>

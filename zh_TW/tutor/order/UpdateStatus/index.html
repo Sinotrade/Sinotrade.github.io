@@ -1205,7 +1205,7 @@
 <p class="admonition-title">提醒</p>
 <p>必須先<a href="../../login/">登入</a>及啟用<a href="../../prepare/terms/">憑證</a>。</p>
 </div>
-<p>在取得 <code>Trade</code> 狀態前，必須先利用<code>update_status</code>進行更新。如果無法成功刪單或改單，你可以對特定<code>trade</code>物件進行更新，並確認在<code>trade</code>中的<code>OrderStatus</code>，是否為可刪改狀態。</p>
+<p>在取得 <code>Trade</code> 狀態前，必須先利用<code>update_status</code>進行更新。如果無法成功刪單或改單，你可以對特定<code>trade</code>物件進行更新，並確認在<code>trade</code>中的<code>OrderStatus</code>，是否為可刪改狀態。<code>update_status</code> 預設查詢為名下所有帳號。若想查詢特定帳號，將帳號帶入<code>account</code>。</p>
 <div class="admonition info">
 <p class="admonition-title">Update Status</p>
 <div class="highlight"><pre><span></span><code><span class="n">api</span><span class="o">.</span><span class="n">update_status</span><span class="err">?</span>

@@ -1242,10 +1242,6 @@ a look at the <code>api.Contracts</code>, you will find the information you want
 </code></pre></div>
 </div>
 </div>
-<div class="admonition info">
-<p class="admonition-title">如果出現 Account not acceptable，可能原因如下<p>未完成<a href="https://sinotrade.github.io/zh_TW/tutor/prepare/terms/#_1">簽屬</a>及<a href="https://sinotrade.github.io/zh_TW/tutor/prepare/terms/#api">API測試</a></p>
-</p>
-</div>
 <h3 id="_2">行情<a class="headerlink" href="#_2" title="Permanent link">&para;</a></h3>
 <div class="admonition info">
 <p class="admonition-title">為什麼行情只能收幾行就斷掉了</p>
@@ -1315,6 +1311,13 @@ Then you definitely won't get any additional ticks, since the python program has
 </div>
 </div>
 <h3 id="_3">其他<a class="headerlink" href="#_3" title="Permanent link">&para;</a></h3>
+<div class="admonition info">
+<p class="admonition-title">出現 Account not acceptable，可能原因如下<ul>
+<li>未完成<a href="https://sinotrade.github.io/zh_TW/tutor/prepare/terms/#_1">簽署</a>及<a href="https://sinotrade.github.io/zh_TW/tutor/prepare/terms/#api">API測試</a>。</li>
+<li><a href="./tutor/order/UpdateStatus.zh_TW.md"><code>update_status</code></a>預設查詢為名下所有帳號，若想使用預設查詢方式，請確認所有帳號皆有完成簽署及測試。</li>
+</ul>
+</p>
+</div>
 <div class="admonition info">
 <p class="admonition-title">如何更改shioaji.log</p>
 <p>Please add environment variable before import shioaji. <code>(version &gt;= 0.3.3.dev0)</code></p>
