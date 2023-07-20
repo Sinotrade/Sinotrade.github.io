@@ -1309,7 +1309,7 @@
 </code></pre></div>
 </div>
 <h2 id="profit-loss-detail">Profit Loss Detail<a class="headerlink" href="#profit-loss-detail" title="Permanent link">&para;</a></h2>
-<p>The feature of list_profit_loss_detail is used to query profit loss detail of account.</p>
+<p>The feature of list_profit_loss_detail is used to query profit loss detail of account. <code>unit</code> is the quantity unit, where <code>Common</code> represents whole shares and <code>Share</code> represents fractional shares.</p>
 <div class="admonition info">
 <p class="admonition-title">In</p>
 <div class="highlight"><pre><span></span><code><span class="n">api</span><span class="o">.</span><span class="n">list_profit_loss_detail</span><span class="err">?</span>
@@ -1321,6 +1321,7 @@
 <span class="n">api</span><span class="o">.</span><span class="n">list_profit_loss_detail</span><span class="p">(</span>
     <span class="n">account</span><span class="p">:</span> <span class="n">shioaji</span><span class="o">.</span><span class="n">account</span><span class="o">.</span><span class="n">Account</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
     <span class="n">detail_id</span><span class="p">:</span> <span class="nb">int</span> <span class="o">=</span> <span class="mi">0</span><span class="p">,</span>
+    <span class="n">unit</span><span class="p">:</span> <span class="n">shioaji</span><span class="o">.</span><span class="n">constant</span><span class="o">.</span><span class="n">Unit</span> <span class="o">=</span> <span class="o">&lt;</span><span class="n">Unit</span><span class="o">.</span><span class="n">Common</span><span class="p">:</span> <span class="s1">&#39;Common&#39;</span><span class="o">&gt;</span><span class="p">,</span>
     <span class="n">timeout</span><span class="p">:</span> <span class="nb">int</span> <span class="o">=</span> <span class="mi">5000</span><span class="p">,</span>
     <span class="n">cb</span><span class="p">:</span> <span class="n">Callable</span><span class="p">[[</span><span class="n">List</span><span class="p">[</span><span class="n">Union</span><span class="p">[</span><span class="n">shioaji</span><span class="o">.</span><span class="n">position</span><span class="o">.</span><span class="n">StockProfitDetail</span><span class="p">,</span> <span class="n">shioaji</span><span class="o">.</span><span class="n">position</span><span class="o">.</span><span class="n">FutureProfitDetail</span><span class="p">]]],</span> <span class="n">NoneType</span><span class="p">]</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
 <span class="p">)</span> <span class="o">-&gt;</span> <span class="n">List</span><span class="p">[</span><span class="n">Union</span><span class="p">[</span><span class="n">shioaji</span><span class="o">.</span><span class="n">position</span><span class="o">.</span><span class="n">StockProfitDetail</span><span class="p">,</span> <span class="n">shioaji</span><span class="o">.</span><span class="n">position</span><span class="o">.</span><span class="n">FutureProfitDetail</span><span class="p">]]</span>
