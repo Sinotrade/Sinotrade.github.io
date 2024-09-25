@@ -462,6 +462,13 @@
   
 </li>
         
+          <li class="md-nav__item">
+  <a href="#_9" class="md-nav__link">
+    確認憑證效期
+  </a>
+  
+</li>
+        
       </ul>
     </nav>
   
@@ -1287,6 +1294,13 @@
   
 </li>
         
+          <li class="md-nav__item">
+  <a href="#_9" class="md-nav__link">
+    確認憑證效期
+  </a>
+  
+</li>
+        
       </ul>
     </nav>
   
@@ -1661,6 +1675,12 @@
 <p class="admonition-title">憑證路徑</p>
 <p>在 Windows 系統中，如果文件路徑使用 \ 來分隔文件，您需要將它替換為 /。</p>
 </div>
+<h4 id="_9">確認憑證效期<a class="headerlink" href="#_9" title="Permanent link">&para;</a></h4>
+<div class="codehilite"><pre><span></span><code><span class="err">```</span><span class="n">python</span> 
+<span class="kn">import</span> <span class="nn">datetime</span>
+<span class="n">datetime</span><span class="o">.</span><span class="n">datetime</span><span class="o">.</span><span class="n">fromtimestamp</span><span class="p">(</span><span class="n">api</span><span class="o">.</span><span class="n">_solace</span><span class="o">.</span><span class="n">activated_ca</span><span class="p">[</span><span class="n">person_id</span><span class="p">]</span><span class="o">.</span><span class="n">get_expire_timestamp</span><span class="p">())</span>
+<span class="err">```</span>
+</code></pre></div>
 
 
 
