@@ -1670,11 +1670,12 @@
 <p>In Windows you copy the file path with <code>\</code> to separate the file, you need to replace it with <code>/</code>.</p>
 </div>
 <h4 id="check-ca-expire-time">Check CA expire time<a class="headerlink" href="#check-ca-expire-time" title="Permanent link">&para;</a></h4>
-<div class="codehilite"><pre><span></span><code><span class="err">```</span><span class="n">python</span> 
-<span class="kn">import</span> <span class="nn">datetime</span>
+<div class="admonition info">
+<p class="admonition-title">In</p>
+<div class="highlight"><pre><span></span><code><span class="kn">import</span> <span class="nn">datetime</span>
 <span class="n">datetime</span><span class="o">.</span><span class="n">datetime</span><span class="o">.</span><span class="n">fromtimestamp</span><span class="p">(</span><span class="n">api</span><span class="o">.</span><span class="n">_solace</span><span class="o">.</span><span class="n">activated_ca</span><span class="p">[</span><span class="n">person_id</span><span class="p">]</span><span class="o">.</span><span class="n">get_expire_timestamp</span><span class="p">())</span>
-<span class="err">```</span>
 </code></pre></div>
+</div>
 
 
 
