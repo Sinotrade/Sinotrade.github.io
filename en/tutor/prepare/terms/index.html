@@ -1658,7 +1658,7 @@
 <div class="highlight"><pre><span></span><code><span class="n">result</span> <span class="o">=</span> <span class="n">api</span><span class="o">.</span><span class="n">activate_ca</span><span class="p">(</span>
     <span class="n">ca_path</span><span class="o">=</span><span class="s2">&quot;/c/your/ca/path/Sinopac.pfx&quot;</span><span class="p">,</span>
     <span class="n">ca_passwd</span><span class="o">=</span><span class="s2">&quot;YOUR_CA_PASSWORD&quot;</span><span class="p">,</span>
-    <span class="n">person_id</span><span class="o">=</span><span class="s2">&quot;Person of this Ca&quot;</span><span class="p">,</span>
+    <span class="n">person_id</span><span class="o">=</span><span class="s2">&quot;Person ID of this Ca&quot;</span><span class="p">,</span>
 <span class="p">)</span>
 
 <span class="nb">print</span><span class="p">(</span><span class="n">result</span><span class="p">)</span>
@@ -1672,8 +1672,7 @@
 <h4 id="check-ca-expire-time">Check CA expire time<a class="headerlink" href="#check-ca-expire-time" title="Permanent link">&para;</a></h4>
 <div class="admonition info">
 <p class="admonition-title">In</p>
-<div class="highlight"><pre><span></span><code><span class="kn">import</span> <span class="nn">datetime</span>
-<span class="n">datetime</span><span class="o">.</span><span class="n">datetime</span><span class="o">.</span><span class="n">fromtimestamp</span><span class="p">(</span><span class="n">api</span><span class="o">.</span><span class="n">_solace</span><span class="o">.</span><span class="n">activated_ca</span><span class="p">[</span><span class="n">person_id</span><span class="p">]</span><span class="o">.</span><span class="n">get_expire_timestamp</span><span class="p">())</span>
+<div class="highlight"><pre><span></span><code><span class="n">api</span><span class="o">.</span><span class="n">get_ca_expiretime</span><span class="p">(</span><span class="s2">&quot;Person ID&quot;</span><span class="p">)</span>
 </code></pre></div>
 </div>
 
