@@ -9,6 +9,14 @@
          
     </url>
     <url>
+         <loc>https://sinotrade.github.io/env_setup/</loc>
+         <lastmod>2024-10-04</lastmod>
+         <changefreq>daily</changefreq>
+         <xhtml:link rel="alternate" hreflang="en" href="https://sinotrade.github.io/en/env_setup/"/>
+         <xhtml:link rel="alternate" hreflang="zh_TW" href="https://sinotrade.github.io/zh_TW/env_setup/"/>
+         
+    </url>
+    <url>
          <loc>https://sinotrade.github.io/qa/</loc>
          <lastmod>2024-10-04</lastmod>
          <changefreq>daily</changefreq>
