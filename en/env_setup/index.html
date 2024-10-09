@@ -336,6 +336,19 @@
     Create Project Environment
   </a>
   
+    <nav class="md-nav" aria-label="Create Project Environment">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#use-jupyter-environment" class="md-nav__link">
+    Use Jupyter Environment
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
 </li>
       
     </ul>
@@ -1225,6 +1238,19 @@
     Create Project Environment
   </a>
   
+    <nav class="md-nav" aria-label="Create Project Environment">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#use-jupyter-environment" class="md-nav__link">
+    Use Jupyter Environment
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
 </li>
       
     </ul>
@@ -1342,6 +1368,27 @@ the <code>hello</code> command is the entry point of the project.</p>
 </code></pre></div>
 </div>
 <p>This is the most basic environment setup and you can start using Shioaji API now.</p>
+<h3 id="use-jupyter-environment">Use Jupyter Environment<a class="headerlink" href="#use-jupyter-environment" title="Permanent link">&para;</a></h3>
+<div class="admonition info">
+<p class="admonition-title">Add ipykernel to the project development dependencies</p>
+<div class="highlight"><pre><span></span><code>uv add --dev ipykernel
+</code></pre></div>
+</div>
+<div class="admonition info">
+<p class="admonition-title">Add the project environment to the Jupyter kernel</p>
+<div class="highlight"><pre><span></span><code>uv run ipython kernel install --user --name=sj-trading
+</code></pre></div>
+</div>
+<div class="admonition info">
+<p class="admonition-title">Start Jupyter</p>
+<div class="highlight"><pre><span></span><code>uv run --with jupyter jupyter lab
+</code></pre></div>
+</div>
+<p>Open <code>dev.ipynb</code> file in Jupyter and select <code>sj-trading</code> kernel to execute the command</p>
+<p>The <code>hello</code> command we wrote earlier can be executed in this way
+   <br/>
+   <img alt="jupyterlab" src="/img/jupyterlab.png#center" />
+   <br/></p>
 <p>If you have already opened an account, you can skip the next chapter and go to <a href="../tutor/prepare/token/">Token &amp; Certificate</a> to get the API Key and certificate.</p>
 
 
