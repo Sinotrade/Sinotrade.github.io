@@ -422,7 +422,21 @@
   
     <li class="md-nav__item">
       <a href="../terms/" class="md-nav__link">
-        服務條款
+        服務條款簽署
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../example_testing_flow/" class="md-nav__link">
+        測試專案範例
       </a>
     </li>
   
@@ -1290,9 +1304,7 @@ CA_PASSWORD=&lt;憑證密碼&gt;
 ├── pyproject.toml
 ├── src
 │   └── sj_trading
-│       ├── __init__.py
-│       └── __pycache__
-│           └── __init__.cpython-312.pyc
+│       └─ __init__.py
 └── uv.lock
 </code></pre></div></p>
 <p>加入 python-dotenv 套件來將 .env 的金鑰與憑證載入環境變數
@@ -1325,6 +1337,7 @@ main = &quot;sj_trading:main&quot;
 <div class="highlight"><pre><span></span><code>uv run main
 </code></pre></div></p>
 <p>如果看到 <code>login and activate ca success</code> 代表成功登入模擬環境了</p>
+<p>接著如果你還有沒有進行 API 簽署的話，請前往下一章進行簽署與測試審核。</p>
 
 
 
@@ -1361,13 +1374,13 @@ main = &quot;sj_trading:main&quot;
       
       
         
-        <a href="../terms/" class="md-footer__link md-footer__link--next" aria-label="Next: 服務條款" rel="next">
+        <a href="../terms/" class="md-footer__link md-footer__link--next" aria-label="Next: 服務條款簽署" rel="next">
           <div class="md-footer__title">
             <div class="md-ellipsis">
               <span class="md-footer__direction">
                 Next
               </span>
-              服務條款
+              服務條款簽署
             </div>
           </div>
           <div class="md-footer__button md-icon">
