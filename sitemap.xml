@@ -145,6 +145,14 @@
          
     </url>
     <url>
+         <loc>https://sinotrade.github.io/tutor/advanced/quote_manager_basic/</loc>
+         <lastmod>2024-10-09</lastmod>
+         <changefreq>daily</changefreq>
+         <xhtml:link rel="alternate" hreflang="en" href="https://sinotrade.github.io/en/tutor/advanced/quote_manager_basic/"/>
+         <xhtml:link rel="alternate" hreflang="zh_TW" href="https://sinotrade.github.io/zh_TW/tutor/advanced/quote_manager_basic/"/>
+         
+    </url>
+    <url>
          <loc>https://sinotrade.github.io/tutor/advanced/touchorder/</loc>
          <lastmod>2024-10-09</lastmod>
          <changefreq>daily</changefreq>

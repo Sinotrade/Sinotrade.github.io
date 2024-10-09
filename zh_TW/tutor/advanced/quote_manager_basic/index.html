@@ -1,0 +1,1421 @@
+
+<!doctype html>
+<html lang="en" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+        <meta name="description" content="Shioaji is provided by SinoPac the most pythonic API for trading the Taiwan and global financial market. You can use your favorite Python packages such as NumPy, pandas, PyTorch or TensorFlow to build your trading model with integrated the Shioaji API on cross-platform.">
+      
+      
+        <meta name="author" content="Yvictor, ">
+      
+      
+        <link rel="canonical" href="https://sinotrade.github.io/zh_TW/tutor/advanced/quote_manager_basic/">
+      
+      <link rel="icon" href="https://sinotrade.github.io/images/shioaji-logo-01.png">
+      <meta name="generator" content="mkdocs-1.4.2, mkdocs-material-8.5.10">
+    
+    
+      
+        <title>行情管理 - Shioaji</title>
+      
+    
+    
+      <link rel="stylesheet" href="../../../../assets/stylesheets/main.975780f9.min.css">
+      
+        
+        <link rel="stylesheet" href="../../../../assets/stylesheets/palette.2505c338.min.css">
+        
+          
+          
+          <meta name="theme-color" content="#00bdd6">
+        
+      
+      
+
+    
+    
+    
+      
+        
+        
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Noto+Serif+Traditional+Chinese:300,300i,400,400i,700,700i%7CRoboto+Mono:400,400i,700,700i&display=fallback">
+        <style>:root{--md-text-font:"Noto Serif Traditional Chinese";--md-code-font:"Roboto Mono"}</style>
+      
+    
+    
+      <link rel="stylesheet" href="../../../../stylesheets/extra.css">
+    
+    <script>__md_scope=new URL("../../../..",location),__md_hash=e=>[...e].reduce((e,_)=>(e<<5)-e+_.charCodeAt(0),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    
+      
+
+    
+    
+    
+  </head>
+  
+  
+    
+    
+    
+    
+    
+    <body dir="ltr" data-md-color-scheme="default" data-md-color-primary="cyan" data-md-color-accent="amber">
+  
+    
+    
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
+    
+    
+      
+
+<header class="md-header" data-md-component="header">
+  <nav class="md-header__inner md-grid" aria-label="Header">
+    <a href="../../../" title="Shioaji" class="md-header__button md-logo" aria-label="Shioaji" data-md-component="logo">
+      
+  <img src="../../../../img/shioaji-logo.svg" alt="logo">
+
+    </a>
+    <label class="md-header__button md-icon" for="__drawer">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3V6m0 5h18v2H3v-2m0 5h18v2H3v-2Z"/></svg>
+    </label>
+    <div class="md-header__title" data-md-component="header-title">
+      <div class="md-header__ellipsis">
+        <div class="md-header__topic">
+          <span class="md-ellipsis">
+            Shioaji
+          </span>
+        </div>
+        <div class="md-header__topic" data-md-component="header-topic">
+          <span class="md-ellipsis">
+            
+              行情管理
+            
+          </span>
+        </div>
+      </div>
+    </div>
+    
+    
+      <div class="md-header__option">
+        <div class="md-select">
+          
+          <button class="md-header__button md-icon" aria-label="Select language">
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="m12.87 15.07-2.54-2.51.03-.03A17.52 17.52 0 0 0 14.07 6H17V4h-7V2H8v2H1v2h11.17C11.5 7.92 10.44 9.75 9 11.35 8.07 10.32 7.3 9.19 6.69 8h-2c.73 1.63 1.73 3.17 2.98 4.56l-5.09 5.02L4 19l5-5 3.11 3.11.76-2.04M18.5 10h-2L12 22h2l1.12-3h4.75L21 22h2l-4.5-12m-2.62 7 1.62-4.33L19.12 17h-3.24Z"/></svg>
+          </button>
+          <div class="md-select__inner">
+            <ul class="md-select__list">
+              
+                <li class="md-select__item">
+                  <a href="../../../../tutor/advanced/quote_manager_basic/" hreflang="en" class="md-select__link">
+                    English
+                  </a>
+                </li>
+              
+                <li class="md-select__item">
+                  <a href="./" hreflang="zh_TW" class="md-select__link">
+                    中文
+                  </a>
+                </li>
+              
+            </ul>
+          </div>
+        </div>
+      </div>
+    
+    
+      <label class="md-header__button md-icon" for="__search">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.516 6.516 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5Z"/></svg>
+      </label>
+      <div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" aria-label="Search" placeholder="Search" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" required>
+      <label class="md-search__icon md-icon" for="__search">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.516 6.516 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5Z"/></svg>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11h12Z"/></svg>
+      </label>
+      <nav class="md-search__options" aria-label="Search">
+        
+        <button type="reset" class="md-search__icon md-icon" title="Clear" aria-label="Clear" tabindex="-1">
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12 19 6.41Z"/></svg>
+        </button>
+      </nav>
+      
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="search-result">
+          <div class="md-search-result__meta">
+            Initializing search
+          </div>
+          <ol class="md-search-result__list"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+    
+    
+      <div class="md-header__source">
+        <a href="https://github.com/Sinotrade/Shioaji" title="Go to repository" class="md-source" data-md-component="source">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><!--! Font Awesome Free 6.2.1 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2022 Fonticons, Inc.--><path d="M439.55 236.05 244 40.45a28.87 28.87 0 0 0-40.81 0l-40.66 40.63 51.52 51.52c27.06-9.14 52.68 16.77 43.39 43.68l49.66 49.66c34.23-11.8 61.18 31 35.47 56.69-26.49 26.49-70.21-2.87-56-37.34L240.22 199v121.85c25.3 12.54 22.26 41.85 9.08 55a34.34 34.34 0 0 1-48.55 0c-17.57-17.6-11.07-46.91 11.25-56v-123c-20.8-8.51-24.6-30.74-18.64-45L142.57 101 8.45 235.14a28.86 28.86 0 0 0 0 40.81l195.61 195.6a28.86 28.86 0 0 0 40.8 0l194.69-194.69a28.86 28.86 0 0 0 0-40.81z"/></svg>
+  </div>
+  <div class="md-source__repository">
+    Sinotrade/Shioaji
+  </div>
+</a>
+      </div>
+    
+  </nav>
+  
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+      
+        
+          
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              
+              <div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+
+<nav class="md-nav md-nav--primary" aria-label="Navigation" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href="../../../" title="Shioaji" class="md-nav__button md-logo" aria-label="Shioaji" data-md-component="logo">
+      
+  <img src="../../../../img/shioaji-logo.svg" alt="logo">
+
+    </a>
+    Shioaji
+  </label>
+  
+    <div class="md-nav__source">
+      <a href="https://github.com/Sinotrade/Shioaji" title="Go to repository" class="md-source" data-md-component="source">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><!--! Font Awesome Free 6.2.1 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2022 Fonticons, Inc.--><path d="M439.55 236.05 244 40.45a28.87 28.87 0 0 0-40.81 0l-40.66 40.63 51.52 51.52c27.06-9.14 52.68 16.77 43.39 43.68l49.66 49.66c34.23-11.8 61.18 31 35.47 56.69-26.49 26.49-70.21-2.87-56-37.34L240.22 199v121.85c25.3 12.54 22.26 41.85 9.08 55a34.34 34.34 0 0 1-48.55 0c-17.57-17.6-11.07-46.91 11.25-56v-123c-20.8-8.51-24.6-30.74-18.64-45L142.57 101 8.45 235.14a28.86 28.86 0 0 0 0 40.81l195.61 195.6a28.86 28.86 0 0 0 40.8 0l194.69-194.69a28.86 28.86 0 0 0 0-40.81z"/></svg>
+  </div>
+  <div class="md-source__repository">
+    Sinotrade/Shioaji
+  </div>
+</a>
+    </div>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../" class="md-nav__link">
+        總覽
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../quickstart/" class="md-nav__link">
+        快速入門
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../env_setup/" class="md-nav__link">
+        環境設定
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+    
+  
+  
+    
+    <li class="md-nav__item md-nav__item--active md-nav__item--nested">
+      
+      
+        <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_4" type="checkbox" id="__nav_4" checked>
+      
+      
+      
+      
+        <label class="md-nav__link" for="__nav_4">
+          教程 - 使用者指南
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <nav class="md-nav" aria-label="教程 - 使用者指南" data-md-level="1">
+        <label class="md-nav__title" for="__nav_4">
+          <span class="md-nav__icon md-icon"></span>
+          教程 - 使用者指南
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+              
+  
+  
+  
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+      
+        <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_4_1" type="checkbox" id="__nav_4_1" >
+      
+      
+      
+      
+        <label class="md-nav__link" for="__nav_4_1">
+          前置作業
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <nav class="md-nav" aria-label="前置作業" data-md-level="2">
+        <label class="md-nav__title" for="__nav_4_1">
+          <span class="md-nav__icon md-icon"></span>
+          前置作業
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../prepare/open_account/" class="md-nav__link">
+        開戶
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../prepare/token/" class="md-nav__link">
+        金鑰與憑證申請
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../prepare/terms/" class="md-nav__link">
+        服務條款簽署
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../prepare/example_testing_flow/" class="md-nav__link">
+        測試專案範例
+      </a>
+    </li>
+  
+
+            
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../login/" class="md-nav__link">
+        登入
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../contract/" class="md-nav__link">
+        商品檔
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+      
+        <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_4_4" type="checkbox" id="__nav_4_4" >
+      
+      
+      
+      
+        <label class="md-nav__link" for="__nav_4_4">
+          行情資料
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <nav class="md-nav" aria-label="行情資料" data-md-level="2">
+        <label class="md-nav__title" for="__nav_4_4">
+          <span class="md-nav__icon md-icon"></span>
+          行情資料
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+              
+  
+  
+  
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+      
+        <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_4_4_1" type="checkbox" id="__nav_4_4_1" >
+      
+      
+      
+      
+        <label class="md-nav__link" for="__nav_4_4_1">
+          即時行情
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <nav class="md-nav" aria-label="即時行情" data-md-level="3">
+        <label class="md-nav__title" for="__nav_4_4_1">
+          <span class="md-nav__icon md-icon"></span>
+          即時行情
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../market_data/streaming/stocks/" class="md-nav__link">
+        證券
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../market_data/streaming/futures/" class="md-nav__link">
+        期貨
+      </a>
+    </li>
+  
+
+            
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../market_data/historical/" class="md-nav__link">
+        歷史行情
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../market_data/snapshot/" class="md-nav__link">
+        市場快照
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../market_data/short_stock_source/" class="md-nav__link">
+        或有券源
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../market_data/credit_enquires/" class="md-nav__link">
+        資券餘額
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../market_data/scanners/" class="md-nav__link">
+        排行
+      </a>
+    </li>
+  
+
+            
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+      
+        <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_4_5" type="checkbox" id="__nav_4_5" >
+      
+      
+      
+      
+        <label class="md-nav__link" for="__nav_4_5">
+          下單
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <nav class="md-nav" aria-label="下單" data-md-level="2">
+        <label class="md-nav__title" for="__nav_4_5">
+          <span class="md-nav__icon md-icon"></span>
+          下單
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../order/Stock/" class="md-nav__link">
+        證券
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../order/FutureOption/" class="md-nav__link">
+        期貨選擇權
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../order/IntradayOdd/" class="md-nav__link">
+        零股
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../order/Combo/" class="md-nav__link">
+        組合單
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../order/Reserve/" class="md-nav__link">
+        預收券款
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../order/UpdateStatus/" class="md-nav__link">
+        查詢狀態
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+      
+        <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_4_5_7" type="checkbox" id="__nav_4_5_7" >
+      
+      
+      
+      
+        <label class="md-nav__link" for="__nav_4_5_7">
+          回報資訊
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <nav class="md-nav" aria-label="回報資訊" data-md-level="3">
+        <label class="md-nav__title" for="__nav_4_5_7">
+          <span class="md-nav__icon md-icon"></span>
+          回報資訊
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../order/order_deal_event/stocks/" class="md-nav__link">
+        證券
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../order/order_deal_event/futures/" class="md-nav__link">
+        期貨
+      </a>
+    </li>
+  
+
+            
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+            
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+      
+        <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_4_6" type="checkbox" id="__nav_4_6" >
+      
+      
+      
+      
+        <label class="md-nav__link" for="__nav_4_6">
+          CallBack
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <nav class="md-nav" aria-label="CallBack" data-md-level="2">
+        <label class="md-nav__title" for="__nav_4_6">
+          <span class="md-nav__icon md-icon"></span>
+          CallBack
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../callback/orderdeal_event/" class="md-nav__link">
+        委託回報
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../callback/event_cb/" class="md-nav__link">
+        事件
+      </a>
+    </li>
+  
+
+            
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+      
+        <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_4_7" type="checkbox" id="__nav_4_7" >
+      
+      
+      
+      
+        <label class="md-nav__link" for="__nav_4_7">
+          帳務
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <nav class="md-nav" aria-label="帳務" data-md-level="2">
+        <label class="md-nav__title" for="__nav_4_7">
+          <span class="md-nav__icon md-icon"></span>
+          帳務
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../accounting/account_balance/" class="md-nav__link">
+        銀行餘額
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../accounting/margin/" class="md-nav__link">
+        保證金
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../accounting/position/" class="md-nav__link">
+        未實現損益
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../accounting/profit_loss/" class="md-nav__link">
+        已實現損益
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../accounting/settlements/" class="md-nav__link">
+        結算
+      </a>
+    </li>
+  
+
+            
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../simulation/" class="md-nav__link">
+        模擬模式
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+    
+  
+  
+    
+    <li class="md-nav__item md-nav__item--active md-nav__item--nested">
+      
+      
+        <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_4_9" type="checkbox" id="__nav_4_9" checked>
+      
+      
+      
+      
+        <label class="md-nav__link" for="__nav_4_9">
+          進階指南
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <nav class="md-nav" aria-label="進階指南" data-md-level="2">
+        <label class="md-nav__title" for="__nav_4_9">
+          <span class="md-nav__icon md-icon"></span>
+          進階指南
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../quote_binding/" class="md-nav__link">
+        綁訂報價模式
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../nonblock/" class="md-nav__link">
+        非阻塞模式範例
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../touchorder/" class="md-nav__link">
+        觸價委託範例
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+    
+  
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" data-md-toggle="toc" type="checkbox" id="__toc">
+      
+      
+      
+      <a href="./" class="md-nav__link md-nav__link--active">
+        行情管理
+      </a>
+      
+    </li>
+  
+
+            
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+            
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../upgrade/" class="md-nav__link">
+        升版指南
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../qa/" class="md-nav__link">
+        問與答
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../release/" class="md-nav__link">
+        發佈版本
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="https://sinotrade.github.io/Shioaji.Csharp/" class="md-nav__link">
+        C#
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../limit/" class="md-nav__link">
+        使用限制
+      </a>
+    </li>
+  
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+              
+              <div class="md-sidebar md-sidebar--secondary" data-md-component="sidebar" data-md-type="toc" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+  
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+          
+          
+            <div class="md-content" data-md-component="content">
+              <article class="md-content__inner md-typeset">
+                
+                  
+
+
+  <h1>行情管理</h1>
+
+<p>本篇教學完整專案的程式碼可以參考 <a href="https://github.com/Sinotrade/sj-trading-demo">sj-trading</a>，
+完整使用範例 jupyter notebook 可以參考 <a href="https://github.com/Sinotrade/sj-trading-demo/blob/main/quote_manager_usage.ipynb">quote_manager_usage</a>。</p>
+<p>本專案是使用 <code>uv</code> 建立的，如果還不熟悉如何使用 <code>uv</code> 建立專案並使用 <code>uv</code> 管理依賴，建議回到 <a href="./env_setup.md">環境設定</a> 章節從頭學習起。</p>
+<p>在開始進行行情管理器的編寫前，我們會使用 Polars 這個套件來處理行情資料，所以需要將它加入專案的依賴中，同時本篇教學中會有如何用 Polars 快速對多商品計算技術指標的範例，所以也需要將 polars_talib 這個套件加入專案的依這個。</p>
+<div class="admonition info">
+<p class="admonition-title">新增 Polars 依賴</p>
+<div class="highlight"><pre><span></span><code>uv add polars polars_talib
+</code></pre></div>
+</div>
+<p>如果你對 Polars 不熟悉，可以參考 <a href="https://docs.pola.rs/user-guide/getting-started/">Polars 官方文件</a> 來了解該如何使用他。</p>
+<p>polars_talib 是一個 Polars 的擴充套件，它提供了 polars expression 版本的 ta-lib 完整功能，讓我們可以很方便的用 Polars 進行技術指標的計算，他是由 shioaji 作者開發的，詳細使用可以參考 <a href="https://github.com/Yvictor/polars_ta_extension">polars_ta_extension</a>。</p>
+<p>Polars 是一個高效的 DataFrame 套件，適合用來處理大量資料，並且不需要任何額外的設定，就可以使用多核心來加速資料處理。這篇範例中我們可以看到如何使用 Shioaji 的行情管理器來取得行情資料，並且使用 Polars 來做並行化運算，同時將商品的 ticks 進行分 K 轉換，並且做平行化的多商品技術指標計算。</p>
+<div class="admonition info">
+<p class="admonition-title">新增 quote.py</p>
+<p>在 <code>src/sj_trading/</code> 新增 <code>quote.py</code> 檔案，並且新增以下程式碼</p>
+<div class="highlight"><pre><span></span><code><span class="kn">import</span> <span class="nn">shioaji</span> <span class="k">as</span> <span class="nn">sj</span>
+<span class="kn">from</span> <span class="nn">typing</span> <span class="kn">import</span> <span class="n">List</span>
+
+<span class="k">class</span> <span class="nc">QuoteManager</span><span class="p">:</span>
+    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">api</span><span class="p">:</span> <span class="n">sj</span><span class="o">.</span><span class="n">Shioaji</span><span class="p">):</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">api</span> <span class="o">=</span> <span class="n">api</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">api</span><span class="o">.</span><span class="n">quote</span><span class="o">.</span><span class="n">set_on_tick_stk_v1_callback</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">on_stk_v1_tick_handler</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">api</span><span class="o">.</span><span class="n">quote</span><span class="o">.</span><span class="n">set_on_tick_fop_v1_callback</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">on_fop_v1_tick_handler</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">ticks_stk_v1</span><span class="p">:</span> <span class="n">List</span><span class="p">[</span><span class="n">sj</span><span class="o">.</span><span class="n">TickSTKv1</span><span class="p">]</span> <span class="o">=</span> <span class="p">[]</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">ticks_fop_v1</span><span class="p">:</span> <span class="n">List</span><span class="p">[</span><span class="n">sj</span><span class="o">.</span><span class="n">TickFOPv1</span><span class="p">]</span> <span class="o">=</span> <span class="p">[]</span>
+
+    <span class="k">def</span> <span class="nf">on_stk_v1_tick_handler</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">_exchange</span><span class="p">:</span> <span class="n">sj</span><span class="o">.</span><span class="n">Exchange</span><span class="p">,</span> <span class="n">tick</span><span class="p">:</span> <span class="n">sj</span><span class="o">.</span><span class="n">TickSTKv1</span><span class="p">):</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">ticks_stk_v1</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">tick</span><span class="p">)</span>
+
+    <span class="k">def</span> <span class="nf">on_fop_v1_tick_handler</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">_exchange</span><span class="p">:</span> <span class="n">sj</span><span class="o">.</span><span class="n">Exchange</span><span class="p">,</span> <span class="n">tick</span><span class="p">:</span> <span class="n">sj</span><span class="o">.</span><span class="n">TickFOPv1</span><span class="p">):</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">ticks_fop_v1</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">tick</span><span class="p">)</span>
+</code></pre></div>
+</div>
+<p>這個部分比較單純，讓收到行情的 handle func 盡可能地做最少的事，我們定義了一個 <code>QuoteManager</code> 類別，並且在初始化時設定了註冊兩個回調函數，分別是 <code>on_stk_v1_tick_handler</code> 和 <code>on_fop_v1_tick_handler</code>，這兩個函數會在接收到行情資料時被呼叫，並且將行情資料存入 <code>ticks_stk_v1</code> 和 <code>ticks_fop_v1</code> 中。</p>
+<div class="admonition info">
+<p class="admonition-title">增加 <code>QuoteManager</code> 訂閱與取消訂閱的方法</p>
+<div class="highlight"><pre><span></span><code><span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">api</span><span class="p">:</span> <span class="n">sj</span><span class="o">.</span><span class="n">Shioaji</span><span class="p">):</span>
+    <span class="c1"># skip</span>
+    <span class="bp">self</span><span class="o">.</span><span class="n">subscribed_stk_tick</span><span class="p">:</span> <span class="n">Set</span><span class="p">[</span><span class="nb">str</span><span class="p">]</span> <span class="o">=</span> <span class="nb">set</span><span class="p">()</span>
+
+<span class="k">def</span> <span class="nf">subscribe_stk_tick</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">codes</span><span class="p">:</span> <span class="n">List</span><span class="p">[</span><span class="nb">str</span><span class="p">],</span> <span class="n">recover</span><span class="p">:</span> <span class="nb">bool</span> <span class="o">=</span> <span class="kc">False</span><span class="p">):</span>
+    <span class="k">for</span> <span class="n">code</span> <span class="ow">in</span> <span class="n">codes</span><span class="p">:</span>
+        <span class="n">contract</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">api</span><span class="o">.</span><span class="n">Contracts</span><span class="o">.</span><span class="n">Stocks</span><span class="p">[</span><span class="n">code</span><span class="p">]</span>
+        <span class="k">if</span> <span class="n">contract</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span> <span class="ow">and</span> <span class="n">code</span> <span class="ow">not</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">subscribed_stk_tick</span><span class="p">:</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">api</span><span class="o">.</span><span class="n">quote</span><span class="o">.</span><span class="n">subscribe</span><span class="p">(</span><span class="n">contract</span><span class="p">,</span> <span class="s2">&quot;tick&quot;</span><span class="p">)</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">subscribed_stk_tick</span><span class="o">.</span><span class="n">add</span><span class="p">(</span><span class="n">code</span><span class="p">)</span>
+
+<span class="k">def</span> <span class="nf">unsubscribe_stk_tick</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">codes</span><span class="p">:</span> <span class="n">List</span><span class="p">[</span><span class="nb">str</span><span class="p">]):</span>
+    <span class="k">for</span> <span class="n">code</span> <span class="ow">in</span> <span class="n">codes</span><span class="p">:</span>
+        <span class="n">contract</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">api</span><span class="o">.</span><span class="n">Contracts</span><span class="o">.</span><span class="n">Stocks</span><span class="p">[</span><span class="n">code</span><span class="p">]</span>
+        <span class="k">if</span> <span class="n">contract</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span> <span class="ow">and</span> <span class="n">code</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">subscribed_stk_tick</span><span class="p">:</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">api</span><span class="o">.</span><span class="n">quote</span><span class="o">.</span><span class="n">unsubscribe</span><span class="p">(</span><span class="n">contract</span><span class="p">,</span> <span class="s2">&quot;tick&quot;</span><span class="p">)</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">subscribed_stk_tick</span><span class="o">.</span><span class="n">remove</span><span class="p">(</span><span class="n">code</span><span class="p">)</span>
+
+<span class="k">def</span> <span class="nf">unsubscribe_all_stk_tick</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+    <span class="k">for</span> <span class="n">code</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">subscribed_stk_tick</span><span class="p">:</span>
+        <span class="n">contract</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">api</span><span class="o">.</span><span class="n">Contracts</span><span class="o">.</span><span class="n">Stocks</span><span class="p">[</span><span class="n">code</span><span class="p">]</span>
+        <span class="k">if</span> <span class="n">contract</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">api</span><span class="o">.</span><span class="n">quote</span><span class="o">.</span><span class="n">unsubscribe</span><span class="p">(</span><span class="n">contract</span><span class="p">,</span> <span class="s2">&quot;tick&quot;</span><span class="p">)</span>
+    <span class="bp">self</span><span class="o">.</span><span class="n">subscribed_stk_tick</span><span class="o">.</span><span class="n">clear</span><span class="p">()</span>
+</code></pre></div>
+</div>
+<p>上面我們增加了 <code>subscribe_stk_tick</code> 方法，這個方法會將傳入的商品代碼列表中的商品代碼加入到 <code>subscribed_stk_tick</code> 中，並且呼叫 Shioaji 的 <code>subscribe</code> 方法來訂閱行情，<code>subscribed_stk_tick</code> 是一個 <code>Set</code>，用來存放已經訂閱的商品代碼，避免重複訂閱以及方便後續將所有訂閱商品取消訂閱。</p>
+<div class="admonition info">
+<p class="admonition-title">增加 <code>QuoteManager</code> 拿出訂閱的 ticks 的方法</p>
+<div class="highlight"><pre><span></span><code><span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">api</span><span class="p">:</span> <span class="n">sj</span><span class="o">.</span><span class="n">Shioaji</span><span class="p">):</span>
+    <span class="c1"># skip</span>
+    <span class="bp">self</span><span class="o">.</span><span class="n">df_stk</span><span class="p">:</span> <span class="n">pl</span><span class="o">.</span><span class="n">DataFrame</span> <span class="o">=</span> <span class="n">pl</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">(</span>
+        <span class="p">[],</span>
+        <span class="n">schema</span><span class="o">=</span><span class="p">[</span>
+            <span class="p">(</span><span class="s2">&quot;datetime&quot;</span><span class="p">,</span> <span class="n">pl</span><span class="o">.</span><span class="n">Datetime</span><span class="p">),</span>
+            <span class="p">(</span><span class="s2">&quot;code&quot;</span><span class="p">,</span> <span class="n">pl</span><span class="o">.</span><span class="n">Utf8</span><span class="p">),</span>
+            <span class="p">(</span><span class="s2">&quot;price&quot;</span><span class="p">,</span> <span class="n">pl</span><span class="o">.</span><span class="n">Float64</span><span class="p">),</span>
+            <span class="p">(</span><span class="s2">&quot;volume&quot;</span><span class="p">,</span> <span class="n">pl</span><span class="o">.</span><span class="n">Int64</span><span class="p">),</span>
+            <span class="p">(</span><span class="s2">&quot;tick_type&quot;</span><span class="p">,</span> <span class="n">pl</span><span class="o">.</span><span class="n">Int8</span><span class="p">),</span>
+        <span class="p">],</span>
+    <span class="p">)</span>
+
+<span class="k">def</span> <span class="nf">get_df_stk</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">pl</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">:</span>
+    <span class="n">poped_ticks</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">ticks_stk_v1</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">ticks_stk_v1</span><span class="p">,</span> <span class="p">[]</span>
+    <span class="k">if</span> <span class="n">poped_ticks</span><span class="p">:</span>
+        <span class="n">df</span> <span class="o">=</span> <span class="n">pl</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">([</span><span class="n">tick</span><span class="o">.</span><span class="n">to_dict</span><span class="p">()</span> <span class="k">for</span> <span class="n">tick</span> <span class="ow">in</span> <span class="n">poped_ticks</span><span class="p">])</span><span class="o">.</span><span class="n">select</span><span class="p">(</span>
+            <span class="n">pl</span><span class="o">.</span><span class="n">col</span><span class="p">(</span><span class="s2">&quot;datetime&quot;</span><span class="p">,</span> <span class="s2">&quot;code&quot;</span><span class="p">),</span>
+            <span class="n">pl</span><span class="o">.</span><span class="n">col</span><span class="p">(</span><span class="s2">&quot;close&quot;</span><span class="p">)</span><span class="o">.</span><span class="n">cast</span><span class="p">(</span><span class="n">pl</span><span class="o">.</span><span class="n">Float64</span><span class="p">)</span><span class="o">.</span><span class="n">alias</span><span class="p">(</span><span class="s2">&quot;price&quot;</span><span class="p">),</span>
+            <span class="n">pl</span><span class="o">.</span><span class="n">col</span><span class="p">(</span><span class="s2">&quot;volume&quot;</span><span class="p">)</span><span class="o">.</span><span class="n">cast</span><span class="p">(</span><span class="n">pl</span><span class="o">.</span><span class="n">Int64</span><span class="p">),</span>
+            <span class="n">pl</span><span class="o">.</span><span class="n">col</span><span class="p">(</span><span class="s2">&quot;tick_type&quot;</span><span class="p">)</span><span class="o">.</span><span class="n">cast</span><span class="p">(</span><span class="n">pl</span><span class="o">.</span><span class="n">Int8</span><span class="p">),</span>
+        <span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">df_stk</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">df_stk</span><span class="o">.</span><span class="n">vstack</span><span class="p">(</span><span class="n">df</span><span class="p">)</span>
+    <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">df_stk</span>
+</code></pre></div>
+</div>
+<p><code>__init__</code> 中我們定義了一個 <code>df_stk</code> 的 Polars DataFrame，用來存放所有訂閱的台股 tick 資料，<code>get_df_stk</code> 方法會將 <code>ticks_stk_v1</code> 中的資料轉換成 Polars DataFrame，並且回傳，到這邊我們就已經可以初步看到可以拿出來的 DataFrame 了。</p>
+<p><br/>
+   <img alt="df_stk" src="/img/quote_manager1.png#center" width="600" />
+   <br/></p>
+<div class="admonition info">
+<p class="admonition-title">增加 <code>QuoteManager</code> 將 ticks 轉換成 K 線的方法</p>
+<div class="highlight"><pre><span></span><code><span class="k">def</span> <span class="nf">get_df_stk_kbar</span><span class="p">(</span>
+    <span class="bp">self</span><span class="p">,</span> <span class="n">unit</span><span class="p">:</span> <span class="nb">str</span> <span class="o">=</span> <span class="s2">&quot;1m&quot;</span><span class="p">,</span> <span class="n">exprs</span><span class="p">:</span> <span class="n">List</span><span class="p">[</span><span class="n">pl</span><span class="o">.</span><span class="n">Expr</span><span class="p">]</span> <span class="o">=</span> <span class="p">[]</span>
+<span class="p">)</span> <span class="o">-&gt;</span> <span class="n">pl</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">:</span>
+    <span class="n">df</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">get_df_stk</span><span class="p">()</span>
+    <span class="n">df</span> <span class="o">=</span> <span class="n">df</span><span class="o">.</span><span class="n">group_by</span><span class="p">(</span>
+        <span class="n">pl</span><span class="o">.</span><span class="n">col</span><span class="p">(</span><span class="s2">&quot;datetime&quot;</span><span class="p">)</span><span class="o">.</span><span class="n">dt</span><span class="o">.</span><span class="n">truncate</span><span class="p">(</span><span class="n">unit</span><span class="p">),</span>
+        <span class="n">pl</span><span class="o">.</span><span class="n">col</span><span class="p">(</span><span class="s2">&quot;code&quot;</span><span class="p">),</span>
+        <span class="n">maintain_order</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span>
+    <span class="p">)</span><span class="o">.</span><span class="n">agg</span><span class="p">(</span>
+        <span class="n">pl</span><span class="o">.</span><span class="n">col</span><span class="p">(</span><span class="s2">&quot;price&quot;</span><span class="p">)</span><span class="o">.</span><span class="n">first</span><span class="p">()</span><span class="o">.</span><span class="n">alias</span><span class="p">(</span><span class="s2">&quot;open&quot;</span><span class="p">),</span>
+        <span class="n">pl</span><span class="o">.</span><span class="n">col</span><span class="p">(</span><span class="s2">&quot;price&quot;</span><span class="p">)</span><span class="o">.</span><span class="n">max</span><span class="p">()</span><span class="o">.</span><span class="n">alias</span><span class="p">(</span><span class="s2">&quot;high&quot;</span><span class="p">),</span>
+        <span class="n">pl</span><span class="o">.</span><span class="n">col</span><span class="p">(</span><span class="s2">&quot;price&quot;</span><span class="p">)</span><span class="o">.</span><span class="n">min</span><span class="p">()</span><span class="o">.</span><span class="n">alias</span><span class="p">(</span><span class="s2">&quot;low&quot;</span><span class="p">),</span>
+        <span class="n">pl</span><span class="o">.</span><span class="n">col</span><span class="p">(</span><span class="s2">&quot;price&quot;</span><span class="p">)</span><span class="o">.</span><span class="n">last</span><span class="p">()</span><span class="o">.</span><span class="n">alias</span><span class="p">(</span><span class="s2">&quot;close&quot;</span><span class="p">),</span>
+        <span class="n">pl</span><span class="o">.</span><span class="n">col</span><span class="p">(</span><span class="s2">&quot;volume&quot;</span><span class="p">)</span><span class="o">.</span><span class="n">sum</span><span class="p">()</span><span class="o">.</span><span class="n">alias</span><span class="p">(</span><span class="s2">&quot;volume&quot;</span><span class="p">),</span>
+    <span class="p">)</span>
+    <span class="k">if</span> <span class="n">exprs</span><span class="p">:</span>
+        <span class="n">df</span> <span class="o">=</span> <span class="n">df</span><span class="o">.</span><span class="n">with_columns</span><span class="p">(</span><span class="n">exprs</span><span class="p">)</span>
+    <span class="k">return</span> <span class="n">df</span>
+</code></pre></div>
+</div>
+<p>在 <code>get_df_stk_kbar</code> 方法中，我們將 <code>get_df_stk</code> 拿到 Ticks 的 DataFrame 根據 code 和 truncate 後的 datetime 進行分組，並且對每個分組進行聚合開高低收量，最後回傳一個新的 DataFrame，這個 DataFrame 就是我們所需要的 K 線資料了，並且這邊保留了 <code>exprs</code> 參數，讓使用者可以傳入一些額外的運算式，來進行更多的運算。
+在這邊 truncate 的單位我們使用 <code>1m</code> 來表示 1 分鐘，如果想要拿到 5 分鐘的 K 線，可以將單位改成 <code>5m</code>， 1 小時 K 可以將單位改成 <code>1h</code>，如果想要更多不同的單位可以參考 <a href="https://docs.pola.rs/api/python/stable/reference/expressions/api/polars.Expr.dt.truncate.html">truncate</a> 的 API 文件。</p>
+<div class="admonition info">
+<p class="admonition-title">自定義技術指標計算</p>
+<div class="highlight"><pre><span></span><code><span class="kn">import</span> <span class="nn">polars</span> <span class="k">as</span> <span class="nn">pl</span>
+<span class="kn">import</span> <span class="nn">polars_talib</span> <span class="k">as</span> <span class="nn">plta</span>
+
+<span class="n">quote_manager</span><span class="o">.</span><span class="n">get_df_stk_kbar</span><span class="p">(</span><span class="s2">&quot;5m&quot;</span><span class="p">,</span> <span class="p">[</span>
+    <span class="n">pl</span><span class="o">.</span><span class="n">col</span><span class="p">(</span><span class="s2">&quot;close&quot;</span><span class="p">)</span><span class="o">.</span><span class="n">ta</span><span class="o">.</span><span class="n">ema</span><span class="p">(</span><span class="mi">5</span><span class="p">)</span><span class="o">.</span><span class="n">over</span><span class="p">(</span><span class="s2">&quot;code&quot;</span><span class="p">)</span><span class="o">.</span><span class="n">fill_nan</span><span class="p">(</span><span class="kc">None</span><span class="p">)</span><span class="o">.</span><span class="n">alias</span><span class="p">(</span><span class="s2">&quot;ema5&quot;</span><span class="p">),</span>
+    <span class="n">plta</span><span class="o">.</span><span class="n">macd</span><span class="p">(</span><span class="n">pl</span><span class="o">.</span><span class="n">col</span><span class="p">(</span><span class="s2">&quot;close&quot;</span><span class="p">),</span> <span class="mi">12</span><span class="p">,</span> <span class="mi">26</span><span class="p">,</span> <span class="mi">9</span><span class="p">)</span><span class="o">.</span><span class="n">over</span><span class="p">(</span><span class="s2">&quot;code&quot;</span><span class="p">)</span><span class="o">.</span><span class="n">struct</span><span class="o">.</span><span class="n">field</span><span class="p">(</span><span class="s2">&quot;macd&quot;</span><span class="p">)</span><span class="o">.</span><span class="n">fill_nan</span><span class="p">(</span><span class="kc">None</span><span class="p">),</span>
+<span class="p">])</span>
+</code></pre></div>
+</div>
+<p>在這邊使用 polars_ta 的 expression 來計算技術指標，並且將計算出來的指標加入到 K 線資料中，這邊我們計算了 <code>ema</code> 和 <code>macd</code> 兩種指標，更多指標可以參考 <a href="https://github.com/Yvictor/polars_ta_extension?tab=readme-ov-file#supported-indicators-and-functions">polars_ta_extension 支援指標列表</a>。</p>
+<p>在這個 polars_ta 的 expression 中，使用 <code>over("code")</code> 來將指標計算結果根據商品代碼進行分組做每個商品獨立的運算
+，所以即使所有的商品都在同一個 DataFrame 中，計算出來的結果還是每個商品獨立的，並且這個 <code>over</code> 的 partition 是會自動平行運算的，所以即使有大量的商品，也可以很快的計算出來，使用 <code>alias</code> 來將計算結果的欄位名稱設置為 <code>ema5</code>，在 <code>macd</code> 指標中回傳的是多個欄位的 struct ，這邊取出 struct 中的 macd 欄位。</p>
+<p>因為這邊傳入的只是表達式非常輕量，可以根據你需要的任何表達式進行新增就可以看到你需要的各種技術指標了，當然如果你要使用 polars expression 做出自己的指標，也是可以的，這邊只是提供一個可以做運算的接口以及簡單的使用範例。</p>
+<div class="admonition info">
+<p class="admonition-title">回補錯過的行情</p>
+<div class="highlight"><pre><span></span><code><span class="k">def</span> <span class="nf">fetch_ticks</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">contract</span><span class="p">:</span> <span class="n">BaseContract</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">pl</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">:</span>
+    <span class="n">code</span> <span class="o">=</span> <span class="n">contract</span><span class="o">.</span><span class="n">code</span>
+    <span class="n">ticks</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">api</span><span class="o">.</span><span class="n">ticks</span><span class="p">(</span><span class="n">contract</span><span class="p">)</span>
+    <span class="n">df</span> <span class="o">=</span> <span class="n">pl</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">(</span><span class="n">ticks</span><span class="o">.</span><span class="n">dict</span><span class="p">())</span><span class="o">.</span><span class="n">select</span><span class="p">(</span>
+        <span class="n">pl</span><span class="o">.</span><span class="n">from_epoch</span><span class="p">(</span><span class="s2">&quot;ts&quot;</span><span class="p">,</span> <span class="n">time_unit</span><span class="o">=</span><span class="s2">&quot;ns&quot;</span><span class="p">)</span><span class="o">.</span><span class="n">dt</span><span class="o">.</span><span class="n">cast_time_unit</span><span class="p">(</span><span class="s2">&quot;us&quot;</span><span class="p">)</span><span class="o">.</span><span class="n">alias</span><span class="p">(</span><span class="s2">&quot;datetime&quot;</span><span class="p">),</span>
+        <span class="n">pl</span><span class="o">.</span><span class="n">lit</span><span class="p">(</span><span class="n">code</span><span class="p">)</span><span class="o">.</span><span class="n">alias</span><span class="p">(</span><span class="s2">&quot;code&quot;</span><span class="p">),</span>
+        <span class="n">pl</span><span class="o">.</span><span class="n">col</span><span class="p">(</span><span class="s2">&quot;close&quot;</span><span class="p">)</span><span class="o">.</span><span class="n">alias</span><span class="p">(</span><span class="s2">&quot;price&quot;</span><span class="p">),</span>
+        <span class="n">pl</span><span class="o">.</span><span class="n">col</span><span class="p">(</span><span class="s2">&quot;volume&quot;</span><span class="p">)</span><span class="o">.</span><span class="n">cast</span><span class="p">(</span><span class="n">pl</span><span class="o">.</span><span class="n">Int64</span><span class="p">),</span>
+        <span class="n">pl</span><span class="o">.</span><span class="n">col</span><span class="p">(</span><span class="s2">&quot;tick_type&quot;</span><span class="p">)</span><span class="o">.</span><span class="n">cast</span><span class="p">(</span><span class="n">pl</span><span class="o">.</span><span class="n">Int8</span><span class="p">),</span>
+    <span class="p">)</span>
+    <span class="k">return</span> <span class="n">df</span>
+
+<span class="k">def</span> <span class="nf">subscribe_stk_tick</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">codes</span><span class="p">:</span> <span class="n">List</span><span class="p">[</span><span class="nb">str</span><span class="p">],</span> <span class="n">recover</span><span class="p">:</span> <span class="nb">bool</span> <span class="o">=</span> <span class="kc">False</span><span class="p">):</span>
+    <span class="k">for</span> <span class="n">code</span> <span class="ow">in</span> <span class="n">codes</span><span class="p">:</span>
+        <span class="c1"># skop</span>
+        <span class="k">if</span> <span class="n">recover</span><span class="p">:</span>
+            <span class="n">df</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">fetch_ticks</span><span class="p">(</span><span class="n">contract</span><span class="p">)</span>
+            <span class="k">if</span> <span class="ow">not</span> <span class="n">df</span><span class="o">.</span><span class="n">is_empty</span><span class="p">():</span>
+                <span class="n">code_ticks</span> <span class="o">=</span> <span class="p">[</span><span class="n">t</span> <span class="k">for</span> <span class="n">t</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">ticks_stk_v1</span> <span class="k">if</span> <span class="n">t</span><span class="o">.</span><span class="n">code</span> <span class="o">==</span> <span class="n">code</span><span class="p">]</span>
+                <span class="k">if</span> <span class="n">code_ticks</span><span class="p">:</span>
+                    <span class="n">t_first</span> <span class="o">=</span> <span class="n">code_ticks</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">datetime</span>
+                    <span class="n">df</span> <span class="o">=</span> <span class="n">df</span><span class="o">.</span><span class="n">filter</span><span class="p">(</span><span class="n">pl</span><span class="o">.</span><span class="n">col</span><span class="p">(</span><span class="s2">&quot;datetime&quot;</span><span class="p">)</span> <span class="o">&lt;</span> <span class="n">t_first</span><span class="p">)</span>
+                    <span class="bp">self</span><span class="o">.</span><span class="n">df_stk</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">df_stk</span><span class="o">.</span><span class="n">vstack</span><span class="p">(</span><span class="n">df</span><span class="p">)</span>
+                <span class="k">else</span><span class="p">:</span>
+                    <span class="bp">self</span><span class="o">.</span><span class="n">df_stk</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">df_stk</span><span class="o">.</span><span class="n">vstack</span><span class="p">(</span><span class="n">df</span><span class="p">)</span>
+</code></pre></div>
+</div>
+<p>在訂閱的時候我們可能會超過當天開盤的時間，這時候訂閱即時資料將會缺乏錯過的資料，所以這邊我們實作使用 api 回補歷史 tick 的資料，這邊我們使用 <code>fetch_ticks</code> 方法來取得歷史 tick 的資料，並且將取得資料加入到 <code>df_stk</code> 中。</p>
+<p>以上我們已經完成了一個可以訂閱行情、回補錯過行情、計算技術指標的行情管理器了，這邊我們將所有程式碼整合起來，並且在 jupyter lab 中使用。</p>
+<p>完整的 QuoteManager 可以參考 <a href="https://github.com/Sinotrade/sj-trading-demo/blob/main/src/sj_trading/quote.py">quote.py</a>。</p>
+<p>完整使用範例 jupyter notebook 可以參考 <a href="https://github.com/Sinotrade/sj-trading-demo/blob/main/quote_manager_usage.ipynb">quote_manager_usage</a>。</p>
+
+
+
+
+
+                
+              </article>
+            </div>
+          
+          
+        </div>
+        
+      </main>
+      
+        <footer class="md-footer">
+  
+    
+    <nav class="md-footer__inner md-grid" aria-label="Footer" >
+      
+        
+        <a href="../touchorder/" class="md-footer__link md-footer__link--prev" aria-label="Previous: 觸價委託範例" rel="prev">
+          <div class="md-footer__button md-icon">
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11h12Z"/></svg>
+          </div>
+          <div class="md-footer__title">
+            <div class="md-ellipsis">
+              <span class="md-footer__direction">
+                Previous
+              </span>
+              觸價委託範例
+            </div>
+          </div>
+        </a>
+      
+      
+        
+        <a href="../../../upgrade/" class="md-footer__link md-footer__link--next" aria-label="Next: 升版指南" rel="next">
+          <div class="md-footer__title">
+            <div class="md-ellipsis">
+              <span class="md-footer__direction">
+                Next
+              </span>
+              升版指南
+            </div>
+          </div>
+          <div class="md-footer__button md-icon">
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M4 11v2h12l-5.5 5.5 1.42 1.42L19.84 12l-7.92-7.92L10.5 5.5 16 11H4Z"/></svg>
+          </div>
+        </a>
+      
+    </nav>
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-copyright">
+  
+    <div class="md-copyright__highlight">
+      Copyright
+    </div>
+  
+  
+    Made with
+    <a href="https://squidfunk.github.io/mkdocs-material/" target="_blank" rel="noopener">
+      Material for MkDocs
+    </a>
+  
+</div>
+      
+        <div class="md-social">
+  
+    
+    
+      
+      
+    
+    <a href="https://github.com/Sinotrade/Shioaji" target="_blank" rel="noopener" title="github.com" class="md-social__link">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 480 512"><!--! Font Awesome Free 6.2.1 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2022 Fonticons, Inc.--><path d="M186.1 328.7c0 20.9-10.9 55.1-36.7 55.1s-36.7-34.2-36.7-55.1 10.9-55.1 36.7-55.1 36.7 34.2 36.7 55.1zM480 278.2c0 31.9-3.2 65.7-17.5 95-37.9 76.6-142.1 74.8-216.7 74.8-75.8 0-186.2 2.7-225.6-74.8-14.6-29-20.2-63.1-20.2-95 0-41.9 13.9-81.5 41.5-113.6-5.2-15.8-7.7-32.4-7.7-48.8 0-21.5 4.9-32.3 14.6-51.8 45.3 0 74.3 9 108.8 36 29-6.9 58.8-10 88.7-10 27 0 54.2 2.9 80.4 9.2 34-26.7 63-35.2 107.8-35.2 9.8 19.5 14.6 30.3 14.6 51.8 0 16.4-2.6 32.7-7.7 48.2 27.5 32.4 39 72.3 39 114.2zm-64.3 50.5c0-43.9-26.7-82.6-73.5-82.6-18.9 0-37 3.4-56 6-14.9 2.3-29.8 3.2-45.1 3.2-15.2 0-30.1-.9-45.1-3.2-18.7-2.6-37-6-56-6-46.8 0-73.5 38.7-73.5 82.6 0 87.8 80.4 101.3 150.4 101.3h48.2c70.3 0 150.6-13.4 150.6-101.3zm-82.6-55.1c-25.8 0-36.7 34.2-36.7 55.1s10.9 55.1 36.7 55.1 36.7-34.2 36.7-55.1-10.9-55.1-36.7-55.1z"/></svg>
+    </a>
+  
+</div>
+      
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    <div class="md-dialog" data-md-component="dialog">
+      <div class="md-dialog__inner md-typeset"></div>
+    </div>
+    
+    <script id="__config" type="application/json">{"base": "../../../..", "features": [], "search": "../../../../assets/javascripts/workers/search.16e2a7d4.min.js", "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.config.lang": "en", "search.config.pipeline": "trimmer, stopWordFilter", "search.config.separator": "[\\s\\-]+", "search.placeholder": "Search", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version.title": "Select version"}}</script>
+    
+    
+      <script src="../../../../assets/javascripts/bundle.5a2dcb6a.min.js"></script>
+      
+    
+    
+  </body>
+</html>
