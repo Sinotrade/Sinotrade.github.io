@@ -1153,7 +1153,172 @@
 
   <h1>Quote Manager Basic</h1>
 
-<p>WIP</p>
+<p>the whole project code can be found in <a href="https://github.com/Sinotrade/sj-trading-demo">sj-trading</a>,
+the whole example jupyter notebook can be found in <a href="https://github.com/Sinotrade/sj-trading-demo/blob/main/quote_manager_usage.ipynb">quote_manager_usage</a>.</p>
+<p>this project is created by using <code>uv</code>, if you are not familiar with how to use <code>uv</code> to create a project and manage dependencies, it is recommended to learn from the <a href="../../../env_setup/">environment setup</a> chapter.</p>
+<p>before start writing the quote manager, we will use the Polars package to process the quote data, so we need to add it to the project dependencies, at the same time, this tutorial will have an example of how to use Polars to quickly calculate technical indicators for multiple commodities, so we also need to add the polars_talib package to the project dependencies.</p>
+<div class="admonition info">
+<p class="admonition-title">add Polars dependencies</p>
+<div class="highlight"><pre><span></span><code>uv add polars polars_talib
+</code></pre></div>
+</div>
+<p>if you are not familiar with Polars, you can refer to the <a href="https://docs.pola.rs/user-guide/getting-started/">Polars official documentation</a> to learn how to use it.</p>
+<p>polars_talib is a Polars extension package that provides the complete functionality of the ta-lib library in the polars expression version, allowing us to easily calculate technical indicators using Polars. It is developed by the shioaji author, and detailed usage can be found in <a href="https://github.com/Yvictor/polars_ta_extension">polars_ta_extension</a>.</p>
+<p>Polars is an efficient DataFrame package that is suitable for processing large amounts of data and can use multiple cores without any additional configuration. In this example, we can see how to use the Shioaji quote manager to obtain quote data, and use Polars for parallel computation, while converting the ticks of the commodity into K lines, and performing parallel multi-commodity technical indicator calculations.</p>
+<div class="admonition info">
+<p class="admonition-title">add quote.py</p>
+<p>add <code>quote.py</code> file in <code>src/sj_trading/</code>, and add the following code</p>
+<div class="highlight"><pre><span></span><code><span class="kn">import</span> <span class="nn">shioaji</span> <span class="k">as</span> <span class="nn">sj</span>
+<span class="kn">from</span> <span class="nn">typing</span> <span class="kn">import</span> <span class="n">List</span>
+
+<span class="k">class</span> <span class="nc">QuoteManager</span><span class="p">:</span>
+    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">api</span><span class="p">:</span> <span class="n">sj</span><span class="o">.</span><span class="n">Shioaji</span><span class="p">):</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">api</span> <span class="o">=</span> <span class="n">api</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">api</span><span class="o">.</span><span class="n">quote</span><span class="o">.</span><span class="n">set_on_tick_stk_v1_callback</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">on_stk_v1_tick_handler</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">api</span><span class="o">.</span><span class="n">quote</span><span class="o">.</span><span class="n">set_on_tick_fop_v1_callback</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">on_fop_v1_tick_handler</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">ticks_stk_v1</span><span class="p">:</span> <span class="n">List</span><span class="p">[</span><span class="n">sj</span><span class="o">.</span><span class="n">TickSTKv1</span><span class="p">]</span> <span class="o">=</span> <span class="p">[]</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">ticks_fop_v1</span><span class="p">:</span> <span class="n">List</span><span class="p">[</span><span class="n">sj</span><span class="o">.</span><span class="n">TickFOPv1</span><span class="p">]</span> <span class="o">=</span> <span class="p">[]</span>
+
+    <span class="k">def</span> <span class="nf">on_stk_v1_tick_handler</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">_exchange</span><span class="p">:</span> <span class="n">sj</span><span class="o">.</span><span class="n">Exchange</span><span class="p">,</span> <span class="n">tick</span><span class="p">:</span> <span class="n">sj</span><span class="o">.</span><span class="n">TickSTKv1</span><span class="p">):</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">ticks_stk_v1</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">tick</span><span class="p">)</span>
+
+    <span class="k">def</span> <span class="nf">on_fop_v1_tick_handler</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">_exchange</span><span class="p">:</span> <span class="n">sj</span><span class="o">.</span><span class="n">Exchange</span><span class="p">,</span> <span class="n">tick</span><span class="p">:</span> <span class="n">sj</span><span class="o">.</span><span class="n">TickFOPv1</span><span class="p">):</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">ticks_fop_v1</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">tick</span><span class="p">)</span>
+</code></pre></div>
+</div>
+<p>this part is relatively simple, let the handle func of receiving the quote data do as little as possible, we define a <code>QuoteManager</code> class, and register two callback functions in the initialization, respectively <code>on_stk_v1_tick_handler</code> and <code>on_fop_v1_tick_handler</code>, these two functions will be called when receiving the quote data, and the quote data will be stored in <code>ticks_stk_v1</code> and <code>ticks_fop_v1</code>.</p>
+<div class="admonition info">
+<p class="admonition-title">add <code>QuoteManager</code> subscribe and unsubscribe methods</p>
+<div class="highlight"><pre><span></span><code><span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">api</span><span class="p">:</span> <span class="n">sj</span><span class="o">.</span><span class="n">Shioaji</span><span class="p">):</span>
+    <span class="c1"># skip</span>
+    <span class="bp">self</span><span class="o">.</span><span class="n">subscribed_stk_tick</span><span class="p">:</span> <span class="n">Set</span><span class="p">[</span><span class="nb">str</span><span class="p">]</span> <span class="o">=</span> <span class="nb">set</span><span class="p">()</span>
+
+<span class="k">def</span> <span class="nf">subscribe_stk_tick</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">codes</span><span class="p">:</span> <span class="n">List</span><span class="p">[</span><span class="nb">str</span><span class="p">],</span> <span class="n">recover</span><span class="p">:</span> <span class="nb">bool</span> <span class="o">=</span> <span class="kc">False</span><span class="p">):</span>
+    <span class="k">for</span> <span class="n">code</span> <span class="ow">in</span> <span class="n">codes</span><span class="p">:</span>
+        <span class="n">contract</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">api</span><span class="o">.</span><span class="n">Contracts</span><span class="o">.</span><span class="n">Stocks</span><span class="p">[</span><span class="n">code</span><span class="p">]</span>
+        <span class="k">if</span> <span class="n">contract</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span> <span class="ow">and</span> <span class="n">code</span> <span class="ow">not</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">subscribed_stk_tick</span><span class="p">:</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">api</span><span class="o">.</span><span class="n">quote</span><span class="o">.</span><span class="n">subscribe</span><span class="p">(</span><span class="n">contract</span><span class="p">,</span> <span class="s2">&quot;tick&quot;</span><span class="p">)</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">subscribed_stk_tick</span><span class="o">.</span><span class="n">add</span><span class="p">(</span><span class="n">code</span><span class="p">)</span>
+
+<span class="k">def</span> <span class="nf">unsubscribe_stk_tick</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">codes</span><span class="p">:</span> <span class="n">List</span><span class="p">[</span><span class="nb">str</span><span class="p">]):</span>
+    <span class="k">for</span> <span class="n">code</span> <span class="ow">in</span> <span class="n">codes</span><span class="p">:</span>
+        <span class="n">contract</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">api</span><span class="o">.</span><span class="n">Contracts</span><span class="o">.</span><span class="n">Stocks</span><span class="p">[</span><span class="n">code</span><span class="p">]</span>
+        <span class="k">if</span> <span class="n">contract</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span> <span class="ow">and</span> <span class="n">code</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">subscribed_stk_tick</span><span class="p">:</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">api</span><span class="o">.</span><span class="n">quote</span><span class="o">.</span><span class="n">unsubscribe</span><span class="p">(</span><span class="n">contract</span><span class="p">,</span> <span class="s2">&quot;tick&quot;</span><span class="p">)</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">subscribed_stk_tick</span><span class="o">.</span><span class="n">remove</span><span class="p">(</span><span class="n">code</span><span class="p">)</span>
+
+<span class="k">def</span> <span class="nf">unsubscribe_all_stk_tick</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+    <span class="k">for</span> <span class="n">code</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">subscribed_stk_tick</span><span class="p">:</span>
+        <span class="n">contract</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">api</span><span class="o">.</span><span class="n">Contracts</span><span class="o">.</span><span class="n">Stocks</span><span class="p">[</span><span class="n">code</span><span class="p">]</span>
+        <span class="k">if</span> <span class="n">contract</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">api</span><span class="o">.</span><span class="n">quote</span><span class="o">.</span><span class="n">unsubscribe</span><span class="p">(</span><span class="n">contract</span><span class="p">,</span> <span class="s2">&quot;tick&quot;</span><span class="p">)</span>
+    <span class="bp">self</span><span class="o">.</span><span class="n">subscribed_stk_tick</span><span class="o">.</span><span class="n">clear</span><span class="p">()</span>
+</code></pre></div>
+</div>
+<p>in the above code, we have added the <code>subscribe_stk_tick</code> method, this method will add the commodity codes in the incoming commodity code list to the <code>subscribed_stk_tick</code>, and call the <code>subscribe</code> method of Shioaji to subscribe to the market, <code>subscribed_stk_tick</code> is a <code>Set</code>, used to store the commodity codes that have been subscribed to avoid duplicate subscriptions and facilitate subsequent unsubscribing all subscribed commodities.</p>
+<div class="admonition info">
+<p class="admonition-title">add <code>QuoteManager</code> get ticks method</p>
+<div class="highlight"><pre><span></span><code><span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">api</span><span class="p">:</span> <span class="n">sj</span><span class="o">.</span><span class="n">Shioaji</span><span class="p">):</span>
+    <span class="c1"># skip</span>
+    <span class="bp">self</span><span class="o">.</span><span class="n">df_stk</span><span class="p">:</span> <span class="n">pl</span><span class="o">.</span><span class="n">DataFrame</span> <span class="o">=</span> <span class="n">pl</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">(</span>
+        <span class="p">[],</span>
+        <span class="n">schema</span><span class="o">=</span><span class="p">[</span>
+            <span class="p">(</span><span class="s2">&quot;datetime&quot;</span><span class="p">,</span> <span class="n">pl</span><span class="o">.</span><span class="n">Datetime</span><span class="p">),</span>
+            <span class="p">(</span><span class="s2">&quot;code&quot;</span><span class="p">,</span> <span class="n">pl</span><span class="o">.</span><span class="n">Utf8</span><span class="p">),</span>
+            <span class="p">(</span><span class="s2">&quot;price&quot;</span><span class="p">,</span> <span class="n">pl</span><span class="o">.</span><span class="n">Float64</span><span class="p">),</span>
+            <span class="p">(</span><span class="s2">&quot;volume&quot;</span><span class="p">,</span> <span class="n">pl</span><span class="o">.</span><span class="n">Int64</span><span class="p">),</span>
+            <span class="p">(</span><span class="s2">&quot;tick_type&quot;</span><span class="p">,</span> <span class="n">pl</span><span class="o">.</span><span class="n">Int8</span><span class="p">),</span>
+        <span class="p">],</span>
+    <span class="p">)</span>
+
+<span class="k">def</span> <span class="nf">get_df_stk</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">pl</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">:</span>
+    <span class="n">poped_ticks</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">ticks_stk_v1</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">ticks_stk_v1</span><span class="p">,</span> <span class="p">[]</span>
+    <span class="k">if</span> <span class="n">poped_ticks</span><span class="p">:</span>
+        <span class="n">df</span> <span class="o">=</span> <span class="n">pl</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">([</span><span class="n">tick</span><span class="o">.</span><span class="n">to_dict</span><span class="p">()</span> <span class="k">for</span> <span class="n">tick</span> <span class="ow">in</span> <span class="n">poped_ticks</span><span class="p">])</span><span class="o">.</span><span class="n">select</span><span class="p">(</span>
+            <span class="n">pl</span><span class="o">.</span><span class="n">col</span><span class="p">(</span><span class="s2">&quot;datetime&quot;</span><span class="p">,</span> <span class="s2">&quot;code&quot;</span><span class="p">),</span>
+            <span class="n">pl</span><span class="o">.</span><span class="n">col</span><span class="p">(</span><span class="s2">&quot;close&quot;</span><span class="p">)</span><span class="o">.</span><span class="n">cast</span><span class="p">(</span><span class="n">pl</span><span class="o">.</span><span class="n">Float64</span><span class="p">)</span><span class="o">.</span><span class="n">alias</span><span class="p">(</span><span class="s2">&quot;price&quot;</span><span class="p">),</span>
+            <span class="n">pl</span><span class="o">.</span><span class="n">col</span><span class="p">(</span><span class="s2">&quot;volume&quot;</span><span class="p">)</span><span class="o">.</span><span class="n">cast</span><span class="p">(</span><span class="n">pl</span><span class="o">.</span><span class="n">Int64</span><span class="p">),</span>
+            <span class="n">pl</span><span class="o">.</span><span class="n">col</span><span class="p">(</span><span class="s2">&quot;tick_type&quot;</span><span class="p">)</span><span class="o">.</span><span class="n">cast</span><span class="p">(</span><span class="n">pl</span><span class="o">.</span><span class="n">Int8</span><span class="p">),</span>
+        <span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">df_stk</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">df_stk</span><span class="o">.</span><span class="n">vstack</span><span class="p">(</span><span class="n">df</span><span class="p">)</span>
+    <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">df_stk</span>
+</code></pre></div>
+</div>
+<p>in <code>__init__</code> we define a <code>df_stk</code> Polars DataFrame, used to store all subscribed stock tick data, <code>get_df_stk</code> method will convert the <code>ticks_stk_v1</code> list to a Polars DataFrame, and return it, at this point, we have already got a DataFrame that can be used to calculate technical indicators.</p>
+<p><br/>
+   <img alt="df_stk" src="/img/quote_manager1.png#center" width="600" />
+   <br/></p>
+<div class="admonition info">
+<p class="admonition-title">add <code>QuoteManager</code> get kbar method</p>
+<div class="highlight"><pre><span></span><code><span class="k">def</span> <span class="nf">get_df_stk_kbar</span><span class="p">(</span>
+    <span class="bp">self</span><span class="p">,</span> <span class="n">unit</span><span class="p">:</span> <span class="nb">str</span> <span class="o">=</span> <span class="s2">&quot;1m&quot;</span><span class="p">,</span> <span class="n">exprs</span><span class="p">:</span> <span class="n">List</span><span class="p">[</span><span class="n">pl</span><span class="o">.</span><span class="n">Expr</span><span class="p">]</span> <span class="o">=</span> <span class="p">[]</span>
+<span class="p">)</span> <span class="o">-&gt;</span> <span class="n">pl</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">:</span>
+    <span class="n">df</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">get_df_stk</span><span class="p">()</span>
+    <span class="n">df</span> <span class="o">=</span> <span class="n">df</span><span class="o">.</span><span class="n">group_by</span><span class="p">(</span>
+        <span class="n">pl</span><span class="o">.</span><span class="n">col</span><span class="p">(</span><span class="s2">&quot;datetime&quot;</span><span class="p">)</span><span class="o">.</span><span class="n">dt</span><span class="o">.</span><span class="n">truncate</span><span class="p">(</span><span class="n">unit</span><span class="p">),</span>
+        <span class="n">pl</span><span class="o">.</span><span class="n">col</span><span class="p">(</span><span class="s2">&quot;code&quot;</span><span class="p">),</span>
+        <span class="n">maintain_order</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span>
+    <span class="p">)</span><span class="o">.</span><span class="n">agg</span><span class="p">(</span>
+        <span class="n">pl</span><span class="o">.</span><span class="n">col</span><span class="p">(</span><span class="s2">&quot;price&quot;</span><span class="p">)</span><span class="o">.</span><span class="n">first</span><span class="p">()</span><span class="o">.</span><span class="n">alias</span><span class="p">(</span><span class="s2">&quot;open&quot;</span><span class="p">),</span>
+        <span class="n">pl</span><span class="o">.</span><span class="n">col</span><span class="p">(</span><span class="s2">&quot;price&quot;</span><span class="p">)</span><span class="o">.</span><span class="n">max</span><span class="p">()</span><span class="o">.</span><span class="n">alias</span><span class="p">(</span><span class="s2">&quot;high&quot;</span><span class="p">),</span>
+        <span class="n">pl</span><span class="o">.</span><span class="n">col</span><span class="p">(</span><span class="s2">&quot;price&quot;</span><span class="p">)</span><span class="o">.</span><span class="n">min</span><span class="p">()</span><span class="o">.</span><span class="n">alias</span><span class="p">(</span><span class="s2">&quot;low&quot;</span><span class="p">),</span>
+        <span class="n">pl</span><span class="o">.</span><span class="n">col</span><span class="p">(</span><span class="s2">&quot;price&quot;</span><span class="p">)</span><span class="o">.</span><span class="n">last</span><span class="p">()</span><span class="o">.</span><span class="n">alias</span><span class="p">(</span><span class="s2">&quot;close&quot;</span><span class="p">),</span>
+        <span class="n">pl</span><span class="o">.</span><span class="n">col</span><span class="p">(</span><span class="s2">&quot;volume&quot;</span><span class="p">)</span><span class="o">.</span><span class="n">sum</span><span class="p">()</span><span class="o">.</span><span class="n">alias</span><span class="p">(</span><span class="s2">&quot;volume&quot;</span><span class="p">),</span>
+    <span class="p">)</span>
+    <span class="k">if</span> <span class="n">exprs</span><span class="p">:</span>
+        <span class="n">df</span> <span class="o">=</span> <span class="n">df</span><span class="o">.</span><span class="n">with_columns</span><span class="p">(</span><span class="n">exprs</span><span class="p">)</span>
+    <span class="k">return</span> <span class="n">df</span>
+</code></pre></div>
+</div>
+<p>in <code>get_df_stk_kbar</code> method, we will use <code>get_df_stk</code> method to get the Ticks DataFrame and then group the data by truncated <code>datetime</code> and <code>code</code>, and then aggregate the data in each group to get the K line data, finally, we will return the K line DataFrame. Here we remain the <code>exprs</code> parameter, allowing users to pass in additional expressions for more calculations.</p>
+<p>In this part, we use <code>1m</code> to represent 1 minute, if you want to get 5 minutes K line, you can change the unit to <code>5m</code>, 1 hour K line can be changed to <code>1h</code>, if you want more different units, you can refer to the  <a href="https://docs.pola.rs/api/python/stable/reference/expressions/api/polars.Expr.dt.truncate.html">truncate</a> API documentation.</p>
+<div class="admonition info">
+<p class="admonition-title">add custom technical indicator calculation method</p>
+<div class="highlight"><pre><span></span><code><span class="kn">import</span> <span class="nn">polars</span> <span class="k">as</span> <span class="nn">pl</span>
+<span class="kn">import</span> <span class="nn">polars_talib</span> <span class="k">as</span> <span class="nn">plta</span>
+
+<span class="n">quote_manager</span><span class="o">.</span><span class="n">get_df_stk_kbar</span><span class="p">(</span><span class="s2">&quot;5m&quot;</span><span class="p">,</span> <span class="p">[</span>
+    <span class="n">pl</span><span class="o">.</span><span class="n">col</span><span class="p">(</span><span class="s2">&quot;close&quot;</span><span class="p">)</span><span class="o">.</span><span class="n">ta</span><span class="o">.</span><span class="n">ema</span><span class="p">(</span><span class="mi">5</span><span class="p">)</span><span class="o">.</span><span class="n">over</span><span class="p">(</span><span class="s2">&quot;code&quot;</span><span class="p">)</span><span class="o">.</span><span class="n">fill_nan</span><span class="p">(</span><span class="kc">None</span><span class="p">)</span><span class="o">.</span><span class="n">alias</span><span class="p">(</span><span class="s2">&quot;ema5&quot;</span><span class="p">),</span>
+    <span class="n">plta</span><span class="o">.</span><span class="n">macd</span><span class="p">(</span><span class="n">pl</span><span class="o">.</span><span class="n">col</span><span class="p">(</span><span class="s2">&quot;close&quot;</span><span class="p">),</span> <span class="mi">12</span><span class="p">,</span> <span class="mi">26</span><span class="p">,</span> <span class="mi">9</span><span class="p">)</span><span class="o">.</span><span class="n">over</span><span class="p">(</span><span class="s2">&quot;code&quot;</span><span class="p">)</span><span class="o">.</span><span class="n">struct</span><span class="o">.</span><span class="n">field</span><span class="p">(</span><span class="s2">&quot;macd&quot;</span><span class="p">)</span><span class="o">.</span><span class="n">fill_nan</span><span class="p">(</span><span class="kc">None</span><span class="p">),</span>
+<span class="p">])</span>
+</code></pre></div>
+</div>
+<p>in this part, we use polars_ta to calculate technical indicators and add them to the K line data, here we calculate <code>ema</code> and <code>macd</code> two indicators, more indicators can refer to <a href="https://github.com/Yvictor/polars_ta_extension?tab=readme-ov-file#supported-indicators-and-functions">polars_ta_extension supported indicators list</a>.</p>
+<p>in this polars_ta expression, we use <code>over("code")</code> to group the data by commodity code for independent calculation of each commodity, so even if all commodities are in the same DataFrame, the calculation results are independent of each other, and this <code>over</code> partition is automatically parallel computing, so even if there are a large number of commodities, the calculation can be very fast and then using <code>alias</code> to set the field name of the calculation result as <code>ema5</code>, in the <code>macd</code> indicator, the return is a struct with multiple fields, and this part gets the <code>macd</code> field.</p>
+<p>because this part only passes in expressions and is very lightweight, you can pass in any expressions you need according to your needs, and you can also make your own indicators using polars expression, this part just provides an interface for calculation and a simple usage example.</p>
+<div class="admonition info">
+<p class="admonition-title">add <code>QuoteManager</code> backfill missed ticks method</p>
+<div class="highlight"><pre><span></span><code><span class="k">def</span> <span class="nf">fetch_ticks</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">contract</span><span class="p">:</span> <span class="n">BaseContract</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">pl</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">:</span>
+    <span class="n">code</span> <span class="o">=</span> <span class="n">contract</span><span class="o">.</span><span class="n">code</span>
+    <span class="n">ticks</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">api</span><span class="o">.</span><span class="n">ticks</span><span class="p">(</span><span class="n">contract</span><span class="p">)</span>
+    <span class="n">df</span> <span class="o">=</span> <span class="n">pl</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">(</span><span class="n">ticks</span><span class="o">.</span><span class="n">dict</span><span class="p">())</span><span class="o">.</span><span class="n">select</span><span class="p">(</span>
+        <span class="n">pl</span><span class="o">.</span><span class="n">from_epoch</span><span class="p">(</span><span class="s2">&quot;ts&quot;</span><span class="p">,</span> <span class="n">time_unit</span><span class="o">=</span><span class="s2">&quot;ns&quot;</span><span class="p">)</span><span class="o">.</span><span class="n">dt</span><span class="o">.</span><span class="n">cast_time_unit</span><span class="p">(</span><span class="s2">&quot;us&quot;</span><span class="p">)</span><span class="o">.</span><span class="n">alias</span><span class="p">(</span><span class="s2">&quot;datetime&quot;</span><span class="p">),</span>
+        <span class="n">pl</span><span class="o">.</span><span class="n">lit</span><span class="p">(</span><span class="n">code</span><span class="p">)</span><span class="o">.</span><span class="n">alias</span><span class="p">(</span><span class="s2">&quot;code&quot;</span><span class="p">),</span>
+        <span class="n">pl</span><span class="o">.</span><span class="n">col</span><span class="p">(</span><span class="s2">&quot;close&quot;</span><span class="p">)</span><span class="o">.</span><span class="n">alias</span><span class="p">(</span><span class="s2">&quot;price&quot;</span><span class="p">),</span>
+        <span class="n">pl</span><span class="o">.</span><span class="n">col</span><span class="p">(</span><span class="s2">&quot;volume&quot;</span><span class="p">)</span><span class="o">.</span><span class="n">cast</span><span class="p">(</span><span class="n">pl</span><span class="o">.</span><span class="n">Int64</span><span class="p">),</span>
+        <span class="n">pl</span><span class="o">.</span><span class="n">col</span><span class="p">(</span><span class="s2">&quot;tick_type&quot;</span><span class="p">)</span><span class="o">.</span><span class="n">cast</span><span class="p">(</span><span class="n">pl</span><span class="o">.</span><span class="n">Int8</span><span class="p">),</span>
+    <span class="p">)</span>
+    <span class="k">return</span> <span class="n">df</span>
+
+<span class="k">def</span> <span class="nf">subscribe_stk_tick</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">codes</span><span class="p">:</span> <span class="n">List</span><span class="p">[</span><span class="nb">str</span><span class="p">],</span> <span class="n">recover</span><span class="p">:</span> <span class="nb">bool</span> <span class="o">=</span> <span class="kc">False</span><span class="p">):</span>
+    <span class="k">for</span> <span class="n">code</span> <span class="ow">in</span> <span class="n">codes</span><span class="p">:</span>
+        <span class="c1"># skop</span>
+        <span class="k">if</span> <span class="n">recover</span><span class="p">:</span>
+            <span class="n">df</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">fetch_ticks</span><span class="p">(</span><span class="n">contract</span><span class="p">)</span>
+            <span class="k">if</span> <span class="ow">not</span> <span class="n">df</span><span class="o">.</span><span class="n">is_empty</span><span class="p">():</span>
+                <span class="n">code_ticks</span> <span class="o">=</span> <span class="p">[</span><span class="n">t</span> <span class="k">for</span> <span class="n">t</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">ticks_stk_v1</span> <span class="k">if</span> <span class="n">t</span><span class="o">.</span><span class="n">code</span> <span class="o">==</span> <span class="n">code</span><span class="p">]</span>
+                <span class="k">if</span> <span class="n">code_ticks</span><span class="p">:</span>
+                    <span class="n">t_first</span> <span class="o">=</span> <span class="n">code_ticks</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">datetime</span>
+                    <span class="n">df</span> <span class="o">=</span> <span class="n">df</span><span class="o">.</span><span class="n">filter</span><span class="p">(</span><span class="n">pl</span><span class="o">.</span><span class="n">col</span><span class="p">(</span><span class="s2">&quot;datetime&quot;</span><span class="p">)</span> <span class="o">&lt;</span> <span class="n">t_first</span><span class="p">)</span>
+                    <span class="bp">self</span><span class="o">.</span><span class="n">df_stk</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">df_stk</span><span class="o">.</span><span class="n">vstack</span><span class="p">(</span><span class="n">df</span><span class="p">)</span>
+                <span class="k">else</span><span class="p">:</span>
+                    <span class="bp">self</span><span class="o">.</span><span class="n">df_stk</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">df_stk</span><span class="o">.</span><span class="n">vstack</span><span class="p">(</span><span class="n">df</span><span class="p">)</span>
+</code></pre></div>
+</div>
+<p>in <code>subscribe_stk_tick</code> method, we will check if the <code>recover</code> parameter is true, if it is, we will call <code>fetch_ticks</code> method to get the historical ticks data, and then use <code>filter</code> method to filter out the ticks data that have been received, and use <code>vstack</code> method to add the historical ticks data to the <code>df_stk</code> DataFrame.</p>
+<p>In above we have completed a quote manager that can subscribe to market data, backfill missed ticks, and calculate technical indicators. Next, we will integrate all the code and use it in a jupyter lab environment.</p>
+<p>The complete QuoteManager can be found in <a href="https://github.com/Sinotrade/sj-trading-demo/blob/main/src/sj_trading/quote.py">quote.py</a>.</p>
+<p>The complete example jupyter notebook can be found in <a href="https://github.com/Sinotrade/sj-trading-demo/blob/main/quote_manager_usage.ipynb">quote_manager_usage</a>.</p>
 
 
 
