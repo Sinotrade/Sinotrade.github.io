@@ -1,331 +1,577 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9" xmlns:xhtml="http://www.w3.org/1999/xhtml">
     <url>
-         <loc>https://sinotrade.github.io/</loc>
-         <lastmod>2025-04-16</lastmod>
-         <changefreq>daily</changefreq>
-         <xhtml:link rel="alternate" hreflang="en" href="https://sinotrade.github.io/en/"/>
-         <xhtml:link rel="alternate" hreflang="zh_TW" href="https://sinotrade.github.io/zh_TW/"/>
-         
+        <loc>https://sinotrade.github.io/</loc>
+        <lastmod>2025-04-28</lastmod>
+        <changefreq>daily</changefreq>
+        <xhtml:link rel="alternate" hreflang="en" href="https://sinotrade.github.io/"/>
+        <xhtml:link rel="alternate" hreflang="zh" href="https://sinotrade.github.io/zh/"/>
     </url>
     <url>
-         <loc>https://sinotrade.github.io/env_setup/</loc>
-         <lastmod>2025-04-16</lastmod>
-         <changefreq>daily</changefreq>
-         <xhtml:link rel="alternate" hreflang="en" href="https://sinotrade.github.io/en/env_setup/"/>
-         <xhtml:link rel="alternate" hreflang="zh_TW" href="https://sinotrade.github.io/zh_TW/env_setup/"/>
-         
+        <loc>https://sinotrade.github.io/env_setup/</loc>
+        <lastmod>2025-04-28</lastmod>
+        <changefreq>daily</changefreq>
+        <xhtml:link rel="alternate" hreflang="en" href="https://sinotrade.github.io/env_setup/"/>
+        <xhtml:link rel="alternate" hreflang="zh" href="https://sinotrade.github.io/zh/env_setup/"/>
     </url>
     <url>
-         <loc>https://sinotrade.github.io/qa/</loc>
-         <lastmod>2025-04-16</lastmod>
-         <changefreq>daily</changefreq>
-         <xhtml:link rel="alternate" hreflang="en" href="https://sinotrade.github.io/en/qa/"/>
-         <xhtml:link rel="alternate" hreflang="zh_TW" href="https://sinotrade.github.io/zh_TW/qa/"/>
-         
+        <loc>https://sinotrade.github.io/qa/</loc>
+        <lastmod>2025-04-28</lastmod>
+        <changefreq>daily</changefreq>
+        <xhtml:link rel="alternate" hreflang="en" href="https://sinotrade.github.io/qa/"/>
+        <xhtml:link rel="alternate" hreflang="zh" href="https://sinotrade.github.io/zh/qa/"/>
     </url>
     <url>
-         <loc>https://sinotrade.github.io/quickstart/</loc>
-         <lastmod>2025-04-16</lastmod>
-         <changefreq>daily</changefreq>
-         <xhtml:link rel="alternate" hreflang="en" href="https://sinotrade.github.io/en/quickstart/"/>
-         <xhtml:link rel="alternate" hreflang="zh_TW" href="https://sinotrade.github.io/zh_TW/quickstart/"/>
-         
+        <loc>https://sinotrade.github.io/quickstart/</loc>
+        <lastmod>2025-04-28</lastmod>
+        <changefreq>daily</changefreq>
+        <xhtml:link rel="alternate" hreflang="en" href="https://sinotrade.github.io/quickstart/"/>
+        <xhtml:link rel="alternate" hreflang="zh" href="https://sinotrade.github.io/zh/quickstart/"/>
     </url>
     <url>
-         <loc>https://sinotrade.github.io/release/</loc>
-         <lastmod>2025-04-16</lastmod>
-         <changefreq>daily</changefreq>
-         <xhtml:link rel="alternate" hreflang="en" href="https://sinotrade.github.io/en/release/"/>
-         <xhtml:link rel="alternate" hreflang="zh_TW" href="https://sinotrade.github.io/zh_TW/release/"/>
-         
+        <loc>https://sinotrade.github.io/release/</loc>
+        <lastmod>2025-04-28</lastmod>
+        <changefreq>daily</changefreq>
+        <xhtml:link rel="alternate" hreflang="en" href="https://sinotrade.github.io/release/"/>
+        <xhtml:link rel="alternate" hreflang="zh" href="https://sinotrade.github.io/zh/release/"/>
     </url>
     <url>
-         <loc>https://sinotrade.github.io/upgrade/</loc>
-         <lastmod>2025-04-16</lastmod>
-         <changefreq>daily</changefreq>
-         <xhtml:link rel="alternate" hreflang="en" href="https://sinotrade.github.io/en/upgrade/"/>
-         <xhtml:link rel="alternate" hreflang="zh_TW" href="https://sinotrade.github.io/zh_TW/upgrade/"/>
-         
+        <loc>https://sinotrade.github.io/upgrade/</loc>
+        <lastmod>2025-04-28</lastmod>
+        <changefreq>daily</changefreq>
+        <xhtml:link rel="alternate" hreflang="en" href="https://sinotrade.github.io/upgrade/"/>
+        <xhtml:link rel="alternate" hreflang="zh" href="https://sinotrade.github.io/zh/upgrade/"/>
     </url>
     <url>
-         <loc>https://sinotrade.github.io/tutor/contract/</loc>
-         <lastmod>2025-04-16</lastmod>
-         <changefreq>daily</changefreq>
-         <xhtml:link rel="alternate" hreflang="en" href="https://sinotrade.github.io/en/tutor/contract/"/>
-         <xhtml:link rel="alternate" hreflang="zh_TW" href="https://sinotrade.github.io/zh_TW/tutor/contract/"/>
-         
+        <loc>https://sinotrade.github.io/tutor/contract/</loc>
+        <lastmod>2025-04-28</lastmod>
+        <changefreq>daily</changefreq>
+        <xhtml:link rel="alternate" hreflang="en" href="https://sinotrade.github.io/tutor/contract/"/>
+        <xhtml:link rel="alternate" hreflang="zh" href="https://sinotrade.github.io/zh/tutor/contract/"/>
     </url>
     <url>
-         <loc>https://sinotrade.github.io/tutor/limit/</loc>
-         <lastmod>2025-04-16</lastmod>
-         <changefreq>daily</changefreq>
-         <xhtml:link rel="alternate" hreflang="en" href="https://sinotrade.github.io/en/tutor/limit/"/>
-         <xhtml:link rel="alternate" hreflang="zh_TW" href="https://sinotrade.github.io/zh_TW/tutor/limit/"/>
-         
+        <loc>https://sinotrade.github.io/tutor/limit/</loc>
+        <lastmod>2025-04-28</lastmod>
+        <changefreq>daily</changefreq>
+        <xhtml:link rel="alternate" hreflang="en" href="https://sinotrade.github.io/tutor/limit/"/>
+        <xhtml:link rel="alternate" hreflang="zh" href="https://sinotrade.github.io/zh/tutor/limit/"/>
     </url>
     <url>
-         <loc>https://sinotrade.github.io/tutor/login/</loc>
-         <lastmod>2025-04-16</lastmod>
-         <changefreq>daily</changefreq>
-         <xhtml:link rel="alternate" hreflang="en" href="https://sinotrade.github.io/en/tutor/login/"/>
-         <xhtml:link rel="alternate" hreflang="zh_TW" href="https://sinotrade.github.io/zh_TW/tutor/login/"/>
-         
+        <loc>https://sinotrade.github.io/tutor/login/</loc>
+        <lastmod>2025-04-28</lastmod>
+        <changefreq>daily</changefreq>
+        <xhtml:link rel="alternate" hreflang="en" href="https://sinotrade.github.io/tutor/login/"/>
+        <xhtml:link rel="alternate" hreflang="zh" href="https://sinotrade.github.io/zh/tutor/login/"/>
     </url>
     <url>
-         <loc>https://sinotrade.github.io/tutor/simulation/</loc>
-         <lastmod>2025-04-16</lastmod>
-         <changefreq>daily</changefreq>
-         <xhtml:link rel="alternate" hreflang="en" href="https://sinotrade.github.io/en/tutor/simulation/"/>
-         <xhtml:link rel="alternate" hreflang="zh_TW" href="https://sinotrade.github.io/zh_TW/tutor/simulation/"/>
-         
+        <loc>https://sinotrade.github.io/tutor/simulation/</loc>
+        <lastmod>2025-04-28</lastmod>
+        <changefreq>daily</changefreq>
+        <xhtml:link rel="alternate" hreflang="en" href="https://sinotrade.github.io/tutor/simulation/"/>
+        <xhtml:link rel="alternate" hreflang="zh" href="https://sinotrade.github.io/zh/tutor/simulation/"/>
     </url>
     <url>
-         <loc>https://sinotrade.github.io/tutor/accounting/account_balance/</loc>
-         <lastmod>2025-04-16</lastmod>
-         <changefreq>daily</changefreq>
-         <xhtml:link rel="alternate" hreflang="en" href="https://sinotrade.github.io/en/tutor/accounting/account_balance/"/>
-         <xhtml:link rel="alternate" hreflang="zh_TW" href="https://sinotrade.github.io/zh_TW/tutor/accounting/account_balance/"/>
-         
+        <loc>https://sinotrade.github.io/tutor/accounting/account_balance/</loc>
+        <lastmod>2025-04-28</lastmod>
+        <changefreq>daily</changefreq>
+        <xhtml:link rel="alternate" hreflang="en" href="https://sinotrade.github.io/tutor/accounting/account_balance/"/>
+        <xhtml:link rel="alternate" hreflang="zh" href="https://sinotrade.github.io/zh/tutor/accounting/account_balance/"/>
     </url>
     <url>
-         <loc>https://sinotrade.github.io/tutor/accounting/account_portfolio/</loc>
-         <lastmod>2025-04-16</lastmod>
-         <changefreq>daily</changefreq>
-         <xhtml:link rel="alternate" hreflang="en" href="https://sinotrade.github.io/en/tutor/accounting/account_portfolio/"/>
-         <xhtml:link rel="alternate" hreflang="zh_TW" href="https://sinotrade.github.io/zh_TW/tutor/accounting/account_portfolio/"/>
-         
+        <loc>https://sinotrade.github.io/tutor/accounting/account_portfolio/</loc>
+        <lastmod>2025-04-28</lastmod>
+        <changefreq>daily</changefreq>
+        <xhtml:link rel="alternate" hreflang="en" href="https://sinotrade.github.io/tutor/accounting/account_portfolio/"/>
+        <xhtml:link rel="alternate" hreflang="zh" href="https://sinotrade.github.io/zh/tutor/accounting/account_portfolio/"/>
     </url>
     <url>
-         <loc>https://sinotrade.github.io/tutor/accounting/margin/</loc>
-         <lastmod>2025-04-16</lastmod>
-         <changefreq>daily</changefreq>
-         <xhtml:link rel="alternate" hreflang="en" href="https://sinotrade.github.io/en/tutor/accounting/margin/"/>
-         <xhtml:link rel="alternate" hreflang="zh_TW" href="https://sinotrade.github.io/zh_TW/tutor/accounting/margin/"/>
-         
+        <loc>https://sinotrade.github.io/tutor/accounting/margin/</loc>
+        <lastmod>2025-04-28</lastmod>
+        <changefreq>daily</changefreq>
+        <xhtml:link rel="alternate" hreflang="en" href="https://sinotrade.github.io/tutor/accounting/margin/"/>
+        <xhtml:link rel="alternate" hreflang="zh" href="https://sinotrade.github.io/zh/tutor/accounting/margin/"/>
     </url>
     <url>
-         <loc>https://sinotrade.github.io/tutor/accounting/position/</loc>
-         <lastmod>2025-04-16</lastmod>
-         <changefreq>daily</changefreq>
-         <xhtml:link rel="alternate" hreflang="en" href="https://sinotrade.github.io/en/tutor/accounting/position/"/>
-         <xhtml:link rel="alternate" hreflang="zh_TW" href="https://sinotrade.github.io/zh_TW/tutor/accounting/position/"/>
-         
+        <loc>https://sinotrade.github.io/tutor/accounting/position/</loc>
+        <lastmod>2025-04-28</lastmod>
+        <changefreq>daily</changefreq>
+        <xhtml:link rel="alternate" hreflang="en" href="https://sinotrade.github.io/tutor/accounting/position/"/>
+        <xhtml:link rel="alternate" hreflang="zh" href="https://sinotrade.github.io/zh/tutor/accounting/position/"/>
     </url>
     <url>
-         <loc>https://sinotrade.github.io/tutor/accounting/profit_loss/</loc>
-         <lastmod>2025-04-16</lastmod>
-         <changefreq>daily</changefreq>
-         <xhtml:link rel="alternate" hreflang="en" href="https://sinotrade.github.io/en/tutor/accounting/profit_loss/"/>
-         <xhtml:link rel="alternate" hreflang="zh_TW" href="https://sinotrade.github.io/zh_TW/tutor/accounting/profit_loss/"/>
-         
+        <loc>https://sinotrade.github.io/tutor/accounting/profit_loss/</loc>
+        <lastmod>2025-04-28</lastmod>
+        <changefreq>daily</changefreq>
+        <xhtml:link rel="alternate" hreflang="en" href="https://sinotrade.github.io/tutor/accounting/profit_loss/"/>
+        <xhtml:link rel="alternate" hreflang="zh" href="https://sinotrade.github.io/zh/tutor/accounting/profit_loss/"/>
     </url>
     <url>
-         <loc>https://sinotrade.github.io/tutor/accounting/settlements/</loc>
-         <lastmod>2025-04-16</lastmod>
-         <changefreq>daily</changefreq>
-         <xhtml:link rel="alternate" hreflang="en" href="https://sinotrade.github.io/en/tutor/accounting/settlements/"/>
-         <xhtml:link rel="alternate" hreflang="zh_TW" href="https://sinotrade.github.io/zh_TW/tutor/accounting/settlements/"/>
-         
+        <loc>https://sinotrade.github.io/tutor/accounting/settlements/</loc>
+        <lastmod>2025-04-28</lastmod>
+        <changefreq>daily</changefreq>
+        <xhtml:link rel="alternate" hreflang="en" href="https://sinotrade.github.io/tutor/accounting/settlements/"/>
+        <xhtml:link rel="alternate" hreflang="zh" href="https://sinotrade.github.io/zh/tutor/accounting/settlements/"/>
     </url>
     <url>
-         <loc>https://sinotrade.github.io/tutor/advanced/nonblock/</loc>
-         <lastmod>2025-04-16</lastmod>
-         <changefreq>daily</changefreq>
-         <xhtml:link rel="alternate" hreflang="en" href="https://sinotrade.github.io/en/tutor/advanced/nonblock/"/>
-         <xhtml:link rel="alternate" hreflang="zh_TW" href="https://sinotrade.github.io/zh_TW/tutor/advanced/nonblock/"/>
-         
+        <loc>https://sinotrade.github.io/tutor/advanced/nonblock/</loc>
+        <lastmod>2025-04-28</lastmod>
+        <changefreq>daily</changefreq>
+        <xhtml:link rel="alternate" hreflang="en" href="https://sinotrade.github.io/tutor/advanced/nonblock/"/>
+        <xhtml:link rel="alternate" hreflang="zh" href="https://sinotrade.github.io/zh/tutor/advanced/nonblock/"/>
     </url>
     <url>
-         <loc>https://sinotrade.github.io/tutor/advanced/quote_binding/</loc>
-         <lastmod>2025-04-16</lastmod>
-         <changefreq>daily</changefreq>
-         <xhtml:link rel="alternate" hreflang="en" href="https://sinotrade.github.io/en/tutor/advanced/quote_binding/"/>
-         <xhtml:link rel="alternate" hreflang="zh_TW" href="https://sinotrade.github.io/zh_TW/tutor/advanced/quote_binding/"/>
-         
+        <loc>https://sinotrade.github.io/tutor/advanced/quote_binding/</loc>
+        <lastmod>2025-04-28</lastmod>
+        <changefreq>daily</changefreq>
+        <xhtml:link rel="alternate" hreflang="en" href="https://sinotrade.github.io/tutor/advanced/quote_binding/"/>
+        <xhtml:link rel="alternate" hreflang="zh" href="https://sinotrade.github.io/zh/tutor/advanced/quote_binding/"/>
     </url>
     <url>
-         <loc>https://sinotrade.github.io/tutor/advanced/quote_manager_basic/</loc>
-         <lastmod>2025-04-16</lastmod>
-         <changefreq>daily</changefreq>
-         <xhtml:link rel="alternate" hreflang="en" href="https://sinotrade.github.io/en/tutor/advanced/quote_manager_basic/"/>
-         <xhtml:link rel="alternate" hreflang="zh_TW" href="https://sinotrade.github.io/zh_TW/tutor/advanced/quote_manager_basic/"/>
-         
+        <loc>https://sinotrade.github.io/tutor/advanced/quote_manager_basic/</loc>
+        <lastmod>2025-04-28</lastmod>
+        <changefreq>daily</changefreq>
+        <xhtml:link rel="alternate" hreflang="en" href="https://sinotrade.github.io/tutor/advanced/quote_manager_basic/"/>
+        <xhtml:link rel="alternate" hreflang="zh" href="https://sinotrade.github.io/zh/tutor/advanced/quote_manager_basic/"/>
     </url>
     <url>
-         <loc>https://sinotrade.github.io/tutor/advanced/touchorder/</loc>
-         <lastmod>2025-04-16</lastmod>
-         <changefreq>daily</changefreq>
-         <xhtml:link rel="alternate" hreflang="en" href="https://sinotrade.github.io/en/tutor/advanced/touchorder/"/>
-         <xhtml:link rel="alternate" hreflang="zh_TW" href="https://sinotrade.github.io/zh_TW/tutor/advanced/touchorder/"/>
-         
+        <loc>https://sinotrade.github.io/tutor/advanced/touchorder/</loc>
+        <lastmod>2025-04-28</lastmod>
+        <changefreq>daily</changefreq>
+        <xhtml:link rel="alternate" hreflang="en" href="https://sinotrade.github.io/tutor/advanced/touchorder/"/>
+        <xhtml:link rel="alternate" hreflang="zh" href="https://sinotrade.github.io/zh/tutor/advanced/touchorder/"/>
     </url>
     <url>
-         <loc>https://sinotrade.github.io/tutor/callback/event_cb/</loc>
-         <lastmod>2025-04-16</lastmod>
-         <changefreq>daily</changefreq>
-         <xhtml:link rel="alternate" hreflang="en" href="https://sinotrade.github.io/en/tutor/callback/event_cb/"/>
-         <xhtml:link rel="alternate" hreflang="zh_TW" href="https://sinotrade.github.io/zh_TW/tutor/callback/event_cb/"/>
-         
+        <loc>https://sinotrade.github.io/tutor/callback/event_cb/</loc>
+        <lastmod>2025-04-28</lastmod>
+        <changefreq>daily</changefreq>
+        <xhtml:link rel="alternate" hreflang="en" href="https://sinotrade.github.io/tutor/callback/event_cb/"/>
+        <xhtml:link rel="alternate" hreflang="zh" href="https://sinotrade.github.io/zh/tutor/callback/event_cb/"/>
     </url>
     <url>
-         <loc>https://sinotrade.github.io/tutor/callback/orderdeal_event/</loc>
-         <lastmod>2025-04-16</lastmod>
-         <changefreq>daily</changefreq>
-         <xhtml:link rel="alternate" hreflang="en" href="https://sinotrade.github.io/en/tutor/callback/orderdeal_event/"/>
-         <xhtml:link rel="alternate" hreflang="zh_TW" href="https://sinotrade.github.io/zh_TW/tutor/callback/orderdeal_event/"/>
-         
+        <loc>https://sinotrade.github.io/tutor/callback/orderdeal_event/</loc>
+        <lastmod>2025-04-28</lastmod>
+        <changefreq>daily</changefreq>
+        <xhtml:link rel="alternate" hreflang="en" href="https://sinotrade.github.io/tutor/callback/orderdeal_event/"/>
+        <xhtml:link rel="alternate" hreflang="zh" href="https://sinotrade.github.io/zh/tutor/callback/orderdeal_event/"/>
     </url>
     <url>
-         <loc>https://sinotrade.github.io/tutor/market_data/credit_enquires/</loc>
-         <lastmod>2025-04-16</lastmod>
-         <changefreq>daily</changefreq>
-         <xhtml:link rel="alternate" hreflang="en" href="https://sinotrade.github.io/en/tutor/market_data/credit_enquires/"/>
-         <xhtml:link rel="alternate" hreflang="zh_TW" href="https://sinotrade.github.io/zh_TW/tutor/market_data/credit_enquires/"/>
-         
+        <loc>https://sinotrade.github.io/tutor/market_data/credit_enquires/</loc>
+        <lastmod>2025-04-28</lastmod>
+        <changefreq>daily</changefreq>
+        <xhtml:link rel="alternate" hreflang="en" href="https://sinotrade.github.io/tutor/market_data/credit_enquires/"/>
+        <xhtml:link rel="alternate" hreflang="zh" href="https://sinotrade.github.io/zh/tutor/market_data/credit_enquires/"/>
     </url>
     <url>
-         <loc>https://sinotrade.github.io/tutor/market_data/historical/</loc>
-         <lastmod>2025-04-16</lastmod>
-         <changefreq>daily</changefreq>
-         <xhtml:link rel="alternate" hreflang="en" href="https://sinotrade.github.io/en/tutor/market_data/historical/"/>
-         <xhtml:link rel="alternate" hreflang="zh_TW" href="https://sinotrade.github.io/zh_TW/tutor/market_data/historical/"/>
-         
+        <loc>https://sinotrade.github.io/tutor/market_data/historical/</loc>
+        <lastmod>2025-04-28</lastmod>
+        <changefreq>daily</changefreq>
+        <xhtml:link rel="alternate" hreflang="en" href="https://sinotrade.github.io/tutor/market_data/historical/"/>
+        <xhtml:link rel="alternate" hreflang="zh" href="https://sinotrade.github.io/zh/tutor/market_data/historical/"/>
     </url>
     <url>
-         <loc>https://sinotrade.github.io/tutor/market_data/scanners/</loc>
-         <lastmod>2025-04-16</lastmod>
-         <changefreq>daily</changefreq>
-         <xhtml:link rel="alternate" hreflang="en" href="https://sinotrade.github.io/en/tutor/market_data/scanners/"/>
-         <xhtml:link rel="alternate" hreflang="zh_TW" href="https://sinotrade.github.io/zh_TW/tutor/market_data/scanners/"/>
-         
+        <loc>https://sinotrade.github.io/tutor/market_data/scanners/</loc>
+        <lastmod>2025-04-28</lastmod>
+        <changefreq>daily</changefreq>
+        <xhtml:link rel="alternate" hreflang="en" href="https://sinotrade.github.io/tutor/market_data/scanners/"/>
+        <xhtml:link rel="alternate" hreflang="zh" href="https://sinotrade.github.io/zh/tutor/market_data/scanners/"/>
     </url>
     <url>
-         <loc>https://sinotrade.github.io/tutor/market_data/short_stock_source/</loc>
-         <lastmod>2025-04-16</lastmod>
-         <changefreq>daily</changefreq>
-         <xhtml:link rel="alternate" hreflang="en" href="https://sinotrade.github.io/en/tutor/market_data/short_stock_source/"/>
-         <xhtml:link rel="alternate" hreflang="zh_TW" href="https://sinotrade.github.io/zh_TW/tutor/market_data/short_stock_source/"/>
-         
+        <loc>https://sinotrade.github.io/tutor/market_data/short_stock_source/</loc>
+        <lastmod>2025-04-28</lastmod>
+        <changefreq>daily</changefreq>
+        <xhtml:link rel="alternate" hreflang="en" href="https://sinotrade.github.io/tutor/market_data/short_stock_source/"/>
+        <xhtml:link rel="alternate" hreflang="zh" href="https://sinotrade.github.io/zh/tutor/market_data/short_stock_source/"/>
     </url>
     <url>
-         <loc>https://sinotrade.github.io/tutor/market_data/snapshot/</loc>
-         <lastmod>2025-04-16</lastmod>
-         <changefreq>daily</changefreq>
-         <xhtml:link rel="alternate" hreflang="en" href="https://sinotrade.github.io/en/tutor/market_data/snapshot/"/>
-         <xhtml:link rel="alternate" hreflang="zh_TW" href="https://sinotrade.github.io/zh_TW/tutor/market_data/snapshot/"/>
-         
+        <loc>https://sinotrade.github.io/tutor/market_data/snapshot/</loc>
+        <lastmod>2025-04-28</lastmod>
+        <changefreq>daily</changefreq>
+        <xhtml:link rel="alternate" hreflang="en" href="https://sinotrade.github.io/tutor/market_data/snapshot/"/>
+        <xhtml:link rel="alternate" hreflang="zh" href="https://sinotrade.github.io/zh/tutor/market_data/snapshot/"/>
     </url>
     <url>
-         <loc>https://sinotrade.github.io/tutor/market_data/streaming/futures/</loc>
-         <lastmod>2025-04-16</lastmod>
-         <changefreq>daily</changefreq>
-         <xhtml:link rel="alternate" hreflang="en" href="https://sinotrade.github.io/en/tutor/market_data/streaming/futures/"/>
-         <xhtml:link rel="alternate" hreflang="zh_TW" href="https://sinotrade.github.io/zh_TW/tutor/market_data/streaming/futures/"/>
-         
+        <loc>https://sinotrade.github.io/tutor/market_data/streaming/futures/</loc>
+        <lastmod>2025-04-28</lastmod>
+        <changefreq>daily</changefreq>
+        <xhtml:link rel="alternate" hreflang="en" href="https://sinotrade.github.io/tutor/market_data/streaming/futures/"/>
+        <xhtml:link rel="alternate" hreflang="zh" href="https://sinotrade.github.io/zh/tutor/market_data/streaming/futures/"/>
     </url>
     <url>
-         <loc>https://sinotrade.github.io/tutor/market_data/streaming/stocks/</loc>
-         <lastmod>2025-04-16</lastmod>
-         <changefreq>daily</changefreq>
-         <xhtml:link rel="alternate" hreflang="en" href="https://sinotrade.github.io/en/tutor/market_data/streaming/stocks/"/>
-         <xhtml:link rel="alternate" hreflang="zh_TW" href="https://sinotrade.github.io/zh_TW/tutor/market_data/streaming/stocks/"/>
-         
+        <loc>https://sinotrade.github.io/tutor/market_data/streaming/stocks/</loc>
+        <lastmod>2025-04-28</lastmod>
+        <changefreq>daily</changefreq>
+        <xhtml:link rel="alternate" hreflang="en" href="https://sinotrade.github.io/tutor/market_data/streaming/stocks/"/>
+        <xhtml:link rel="alternate" hreflang="zh" href="https://sinotrade.github.io/zh/tutor/market_data/streaming/stocks/"/>
     </url>
     <url>
-         <loc>https://sinotrade.github.io/tutor/order/Combo/</loc>
-         <lastmod>2025-04-16</lastmod>
-         <changefreq>daily</changefreq>
-         <xhtml:link rel="alternate" hreflang="en" href="https://sinotrade.github.io/en/tutor/order/Combo/"/>
-         <xhtml:link rel="alternate" hreflang="zh_TW" href="https://sinotrade.github.io/zh_TW/tutor/order/Combo/"/>
-         
+        <loc>https://sinotrade.github.io/tutor/order/Combo/</loc>
+        <lastmod>2025-04-28</lastmod>
+        <changefreq>daily</changefreq>
+        <xhtml:link rel="alternate" hreflang="en" href="https://sinotrade.github.io/tutor/order/Combo/"/>
+        <xhtml:link rel="alternate" hreflang="zh" href="https://sinotrade.github.io/zh/tutor/order/Combo/"/>
     </url>
     <url>
-         <loc>https://sinotrade.github.io/tutor/order/FutureOption/</loc>
-         <lastmod>2025-04-16</lastmod>
-         <changefreq>daily</changefreq>
-         <xhtml:link rel="alternate" hreflang="en" href="https://sinotrade.github.io/en/tutor/order/FutureOption/"/>
-         <xhtml:link rel="alternate" hreflang="zh_TW" href="https://sinotrade.github.io/zh_TW/tutor/order/FutureOption/"/>
-         
+        <loc>https://sinotrade.github.io/tutor/order/FutureOption/</loc>
+        <lastmod>2025-04-28</lastmod>
+        <changefreq>daily</changefreq>
+        <xhtml:link rel="alternate" hreflang="en" href="https://sinotrade.github.io/tutor/order/FutureOption/"/>
+        <xhtml:link rel="alternate" hreflang="zh" href="https://sinotrade.github.io/zh/tutor/order/FutureOption/"/>
     </url>
     <url>
-         <loc>https://sinotrade.github.io/tutor/order/IntradayOdd/</loc>
-         <lastmod>2025-04-16</lastmod>
-         <changefreq>daily</changefreq>
-         <xhtml:link rel="alternate" hreflang="en" href="https://sinotrade.github.io/en/tutor/order/IntradayOdd/"/>
-         <xhtml:link rel="alternate" hreflang="zh_TW" href="https://sinotrade.github.io/zh_TW/tutor/order/IntradayOdd/"/>
-         
+        <loc>https://sinotrade.github.io/tutor/order/IntradayOdd/</loc>
+        <lastmod>2025-04-28</lastmod>
+        <changefreq>daily</changefreq>
+        <xhtml:link rel="alternate" hreflang="en" href="https://sinotrade.github.io/tutor/order/IntradayOdd/"/>
+        <xhtml:link rel="alternate" hreflang="zh" href="https://sinotrade.github.io/zh/tutor/order/IntradayOdd/"/>
     </url>
     <url>
-         <loc>https://sinotrade.github.io/tutor/order/Reserve/</loc>
-         <lastmod>2025-04-16</lastmod>
-         <changefreq>daily</changefreq>
-         <xhtml:link rel="alternate" hreflang="en" href="https://sinotrade.github.io/en/tutor/order/Reserve/"/>
-         <xhtml:link rel="alternate" hreflang="zh_TW" href="https://sinotrade.github.io/zh_TW/tutor/order/Reserve/"/>
-         
+        <loc>https://sinotrade.github.io/tutor/order/Reserve/</loc>
+        <lastmod>2025-04-28</lastmod>
+        <changefreq>daily</changefreq>
+        <xhtml:link rel="alternate" hreflang="en" href="https://sinotrade.github.io/tutor/order/Reserve/"/>
+        <xhtml:link rel="alternate" hreflang="zh" href="https://sinotrade.github.io/zh/tutor/order/Reserve/"/>
     </url>
     <url>
-         <loc>https://sinotrade.github.io/tutor/order/Stock/</loc>
-         <lastmod>2025-04-16</lastmod>
-         <changefreq>daily</changefreq>
-         <xhtml:link rel="alternate" hreflang="en" href="https://sinotrade.github.io/en/tutor/order/Stock/"/>
-         <xhtml:link rel="alternate" hreflang="zh_TW" href="https://sinotrade.github.io/zh_TW/tutor/order/Stock/"/>
-         
+        <loc>https://sinotrade.github.io/tutor/order/Stock/</loc>
+        <lastmod>2025-04-28</lastmod>
+        <changefreq>daily</changefreq>
+        <xhtml:link rel="alternate" hreflang="en" href="https://sinotrade.github.io/tutor/order/Stock/"/>
+        <xhtml:link rel="alternate" hreflang="zh" href="https://sinotrade.github.io/zh/tutor/order/Stock/"/>
     </url>
     <url>
-         <loc>https://sinotrade.github.io/tutor/order/UpdateStatus/</loc>
-         <lastmod>2025-04-16</lastmod>
-         <changefreq>daily</changefreq>
-         <xhtml:link rel="alternate" hreflang="en" href="https://sinotrade.github.io/en/tutor/order/UpdateStatus/"/>
-         <xhtml:link rel="alternate" hreflang="zh_TW" href="https://sinotrade.github.io/zh_TW/tutor/order/UpdateStatus/"/>
-         
+        <loc>https://sinotrade.github.io/tutor/order/UpdateStatus/</loc>
+        <lastmod>2025-04-28</lastmod>
+        <changefreq>daily</changefreq>
+        <xhtml:link rel="alternate" hreflang="en" href="https://sinotrade.github.io/tutor/order/UpdateStatus/"/>
+        <xhtml:link rel="alternate" hreflang="zh" href="https://sinotrade.github.io/zh/tutor/order/UpdateStatus/"/>
     </url>
     <url>
-         <loc>https://sinotrade.github.io/tutor/order/order_deal_event/futures/</loc>
-         <lastmod>2025-04-16</lastmod>
-         <changefreq>daily</changefreq>
-         <xhtml:link rel="alternate" hreflang="en" href="https://sinotrade.github.io/en/tutor/order/order_deal_event/futures/"/>
-         <xhtml:link rel="alternate" hreflang="zh_TW" href="https://sinotrade.github.io/zh_TW/tutor/order/order_deal_event/futures/"/>
-         
+        <loc>https://sinotrade.github.io/tutor/order/order_deal_event/futures/</loc>
+        <lastmod>2025-04-28</lastmod>
+        <changefreq>daily</changefreq>
+        <xhtml:link rel="alternate" hreflang="en" href="https://sinotrade.github.io/tutor/order/order_deal_event/futures/"/>
+        <xhtml:link rel="alternate" hreflang="zh" href="https://sinotrade.github.io/zh/tutor/order/order_deal_event/futures/"/>
     </url>
     <url>
-         <loc>https://sinotrade.github.io/tutor/order/order_deal_event/stocks/</loc>
-         <lastmod>2025-04-16</lastmod>
-         <changefreq>daily</changefreq>
-         <xhtml:link rel="alternate" hreflang="en" href="https://sinotrade.github.io/en/tutor/order/order_deal_event/stocks/"/>
-         <xhtml:link rel="alternate" hreflang="zh_TW" href="https://sinotrade.github.io/zh_TW/tutor/order/order_deal_event/stocks/"/>
-         
+        <loc>https://sinotrade.github.io/tutor/order/order_deal_event/stocks/</loc>
+        <lastmod>2025-04-28</lastmod>
+        <changefreq>daily</changefreq>
+        <xhtml:link rel="alternate" hreflang="en" href="https://sinotrade.github.io/tutor/order/order_deal_event/stocks/"/>
+        <xhtml:link rel="alternate" hreflang="zh" href="https://sinotrade.github.io/zh/tutor/order/order_deal_event/stocks/"/>
     </url>
     <url>
-         <loc>https://sinotrade.github.io/tutor/prepare/example_testing_flow/</loc>
-         <lastmod>2025-04-16</lastmod>
-         <changefreq>daily</changefreq>
-         <xhtml:link rel="alternate" hreflang="en" href="https://sinotrade.github.io/en/tutor/prepare/example_testing_flow/"/>
-         <xhtml:link rel="alternate" hreflang="zh_TW" href="https://sinotrade.github.io/zh_TW/tutor/prepare/example_testing_flow/"/>
-         
+        <loc>https://sinotrade.github.io/tutor/prepare/example_testing_flow/</loc>
+        <lastmod>2025-04-28</lastmod>
+        <changefreq>daily</changefreq>
+        <xhtml:link rel="alternate" hreflang="en" href="https://sinotrade.github.io/tutor/prepare/example_testing_flow/"/>
+        <xhtml:link rel="alternate" hreflang="zh" href="https://sinotrade.github.io/zh/tutor/prepare/example_testing_flow/"/>
     </url>
     <url>
-         <loc>https://sinotrade.github.io/tutor/prepare/open_account/</loc>
-         <lastmod>2025-04-16</lastmod>
-         <changefreq>daily</changefreq>
-         <xhtml:link rel="alternate" hreflang="en" href="https://sinotrade.github.io/en/tutor/prepare/open_account/"/>
-         <xhtml:link rel="alternate" hreflang="zh_TW" href="https://sinotrade.github.io/zh_TW/tutor/prepare/open_account/"/>
-         
+        <loc>https://sinotrade.github.io/tutor/prepare/open_account/</loc>
+        <lastmod>2025-04-28</lastmod>
+        <changefreq>daily</changefreq>
+        <xhtml:link rel="alternate" hreflang="en" href="https://sinotrade.github.io/tutor/prepare/open_account/"/>
+        <xhtml:link rel="alternate" hreflang="zh" href="https://sinotrade.github.io/zh/tutor/prepare/open_account/"/>
     </url>
     <url>
-         <loc>https://sinotrade.github.io/tutor/prepare/terms/</loc>
-         <lastmod>2025-04-16</lastmod>
-         <changefreq>daily</changefreq>
-         <xhtml:link rel="alternate" hreflang="en" href="https://sinotrade.github.io/en/tutor/prepare/terms/"/>
-         <xhtml:link rel="alternate" hreflang="zh_TW" href="https://sinotrade.github.io/zh_TW/tutor/prepare/terms/"/>
-         
+        <loc>https://sinotrade.github.io/tutor/prepare/terms/</loc>
+        <lastmod>2025-04-28</lastmod>
+        <changefreq>daily</changefreq>
+        <xhtml:link rel="alternate" hreflang="en" href="https://sinotrade.github.io/tutor/prepare/terms/"/>
+        <xhtml:link rel="alternate" hreflang="zh" href="https://sinotrade.github.io/zh/tutor/prepare/terms/"/>
     </url>
     <url>
-         <loc>https://sinotrade.github.io/tutor/prepare/token/</loc>
-         <lastmod>2025-04-16</lastmod>
-         <changefreq>daily</changefreq>
-         <xhtml:link rel="alternate" hreflang="en" href="https://sinotrade.github.io/en/tutor/prepare/token/"/>
-         <xhtml:link rel="alternate" hreflang="zh_TW" href="https://sinotrade.github.io/zh_TW/tutor/prepare/token/"/>
-         
+        <loc>https://sinotrade.github.io/tutor/prepare/token/</loc>
+        <lastmod>2025-04-28</lastmod>
+        <changefreq>daily</changefreq>
+        <xhtml:link rel="alternate" hreflang="en" href="https://sinotrade.github.io/tutor/prepare/token/"/>
+        <xhtml:link rel="alternate" hreflang="zh" href="https://sinotrade.github.io/zh/tutor/prepare/token/"/>
+    </url>
+    <url>
+        <loc>https://sinotrade.github.io/zh/</loc>
+        <lastmod>2025-04-28</lastmod>
+        <changefreq>daily</changefreq>
+        <xhtml:link rel="alternate" hreflang="zh" href="https://sinotrade.github.io/zh/"/>
+        <xhtml:link rel="alternate" hreflang="en" href="https://sinotrade.github.io/"/>
+    </url>
+    <url>
+        <loc>https://sinotrade.github.io/zh/env_setup/</loc>
+        <lastmod>2025-04-28</lastmod>
+        <changefreq>daily</changefreq>
+        <xhtml:link rel="alternate" hreflang="zh" href="https://sinotrade.github.io/zh/env_setup/"/>
+        <xhtml:link rel="alternate" hreflang="en" href="https://sinotrade.github.io/env_setup/"/>
+    </url>
+    <url>
+        <loc>https://sinotrade.github.io/zh/qa/</loc>
+        <lastmod>2025-04-28</lastmod>
+        <changefreq>daily</changefreq>
+        <xhtml:link rel="alternate" hreflang="zh" href="https://sinotrade.github.io/zh/qa/"/>
+        <xhtml:link rel="alternate" hreflang="en" href="https://sinotrade.github.io/qa/"/>
+    </url>
+    <url>
+        <loc>https://sinotrade.github.io/zh/quickstart/</loc>
+        <lastmod>2025-04-28</lastmod>
+        <changefreq>daily</changefreq>
+        <xhtml:link rel="alternate" hreflang="zh" href="https://sinotrade.github.io/zh/quickstart/"/>
+        <xhtml:link rel="alternate" hreflang="en" href="https://sinotrade.github.io/quickstart/"/>
+    </url>
+    <url>
+        <loc>https://sinotrade.github.io/zh/release/</loc>
+        <lastmod>2025-04-28</lastmod>
+        <changefreq>daily</changefreq>
+        <xhtml:link rel="alternate" hreflang="zh" href="https://sinotrade.github.io/zh/release/"/>
+        <xhtml:link rel="alternate" hreflang="en" href="https://sinotrade.github.io/release/"/>
+    </url>
+    <url>
+        <loc>https://sinotrade.github.io/zh/upgrade/</loc>
+        <lastmod>2025-04-28</lastmod>
+        <changefreq>daily</changefreq>
+        <xhtml:link rel="alternate" hreflang="zh" href="https://sinotrade.github.io/zh/upgrade/"/>
+        <xhtml:link rel="alternate" hreflang="en" href="https://sinotrade.github.io/upgrade/"/>
+    </url>
+    <url>
+        <loc>https://sinotrade.github.io/zh/tutor/contract/</loc>
+        <lastmod>2025-04-28</lastmod>
+        <changefreq>daily</changefreq>
+        <xhtml:link rel="alternate" hreflang="zh" href="https://sinotrade.github.io/zh/tutor/contract/"/>
+        <xhtml:link rel="alternate" hreflang="en" href="https://sinotrade.github.io/tutor/contract/"/>
+    </url>
+    <url>
+        <loc>https://sinotrade.github.io/zh/tutor/limit/</loc>
+        <lastmod>2025-04-28</lastmod>
+        <changefreq>daily</changefreq>
+        <xhtml:link rel="alternate" hreflang="zh" href="https://sinotrade.github.io/zh/tutor/limit/"/>
+        <xhtml:link rel="alternate" hreflang="en" href="https://sinotrade.github.io/tutor/limit/"/>
+    </url>
+    <url>
+        <loc>https://sinotrade.github.io/zh/tutor/login/</loc>
+        <lastmod>2025-04-28</lastmod>
+        <changefreq>daily</changefreq>
+        <xhtml:link rel="alternate" hreflang="zh" href="https://sinotrade.github.io/zh/tutor/login/"/>
+        <xhtml:link rel="alternate" hreflang="en" href="https://sinotrade.github.io/tutor/login/"/>
+    </url>
+    <url>
+        <loc>https://sinotrade.github.io/zh/tutor/simulation/</loc>
+        <lastmod>2025-04-28</lastmod>
+        <changefreq>daily</changefreq>
+        <xhtml:link rel="alternate" hreflang="zh" href="https://sinotrade.github.io/zh/tutor/simulation/"/>
+        <xhtml:link rel="alternate" hreflang="en" href="https://sinotrade.github.io/tutor/simulation/"/>
+    </url>
+    <url>
+        <loc>https://sinotrade.github.io/zh/tutor/accounting/account_balance/</loc>
+        <lastmod>2025-04-28</lastmod>
+        <changefreq>daily</changefreq>
+        <xhtml:link rel="alternate" hreflang="zh" href="https://sinotrade.github.io/zh/tutor/accounting/account_balance/"/>
+        <xhtml:link rel="alternate" hreflang="en" href="https://sinotrade.github.io/tutor/accounting/account_balance/"/>
+    </url>
+    <url>
+        <loc>https://sinotrade.github.io/zh/tutor/accounting/account_portfolio/</loc>
+        <lastmod>2025-04-28</lastmod>
+        <changefreq>daily</changefreq>
+        <xhtml:link rel="alternate" hreflang="zh" href="https://sinotrade.github.io/zh/tutor/accounting/account_portfolio/"/>
+        <xhtml:link rel="alternate" hreflang="en" href="https://sinotrade.github.io/tutor/accounting/account_portfolio/"/>
+    </url>
+    <url>
+        <loc>https://sinotrade.github.io/zh/tutor/accounting/margin/</loc>
+        <lastmod>2025-04-28</lastmod>
+        <changefreq>daily</changefreq>
+        <xhtml:link rel="alternate" hreflang="zh" href="https://sinotrade.github.io/zh/tutor/accounting/margin/"/>
+        <xhtml:link rel="alternate" hreflang="en" href="https://sinotrade.github.io/tutor/accounting/margin/"/>
+    </url>
+    <url>
+        <loc>https://sinotrade.github.io/zh/tutor/accounting/position/</loc>
+        <lastmod>2025-04-28</lastmod>
+        <changefreq>daily</changefreq>
+        <xhtml:link rel="alternate" hreflang="zh" href="https://sinotrade.github.io/zh/tutor/accounting/position/"/>
+        <xhtml:link rel="alternate" hreflang="en" href="https://sinotrade.github.io/tutor/accounting/position/"/>
+    </url>
+    <url>
+        <loc>https://sinotrade.github.io/zh/tutor/accounting/profit_loss/</loc>
+        <lastmod>2025-04-28</lastmod>
+        <changefreq>daily</changefreq>
+        <xhtml:link rel="alternate" hreflang="zh" href="https://sinotrade.github.io/zh/tutor/accounting/profit_loss/"/>
+        <xhtml:link rel="alternate" hreflang="en" href="https://sinotrade.github.io/tutor/accounting/profit_loss/"/>
+    </url>
+    <url>
+        <loc>https://sinotrade.github.io/zh/tutor/accounting/settlements/</loc>
+        <lastmod>2025-04-28</lastmod>
+        <changefreq>daily</changefreq>
+        <xhtml:link rel="alternate" hreflang="zh" href="https://sinotrade.github.io/zh/tutor/accounting/settlements/"/>
+        <xhtml:link rel="alternate" hreflang="en" href="https://sinotrade.github.io/tutor/accounting/settlements/"/>
+    </url>
+    <url>
+        <loc>https://sinotrade.github.io/zh/tutor/advanced/nonblock/</loc>
+        <lastmod>2025-04-28</lastmod>
+        <changefreq>daily</changefreq>
+        <xhtml:link rel="alternate" hreflang="zh" href="https://sinotrade.github.io/zh/tutor/advanced/nonblock/"/>
+        <xhtml:link rel="alternate" hreflang="en" href="https://sinotrade.github.io/tutor/advanced/nonblock/"/>
+    </url>
+    <url>
+        <loc>https://sinotrade.github.io/zh/tutor/advanced/quote_binding/</loc>
+        <lastmod>2025-04-28</lastmod>
+        <changefreq>daily</changefreq>
+        <xhtml:link rel="alternate" hreflang="zh" href="https://sinotrade.github.io/zh/tutor/advanced/quote_binding/"/>
+        <xhtml:link rel="alternate" hreflang="en" href="https://sinotrade.github.io/tutor/advanced/quote_binding/"/>
+    </url>
+    <url>
+        <loc>https://sinotrade.github.io/zh/tutor/advanced/quote_manager_basic/</loc>
+        <lastmod>2025-04-28</lastmod>
+        <changefreq>daily</changefreq>
+        <xhtml:link rel="alternate" hreflang="zh" href="https://sinotrade.github.io/zh/tutor/advanced/quote_manager_basic/"/>
+        <xhtml:link rel="alternate" hreflang="en" href="https://sinotrade.github.io/tutor/advanced/quote_manager_basic/"/>
+    </url>
+    <url>
+        <loc>https://sinotrade.github.io/zh/tutor/advanced/touchorder/</loc>
+        <lastmod>2025-04-28</lastmod>
+        <changefreq>daily</changefreq>
+        <xhtml:link rel="alternate" hreflang="zh" href="https://sinotrade.github.io/zh/tutor/advanced/touchorder/"/>
+        <xhtml:link rel="alternate" hreflang="en" href="https://sinotrade.github.io/tutor/advanced/touchorder/"/>
+    </url>
+    <url>
+        <loc>https://sinotrade.github.io/zh/tutor/callback/event_cb/</loc>
+        <lastmod>2025-04-28</lastmod>
+        <changefreq>daily</changefreq>
+        <xhtml:link rel="alternate" hreflang="zh" href="https://sinotrade.github.io/zh/tutor/callback/event_cb/"/>
+        <xhtml:link rel="alternate" hreflang="en" href="https://sinotrade.github.io/tutor/callback/event_cb/"/>
+    </url>
+    <url>
+        <loc>https://sinotrade.github.io/zh/tutor/callback/orderdeal_event/</loc>
+        <lastmod>2025-04-28</lastmod>
+        <changefreq>daily</changefreq>
+        <xhtml:link rel="alternate" hreflang="zh" href="https://sinotrade.github.io/zh/tutor/callback/orderdeal_event/"/>
+        <xhtml:link rel="alternate" hreflang="en" href="https://sinotrade.github.io/tutor/callback/orderdeal_event/"/>
+    </url>
+    <url>
+        <loc>https://sinotrade.github.io/zh/tutor/market_data/credit_enquires/</loc>
+        <lastmod>2025-04-28</lastmod>
+        <changefreq>daily</changefreq>
+        <xhtml:link rel="alternate" hreflang="zh" href="https://sinotrade.github.io/zh/tutor/market_data/credit_enquires/"/>
+        <xhtml:link rel="alternate" hreflang="en" href="https://sinotrade.github.io/tutor/market_data/credit_enquires/"/>
+    </url>
+    <url>
+        <loc>https://sinotrade.github.io/zh/tutor/market_data/historical/</loc>
+        <lastmod>2025-04-28</lastmod>
+        <changefreq>daily</changefreq>
+        <xhtml:link rel="alternate" hreflang="zh" href="https://sinotrade.github.io/zh/tutor/market_data/historical/"/>
+        <xhtml:link rel="alternate" hreflang="en" href="https://sinotrade.github.io/tutor/market_data/historical/"/>
+    </url>
+    <url>
+        <loc>https://sinotrade.github.io/zh/tutor/market_data/scanners/</loc>
+        <lastmod>2025-04-28</lastmod>
+        <changefreq>daily</changefreq>
+        <xhtml:link rel="alternate" hreflang="zh" href="https://sinotrade.github.io/zh/tutor/market_data/scanners/"/>
+        <xhtml:link rel="alternate" hreflang="en" href="https://sinotrade.github.io/tutor/market_data/scanners/"/>
+    </url>
+    <url>
+        <loc>https://sinotrade.github.io/zh/tutor/market_data/short_stock_source/</loc>
+        <lastmod>2025-04-28</lastmod>
+        <changefreq>daily</changefreq>
+        <xhtml:link rel="alternate" hreflang="zh" href="https://sinotrade.github.io/zh/tutor/market_data/short_stock_source/"/>
+        <xhtml:link rel="alternate" hreflang="en" href="https://sinotrade.github.io/tutor/market_data/short_stock_source/"/>
+    </url>
+    <url>
+        <loc>https://sinotrade.github.io/zh/tutor/market_data/snapshot/</loc>
+        <lastmod>2025-04-28</lastmod>
+        <changefreq>daily</changefreq>
+        <xhtml:link rel="alternate" hreflang="zh" href="https://sinotrade.github.io/zh/tutor/market_data/snapshot/"/>
+        <xhtml:link rel="alternate" hreflang="en" href="https://sinotrade.github.io/tutor/market_data/snapshot/"/>
+    </url>
+    <url>
+        <loc>https://sinotrade.github.io/zh/tutor/market_data/streaming/futures/</loc>
+        <lastmod>2025-04-28</lastmod>
+        <changefreq>daily</changefreq>
+        <xhtml:link rel="alternate" hreflang="zh" href="https://sinotrade.github.io/zh/tutor/market_data/streaming/futures/"/>
+        <xhtml:link rel="alternate" hreflang="en" href="https://sinotrade.github.io/tutor/market_data/streaming/futures/"/>
+    </url>
+    <url>
+        <loc>https://sinotrade.github.io/zh/tutor/market_data/streaming/stocks/</loc>
+        <lastmod>2025-04-28</lastmod>
+        <changefreq>daily</changefreq>
+        <xhtml:link rel="alternate" hreflang="zh" href="https://sinotrade.github.io/zh/tutor/market_data/streaming/stocks/"/>
+        <xhtml:link rel="alternate" hreflang="en" href="https://sinotrade.github.io/tutor/market_data/streaming/stocks/"/>
+    </url>
+    <url>
+        <loc>https://sinotrade.github.io/zh/tutor/order/Combo/</loc>
+        <lastmod>2025-04-28</lastmod>
+        <changefreq>daily</changefreq>
+        <xhtml:link rel="alternate" hreflang="zh" href="https://sinotrade.github.io/zh/tutor/order/Combo/"/>
+        <xhtml:link rel="alternate" hreflang="en" href="https://sinotrade.github.io/tutor/order/Combo/"/>
+    </url>
+    <url>
+        <loc>https://sinotrade.github.io/zh/tutor/order/FutureOption/</loc>
+        <lastmod>2025-04-28</lastmod>
+        <changefreq>daily</changefreq>
+        <xhtml:link rel="alternate" hreflang="zh" href="https://sinotrade.github.io/zh/tutor/order/FutureOption/"/>
+        <xhtml:link rel="alternate" hreflang="en" href="https://sinotrade.github.io/tutor/order/FutureOption/"/>
+    </url>
+    <url>
+        <loc>https://sinotrade.github.io/zh/tutor/order/IntradayOdd/</loc>
+        <lastmod>2025-04-28</lastmod>
+        <changefreq>daily</changefreq>
+        <xhtml:link rel="alternate" hreflang="zh" href="https://sinotrade.github.io/zh/tutor/order/IntradayOdd/"/>
+        <xhtml:link rel="alternate" hreflang="en" href="https://sinotrade.github.io/tutor/order/IntradayOdd/"/>
+    </url>
+    <url>
+        <loc>https://sinotrade.github.io/zh/tutor/order/Reserve/</loc>
+        <lastmod>2025-04-28</lastmod>
+        <changefreq>daily</changefreq>
+        <xhtml:link rel="alternate" hreflang="zh" href="https://sinotrade.github.io/zh/tutor/order/Reserve/"/>
+        <xhtml:link rel="alternate" hreflang="en" href="https://sinotrade.github.io/tutor/order/Reserve/"/>
+    </url>
+    <url>
+        <loc>https://sinotrade.github.io/zh/tutor/order/Stock/</loc>
+        <lastmod>2025-04-28</lastmod>
+        <changefreq>daily</changefreq>
+        <xhtml:link rel="alternate" hreflang="zh" href="https://sinotrade.github.io/zh/tutor/order/Stock/"/>
+        <xhtml:link rel="alternate" hreflang="en" href="https://sinotrade.github.io/tutor/order/Stock/"/>
+    </url>
+    <url>
+        <loc>https://sinotrade.github.io/zh/tutor/order/UpdateStatus/</loc>
+        <lastmod>2025-04-28</lastmod>
+        <changefreq>daily</changefreq>
+        <xhtml:link rel="alternate" hreflang="zh" href="https://sinotrade.github.io/zh/tutor/order/UpdateStatus/"/>
+        <xhtml:link rel="alternate" hreflang="en" href="https://sinotrade.github.io/tutor/order/UpdateStatus/"/>
+    </url>
+    <url>
+        <loc>https://sinotrade.github.io/zh/tutor/order/order_deal_event/futures/</loc>
+        <lastmod>2025-04-28</lastmod>
+        <changefreq>daily</changefreq>
+        <xhtml:link rel="alternate" hreflang="zh" href="https://sinotrade.github.io/zh/tutor/order/order_deal_event/futures/"/>
+        <xhtml:link rel="alternate" hreflang="en" href="https://sinotrade.github.io/tutor/order/order_deal_event/futures/"/>
+    </url>
+    <url>
+        <loc>https://sinotrade.github.io/zh/tutor/order/order_deal_event/stocks/</loc>
+        <lastmod>2025-04-28</lastmod>
+        <changefreq>daily</changefreq>
+        <xhtml:link rel="alternate" hreflang="zh" href="https://sinotrade.github.io/zh/tutor/order/order_deal_event/stocks/"/>
+        <xhtml:link rel="alternate" hreflang="en" href="https://sinotrade.github.io/tutor/order/order_deal_event/stocks/"/>
+    </url>
+    <url>
+        <loc>https://sinotrade.github.io/zh/tutor/prepare/example_testing_flow/</loc>
+        <lastmod>2025-04-28</lastmod>
+        <changefreq>daily</changefreq>
+        <xhtml:link rel="alternate" hreflang="zh" href="https://sinotrade.github.io/zh/tutor/prepare/example_testing_flow/"/>
+        <xhtml:link rel="alternate" hreflang="en" href="https://sinotrade.github.io/tutor/prepare/example_testing_flow/"/>
+    </url>
+    <url>
+        <loc>https://sinotrade.github.io/zh/tutor/prepare/open_account/</loc>
+        <lastmod>2025-04-28</lastmod>
+        <changefreq>daily</changefreq>
+        <xhtml:link rel="alternate" hreflang="zh" href="https://sinotrade.github.io/zh/tutor/prepare/open_account/"/>
+        <xhtml:link rel="alternate" hreflang="en" href="https://sinotrade.github.io/tutor/prepare/open_account/"/>
+    </url>
+    <url>
+        <loc>https://sinotrade.github.io/zh/tutor/prepare/terms/</loc>
+        <lastmod>2025-04-28</lastmod>
+        <changefreq>daily</changefreq>
+        <xhtml:link rel="alternate" hreflang="zh" href="https://sinotrade.github.io/zh/tutor/prepare/terms/"/>
+        <xhtml:link rel="alternate" hreflang="en" href="https://sinotrade.github.io/tutor/prepare/terms/"/>
+    </url>
+    <url>
+        <loc>https://sinotrade.github.io/zh/tutor/prepare/token/</loc>
+        <lastmod>2025-04-28</lastmod>
+        <changefreq>daily</changefreq>
+        <xhtml:link rel="alternate" hreflang="zh" href="https://sinotrade.github.io/zh/tutor/prepare/token/"/>
+        <xhtml:link rel="alternate" hreflang="en" href="https://sinotrade.github.io/tutor/prepare/token/"/>
     </url>
 </urlset>
