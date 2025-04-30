@@ -1,4 +1,4 @@
-The feature of margin is used to query margin of futures account and you need to [login](../../login) first.
+用於查詢期貨帳戶的保證金，需先[登入](../../login)。
 
 In
 
@@ -64,31 +64,31 @@ Margin(
 Margin
 
 ```
-status (FetchStatus): fetch status
-yesterday_balance (float): balance of yesterday
-today_balance (float): balance of today
-deposit_withdrawal (float): deposit and withdrawal
-fee (float): fee
-tax (float): tax
-initial_margin (float): margin of origin
-maintenance_margin (float):  margin of maintenance
-margin_call (float):  margin of call
-risk_indicator (float): risk indicator
-royalty_revenue_expenditure (float): revenue and expenditure of royalty
-equity (float): equity
-equity_amount (float): amount of equity
-option_openbuy_market_value (float): value of option openbuy market
-option_opensell_market_value (float): value of option opensell market
-option_open_position (float): profit loss of open option 
-option_settle_profitloss (float): profit loss of settle option
-future_open_position (float): profit loss of open future
-today_future_open_position (float): profit loss of today open future
-future_settle_profitloss (float): profit loss of settle future
-available_margin (float): available margin
-plus_margin (float): plus margin
-plus_margin_indicator (float): indicator of plus margin
-security_collateral_amount (float): amount of security collateral
-order_margin_premium (float): order margin and order premium 
-collateral_amount (float): amount of collateral
+status (FetchStatus): 資料回傳狀態
+yesterday_balance (float): 前日餘額
+today_balance (float): 今日餘額
+deposit_withdrawal (float): 存提
+fee (float): 手續費
+tax (float): 期交稅
+initial_margin (float): 原始保證金
+maintenance_margin (float): 維持保證金
+margin_call (float): 追繳保證金
+risk_indicator (float): 風險指標
+royalty_revenue_expenditure (float): 權利金收入與支出
+equity (float): 權益數
+equity_amount (float): 權益總值
+option_openbuy_market_value (float): 未沖銷買方選擇權市值
+option_opensell_market_value (float): 未沖銷賣方選擇權市值
+option_open_position (float): 參考未平倉選擇權損益
+option_settle_profitloss (float): 參考選擇權平倉損益
+future_open_position (float): 未沖銷期貨浮動損益
+today_future_open_position (float): 參考當日未沖銷期貨浮動損益
+future_settle_profitloss (float): 期貨平倉損益
+available_margin (float): 可動用(出金)保證金
+plus_margin (float): 依「加收保證金指標」所加收之保證金
+plus_margin_indicator (float): 加收保證金指標
+security_collateral_amount (float): 有價證券抵繳總額
+order_margin_premium (float): 委託保證金及委託權利金
+collateral_amount (float): 有價品額
 
 ```

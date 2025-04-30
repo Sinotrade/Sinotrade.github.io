@@ -1,10 +1,8 @@
-Reminder
+提醒
 
-First, you need to [login](../../login/) and [activate CA](../../prepare/terms/).
+必須先[登入](../../login/)及啟用[憑證](../../prepare/terms/)。
 
-Before obtaining the `Trade` status, it must be updated with `update_status`. If you cannot successfully `update_order` or `cancel_order`, you can use `update_status` to update the specific `trade` status, and check the `OrderStatus` in `trade`, whether it is available to modify the order.
-
-The update_status defaults to querying all accounts under the user's name. If you wish to inquire about a specific account, provide the account as a parameter to account.
+在取得 `Trade` 狀態前，必須先利用`update_status`進行更新。如果無法成功刪單或改單，你可以對特定`trade`物件進行更新，並確認在`trade`中的`OrderStatus`，是否為可刪改狀態。`update_status` 預設查詢為名下所有帳號。若想查詢特定帳號，將帳號帶入`account`。
 
 Update Status
 
@@ -27,9 +25,9 @@ Docstring: update status of all trades you have
 
 ```
 
-### Get Stock Trades
+### 取得證券委託狀態
 
-Get Stock Trades
+取得證券委託狀態
 
 ```
 api.update_status(api.stock_account)
@@ -89,9 +87,9 @@ Out
 
 ```
 
-### Get Futures Trades
+### 取得期貨委託狀態
 
-Get Futures Trades
+取得期貨委託狀態
 
 ```
 api.update_status(api.futopt_account)
@@ -150,9 +148,9 @@ Out
 
 ```
 
-### Update Specific Trade
+### 更新特定交易狀態
 
-Update Trade
+更新特定交易狀態
 
 ```
 # you can get trade from place_order
@@ -165,28 +163,36 @@ api.update_status(trade=trade)
 
 ```
 
-### Trade Status
+### 委託及成交狀態屬性
 
-OrderStatus
-
-```
-id (str): the id uses to correlate the order object
-status (:obj:Status): the status of order {Cancelled, Filled, PartFilled, Failed, PendingSubmit, PreSubmitted, Submitted}
-status_code (str): the code of status
-order_datetime (datetime): order time
-order_quantity (int): order quantity
-modified_price (float): the price of modification
-cancel_quantity (int): the quantity of cancel
-deals (:List:Deal): information of filled order
+委託狀態屬性
 
 ```
-
-Deal
+id (str): 關聯Order物件編碼
+status (:obj:Status): {
+            Cancelled: 已刪除, 
+            Filled: 完全成交, 
+            PartFilled: 部分成交, 
+            Failed: 失敗, 
+            PendingSubmit: 傳送中, 
+            PreSubmitted: 預約單, 
+            Submitted: 傳送成功
+        }
+status_code (str): 狀態碼
+order_datetime (datetime): 委託時間
+order_quantity (int): 委託數量
+modified_price (float): 改價金額
+cancel_quantity (int): 取消委託數量
+deals (:List:Deal): 成交資訊
 
 ```
-seq (str): deal sequence number
-price (int or float): deal price
-quantity (int): deal quantity
-ts (float): deal timestamp
+
+成交屬性
+
+```
+seq (str): 成交序號
+price (int or float): 成交價
+quantity (int): 成交數量
+ts (float): 成交時間戳
 
 ```

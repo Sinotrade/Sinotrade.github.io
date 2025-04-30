@@ -1,11 +1,11 @@
-When Stock triggers some transaction abnormal conditions, it is necessary to `Reserve Order` in advance. Abnormal conditions include: watch out for stocks, warn about stocks, dispose of stocks, and manage stocks.
+當現貨觸發一些交易異常條件，需先預收券款。異常條件包括: 注意股票、警示股票、處置股票及管理股票。
 
-Reminder
+提醒
 
-- First, you need to [login](../../login/) and [activate CA](../../prepare/terms/).
-- Service hours are from 8:00 to 14:30 on trading days.
+- 必須先[登入](../../login/)及啟用[憑證](../../prepare/terms/)。
+- 服務時間為交易日8:00~14:30。
 
-### Get Stock Reserve Summay Status
+### 查詢圈券狀態
 
 In
 
@@ -42,7 +42,7 @@ ReserveStocksSummaryResponse(
 
 ```
 
-### Reserve Stock
+### 借券圈券申請
 
 In
 
@@ -76,7 +76,7 @@ ReserveStockResponse(
 
 ```
 
-### Get Stock Reserve Detail Satus
+### 查詢圈券明細
 
 In
 
@@ -113,7 +113,7 @@ ReserveStocksDetailResponse(
 
 ```
 
-### Reserve Earmarking
+### 預收款項申請
 
 In
 
@@ -148,7 +148,7 @@ ReserveEarmarkingResponse(
 
 ```
 
-### Get Earmarking Detail Status
+### 查詢預收款項
 
 In
 
@@ -200,9 +200,9 @@ EarmarkStocksDetailResponse(
 
 ```
 
-### Example
+### 範例
 
-Query the reserve status of all accounts under your name.
+查詢所有名下帳號的圈券狀態
 
 In
 

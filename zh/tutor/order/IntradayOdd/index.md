@@ -1,12 +1,12 @@
-Reminder
+[零股下單範例 ( jupyter)](https://nbviewer.jupyter.org/github/Sinotrade/Sinotrade.github.io/blob/master/tutorial/stock_intraday_odd.ipynb)
 
-First, you need to [login](../../login/) and [activate CA](../../prepare/terms/).
+提醒
 
-[place intraday odd order jupyter link](https://nbviewer.jupyter.org/github/Sinotrade/Sinotrade.github.io/blob/master/tutorial/stock_intraday_odd.ipynb)
+下單前必須先[登入](../../login/)及啟用[憑證](../../prepare/terms/)。
 
-### Place Order
+### 下單
 
-In
+下單
 
 ```
 contract = api.Contracts.Stocks.TSE.TSE0050
@@ -72,15 +72,15 @@ Trade(
 
 ```
 
-### Update Order
+### 改單
 
-Attention
+注意
 
-**Intraday Odd cannot update price.**
+**零股不能進行改價**
 
-`update_order` can only reduce the quantity of the order.
+`update_order` 只能用來**減少**原委託單的委託數量。
 
-Update Quantity
+改量(減量)
 
 ```
 api.update_order(trade=trade, qty=2)
@@ -136,9 +136,9 @@ Trade(
 
 ```
 
-### Cancel Order
+### 刪單
 
-Cancel Order
+刪單
 
 ```
 api.cancel_order(trade)

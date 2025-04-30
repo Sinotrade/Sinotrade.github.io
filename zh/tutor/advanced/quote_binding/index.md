@@ -1,8 +1,8 @@
-Shioaji provides quote-binding mode which you can store tick/bidask in queue, push them to redis, or submit a stop order inside quote callback function. We show examples to make you more understand how to use quote-binding mode.
+Shioaji 提供綁訂報價模式，可以用來將報價儲存於訊息佇列，將報價推送至Redis Stream，或者實現觸價委託單。我們提供以下範例，讓您可以更了解綁訂報價模式如何運作。
 
-## Examples
+## 範例
 
-### Bind quote to message queue
+### 綁訂報價至訊息佇列
 
 In: pythonic way by using decorator
 
@@ -57,9 +57,9 @@ defaultdict(collections.deque,
 
 ```
 
-### Push quote to redis stream
+### 將報價推送至Redis Stream
 
-Before start, please install [redis](https://github.com/andymccurdy/redis-py) first. Below example shows how to push quote massages to redis stream.
+在開始之前，請先安裝[redis](https://github.com/andymccurdy/redis-py)。
 
 In
 
@@ -155,11 +155,11 @@ Out
 
 ```
 
-### Stop Order Implementation
+### 觸價委託單
 
-A [stop order](https://www.investopedia.com/terms/s/stoporder.asp) is an order to buy or sell a security when its price moves past a particular point, ensuring a higher probability of achieving a predetermined entry or exit price, limiting the investor's loss, or locking in a profit. Once the price crosses the predefined entry/exit point, the stop order becomes a market order.
+[觸價委託單](https://www.investopedia.com/terms/s/stoporder.asp)，在市場價格觸及委託單上所設定之價位時，委託單立刻轉為限價單或市價單。
 
-We provide an example of stop order below. **Please use at your own risk.**
+**以下僅為範例，請小心使用並自行承擔風險**
 
 Example: stop order
 
@@ -251,9 +251,9 @@ class StopOrderExcecutor:
 
 ```
 
-- We use mid price of snapshots as our reference price to differentiate the direction of stop order.
+- 使用snapshots的中價作為參考價格，以區分觸價委託單的方向。
 
-Basically, order will be pending at your computer. The order won't be submitted to exchange until close/mid price hit the stop price. Below example shows how to submit a stop-limit order.
+基本上，委託單會在您的電腦上待命，只有在商品價格觸擊所設定價格時，觸價委託單才會被送出，以下範例顯示如何提交限價觸價委託單(Stop-Limit Order)。
 
 Set up a stop order
 
@@ -312,9 +312,9 @@ add stop order: {
 
 ```
 
-- Stop-Market Order: `price_type = 'MKT'`
+- 市價觸價委託單(Stop-Market Order): `price_type = 'MKT'`
 
-Finally, we bind `StopOrderExcecutor` to quote callback function. Note that you have to subscribe quote, so that stop order will be executed.
+最後，我們將`StopOrderExcecutor`綁訂在報價上。請注意，您必須訂略商品報價，觸價委託單才會執行。
 
 Set up context and callback function
 

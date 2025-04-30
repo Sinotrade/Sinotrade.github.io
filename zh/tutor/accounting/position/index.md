@@ -1,6 +1,6 @@
-The feature of list_positions is used to query unrealized gain or loss of account and you need to [login](../../login) first.
+用於查詢帳戶未實現損益，需要先[登入](../../login)。
 
-## Position
+## 未實現損益
 
 In
 
@@ -27,9 +27,9 @@ Args:
 
 ```
 
-### Stocks
+### 證券
 
-#### Common Stocks
+#### 整股部位
 
 In
 
@@ -60,7 +60,7 @@ Out
 
 ```
 
-To DataFrame
+轉成DataFrame
 
 In
 
@@ -78,27 +78,31 @@ Out
 StockPosition
 
 ```
-id (int): position id
-code (str): contract id
-direction (Action): action
-    {Buy, Sell}
-quantity (int): quantity
-price (float): the average price
-last_price (float): last price
-pnl (float): unrealized profit
-yd_quantity (int): yesterday
-cond (StockOrderCond): Default Cash
-    {Cash(現股), Netting(餘額交割), MarginTrading(融資),ShortSelling(融券), Emerging(興櫃)}
-margin_purchase_amount (int): margin_purchase_amount
-collateral (int): collateral
-short_sale_margin (int): short_sale_margin
-interest (int): interest
+id (int): 部位代碼
+code (str): 商品代碼
+direction (Action): {Buy: 買, Sell: 賣}
+quantity (int): 數量
+price (float): 平均價格
+last_price (float): 目前股價
+pnl (float): 損益
+yd_quantity (int): 昨日庫存數量
+cond (StockOrderCond): {
+    Cash: 現股(預設值), 
+    Netting: 餘額交割,
+    MarginTrading: 融資, 
+    ShortSelling: 融券, 
+    Emerging: 興櫃
+    }
+margin_purchase_amount (int): 融資金額 
+collateral (int): 擔保品 
+short_sale_margin (int): 保證金
+interest (int): 利息
 
 ```
 
-#### Odd Stocks
+#### 零股部位
 
-The unit is the number of shares.
+單位為股數
 
 In
 
@@ -132,9 +136,9 @@ Out
 
 ```
 
-### Futures and Options
+### 期貨選擇權
 
-`account` is defaulted as a Stock account, and if you want to query the Futures or Options content, you need to bring in the `futopt_account`.
+`account`預設為證券帳號，若欲查詢期權內容需帶入期權帳號。
 
 In
 
@@ -160,7 +164,7 @@ Out
 
 ```
 
-To DataFrame
+轉成DataFrame
 
 In
 
@@ -178,22 +182,21 @@ Out
 FuturePosition
 
 ```
-id (int): position id
-code (str): contract id
-direction (Action): action
-    {Buy, Sell}
-quantity (int): quantity
-price (float): the average price
-last_price (float): last price
-pnl (float): unrealized profit
+id (int): 部位代碼
+code (str): 商品代碼
+direction (Action): {Buy: 買, Sell: 賣}
+quantity (int): 數量
+price (float): 平均價格
+last_price (float): 目前價格
+pnl (float): 損益
 
 ```
 
-## Position Detail
+## 未實現損益 - 明細
 
-Using the result obtained from `list_positions`, bring the `id` into `detail_id` to query the details of that position.
+可從針對`list_positions`得到的結果，將`id`帶入`detail_id`查詢該筆明細。
 
-### Stocks
+### 證券
 
 In
 
@@ -250,7 +253,7 @@ Out
 
 ```
 
-To DataFrame
+轉成DataFrame
 
 In
 
@@ -267,26 +270,31 @@ Out
 屬性
 
 ```
-date (str): trade date
-code (str): contract id    
-quantity (int): quantity
-price (float): price
-last_price (float): last price
-dseq (str): detail seqno no
-direction (Action): {Buy, Sell}
-pnl (decimal): unrealized profit
-currency (string): {NTD, USD, HKD, EUR, CAD, BAS}
-fee (decimal): fee
-cond (StockOrderCond): Default Cash
-    {Cash, Netting, MarginTrading,ShortSelling, Emerging}
-ex_dividends(int): ex-dividend amount
-interest (int): interest
-margintrading_amt(int): margin trading amount
-collateral (int): collateral 
+date (str): 交易日期
+code (str): 商品代碼    
+quantity (int): 數量
+price (float): 付出成本
+last_price (float): 現值
+dseq (str): 委託書號
+direction (Action): {Buy: 買, Sell: 賣}
+pnl (decimal): 損益
+currency (string): 幣別 {NTD, USD, HKD, EUR, CAD, BAS}
+fee (decimal): 交易手續費
+cond (StockOrderCond): {
+    Cash: 現股(預設值), 
+    Netting: 餘額交割,
+    MarginTrading: 融資, 
+    ShortSelling: 融券, 
+    Emerging: 興櫃
+    }
+ex_dividends(int): 除息金額
+interest (int): 除息
+margintrading_amt(int): 融資金額
+collateral (int): 擔保品 
 
 ```
 
-### Futures and Options
+### 期貨選擇權
 
 In
 
@@ -316,7 +324,7 @@ Out
 
 ```
 
-To DataFrame
+轉成DataFrame
 
 In
 
@@ -333,16 +341,16 @@ Out
 屬性
 
 ```
-code (str): contract id
-date (str): trade date
-quantity (int): quantity
-price (float): price
-last_price (float): last price    
-dseq (str): detail seqno no
-direction (Action): {Buy, Sell}
-pnl (float): unrealized profit
-currency (str): {NTD, USD, HKD, EUR, CAD, BAS}
-fee (float or int): fee
-entry_quantity(int): entry quantity
+code (str): 商品代碼
+date (str): 交易日期
+quantity (int): 數量
+price (float): 價格
+last_price (float): 目前股價    
+dseq (str): 委託書號
+direction (Action): {Buy: 買, Sell: 賣}
+pnl (float): 損益
+currency (str): 幣別 {NTD, USD, HKD, EUR, CAD, BAS}
+fee (float or int): 交易手續費
+entry_quantity(int): 新倉數量
 
 ```

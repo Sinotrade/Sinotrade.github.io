@@ -1,4 +1,4 @@
-To subscribe quotes is very easy, just call `subscribe` function with [contract](../../../contract/) which we've discussed in previous topic.
+利用訂閱[商品檔](../../../contract/)的方式去取得即時行情。
 
 Subscribe
 
@@ -15,21 +15,18 @@ Signature:
 
 ```
 
-Quote Parameters
+Quote Parameters:
 
 ```
-quote_type: tick price or bid/ask price to subscribe
-    {'tick', 'bidask'}
-intraday_odd: 盤中零股
-    {True, False}
-version: version of quote format
-    {'v1', 'v0'}
+quote_type: 訂閱類型 {'tick', 'bidask'}
+intraday_odd: 盤中零股 {True, False}
+version: 行情版本 {'v1', 'v0'}
 
 ```
 
 ## Tick
 
-### Common Stock
+### 整股
 
 In
 
@@ -93,7 +90,7 @@ MKT/idcdmzpcr01/TSE/2330
 
 ```
 
-### Intraday odd
+### 盤中零股
 
 In
 
@@ -158,7 +155,7 @@ TIC/v2/replay/TSE/2330/ODDLOT
 
 ```
 
-### Attributes
+### 屬性
 
 Tick
 
@@ -203,7 +200,7 @@ Volume (:List:int): 成交量 (張)
 
 ## BidAsk
 
-### Common Stock
+### 整股
 
 In
 
@@ -253,7 +250,7 @@ QUT/idcdmzpcr01/TSE/2330
 
 ```
 
-### Intraday odd
+### 盤中零股
 
 In
 
@@ -305,7 +302,7 @@ QUO/v2/replay/TSE/2330/ODDLOT
 
 ```
 
-### Attributes
+### 屬性
 
 BidAsk
 
@@ -335,7 +332,7 @@ Time (time): 時間 (HH:mm:ss.ffffff)
 
 ## Quote
 
-### Common Stock
+### 整股
 
 In
 
@@ -394,7 +391,7 @@ Quote(
 
 ```
 
-### Attributes
+### 屬性
 
 Quote
 
@@ -439,11 +436,11 @@ simtrade (bool): 試撮
 
 ## Callback
 
-In default, we set quote callback as print function. You can modify callback function as you wish. Just remember, always avoid making calulations inside the callback function.
+預設狀況下我們將即時行情使用`print`的方式呈現。可根據個人需求修改函數。請避免在函數內進行運算。
 
-### Tick
+#### Tick
 
-In: pythonic way by using decorator
+decorator方式
 
 ```
 from shioaji import TickSTKv1, Exchange
@@ -461,7 +458,7 @@ def quote_callback(topic: str, quote: dict):
 
 ```
 
-In: traditional way
+傳統方式
 
 ```
 from shioaji import TickSTKv1, Exchange
@@ -495,7 +492,7 @@ Topic: MKT/*/TSE/2330, Quote: {'AmountSum': [4739351000.0], 'Close': [596.0], 'D
 
 ### BidAsk
 
-In: pythonic way by using decorator
+decorator方式
 
 ```
 from shioaji import BidAskSTKv1, Exchange
@@ -513,7 +510,7 @@ def quote_callback(topic: str, quote: dict):
 
 ```
 
-In: traditional way
+傳統方式
 
 ```
 from shioaji import BidAskSTKv1, Exchange
@@ -547,7 +544,7 @@ Topic: QUT/idcdmzpcr01/TSE/2330, Quote: {'AskPrice': [590.0, 591.0, 592.0, 593.0
 
 ### Quote
 
-In: pythonic way by using decorator
+decorator方式
 
 ```
 from shioaji import QuoteSTKv1, Exchange
@@ -558,7 +555,7 @@ def quote_callback(exchange: Exchange, quote:QuoteSTKv1):
 
 ```
 
-In: traditional way
+傳統方式
 
 ```
 from shioaji import QuoteSTKv1, Exchange
@@ -577,5 +574,5 @@ Exchange: TSE, Quote: Quote(code='2330', datetime=datetime.datetime(2022, 7, 1, 
 
 ```
 
-- Intraday odd share the callback function with common stock.
-- Advanced quote callback settings please refer to [Quote-Binding Mode](../../../advanced/quote_binding/).
+- 盤中零股與一般證券共用 callback函式。
+- 更進階的callback使用可以參見[綁訂報價模式](../../../advanced/quote_binding/)。

@@ -88,7 +88,7 @@
     <div data-md-component="skip">
       
         
-        <a href="#example" class="md-skip">
+        <a href="#_1" class="md-skip">
           跳转至
         </a>
       
@@ -782,18 +782,18 @@
     <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
       
         <li class="md-nav__item">
-  <a href="#example" class="md-nav__link">
+  <a href="#_1" class="md-nav__link">
     <span class="md-ellipsis">
-      Example
+      範例
     </span>
   </a>
   
 </li>
       
         <li class="md-nav__item">
-  <a href="#attributes" class="md-nav__link">
+  <a href="#_2" class="md-nav__link">
     <span class="md-ellipsis">
-      Attributes
+      屬性
     </span>
   </a>
   
@@ -1694,18 +1694,18 @@
     <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
       
         <li class="md-nav__item">
-  <a href="#example" class="md-nav__link">
+  <a href="#_1" class="md-nav__link">
     <span class="md-ellipsis">
-      Example
+      範例
     </span>
   </a>
   
 </li>
       
         <li class="md-nav__item">
-  <a href="#attributes" class="md-nav__link">
+  <a href="#_2" class="md-nav__link">
     <span class="md-ellipsis">
-      Attributes
+      屬性
     </span>
   </a>
   
@@ -1730,7 +1730,7 @@
   <h1>或有券源</h1>
 
 <div class="admonition example">
-<p class="admonition-title">Short Stock Sources</p>
+<p class="admonition-title">或有券源</p>
 <div class="highlight"><pre><span></span><code><span class="o">&gt;&gt;</span> <span class="n">api</span><span class="o">.</span><span class="n">short_stock_sources</span><span class="err">?</span>
 
 <span class="n">Signature</span><span class="p">:</span>
@@ -1741,7 +1741,7 @@
 <span class="p">)</span> <span class="o">-&gt;</span> <span class="n">List</span><span class="p">[</span><span class="n">shioaji</span><span class="o">.</span><span class="n">data</span><span class="o">.</span><span class="n">ShortStockSource</span><span class="p">]</span>
 </code></pre></div>
 </div>
-<h2 id="example">Example<a class="headerlink" href="#example" title="Permanent link">&para;</a></h2>
+<h2 id="_1">範例<a class="headerlink" href="#_1" title="Permanent link">&para;</a></h2>
 <div class="admonition info">
 <p class="admonition-title">In</p>
 <div class="highlight"><pre><span></span><code><span class="n">contracts</span> <span class="o">=</span> <span class="p">[</span>
@@ -1760,7 +1760,7 @@
 <span class="p">]</span>
 </code></pre></div>
 </div>
-<p>To DataFrame</p>
+<p>轉成 DataFrame</p>
 <div class="admonition info">
 <p class="admonition-title">In</p>
 <div class="highlight"><pre><span></span><code><span class="n">df</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">(</span><span class="n">s</span><span class="o">.</span><span class="vm">__dict__</span> <span class="k">for</span> <span class="n">s</span> <span class="ow">in</span> <span class="n">short_stock_sources</span><span class="p">)</span>
@@ -1792,12 +1792,12 @@
 </tbody>
 </table>
 </div>
-<h2 id="attributes">Attributes<a class="headerlink" href="#attributes" title="Permanent link">&para;</a></h2>
+<h2 id="_2">屬性<a class="headerlink" href="#_2" title="Permanent link">&para;</a></h2>
 <div class="admonition example">
 <p class="admonition-title">ShortStockSource</p>
-<div class="highlight"><pre><span></span><code><span class="n">code</span> <span class="p">(</span><span class="nb">str</span><span class="p">):</span> <span class="n">contract</span> <span class="nb">id</span>
-<span class="n">short_stock_source</span> <span class="p">(</span><span class="nb">float</span><span class="p">):</span> <span class="n">short</span> <span class="n">stock</span> <span class="n">source</span>
-<span class="n">ts</span> <span class="p">(</span><span class="nb">int</span><span class="p">):</span> <span class="n">timeStamp</span>
+<div class="highlight"><pre><span></span><code><span class="n">code</span> <span class="p">(</span><span class="nb">str</span><span class="p">):</span> <span class="n">商品代碼</span>
+<span class="n">short_stock_source</span> <span class="p">(</span><span class="nb">float</span><span class="p">):</span> <span class="n">或有券源</span>
+<span class="n">ts</span> <span class="p">(</span><span class="nb">int</span><span class="p">):</span> <span class="n">時間戳記</span>
 </code></pre></div>
 </div>
 

@@ -1,53 +1,53 @@
-After version 1.0, we will use Token as our login method. Please follow the steps below to apply and use.
+在版本1.0之後，我們將使用Token作為我們的登入方式。請根據下列的步驟進行申請及使用。
 
-### Apply The API Key
+## 申請金鑰
 
-1. Go to the [API management](https://www.sinotrade.com.tw/newweb/PythonAPIKey/) page in the personal service.
+1. 至[理財網](https://www.sinotrade.com.tw/newweb/PythonAPIKey/)個人服務中的API管理頁面
 
-1. Click Add API KEY.
+1. 點選新增API KEY
 
-1. Use your mobile phone or email to do two-factor authentication, and the API KEY can only be established if the verification is successful.
+1. 利用手機或是信箱做雙因子驗證，驗證成功才能建立API KEY。
 
-1. You can set expiration time, permission, which account can be used, whether it can be used in the production environment and allowed IP list of the key.
+1. 進行API KEY的到期時間設定，以及勾選權限與帳戶，並且設定IP限制。
 
-   Permission Description
+   權限勾選說明
 
-   - Market / Data : Whether to use the market / data related API
-   - Account : Whether to use the account related API
-   - Trading : Whether to use the trading related API
-   - Production Environment : Whether to use in the production environment
+   - 行情 / 資料 : 可否使用行情 / 資料相關 API
+   - 帳務 : 可否使用帳務相關 API
+   - 交易 : 可否使用交易相關 API
+   - 正式環境 : 可否在正式環境中使用
 
-   Attention
+   注意
 
-   It is recommended to limit the use of IP, which can improve the security of the KEY.
+   IP建議使用限制，能使該KEY安全性提高。
 
-1. If you add successfully, you will get the API Key and Secret Key.
+1. 新增成功會得到金鑰(API Key)與密鑰(Secret Key)
 
-   Attention
+   注意
 
-   - Please keep your key properly and do not disclose it to anyone to avoid property loss.
-   - The Secret Key is only obtained when the establishment is successful, and there is no way to obtain it after that, please make sure to save it.
+   - 請妥善保存您的鑰匙，勿將其透漏給任何人，以免造成資產損失。
+   - Secret Key 僅在建立成功時取得，此後再無任何方法得到，請確保以保存
 
-### Download Certificate
+## 憑證下載
 
-1. Click the Download Certificate button
-1. Download the certificate and place it into the folder that the API can read
+1. 點選下載憑證按鈕
+1. 下載完成請前往下載資料夾將憑證放置到 API 要讀取的路徑
 
-## Confirm The API Key And Certificate
+## 確認密鑰與憑證
 
-Continue with the previous project `sj-trading`, add `.env` file in the project folder, and add the following content
+延續前面開好的專案 `sj-trading`，在專案資料夾中新增 `.env` 檔案，並且新增以下內容
 
-`.env`
-
-```
-API_KEY=<API Key>
-SECRET_KEY=<Secret Key>
-CA_CERT_PATH=<CA Certificate Path>
-CA_PASSWORD=<CA Certificate Password>
+`.env` 檔案內容如下
 
 ```
+API_KEY=<前面申請的API Key>
+SECRET_KEY=<前面申請的Secret Key>
+CA_CERT_PATH=<前面設定的憑證路徑>
+CA_PASSWORD=<憑證密碼>
 
-the project folder structure should be like this
+```
+
+專案資料夾結構如下
 
 ```
 sj-trading
@@ -61,14 +61,14 @@ sj-trading
 
 ```
 
-Add the `python-dotenv` package to load the key and certificate into environment variables
+加入 python-dotenv 套件來將 .env 的金鑰與憑證載入環境變數
 
 ```
 uv add python-dotenv
 
 ```
 
-Add the following content into `src/sj_trading/__init__.py`
+在 `src/sj_trading/__init__.py` 中新增以下內容
 
 ```
 import os
@@ -91,21 +91,21 @@ def main():
 
 ```
 
-Add the `main` command into `pyproject.toml`
+在 `pyproject.toml` 中 `[project.scripts]` 新增 `main` 指令
 
 ```
 [project.scripts]
-main = "sj_trading"
+main = "sj_trading:main"
 
 ```
 
-Run the `main` command
+執行 `main` 指令
 
 ```
 uv run main
 
 ```
 
-If you see `login and activate ca success`, it means you have successfully logged in to the simulation environment.
+如果看到 `login and activate ca success` 代表成功登入模擬環境了
 
-Next, if you have not yet completed the API usage signature, please proceed to the next chapter to complete the signature and pass the audit for the API.
+接著如果你還有沒有進行 API 簽署的話，請前往下一章進行簽署與測試審核。

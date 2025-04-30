@@ -1,10 +1,10 @@
-First, we extend the project `sj-trading` created using `uv` in the environment creation chapter to add the testing flow part.
+首先，我們延伸前面在環境建立章節使用 `uv` 建立的專案 `sj-trading` 來新增測試流程的部分。
 
-The complete project code can be referred to [sj-trading https://github.com/Sinotrade/sj-trading-demo](https://github.com/Sinotrade/sj-trading-demo).
+這部分完整專案的程式碼可以參考 [sj-trading https://github.com/Sinotrade/sj-trading-demo](https://github.com/Sinotrade/sj-trading-demo)。
 
-You can use `git` to clone the entire environment to your local machine and use it directly.
+可以使用 `git` 將整個環境複製到本地就可以直接使用
 
-Download Project
+下載專案
 
 ```
 git clone https://github.com/Sinotrade/sj-trading-demo.git
@@ -12,15 +12,15 @@ cd sj-trading-demo
 
 ```
 
-Next, we will step by step introduce how to add the testing flow.
+下面我們將一步一步的介紹如何新增測試流程。
 
-### Shioaji Version
+### Shioaji 版本
 
-Get Shioaji version information
+獲取 Shioaji 版本資訊
 
-Add Version Information
+新增版本資訊
 
-Add the following content to `src/sj_trading/__init__.py`
+在 `src/sj_trading/__init__.py` 新增
 
 ```
 def show_version() -> str:
@@ -29,9 +29,9 @@ def show_version() -> str:
 
 ```
 
-Add `version` Command to Project
+新增版本指令到專案
 
-Add `version` command to `pyproject.toml`
+在 `pyproject.toml` 新增 `version` 的指令
 
 ```
 [project.scripts]
@@ -39,20 +39,20 @@ version = "sj_trading:show_version"
 
 ```
 
-Execute `uv run version` to see the Shioaji version information
+執行 `uv run version` 就可以看到 Shioaji 的版本資訊
 
 ```
 Shioaji Version: 1.2.0
 
 ```
 
-### Stock Testing
+### 現貨下單測試
 
-Add Stock Testing File
+新增下單測試檔案
 
-Add file `testing_flow.py` to `src/sj_trading`
+在 `src/sj_trading` 新增檔案 `testing_flow.py`
 
-Add the following content
+新增以下內容
 
 ```
 import shioaji as sj
@@ -60,48 +60,48 @@ from shioaji.constant import Action, StockPriceType, OrderType
 import os
 
 def testing_stock_ordering():
-    # Login to the testing environment
+    # 測試環境登入
     api = sj.Shioaji(simulation=True)
     accounts = api.login(
         api_key=os.environ["API_KEY"],
         secret_key=os.environ["SECRET_KEY"],
     )
-    # Show all available accounts
+    # 顯示所有可用的帳戶
     print(f"Available accounts: {accounts}")
     api.activate_ca(
         ca_path=os.environ["CA_CERT_PATH"],
         ca_passwd=os.environ["CA_PASSWORD"],
     )
 
-    # Prepare the Contract for Ordering
-    # Use 2890 Fubon Financial as an example
+    # 準備下單的 Contract
+    # 使用 2890 永豐金為例
     contract = api.Contracts.Stocks["2890"]
     print(f"Contract: {contract}")
 
-    # Create an Order for Ordering
+    # 建立委託下單的 Order
     order = sj.order.StockOrder(
-        action=Action.Buy, # Buy
-        price=contract.reference, # Buy at the reference price
-        quantity=1, # Order quantity
-        price_type=StockPriceType.LMT, # Limit price order
-        order_type=OrderType.ROD, # Effective for the day
-        account=api.stock_account, # Use the default account
+        action=Action.Buy, # 買進
+        price=contract.reference, # 以平盤價買進
+        quantity=1, # 下單數量
+        price_type=StockPriceType.LMT, # 限價單
+        order_type=OrderType.ROD, # 當日有效單
+        account=api.stock_account, # 使用預設的帳戶
     )
     print(f"Order: {order}")
 
-    # Send the order
+    # 送出委託單
     trade = api.place_order(contract=contract, order=order)
     print(f"Trade: {trade}")
 
-    # Update the status
+    # 更新狀態
     api.update_status()
     print(f"Status: {trade.status}")
 
 ```
 
-Add `stock_testing` Command to Project
+新增測試下單指令到專案
 
-Add `stock_testing` command to `pyproject.toml`
+在 `pyproject.toml` 新增 `stock_testing` 的指令
 
 ```
 [project.scripts]
@@ -109,13 +109,13 @@ stock_testing = "sj_trading.testing_flow:testing_stock_ordering"
 
 ```
 
-Execute `uv run stock_testing` to start testing stock ordering
+執行 `uv run stock_testing` 就開始進行測試下單了
 
-### Futures Testing
+### 期貨下單測試
 
-Add Futures Testing Content
+新增期貨下單測試
 
-Add the following content to `src/sj_trading/testing_flow.py`
+在 `src/sj_trading/testing_flow.py` 新增以下內容
 
 ```
 from shioaji.constant import (
@@ -124,49 +124,48 @@ from shioaji.constant import (
 )
 
 def testing_futures_ordering():
-    # Login to the testing environment
+    # 測試環境登入
     api = sj.Shioaji(simulation=True)
     accounts = api.login(
         api_key=os.environ["API_KEY"],
         secret_key=os.environ["SECRET_KEY"],
     )
-    # Show all available accounts
+    # 顯示所有可用的帳戶
     print(f"Available accounts: {accounts}")
     api.activate_ca(
         ca_path=os.environ["CA_CERT_PATH"],
         ca_passwd=os.environ["CA_PASSWORD"],
     )
 
-    # Get the contract for ordering
-    # Use TXFR1 as an example
+    # 取得合約 使用台指期近月為例
     contract = api.Contracts.Futures["TXFR1"]
     print(f"Contract: {contract}")
 
-    # Create an Order for Ordering
+    # 建立期貨委託下單的 Order
     order = sj.order.FuturesOrder(
-        action=Action.Buy,  # Buy
-        price=contract.reference,  # Buy at the reference price
-        quantity=1,  # Order quantity
-        price_type=FuturesPriceType.LMT,  # Limit price order
-        order_type=OrderType.ROD,  # Effective for the day
-        octype=FuturesOCType.Auto,  # Auto select new close
-        account=api.futopt_account,  # Use the default account
+        action=Action.Buy,  # 買進
+        price=contract.reference,  # 以平盤價買進
+        quantity=1,  # 下單數量
+        price_type=FuturesPriceType.LMT,  # 限價單
+        order_type=OrderType.ROD,  # 當日有效單
+        octype=FuturesOCType.Auto,  # 自動選擇新平倉
+        account=api.futopt_account,  # 使用預設的帳戶
     )
     print(f"Order: {order}")
 
-    # Send the order
+    # 送出委託單
     trade = api.place_order(contract=contract, order=order)
     print(f"Trade: {trade}")
 
-    # Update the status
+    # 更新狀態
     api.update_status()
     print(f"Status: {trade.status}")
 
 ```
 
-Add `futures_testing` Command to Project
+新增期貨下單指令到專案
 
-Add `futures_testing` command to `pyproject.toml`
+在 `pyproject.toml` 新增 `futures_testing` 的指令
 
 ```
 [project.scripts]
@@ -174,4 +173,4 @@ futures_testing = "sj_trading.testing_flow:testing_futures_ordering"
 
 ```
 
-Execute `uv run futures_testing` to start testing futures ordering
+執行 `uv run futures_testing` 就開始進行測試下單了

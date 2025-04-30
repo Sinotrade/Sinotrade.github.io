@@ -88,7 +88,7 @@
     <div data-md-component="skip">
       
         
-        <a href="#environment-setup" class="md-skip">
+        <a href="#_1" class="md-skip">
           跳转至
         </a>
       
@@ -362,28 +362,28 @@
     <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
       
         <li class="md-nav__item">
-  <a href="#system-requirements" class="md-nav__link">
+  <a href="#_2" class="md-nav__link">
     <span class="md-ellipsis">
-      System Requirements
+      系統需求
     </span>
   </a>
   
 </li>
       
         <li class="md-nav__item">
-  <a href="#install-python-environment" class="md-nav__link">
+  <a href="#python" class="md-nav__link">
     <span class="md-ellipsis">
-      Install Python Environment
+      安裝 Python 環境
     </span>
   </a>
   
-    <nav class="md-nav" aria-label="Install Python Environment">
+    <nav class="md-nav" aria-label="安裝 Python 環境">
       <ul class="md-nav__list">
         
           <li class="md-nav__item">
-  <a href="#install-uv" class="md-nav__link">
+  <a href="#uv" class="md-nav__link">
     <span class="md-ellipsis">
-      Install uv
+      安裝 uv
     </span>
   </a>
   
@@ -395,19 +395,19 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#create-project-environment" class="md-nav__link">
+  <a href="#_3" class="md-nav__link">
     <span class="md-ellipsis">
-      Create Project Environment
+      創建專案環境
     </span>
   </a>
   
-    <nav class="md-nav" aria-label="Create Project Environment">
+    <nav class="md-nav" aria-label="創建專案環境">
       <ul class="md-nav__list">
         
           <li class="md-nav__item">
-  <a href="#use-jupyter-environment" class="md-nav__link">
+  <a href="#jupyter" class="md-nav__link">
     <span class="md-ellipsis">
-      Use Jupyter Environment
+      使用 Jupyter 環境
     </span>
   </a>
   
@@ -1735,28 +1735,28 @@
     <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
       
         <li class="md-nav__item">
-  <a href="#system-requirements" class="md-nav__link">
+  <a href="#_2" class="md-nav__link">
     <span class="md-ellipsis">
-      System Requirements
+      系統需求
     </span>
   </a>
   
 </li>
       
         <li class="md-nav__item">
-  <a href="#install-python-environment" class="md-nav__link">
+  <a href="#python" class="md-nav__link">
     <span class="md-ellipsis">
-      Install Python Environment
+      安裝 Python 環境
     </span>
   </a>
   
-    <nav class="md-nav" aria-label="Install Python Environment">
+    <nav class="md-nav" aria-label="安裝 Python 環境">
       <ul class="md-nav__list">
         
           <li class="md-nav__item">
-  <a href="#install-uv" class="md-nav__link">
+  <a href="#uv" class="md-nav__link">
     <span class="md-ellipsis">
-      Install uv
+      安裝 uv
     </span>
   </a>
   
@@ -1768,19 +1768,19 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#create-project-environment" class="md-nav__link">
+  <a href="#_3" class="md-nav__link">
     <span class="md-ellipsis">
-      Create Project Environment
+      創建專案環境
     </span>
   </a>
   
-    <nav class="md-nav" aria-label="Create Project Environment">
+    <nav class="md-nav" aria-label="創建專案環境">
       <ul class="md-nav__list">
         
           <li class="md-nav__item">
-  <a href="#use-jupyter-environment" class="md-nav__link">
+  <a href="#jupyter" class="md-nav__link">
     <span class="md-ellipsis">
-      Use Jupyter Environment
+      使用 Jupyter 環境
     </span>
   </a>
   
@@ -1807,25 +1807,24 @@
 
 
 
-<h1 id="environment-setup">Environment Setup<a class="headerlink" href="#environment-setup" title="Permanent link">&para;</a></h1>
-<p>In this section, we will introduce how to setup the python environment with <a href="https://docs.astral.sh/uv/"><code>uv</code></a> for using Shioaji API. <code>uv</code> is the best solution for managing python environment on cross-platform.</p>
-<h3 id="system-requirements">System Requirements<a class="headerlink" href="#system-requirements" title="Permanent link">&para;</a></h3>
-<p>Before starting, please ensure your system meets the following requirements:</p>
+<h1 id="_1">環境設定<a class="headerlink" href="#_1" title="Permanent link">&para;</a></h1>
+<h2 id="_2">系統需求<a class="headerlink" href="#_2" title="Permanent link">&para;</a></h2>
+<p>在開始之前，請確保你的系統符合以下需求：</p>
 <ul>
-<li>Operating System: 64-bit version of Windows, MacOS, or Linux</li>
-<li>Python Version: 3.8 or later</li>
-<li>User needs to have a Sinopac account and obtain Shioaji API permissions.</li>
+<li>作業系統：Windows、MacOS 或 Linux 之 64 位元版本</li>
+<li>Python 版本：3.8 以上</li>
+<li>使用者需要具備永豐金證券帳戶，並取得 Shioaji API 權限。</li>
 </ul>
-<h2 id="install-python-environment">Install Python Environment<a class="headerlink" href="#install-python-environment" title="Permanent link">&para;</a></h2>
-<p>First, you need to install Python on your system. We recommend using <code>uv</code> as the Python environment and project environment management tool. And we will use <code>uv</code> to install Shioaji API in the project.</p>
+<h2 id="python">安裝 Python 環境<a class="headerlink" href="#python" title="Permanent link">&para;</a></h2>
+<p>首先，你需要在系統上安裝 Python，推薦使用 uv ，本篇教學範例將使用 uv 作為 Python 及專案環境管理工具，並在專案中使用 Shioaji API。</p>
 <div class="admonition note">
-<p class="admonition-title">note</p>
-<p><a href="https://docs.astral.sh/uv/"><code>uv</code></a> is the best solution for managing python environment on cross-platform.</p>
+<p class="admonition-title">延伸筆記</p>
+<p><a href="https://docs.astral.sh/uv/"><code>uv</code></a> 是跨平台管理 python 環境及專案環境管理工具的最佳解決方案。</p>
 </div>
-<h3 id="install-uv">Install uv<a class="headerlink" href="#install-uv" title="Permanent link">&para;</a></h3>
+<h3 id="uv">安裝 uv<a class="headerlink" href="#uv" title="Permanent link">&para;</a></h3>
 <div class="admonition info">
-<p class="admonition-title">script</p>
-<div class="tabbed-set tabbed-alternate" data-tabs="1:2"><input checked="checked" id="__tabbed_1_1" name="__tabbed_1" type="radio" /><input id="__tabbed_1_2" name="__tabbed_1" type="radio" /><div class="tabbed-labels"><label for="__tabbed_1_1">Linux and MacOS</label><label for="__tabbed_1_2">Windows</label></div>
+<p class="admonition-title">指令</p>
+<div class="tabbed-set tabbed-alternate" data-tabs="1:2"><input checked="checked" id="__tabbed_1_1" name="__tabbed_1" type="radio" /><input id="__tabbed_1_2" name="__tabbed_1" type="radio" /><div class="tabbed-labels"><label for="__tabbed_1_1">Linux 與 MacOS</label><label for="__tabbed_1_2">Windows</label></div>
 <div class="tabbed-content">
 <div class="tabbed-block">
 <div class="highlight"><pre><span></span><code>curl -LsSf https://astral.sh/uv/install.sh | sh
@@ -1838,24 +1837,24 @@
 </div>
 </div>
 </div>
-<p>More information about installation and usage can be found at <a href="https://docs.astral.sh/uv/">uv official document</a></p>
-<h2 id="create-project-environment">Create Project Environment<a class="headerlink" href="#create-project-environment" title="Permanent link">&para;</a></h2>
-<p>First, create a project named <code>sj-trading</code></p>
+<p>更多安裝與使用方式請參考 <a href="https://docs.astral.sh/uv/">uv 官方文件</a></p>
+<h2 id="_3">創建專案環境<a class="headerlink" href="#_3" title="Permanent link">&para;</a></h2>
+<p>首先，先創建一個名為 <code>sj-trading</code> 的專案
 <div class="highlight"><pre><span></span><code>uv init sj-trading --package --app --vcs git
 cd sj-trading
 </code></pre></div>
-<p>The project structure will be like this:</p>
+創建出來的專案路徑如下
 <div class="highlight"><pre><span></span><code>sj-trading
 ├── README.md
 ├── pyproject.toml
 └── src
     └── sj_trading
         └── __init__.py
-</code></pre></div>
-<p>add Shioaji API to the project</p>
+</code></pre></div></p>
+<p>加入 shioaji 套件到專案中
 <div class="highlight"><pre><span></span><code>uv add shioaji
-</code></pre></div>
-<p>Open <code>pyproject.toml</code> file and you will see the following content
+</code></pre></div></p>
+<p>接著打開 <code>pyproject.toml</code> 檔案將會看到以下內容
 <div class="highlight"><pre><span></span><code>[project]
 name = &quot;sj-trading&quot;
 version = &quot;0.1.0&quot;
@@ -1873,18 +1872,18 @@ hello = &quot;sj_trading:hello&quot;
 requires = [&quot;hatchling&quot;]
 build-backend = &quot;hatchling.build&quot;
 </code></pre></div>
-the <code>hello</code> command is the entry point of the project.</p>
+專案中有一個 <code>hello</code> 指令，代表我們已經成功可以執行 hello 指令</p>
 <div class="admonition info">
-<p class="admonition-title">execute hello command</p>
+<p class="admonition-title">執行 hello 指令</p>
 <div class="highlight"><pre><span></span><code>uv<span class="w"> </span>run<span class="w"> </span>hello
 </code></pre></div>
 </div>
 <div class="admonition done">
-<p class="admonition-title">output</p>
+<p class="admonition-title">輸出</p>
 <div class="highlight"><pre><span></span><code>Hello from sj-trading!
 </code></pre></div>
 </div>
-<p>open <code>src/sj_trading/__init__.py</code> file and copy the following content
+<p>接著打開 <code>src/sj_trading/__init__.py</code> 檔案，將以下內容複製貼上
 <div class="highlight"><pre><span></span><code><span class="kn">import</span><span class="w"> </span><span class="nn">shioaji</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">sj</span>
 
 <span class="k">def</span><span class="w"> </span><span class="nf">hello</span><span class="p">():</span>
@@ -1897,38 +1896,38 @@ the <code>hello</code> command is the entry point of the project.</p>
     <span class="k">return</span> <span class="n">api</span>
 </code></pre></div></p>
 <div class="admonition info">
-<p class="admonition-title">execute command</p>
+<p class="admonition-title">執行指令</p>
 <div class="highlight"><pre><span></span><code>uv<span class="w"> </span>run<span class="w"> </span>hello
 </code></pre></div>
 </div>
 <div class="admonition done">
-<p class="admonition-title">output</p>
+<p class="admonition-title">輸出</p>
 <div class="highlight"><pre><span></span><code>Shioaji API created
 </code></pre></div>
 </div>
-<p>This is the most basic environment setup and you can start using Shioaji API now.</p>
-<h3 id="use-jupyter-environment">Use Jupyter Environment<a class="headerlink" href="#use-jupyter-environment" title="Permanent link">&para;</a></h3>
+<p>這這邊最基本的環境安裝就完成可以開始使用了。</p>
+<h3 id="jupyter">使用 Jupyter 環境<a class="headerlink" href="#jupyter" title="Permanent link">&para;</a></h3>
 <div class="admonition info">
-<p class="admonition-title">Add ipykernel to the project development dependencies</p>
+<p class="admonition-title">加入 ipykernel 到專案的開發依賴</p>
 <div class="highlight"><pre><span></span><code>uv add --dev ipykernel
 </code></pre></div>
 </div>
 <div class="admonition info">
-<p class="admonition-title">Add the project environment to the Jupyter kernel</p>
+<p class="admonition-title">將專案使用環境加入到 Jupyter 的 kernel</p>
 <div class="highlight"><pre><span></span><code>uv run ipython kernel install --user --name=sj-trading
 </code></pre></div>
 </div>
 <div class="admonition info">
-<p class="admonition-title">Start Jupyter</p>
+<p class="admonition-title">啟動 Jupyter</p>
 <div class="highlight"><pre><span></span><code>uv run --with jupyter jupyter lab
 </code></pre></div>
 </div>
-<p>Open <code>dev.ipynb</code> file in Jupyter and select <code>sj-trading</code> kernel to execute the command</p>
-<p>The <code>hello</code> command we wrote earlier can be executed in this way
+<p>在 jupyter 中創建 dev.ipynb 檔案，就可以選擇 <code>sj-trading</code> 的 kernel 來執行指令</p>
+<p>剛剛我們寫好的 <code>hello</code> 指令就可以在這邊執行了
    <br/>
    <img alt="jupyterlab" src="/img/jupyterlab.png#center" />
    <br/></p>
-<p>If you have already opened an account, you can skip the next chapter and go to <a href="../tutor/prepare/token/">Token &amp; Certificate</a> to get the API Key and certificate.</p>
+<p>如果已經開好戶可以跳過下一章直接前往 <a href="../tutor/prepare/token/">金鑰與憑證申請</a> 取得 API Key 與憑證。</p>
 
 
 

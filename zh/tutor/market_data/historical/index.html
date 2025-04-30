@@ -746,27 +746,27 @@
       <ul class="md-nav__list">
         
           <li class="md-nav__item">
-  <a href="#by-date" class="md-nav__link">
+  <a href="#ticks_1" class="md-nav__link">
     <span class="md-ellipsis">
-      By Date
+      取得特定日期 Ticks
     </span>
   </a>
   
 </li>
         
           <li class="md-nav__item">
-  <a href="#range-time" class="md-nav__link">
+  <a href="#ticks_2" class="md-nav__link">
     <span class="md-ellipsis">
-      Range Time
+      取得特定時間區段 Ticks
     </span>
   </a>
   
 </li>
         
           <li class="md-nav__item">
-  <a href="#last-count" class="md-nav__link">
+  <a href="#ticks_3" class="md-nav__link">
     <span class="md-ellipsis">
-      Last Count
+      取得最後數筆 Ticks
     </span>
   </a>
   
@@ -787,18 +787,18 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#historical-periods" class="md-nav__link">
+  <a href="#_1" class="md-nav__link">
     <span class="md-ellipsis">
-      Historical Periods
+      資料歷史期間
     </span>
   </a>
   
 </li>
       
         <li class="md-nav__item">
-  <a href="#continuous-futures" class="md-nav__link">
+  <a href="#_2" class="md-nav__link">
     <span class="md-ellipsis">
-      Continuous Futures
+      連續期貨合約
     </span>
   </a>
   
@@ -1755,27 +1755,27 @@
       <ul class="md-nav__list">
         
           <li class="md-nav__item">
-  <a href="#by-date" class="md-nav__link">
+  <a href="#ticks_1" class="md-nav__link">
     <span class="md-ellipsis">
-      By Date
+      取得特定日期 Ticks
     </span>
   </a>
   
 </li>
         
           <li class="md-nav__item">
-  <a href="#range-time" class="md-nav__link">
+  <a href="#ticks_2" class="md-nav__link">
     <span class="md-ellipsis">
-      Range Time
+      取得特定時間區段 Ticks
     </span>
   </a>
   
 </li>
         
           <li class="md-nav__item">
-  <a href="#last-count" class="md-nav__link">
+  <a href="#ticks_3" class="md-nav__link">
     <span class="md-ellipsis">
-      Last Count
+      取得最後數筆 Ticks
     </span>
   </a>
   
@@ -1796,18 +1796,18 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#historical-periods" class="md-nav__link">
+  <a href="#_1" class="md-nav__link">
     <span class="md-ellipsis">
-      Historical Periods
+      資料歷史期間
     </span>
   </a>
   
 </li>
       
         <li class="md-nav__item">
-  <a href="#continuous-futures" class="md-nav__link">
+  <a href="#_2" class="md-nav__link">
     <span class="md-ellipsis">
-      Continuous Futures
+      連續期貨合約
     </span>
   </a>
   
@@ -1832,7 +1832,7 @@
   <h1>歷史行情</h1>
 
 <h2 id="ticks">Ticks<a class="headerlink" href="#ticks" title="Permanent link">&para;</a></h2>
-<p>Ticks can get all day, period of time or last counts of the day. The default is get ticks of last trade day . </p>
+<p>取得方式可以以一整天、某時間區段或是某天的最後幾筆。預設為商品最近交易日的Ticks。</p>
 <div class="admonition info">
 <p class="admonition-title">Ticks</p>
 <div class="highlight"><pre><span></span><code><span class="n">api</span><span class="o">.</span><span class="n">ticks</span><span class="err">?</span>
@@ -1852,7 +1852,7 @@
     <span class="n">get</span> <span class="n">contract</span> <span class="n">tick</span> <span class="n">volumn</span>
 </code></pre></div>
 </div>
-<h3 id="by-date">By Date<a class="headerlink" href="#by-date" title="Permanent link">&para;</a></h3>
+<h3 id="ticks_1">取得特定日期 Ticks<a class="headerlink" href="#ticks_1" title="Permanent link">&para;</a></h3>
 <div class="admonition info">
 <p class="admonition-title">In</p>
 <div class="highlight"><pre><span></span><code><span class="n">ticks</span> <span class="o">=</span> <span class="n">api</span><span class="o">.</span><span class="n">ticks</span><span class="p">(</span>
@@ -1879,16 +1879,16 @@
 <div class="admonition example">
 <p class="admonition-title">Ticks</p>
 <div class="highlight"><pre><span></span><code><span class="n">ts</span> <span class="p">(</span><span class="nb">int</span><span class="p">):</span> <span class="n">timestamp</span>
-<span class="n">close</span> <span class="p">(</span><span class="nb">float</span><span class="p">):</span> <span class="n">close</span>
-<span class="n">volume</span> <span class="p">(</span><span class="nb">int</span><span class="p">):</span> <span class="n">volume</span>
-<span class="n">bid_price</span> <span class="p">(</span><span class="nb">float</span><span class="p">):</span> <span class="n">bid</span> <span class="n">price</span>
-<span class="n">bid_volume</span> <span class="p">(</span><span class="nb">int</span><span class="p">):</span> <span class="n">bid</span> <span class="n">volume</span>
-<span class="n">ask_price</span> <span class="p">(</span><span class="nb">float</span><span class="p">):</span> <span class="n">ask</span> <span class="n">price</span>
-<span class="n">ask_volume</span> <span class="p">(</span><span class="nb">int</span><span class="p">):</span> <span class="n">ask</span> <span class="n">volume</span>
+<span class="n">close</span> <span class="p">(</span><span class="nb">float</span><span class="p">):</span> <span class="n">成交價</span>
+<span class="n">volume</span> <span class="p">(</span><span class="nb">int</span><span class="p">):</span> <span class="n">成交量</span>
+<span class="n">bid_price</span> <span class="p">(</span><span class="nb">float</span><span class="p">):</span> <span class="n">委買價</span>
+<span class="n">bid_volume</span> <span class="p">(</span><span class="nb">int</span><span class="p">):</span> <span class="n">委買量</span>
+<span class="n">ask_price</span> <span class="p">(</span><span class="nb">float</span><span class="p">):</span> <span class="n">委賣價</span>
+<span class="n">ask_volume</span> <span class="p">(</span><span class="nb">int</span><span class="p">):</span> <span class="n">委賣量</span>
 <span class="n">tick_type</span> <span class="p">(</span><span class="nb">int</span><span class="p">):</span> <span class="n">內外盤別</span><span class="p">{</span><span class="mi">1</span><span class="p">:</span> <span class="n">外盤</span><span class="p">,</span> <span class="mi">2</span><span class="p">:</span> <span class="n">內盤</span><span class="p">,</span> <span class="mi">0</span><span class="p">:</span> <span class="n">無法判定</span><span class="p">}</span>
 </code></pre></div>
 </div>
-<p>To DataFrame</p>
+<p>轉成DataFrame</p>
 <div class="admonition info">
 <p class="admonition-title">In</p>
 <div class="highlight"><pre><span></span><code><span class="kn">import</span><span class="w"> </span><span class="nn">pandas</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">pd</span>
@@ -1956,7 +1956,7 @@
 </tbody>
 </table>
 </div>
-<h3 id="range-time">Range Time<a class="headerlink" href="#range-time" title="Permanent link">&para;</a></h3>
+<h3 id="ticks_2">取得特定時間區段 Ticks<a class="headerlink" href="#ticks_2" title="Permanent link">&para;</a></h3>
 <div class="admonition info">
 <p class="admonition-title">In</p>
 <div class="highlight"><pre><span></span><code><span class="n">ticks</span> <span class="o">=</span> <span class="n">api</span><span class="o">.</span><span class="n">ticks</span><span class="p">(</span>
@@ -1983,7 +1983,7 @@
 <span class="p">)</span>
 </code></pre></div>
 </div>
-<h3 id="last-count">Last Count<a class="headerlink" href="#last-count" title="Permanent link">&para;</a></h3>
+<h3 id="ticks_3">取得最後數筆 Ticks<a class="headerlink" href="#ticks_3" title="Permanent link">&para;</a></h3>
 <div class="admonition info">
 <p class="admonition-title">In</p>
 <div class="highlight"><pre><span></span><code><span class="n">ticks</span> <span class="o">=</span> <span class="n">api</span><span class="o">.</span><span class="n">ticks</span><span class="p">(</span>
@@ -2058,7 +2058,7 @@
 <span class="n">Volume</span> <span class="p">(</span><span class="nb">int</span><span class="p">):</span> <span class="n">volume</span>
 </code></pre></div>
 </div>
-<p>To DataFrame</p>
+<p>轉成DataFrame</p>
 <div class="admonition info">
 <p class="admonition-title">In</p>
 <div class="highlight"><pre><span></span><code><span class="kn">import</span><span class="w"> </span><span class="nn">pandas</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">pd</span>
@@ -2121,7 +2121,7 @@
 </tbody>
 </table>
 </div>
-<h2 id="historical-periods">Historical Periods<a class="headerlink" href="#historical-periods" title="Permanent link">&para;</a></h2>
+<h2 id="_1">資料歷史期間<a class="headerlink" href="#_1" title="Permanent link">&para;</a></h2>
 <div class="admonition done">
 <p class="admonition-title">Historical Periods</p>
 <table>
@@ -2151,9 +2151,8 @@
 </tbody>
 </table>
 </div>
-<h2 id="continuous-futures">Continuous Futures<a class="headerlink" href="#continuous-futures" title="Permanent link">&para;</a></h2>
-<p>Once a futures contract passes its expiration date, the contract is invalid, and it will not exist in your <code>api.Contracts</code>. 
-In order to get historical data for expired futures contract, we provide continuous futures contracts. <code>R1</code>, <code>R2</code> are continuous near-month and next-to-near-month futures contracts respectively. They will automatically roll contracts on delivery date. You can get historical data by using <code>R1</code>, <code>R2</code> contracts, ex <code>api.Contracts.Futures.TXF.TXFR1</code>. We show examples below.</p>
+<h2 id="_2">連續期貨合約<a class="headerlink" href="#_2" title="Permanent link">&para;</a></h2>
+<p>期貨合約一旦到期，合約即不再有效，亦即他將不會出現在您的<code>api.Contracts</code>裡。為了取得到期的期貨合約歷史資料，我們提供連續期貨合約。<code>R1</code>, <code>R2</code>是近月及次月的連續期貨合約，他們會自動在結算日更換新的合約。您可以使用<code>R1</code>, <code>R2</code>合約來取得歷史資料，例如<code>api.Contracts.Futures.TXF.TXFR1</code>。以下顯示如何使用<code>R1</code>, <code>R2</code>合約取得到期期貨的歷史<code>Ticks</code>及<code>Kbars</code>。</p>
 <p>Ticks </p>
 <div class="admonition info">
 <p class="admonition-title">Ticks</p>

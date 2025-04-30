@@ -88,7 +88,7 @@
     <div data-md-component="skip">
       
         
-        <a href="#example" class="md-skip">
+        <a href="#_1" class="md-skip">
           跳转至
         </a>
       
@@ -828,18 +828,18 @@
     <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
       
         <li class="md-nav__item">
-  <a href="#example" class="md-nav__link">
+  <a href="#_1" class="md-nav__link">
     <span class="md-ellipsis">
-      Example
+      範例
     </span>
   </a>
   
 </li>
       
         <li class="md-nav__item">
-  <a href="#attributes" class="md-nav__link">
+  <a href="#_2" class="md-nav__link">
     <span class="md-ellipsis">
-      Attributes
+      屬性
     </span>
   </a>
   
@@ -1694,18 +1694,18 @@
     <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
       
         <li class="md-nav__item">
-  <a href="#example" class="md-nav__link">
+  <a href="#_1" class="md-nav__link">
     <span class="md-ellipsis">
-      Example
+      範例
     </span>
   </a>
   
 </li>
       
         <li class="md-nav__item">
-  <a href="#attributes" class="md-nav__link">
+  <a href="#_2" class="md-nav__link">
     <span class="md-ellipsis">
-      Attributes
+      屬性
     </span>
   </a>
   
@@ -1729,7 +1729,7 @@
 
   <h1>排行</h1>
 
-<p>Scanners can use parameter of scannertype to get the rank of ChangePercent, ChangePrice, DayRange, Volume and Amount. </p>
+<p>包含漲跌幅、漲跌、高低價差、成交量及成交金額排行。<code>Scanners</code>利用<code>scanner_type</code>去取得不同類型的排行。</p>
 <div class="admonition example">
 <p class="admonition-title">Scanners</p>
 <div class="highlight"><pre><span></span><code><span class="o">&gt;&gt;</span> <span class="n">api</span><span class="o">.</span><span class="n">scanners</span><span class="err">?</span>
@@ -1745,19 +1745,19 @@
 <span class="p">)</span> <span class="o">-&gt;</span> <span class="n">List</span><span class="p">[</span><span class="n">shioaji</span><span class="o">.</span><span class="n">data</span><span class="o">.</span><span class="n">ChangePercentRank</span><span class="p">]</span>
 </code></pre></div>
 </div>
-<p>Ascending is sorted from largest to smallest by default, and the value of ascending is True. Set ascending to False to sort in descending order, and the other ranking methods are the same. <code>count</code> is how many ranks you get.</p>
+<p>排名預設為由大到小排序，<code>ascending</code>預設值為<code>True</code>。若要由小到大排序請將<code>ascending</code>設為<code>False</code>。<code>count</code>為排行數量。</p>
 <div class="admonition example">
-<p class="admonition-title">Supported Scanner Type</p>
-<div class="highlight"><pre><span></span><code><span class="n">ChangePercentRank</span><span class="p">:</span> <span class="n">rank</span> <span class="n">by</span> <span class="n">price</span> <span class="n">percentage</span> <span class="n">change</span>
-<span class="n">ChangePriceRank</span><span class="p">:</span> <span class="n">rank</span> <span class="n">by</span> <span class="n">price</span> <span class="n">change</span>
-<span class="n">DayRangeRank</span><span class="p">:</span> <span class="n">rank</span> <span class="n">by</span> <span class="n">day</span> <span class="nb">range</span>
-<span class="n">VolumeRank</span><span class="p">:</span> <span class="n">rank</span> <span class="n">by</span> <span class="n">volume</span>
-<span class="n">AmountRank</span><span class="p">:</span> <span class="n">rank</span> <span class="n">by</span> <span class="n">amount</span>
+<p class="admonition-title">支援的排行類別</p>
+<div class="highlight"><pre><span></span><code><span class="n">ChangePercentRank</span><span class="p">:</span> <span class="n">依價格漲跌幅排序</span>
+<span class="n">ChangePriceRank</span><span class="p">:</span> <span class="n">依價格漲跌排序</span>
+<span class="n">DayRangeRank</span><span class="p">:</span> <span class="n">依高低價差排序</span>
+<span class="n">VolumeRank</span><span class="p">:</span> <span class="n">依成交量排序</span>
+<span class="n">AmountRank</span><span class="p">:</span> <span class="n">依成交金額排序</span>
 </code></pre></div>
 </div>
-<h2 id="example">Example<a class="headerlink" href="#example" title="Permanent link">&para;</a></h2>
+<h2 id="_1">範例<a class="headerlink" href="#_1" title="Permanent link">&para;</a></h2>
 <div class="admonition info">
-<p class="admonition-title">ChangePercentRank</p>
+<p class="admonition-title">依價格漲跌幅排序</p>
 <div class="highlight"><pre><span></span><code><span class="n">scanners</span> <span class="o">=</span> <span class="n">api</span><span class="o">.</span><span class="n">scanners</span><span class="p">(</span>
     <span class="n">scanner_type</span><span class="o">=</span><span class="n">sj</span><span class="o">.</span><span class="n">constant</span><span class="o">.</span><span class="n">ScannerType</span><span class="o">.</span><span class="n">ChangePercentRank</span><span class="p">,</span>
     <span class="n">count</span><span class="o">=</span><span class="mi">1</span>
@@ -1800,7 +1800,7 @@
 <span class="p">]</span>
 </code></pre></div>
 </div>
-<p>To DataFrame</p>
+<p>轉成 DataFrame</p>
 <div class="admonition info">
 <p class="admonition-title">In</p>
 <div class="highlight"><pre><span></span><code><span class="n">scanners</span> <span class="o">=</span> <span class="n">api</span><span class="o">.</span><span class="n">scanners</span><span class="p">(</span>
@@ -1995,37 +1995,37 @@
 </tbody>
 </table>
 </div>
-<h2 id="attributes">Attributes<a class="headerlink" href="#attributes" title="Permanent link">&para;</a></h2>
+<h2 id="_2">屬性<a class="headerlink" href="#_2" title="Permanent link">&para;</a></h2>
 <div class="admonition example">
 <p class="admonition-title">ChangePercentRank</p>
-<div class="highlight"><pre><span></span><code><span class="n">date</span> <span class="p">(</span><span class="nb">str</span><span class="p">):</span> <span class="n">date</span> 
-<span class="n">code</span> <span class="p">(</span><span class="nb">str</span><span class="p">):</span> <span class="n">code</span>
-<span class="n">name</span> <span class="p">(</span><span class="nb">str</span><span class="p">):</span> <span class="n">name</span>
-<span class="n">ts</span> <span class="p">(</span><span class="nb">int</span><span class="p">):</span> <span class="n">timestamp</span>
-<span class="nb">open</span> <span class="p">(</span><span class="nb">float</span><span class="p">):</span> <span class="nb">open</span> <span class="n">price</span>
-<span class="n">high</span> <span class="p">(</span><span class="nb">float</span><span class="p">):</span> <span class="n">high</span> <span class="n">price</span>
-<span class="n">low</span> <span class="p">(</span><span class="nb">float</span><span class="p">):</span> <span class="n">low</span> <span class="n">price</span>
-<span class="n">close</span> <span class="p">(</span><span class="nb">float</span><span class="p">):</span> <span class="n">close</span> <span class="n">price</span>
-<span class="n">price_range</span> <span class="p">(</span><span class="nb">float</span><span class="p">):</span> <span class="nb">range</span> <span class="n">of</span> <span class="n">price</span>
-<span class="n">tick_type</span> <span class="p">(</span><span class="nb">int</span><span class="p">):</span> <span class="n">內外盤別</span><span class="p">{</span><span class="mi">1</span><span class="p">:</span> <span class="n">外盤</span><span class="p">,</span> <span class="mi">2</span><span class="p">:</span> <span class="n">內盤</span><span class="p">,</span> <span class="mi">0</span><span class="p">:</span> <span class="n">無法判定</span><span class="p">}</span>
-<span class="n">change_price</span> <span class="p">(</span><span class="nb">float</span><span class="p">):</span> <span class="n">change</span> <span class="ow">in</span> <span class="n">price</span>
-<span class="n">change_type</span> <span class="p">(</span><span class="nb">int</span><span class="p">):</span> 
+<div class="highlight"><pre><span></span><code><span class="n">date</span> <span class="p">(</span><span class="nb">str</span><span class="p">):</span> <span class="n">交易日</span> 
+<span class="n">code</span> <span class="p">(</span><span class="nb">str</span><span class="p">):</span> <span class="n">股票代號</span>
+<span class="n">name</span> <span class="p">(</span><span class="nb">str</span><span class="p">):</span> <span class="n">股票名稱</span>
+<span class="n">ts</span> <span class="p">(</span><span class="nb">int</span><span class="p">):</span> <span class="n">時間戳記</span>
+<span class="nb">open</span> <span class="p">(</span><span class="nb">float</span><span class="p">):</span> <span class="n">開盤價</span>
+<span class="n">high</span> <span class="p">(</span><span class="nb">float</span><span class="p">):</span> <span class="n">最高價</span>
+<span class="n">low</span> <span class="p">(</span><span class="nb">float</span><span class="p">):</span> <span class="n">最低價</span>
+<span class="n">close</span> <span class="p">(</span><span class="nb">float</span><span class="p">):</span> <span class="n">收盤價</span>
+<span class="n">price_range</span> <span class="p">(</span><span class="nb">float</span><span class="p">):</span> <span class="n">價格區間</span><span class="p">(</span><span class="n">最高價</span><span class="o">-</span><span class="n">最低價</span><span class="p">)</span>
+<span class="n">tick_type</span> <span class="p">(</span><span class="nb">int</span><span class="p">):</span> <span class="n">內外盤別</span> <span class="p">{</span><span class="mi">1</span><span class="p">:</span> <span class="n">內盤</span><span class="p">,</span> <span class="mi">2</span><span class="p">:</span> <span class="n">外盤</span><span class="p">,</span> <span class="mi">0</span><span class="p">:</span> <span class="n">無法判定</span><span class="p">}</span>
+<span class="n">change_price</span> <span class="p">(</span><span class="nb">float</span><span class="p">):</span> <span class="n">價格漲跌</span>
+<span class="n">change_type</span> <span class="p">(</span><span class="nb">int</span><span class="p">):</span> <span class="n">漲跌</span>
     <span class="p">{</span><span class="n">LimitUp</span><span class="p">,</span> <span class="n">Up</span><span class="p">,</span> <span class="n">Unchanged</span><span class="p">,</span> <span class="n">Down</span><span class="p">,</span> <span class="n">LimitDown</span><span class="p">}</span>
-<span class="n">average_price</span> <span class="p">(</span><span class="nb">float</span><span class="p">):</span> <span class="n">average</span> <span class="n">price</span>
-<span class="n">volume</span> <span class="p">(</span><span class="nb">int</span><span class="p">):</span> <span class="n">volume</span>
-<span class="n">total_volume</span> <span class="p">(</span><span class="nb">int</span><span class="p">):</span> <span class="n">total</span> <span class="n">volume</span> <span class="n">since</span> <span class="n">market</span> <span class="nb">open</span>
-<span class="n">amount</span> <span class="p">(</span><span class="nb">int</span><span class="p">):</span> <span class="n">amount</span>
-<span class="n">total_amount</span> <span class="p">(</span><span class="nb">int</span><span class="p">):</span> <span class="n">total</span> <span class="n">amount</span> <span class="n">since</span> <span class="n">market</span> <span class="nb">open</span>
-<span class="n">yesterday_volume</span> <span class="p">(</span><span class="nb">int</span><span class="p">):</span> <span class="n">yesterday</span> <span class="n">volume</span>
-<span class="n">volume_ratio</span> <span class="p">(</span><span class="nb">float</span><span class="p">):</span> <span class="n">total_volume</span><span class="o">/</span><span class="n">yestoday_volume</span>
-<span class="n">buy_price</span> <span class="p">(</span><span class="nb">float</span><span class="p">):</span> <span class="n">bid</span>
-<span class="n">buy_volume</span> <span class="p">(</span><span class="nb">int</span><span class="p">):</span> <span class="n">bid</span> <span class="n">volume</span>
-<span class="n">sell_price</span> <span class="p">(</span><span class="nb">float</span><span class="p">):</span> <span class="n">ask</span>
-<span class="n">sell_volume</span> <span class="p">(</span><span class="nb">int</span><span class="p">):</span> <span class="n">ask</span> <span class="n">volume</span>
-<span class="n">bid_orders</span> <span class="p">(</span><span class="nb">int</span><span class="p">):</span> <span class="n">number</span> <span class="n">of</span> <span class="n">orders</span> <span class="n">that</span> <span class="n">deal</span> <span class="n">at</span> <span class="n">bid</span>
-<span class="n">bid_volumes</span> <span class="p">(</span><span class="nb">int</span><span class="p">):</span> <span class="n">total</span> <span class="n">volume</span> <span class="n">that</span> <span class="n">deal</span> <span class="n">at</span> <span class="n">bid</span>
-<span class="n">ask_orders</span> <span class="p">(</span><span class="nb">int</span><span class="p">):</span> <span class="n">number</span> <span class="n">of</span> <span class="n">orders</span> <span class="n">that</span> <span class="n">deal</span> <span class="n">at</span> <span class="n">ask</span>
-<span class="n">ask_volumes</span> <span class="p">(</span><span class="nb">int</span><span class="p">):</span> <span class="n">total</span> <span class="n">volume</span> <span class="n">that</span> <span class="n">deal</span> <span class="n">at</span> <span class="n">ask</span>
+<span class="n">average_price</span> <span class="p">(</span><span class="nb">float</span><span class="p">):</span> <span class="n">均價</span>
+<span class="n">volume</span> <span class="p">(</span><span class="nb">int</span><span class="p">):</span> <span class="n">成交量</span>
+<span class="n">total_volume</span> <span class="p">(</span><span class="nb">int</span><span class="p">):</span> <span class="n">總成交量</span>
+<span class="n">amount</span> <span class="p">(</span><span class="nb">int</span><span class="p">):</span> <span class="n">成交金額</span>
+<span class="n">total_amount</span> <span class="p">(</span><span class="nb">int</span><span class="p">):</span> <span class="n">總成交金額</span>
+<span class="n">yesterday_volume</span> <span class="p">(</span><span class="nb">int</span><span class="p">):</span> <span class="n">昨日總成交量</span>
+<span class="n">volume_ratio</span> <span class="p">(</span><span class="nb">float</span><span class="p">):</span> <span class="n">總成交量</span><span class="o">/</span><span class="n">昨日總成交量</span>
+<span class="n">buy_price</span> <span class="p">(</span><span class="nb">float</span><span class="p">):</span> <span class="n">委買價</span>
+<span class="n">buy_volume</span> <span class="p">(</span><span class="nb">int</span><span class="p">):</span> <span class="n">委買量</span>
+<span class="n">sell_price</span> <span class="p">(</span><span class="nb">float</span><span class="p">):</span> <span class="n">委賣價</span>
+<span class="n">sell_volume</span> <span class="p">(</span><span class="nb">int</span><span class="p">):</span> <span class="n">委賣量</span>
+<span class="n">bid_orders</span> <span class="p">(</span><span class="nb">int</span><span class="p">):</span> <span class="n">內盤總成交單量</span>
+<span class="n">bid_volumes</span> <span class="p">(</span><span class="nb">int</span><span class="p">):</span> <span class="n">內盤總成交量</span>
+<span class="n">ask_orders</span> <span class="p">(</span><span class="nb">int</span><span class="p">):</span> <span class="n">外盤總成交單量</span>
+<span class="n">ask_volumes</span> <span class="p">(</span><span class="nb">int</span><span class="p">):</span> <span class="n">外盤總成交量</span>
 </code></pre></div>
 </div>
 

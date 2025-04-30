@@ -1,16 +1,16 @@
-In order to avoid affecting other users' connections, please follow the following usage rules.
+為避免影響其他使用者連線，請遵守以下使用規範
 
-Traffic
+流量
 
-- Stock :
+- 現貨 :
 
-  | Trading volume by API in the past 30 days | Daily Traffic Limit | | --- | --- | | 0 | 500MB | | 1 - 1E | 2GB | | > 1E | 10GB |
+  | 近 30 日使用 API 成交金額 | 每日流量限制 | | --- | --- | | 0 | 500MB | | 1 - 1億 | 2GB | | > 1億 | 10GB |
 
-- Future :
+- 期貨 :
 
-  | Trading volume by API in the past 30 days | Daily Traffic Limit | | --- | --- | | 0 | 500MB | | 1 - TXF 1000 contracts / MXF 4000 contracts | 2GB | | > TXF 1000 contracts / MXF 4000 contracts | 10GB |
+  | 近 30 日使用 API 成交金額 | 每日流量限制 | | --- | --- | | 0 | 500MB | | 1 - 大台1000口 / 小台4000口 | 2GB | | > 大台1000口 / 小台4000口 | 10G |
 
-Traffic query
+流量及連線數查詢
 
 ```
 api.usage()
@@ -25,52 +25,50 @@ UsageStatus(connections=1, bytes=41343260, limit_bytes=2147483648, remaining_byt
 ```
 
 ```
-connection: connection count.
-bytes: traffic.
-limit_bytes: limit bytes of daily.
-remaining_bytes: remaining bytes of daily.
+connection: 連線數量
+bytes: 已使用流量
+limit_bytes: 每日流量限制
+remaining_bytes: 剩餘可使用流量
 
 ```
 
-Counts
+次數
 
-- Data :
+- 行情 :
 
   `credit_enquire`, `short_stock_sources`, `snapshots`, `ticks`, `kbars`
 
-  - The total amount of inquiries above is limited to 50 times within 5 seconds.
-  - During trading hours, it is prohibited to query `ticks` more than 10 times.
-  - During trading hours, it is prohibited to query `kbars` more than 270 times.
+  - 以上查詢總次數 5 秒上限 50 次
+  - 盤中查詢 `ticks` 次數不得超過 10 次
+  - 盤中查詢 `kbars` 次數不得超過 270 次
 
-- Portfolio :
+- 帳務 :
 
   `list_profit_loss_detail`,`account_balance`, `list_settlements`, `list_profit_loss`, `list_positions`, `margin`
 
-  The total amount of inquiries above is limited to 25 times within 5 seconds.
+  以上查詢總次數 5 秒上限 25 次
 
-- Order :
+- 委託 :
 
   `place_order`, `update_status`, `update_qty`, `update_price`, `cancel_order`
 
-  The total amount of inquiries above is limited to 250 times within 10 seconds.
+  以上查詢總次數 10 秒上限 250 次
 
-- Subscribe :
+- 訂閱數 :
 
-  Number of `api.subscribe()` is 200.
+  `api.subscribe()`數量為200個
 
-- Connect :
+- 連線 :
 
-  The same SinoPac Securities `person_id` can only use up to 5 connections.
+  同一永豐金證券`person_id`，僅可使用最多5個連線。 注意: `api.login()`即建立一個連線
 
-  note. `api.login()`create a connection.
+- 登入 :
 
-- Login :
-
-  Up to 1000 times per day.
+  `api.login()`一天上限1000次
 
 Warn
 
-- If the traffic exceeds the limit, query requests for market data such as ticks, snapshots, and kbars will return empty values, while other functionalities remain unaffected.
-- If the usage exceeds the limit, the service will be suspended for one minute.
-- If the limit is exceeded multiple times in a row on the same day, the company will suspend the right to use the IP and ID.
-- If the ID is suspended, please contact Shioaji management staff
+- 若流量超過限制，行情(ticks、snapshots、kbars)類查詢將回傳空值，其他功能不受影響
+- 若使用量超過限制，將暫停服務一分鐘
+- 若當日連續多次超過限制，本公司將暫停該 IP 及 ID 使用權
+- 若 ID 被暫停使用，請洽 Shioaji 管理人員

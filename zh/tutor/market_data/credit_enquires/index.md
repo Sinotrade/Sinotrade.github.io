@@ -12,7 +12,7 @@ api.credit_enquires(
 
 ```
 
-## Example
+## 範例
 
 In
 
@@ -41,7 +41,7 @@ Out
 
 ```
 
-To DataFrame
+轉成DataFrame
 
 In
 
@@ -56,15 +56,15 @@ Out
 
 | | margin_unit | short_unit | stock_id | system | update_time | | --- | --- | --- | --- | --- | --- | | 0 | 1381 | 0 | 2330 | HE | 2020-12-11 13:30:13 | | 1 | 1371 | 0 | 2330 | HC | 2020-12-11 13:30:02 | | 2 | 1357 | 0 | 2330 | HN | 2020-12-11 14:31:19 | | 3 | 1314 | 0 | 2330 | HF | 2020-12-11 14:31:19 | | 4 | 0 | 0 | 2890 | HE | 2020-12-09 10:56:05 | | 5 | 0 | 0 | 2890 | HN | 2020-12-11 09:33:04 | | 6 | 0 | 0 | 2890 | HF | 2020-12-02 09:01:03 |
 
-## Attributes
+## 屬性
 
 CreditEnquire
 
 ```
-update_time (str): update time
-system (str): system
-stock_id (str): stock id
-margin_unit (int): margin unit
-short_unit (int): short unit
+update_time (str): 更新時間
+system (str): 類別
+stock_id (str): 商品代碼
+margin_unit (int): 資餘額
+short_unit (int): 券餘額
 
 ```

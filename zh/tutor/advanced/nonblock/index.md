@@ -1,10 +1,10 @@
-Blocking is a pattern where a function must wait for something to complete. Every function is waiting, whether it is doing I/O or doing CPU tasks. For example, if the function tries to get data from the database, it needs to stop and wait for the return result, and then continue processing the next task after receiving the return result. In contrast, non-blocking mode does not wait for operations to complete. Non-blocking mode is useful if you are trying to send batch operation in a short period of time. We provide the following examples to give you a better understanding of the difference.
+阻塞(Blocking)模式為函數必須等待某事完成。每個函數都是等待的，不管是在做 I/O 還是在做 CPU 任務。舉例來說，如果函數試圖從資料庫中獲取數據，那麼它需要停下來等待回傳結果，收到回傳結果後，才會繼續處理接下來的任務。相反地，非阻塞(non-blocking)模式，不會等待操作完成。如果您嘗試在短時間內發送批量操作，則非阻塞模式非常有用。我們提供以下範例讓您更了解之間的區別。
 
-To switch blocking/non-blocking mode use parameter `timeout`. Set the API parameter `timeout` to `0` for non-blocking mode. The default value of `timeout` is 5000 (milliseconds), which means the function waits for up to 5 seconds.
+切換阻塞/非阻塞模式為利用參數`timeout`。將API參數`timeout`設置為`0`為非阻塞模式。`timeout`預設值為 5000（毫秒），表示該函數最多等待 5 秒。
 
-### Non-Blocking Place Order
+### 非阻塞模式下單
 
-Set `timeout = 0` in `place_order` function.
+將`place_order` 函數中設置 `timeout = 0`。
 
 In
 
@@ -61,9 +61,9 @@ Trade(
 
 ```
 
-The `Trade` object obtained in non-blocking mode will lack some information because the order is still in transit and has not been sent to the exchange. There are no `id` and `seqno` in the `Order` object, `id`, `status_code`, `order_datetime` and `deals` are missing in the `OrderStatus` object, and `status` is displayed as `Inactive`. In the non-blocking mode, there are two ways to obtain the above-mentioned information: \`\`order event callback`and`non-blocking place order callback\`.
+在非阻塞模式中取得的`Trade`物件，因為委託單仍在傳輸中還未送至交易所，所以會缺少一些資訊。在`Order`物件中沒有`id`和`seqno`，`OrderStatus`物件中沒有 `id`、`status_code`、`order_datetime` 和 `deals`，`status`顯示為`Inactive`。在非阻塞模式中要取得上述提到的資訊可利用`委託回報`和`非阻塞模式下單回調`兩種方式。
 
-#### Order event callback
+#### 委託回報
 
 Out
 
@@ -103,7 +103,7 @@ OrderState.FuturesOrder {
 
 ```
 
-#### Non-blocking place order callback
+#### 非阻塞模式下單回調
 
 In
 
@@ -168,9 +168,9 @@ status=OrderStatus(
 
 ```
 
-### Compare both modes
+### 比較兩者模式
 
-In non-wait mode, executing `place_order` takes about 0.01 seconds, which is 12 times faster than the execution time in blocking mode. Although it is more efficient to place order in the non-blocking mode, the order will not take effect until the exchange receives the order.
+在非阻塞模式下，執行 `place_order` 大約需要 0.01 秒，這比阻塞模式下的執行時間快 12 倍。雖然非阻塞模式下單效率更高，需等待交易所收到委託後，委託單才會生效。
 
 contract and order
 
@@ -208,7 +208,7 @@ print(time.time() - start_time)
 
 ```
 
-Non-Blocking mode Supported Function
+支援非等待模式的函數
 
 ```
 - place_order

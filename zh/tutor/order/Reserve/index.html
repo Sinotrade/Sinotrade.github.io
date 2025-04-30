@@ -88,7 +88,7 @@
     <div data-md-component="skip">
       
         
-        <a href="#get-stock-reserve-summay-status" class="md-skip">
+        <a href="#_1" class="md-skip">
           跳转至
         </a>
       
@@ -989,54 +989,54 @@
     <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
       
         <li class="md-nav__item">
-  <a href="#get-stock-reserve-summay-status" class="md-nav__link">
+  <a href="#_1" class="md-nav__link">
     <span class="md-ellipsis">
-      Get Stock Reserve Summay Status
+      查詢圈券狀態
     </span>
   </a>
   
 </li>
       
         <li class="md-nav__item">
-  <a href="#reserve-stock" class="md-nav__link">
+  <a href="#_2" class="md-nav__link">
     <span class="md-ellipsis">
-      Reserve Stock
+      借券圈券申請
     </span>
   </a>
   
 </li>
       
         <li class="md-nav__item">
-  <a href="#get-stock-reserve-detail-satus" class="md-nav__link">
+  <a href="#_3" class="md-nav__link">
     <span class="md-ellipsis">
-      Get Stock Reserve Detail Satus
+      查詢圈券明細
     </span>
   </a>
   
 </li>
       
         <li class="md-nav__item">
-  <a href="#reserve-earmarking" class="md-nav__link">
+  <a href="#_4" class="md-nav__link">
     <span class="md-ellipsis">
-      Reserve Earmarking
+      預收款項申請
     </span>
   </a>
   
 </li>
       
         <li class="md-nav__item">
-  <a href="#get-earmarking-detail-status" class="md-nav__link">
+  <a href="#_5" class="md-nav__link">
     <span class="md-ellipsis">
-      Get Earmarking Detail Status
+      查詢預收款項
     </span>
   </a>
   
 </li>
       
         <li class="md-nav__item">
-  <a href="#example" class="md-nav__link">
+  <a href="#_6" class="md-nav__link">
     <span class="md-ellipsis">
-      Example
+      範例
     </span>
   </a>
   
@@ -1730,54 +1730,54 @@
     <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
       
         <li class="md-nav__item">
-  <a href="#get-stock-reserve-summay-status" class="md-nav__link">
+  <a href="#_1" class="md-nav__link">
     <span class="md-ellipsis">
-      Get Stock Reserve Summay Status
+      查詢圈券狀態
     </span>
   </a>
   
 </li>
       
         <li class="md-nav__item">
-  <a href="#reserve-stock" class="md-nav__link">
+  <a href="#_2" class="md-nav__link">
     <span class="md-ellipsis">
-      Reserve Stock
+      借券圈券申請
     </span>
   </a>
   
 </li>
       
         <li class="md-nav__item">
-  <a href="#get-stock-reserve-detail-satus" class="md-nav__link">
+  <a href="#_3" class="md-nav__link">
     <span class="md-ellipsis">
-      Get Stock Reserve Detail Satus
+      查詢圈券明細
     </span>
   </a>
   
 </li>
       
         <li class="md-nav__item">
-  <a href="#reserve-earmarking" class="md-nav__link">
+  <a href="#_4" class="md-nav__link">
     <span class="md-ellipsis">
-      Reserve Earmarking
+      預收款項申請
     </span>
   </a>
   
 </li>
       
         <li class="md-nav__item">
-  <a href="#get-earmarking-detail-status" class="md-nav__link">
+  <a href="#_5" class="md-nav__link">
     <span class="md-ellipsis">
-      Get Earmarking Detail Status
+      查詢預收款項
     </span>
   </a>
   
 </li>
       
         <li class="md-nav__item">
-  <a href="#example" class="md-nav__link">
+  <a href="#_6" class="md-nav__link">
     <span class="md-ellipsis">
-      Example
+      範例
     </span>
   </a>
   
@@ -1801,15 +1801,19 @@
 
   <h1>預收券款</h1>
 
-<p>When Stock triggers some transaction abnormal conditions, it is necessary to <code>Reserve Order</code> in advance. Abnormal conditions include: watch out for stocks, warn about stocks, dispose of stocks, and manage stocks.</p>
+<p>當現貨觸發一些交易異常條件，需先預收券款。異常條件包括: 注意股票、警示股票、處置股票及管理股票。</p>
 <div class="admonition attention">
-<p class="admonition-title">Reminder </p>
+<p class="admonition-title">提醒</p>
 <ul>
-<li>First, you need to <a href="../../login/">login</a> and <a href="../../prepare/terms/">activate CA</a>.</li>
-<li>Service hours are from 8:00 to 14:30 on trading days.</li>
+<li>
+<p>必須先<a href="../../login/">登入</a>及啟用<a href="../../prepare/terms/">憑證</a>。</p>
+</li>
+<li>
+<p>服務時間為交易日8:00~14:30。</p>
+</li>
 </ul>
 </div>
-<h3 id="get-stock-reserve-summay-status">Get Stock Reserve Summay Status<a class="headerlink" href="#get-stock-reserve-summay-status" title="Permanent link">&para;</a></h3>
+<h3 id="_1">查詢圈券狀態<a class="headerlink" href="#_1" title="Permanent link">&para;</a></h3>
 <div class="admonition info">
 <p class="admonition-title">In</p>
 <div class="highlight"><pre><span></span><code><span class="n">reserve_summary_resp</span> <span class="o">=</span> <span class="n">api</span><span class="o">.</span><span class="n">stock_reserve_summary</span><span class="p">(</span><span class="n">account</span><span class="p">)</span>
@@ -1841,7 +1845,7 @@
     <span class="p">)</span>
 </code></pre></div>
 </div>
-<h3 id="reserve-stock">Reserve Stock<a class="headerlink" href="#reserve-stock" title="Permanent link">&para;</a></h3>
+<h3 id="_2">借券圈券申請<a class="headerlink" href="#_2" title="Permanent link">&para;</a></h3>
 <div class="admonition info">
 <p class="admonition-title">In</p>
 <div class="highlight"><pre><span></span><code><span class="n">contract</span> <span class="o">=</span> <span class="n">api</span><span class="o">.</span><span class="n">Contracts</span><span class="o">.</span><span class="n">Stocks</span><span class="p">[</span><span class="s2">&quot;2890&quot;</span><span class="p">]</span>
@@ -1870,7 +1874,7 @@
 <span class="p">)</span>
 </code></pre></div>
 </div>
-<h3 id="get-stock-reserve-detail-satus">Get Stock Reserve Detail Satus<a class="headerlink" href="#get-stock-reserve-detail-satus" title="Permanent link">&para;</a></h3>
+<h3 id="_3">查詢圈券明細<a class="headerlink" href="#_3" title="Permanent link">&para;</a></h3>
 <div class="admonition info">
 <p class="admonition-title">In</p>
 <div class="highlight"><pre><span></span><code><span class="n">resp</span> <span class="o">=</span> <span class="n">api</span><span class="o">.</span><span class="n">stock_reserve_detail</span><span class="p">(</span><span class="n">account</span><span class="p">)</span>
@@ -1902,7 +1906,7 @@
 <span class="p">)</span>
 </code></pre></div>
 </div>
-<h3 id="reserve-earmarking">Reserve Earmarking<a class="headerlink" href="#reserve-earmarking" title="Permanent link">&para;</a></h3>
+<h3 id="_4">預收款項申請<a class="headerlink" href="#_4" title="Permanent link">&para;</a></h3>
 <div class="admonition info">
 <p class="admonition-title">In</p>
 <div class="highlight"><pre><span></span><code><span class="n">contract</span> <span class="o">=</span> <span class="n">api</span><span class="o">.</span><span class="n">Contracts</span><span class="o">.</span><span class="n">Stocks</span><span class="p">[</span><span class="s2">&quot;2890&quot;</span><span class="p">]</span>
@@ -1932,7 +1936,7 @@
 <span class="p">)</span>
 </code></pre></div>
 </div>
-<h3 id="get-earmarking-detail-status">Get Earmarking Detail Status<a class="headerlink" href="#get-earmarking-detail-status" title="Permanent link">&para;</a></h3>
+<h3 id="_5">查詢預收款項<a class="headerlink" href="#_5" title="Permanent link">&para;</a></h3>
 <div class="admonition info">
 <p class="admonition-title">In</p>
 <div class="highlight"><pre><span></span><code><span class="n">api</span><span class="o">.</span><span class="n">earmarking_detail</span><span class="p">(</span><span class="n">account</span><span class="p">)</span>
@@ -1979,8 +1983,8 @@
     <span class="p">)</span>
 </code></pre></div>
 </div>
-<h3 id="example">Example<a class="headerlink" href="#example" title="Permanent link">&para;</a></h3>
-<p>Query the reserve status of all accounts under your name.</p>
+<h3 id="_6">範例<a class="headerlink" href="#_6" title="Permanent link">&para;</a></h3>
+<p>查詢所有名下帳號的圈券狀態</p>
 <div class="admonition info">
 <p class="admonition-title">In</p>
 <div class="highlight"><pre><span></span><code><span class="kn">import</span><span class="w"> </span><span class="nn">shioaji</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">sj</span>

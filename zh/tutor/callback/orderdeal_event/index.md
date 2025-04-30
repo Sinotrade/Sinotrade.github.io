@@ -1,10 +1,10 @@
-Each time you `place_order`, `update_order` or `cancel_order`, by default, you will recieve an order event (or deal event) from exchange. If you don't want recieve both events, please refer to [Subscribe Trade](../../login/#subscribe-trade). We also provide interface to handle order and deal events. It's extremely helpful if you are implementing your custom trading system.
+每次您使用 `place_order`、`update_order` 或者 `cancel_order` 時，預設皆會收到來自交易所的委託或成交回報。如果您不想收到任何回報通知，您可以參考[訂閱委託回報](../../login/#subscribe-trade)將其關閉。我們亦提供了處理委託及成交回報的介面。如果您正在建立自己的交易系統，這會非常有幫助。
 
-## Handle Order Callback
+## 處理委託及成交回報
 
-You can use `set_order_callback` to handle order/deal events. The example below shows custom order callback function (`order_cb`), which will print `my_order_callback` first and then print the order/deal event.
+您可以使用 `set_order_callback` 來處理委託及成交回報。以下範例顯示，自製的委託回報函數(`order_cb`)將先 print `my_order_callback` 然後才 print 委託及成交回報。
 
-Set Order Callback
+設定委託回報函式
 
 ```
 def order_cb(stat, msg):
@@ -15,7 +15,7 @@ api.set_order_callback(order_cb)
 
 ```
 
-Place Order
+下單
 
 ```
 contract = api.Contracts.Stocks.TSE.TSE2890
@@ -49,9 +49,9 @@ trade = api.place_order(contract, order)
 
 ```
 
-### Order Event
+### 委託回報
 
-Order Event
+委託回報
 
 ```
 my_order_callback
@@ -149,9 +149,9 @@ OrderState.TFTOrder {
 
 ```
 
-### Deal Event
+### 成交回報
 
-Deal Event
+成交回報
 
 ```
 my_order_callback

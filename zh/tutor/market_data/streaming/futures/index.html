@@ -717,18 +717,18 @@
       <ul class="md-nav__list">
         
           <li class="md-nav__item">
-  <a href="#example" class="md-nav__link">
+  <a href="#_1" class="md-nav__link">
     <span class="md-ellipsis">
-      Example
+      範例
     </span>
   </a>
   
 </li>
         
           <li class="md-nav__item">
-  <a href="#attributes" class="md-nav__link">
+  <a href="#_2" class="md-nav__link">
     <span class="md-ellipsis">
-      Attributes
+      屬性
     </span>
   </a>
   
@@ -750,18 +750,18 @@
       <ul class="md-nav__list">
         
           <li class="md-nav__item">
-  <a href="#example_1" class="md-nav__link">
+  <a href="#_3" class="md-nav__link">
     <span class="md-ellipsis">
-      Example
+      範例
     </span>
   </a>
   
 </li>
         
           <li class="md-nav__item">
-  <a href="#attributes_1" class="md-nav__link">
+  <a href="#_4" class="md-nav__link">
     <span class="md-ellipsis">
-      Attributes
+      屬性
     </span>
   </a>
   
@@ -1787,18 +1787,18 @@
       <ul class="md-nav__list">
         
           <li class="md-nav__item">
-  <a href="#example" class="md-nav__link">
+  <a href="#_1" class="md-nav__link">
     <span class="md-ellipsis">
-      Example
+      範例
     </span>
   </a>
   
 </li>
         
           <li class="md-nav__item">
-  <a href="#attributes" class="md-nav__link">
+  <a href="#_2" class="md-nav__link">
     <span class="md-ellipsis">
-      Attributes
+      屬性
     </span>
   </a>
   
@@ -1820,18 +1820,18 @@
       <ul class="md-nav__list">
         
           <li class="md-nav__item">
-  <a href="#example_1" class="md-nav__link">
+  <a href="#_3" class="md-nav__link">
     <span class="md-ellipsis">
-      Example
+      範例
     </span>
   </a>
   
 </li>
         
           <li class="md-nav__item">
-  <a href="#attributes_1" class="md-nav__link">
+  <a href="#_4" class="md-nav__link">
     <span class="md-ellipsis">
-      Attributes
+      屬性
     </span>
   </a>
   
@@ -1893,7 +1893,7 @@
 
   <h1>期貨</h1>
 
-<p>To subscribe quotes is very easy, just call <code>subscribe</code> function with <a href="../../../contract/">contract</a> which we've discussed in previous topic.</p>
+<p>利用訂閱<a href="../../../contract/">商品檔</a>的方式去取得即時行情。</p>
 <div class="admonition example">
 <p class="admonition-title">Subscribe</p>
 <div class="highlight"><pre><span></span><code><span class="n">api</span><span class="o">.</span><span class="n">quote</span><span class="o">.</span><span class="n">subscribe</span><span class="err">?</span>
@@ -1911,16 +1911,13 @@
 </div>
 <div class="admonition done">
 <p class="admonition-title">Quote Parameters:</p>
-<div class="highlight"><pre><span></span><code>quote_type: tick price or bid/ask price to subscribe
-    {&#39;tick&#39;, &#39;bidask&#39;}
-intraday_odd: 盤中零股
-    {True, False}
-version: version of quote format
-    {&#39;v1&#39;, &#39;v0&#39;}
+<div class="highlight"><pre><span></span><code>quote_type: 訂閱類型 {&#39;tick&#39;, &#39;bidask&#39;}
+intraday_odd: 盤中零股 {True, False}
+version: 行情版本 {&#39;v1&#39;, &#39;v0&#39;}
 </code></pre></div>
 </div>
 <h2 id="tick">Tick<a class="headerlink" href="#tick" title="Permanent link">&para;</a></h2>
-<h3 id="example">Example<a class="headerlink" href="#example" title="Permanent link">&para;</a></h3>
+<h3 id="_1">範例<a class="headerlink" href="#_1" title="Permanent link">&para;</a></h3>
 <div class="admonition info">
 <p class="admonition-title">In</p>
 <div class="highlight"><pre><span></span><code><span class="n">api</span><span class="o">.</span><span class="n">quote</span><span class="o">.</span><span class="n">subscribe</span><span class="p">(</span>
@@ -1991,7 +1988,7 @@ version: version of quote format
 </div>
 </div>
 </div>
-<h3 id="attributes">Attributes<a class="headerlink" href="#attributes" title="Permanent link">&para;</a></h3>
+<h3 id="_2">屬性<a class="headerlink" href="#_2" title="Permanent link">&para;</a></h3>
 <div class="admonition example">
 <p class="admonition-title">Tick</p>
 <div class="tabbed-set tabbed-alternate" data-tabs="2:2"><input checked="checked" id="__tabbed_2_1" name="__tabbed_2" type="radio" /><input id="__tabbed_2_2" name="__tabbed_2" type="radio" /><div class="tabbed-labels"><label for="__tabbed_2_1">QuoteVersion.v1</label><label for="__tabbed_2_2">QuoteVersion.v0</label></div>
@@ -2044,7 +2041,7 @@ Volume (list of int): 成交量 (lot)
 </div>
 </div>
 <h2 id="bidask">BidAsk<a class="headerlink" href="#bidask" title="Permanent link">&para;</a></h2>
-<h3 id="example_1">Example<a class="headerlink" href="#example_1" title="Permanent link">&para;</a></h3>
+<h3 id="_3">範例<a class="headerlink" href="#_3" title="Permanent link">&para;</a></h3>
 <div class="admonition info">
 <p class="admonition-title">In</p>
 <div class="highlight"><pre><span></span><code><span class="n">api</span><span class="o">.</span><span class="n">quote</span><span class="o">.</span><span class="n">subscribe</span><span class="p">(</span>
@@ -2111,7 +2108,7 @@ Volume (list of int): 成交量 (lot)
 </div>
 </div>
 </div>
-<h3 id="attributes_1">Attributes<a class="headerlink" href="#attributes_1" title="Permanent link">&para;</a></h3>
+<h3 id="_4">屬性<a class="headerlink" href="#_4" title="Permanent link">&para;</a></h3>
 <div class="admonition example">
 <p class="admonition-title">BidAsk</p>
 <div class="tabbed-set tabbed-alternate" data-tabs="4:2"><input checked="checked" id="__tabbed_4_1" name="__tabbed_4" type="radio" /><input id="__tabbed_4_2" name="__tabbed_4" type="radio" /><div class="tabbed-labels"><label for="__tabbed_4_1">QuoteVersion.v1</label><label for="__tabbed_4_2">QuoteVersion.v0</label></div>
@@ -2160,10 +2157,10 @@ Time (str): 時間 (HH:mm:ss.ffffff)
 </div>
 </div>
 <h2 id="callback">Callback<a class="headerlink" href="#callback" title="Permanent link">&para;</a></h2>
-<p>In default, we set quote callback as print function. You can modify callback function as you wish. Just remember, always avoid making calulations inside the callback function.</p>
+<p>預設狀況下我們將即時行情使用<code>print</code>的方式呈現。可根據個人需求修改函數。請避免在函數內進行運算。</p>
 <h3 id="tick_1">Tick<a class="headerlink" href="#tick_1" title="Permanent link">&para;</a></h3>
 <div class="admonition info">
-<p class="admonition-title">In: pythonic way by using decorator</p>
+<p class="admonition-title">decorator方式</p>
 <div class="tabbed-set tabbed-alternate" data-tabs="5:2"><input checked="checked" id="__tabbed_5_1" name="__tabbed_5" type="radio" /><input id="__tabbed_5_2" name="__tabbed_5" type="radio" /><div class="tabbed-labels"><label for="__tabbed_5_1">QuoteVersion.v1</label><label for="__tabbed_5_2">QuoteVersion.v0</label></div>
 <div class="tabbed-content">
 <div class="tabbed-block">
@@ -2184,7 +2181,7 @@ Time (str): 時間 (HH:mm:ss.ffffff)
 </div>
 </div>
 <div class="admonition info">
-<p class="admonition-title">In: traditional way</p>
+<p class="admonition-title">傳統方式</p>
 <div class="tabbed-set tabbed-alternate" data-tabs="6:2"><input checked="checked" id="__tabbed_6_1" name="__tabbed_6" type="radio" /><input id="__tabbed_6_2" name="__tabbed_6" type="radio" /><div class="tabbed-labels"><label for="__tabbed_6_1">QuoteVersion.v1</label><label for="__tabbed_6_2">QuoteVersion.v0</label></div>
 <div class="tabbed-content">
 <div class="tabbed-block">
@@ -2223,7 +2220,7 @@ Time (str): 時間 (HH:mm:ss.ffffff)
 </div>
 <h3 id="bidask_1">BidAsk<a class="headerlink" href="#bidask_1" title="Permanent link">&para;</a></h3>
 <div class="admonition info">
-<p class="admonition-title">In: pythonic way by using decorator</p>
+<p class="admonition-title">decorator方式</p>
 <div class="tabbed-set tabbed-alternate" data-tabs="8:2"><input checked="checked" id="__tabbed_8_1" name="__tabbed_8" type="radio" /><input id="__tabbed_8_2" name="__tabbed_8" type="radio" /><div class="tabbed-labels"><label for="__tabbed_8_1">QuoteVersion.v1</label><label for="__tabbed_8_2">QuoteVersion.v0</label></div>
 <div class="tabbed-content">
 <div class="tabbed-block">
@@ -2244,7 +2241,7 @@ Time (str): 時間 (HH:mm:ss.ffffff)
 </div>
 </div>
 <div class="admonition info">
-<p class="admonition-title">In: traditional way</p>
+<p class="admonition-title">傳統方式</p>
 <div class="tabbed-set tabbed-alternate" data-tabs="9:2"><input checked="checked" id="__tabbed_9_1" name="__tabbed_9" type="radio" /><input id="__tabbed_9_2" name="__tabbed_9" type="radio" /><div class="tabbed-labels"><label for="__tabbed_9_1">QuoteVersion.v1</label><label for="__tabbed_9_2">QuoteVersion.v0</label></div>
 <div class="tabbed-content">
 <div class="tabbed-block">
@@ -2282,7 +2279,7 @@ Time (str): 時間 (HH:mm:ss.ffffff)
 </div>
 </div>
 <ul>
-<li>Advanced quote callback settings please refer to <a href="../../../advanced/quote_binding/">Quote-Binding Mode</a>.</li>
+<li>更進階的callback使用可以參見<a href="../../../advanced/quote_binding/">綁訂報價模式</a>。</li>
 </ul>
 
 

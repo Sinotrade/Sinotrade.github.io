@@ -1644,42 +1644,42 @@
 
   <h1>使用限制</h1>
 
-<p>In order to avoid affecting other users' connections, please follow the following usage rules. </p>
+<p>為避免影響其他使用者連線，請遵守以下使用規範</p>
 <div class="admonition info">
-<p class="admonition-title">Traffic</p>
+<p class="admonition-title">流量</p>
 <ul>
 <li>
-<p>Stock :</p>
+<p>現貨 :</p>
 <table>
 <thead>
 <tr>
-<th style="text-align: right;">Trading volume by API in the past 30 days</th>
-<th style="text-align: left;">Daily Traffic Limit</th>
+<th>近 30 日使用 API 成交金額</th>
+<th>每日流量限制</th>
 </tr>
 </thead>
 <tbody>
 <tr>
-<td style="text-align: right;">0</td>
-<td style="text-align: left;">500MB</td>
+<td>0</td>
+<td>500MB</td>
 </tr>
 <tr>
-<td style="text-align: right;">1 - 1E</td>
-<td style="text-align: left;">2GB</td>
+<td>1 - 1億</td>
+<td>2GB</td>
 </tr>
 <tr>
-<td style="text-align: right;">&gt;   1E</td>
-<td style="text-align: left;">10GB</td>
+<td>&gt;   1億</td>
+<td>10GB</td>
 </tr>
 </tbody>
 </table>
 </li>
 <li>
-<p>Future :</p>
+<p>期貨 :</p>
 <table>
 <thead>
 <tr>
-<th style="text-align: right;">Trading volume by API in the past 30 days</th>
-<th style="text-align: left;">Daily Traffic Limit</th>
+<th style="text-align: right;">近 30 日使用 API 成交金額</th>
+<th style="text-align: left;">每日流量限制</th>
 </tr>
 </thead>
 <tbody>
@@ -1688,20 +1688,20 @@
 <td style="text-align: left;">500MB</td>
 </tr>
 <tr>
-<td style="text-align: right;">1 - TXF 1000 contracts / MXF 4000 contracts</td>
+<td style="text-align: right;">1 - 大台1000口 / 小台4000口</td>
 <td style="text-align: left;">2GB</td>
 </tr>
 <tr>
-<td style="text-align: right;">&gt;   TXF 1000 contracts / MXF 4000 contracts</td>
-<td style="text-align: left;">10GB</td>
+<td style="text-align: right;">&gt;   大台1000口 / 小台4000口</td>
+<td style="text-align: left;">10G</td>
 </tr>
 </tbody>
 </table>
 </li>
 </ul>
 </div>
-<div class="admonition info">
-<p class="admonition-title">Traffic query</p>
+<div class="admonition example">
+<p class="admonition-title">流量及連線數查詢</p>
 <div class="highlight"><pre><span></span><code><span class="n">api</span><span class="o">.</span><span class="n">usage</span><span class="p">()</span>
 </code></pre></div>
 </div>
@@ -1709,56 +1709,56 @@
 <p class="admonition-title">Out</p>
 <div class="highlight"><pre><span></span><code><span class="n">UsageStatus</span><span class="p">(</span><span class="n">connections</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span> <span class="nb">bytes</span><span class="o">=</span><span class="mi">41343260</span><span class="p">,</span> <span class="n">limit_bytes</span><span class="o">=</span><span class="mi">2147483648</span><span class="p">,</span> <span class="n">remaining_bytes</span><span class="o">=</span><span class="mi">2106140388</span><span class="p">)</span>
 </code></pre></div>
-<div class="highlight"><pre><span></span><code><span class="n">connection</span><span class="p">:</span> <span class="n">connection</span> <span class="n">count</span><span class="o">.</span>
-<span class="nb">bytes</span><span class="p">:</span> <span class="n">traffic</span><span class="o">.</span>
-<span class="n">limit_bytes</span><span class="p">:</span> <span class="n">limit</span> <span class="nb">bytes</span> <span class="n">of</span> <span class="n">daily</span><span class="o">.</span>
-<span class="n">remaining_bytes</span><span class="p">:</span> <span class="n">remaining</span> <span class="nb">bytes</span> <span class="n">of</span> <span class="n">daily</span><span class="o">.</span>
+<div class="highlight"><pre><span></span><code><span class="n">connection</span><span class="p">:</span> <span class="n">連線數量</span>
+<span class="nb">bytes</span><span class="p">:</span> <span class="n">已使用流量</span>
+<span class="n">limit_bytes</span><span class="p">:</span> <span class="n">每日流量限制</span>
+<span class="n">remaining_bytes</span><span class="p">:</span> <span class="n">剩餘可使用流量</span>
 </code></pre></div>
 </div>
 <div class="admonition info">
-<p class="admonition-title">Counts</p>
+<p class="admonition-title">次數</p>
 <ul>
 <li>
-<p>Data : </p>
+<p>行情 : </p>
 <p><code>credit_enquire</code>, <code>short_stock_sources</code>, <code>snapshots</code>, <code>ticks</code>, <code>kbars</code></p>
 <ul>
-<li>The total amount of inquiries above is limited to 50 times within 5 seconds.</li>
-<li>During trading hours, it is prohibited to query <code>ticks</code> more than 10 times.</li>
-<li>During trading hours, it is prohibited to query <code>kbars</code> more than 270 times.</li>
+<li>以上查詢總次數 5 秒上限 50 次</li>
+<li>盤中查詢 <code>ticks</code> 次數不得超過 10 次</li>
+<li>盤中查詢 <code>kbars</code> 次數不得超過 270 次</li>
 </ul>
 </li>
 <li>
-<p>Portfolio :</p>
+<p>帳務 : </p>
 <p><code>list_profit_loss_detail</code>,<code>account_balance</code>, <code>list_settlements</code>, <code>list_profit_loss</code>, <code>list_positions</code>, <code>margin</code></p>
-<p>The total amount of inquiries above is limited to 25 times within 5 seconds.</p>
+<p>以上查詢總次數 5 秒上限 25 次</p>
 </li>
 <li>
-<p>Order :</p>
+<p>委託 : </p>
 <p><code>place_order</code>, <code>update_status</code>, <code>update_qty</code>, <code>update_price</code>, <code>cancel_order</code></p>
-<p>The total amount of inquiries above is limited to 250 times within 10 seconds.</p>
+<p>以上查詢總次數 10 秒上限 250 次</p>
 </li>
 <li>
-<p>Subscribe : </p>
-<p>Number of <code>api.subscribe()</code> is 200.</p>
+<p>訂閱數 : </p>
+<p><code>api.subscribe()</code>數量為200個</p>
 </li>
 <li>
-<p>Connect : </p>
-<p>The same SinoPac Securities <code>person_id</code> can only use up to 5 connections.</p>
-<p>note. <code>api.login()</code>create a connection.</p>
+<p>連線 : </p>
+<p>同一永豐金證券<code>person_id</code>，僅可使用最多5個連線。
+注意: <code>api.login()</code>即建立一個連線</p>
 </li>
 <li>
-<p>Login : </p>
-<p>Up to 1000 times per day.</p>
+<p>登入 : </p>
+<p><code>api.login()</code>一天上限1000次</p>
 </li>
 </ul>
 </div>
 <div class="admonition attention">
 <p class="admonition-title">Warn</p>
 <ul>
-<li>If the traffic exceeds the limit, query requests for market data such as ticks, snapshots, and kbars will return empty values, while other functionalities remain unaffected.</li>
-<li>If the usage exceeds the limit, the service will be suspended for one minute.</li>
-<li>If the limit is exceeded multiple times in a row on the same day, the company will suspend the right to use the IP and ID.</li>
-<li>If the ID is suspended, please contact Shioaji management staff</li>
+<li>若流量超過限制，行情(ticks、snapshots、kbars)類查詢將回傳空值，其他功能不受影響</li>
+<li>若使用量超過限制，將暫停服務一分鐘</li>
+<li>若當日連續多次超過限制，本公司將暫停該 IP 及 ID 使用權</li>
+<li>若 ID 被暫停使用，請洽 Shioaji 管理人員</li>
 </ul>
 </div>
 

@@ -1,6 +1,6 @@
-To use Shioaji, you must have a SinoPac Securities account. If you do not have a SinoPac Securities account yet, please follow the steps below to open an account:
+使用Shioaji必須擁有永豐金帳戶。若你還沒有擁永豐金帳戶，請依據下列步驟開戶:
 
-1. To [Open Account](https://www.sinotrade.com.tw/openact?utm_campaign=OP_inchannel&utm_source=newweb&utm_medium=button_top&strProd=0037&strWeb=0035) Page.
-1. If you do not have a bank account with Bank SinoPac, please open a bank account as your delivery account.
-1. Please select**我要開DAWHO+大戶投**, to open a bank account and a securities account.
-1. Complete bank and securities account opening.
+1. 至[開戶](https://www.sinotrade.com.tw/openact?utm_campaign=OP_inchannel&utm_source=newweb&utm_medium=button_top&strProd=0037&strWeb=0035)頁面
+1. 若你沒有永豐銀行帳戶，請先開銀行帳戶當你的交割戶
+1. 請選取**我要開DAWHO+大戶投**，為開銀行戶以及證券戶
+1. 完成銀行及證券開戶

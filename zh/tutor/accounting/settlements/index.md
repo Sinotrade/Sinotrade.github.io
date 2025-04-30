@@ -1,4 +1,4 @@
-The feature of settlements is used to query settlements of stock account and you need to [login](../../login) first.
+用於查詢交割款，需要先[登錄](../../login)。
 
 ## Settlements
 
@@ -41,7 +41,7 @@ Out
 
 ```
 
-To DataFrame
+轉成DataFrame
 
 In
 
@@ -58,8 +58,8 @@ out
 SettlementV1
 
 ```
-date (datetime.date): date of Tday
-amount (float): settlement amount
+date (datetime.date): 交割日期
+amount (float): 交割金額
 T (int): Tday
 
 ```

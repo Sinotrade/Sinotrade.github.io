@@ -1,8 +1,6 @@
-You need to [login](../../login) first.
+需要先[登錄](../../login)。
 
-## Profit Loss
-
-The feature of list_profit_loss is used to query realized profit loss of account.
+## 已實現損益
 
 In
 
@@ -34,7 +32,7 @@ Docstring:
 
 ```
 
-Enter the time interval you want to query. `begin_date` is the start time, and `end_date` is the end time. `unit` is the quantity unit, where `Common` represents whole shares and `Share` represents fractional shares.
+帶入想查詢的時間區間。`begin_date`為起始時間，`end_date`為結束時間。`unit`為數量單位，`Common`為整股，`Share`為零股。
 
 In
 
@@ -64,7 +62,7 @@ Out
 
 ```
 
-To DataFrame
+轉成DataFrame
 
 In
 
@@ -81,37 +79,43 @@ Out
 StockProfitLoss
 
 ```
-id (int): use to find detail
-code (str): contract id
-seqno (str): seqno no
-dseq (str): seqno no
-quantity (int): quantity
-price (float): price
-pnl (float): profit and loss
-pr_ratio (float): profit rate
-cond (StockOrderCond): {Cash, Netting, MarginTrading, ShortSelling}
-date (str): trade date
+id (int): 可利用此id查詢明細
+code (str): 商品代碼
+seqno (str): seqno no.
+dseq (str): seqno no.
+quantity (int): 數量
+price (float): 價格
+pnl (float): 損益
+pr_ratio (float): 損益比
+cond (StockOrderCond): {
+                Cash: 現股(預設值), 
+                Netting: 餘額交割,
+                MarginTrading: 融資, 
+                ShortSelling: 融券, 
+                Emerging: 興櫃
+            }
+date (str): 交易日期
 
 ```
 
 FutureProfitLoss
 
 ```
-id (int): use to find detail
-code (str): contract id
-quantity (int): quantity
-pnl (float): profit and loss
-date (str): trade date
-entry_price (int): entry price
-cover_price (int): cover price
-tax (int): tax
-fee (int): transaction fee
+id (int): 可利用此id查詢明細
+code (str): 商品代碼
+quantity (int): 數量
+pnl (float): 損益
+date (str): 交易日期
+entry_price (int): 進倉價格
+cover_price (int): 平倉價格
+tax (int): 交易稅
+fee (int): 交易手續費
 
 ```
 
-## Profit Loss Detail
+## 已實現損益 - 明細
 
-The feature of list_profit_loss_detail is used to query profit loss detail of account. `unit` is the quantity unit, where `Common` represents whole shares and `Share` represents fractional shares.
+可從針對`list_profit_loss`得到的結果，將`id`帶入`detail_id`查詢該筆明細。`unit`為數量單位，`Common`為整股，`Share`為零股。
 
 In
 
@@ -174,7 +178,7 @@ Out
 
 ```
 
-To DataFrame
+轉成DataFrame
 
 In
 
@@ -191,46 +195,52 @@ Out
 StockProfitDetail
 
 ```
-date (str): trade date
-code (str): contract id
-quantity (int): quantity
-dseq (str): detail seqno no
-fee (int): fee
-tax (int): trading tax
-currency (str): {NTD, USD, HKD, EUR, CAD, BAS}
-price (float): price
-cost (int): cost of price
-rep_margintrading_amt (int): repay amount of margin trading
-rep_collateral (int): repay collateral
-rep_margin (int): repay margin
-shortselling_fee (int): fee of short selling
-ex_dividend_amt: ex-dividend amount
-interest (int): interest
+date (str): 交易日期
+code (str): 商品代碼
+quantity (int): 數量
+dseq (str): 委託書號
+fee (int): 交易手續費
+tax (int): 交易稅
+currency (str): 幣別 {NTD, USD, HKD, EUR, CAD, BAS}
+price (float): 成交單價
+cost (int): 付出成本
+rep_margintrading_amt (int): 償還融資金額
+rep_collateral (int): 償還擔保品
+rep_margin (int): 償還保證金
+shortselling_fee (int): 融券手續費
+ex_dividend_amt: 除息金額
+interest (int): 利息
 trade_type (TradeType): {Common, DayTrade}
-cond (StockOrderCond): {Cash, Netting, MarginTrading, ShortSelling}
+cond (StockOrderCond): {
+                Cash: 現股(預設值), 
+                Netting: 餘額交割,
+                MarginTrading: 融資, 
+                ShortSelling: 融券, 
+                Emerging: 興櫃
+            }
 
 ```
 
 FutureProfitDetail
 
 ```
-date (str): trade date
-code (str): contract id
-quantity (int): quantity
-dseq (str): detail seqno no
-fee (int): fee
-tax (int): trading tax
-currency (str): {NTD, USD, HKD, EUR, CAD, BAS}
-direction (Action): {Buy, Sell}
-entry_price (int): entry price
-cover_price (int): cover price
-pnl (int): profit and loss
+date (str): 交易日期
+code (str): 商品代碼
+quantity (int): 數量
+dseq (str): 委託書號
+fee (int): 交易手續費
+tax (int): 交易稅
+currency (str): 幣別 {NTD, USD, HKD, EUR, CAD, BAS}
+direction (Action): 買賣別 {Buy, Sell}
+entry_price (int): 進倉價格
+cover_price (int): 平倉價格
+pnl (int): 損益
 
 ```
 
-## Profit Loss Summary
+## 已實現損益 - 彙總
 
-The feature of list_profit_loss_summary is used to query summary of profit loss for a period of time.
+用於查詢一段時間內的損益彙總。
 
 In
 
@@ -261,7 +271,7 @@ Args:
 
 ```
 
-Enter the time interval you want to query. `begin_date` is the start time, and `end_date` is the end time.
+帶入想查詢的時間區間。`begin_date`為起始時間，`end_date`為結束時間。
 
 In
 
@@ -302,7 +312,7 @@ ProfitLossSummaryTotal(
 
 ```
 
-To DataFrame
+轉成DataFrame
 
 In
 
@@ -319,32 +329,38 @@ Out
 StockProfitLossSummary
 
 ```
-code (str): contract id
-quantity (int): quantity
-entry_price (int): price of entry
-cover_price (int): price of cover
-pnl (float): profit and loss
-currency (str): currency
-entry_cost (int): cost of entry
-cover_cost (int): cost of cover
-buy_cost (int): cost of buy
-sell_cost (int): cost of sell
-pr_ratio (float): profit rate
-cond (StockOrderCond): {Cash, Netting, MarginTrading, ShortSelling}
+code (str): 商品代碼
+quantity (int): 數量
+entry_price (int): 進倉價格
+cover_price (int): 平倉價格
+pnl (float): 損益
+currency (str): 幣別
+entry_cost (int): 進倉金額(不含手續費及交易稅)
+cover_cost (int): 平倉金額(不含手續費及交易稅)
+buy_cost (int): 付出成本
+sell_cost (int): 賣出收入
+pr_ratio (float): 損益比
+cond (StockOrderCond): {
+                Cash: 現股(預設值), 
+                Netting: 餘額交割,
+                MarginTrading: 融資, 
+                ShortSelling: 融券, 
+                Emerging: 興櫃
+            }
 
 ```
 
 FutureProfitLossSummary
 
 ```
-code (str): contract id
-quantity (int): quantity
-entry_price (int): price of entry
-cover_price (int): price of cover
-pnl (float): profit and loss
-currency (str): currency
-direction (Action): {Buy, Sell}
-tax (int): tax
-fee (int): fee
+code (str): 商品代碼
+quantity (int): 數量
+entry_price (int): 進倉價格
+cover_price (int): 平倉價格
+pnl (float): 損益
+currency (str): 幣別
+direction (Action): 買賣別 {Buy, Sell}
+tax (int): 交易稅
+fee (int): 交易手續費
 
 ```

@@ -1,4 +1,4 @@
-The feature of account_balance is used to query account balance of stock account and you need to [login](../../login) first.
+用於查詢現貨交割帳戶餘額，需要先[登入](../../login)。
 
 In
 
@@ -41,9 +41,9 @@ AccountBalance(
 AccountBalance
 
 ```
-status (FetchStatus): fetch status
-acc_balance (float): account balance
-date (str): query date
-errmsg (str): error message    
+status (FetchStatus): 資料回傳狀態
+acc_balance (float): 餘額
+date (str): 查詢日期
+errmsg (str): 錯誤訊息
 
 ```

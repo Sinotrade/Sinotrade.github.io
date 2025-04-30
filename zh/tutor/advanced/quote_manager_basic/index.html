@@ -1650,21 +1650,21 @@
 
   <h1>行情管理</h1>
 
-<p>the whole project code can be found in <a href="https://github.com/Sinotrade/sj-trading-demo">sj-trading</a>,
-the whole example jupyter notebook can be found in <a href="https://github.com/Sinotrade/sj-trading-demo/blob/main/quote_manager_usage.ipynb">quote_manager_usage</a>.</p>
-<p>this project is created by using <code>uv</code>, if you are not familiar with how to use <code>uv</code> to create a project and manage dependencies, it is recommended to learn from the <a href="../../../env_setup/">environment setup</a> chapter.</p>
-<p>before start writing the quote manager, we will use the Polars package to process the quote data, so we need to add it to the project dependencies, at the same time, this tutorial will have an example of how to use Polars to quickly calculate technical indicators for multiple commodities, so we also need to add the polars_talib package to the project dependencies.</p>
+<p>本篇教學完整專案的程式碼可以參考 <a href="https://github.com/Sinotrade/sj-trading-demo">sj-trading</a>，
+完整使用範例 jupyter notebook 可以參考 <a href="https://github.com/Sinotrade/sj-trading-demo/blob/main/quote_manager_usage.ipynb">quote_manager_usage</a>。</p>
+<p>本專案是使用 <code>uv</code> 建立的，如果還不熟悉如何使用 <code>uv</code> 建立專案並使用 <code>uv</code> 管理依賴，建議回到 <a href="../../../env_setup/">環境設定</a> 章節從頭學習起。</p>
+<p>在開始進行行情管理器的編寫前，我們會使用 Polars 這個套件來處理行情資料，所以需要將它加入專案的依賴中，同時本篇教學中會有如何用 Polars 快速對多商品計算技術指標的範例，所以也需要將 polars_talib 這個套件加入專案的依這個。</p>
 <div class="admonition info">
-<p class="admonition-title">add Polars dependencies</p>
+<p class="admonition-title">新增 Polars 依賴</p>
 <div class="highlight"><pre><span></span><code>uv add polars polars_talib
 </code></pre></div>
 </div>
-<p>if you are not familiar with Polars, you can refer to the <a href="https://docs.pola.rs/user-guide/getting-started/">Polars official documentation</a> to learn how to use it.</p>
-<p>polars_talib is a Polars extension package that provides the complete functionality of the ta-lib library in the polars expression version, allowing us to easily calculate technical indicators using Polars. It is developed by the shioaji author, and detailed usage can be found in <a href="https://github.com/Yvictor/polars_ta_extension">polars_ta_extension</a>.</p>
-<p>Polars is an efficient DataFrame package that is suitable for processing large amounts of data and can use multiple cores without any additional configuration. In this example, we can see how to use the Shioaji quote manager to obtain quote data, and use Polars for parallel computation, while converting the ticks of the commodity into K lines, and performing parallel multi-commodity technical indicator calculations.</p>
+<p>如果你對 Polars 不熟悉，可以參考 <a href="https://docs.pola.rs/user-guide/getting-started/">Polars 官方文件</a> 來了解該如何使用他。</p>
+<p>polars_talib 是一個 Polars 的擴充套件，它提供了 polars expression 版本的 ta-lib 完整功能，讓我們可以很方便的用 Polars 進行技術指標的計算，他是由 shioaji 作者開發的，詳細使用可以參考 <a href="https://github.com/Yvictor/polars_ta_extension">polars_ta_extension</a>。</p>
+<p>Polars 是一個高效的 DataFrame 套件，適合用來處理大量資料，並且不需要任何額外的設定，就可以使用多核心來加速資料處理。這篇範例中我們可以看到如何使用 Shioaji 的行情管理器來取得行情資料，並且使用 Polars 來做並行化運算，同時將商品的 ticks 進行分 K 轉換，並且做平行化的多商品技術指標計算。</p>
 <div class="admonition info">
-<p class="admonition-title">add quote.py</p>
-<p>add <code>quote.py</code> file in <code>src/sj_trading/</code>, and add the following code</p>
+<p class="admonition-title">新增 quote.py</p>
+<p>在 <code>src/sj_trading/</code> 新增 <code>quote.py</code> 檔案，並且新增以下程式碼</p>
 <div class="highlight"><pre><span></span><code><span class="kn">import</span><span class="w"> </span><span class="nn">shioaji</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">sj</span>
 <span class="kn">from</span><span class="w"> </span><span class="nn">typing</span><span class="w"> </span><span class="kn">import</span> <span class="n">List</span>
 
@@ -1683,9 +1683,9 @@ the whole example jupyter notebook can be found in <a href="https://github.com/S
         <span class="bp">self</span><span class="o">.</span><span class="n">ticks_fop_v1</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">tick</span><span class="p">)</span>
 </code></pre></div>
 </div>
-<p>this part is relatively simple, let the handle func of receiving the quote data do as little as possible, we define a <code>QuoteManager</code> class, and register two callback functions in the initialization, respectively <code>on_stk_v1_tick_handler</code> and <code>on_fop_v1_tick_handler</code>, these two functions will be called when receiving the quote data, and the quote data will be stored in <code>ticks_stk_v1</code> and <code>ticks_fop_v1</code>.</p>
+<p>這個部分比較單純，讓收到行情的 handle func 盡可能地做最少的事，我們定義了一個 <code>QuoteManager</code> 類別，並且在初始化時設定了註冊兩個回調函數，分別是 <code>on_stk_v1_tick_handler</code> 和 <code>on_fop_v1_tick_handler</code>，這兩個函數會在接收到行情資料時被呼叫，並且將行情資料存入 <code>ticks_stk_v1</code> 和 <code>ticks_fop_v1</code> 中。</p>
 <div class="admonition info">
-<p class="admonition-title">add <code>QuoteManager</code> subscribe and unsubscribe methods</p>
+<p class="admonition-title">增加 <code>QuoteManager</code> 訂閱與取消訂閱的方法</p>
 <div class="highlight"><pre><span></span><code><span class="k">def</span><span class="w"> </span><span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">api</span><span class="p">:</span> <span class="n">sj</span><span class="o">.</span><span class="n">Shioaji</span><span class="p">):</span>
     <span class="c1"># skip</span>
     <span class="bp">self</span><span class="o">.</span><span class="n">subscribed_stk_tick</span><span class="p">:</span> <span class="n">Set</span><span class="p">[</span><span class="nb">str</span><span class="p">]</span> <span class="o">=</span> <span class="nb">set</span><span class="p">()</span>
@@ -1712,9 +1712,9 @@ the whole example jupyter notebook can be found in <a href="https://github.com/S
     <span class="bp">self</span><span class="o">.</span><span class="n">subscribed_stk_tick</span><span class="o">.</span><span class="n">clear</span><span class="p">()</span>
 </code></pre></div>
 </div>
-<p>in the above code, we have added the <code>subscribe_stk_tick</code> method, this method will add the commodity codes in the incoming commodity code list to the <code>subscribed_stk_tick</code>, and call the <code>subscribe</code> method of Shioaji to subscribe to the market, <code>subscribed_stk_tick</code> is a <code>Set</code>, used to store the commodity codes that have been subscribed to avoid duplicate subscriptions and facilitate subsequent unsubscribing all subscribed commodities.</p>
+<p>上面我們增加了 <code>subscribe_stk_tick</code> 方法，這個方法會將傳入的商品代碼列表中的商品代碼加入到 <code>subscribed_stk_tick</code> 中，並且呼叫 Shioaji 的 <code>subscribe</code> 方法來訂閱行情，<code>subscribed_stk_tick</code> 是一個 <code>Set</code>，用來存放已經訂閱的商品代碼，避免重複訂閱以及方便後續將所有訂閱商品取消訂閱。</p>
 <div class="admonition info">
-<p class="admonition-title">add <code>QuoteManager</code> get ticks method</p>
+<p class="admonition-title">增加 <code>QuoteManager</code> 拿出訂閱的 ticks 的方法</p>
 <div class="highlight"><pre><span></span><code><span class="k">def</span><span class="w"> </span><span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">api</span><span class="p">:</span> <span class="n">sj</span><span class="o">.</span><span class="n">Shioaji</span><span class="p">):</span>
     <span class="c1"># skip</span>
     <span class="bp">self</span><span class="o">.</span><span class="n">df_stk</span><span class="p">:</span> <span class="n">pl</span><span class="o">.</span><span class="n">DataFrame</span> <span class="o">=</span> <span class="n">pl</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">(</span>
@@ -1741,12 +1741,12 @@ the whole example jupyter notebook can be found in <a href="https://github.com/S
     <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">df_stk</span>
 </code></pre></div>
 </div>
-<p>in <code>__init__</code> we define a <code>df_stk</code> Polars DataFrame, used to store all subscribed stock tick data, <code>get_df_stk</code> method will convert the <code>ticks_stk_v1</code> list to a Polars DataFrame, and return it, at this point, we have already got a DataFrame that can be used to calculate technical indicators.</p>
+<p><code>__init__</code> 中我們定義了一個 <code>df_stk</code> 的 Polars DataFrame，用來存放所有訂閱的台股 tick 資料，<code>get_df_stk</code> 方法會將 <code>ticks_stk_v1</code> 中的資料轉換成 Polars DataFrame，並且回傳，到這邊我們就已經可以初步看到可以拿出來的 DataFrame 了。</p>
 <p><br/>
    <img alt="df_stk" src="/img/quote_manager1.png#center" width="600" />
    <br/></p>
 <div class="admonition info">
-<p class="admonition-title">add <code>QuoteManager</code> get kbar method</p>
+<p class="admonition-title">增加 <code>QuoteManager</code> 將 ticks 轉換成 K 線的方法</p>
 <div class="highlight"><pre><span></span><code><span class="k">def</span><span class="w"> </span><span class="nf">get_df_stk_kbar</span><span class="p">(</span>
     <span class="bp">self</span><span class="p">,</span> <span class="n">unit</span><span class="p">:</span> <span class="nb">str</span> <span class="o">=</span> <span class="s2">&quot;1m&quot;</span><span class="p">,</span> <span class="n">exprs</span><span class="p">:</span> <span class="n">List</span><span class="p">[</span><span class="n">pl</span><span class="o">.</span><span class="n">Expr</span><span class="p">]</span> <span class="o">=</span> <span class="p">[]</span>
 <span class="p">)</span> <span class="o">-&gt;</span> <span class="n">pl</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">:</span>
@@ -1767,10 +1767,10 @@ the whole example jupyter notebook can be found in <a href="https://github.com/S
     <span class="k">return</span> <span class="n">df</span>
 </code></pre></div>
 </div>
-<p>in <code>get_df_stk_kbar</code> method, we will use <code>get_df_stk</code> method to get the Ticks DataFrame and then group the data by truncated <code>datetime</code> and <code>code</code>, and then aggregate the data in each group to get the K line data, finally, we will return the K line DataFrame. Here we remain the <code>exprs</code> parameter, allowing users to pass in additional expressions for more calculations.</p>
-<p>In this part, we use <code>1m</code> to represent 1 minute, if you want to get 5 minutes K line, you can change the unit to <code>5m</code>, 1 hour K line can be changed to <code>1h</code>, if you want more different units, you can refer to the  <a href="https://docs.pola.rs/api/python/stable/reference/expressions/api/polars.Expr.dt.truncate.html">truncate</a> API documentation.</p>
+<p>在 <code>get_df_stk_kbar</code> 方法中，我們將 <code>get_df_stk</code> 拿到 Ticks 的 DataFrame 根據 code 和 truncate 後的 datetime 進行分組，並且對每個分組進行聚合開高低收量，最後回傳一個新的 DataFrame，這個 DataFrame 就是我們所需要的 K 線資料了，並且這邊保留了 <code>exprs</code> 參數，讓使用者可以傳入一些額外的運算式，來進行更多的運算。
+在這邊 truncate 的單位我們使用 <code>1m</code> 來表示 1 分鐘，如果想要拿到 5 分鐘的 K 線，可以將單位改成 <code>5m</code>， 1 小時 K 可以將單位改成 <code>1h</code>，如果想要更多不同的單位可以參考 <a href="https://docs.pola.rs/api/python/stable/reference/expressions/api/polars.Expr.dt.truncate.html">truncate</a> 的 API 文件。</p>
 <div class="admonition info">
-<p class="admonition-title">add custom technical indicator calculation method</p>
+<p class="admonition-title">自定義技術指標計算</p>
 <div class="highlight"><pre><span></span><code><span class="kn">import</span><span class="w"> </span><span class="nn">polars</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">pl</span>
 <span class="kn">import</span><span class="w"> </span><span class="nn">polars_talib</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">plta</span>
 
@@ -1780,11 +1780,12 @@ the whole example jupyter notebook can be found in <a href="https://github.com/S
 <span class="p">])</span>
 </code></pre></div>
 </div>
-<p>in this part, we use polars_ta to calculate technical indicators and add them to the K line data, here we calculate <code>ema</code> and <code>macd</code> two indicators, more indicators can refer to <a href="https://github.com/Yvictor/polars_ta_extension?tab=readme-ov-file#supported-indicators-and-functions">polars_ta_extension supported indicators list</a>.</p>
-<p>in this polars_ta expression, we use <code>over("code")</code> to group the data by commodity code for independent calculation of each commodity, so even if all commodities are in the same DataFrame, the calculation results are independent of each other, and this <code>over</code> partition is automatically parallel computing, so even if there are a large number of commodities, the calculation can be very fast and then using <code>alias</code> to set the field name of the calculation result as <code>ema5</code>, in the <code>macd</code> indicator, the return is a struct with multiple fields, and this part gets the <code>macd</code> field.</p>
-<p>because this part only passes in expressions and is very lightweight, you can pass in any expressions you need according to your needs, and you can also make your own indicators using polars expression, this part just provides an interface for calculation and a simple usage example.</p>
+<p>在這邊使用 polars_ta 的 expression 來計算技術指標，並且將計算出來的指標加入到 K 線資料中，這邊我們計算了 <code>ema</code> 和 <code>macd</code> 兩種指標，更多指標可以參考 <a href="https://github.com/Yvictor/polars_ta_extension?tab=readme-ov-file#supported-indicators-and-functions">polars_ta_extension 支援指標列表</a>。</p>
+<p>在這個 polars_ta 的 expression 中，使用 <code>over("code")</code> 來將指標計算結果根據商品代碼進行分組做每個商品獨立的運算
+，所以即使所有的商品都在同一個 DataFrame 中，計算出來的結果還是每個商品獨立的，並且這個 <code>over</code> 的 partition 是會自動平行運算的，所以即使有大量的商品，也可以很快的計算出來，使用 <code>alias</code> 來將計算結果的欄位名稱設置為 <code>ema5</code>，在 <code>macd</code> 指標中回傳的是多個欄位的 struct ，這邊取出 struct 中的 macd 欄位。</p>
+<p>因為這邊傳入的只是表達式非常輕量，可以根據你需要的任何表達式進行新增就可以看到你需要的各種技術指標了，當然如果你要使用 polars expression 做出自己的指標，也是可以的，這邊只是提供一個可以做運算的接口以及簡單的使用範例。</p>
 <div class="admonition info">
-<p class="admonition-title">add <code>QuoteManager</code> backfill missed ticks method</p>
+<p class="admonition-title">回補錯過的行情</p>
 <div class="highlight"><pre><span></span><code><span class="k">def</span><span class="w"> </span><span class="nf">fetch_ticks</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">contract</span><span class="p">:</span> <span class="n">BaseContract</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">pl</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">:</span>
     <span class="n">code</span> <span class="o">=</span> <span class="n">contract</span><span class="o">.</span><span class="n">code</span>
     <span class="n">ticks</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">api</span><span class="o">.</span><span class="n">ticks</span><span class="p">(</span><span class="n">contract</span><span class="p">)</span>
@@ -1812,10 +1813,10 @@ the whole example jupyter notebook can be found in <a href="https://github.com/S
                     <span class="bp">self</span><span class="o">.</span><span class="n">df_stk</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">df_stk</span><span class="o">.</span><span class="n">vstack</span><span class="p">(</span><span class="n">df</span><span class="p">)</span>
 </code></pre></div>
 </div>
-<p>in <code>subscribe_stk_tick</code> method, we will check if the <code>recover</code> parameter is true, if it is, we will call <code>fetch_ticks</code> method to get the historical ticks data, and then use <code>filter</code> method to filter out the ticks data that have been received, and use <code>vstack</code> method to add the historical ticks data to the <code>df_stk</code> DataFrame.</p>
-<p>In above we have completed a quote manager that can subscribe to market data, backfill missed ticks, and calculate technical indicators. Next, we will integrate all the code and use it in a jupyter lab environment.</p>
-<p>The complete QuoteManager can be found in <a href="https://github.com/Sinotrade/sj-trading-demo/blob/main/src/sj_trading/quote.py">quote.py</a>.</p>
-<p>The complete example jupyter notebook can be found in <a href="https://github.com/Sinotrade/sj-trading-demo/blob/main/quote_manager_usage.ipynb">quote_manager_usage</a>.</p>
+<p>在訂閱的時候我們可能會超過當天開盤的時間，這時候訂閱即時資料將會缺乏錯過的資料，所以這邊我們實作使用 api 回補歷史 tick 的資料，這邊我們使用 <code>fetch_ticks</code> 方法來取得歷史 tick 的資料，並且將取得資料加入到 <code>df_stk</code> 中。</p>
+<p>以上我們已經完成了一個可以訂閱行情、回補錯過行情、計算技術指標的行情管理器了，這邊我們將所有程式碼整合起來，並且在 jupyter lab 中使用。</p>
+<p>完整的 QuoteManager 可以參考 <a href="https://github.com/Sinotrade/sj-trading-demo/blob/main/src/sj_trading/quote.py">quote.py</a>。</p>
+<p>完整使用範例 jupyter notebook 可以參考 <a href="https://github.com/Sinotrade/sj-trading-demo/blob/main/quote_manager_usage.ipynb">quote_manager_usage</a>。</p>
 
 
 

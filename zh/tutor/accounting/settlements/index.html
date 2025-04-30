@@ -1711,7 +1711,7 @@
 
   <h1>結算</h1>
 
-<p>The feature of settlements is used to query settlements of stock account and you need to <a href="../../login">login</a> first.</p>
+<p>用於查詢交割款，需要先<a href="../../login">登錄</a>。</p>
 <h2 id="settlements">Settlements<a class="headerlink" href="#settlements" title="Permanent link">&para;</a></h2>
 <div class="admonition info">
 <p class="admonition-title">In</p>
@@ -1744,7 +1744,7 @@
 <span class="p">]</span>
 </code></pre></div>
 </div>
-<p>To DataFrame</p>
+<p>轉成DataFrame</p>
 <div class="admonition info">
 <p class="admonition-title">In</p>
 <div class="highlight"><pre><span></span><code><span class="n">df</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">([</span><span class="n">s</span><span class="o">.</span><span class="vm">__dict__</span> <span class="k">for</span> <span class="n">s</span> <span class="ow">in</span> <span class="n">settlements</span><span class="p">])</span><span class="o">.</span><span class="n">set_index</span><span class="p">(</span><span class="s2">&quot;T&quot;</span><span class="p">)</span>
@@ -1782,8 +1782,8 @@
 </div>
 <div class="admonition example">
 <p class="admonition-title">SettlementV1</p>
-<div class="highlight"><pre><span></span><code><span class="n">date</span> <span class="p">(</span><span class="n">datetime</span><span class="o">.</span><span class="n">date</span><span class="p">):</span> <span class="n">date</span> <span class="n">of</span> <span class="n">Tday</span>
-<span class="n">amount</span> <span class="p">(</span><span class="nb">float</span><span class="p">):</span> <span class="n">settlement</span> <span class="n">amount</span>
+<div class="highlight"><pre><span></span><code><span class="n">date</span> <span class="p">(</span><span class="n">datetime</span><span class="o">.</span><span class="n">date</span><span class="p">):</span> <span class="n">交割日期</span>
+<span class="n">amount</span> <span class="p">(</span><span class="nb">float</span><span class="p">):</span> <span class="n">交割金額</span>
 <span class="n">T</span> <span class="p">(</span><span class="nb">int</span><span class="p">):</span> <span class="n">Tday</span>
 </code></pre></div>
 </div>

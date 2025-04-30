@@ -1650,7 +1650,7 @@
 
   <h1>保證金</h1>
 
-<p>The feature of margin is used to query margin of futures account and you need to <a href="../../login">login</a> first.</p>
+<p>用於查詢期貨帳戶的保證金，需先<a href="../../login">登入</a>。</p>
 <div class="admonition info">
 <p class="admonition-title">In</p>
 <div class="highlight"><pre><span></span><code><span class="n">api</span><span class="o">.</span><span class="n">margin</span><span class="err">?</span>
@@ -1706,32 +1706,32 @@
 </div>
 <div class="admonition example">
 <p class="admonition-title">Margin</p>
-<div class="highlight"><pre><span></span><code><span class="n">status</span> <span class="p">(</span><span class="n">FetchStatus</span><span class="p">):</span> <span class="n">fetch</span> <span class="n">status</span>
-<span class="n">yesterday_balance</span> <span class="p">(</span><span class="nb">float</span><span class="p">):</span> <span class="n">balance</span> <span class="n">of</span> <span class="n">yesterday</span>
-<span class="n">today_balance</span> <span class="p">(</span><span class="nb">float</span><span class="p">):</span> <span class="n">balance</span> <span class="n">of</span> <span class="n">today</span>
-<span class="n">deposit_withdrawal</span> <span class="p">(</span><span class="nb">float</span><span class="p">):</span> <span class="n">deposit</span> <span class="ow">and</span> <span class="n">withdrawal</span>
-<span class="n">fee</span> <span class="p">(</span><span class="nb">float</span><span class="p">):</span> <span class="n">fee</span>
-<span class="n">tax</span> <span class="p">(</span><span class="nb">float</span><span class="p">):</span> <span class="n">tax</span>
-<span class="n">initial_margin</span> <span class="p">(</span><span class="nb">float</span><span class="p">):</span> <span class="n">margin</span> <span class="n">of</span> <span class="n">origin</span>
-<span class="n">maintenance_margin</span> <span class="p">(</span><span class="nb">float</span><span class="p">):</span>  <span class="n">margin</span> <span class="n">of</span> <span class="n">maintenance</span>
-<span class="n">margin_call</span> <span class="p">(</span><span class="nb">float</span><span class="p">):</span>  <span class="n">margin</span> <span class="n">of</span> <span class="n">call</span>
-<span class="n">risk_indicator</span> <span class="p">(</span><span class="nb">float</span><span class="p">):</span> <span class="n">risk</span> <span class="n">indicator</span>
-<span class="n">royalty_revenue_expenditure</span> <span class="p">(</span><span class="nb">float</span><span class="p">):</span> <span class="n">revenue</span> <span class="ow">and</span> <span class="n">expenditure</span> <span class="n">of</span> <span class="n">royalty</span>
-<span class="n">equity</span> <span class="p">(</span><span class="nb">float</span><span class="p">):</span> <span class="n">equity</span>
-<span class="n">equity_amount</span> <span class="p">(</span><span class="nb">float</span><span class="p">):</span> <span class="n">amount</span> <span class="n">of</span> <span class="n">equity</span>
-<span class="n">option_openbuy_market_value</span> <span class="p">(</span><span class="nb">float</span><span class="p">):</span> <span class="n">value</span> <span class="n">of</span> <span class="n">option</span> <span class="n">openbuy</span> <span class="n">market</span>
-<span class="n">option_opensell_market_value</span> <span class="p">(</span><span class="nb">float</span><span class="p">):</span> <span class="n">value</span> <span class="n">of</span> <span class="n">option</span> <span class="n">opensell</span> <span class="n">market</span>
-<span class="n">option_open_position</span> <span class="p">(</span><span class="nb">float</span><span class="p">):</span> <span class="n">profit</span> <span class="n">loss</span> <span class="n">of</span> <span class="nb">open</span> <span class="n">option</span> 
-<span class="n">option_settle_profitloss</span> <span class="p">(</span><span class="nb">float</span><span class="p">):</span> <span class="n">profit</span> <span class="n">loss</span> <span class="n">of</span> <span class="n">settle</span> <span class="n">option</span>
-<span class="n">future_open_position</span> <span class="p">(</span><span class="nb">float</span><span class="p">):</span> <span class="n">profit</span> <span class="n">loss</span> <span class="n">of</span> <span class="nb">open</span> <span class="n">future</span>
-<span class="n">today_future_open_position</span> <span class="p">(</span><span class="nb">float</span><span class="p">):</span> <span class="n">profit</span> <span class="n">loss</span> <span class="n">of</span> <span class="n">today</span> <span class="nb">open</span> <span class="n">future</span>
-<span class="n">future_settle_profitloss</span> <span class="p">(</span><span class="nb">float</span><span class="p">):</span> <span class="n">profit</span> <span class="n">loss</span> <span class="n">of</span> <span class="n">settle</span> <span class="n">future</span>
-<span class="n">available_margin</span> <span class="p">(</span><span class="nb">float</span><span class="p">):</span> <span class="n">available</span> <span class="n">margin</span>
-<span class="n">plus_margin</span> <span class="p">(</span><span class="nb">float</span><span class="p">):</span> <span class="n">plus</span> <span class="n">margin</span>
-<span class="n">plus_margin_indicator</span> <span class="p">(</span><span class="nb">float</span><span class="p">):</span> <span class="n">indicator</span> <span class="n">of</span> <span class="n">plus</span> <span class="n">margin</span>
-<span class="n">security_collateral_amount</span> <span class="p">(</span><span class="nb">float</span><span class="p">):</span> <span class="n">amount</span> <span class="n">of</span> <span class="n">security</span> <span class="n">collateral</span>
-<span class="n">order_margin_premium</span> <span class="p">(</span><span class="nb">float</span><span class="p">):</span> <span class="n">order</span> <span class="n">margin</span> <span class="ow">and</span> <span class="n">order</span> <span class="n">premium</span> 
-<span class="n">collateral_amount</span> <span class="p">(</span><span class="nb">float</span><span class="p">):</span> <span class="n">amount</span> <span class="n">of</span> <span class="n">collateral</span>
+<div class="highlight"><pre><span></span><code><span class="n">status</span> <span class="p">(</span><span class="n">FetchStatus</span><span class="p">):</span> <span class="n">資料回傳狀態</span>
+<span class="n">yesterday_balance</span> <span class="p">(</span><span class="nb">float</span><span class="p">):</span> <span class="n">前日餘額</span>
+<span class="n">today_balance</span> <span class="p">(</span><span class="nb">float</span><span class="p">):</span> <span class="n">今日餘額</span>
+<span class="n">deposit_withdrawal</span> <span class="p">(</span><span class="nb">float</span><span class="p">):</span> <span class="n">存提</span>
+<span class="n">fee</span> <span class="p">(</span><span class="nb">float</span><span class="p">):</span> <span class="n">手續費</span>
+<span class="n">tax</span> <span class="p">(</span><span class="nb">float</span><span class="p">):</span> <span class="n">期交稅</span>
+<span class="n">initial_margin</span> <span class="p">(</span><span class="nb">float</span><span class="p">):</span> <span class="n">原始保證金</span>
+<span class="n">maintenance_margin</span> <span class="p">(</span><span class="nb">float</span><span class="p">):</span> <span class="n">維持保證金</span>
+<span class="n">margin_call</span> <span class="p">(</span><span class="nb">float</span><span class="p">):</span> <span class="n">追繳保證金</span>
+<span class="n">risk_indicator</span> <span class="p">(</span><span class="nb">float</span><span class="p">):</span> <span class="n">風險指標</span>
+<span class="n">royalty_revenue_expenditure</span> <span class="p">(</span><span class="nb">float</span><span class="p">):</span> <span class="n">權利金收入與支出</span>
+<span class="n">equity</span> <span class="p">(</span><span class="nb">float</span><span class="p">):</span> <span class="n">權益數</span>
+<span class="n">equity_amount</span> <span class="p">(</span><span class="nb">float</span><span class="p">):</span> <span class="n">權益總值</span>
+<span class="n">option_openbuy_market_value</span> <span class="p">(</span><span class="nb">float</span><span class="p">):</span> <span class="n">未沖銷買方選擇權市值</span>
+<span class="n">option_opensell_market_value</span> <span class="p">(</span><span class="nb">float</span><span class="p">):</span> <span class="n">未沖銷賣方選擇權市值</span>
+<span class="n">option_open_position</span> <span class="p">(</span><span class="nb">float</span><span class="p">):</span> <span class="n">參考未平倉選擇權損益</span>
+<span class="n">option_settle_profitloss</span> <span class="p">(</span><span class="nb">float</span><span class="p">):</span> <span class="n">參考選擇權平倉損益</span>
+<span class="n">future_open_position</span> <span class="p">(</span><span class="nb">float</span><span class="p">):</span> <span class="n">未沖銷期貨浮動損益</span>
+<span class="n">today_future_open_position</span> <span class="p">(</span><span class="nb">float</span><span class="p">):</span> <span class="n">參考當日未沖銷期貨浮動損益</span>
+<span class="n">future_settle_profitloss</span> <span class="p">(</span><span class="nb">float</span><span class="p">):</span> <span class="n">期貨平倉損益</span>
+<span class="n">available_margin</span> <span class="p">(</span><span class="nb">float</span><span class="p">):</span> <span class="n">可動用</span><span class="p">(</span><span class="n">出金</span><span class="p">)</span><span class="n">保證金</span>
+<span class="n">plus_margin</span> <span class="p">(</span><span class="nb">float</span><span class="p">):</span> <span class="n">依</span><span class="err">「</span><span class="n">加收保證金指標</span><span class="err">」</span><span class="n">所加收之保證金</span>
+<span class="n">plus_margin_indicator</span> <span class="p">(</span><span class="nb">float</span><span class="p">):</span> <span class="n">加收保證金指標</span>
+<span class="n">security_collateral_amount</span> <span class="p">(</span><span class="nb">float</span><span class="p">):</span> <span class="n">有價證券抵繳總額</span>
+<span class="n">order_margin_premium</span> <span class="p">(</span><span class="nb">float</span><span class="p">):</span> <span class="n">委託保證金及委託權利金</span>
+<span class="n">collateral_amount</span> <span class="p">(</span><span class="nb">float</span><span class="p">):</span> <span class="n">有價品額</span>
 </code></pre></div>
 </div>
 

@@ -88,7 +88,7 @@
     <div data-md-component="skip">
       
         
-        <a href="#event-code" class="md-skip">
+        <a href="#_1" class="md-skip">
           跳转至
         </a>
       
@@ -1196,9 +1196,9 @@
     <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
       
         <li class="md-nav__item">
-  <a href="#event-code" class="md-nav__link">
+  <a href="#_1" class="md-nav__link">
     <span class="md-ellipsis">
-      Event Code
+      事件代碼
     </span>
   </a>
   
@@ -1685,9 +1685,9 @@
     <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
       
         <li class="md-nav__item">
-  <a href="#event-code" class="md-nav__link">
+  <a href="#_1" class="md-nav__link">
     <span class="md-ellipsis">
-      Event Code
+      事件代碼
     </span>
   </a>
   
@@ -1711,8 +1711,7 @@
 
   <h1>事件</h1>
 
-<p>In this api, we use solace as mesh broker. This event mean the status for your client with solace connection situation.
-If you have no experience with networking, please skip this part, In defalut, we help you reconnect solace broker 50 times without any setting. Best way is keep your network connection alive.</p>
+<p>我們使用solace作為mesh broker。事件可視為你與solace的連接狀態。如果你沒有相關網路經驗，可以略過此部分。不用擔心在不用任何的設定下，我們將重連預設為50次。只需要請你確保你的網絡連接狀態正常。</p>
 <div class="admonition info">
 <p class="admonition-title">In</p>
 <div class="highlight"><pre><span></span><code><span class="nd">@api</span><span class="o">.</span><span class="n">quote</span><span class="o">.</span><span class="n">on_event</span>
@@ -1725,7 +1724,7 @@ If you have no experience with networking, please skip this part, In defalut, we
 <div class="highlight"><pre><span></span><code><span class="n">Event</span> <span class="n">code</span><span class="p">:</span> <span class="mi">16</span> <span class="o">|</span> <span class="n">Event</span><span class="p">:</span> <span class="n">Subscribe</span> <span class="ow">or</span> <span class="n">Unsubscribe</span> <span class="n">ok</span>
 </code></pre></div>
 </div>
-<p>Like the quote callback, your can also set event cllback with two way.</p>
+<p>如同報價callback，你可以利用兩種方式設定事件callback。</p>
 <div class="admonition info">
 <p class="admonition-title">In</p>
 <div class="highlight"><pre><span></span><code><span class="n">api</span><span class="o">.</span><span class="n">quote</span><span class="o">.</span><span class="n">set_event_callback</span><span class="err">?</span>
@@ -1733,12 +1732,13 @@ If you have no experience with networking, please skip this part, In defalut, we
 </div>
 <div class="admonition done">
 <p class="admonition-title">Out</p>
-<div class="highlight"><pre><span></span><code><span class="n">Signature</span><span class="p">:</span> <span class="n">api</span><span class="o">.</span><span class="n">quote</span><span class="o">.</span><span class="n">set_event_callback</span><span class="p">(</span><span class="n">func</span><span class="p">:</span><span class="n">Callable</span><span class="p">[[</span><span class="nb">int</span><span class="p">,</span> <span class="nb">int</span><span class="p">,</span> <span class="nb">str</span><span class="p">,</span> <span class="nb">str</span><span class="p">],</span> <span class="n">NoneType</span><span class="p">])</span> <span class="o">-&gt;</span> <span class="kc">None</span>
-<span class="n">Docstring</span><span class="p">:</span> <span class="o">&lt;</span><span class="n">no</span> <span class="n">docstring</span><span class="o">&gt;</span>
-<span class="n">Type</span><span class="p">:</span>      <span class="n">method</span>
+<div class="highlight"><pre><span></span><code><span class="n">Signature</span><span class="p">:</span> 
+    <span class="n">api</span><span class="o">.</span><span class="n">quote</span><span class="o">.</span><span class="n">set_event_callback</span><span class="p">(</span><span class="n">func</span><span class="p">:</span><span class="n">Callable</span><span class="p">[[</span><span class="nb">int</span><span class="p">,</span> <span class="nb">int</span><span class="p">,</span> <span class="nb">str</span><span class="p">,</span> <span class="nb">str</span><span class="p">],</span> <span class="n">NoneType</span><span class="p">])</span> <span class="o">-&gt;</span> <span class="kc">None</span>
+<span class="n">Docstring</span><span class="p">:</span>  <span class="o">&lt;</span><span class="n">no</span> <span class="n">docstring</span><span class="o">&gt;</span>
+<span class="n">Type</span><span class="p">:</span>  <span class="n">method</span>
 </code></pre></div>
 </div>
-<h3 id="event-code">Event Code<a class="headerlink" href="#event-code" title="Permanent link">&para;</a></h3>
+<h3 id="_1">事件代碼<a class="headerlink" href="#_1" title="Permanent link">&para;</a></h3>
 <table>
 <thead>
 <tr>

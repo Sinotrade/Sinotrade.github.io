@@ -694,27 +694,27 @@
       <ul class="md-nav__list">
         
           <li class="md-nav__item">
-  <a href="#common-stock" class="md-nav__link">
+  <a href="#_1" class="md-nav__link">
     <span class="md-ellipsis">
-      Common Stock
+      整股
     </span>
   </a>
   
 </li>
         
           <li class="md-nav__item">
-  <a href="#intraday-odd" class="md-nav__link">
+  <a href="#_2" class="md-nav__link">
     <span class="md-ellipsis">
-      Intraday odd
+      盤中零股
     </span>
   </a>
   
 </li>
         
           <li class="md-nav__item">
-  <a href="#attributes" class="md-nav__link">
+  <a href="#_3" class="md-nav__link">
     <span class="md-ellipsis">
-      Attributes
+      屬性
     </span>
   </a>
   
@@ -736,27 +736,27 @@
       <ul class="md-nav__list">
         
           <li class="md-nav__item">
-  <a href="#common-stock_1" class="md-nav__link">
+  <a href="#_4" class="md-nav__link">
     <span class="md-ellipsis">
-      Common Stock
+      整股
     </span>
   </a>
   
 </li>
         
           <li class="md-nav__item">
-  <a href="#intraday-odd_1" class="md-nav__link">
+  <a href="#_5" class="md-nav__link">
     <span class="md-ellipsis">
-      Intraday odd
+      盤中零股
     </span>
   </a>
   
 </li>
         
           <li class="md-nav__item">
-  <a href="#attributes_1" class="md-nav__link">
+  <a href="#_6" class="md-nav__link">
     <span class="md-ellipsis">
-      Attributes
+      屬性
     </span>
   </a>
   
@@ -778,18 +778,18 @@
       <ul class="md-nav__list">
         
           <li class="md-nav__item">
-  <a href="#common-stock_2" class="md-nav__link">
+  <a href="#_7" class="md-nav__link">
     <span class="md-ellipsis">
-      Common Stock
+      整股
     </span>
   </a>
   
 </li>
         
           <li class="md-nav__item">
-  <a href="#attributes_2" class="md-nav__link">
+  <a href="#_8" class="md-nav__link">
     <span class="md-ellipsis">
-      Attributes
+      屬性
     </span>
   </a>
   
@@ -1847,27 +1847,27 @@
       <ul class="md-nav__list">
         
           <li class="md-nav__item">
-  <a href="#common-stock" class="md-nav__link">
+  <a href="#_1" class="md-nav__link">
     <span class="md-ellipsis">
-      Common Stock
+      整股
     </span>
   </a>
   
 </li>
         
           <li class="md-nav__item">
-  <a href="#intraday-odd" class="md-nav__link">
+  <a href="#_2" class="md-nav__link">
     <span class="md-ellipsis">
-      Intraday odd
+      盤中零股
     </span>
   </a>
   
 </li>
         
           <li class="md-nav__item">
-  <a href="#attributes" class="md-nav__link">
+  <a href="#_3" class="md-nav__link">
     <span class="md-ellipsis">
-      Attributes
+      屬性
     </span>
   </a>
   
@@ -1889,27 +1889,27 @@
       <ul class="md-nav__list">
         
           <li class="md-nav__item">
-  <a href="#common-stock_1" class="md-nav__link">
+  <a href="#_4" class="md-nav__link">
     <span class="md-ellipsis">
-      Common Stock
+      整股
     </span>
   </a>
   
 </li>
         
           <li class="md-nav__item">
-  <a href="#intraday-odd_1" class="md-nav__link">
+  <a href="#_5" class="md-nav__link">
     <span class="md-ellipsis">
-      Intraday odd
+      盤中零股
     </span>
   </a>
   
 </li>
         
           <li class="md-nav__item">
-  <a href="#attributes_1" class="md-nav__link">
+  <a href="#_6" class="md-nav__link">
     <span class="md-ellipsis">
-      Attributes
+      屬性
     </span>
   </a>
   
@@ -1931,18 +1931,18 @@
       <ul class="md-nav__list">
         
           <li class="md-nav__item">
-  <a href="#common-stock_2" class="md-nav__link">
+  <a href="#_7" class="md-nav__link">
     <span class="md-ellipsis">
-      Common Stock
+      整股
     </span>
   </a>
   
 </li>
         
           <li class="md-nav__item">
-  <a href="#attributes_2" class="md-nav__link">
+  <a href="#_8" class="md-nav__link">
     <span class="md-ellipsis">
-      Attributes
+      屬性
     </span>
   </a>
   
@@ -2013,7 +2013,7 @@
 
   <h1>證券</h1>
 
-<p>To subscribe quotes is very easy, just call <code>subscribe</code> function with <a href="../../../contract/">contract</a> which we've discussed in previous topic.</p>
+<p>利用訂閱<a href="../../../contract/">商品檔</a>的方式去取得即時行情。</p>
 <div class="admonition example">
 <p class="admonition-title">Subscribe</p>
 <div class="highlight"><pre><span></span><code><span class="o">&gt;&gt;</span> <span class="n">api</span><span class="o">.</span><span class="n">quote</span><span class="o">.</span><span class="n">subscribe</span><span class="err">?</span>
@@ -2028,17 +2028,14 @@
 </code></pre></div>
 </div>
 <div class="admonition done">
-<p class="admonition-title">Quote Parameters</p>
-<div class="highlight"><pre><span></span><code>quote_type: tick price or bid/ask price to subscribe
-    {&#39;tick&#39;, &#39;bidask&#39;}
-intraday_odd: 盤中零股
-    {True, False}
-version: version of quote format
-    {&#39;v1&#39;, &#39;v0&#39;}
+<p class="admonition-title">Quote Parameters:</p>
+<div class="highlight"><pre><span></span><code>quote_type: 訂閱類型 {&#39;tick&#39;, &#39;bidask&#39;}
+intraday_odd: 盤中零股 {True, False}
+version: 行情版本 {&#39;v1&#39;, &#39;v0&#39;}
 </code></pre></div>
 </div>
 <h2 id="tick">Tick<a class="headerlink" href="#tick" title="Permanent link">&para;</a></h2>
-<h3 id="common-stock">Common Stock<a class="headerlink" href="#common-stock" title="Permanent link">&para;</a></h3>
+<h3 id="_1">整股<a class="headerlink" href="#_1" title="Permanent link">&para;</a></h3>
 <div class="admonition info">
 <p class="admonition-title">In</p>
 <div class="highlight"><pre><span></span><code><span class="n">api</span><span class="o">.</span><span class="n">quote</span><span class="o">.</span><span class="n">subscribe</span><span class="p">(</span>
@@ -2102,7 +2099,7 @@ version: version of quote format
 </div>
 </div>
 </div>
-<h3 id="intraday-odd">Intraday odd<a class="headerlink" href="#intraday-odd" title="Permanent link">&para;</a></h3>
+<h3 id="_2">盤中零股<a class="headerlink" href="#_2" title="Permanent link">&para;</a></h3>
 <div class="admonition info">
 <p class="admonition-title">In</p>
 <div class="highlight"><pre><span></span><code><span class="n">api</span><span class="o">.</span><span class="n">quote</span><span class="o">.</span><span class="n">subscribe</span><span class="p">(</span>
@@ -2167,7 +2164,7 @@ version: version of quote format
 </div>
 </div>
 </div>
-<h3 id="attributes">Attributes<a class="headerlink" href="#attributes" title="Permanent link">&para;</a></h3>
+<h3 id="_3">屬性<a class="headerlink" href="#_3" title="Permanent link">&para;</a></h3>
 <div class="admonition example">
 <p class="admonition-title">Tick</p>
 <div class="tabbed-set tabbed-alternate" data-tabs="3:2"><input checked="checked" id="__tabbed_3_1" name="__tabbed_3" type="radio" /><input id="__tabbed_3_2" name="__tabbed_3" type="radio" /><div class="tabbed-labels"><label for="__tabbed_3_1">QuoteVersion.v1</label><label for="__tabbed_3_2">QuoteVersion.v0</label></div>
@@ -2213,7 +2210,7 @@ version: version of quote format
 </div>
 </div>
 <h2 id="bidask">BidAsk<a class="headerlink" href="#bidask" title="Permanent link">&para;</a></h2>
-<h3 id="common-stock_1">Common Stock<a class="headerlink" href="#common-stock_1" title="Permanent link">&para;</a></h3>
+<h3 id="_4">整股<a class="headerlink" href="#_4" title="Permanent link">&para;</a></h3>
 <div class="admonition info">
 <p class="admonition-title">In</p>
 <div class="highlight"><pre><span></span><code><span class="n">api</span><span class="o">.</span><span class="n">quote</span><span class="o">.</span><span class="n">subscribe</span><span class="p">(</span>
@@ -2263,7 +2260,7 @@ version: version of quote format
 </div>
 </div>
 </div>
-<h3 id="intraday-odd_1">Intraday odd<a class="headerlink" href="#intraday-odd_1" title="Permanent link">&para;</a></h3>
+<h3 id="_5">盤中零股<a class="headerlink" href="#_5" title="Permanent link">&para;</a></h3>
 <div class="admonition info">
 <p class="admonition-title">In</p>
 <div class="highlight"><pre><span></span><code><span class="n">api</span><span class="o">.</span><span class="n">quote</span><span class="o">.</span><span class="n">subscribe</span><span class="p">(</span>
@@ -2315,7 +2312,7 @@ version: version of quote format
 </div>
 </div>
 </div>
-<h3 id="attributes_1">Attributes<a class="headerlink" href="#attributes_1" title="Permanent link">&para;</a></h3>
+<h3 id="_6">屬性<a class="headerlink" href="#_6" title="Permanent link">&para;</a></h3>
 <div class="admonition example">
 <p class="admonition-title">BidAsk</p>
 <div class="tabbed-set tabbed-alternate" data-tabs="6:2"><input checked="checked" id="__tabbed_6_1" name="__tabbed_6" type="radio" /><input id="__tabbed_6_2" name="__tabbed_6" type="radio" /><div class="tabbed-labels"><label for="__tabbed_6_1">QuoteVersion.v1</label><label for="__tabbed_6_2">QuoteVersion.v0</label></div>
@@ -2346,7 +2343,7 @@ version: version of quote format
 </div>
 </div>
 <h2 id="quote">Quote<a class="headerlink" href="#quote" title="Permanent link">&para;</a></h2>
-<h3 id="common-stock_2">Common Stock<a class="headerlink" href="#common-stock_2" title="Permanent link">&para;</a></h3>
+<h3 id="_7">整股<a class="headerlink" href="#_7" title="Permanent link">&para;</a></h3>
 <div class="admonition info">
 <p class="admonition-title">In</p>
 <div class="highlight"><pre><span></span><code><span class="n">api</span><span class="o">.</span><span class="n">quote</span><span class="o">.</span><span class="n">subscribe</span><span class="p">(</span>
@@ -2400,7 +2397,7 @@ version: version of quote format
 <span class="p">)</span>
 </code></pre></div>
 </div>
-<h3 id="attributes_2">Attributes<a class="headerlink" href="#attributes_2" title="Permanent link">&para;</a></h3>
+<h3 id="_8">屬性<a class="headerlink" href="#_8" title="Permanent link">&para;</a></h3>
 <div class="admonition example">
 <p class="admonition-title">Quote</p>
 <div class="highlight"><pre><span></span><code><span class="n">code</span> <span class="p">(</span><span class="nb">str</span><span class="p">):</span> <span class="n">商品代碼</span>
@@ -2441,10 +2438,10 @@ version: version of quote format
 </code></pre></div>
 </div>
 <h2 id="callback">Callback<a class="headerlink" href="#callback" title="Permanent link">&para;</a></h2>
-<p>In default, we set quote callback as print function. You can modify callback function as you wish. Just remember, always avoid making calulations inside the callback function.</p>
-<h3 id="tick_1">Tick<a class="headerlink" href="#tick_1" title="Permanent link">&para;</a></h3>
+<p>預設狀況下我們將即時行情使用<code>print</code>的方式呈現。可根據個人需求修改函數。請避免在函數內進行運算。</p>
+<h4 id="tick_1">Tick<a class="headerlink" href="#tick_1" title="Permanent link">&para;</a></h4>
 <div class="admonition info">
-<p class="admonition-title">In: pythonic way by using decorator</p>
+<p class="admonition-title">decorator方式</p>
 <div class="tabbed-set tabbed-alternate" data-tabs="7:2"><input checked="checked" id="__tabbed_7_1" name="__tabbed_7" type="radio" /><input id="__tabbed_7_2" name="__tabbed_7" type="radio" /><div class="tabbed-labels"><label for="__tabbed_7_1">QuoteVersion.v1</label><label for="__tabbed_7_2">QuoteVersion.v0</label></div>
 <div class="tabbed-content">
 <div class="tabbed-block">
@@ -2465,7 +2462,7 @@ version: version of quote format
 </div>
 </div>
 <div class="admonition info">
-<p class="admonition-title">In: traditional way</p>
+<p class="admonition-title">傳統方式</p>
 <div class="tabbed-set tabbed-alternate" data-tabs="8:2"><input checked="checked" id="__tabbed_8_1" name="__tabbed_8" type="radio" /><input id="__tabbed_8_2" name="__tabbed_8" type="radio" /><div class="tabbed-labels"><label for="__tabbed_8_1">QuoteVersion.v1</label><label for="__tabbed_8_2">QuoteVersion.v0</label></div>
 <div class="tabbed-content">
 <div class="tabbed-block">
@@ -2504,7 +2501,7 @@ version: version of quote format
 </div>
 <h3 id="bidask_1">BidAsk<a class="headerlink" href="#bidask_1" title="Permanent link">&para;</a></h3>
 <div class="admonition info">
-<p class="admonition-title">In: pythonic way by using decorator</p>
+<p class="admonition-title">decorator方式</p>
 <div class="tabbed-set tabbed-alternate" data-tabs="10:2"><input checked="checked" id="__tabbed_10_1" name="__tabbed_10" type="radio" /><input id="__tabbed_10_2" name="__tabbed_10" type="radio" /><div class="tabbed-labels"><label for="__tabbed_10_1">QuoteVersion.v1</label><label for="__tabbed_10_2">QuoteVersion.v0</label></div>
 <div class="tabbed-content">
 <div class="tabbed-block">
@@ -2525,7 +2522,7 @@ version: version of quote format
 </div>
 </div>
 <div class="admonition info">
-<p class="admonition-title">In: traditional way</p>
+<p class="admonition-title">傳統方式</p>
 <div class="tabbed-set tabbed-alternate" data-tabs="11:2"><input checked="checked" id="__tabbed_11_1" name="__tabbed_11" type="radio" /><input id="__tabbed_11_2" name="__tabbed_11" type="radio" /><div class="tabbed-labels"><label for="__tabbed_11_1">QuoteVersion.v1</label><label for="__tabbed_11_2">QuoteVersion.v0</label></div>
 <div class="tabbed-content">
 <div class="tabbed-block">
@@ -2564,7 +2561,7 @@ version: version of quote format
 </div>
 <h3 id="quote_1">Quote<a class="headerlink" href="#quote_1" title="Permanent link">&para;</a></h3>
 <div class="admonition info">
-<p class="admonition-title">In: pythonic way by using decorator</p>
+<p class="admonition-title">decorator方式</p>
 <div class="highlight"><pre><span></span><code><span class="kn">from</span><span class="w"> </span><span class="nn">shioaji</span><span class="w"> </span><span class="kn">import</span> <span class="n">QuoteSTKv1</span><span class="p">,</span> <span class="n">Exchange</span>
 
 <span class="nd">@api</span><span class="o">.</span><span class="n">on_quote_stk_v1</span><span class="p">()</span>
@@ -2573,7 +2570,7 @@ version: version of quote format
 </code></pre></div>
 </div>
 <div class="admonition info">
-<p class="admonition-title">In: traditional way</p>
+<p class="admonition-title">傳統方式</p>
 <div class="highlight"><pre><span></span><code><span class="kn">from</span><span class="w"> </span><span class="nn">shioaji</span><span class="w"> </span><span class="kn">import</span> <span class="n">QuoteSTKv1</span><span class="p">,</span> <span class="n">Exchange</span>
 
 <span class="k">def</span><span class="w"> </span><span class="nf">quote_callback</span><span class="p">(</span><span class="n">exchange</span><span class="p">:</span> <span class="n">Exchange</span><span class="p">,</span> <span class="n">quote</span><span class="p">:</span><span class="n">QuoteSTKv1</span><span class="p">):</span>
@@ -2588,8 +2585,8 @@ version: version of quote format
 </code></pre></div>
 </div>
 <ul>
-<li>Intraday odd share the callback function with common stock.</li>
-<li>Advanced quote callback settings please refer to <a href="../../../advanced/quote_binding/">Quote-Binding Mode</a>.</li>
+<li>盤中零股與一般證券共用 callback函式。</li>
+<li>更進階的callback使用可以參見<a href="../../../advanced/quote_binding/">綁訂報價模式</a>。</li>
 </ul>
 
 

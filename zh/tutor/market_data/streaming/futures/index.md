@@ -1,4 +1,4 @@
-To subscribe quotes is very easy, just call `subscribe` function with [contract](../../../contract/) which we've discussed in previous topic.
+利用訂閱[商品檔](../../../contract/)的方式去取得即時行情。
 
 Subscribe
 
@@ -20,18 +20,15 @@ api.quote.subscribe?
 Quote Parameters:
 
 ```
-quote_type: tick price or bid/ask price to subscribe
-    {'tick', 'bidask'}
-intraday_odd: 盤中零股
-    {True, False}
-version: version of quote format
-    {'v1', 'v0'}
+quote_type: 訂閱類型 {'tick', 'bidask'}
+intraday_odd: 盤中零股 {True, False}
+version: 行情版本 {'v1', 'v0'}
 
 ```
 
 ## Tick
 
-### Example
+### 範例
 
 In
 
@@ -102,7 +99,7 @@ L/TFE/TXFG1
 
 ```
 
-### Attributes
+### 屬性
 
 Tick
 
@@ -154,7 +151,7 @@ Volume (list of int): 成交量 (lot)
 
 ## BidAsk
 
-### Example
+### 範例
 
 In
 
@@ -221,7 +218,7 @@ Q/TFE/TXFG1
 
 ```
 
-### Attributes
+### 屬性
 
 BidAsk
 
@@ -269,11 +266,11 @@ Time (str): 時間 (HH:mm:ss.ffffff)
 
 ## Callback
 
-In default, we set quote callback as print function. You can modify callback function as you wish. Just remember, always avoid making calulations inside the callback function.
+預設狀況下我們將即時行情使用`print`的方式呈現。可根據個人需求修改函數。請避免在函數內進行運算。
 
 ### Tick
 
-In: pythonic way by using decorator
+decorator方式
 
 ```
 from shioaji import TickFOPv1, Exchange
@@ -291,7 +288,7 @@ def quote_callback(topic: str, quote: dict):
 
 ```
 
-In: traditional way
+傳統方式
 
 ```
 from shioaji import TickFOPv1, Exchange
@@ -325,7 +322,7 @@ Topic: L/TFE/TXFG1, Quote: {'Amount': [17654.0], 'AmountSum': [1682856730.0], 'A
 
 ### BidAsk
 
-In: pythonic way by using decorator
+decorator方式
 
 ```
 from shioaji import BidAskFOPv1, Exchange
@@ -343,7 +340,7 @@ def quote_callback(topic: str, quote: dict):
 
 ```
 
-In: traditional way
+傳統方式
 
 ```
 from shioaji import BidAskFOPv1, Exchange
@@ -375,4 +372,4 @@ Topic: Q/TFE/TXFG1, Quote: {'AskPrice': [17653.0, 17654.0, 17655.0, 17656.0, 176
 
 ```
 
-- Advanced quote callback settings please refer to [Quote-Binding Mode](../../../advanced/quote_binding/).
+- 更進階的callback使用可以參見[綁訂報價模式](../../../advanced/quote_binding/)。

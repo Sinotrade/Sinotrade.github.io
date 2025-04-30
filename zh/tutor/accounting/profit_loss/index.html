@@ -88,7 +88,7 @@
     <div data-md-component="skip">
       
         
-        <a href="#profit-loss" class="md-skip">
+        <a href="#_1" class="md-skip">
           跳转至
         </a>
       
@@ -1334,27 +1334,27 @@
     <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
       
         <li class="md-nav__item">
-  <a href="#profit-loss" class="md-nav__link">
+  <a href="#_1" class="md-nav__link">
     <span class="md-ellipsis">
-      Profit Loss
+      已實現損益
     </span>
   </a>
   
 </li>
       
         <li class="md-nav__item">
-  <a href="#profit-loss-detail" class="md-nav__link">
+  <a href="#-" class="md-nav__link">
     <span class="md-ellipsis">
-      Profit Loss Detail
+      已實現損益 - 明細
     </span>
   </a>
   
 </li>
       
         <li class="md-nav__item">
-  <a href="#profit-loss-summary" class="md-nav__link">
+  <a href="#-_1" class="md-nav__link">
     <span class="md-ellipsis">
-      Profit Loss Summary
+      已實現損益 - 彙總
     </span>
   </a>
   
@@ -1703,27 +1703,27 @@
     <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
       
         <li class="md-nav__item">
-  <a href="#profit-loss" class="md-nav__link">
+  <a href="#_1" class="md-nav__link">
     <span class="md-ellipsis">
-      Profit Loss
+      已實現損益
     </span>
   </a>
   
 </li>
       
         <li class="md-nav__item">
-  <a href="#profit-loss-detail" class="md-nav__link">
+  <a href="#-" class="md-nav__link">
     <span class="md-ellipsis">
-      Profit Loss Detail
+      已實現損益 - 明細
     </span>
   </a>
   
 </li>
       
         <li class="md-nav__item">
-  <a href="#profit-loss-summary" class="md-nav__link">
+  <a href="#-_1" class="md-nav__link">
     <span class="md-ellipsis">
-      Profit Loss Summary
+      已實現損益 - 彙總
     </span>
   </a>
   
@@ -1747,9 +1747,8 @@
 
   <h1>已實現損益</h1>
 
-<p>You need to <a href="../../login">login</a> first.</p>
-<h2 id="profit-loss">Profit Loss<a class="headerlink" href="#profit-loss" title="Permanent link">&para;</a></h2>
-<p>The feature of list_profit_loss is used to query realized profit loss of account.</p>
+<p>需要先<a href="../../login">登錄</a>。</p>
+<h2 id="_1">已實現損益<a class="headerlink" href="#_1" title="Permanent link">&para;</a></h2>
 <div class="admonition info">
 <p class="admonition-title">In</p>
 <div class="highlight"><pre><span></span><code><span class="n">api</span><span class="o">.</span><span class="n">list_profit_loss</span><span class="err">?</span>
@@ -1776,7 +1775,7 @@
         <span class="n">end_date</span> <span class="p">(</span><span class="nb">str</span><span class="p">):</span> <span class="n">the</span> <span class="n">end</span> <span class="n">date</span> <span class="n">of</span> <span class="n">query</span> <span class="n">profit</span> <span class="n">loss</span> <span class="p">(</span><span class="n">Default</span><span class="p">:</span> <span class="n">today</span><span class="p">)</span>
 </code></pre></div>
 </div>
-<p>Enter the time interval you want to query. <code>begin_date</code> is the start time, and <code>end_date</code> is the end time. <code>unit</code> is the quantity unit, where <code>Common</code> represents whole shares and <code>Share</code> represents fractional shares.</p>
+<p>帶入想查詢的時間區間。<code>begin_date</code>為起始時間，<code>end_date</code>為結束時間。<code>unit</code>為數量單位，<code>Common</code>為整股，<code>Share</code>為零股。</p>
 <div class="admonition info">
 <p class="admonition-title">In</p>
 <div class="highlight"><pre><span></span><code><span class="n">profitloss</span> <span class="o">=</span> <span class="n">api</span><span class="o">.</span><span class="n">list_profit_loss</span><span class="p">(</span><span class="n">api</span><span class="o">.</span><span class="n">stock_account</span><span class="p">,</span><span class="s1">&#39;2020-05-05&#39;</span><span class="p">,</span><span class="s1">&#39;2020-05-30&#39;</span><span class="p">)</span>
@@ -1801,7 +1800,7 @@
 <span class="p">]</span>
 </code></pre></div>
 </div>
-<p>To DataFrame</p>
+<p>轉成DataFrame</p>
 <div class="admonition info">
 <p class="admonition-title">In</p>
 <div class="highlight"><pre><span></span><code><span class="n">df</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">(</span><span class="n">pnl</span><span class="o">.</span><span class="vm">__dict__</span> <span class="k">for</span> <span class="n">pnl</span> <span class="ow">in</span> <span class="n">profitloss</span><span class="p">)</span>
@@ -1843,33 +1842,39 @@
 </div>
 <div class="admonition example">
 <p class="admonition-title">StockProfitLoss</p>
-<div class="highlight"><pre><span></span><code><span class="nb">id</span> <span class="p">(</span><span class="nb">int</span><span class="p">):</span> <span class="n">use</span> <span class="n">to</span> <span class="n">find</span> <span class="n">detail</span>
-<span class="n">code</span> <span class="p">(</span><span class="nb">str</span><span class="p">):</span> <span class="n">contract</span> <span class="nb">id</span>
-<span class="n">seqno</span> <span class="p">(</span><span class="nb">str</span><span class="p">):</span> <span class="n">seqno</span> <span class="n">no</span>
-<span class="n">dseq</span> <span class="p">(</span><span class="nb">str</span><span class="p">):</span> <span class="n">seqno</span> <span class="n">no</span>
-<span class="n">quantity</span> <span class="p">(</span><span class="nb">int</span><span class="p">):</span> <span class="n">quantity</span>
-<span class="n">price</span> <span class="p">(</span><span class="nb">float</span><span class="p">):</span> <span class="n">price</span>
-<span class="n">pnl</span> <span class="p">(</span><span class="nb">float</span><span class="p">):</span> <span class="n">profit</span> <span class="ow">and</span> <span class="n">loss</span>
-<span class="n">pr_ratio</span> <span class="p">(</span><span class="nb">float</span><span class="p">):</span> <span class="n">profit</span> <span class="n">rate</span>
-<span class="n">cond</span> <span class="p">(</span><span class="n">StockOrderCond</span><span class="p">):</span> <span class="p">{</span><span class="n">Cash</span><span class="p">,</span> <span class="n">Netting</span><span class="p">,</span> <span class="n">MarginTrading</span><span class="p">,</span> <span class="n">ShortSelling</span><span class="p">}</span>
-<span class="n">date</span> <span class="p">(</span><span class="nb">str</span><span class="p">):</span> <span class="n">trade</span> <span class="n">date</span>
+<div class="highlight"><pre><span></span><code><span class="nb">id</span> <span class="p">(</span><span class="nb">int</span><span class="p">):</span> <span class="n">可利用此id查詢明細</span>
+<span class="n">code</span> <span class="p">(</span><span class="nb">str</span><span class="p">):</span> <span class="n">商品代碼</span>
+<span class="n">seqno</span> <span class="p">(</span><span class="nb">str</span><span class="p">):</span> <span class="n">seqno</span> <span class="n">no</span><span class="o">.</span>
+<span class="n">dseq</span> <span class="p">(</span><span class="nb">str</span><span class="p">):</span> <span class="n">seqno</span> <span class="n">no</span><span class="o">.</span>
+<span class="n">quantity</span> <span class="p">(</span><span class="nb">int</span><span class="p">):</span> <span class="n">數量</span>
+<span class="n">price</span> <span class="p">(</span><span class="nb">float</span><span class="p">):</span> <span class="n">價格</span>
+<span class="n">pnl</span> <span class="p">(</span><span class="nb">float</span><span class="p">):</span> <span class="n">損益</span>
+<span class="n">pr_ratio</span> <span class="p">(</span><span class="nb">float</span><span class="p">):</span> <span class="n">損益比</span>
+<span class="n">cond</span> <span class="p">(</span><span class="n">StockOrderCond</span><span class="p">):</span> <span class="p">{</span>
+                <span class="n">Cash</span><span class="p">:</span> <span class="n">現股</span><span class="p">(</span><span class="n">預設值</span><span class="p">),</span> 
+                <span class="n">Netting</span><span class="p">:</span> <span class="n">餘額交割</span><span class="p">,</span>
+                <span class="n">MarginTrading</span><span class="p">:</span> <span class="n">融資</span><span class="p">,</span> 
+                <span class="n">ShortSelling</span><span class="p">:</span> <span class="n">融券</span><span class="p">,</span> 
+                <span class="n">Emerging</span><span class="p">:</span> <span class="n">興櫃</span>
+            <span class="p">}</span>
+<span class="n">date</span> <span class="p">(</span><span class="nb">str</span><span class="p">):</span> <span class="n">交易日期</span>
 </code></pre></div>
 </div>
 <div class="admonition example">
 <p class="admonition-title">FutureProfitLoss</p>
-<div class="highlight"><pre><span></span><code><span class="nb">id</span> <span class="p">(</span><span class="nb">int</span><span class="p">):</span> <span class="n">use</span> <span class="n">to</span> <span class="n">find</span> <span class="n">detail</span>
-<span class="n">code</span> <span class="p">(</span><span class="nb">str</span><span class="p">):</span> <span class="n">contract</span> <span class="nb">id</span>
-<span class="n">quantity</span> <span class="p">(</span><span class="nb">int</span><span class="p">):</span> <span class="n">quantity</span>
-<span class="n">pnl</span> <span class="p">(</span><span class="nb">float</span><span class="p">):</span> <span class="n">profit</span> <span class="ow">and</span> <span class="n">loss</span>
-<span class="n">date</span> <span class="p">(</span><span class="nb">str</span><span class="p">):</span> <span class="n">trade</span> <span class="n">date</span>
-<span class="n">entry_price</span> <span class="p">(</span><span class="nb">int</span><span class="p">):</span> <span class="n">entry</span> <span class="n">price</span>
-<span class="n">cover_price</span> <span class="p">(</span><span class="nb">int</span><span class="p">):</span> <span class="n">cover</span> <span class="n">price</span>
-<span class="n">tax</span> <span class="p">(</span><span class="nb">int</span><span class="p">):</span> <span class="n">tax</span>
-<span class="n">fee</span> <span class="p">(</span><span class="nb">int</span><span class="p">):</span> <span class="n">transaction</span> <span class="n">fee</span>
+<div class="highlight"><pre><span></span><code><span class="nb">id</span> <span class="p">(</span><span class="nb">int</span><span class="p">):</span> <span class="n">可利用此id查詢明細</span>
+<span class="n">code</span> <span class="p">(</span><span class="nb">str</span><span class="p">):</span> <span class="n">商品代碼</span>
+<span class="n">quantity</span> <span class="p">(</span><span class="nb">int</span><span class="p">):</span> <span class="n">數量</span>
+<span class="n">pnl</span> <span class="p">(</span><span class="nb">float</span><span class="p">):</span> <span class="n">損益</span>
+<span class="n">date</span> <span class="p">(</span><span class="nb">str</span><span class="p">):</span> <span class="n">交易日期</span>
+<span class="n">entry_price</span> <span class="p">(</span><span class="nb">int</span><span class="p">):</span> <span class="n">進倉價格</span>
+<span class="n">cover_price</span> <span class="p">(</span><span class="nb">int</span><span class="p">):</span> <span class="n">平倉價格</span>
+<span class="n">tax</span> <span class="p">(</span><span class="nb">int</span><span class="p">):</span> <span class="n">交易稅</span>
+<span class="n">fee</span> <span class="p">(</span><span class="nb">int</span><span class="p">):</span> <span class="n">交易手續費</span>
 </code></pre></div>
 </div>
-<h2 id="profit-loss-detail">Profit Loss Detail<a class="headerlink" href="#profit-loss-detail" title="Permanent link">&para;</a></h2>
-<p>The feature of list_profit_loss_detail is used to query profit loss detail of account. <code>unit</code> is the quantity unit, where <code>Common</code> represents whole shares and <code>Share</code> represents fractional shares.</p>
+<h2 id="-">已實現損益 - 明細<a class="headerlink" href="#-" title="Permanent link">&para;</a></h2>
+<p>可從針對<code>list_profit_loss</code>得到的結果，將<code>id</code>帶入<code>detail_id</code>查詢該筆明細。<code>unit</code>為數量單位，<code>Common</code>為整股，<code>Share</code>為零股。</p>
 <div class="admonition info">
 <p class="admonition-title">In</p>
 <div class="highlight"><pre><span></span><code><span class="n">api</span><span class="o">.</span><span class="n">list_profit_loss_detail</span><span class="err">?</span>
@@ -1923,7 +1928,7 @@
 <span class="p">]</span>
 </code></pre></div>
 </div>
-<p>To DataFrame</p>
+<p>轉成DataFrame</p>
 <div class="admonition info">
 <p class="admonition-title">In</p>
 <div class="highlight"><pre><span></span><code><span class="n">df</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">(</span><span class="n">pnl</span><span class="o">.</span><span class="vm">__dict__</span> <span class="k">for</span> <span class="n">pnl</span> <span class="ow">in</span> <span class="n">profitloss_detail</span><span class="p">)</span>
@@ -1979,42 +1984,48 @@
 </div>
 <div class="admonition example">
 <p class="admonition-title">StockProfitDetail</p>
-<div class="highlight"><pre><span></span><code><span class="n">date</span> <span class="p">(</span><span class="nb">str</span><span class="p">):</span> <span class="n">trade</span> <span class="n">date</span>
-<span class="n">code</span> <span class="p">(</span><span class="nb">str</span><span class="p">):</span> <span class="n">contract</span> <span class="nb">id</span>
-<span class="n">quantity</span> <span class="p">(</span><span class="nb">int</span><span class="p">):</span> <span class="n">quantity</span>
-<span class="n">dseq</span> <span class="p">(</span><span class="nb">str</span><span class="p">):</span> <span class="n">detail</span> <span class="n">seqno</span> <span class="n">no</span>
-<span class="n">fee</span> <span class="p">(</span><span class="nb">int</span><span class="p">):</span> <span class="n">fee</span>
-<span class="n">tax</span> <span class="p">(</span><span class="nb">int</span><span class="p">):</span> <span class="n">trading</span> <span class="n">tax</span>
-<span class="n">currency</span> <span class="p">(</span><span class="nb">str</span><span class="p">):</span> <span class="p">{</span><span class="n">NTD</span><span class="p">,</span> <span class="n">USD</span><span class="p">,</span> <span class="n">HKD</span><span class="p">,</span> <span class="n">EUR</span><span class="p">,</span> <span class="n">CAD</span><span class="p">,</span> <span class="n">BAS</span><span class="p">}</span>
-<span class="n">price</span> <span class="p">(</span><span class="nb">float</span><span class="p">):</span> <span class="n">price</span>
-<span class="n">cost</span> <span class="p">(</span><span class="nb">int</span><span class="p">):</span> <span class="n">cost</span> <span class="n">of</span> <span class="n">price</span>
-<span class="n">rep_margintrading_amt</span> <span class="p">(</span><span class="nb">int</span><span class="p">):</span> <span class="n">repay</span> <span class="n">amount</span> <span class="n">of</span> <span class="n">margin</span> <span class="n">trading</span>
-<span class="n">rep_collateral</span> <span class="p">(</span><span class="nb">int</span><span class="p">):</span> <span class="n">repay</span> <span class="n">collateral</span>
-<span class="n">rep_margin</span> <span class="p">(</span><span class="nb">int</span><span class="p">):</span> <span class="n">repay</span> <span class="n">margin</span>
-<span class="n">shortselling_fee</span> <span class="p">(</span><span class="nb">int</span><span class="p">):</span> <span class="n">fee</span> <span class="n">of</span> <span class="n">short</span> <span class="n">selling</span>
-<span class="n">ex_dividend_amt</span><span class="p">:</span> <span class="n">ex</span><span class="o">-</span><span class="n">dividend</span> <span class="n">amount</span>
-<span class="n">interest</span> <span class="p">(</span><span class="nb">int</span><span class="p">):</span> <span class="n">interest</span>
+<div class="highlight"><pre><span></span><code><span class="n">date</span> <span class="p">(</span><span class="nb">str</span><span class="p">):</span> <span class="n">交易日期</span>
+<span class="n">code</span> <span class="p">(</span><span class="nb">str</span><span class="p">):</span> <span class="n">商品代碼</span>
+<span class="n">quantity</span> <span class="p">(</span><span class="nb">int</span><span class="p">):</span> <span class="n">數量</span>
+<span class="n">dseq</span> <span class="p">(</span><span class="nb">str</span><span class="p">):</span> <span class="n">委託書號</span>
+<span class="n">fee</span> <span class="p">(</span><span class="nb">int</span><span class="p">):</span> <span class="n">交易手續費</span>
+<span class="n">tax</span> <span class="p">(</span><span class="nb">int</span><span class="p">):</span> <span class="n">交易稅</span>
+<span class="n">currency</span> <span class="p">(</span><span class="nb">str</span><span class="p">):</span> <span class="n">幣別</span> <span class="p">{</span><span class="n">NTD</span><span class="p">,</span> <span class="n">USD</span><span class="p">,</span> <span class="n">HKD</span><span class="p">,</span> <span class="n">EUR</span><span class="p">,</span> <span class="n">CAD</span><span class="p">,</span> <span class="n">BAS</span><span class="p">}</span>
+<span class="n">price</span> <span class="p">(</span><span class="nb">float</span><span class="p">):</span> <span class="n">成交單價</span>
+<span class="n">cost</span> <span class="p">(</span><span class="nb">int</span><span class="p">):</span> <span class="n">付出成本</span>
+<span class="n">rep_margintrading_amt</span> <span class="p">(</span><span class="nb">int</span><span class="p">):</span> <span class="n">償還融資金額</span>
+<span class="n">rep_collateral</span> <span class="p">(</span><span class="nb">int</span><span class="p">):</span> <span class="n">償還擔保品</span>
+<span class="n">rep_margin</span> <span class="p">(</span><span class="nb">int</span><span class="p">):</span> <span class="n">償還保證金</span>
+<span class="n">shortselling_fee</span> <span class="p">(</span><span class="nb">int</span><span class="p">):</span> <span class="n">融券手續費</span>
+<span class="n">ex_dividend_amt</span><span class="p">:</span> <span class="n">除息金額</span>
+<span class="n">interest</span> <span class="p">(</span><span class="nb">int</span><span class="p">):</span> <span class="n">利息</span>
 <span class="n">trade_type</span> <span class="p">(</span><span class="n">TradeType</span><span class="p">):</span> <span class="p">{</span><span class="n">Common</span><span class="p">,</span> <span class="n">DayTrade</span><span class="p">}</span>
-<span class="n">cond</span> <span class="p">(</span><span class="n">StockOrderCond</span><span class="p">):</span> <span class="p">{</span><span class="n">Cash</span><span class="p">,</span> <span class="n">Netting</span><span class="p">,</span> <span class="n">MarginTrading</span><span class="p">,</span> <span class="n">ShortSelling</span><span class="p">}</span>
+<span class="n">cond</span> <span class="p">(</span><span class="n">StockOrderCond</span><span class="p">):</span> <span class="p">{</span>
+                <span class="n">Cash</span><span class="p">:</span> <span class="n">現股</span><span class="p">(</span><span class="n">預設值</span><span class="p">),</span> 
+                <span class="n">Netting</span><span class="p">:</span> <span class="n">餘額交割</span><span class="p">,</span>
+                <span class="n">MarginTrading</span><span class="p">:</span> <span class="n">融資</span><span class="p">,</span> 
+                <span class="n">ShortSelling</span><span class="p">:</span> <span class="n">融券</span><span class="p">,</span> 
+                <span class="n">Emerging</span><span class="p">:</span> <span class="n">興櫃</span>
+            <span class="p">}</span>
 </code></pre></div>
 </div>
 <div class="admonition example">
 <p class="admonition-title">FutureProfitDetail</p>
-<div class="highlight"><pre><span></span><code><span class="n">date</span> <span class="p">(</span><span class="nb">str</span><span class="p">):</span> <span class="n">trade</span> <span class="n">date</span>
-<span class="n">code</span> <span class="p">(</span><span class="nb">str</span><span class="p">):</span> <span class="n">contract</span> <span class="nb">id</span>
-<span class="n">quantity</span> <span class="p">(</span><span class="nb">int</span><span class="p">):</span> <span class="n">quantity</span>
-<span class="n">dseq</span> <span class="p">(</span><span class="nb">str</span><span class="p">):</span> <span class="n">detail</span> <span class="n">seqno</span> <span class="n">no</span>
-<span class="n">fee</span> <span class="p">(</span><span class="nb">int</span><span class="p">):</span> <span class="n">fee</span>
-<span class="n">tax</span> <span class="p">(</span><span class="nb">int</span><span class="p">):</span> <span class="n">trading</span> <span class="n">tax</span>
-<span class="n">currency</span> <span class="p">(</span><span class="nb">str</span><span class="p">):</span> <span class="p">{</span><span class="n">NTD</span><span class="p">,</span> <span class="n">USD</span><span class="p">,</span> <span class="n">HKD</span><span class="p">,</span> <span class="n">EUR</span><span class="p">,</span> <span class="n">CAD</span><span class="p">,</span> <span class="n">BAS</span><span class="p">}</span>
-<span class="n">direction</span> <span class="p">(</span><span class="n">Action</span><span class="p">):</span> <span class="p">{</span><span class="n">Buy</span><span class="p">,</span> <span class="n">Sell</span><span class="p">}</span>
-<span class="n">entry_price</span> <span class="p">(</span><span class="nb">int</span><span class="p">):</span> <span class="n">entry</span> <span class="n">price</span>
-<span class="n">cover_price</span> <span class="p">(</span><span class="nb">int</span><span class="p">):</span> <span class="n">cover</span> <span class="n">price</span>
-<span class="n">pnl</span> <span class="p">(</span><span class="nb">int</span><span class="p">):</span> <span class="n">profit</span> <span class="ow">and</span> <span class="n">loss</span>
+<div class="highlight"><pre><span></span><code><span class="n">date</span> <span class="p">(</span><span class="nb">str</span><span class="p">):</span> <span class="n">交易日期</span>
+<span class="n">code</span> <span class="p">(</span><span class="nb">str</span><span class="p">):</span> <span class="n">商品代碼</span>
+<span class="n">quantity</span> <span class="p">(</span><span class="nb">int</span><span class="p">):</span> <span class="n">數量</span>
+<span class="n">dseq</span> <span class="p">(</span><span class="nb">str</span><span class="p">):</span> <span class="n">委託書號</span>
+<span class="n">fee</span> <span class="p">(</span><span class="nb">int</span><span class="p">):</span> <span class="n">交易手續費</span>
+<span class="n">tax</span> <span class="p">(</span><span class="nb">int</span><span class="p">):</span> <span class="n">交易稅</span>
+<span class="n">currency</span> <span class="p">(</span><span class="nb">str</span><span class="p">):</span> <span class="n">幣別</span> <span class="p">{</span><span class="n">NTD</span><span class="p">,</span> <span class="n">USD</span><span class="p">,</span> <span class="n">HKD</span><span class="p">,</span> <span class="n">EUR</span><span class="p">,</span> <span class="n">CAD</span><span class="p">,</span> <span class="n">BAS</span><span class="p">}</span>
+<span class="n">direction</span> <span class="p">(</span><span class="n">Action</span><span class="p">):</span> <span class="n">買賣別</span> <span class="p">{</span><span class="n">Buy</span><span class="p">,</span> <span class="n">Sell</span><span class="p">}</span>
+<span class="n">entry_price</span> <span class="p">(</span><span class="nb">int</span><span class="p">):</span> <span class="n">進倉價格</span>
+<span class="n">cover_price</span> <span class="p">(</span><span class="nb">int</span><span class="p">):</span> <span class="n">平倉價格</span>
+<span class="n">pnl</span> <span class="p">(</span><span class="nb">int</span><span class="p">):</span> <span class="n">損益</span>
 </code></pre></div>
 </div>
-<h2 id="profit-loss-summary">Profit Loss Summary<a class="headerlink" href="#profit-loss-summary" title="Permanent link">&para;</a></h2>
-<p>The feature of list_profit_loss_summary is used to query summary of profit loss for a period of time.</p>
+<h2 id="-_1">已實現損益 - 彙總<a class="headerlink" href="#-_1" title="Permanent link">&para;</a></h2>
+<p>用於查詢一段時間內的損益彙總。</p>
 <div class="admonition info">
 <p class="admonition-title">In</p>
 <div class="highlight"><pre><span></span><code><span class="n">api</span><span class="o">.</span><span class="n">list_profit_loss_summary</span><span class="err">?</span>
@@ -2040,7 +2051,7 @@
     <span class="n">end_date</span> <span class="p">(</span><span class="nb">str</span><span class="p">):</span> <span class="n">the</span> <span class="n">end</span> <span class="n">date</span> <span class="n">of</span> <span class="n">query</span> <span class="n">profit</span> <span class="n">loss</span> <span class="p">(</span><span class="n">Default</span><span class="p">:</span> <span class="n">today</span><span class="p">)</span>
 </code></pre></div>
 </div>
-<p>Enter the time interval you want to query. <code>begin_date</code> is the start time, and <code>end_date</code> is the end time.</p>
+<p>帶入想查詢的時間區間。<code>begin_date</code>為起始時間，<code>end_date</code>為結束時間。</p>
 <div class="admonition info">
 <p class="admonition-title">In</p>
 <div class="highlight"><pre><span></span><code><span class="n">profitloss_summary</span> <span class="o">=</span> <span class="n">api</span><span class="o">.</span><span class="n">list_profit_loss_summary</span><span class="p">(</span><span class="n">api</span><span class="o">.</span><span class="n">stock_account</span><span class="p">,</span><span class="s1">&#39;2020-05-05&#39;</span><span class="p">,</span><span class="s1">&#39;2020-05-30&#39;</span><span class="p">)</span>
@@ -2076,7 +2087,7 @@
 <span class="p">)</span>
 </code></pre></div>
 </div>
-<p>To DataFrame</p>
+<p>轉成DataFrame</p>
 <div class="admonition info">
 <p class="admonition-title">In</p>
 <div class="highlight"><pre><span></span><code><span class="n">df</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">(</span><span class="n">pnl</span><span class="o">.</span><span class="vm">__dict__</span> <span class="k">for</span> <span class="n">pnl</span> <span class="ow">in</span> <span class="n">profitloss_summary</span><span class="o">.</span><span class="n">profitloss_summary</span><span class="p">)</span> 
@@ -2122,31 +2133,37 @@
 </div>
 <div class="admonition example">
 <p class="admonition-title">StockProfitLossSummary</p>
-<div class="highlight"><pre><span></span><code><span class="n">code</span> <span class="p">(</span><span class="nb">str</span><span class="p">):</span> <span class="n">contract</span> <span class="nb">id</span>
-<span class="n">quantity</span> <span class="p">(</span><span class="nb">int</span><span class="p">):</span> <span class="n">quantity</span>
-<span class="n">entry_price</span> <span class="p">(</span><span class="nb">int</span><span class="p">):</span> <span class="n">price</span> <span class="n">of</span> <span class="n">entry</span>
-<span class="n">cover_price</span> <span class="p">(</span><span class="nb">int</span><span class="p">):</span> <span class="n">price</span> <span class="n">of</span> <span class="n">cover</span>
-<span class="n">pnl</span> <span class="p">(</span><span class="nb">float</span><span class="p">):</span> <span class="n">profit</span> <span class="ow">and</span> <span class="n">loss</span>
-<span class="n">currency</span> <span class="p">(</span><span class="nb">str</span><span class="p">):</span> <span class="n">currency</span>
-<span class="n">entry_cost</span> <span class="p">(</span><span class="nb">int</span><span class="p">):</span> <span class="n">cost</span> <span class="n">of</span> <span class="n">entry</span>
-<span class="n">cover_cost</span> <span class="p">(</span><span class="nb">int</span><span class="p">):</span> <span class="n">cost</span> <span class="n">of</span> <span class="n">cover</span>
-<span class="n">buy_cost</span> <span class="p">(</span><span class="nb">int</span><span class="p">):</span> <span class="n">cost</span> <span class="n">of</span> <span class="n">buy</span>
-<span class="n">sell_cost</span> <span class="p">(</span><span class="nb">int</span><span class="p">):</span> <span class="n">cost</span> <span class="n">of</span> <span class="n">sell</span>
-<span class="n">pr_ratio</span> <span class="p">(</span><span class="nb">float</span><span class="p">):</span> <span class="n">profit</span> <span class="n">rate</span>
-<span class="n">cond</span> <span class="p">(</span><span class="n">StockOrderCond</span><span class="p">):</span> <span class="p">{</span><span class="n">Cash</span><span class="p">,</span> <span class="n">Netting</span><span class="p">,</span> <span class="n">MarginTrading</span><span class="p">,</span> <span class="n">ShortSelling</span><span class="p">}</span>
+<div class="highlight"><pre><span></span><code><span class="n">code</span> <span class="p">(</span><span class="nb">str</span><span class="p">):</span> <span class="n">商品代碼</span>
+<span class="n">quantity</span> <span class="p">(</span><span class="nb">int</span><span class="p">):</span> <span class="n">數量</span>
+<span class="n">entry_price</span> <span class="p">(</span><span class="nb">int</span><span class="p">):</span> <span class="n">進倉價格</span>
+<span class="n">cover_price</span> <span class="p">(</span><span class="nb">int</span><span class="p">):</span> <span class="n">平倉價格</span>
+<span class="n">pnl</span> <span class="p">(</span><span class="nb">float</span><span class="p">):</span> <span class="n">損益</span>
+<span class="n">currency</span> <span class="p">(</span><span class="nb">str</span><span class="p">):</span> <span class="n">幣別</span>
+<span class="n">entry_cost</span> <span class="p">(</span><span class="nb">int</span><span class="p">):</span> <span class="n">進倉金額</span><span class="p">(</span><span class="n">不含手續費及交易稅</span><span class="p">)</span>
+<span class="n">cover_cost</span> <span class="p">(</span><span class="nb">int</span><span class="p">):</span> <span class="n">平倉金額</span><span class="p">(</span><span class="n">不含手續費及交易稅</span><span class="p">)</span>
+<span class="n">buy_cost</span> <span class="p">(</span><span class="nb">int</span><span class="p">):</span> <span class="n">付出成本</span>
+<span class="n">sell_cost</span> <span class="p">(</span><span class="nb">int</span><span class="p">):</span> <span class="n">賣出收入</span>
+<span class="n">pr_ratio</span> <span class="p">(</span><span class="nb">float</span><span class="p">):</span> <span class="n">損益比</span>
+<span class="n">cond</span> <span class="p">(</span><span class="n">StockOrderCond</span><span class="p">):</span> <span class="p">{</span>
+                <span class="n">Cash</span><span class="p">:</span> <span class="n">現股</span><span class="p">(</span><span class="n">預設值</span><span class="p">),</span> 
+                <span class="n">Netting</span><span class="p">:</span> <span class="n">餘額交割</span><span class="p">,</span>
+                <span class="n">MarginTrading</span><span class="p">:</span> <span class="n">融資</span><span class="p">,</span> 
+                <span class="n">ShortSelling</span><span class="p">:</span> <span class="n">融券</span><span class="p">,</span> 
+                <span class="n">Emerging</span><span class="p">:</span> <span class="n">興櫃</span>
+            <span class="p">}</span>
 </code></pre></div>
 </div>
 <div class="admonition example">
 <p class="admonition-title">FutureProfitLossSummary</p>
-<div class="highlight"><pre><span></span><code><span class="n">code</span> <span class="p">(</span><span class="nb">str</span><span class="p">):</span> <span class="n">contract</span> <span class="nb">id</span>
-<span class="n">quantity</span> <span class="p">(</span><span class="nb">int</span><span class="p">):</span> <span class="n">quantity</span>
-<span class="n">entry_price</span> <span class="p">(</span><span class="nb">int</span><span class="p">):</span> <span class="n">price</span> <span class="n">of</span> <span class="n">entry</span>
-<span class="n">cover_price</span> <span class="p">(</span><span class="nb">int</span><span class="p">):</span> <span class="n">price</span> <span class="n">of</span> <span class="n">cover</span>
-<span class="n">pnl</span> <span class="p">(</span><span class="nb">float</span><span class="p">):</span> <span class="n">profit</span> <span class="ow">and</span> <span class="n">loss</span>
-<span class="n">currency</span> <span class="p">(</span><span class="nb">str</span><span class="p">):</span> <span class="n">currency</span>
-<span class="n">direction</span> <span class="p">(</span><span class="n">Action</span><span class="p">):</span> <span class="p">{</span><span class="n">Buy</span><span class="p">,</span> <span class="n">Sell</span><span class="p">}</span>
-<span class="n">tax</span> <span class="p">(</span><span class="nb">int</span><span class="p">):</span> <span class="n">tax</span>
-<span class="n">fee</span> <span class="p">(</span><span class="nb">int</span><span class="p">):</span> <span class="n">fee</span>
+<div class="highlight"><pre><span></span><code><span class="n">code</span> <span class="p">(</span><span class="nb">str</span><span class="p">):</span> <span class="n">商品代碼</span>
+<span class="n">quantity</span> <span class="p">(</span><span class="nb">int</span><span class="p">):</span> <span class="n">數量</span>
+<span class="n">entry_price</span> <span class="p">(</span><span class="nb">int</span><span class="p">):</span> <span class="n">進倉價格</span>
+<span class="n">cover_price</span> <span class="p">(</span><span class="nb">int</span><span class="p">):</span> <span class="n">平倉價格</span>
+<span class="n">pnl</span> <span class="p">(</span><span class="nb">float</span><span class="p">):</span> <span class="n">損益</span>
+<span class="n">currency</span> <span class="p">(</span><span class="nb">str</span><span class="p">):</span> <span class="n">幣別</span>
+<span class="n">direction</span> <span class="p">(</span><span class="n">Action</span><span class="p">):</span> <span class="n">買賣別</span> <span class="p">{</span><span class="n">Buy</span><span class="p">,</span> <span class="n">Sell</span><span class="p">}</span>
+<span class="n">tax</span> <span class="p">(</span><span class="nb">int</span><span class="p">):</span> <span class="n">交易稅</span>
+<span class="n">fee</span> <span class="p">(</span><span class="nb">int</span><span class="p">):</span> <span class="n">交易手續費</span>
 </code></pre></div>
 </div>
 

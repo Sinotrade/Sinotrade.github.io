@@ -4,1041 +4,13 @@
 
 # Usage documentation
 
-# Shioaji
+商品檔將在很多地方被使用，例如下單、訂閱行情...等。
 
-______________________________________________________________________
+### 取得商品檔
 
-Shioaji is the most pythonic API for trading the Taiwan and global financial market. You can integrated your favorite Python packages such as NumPy, pandas, PyTorch or TensorFlow to build your trading model with the Shioaji API on cross-platform.
+下方提供兩種方法取得商品檔:
 
-______________________________________________________________________
-
-We are in early-release alpha. Expect some adventures and rough edges.
-
-The key features are:
-
-- Fast: High performance with c++ implement core and FPGA event broker.
-- Easy: Designed to be easy to use and learn.
-- Fast to code: With native python to integrate with large python ecosystem.
-- Cross-Platform: The first one python trading API with Linux compatible in Taiwan.
-
-## Installation
-
-### Binaries
-
-simple using pip to install
-
-```
-pip install shioaji
-
-```
-
-update shioaji with
-
-```
-pip install -U shioaji
-
-```
-
-### uv
-
-using uv to install
-
-```
-uv add shioaji 
-
-```
-
-install speed version
-
-```
-uv add shioaji --extra speed
-
-```
-
-### Docker Image
-
-simple run with interactive mode in docker
-
-```
-docker run -it sinotrade/shioaji:latest
-
-```
-
-run with jupyter lab or notebook
-
-```
-docker run -p 8888:8888 sinotrade/shioaji:jupyter
-
-```
-
-# Environment Setup
-
-In this section, we will introduce how to setup the python environment with [`uv`](https://docs.astral.sh/uv/) for using Shioaji API. `uv` is the best solution for managing python environment on cross-platform.
-
-### System Requirements
-
-Before starting, please ensure your system meets the following requirements:
-
-- Operating System: 64-bit version of Windows, MacOS, or Linux
-- Python Version: 3.8 or later
-- User needs to have a Sinopac account and obtain Shioaji API permissions.
-
-## Install Python Environment
-
-First, you need to install Python on your system. We recommend using `uv` as the Python environment and project environment management tool. And we will use `uv` to install Shioaji API in the project.
-
-note
-
-[`uv`](https://docs.astral.sh/uv/) is the best solution for managing python environment on cross-platform.
-
-### Install uv
-
-script
-
-```
-curl -LsSf https://astral.sh/uv/install.sh | sh
-
-```
-
-```
-powershell -c "irm https://astral.sh/uv/install.ps1 | iex"
-
-```
-
-More information about installation and usage can be found at [uv official document](https://docs.astral.sh/uv/)
-
-## Create Project Environment
-
-First, create a project named `sj-trading`
-
-```
-uv init sj-trading --package --app --vcs git
-cd sj-trading
-
-```
-
-The project structure will be like this:
-
-```
-sj-trading
-├── README.md
-├── pyproject.toml
-└── src
-    └── sj_trading
-        └── __init__.py
-
-```
-
-add Shioaji API to the project
-
-```
-uv add shioaji
-
-```
-
-Open `pyproject.toml` file and you will see the following content
-
-```
-[project]
-name = "sj-trading"
-version = "0.1.0"
-description = "Shioaji Trading"
-readme = "README.md"
-requires-python = ">=3.12"
-dependencies = [
-    "shioaji>=1.2.5",
-]
-
-[project.scripts]
-hello = "sj_trading:hello"
-
-[build-system]
-requires = ["hatchling"]
-build-backend = "hatchling.build"
-
-```
-
-the `hello` command is the entry point of the project.
-
-execute hello command
-
-```
-uv run hello
-
-```
-
-output
-
-```
-Hello from sj-trading!
-
-```
-
-open `src/sj_trading/__init__.py` file and copy the following content
-
-```
-import shioaji as sj
-
-def hello():
-    get_shioaji_client()
-
-
-def get_shioaji_client() -> sj.Shioaji:
-    api =  sj.Shioaji()
-    print("Shioaji API created")
-    return api
-
-```
-
-execute command
-
-```
-uv run hello
-
-```
-
-output
-
-```
-Shioaji API created
-
-```
-
-This is the most basic environment setup and you can start using Shioaji API now.
-
-### Use Jupyter Environment
-
-Add ipykernel to the project development dependencies
-
-```
-uv add --dev ipykernel
-
-```
-
-Add the project environment to the Jupyter kernel
-
-```
-uv run ipython kernel install --user --name=sj-trading
-
-```
-
-Start Jupyter
-
-```
-uv run --with jupyter jupyter lab
-
-```
-
-Open `dev.ipynb` file in Jupyter and select `sj-trading` kernel to execute the command
-
-The `hello` command we wrote earlier can be executed in this way
-
-If you have already opened an account, you can skip the next chapter and go to [Token & Certificate](../tutor/prepare/token/) to get the API Key and certificate.
-
-Just import our API library like other popular python library and new the instance to start using our API. Login your account and activate the certification then you can start placing order.
-
-Note
-
-\*\* Please complete the Prepare before starting, including [Open Account](../tutor/prepare/open_account/), [Terms of Service](../tutor/prepare/terms/) and [Token](../tutor/prepare/token/). \*\*
-
-#### Login and Activate CA
-
-```
-import shioaji as sj
-
-api = sj.Shioaji()
-accounts =  api.login("YOUR_API_KEY", "YOUR_SECRET_KEY")
-api.activate_ca(
-    ca_path="/c/your/ca/path/Sinopac.pfx",
-    ca_passwd="YOUR_CA_PASSWORD",
-    person_id="Person of this Ca",
-)
-
-```
-
-```
-import shioaji as sj
-
-api = sj.Shioaji()
-accounts = api.login("YOUR_PERSON_ID", "YOUR_PASSWORD")
-api.activate_ca(
-    ca_path="/c/your/ca/path/Sinopac.pfx",
-    ca_passwd="YOUR_CA_PASSWORD",
-    person_id="Person of this Ca",
-)
-
-```
-
-The Certification Path
-
-In Windows you copy the file path with `\` to separate the file, you need to replace it with `/`.
-
-## Streaming Market Data
-
-Subscribe the real time market data. Simplely pass contract into quote `subscribe` function and give the quote type will receive the streaming data.
-
-```
-api.quote.subscribe(api.Contracts.Stocks["2330"], quote_type="tick")
-api.quote.subscribe(api.Contracts.Stocks["2330"], quote_type="bidask")
-api.quote.subscribe(api.Contracts.Futures["TXFC0"], quote_type="tick")
-
-```
-
-Quote Type
-
-Currently we support two quote type you can see in `shioaji.constent.QuoteType`. The best way to use that is directly pass this enum into `subscribe` function.
-
-## Place Order
-
-Like the above subscribing market data using the contract, then need to define the order. Pass them into `place_order` function, then it will return the trade that describe the status of your order.
-
-```
-contract = api.Contracts.Stocks["2890"]
-order = api.Order(
-    price=12,
-    quantity=5,
-    action=sj.constant.Action.Buy,
-    price_type=sj.constant.StockPriceType.LMT,
-    order_type=sj.constant.OrderType.ROD,
-)
-trade = api.place_order(contract, order)
-
-```
-
-## Conclusion
-
-This quickstart demonstrates how easy to use our package for native Python users. Unlike many other trading API is hard for Python developer. We focus on making more pythonic trading API for our users.
-
-Version 1.0 is a major release. This document assist users migrating to version 1.0.
-
-## Shioaji
-
-Remove argument `backend`
-
-In
-
-```
-import shioaji as sj
-sj.Shioaji?
-
-```
-
-Out
-
-```
-Init signature:
-sj.Shioaji(
-    simulation: bool = False,
-    proxies: Dict[str, str] = {},
-    currency: str = 'NTD',
-)
-Docstring:     
-shioaji api
-
-Functions:
-    login
-    logout
-    activate_ca
-    list_accounts
-    set_default_account
-    get_account_margin
-    get_account_openposition
-    get_account_settle_profitloss
-    get_stock_account_funds
-    get_stock_account_unreal_profitloss
-    get_stock_account_real_profitloss
-    place_order
-    update_order
-    update_status
-    list_trades
-
-Objects:
-    Quote
-    Contracts
-    Order
-Init docstring:
-initialize Shioaji to start trading
-
-Args:
-    simulation (bool):
-        - False: to trading on real market (just use your Sinopac account to start trading)
-        - True: become simulation account(need to contract as to open simulation account)
-    proxies (dict): specific the proxies of your https
-        ex: {'https': 'your-proxy-url'}
-    currency (str): {NTX, USX, NTD, USD, HKD, EUR, JPY, GBP}
-        set the default currency for display
-
-```
-
-```
-Init signature:
-sj.Shioaji(
-    backend: str = 'http',
-    simulation: bool = False,
-    proxies: Dict[str, str] = {},
-    currency: str = 'NTD',
-)
-Docstring:
-shioaji api
-
-Functions:
-    login
-    activate_ca
-    list_accounts
-    set_default_account
-    get_account_margin
-    get_account_openposition
-    get_account_settle_profitloss
-    get_stock_account_funds
-    get_stock_account_unreal_profitloss
-    get_stock_account_real_profitloss
-    place_order
-    update_order
-    update_status
-    list_trades
-
-Objects:
-    Quote
-    Contracts
-    Order
-Init docstring:
-initialize Shioaji to start trading
-
-Args:
-    backend (str): {http, socket}
-        use http or socket as backend currently only support http, async socket backend coming soon.
-    simulation (bool):
-        - False: to trading on real market (just use your Sinopac account to start trading)
-        - True: become simulation account(need to contract as to open simulation account)
-    proxies (dict): specific the proxies of your https
-        ex: {'https': 'your-proxy-url'}
-    currency (str): {NTX, USX, NTD, USD, HKD, EUR, JPY, GBP}
-        set the default currency for display
-
-```
-
-## Login
-
-Please update your login parameters from `person_id` and `passwd` to `api_key` and `secret_key` in order to use version 1.0. You can apply for an api_key on the [Token](https://sinotrade.github.io/tutor/prepare/token/) page.
-
-In
-
-```
-import shioaji as sj
-api = sj.Shioaji()
-api.login(
-    api_key="YOUR_API_KEY", 
-    secret_key="YOUR_SECRET_KEY"
-)
-
-```
-
-```
-import shioaji as sj
-api = sj.Shioaji()
-api.login(
-    person_id="YOUR_PERSON_ID", 
-    passwd="YOUR_PASSWORD",
-)
-
-```
-
-Out
-
-```
-[
-    FutureAccount(person_id='', broker_id='', account_id='', signed=True, username=''),
-    StockAccount(person_id='', broker_id='', account_id='', signed=True, username='')
-]
-
-```
-
-## Stock Order
-
-Rename `TFTStockOrder` to `StockOrder`
-
-StockOrder
-
-```
->> sj.order.StockOrder?
-
-Init signature:
-sj.order.StockOrder(
-    *,
-    action: shioaji.constant.Action,
-    price: Union[pydantic.types.StrictInt, float],
-    quantity: shioaji.order.ConstrainedIntValue,
-    id: str = '',
-    seqno: str = '',
-    ordno: str = '',
-    account: shioaji.account.Account = None,
-    custom_field: shioaji.order.ConstrainedStrValue = '',
-    ca: str = '',
-    price_type: shioaji.constant.StockPriceType,
-    order_type: shioaji.constant.OrderType,
-    order_lot: shioaji.constant.StockOrderLot = <StockOrderLot.Common: 'Common'>,
-    order_cond: shioaji.constant.StockOrderCond = <StockOrderCond.Cash: 'Cash'>,
-    daytrade_short: bool = False,
-) -> None
-
-```
-
-```
->> sj.order.TFTStockOrder?
-
-Init signature:
-sj.order.TFTStockOrder(
-    *,
-    action: shioaji.constant.Action,
-    price: Union[pydantic.types.StrictInt, float],
-    quantity: shioaji.order.ConstrainedIntValue,
-    id: str = '',
-    seqno: str = '',
-    ordno: str = '',
-    account: shioaji.account.Account = None,
-    custom_field: shioaji.order.ConstrainedStrValue = '',
-    ca: str = '',
-    price_type: shioaji.constant.TFTStockPriceType,
-    order_type: shioaji.constant.TFTOrderType,
-    order_lot: shioaji.constant.TFTStockOrderLot = <TFTStockOrderLot.Common: 'Common'>,
-    order_cond: shioaji.constant.StockOrderCond = <StockOrderCond.Cash: 'Cash'>,
-    first_sell: shioaji.constant.StockFirstSell = <StockFirstSell.No: 'false'>,
-) -> None
-
-```
-
-### Order
-
-Rename
-
-- `TFTStockPriceType` to `StockPriceType`
-- `TFTOrderType` to `OrderType`
-- `TFTStockOrderLot` to `StockOrderLot`
-- `first_sell` to `daytrade_short`, and type changed to `Bool`.
-
-Order
-
-```
-order = api.Order(
-    price=12, 
-    quantity=1, 
-    action=sj.constant.Action.Sell, 
-    price_type=sj.constant.StockPriceType.LMT, 
-    order_type=sj.constant.OrderType.ROD, 
-    order_lot=sj.constant.StockOrderLot.Common, 
-    daytrade_short=True,
-    custom_field="test",
-    account=api.stock_account
-)
-
-```
-
-```
-order = api.Order(
-    price=12, 
-    quantity=1, 
-    action=sj.constant.Action.Sell, 
-    price_type=sj.constant.TFTStockPriceType.LMT, 
-    order_type=sj.constant.TFTOrderType.ROD, 
-    order_lot=sj.constant.TFTStockOrderLot.Common, 
-    first_sell=sj.constant.StockFirstSell.Yes,
-    custom_field="test",
-    account=api.stock_account
-)
-
-```
-
-### Order Callback
-
-Rename `TFTOrder` to `StockOrder`
-
-Order Callback
-
-```
-OrderState.StockOrder {
-    'operation': {
-        'op_type': 'New',
-        'op_code': '00',
-        'op_msg': ''
-    },
-    'order': {
-        'id': 'c21b876d',
-        'seqno': '429832',
-        'ordno': 'W2892',
-        'action': 'Buy',
-        'price': 12.0,
-        'quantity': 10,
-        'order_cond': 'Cash',
-        'order_lot': 'Common',
-        'custom_field': 'test',
-        'order_type': 'ROD',
-        'price_type': 'LMT'
-    },
-    'status': {
-        'id': 'c21b876d',
-        'exchange_ts': 1583828972,
-        'modified_price': 0,
-        'cancel_quantity': 0,
-        'web_id': '137'
-    },
-    'contract': {
-        'security_type': 'STK',
-        'exchange': 'TSE',
-        'code': '2890',
-        'symbol': '',
-        'name': '',
-        'currency': 'TWD'
-    }
-}
-
-```
-
-```
-OrderState.TFTOrder {
-    'operation': {
-        'op_type': 'New',
-        'op_code': '00',
-        'op_msg': ''
-    },
-    'order': {
-        'id': 'c21b876d',
-        'seqno': '429832',
-        'ordno': 'W2892',
-        'action': 'Buy',
-        'price': 12.0,
-        'quantity': 10,
-        'order_cond': 'Cash',
-        'order_lot': 'Common',
-        'custom_field': 'test',
-        'order_type': 'ROD',
-        'price_type': 'LMT'
-    },
-    'status': {
-        'id': 'c21b876d',
-        'exchange_ts': 1583828972,
-        'modified_price': 0,
-        'cancel_quantity': 0,
-        'web_id': '137'
-    },
-    'contract': {
-        'security_type': 'STK',
-        'exchange': 'TSE',
-        'code': '2890',
-        'symbol': '',
-        'name': '',
-        'currency': 'TWD'
-    }
-}
-
-```
-
-### Deal Callback
-
-Rename `TFTDeal` to `StockDeal`
-
-Deal Callback
-
-```
-OrderState.StockDeal {
-    'trade_id': '12ab3456', 
-    'exchange_seq': '123456', 
-    'broker_id': 'your_broker_id', 
-    'account_id': 'your_account_id', 
-    'action': <Action.Buy: 'Buy'>, 
-    'code': '2890', 
-    'order_cond': <StockOrderCond.Cash: 'Cash'>, 
-    'order_lot': <TFTStockOrderLot.Common: 'Common'>,
-    'price': 12, 
-    'quantity': 10,
-    'web_id': '137',
-    'custom_field': 'test',
-    'ts': 1583828972
-}
-
-```
-
-```
-OrderState.TFTDeal {
-    'trade_id': '12ab3456', 
-    'exchange_seq': '123456', 
-    'broker_id': 'your_broker_id', 
-    'account_id': 'your_account_id', 
-    'action': <Action.Buy: 'Buy'>, 
-    'code': '2890', 
-    'order_cond': <StockOrderCond.Cash: 'Cash'>, 
-    'order_lot': <TFTStockOrderLot.Common: 'Common'>,
-    'price': 12, 
-    'quantity': 10,
-    'web_id': '137',
-    'custom_field': 'test',
-    'ts': 1583828972
-}
-
-```
-
-## Futures Order
-
-FuturesOrder
-
-```
->> sj.order.FuturesOrder?
-
-Init signature:
-sj.order.FuturesOrder(
-    *,
-    action: shioaji.constant.Action,
-    price: Union[pydantic.types.StrictInt, float],
-    quantity: shioaji.order.ConstrainedIntValue,
-    id: str = '',
-    seqno: str = '',
-    ordno: str = '',
-    account: shioaji.account.Account = None,
-    custom_field: shioaji.order.ConstrainedStrValue = '',
-    ca: str = '',
-    price_type: shioaji.constant.FuturesPriceType,
-    order_type: shioaji.constant.OrderType,
-    octype: shioaji.constant.FuturesOCType = <FuturesOCType.Auto: 'Auto'>,
-) -> None
-
-```
-
-```
->> sj.order.FuturesOrder?
-
-Init signature:
-sj.order.FuturesOrder(
-    *,
-    action: shioaji.constant.Action,
-    price: Union[pydantic.types.StrictInt, float],
-    quantity: shioaji.order.ConstrainedIntValue,
-    id: str = '',
-    seqno: str = '',
-    ordno: str = '',
-    account: shioaji.account.Account = None,
-    custom_field: shioaji.order.ConstrainedStrValue = '',
-    ca: str = '',
-    price_type: shioaji.constant.FuturesPriceType,
-    order_type: shioaji.constant.FuturesOrderType,
-    octype: shioaji.constant.FuturesOCType = <FuturesOCType.Auto: 'Auto'>,
-) -> None
-
-```
-
-### Order
-
-Rename `FuturesOrderType` to `OrderType`
-
-Order
-
-```
-order = api.Order(
-    action=sj.constant.Action.Buy,
-    price=100,
-    quantity=1,
-    price_type=sj.constant.FuturesPriceType.LMT,
-    order_type=sj.constant.OrderType.ROD, 
-    octype=sj.constant.FuturesOCType.Auto,
-    account=api.futopt_account
-)
-
-```
-
-```
-order = api.Order(
-    action=sj.constant.Action.Buy,
-    price=100,
-    quantity=1,
-    price_type=sj.constant.FuturesPriceType.LMT,
-    order_type=sj.constant.FuturesOrderType.ROD, 
-    octype=sj.constant.FuturesOCType.Auto,
-    account=api.futopt_account
-)
-
-```
-
-### Order Callback
-
-Rename `FOrder` to `FuturesOrder`
-
-Order Event
-
-```
-OrderState.FuturesOrder {
-    'operation': {
-        'op_type': 'New', 
-        'op_code': '00', 
-        'op_msg': ''
-    }, 
-    'order': {
-        'id': '02c347f7', 
-        'seqno': '956201', 
-        'ordno': 'kY00H', 
-        'action': 'Sell', 
-        'price': 17760.0, 
-        'quantity': 1, 
-        'order_cond': None, 
-        'order_type': 'ROD', 
-        'price_type': 'LMT', 
-        'market_type': 'Night', 
-        'oc_type': 'New', 
-        'subaccount': ''
-    }, 
-    'status': {
-        'id': '02c347f7', 
-        'exchange_ts': 1625729890, 
-        'modified_price': 0.0, 
-        'cancel_quantity': 0,
-        "web_id": "P"
-    }, 
-    'contract': {
-        'security_type': 'FUT', 
-        'code': 'TXF', 
-        'exchange': 'TIM', 
-        'delivery_month': '202107', 
-        'strike_price': 0.0, 
-        'option_right': 'Future'
-    }
-}
-
-```
-
-```
-OrderState.FOrder {
-    'operation': {
-        'op_type': 'New', 
-        'op_code': '00', 
-        'op_msg': ''
-    }, 
-    'order': {
-        'id': '02c347f7', 
-        'seqno': '956201', 
-        'ordno': 'kY00H', 
-        'action': 'Sell', 
-        'price': 17760.0, 
-        'quantity': 1, 
-        'order_cond': None, 
-        'order_type': 'ROD', 
-        'price_type': 'LMT', 
-        'market_type': 'Night', 
-        'oc_type': 'New', 
-        'subaccount': ''
-    }, 
-    'status': {
-        'id': '02c347f7', 
-        'exchange_ts': 1625729890, 
-        'modified_price': 0.0, 
-        'cancel_quantity': 0,
-        "web_id": "P"
-    }, 
-    'contract': {
-        'security_type': 'FUT', 
-        'code': 'TXF', 
-        'exchange': 'TIM', 
-        'delivery_month': '202107', 
-        'strike_price': 0.0, 
-        'option_right': 'Future'
-    }
-}
-
-```
-
-### Deal Callback
-
-Rename `FDeal` to `FuturesDeal`
-
-Deal Event
-
-```
-OrderState.FuturesDeal {
-    "trade_id":"02c347f7",
-    "seqno":"956344",
-    "ordno":"ky00N11O",
-    "exchange_seq":"a0000060",
-    "broker_id":"F002000",
-    "account_id":"9104000",
-    "action":"Sell",
-    "code":"TXF",
-    "price":17650.0,
-    "quantity":4,
-    "subaccount":"",
-    "security_type":"FUT",
-    "delivery_month":"202107",
-    "strike_price":0.0,
-    "option_right":"Future",
-    "market_type":"Day",
-    "ts":1625800369
-}
-
-```
-
-```
-OrderState.FDeal {
-    "trade_id":"02c347f7",
-    "seqno":"956344",
-    "ordno":"ky00N11O",
-    "exchange_seq":"a0000060",
-    "broker_id":"F002000",
-    "account_id":"9104000",
-    "action":"Sell",
-    "code":"TXF",
-    "price":17650.0,
-    "quantity":4,
-    "subaccount":"",
-    "security_type":"FUT",
-    "delivery_month":"202107",
-    "strike_price":0.0,
-    "option_right":"Future",
-    "market_type":"Day",
-    "ts":1625800369
-}
-
-```
-
-## Market Data
-
-Warn
-
-**version >= 1.1 will no longer provide QuoteVersion.v0, please change to QuoteVersion.v1.**
-
-### Callback
-
-#### Tick
-
-In: pythonic way by using decorator
-
-```
-from shioaji import TickSTKv1, Exchange
-
-@api.on_tick_stk_v1()
-def quote_callback(exchange: Exchange, tick:TickSTKv1):
-    print(f"Exchange: {exchange}, Tick: {tick}")
-
-```
-
-```
-@api.quote.on_quote
-def quote_callback(topic: str, quote: dict):
-    print(f"Topic: {topic}, Quote: {quote}")
-
-```
-
-In: traditional way
-
-```
-from shioaji import TickSTKv1, Exchange
-
-def quote_callback(exchange: Exchange, tick:TickSTKv1):
-    print(f"Exchange: {exchange}, Tick: {tick}")
-
-api.quote.set_on_tick_stk_v1_callback(quote_callback)
-
-```
-
-```
-def quote_callback(topic: str, quote: dict):
-    print(f"Topic: {topic}, Quote: {quote}")
-
-api.quote.set_quote_callback(quote_callback)
-
-```
-
-Out
-
-```
-Exchange: Exchange.TSE, Tick: Tick(code='2330', datetime=datetime.datetime(2021, 7, 2, 13, 16, 35, 92970), open=Decimal('590'), avg_price=Decimal('589.05'), close=Decimal('590'), high=Decimal('593'), low=Decimal('587'), amount=Decimal('590000'), total_amount=Decimal('8540101000'), volume=1, total_volume=14498, tick_type=1, chg_type=4, price_chg=Decimal('-3'), pct_chg=Decimal('-0.505902'), trade_bid_volume=6638, ask_side_total_vol=7860, bid_side_total_cnt=2694, ask_side_total_cnt=2705, closing_oddlot_shares=0, fixed_trade_vol=0, suspend=0, simtrade=0, intraday_odd=0)
-
-```
-
-```
-Topic: MKT/*/TSE/2330, Quote: {'AmountSum': [4739351000.0], 'Close': [596.0], 'Date': '2021/03/30', 'TickType': [2], 'Time': '10:01:33.349431', 'VolSum': [7932], 'Volume': [1]}
-
-```
-
-#### BidAsk
-
-In: pythonic way by using decorator
-
-```
-from shioaji import BidAskSTKv1, Exchange
-
-@api.on_bidask_stk_v1()
-def quote_callback(exchange: Exchange, bidask:BidAskSTKv1):
-    print(f"Exchange: {exchange}, BidAsk: {bidask}")
-
-```
-
-```
-@api.quote.on_quote
-def quote_callback(topic: str, quote: dict):
-    print(f"Topic: {topic}, Quote: {quote}")
-
-```
-
-In: traditional way
-
-```
-from shioaji import BidAskSTKv1, Exchange
-
-def quote_callback(exchange: Exchange, bidask:BidAskSTKv1):
-    print(f"Exchange: {exchange}, BidAsk: {bidask}")
-
-api.quote.set_on_bidask_stk_v1_callback(quote_callback)
-
-```
-
-```
-def quote_callback(topic: str, quote: dict):
-    print(f"Topic: {topic}, Quote: {quote}")
-
-api.quote.set_quote_callback(quote_callback)
-
-```
-
-Out
-
-```
-Exchange: Exchange.TSE, BidAsk: BidAsk(code='2330', datetime=datetime.datetime(2021, 7, 2, 13, 17, 29, 726428), bid_price=[Decimal('589'), Decimal('588'), Decimal('587'), Decimal('586'), Decimal('585')], bid_volume=[223, 761, 1003, 809, 1274], diff_bid_vol=[0, 0, 0, 0, 0], ask_price=[Decimal('590'), Decimal('591'), Decimal('592'), Decimal('593'), Decimal('594')], ask_volume=[304, 232, 183, 242, 131], diff_ask_vol=[1, 0, 0, 0, 0], suspend=0, simtrade=0, intraday_odd=0)
-
-```
-
-```
-Topic: QUT/idcdmzpcr01/TSE/2330, Quote: {'AskPrice': [590.0, 591.0, 592.0, 593.0, 594.0], 'AskVolume': [303, 232, 183, 242, 131], 'BidPrice': [589.0, 588.0, 587.0, 586.0, 585.0], 'BidVolume': [224, 762, 1003, 809, 1274], 'Date': '2021/07/02', 'Time': '13:17:26.391840'}
-
-```
-
-## Future Account Info.
-
-Remove functions
-
-```
-1. get_account_margin
-2. get_account_openposition
-3. get_account_settle_profitloss
-
-```
-
-Instead, you should use
-
-```
-1. margin
-2. list_positions( api.futopt_account )
-3. list_profit_loss( api.futopt_account )
-4. list_profit_loss_detail( api.futopt_account )
-5. list_profit_loss_summary( api.futopt_account )
-
-```
-
-For more information, please refer to [Account Data](../tutor/accounting/position/) section.
-
-Finally, give us support and encouragement on [GITHUB](https://github.com/login?return_to=%2FSinotrade%2FShioaji)
-
-Contract object will be used by a lot of place like place order, subscribe quote, etc.
-
-### Get Contracts
-
-The following provides two methods to get contracts:
-
-- method 1: After [Login](../../tutor/login/) success we will start to fetch all kind of contract but fetching will not block other action. So how to know the fetch action is done ? We have status of contracts download that you can use `Contracts.status`. If you set contracts_timeout inside `login` set to 10000, it will block the fetch and wait 10 second until the contract is back.
+- 方法1: [登入](../../tutor/login)成功後，將開始下載商品檔。但這個下載過程將不會影響其他的操作。若您想了解是否下載完成，可利用`Contracts.status`去得到下載狀態。`contracts_timeout` 設定為10000，它將等待10秒下載商品檔。
 
 In
 
@@ -1064,7 +36,7 @@ api.login(
 
 ```
 
-- method 2: If `fetch_contract` inside `login` is set to False, it will not download contract. You can use `fetch_contracts` to download.
+- 方法2: 若不想在登入時下載商品檔，將`fetch_contract` 設定為`False`。利用 `fetch_contracts` 下載商品檔
 
 In
 
@@ -1092,9 +64,9 @@ api.fetch_contracts(contract_download=True)
 
 ```
 
-### Contracts Information
+### 商品檔資訊
 
-The contracts we currently offer include: stocks, futures, options and indices. The products we provide can get more detailed information through the following ways.
+目前我們所提供的商品包含:證券、期貨、選擇權以及指數。可從下列方法更詳細得到我們所提供的商品。
 
 In
 
@@ -1110,7 +82,7 @@ Contracts(Indexs=(OTC, TSE), Stocks=(OES, OTC, TSE), Futures=(BRF, CAF, CBF, CCF
 
 ```
 
-#### Stock
+#### 證券
 
 In
 
@@ -1142,44 +114,23 @@ Stock(
 Stock
 
 ```
-exchange (Exchange): Attributes of industry
-    {OES, OTC, TSE ...etc}
-code (str): Id
-symbol (str): Symbol
-name (str): Name
-category (str): Category
-unit (int): Unit
-limit_up (float): Limit up
-limit_down (float): Limit down
-reference (float): Reference price
-update_date (str): Update date
-margin_trading_balance (int): Margin trading balance
-short_selling_balance (int): Short selling balance
-day_trade (DayTrade): Day trade
-    {Yes, No, OnlyBuy}
+exchange (Exchange): 交易所 {OES, OTC, TSE ...等}
+code (str): 商品代碼
+symbol (str): 符號
+name (str): 商品名稱
+category (str): 類別
+unit (int): 單位
+limit_up (float): 漲停價
+limit_down (float): 跌停價
+reference (float): 參考價
+update_date (str): 更新日期
+margin_trading_balance (int): 融資餘額
+short_selling_balance (int): 融券餘額
+day_trade (DayTrade): 可否當沖 {Yes, No, OnlyBuy}
 
 ```
 
-Out
-
-```
-Stock(
-    exchange=<Exchange.TSE: 'TSE'>, 
-    code='2890', 
-    symbol='TSE2890', 
-    name='永豐金', 
-    category='17', 
-    unit=1000, 
-    limit_up=19.1, 
-    limit_down=15.7, 
-    reference=17.4, 
-    update_date='2023/01/17', 
-    day_trade=<DayTrade.Yes: 'Yes'>
-)
-
-```
-
-#### Futures
+#### 期貨
 
 In
 
@@ -1212,22 +163,22 @@ Future(
 Future
 
 ```
-code (str): Id
-symbol (str): Symbol
-name (str): Name
-category (str): Category
-delivery_month (str): Delivery Month
-delivery_date (str): Delivery Date
-underlying_kind (str): Underlying Kind
-unit (int): Unit
-limit_up (float): Limit up
-limit_down (float): Limit down
-reference (float): Reference price
-update_date (str): Update date
+code (str): 商品代碼
+symbol (str): 符號
+name (str): 商品名稱
+category (str): 類別
+delivery_month (str): 交割月份
+delivery_date (str): 結算日
+underlying_kind (str): 標的類型
+unit (int): 單位
+limit_up (float): 漲停價
+limit_down (float): 跌停價
+reference (float): 參考價
+update_date (str): 更新時間
 
 ```
 
-#### Options
+#### 選擇權
 
 In
 
@@ -1262,26 +213,25 @@ Option(
 Option
 
 ```
-code (str): Id
-symbol (str): Symbol
-name (str): Name
-category (str): Category
-delivery_month (str): Delivery Month
-delivery_date (str): Delivery Date
-strike_price (int or float): Strike Price
-option_right (OptionRight): Option Right
-underlying_kind (str): Underlying Kind
-unit (int): Unit
-limit_up (float): Limit up
-limit_down (float): Limit down
-reference (float): Reference price
-update_date (str): Update date
+code (str): 商品代碼
+symbol (str): 符號
+name (str): 商品名稱
+category (str): 類型
+delivery_month (str): 交割月份
+delivery_date (str): 交割日期
+strike_price (int or float): 屢約價
+option_right (OptionRight): 買賣權別
+underlying_kind (str): 標的類型
+limit_up (float): 漲停價
+limit_down (float): 跌停價
+reference (float): 參考價
+update_date (str): 更新時間
 
 ```
 
-#### Index
+#### 指數
 
-The `Indexs` object shows all supported index contracts, among other categories. Index contracts do not support place_order, but allow subscribing to market quotes. This will be discussed in the next topic.
+`Indexs`物件顯示所有可以支援的指數商品，其他類別亦然。指數類的商品不支援下單，但允許訂閱行情。
 
 In
 
@@ -1320,27 +270,26 @@ Index(
 Index
 
 ```
-exchange (Exchange): exchange
-    {OES, OTC, TSE ...etc}
-code (str): Code
-symbol (str): Symbol
-name (str): Name
+exchange (Exchange): 交易所{OES, OTC, TSE ...等}
+code (str): 商品代碼
+symbol (str): 符號
+name (str): 商品名稱
 
 ```
 
-In order to avoid affecting other users' connections, please follow the following usage rules.
+為避免影響其他使用者連線，請遵守以下使用規範
 
-Traffic
+流量
 
-- Stock :
+- 現貨 :
 
-  | Trading volume by API in the past 30 days | Daily Traffic Limit | | --- | --- | | 0 | 500MB | | 1 - 1E | 2GB | | > 1E | 10GB |
+  | 近 30 日使用 API 成交金額 | 每日流量限制 | | --- | --- | | 0 | 500MB | | 1 - 1億 | 2GB | | > 1億 | 10GB |
 
-- Future :
+- 期貨 :
 
-  | Trading volume by API in the past 30 days | Daily Traffic Limit | | --- | --- | | 0 | 500MB | | 1 - TXF 1000 contracts / MXF 4000 contracts | 2GB | | > TXF 1000 contracts / MXF 4000 contracts | 10GB |
+  | 近 30 日使用 API 成交金額 | 每日流量限制 | | --- | --- | | 0 | 500MB | | 1 - 大台1000口 / 小台4000口 | 2GB | | > 大台1000口 / 小台4000口 | 10G |
 
-Traffic query
+流量及連線數查詢
 
 ```
 api.usage()
@@ -1355,63 +304,61 @@ UsageStatus(connections=1, bytes=41343260, limit_bytes=2147483648, remaining_byt
 ```
 
 ```
-connection: connection count.
-bytes: traffic.
-limit_bytes: limit bytes of daily.
-remaining_bytes: remaining bytes of daily.
+connection: 連線數量
+bytes: 已使用流量
+limit_bytes: 每日流量限制
+remaining_bytes: 剩餘可使用流量
 
 ```
 
-Counts
+次數
 
-- Data :
+- 行情 :
 
   `credit_enquire`, `short_stock_sources`, `snapshots`, `ticks`, `kbars`
 
-  - The total amount of inquiries above is limited to 50 times within 5 seconds.
-  - During trading hours, it is prohibited to query `ticks` more than 10 times.
-  - During trading hours, it is prohibited to query `kbars` more than 270 times.
+  - 以上查詢總次數 5 秒上限 50 次
+  - 盤中查詢 `ticks` 次數不得超過 10 次
+  - 盤中查詢 `kbars` 次數不得超過 270 次
 
-- Portfolio :
+- 帳務 :
 
   `list_profit_loss_detail`,`account_balance`, `list_settlements`, `list_profit_loss`, `list_positions`, `margin`
 
-  The total amount of inquiries above is limited to 25 times within 5 seconds.
+  以上查詢總次數 5 秒上限 25 次
 
-- Order :
+- 委託 :
 
   `place_order`, `update_status`, `update_qty`, `update_price`, `cancel_order`
 
-  The total amount of inquiries above is limited to 250 times within 10 seconds.
+  以上查詢總次數 10 秒上限 250 次
 
-- Subscribe :
+- 訂閱數 :
 
-  Number of `api.subscribe()` is 200.
+  `api.subscribe()`數量為200個
 
-- Connect :
+- 連線 :
 
-  The same SinoPac Securities `person_id` can only use up to 5 connections.
+  同一永豐金證券`person_id`，僅可使用最多5個連線。 注意: `api.login()`即建立一個連線
 
-  note. `api.login()`create a connection.
+- 登入 :
 
-- Login :
-
-  Up to 1000 times per day.
+  `api.login()`一天上限1000次
 
 Warn
 
-- If the traffic exceeds the limit, query requests for market data such as ticks, snapshots, and kbars will return empty values, while other functionalities remain unaffected.
-- If the usage exceeds the limit, the service will be suspended for one minute.
-- If the limit is exceeded multiple times in a row on the same day, the company will suspend the right to use the IP and ID.
-- If the ID is suspended, please contact Shioaji management staff
+- 若流量超過限制，行情(ticks、snapshots、kbars)類查詢將回傳空值，其他功能不受影響
+- 若使用量超過限制，將暫停服務一分鐘
+- 若當日連續多次超過限制，本公司將暫停該 IP 及 ID 使用權
+- 若 ID 被暫停使用，請洽 Shioaji 管理人員
 
-Login must have a SinoPac Securities account. If you do not have a SinoPac Securities account yet. See the [document](../prepare/open_account/) for details.
+登入必須擁有永豐金帳戶。若你還沒有擁永豐金帳戶，可詳見[開戶](../prepare/open_account/)。
 
-## Login
+## 登入
 
 Token login
 
-After version 1.0, we are using token as our `login` method. You can be found in [Token](../prepare/token/). Before version 1.0, using person id and password.
+在1.0版本之後，我們將使用Token作為我們的登入方式，申請KEY可參見[文件](../prepare/token/)。當版本小於1.0，我們使用帳號密碼作為我們登入的方法。
 
 In
 
@@ -1443,39 +390,38 @@ StockAccount(person_id='', broker_id='', account_id='', signed=True, username=''
 
 ```
 
-- If you cannot find `signed` in your accounts, please refer to [terms of service](../prepare/terms/) first.
+- If you cannot find `signed` in your accounts, please sign the [document](../prepare/terms/) first.
+- 如果在帳號清單中找不到 `signed`，請至[服務條款](../prepare/terms/)了解使用API服務所需要步驟。
 
 Login Arguments
 
 ```
-api_key (str): API Key
-secret_key (str): Secret Key
-fetch_contract (bool): whether to load contracts from cache or server (Default: True)
-contracts_timeout (int): fetch contract timeout (Default: 0 ms)
-contracts_cb (typing.Callable): fetch contract callback (Default: None)
-subscribe_trade (bool): whether to subscribe Order/Deal event callback (Default: True)
-receive_window (int): valid duration for login execution. (Default: 30,000 ms)
+api_key (str): API金鑰
+secret_key (str): 密鑰
+fetch_contract (bool): 是否從快取中讀取商品檔或從伺服器下載商品檔 (預設值: True)
+contracts_timeout (int): 獲取商品檔 timeout (預設值: 0 ms)
+contracts_cb (typing.Callable): 獲取商品檔 callback (預設值: None)
+subscribe_trade (bool): 是否訂閱委託/成交回報 (預設值: True)
+receive_window (int): 登入動作有效執行時間 (預設值: 30,000 毫秒)
 
 ```
 
 ```
-person_id (str): person_id
-passwd (str): password
-hashed (bool): whether password has been hashed (Default: False)
-fetch_contract (bool): whether to load contracts from cache or server (Default: True)
-contracts_timeout (int): fetch contract timeout (Default: 0 ms)
-contracts_cb (typing.Callable): fetch contract callback (Default: None)
-subscribe_trade (bool): whether to subscribe Order/Deal event callback (Default: True)
+person_id (str): 身分證字號
+passwd (str): 密碼
+hashed (bool): 密碼是否已經被hashed (預設值: False)
+fetch_contract (bool): 是否從快取中讀取商品檔或從伺服器下載商品檔 (預設值: True)
+contracts_timeout (int): 獲取商品檔 timeout (預設值: 0 ms)
+contracts_cb (typing.Callable): 獲取商品檔 callback (預設值: None)
+subscribe_trade (bool): 是否訂閱委託/成交回報 (預設值: True)
 
 ```
 
-Warning
+注意
 
-When the version is greater than 1.0, you may receive **Sign data is timeout** when login. That is, login has exceeded the effective execution time. It may be that the time difference between your computer and server is too large, you need to calibrate your computer time. Or login execution time exceeds valid time, you can increase `receive_window`.
+當版本大於1.0時，可能在登入時收到**Sign data is timeout**，這表示登入超過有效執行時間。可能是您的電腦時間與伺服器時間相差過大，需校準電腦的時間。或者登入執行時間超過有效時間，可將`receive_window`調高。
 
-### Fetch Contracts Callback
-
-You can use `contracts_cb` as print to check contract download status.
+### 獲取商品檔Callback
 
 In
 
@@ -1515,10 +461,9 @@ Out
 
 ```
 
-### Subscribe Trade
+### 訂閱委託/成交回報
 
-There are 2 options that you can adjust whether to subscribe trade (Order/Deal Event Callback).\
-The first is `subscribe_trade` in login aruguments. Default value of `subscribe_trade` is `True`, and it will automatically subscribe trade from all accounts. You don't need to make any adjustments, if you would like to receive Order/Deal Events.
+我們提供2個方式讓您可以調整訂閱委託/成交回報。首先是於 `login` 的參數 `subscribe_trade`，預設值為 `True`，會自動為您訂閱所有帳號的委託/成交回報。
 
 In
 
@@ -1544,7 +489,7 @@ api.login(
 
 ```
 
-The second one is to manually use the API `subscribe_trade` and `unsubscribe_trade` for specific account.
+另一個方式是，對特定帳號使用API `subscribe_trade` 及 `unsubscribe_trade`，即可訂閱或取消訂閱訂閱委託/成交回報。
 
 subscribe trade
 
@@ -1560,14 +505,15 @@ api.unsubscribe_trade(account)
 
 ```
 
-## Account
+## 帳號
 
-### List Accounts
+### 帳號列表
 
 In:
 
 ```
 accounts = api.list_accounts()
+accounts
 
 ```
 
@@ -1584,14 +530,14 @@ Out
 
 ```
 
-- If `signed` does not appear in the account list, like ACCOUNT_ID_2 and ACCOUNT_ID_3, it means that the account has not signed or completed the test report in the simulation mode. Please refer to [Terms of service](../prepare/terms/).
+- 若`signed`在帳號列表中未出現，如同 ACCOUNT_ID_2 及 ACCOUNT_ID_3 ，代表該帳號尚未簽署或者尚未完成在測試模式中的測試報告。可參見[服務條款](../prepare/terms/)。
 
-### Default Account
+### 預設帳號
 
 In
 
 ```
-# Futures default account
+# 期貨預設帳號
 print(api.futopt_account)
 
 ```
@@ -1603,12 +549,12 @@ FutureAccount(person_id='PERSON_ID_1', broker_id='BROKER_ID_1', account_id='ACCO
 
 ```
 
-Set default account
+設定預設帳號
 
 In
 
 ```
-# Default futures account switch to ACCOUNT_ID_2 from ACCOUNT_ID_1. 
+# 預設的期貨帳號從 ACCOUNT_ID_1轉換成 ACCOUNT_ID_2
 api.set_default_account(accounts[1])
 print(api.futopt_account)
 
@@ -1621,7 +567,7 @@ FutureAccount(person_id='PERSON_ID_2', broker_id='BROKER_ID_2', account_id='ACCO
 
 ```
 
-In Order object, you need to specify which account you want to place order. For more information about Order, please refer to [Stock Order](../order/Stock/) and [Futures Order](../order/FutureOption/).
+下單Order物件中需要指定帳號。更多資訊請參考[現貨](./order/Stock.zh_TW.md)和[期權](./order/FutureOption.zh_TW.md)下單。
 
 ```
 order = api.Order(
@@ -1636,12 +582,9 @@ order = api.Order(
 
 ```
 
-## Logout
+## 登出
 
-Logout funciton will close the connection between the client and the server.\
-In order to provide high quality services, starting from 2021/08/06, we've limit the [number of connections used](../limit/). It's a good practice to logout or to terminate the program when it is not in use.
-
-logout
+登出功能將關閉客戶端及服務端之間的連接。為了提供優質的服務，我們從2021/08/06開始將[限制](./limit.zh_TW.md)連線數。在不使用的時候終止程式是一個良好的習慣。
 
 ```
 api.logout()
@@ -1649,9 +592,9 @@ api.logout()
 
 ```
 
-Users can first familiarize themselves with the API services in the simulation mode, which can avoid the loss of property caused by operational errors in the production environment.
+使用者能先在模擬環境熟悉我們所提供的服務，可避免在正式環境操作失誤造成財物的損失。以下會詳細說明在測試環境所提供的功能。
 
-Simulation
+模擬環境
 
 ```
 import shioaji as sj
@@ -1659,9 +602,9 @@ api = sj.Shioaji(simulation=True)
 
 ```
 
-## Available APIs
+## 可使用的APIs
 
-Data
+行情資料
 
 ```
 1. quote.subscribe
@@ -1675,7 +618,7 @@ Data
 
 ```
 
-Order
+下單
 
 ```
 1. place_order
@@ -1686,7 +629,7 @@ Order
 
 ```
 
-Account
+帳務
 
 ```
 1. list_positions
@@ -1694,7 +637,7 @@ Account
 
 ```
 
-The feature of account_balance is used to query account balance of stock account and you need to [login](../../login) first.
+用於查詢現貨交割帳戶餘額，需要先[登入](../../login)。
 
 In
 
@@ -1737,10 +680,10 @@ AccountBalance(
 AccountBalance
 
 ```
-status (FetchStatus): fetch status
-acc_balance (float): account balance
-date (str): query date
-errmsg (str): error message    
+status (FetchStatus): 資料回傳狀態
+acc_balance (float): 餘額
+date (str): 查詢日期
+errmsg (str): 錯誤訊息
 
 ```
 
@@ -1919,7 +862,7 @@ df_profitloss
 
 | | account | averagePrice | code | codeName | currency | floatProfitLoss | handCharge | ord_bs | ord_type | ordno | ordno_b | settleAvgPrc | settleDate | settleVolume | tFlag | tdate | tradeProfitLoss | tradeTax | unVolume | volume | | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | | 0 | F0020009104000 | 9900.0 | TXFK8 | 台指期貨 11 | NTD | 460.000000 | 60.000000 | S | 00 | kY002 | kY003 | 9897.0 | 20181022 | 1.000000 | 1 | 20181022 | 600.000000 | 80.000000 | 0.000000 | 1.000000 |
 
-The feature of margin is used to query margin of futures account and you need to [login](../../login) first.
+用於查詢期貨帳戶的保證金，需先[登入](../../login)。
 
 In
 
@@ -1985,38 +928,38 @@ Margin(
 Margin
 
 ```
-status (FetchStatus): fetch status
-yesterday_balance (float): balance of yesterday
-today_balance (float): balance of today
-deposit_withdrawal (float): deposit and withdrawal
-fee (float): fee
-tax (float): tax
-initial_margin (float): margin of origin
-maintenance_margin (float):  margin of maintenance
-margin_call (float):  margin of call
-risk_indicator (float): risk indicator
-royalty_revenue_expenditure (float): revenue and expenditure of royalty
-equity (float): equity
-equity_amount (float): amount of equity
-option_openbuy_market_value (float): value of option openbuy market
-option_opensell_market_value (float): value of option opensell market
-option_open_position (float): profit loss of open option 
-option_settle_profitloss (float): profit loss of settle option
-future_open_position (float): profit loss of open future
-today_future_open_position (float): profit loss of today open future
-future_settle_profitloss (float): profit loss of settle future
-available_margin (float): available margin
-plus_margin (float): plus margin
-plus_margin_indicator (float): indicator of plus margin
-security_collateral_amount (float): amount of security collateral
-order_margin_premium (float): order margin and order premium 
-collateral_amount (float): amount of collateral
+status (FetchStatus): 資料回傳狀態
+yesterday_balance (float): 前日餘額
+today_balance (float): 今日餘額
+deposit_withdrawal (float): 存提
+fee (float): 手續費
+tax (float): 期交稅
+initial_margin (float): 原始保證金
+maintenance_margin (float): 維持保證金
+margin_call (float): 追繳保證金
+risk_indicator (float): 風險指標
+royalty_revenue_expenditure (float): 權利金收入與支出
+equity (float): 權益數
+equity_amount (float): 權益總值
+option_openbuy_market_value (float): 未沖銷買方選擇權市值
+option_opensell_market_value (float): 未沖銷賣方選擇權市值
+option_open_position (float): 參考未平倉選擇權損益
+option_settle_profitloss (float): 參考選擇權平倉損益
+future_open_position (float): 未沖銷期貨浮動損益
+today_future_open_position (float): 參考當日未沖銷期貨浮動損益
+future_settle_profitloss (float): 期貨平倉損益
+available_margin (float): 可動用(出金)保證金
+plus_margin (float): 依「加收保證金指標」所加收之保證金
+plus_margin_indicator (float): 加收保證金指標
+security_collateral_amount (float): 有價證券抵繳總額
+order_margin_premium (float): 委託保證金及委託權利金
+collateral_amount (float): 有價品額
 
 ```
 
-The feature of list_positions is used to query unrealized gain or loss of account and you need to [login](../../login) first.
+用於查詢帳戶未實現損益，需要先[登入](../../login)。
 
-## Position
+## 未實現損益
 
 In
 
@@ -2043,9 +986,9 @@ Args:
 
 ```
 
-### Stocks
+### 證券
 
-#### Common Stocks
+#### 整股部位
 
 In
 
@@ -2076,7 +1019,7 @@ Out
 
 ```
 
-To DataFrame
+轉成DataFrame
 
 In
 
@@ -2094,27 +1037,31 @@ Out
 StockPosition
 
 ```
-id (int): position id
-code (str): contract id
-direction (Action): action
-    {Buy, Sell}
-quantity (int): quantity
-price (float): the average price
-last_price (float): last price
-pnl (float): unrealized profit
-yd_quantity (int): yesterday
-cond (StockOrderCond): Default Cash
-    {Cash(現股), Netting(餘額交割), MarginTrading(融資),ShortSelling(融券), Emerging(興櫃)}
-margin_purchase_amount (int): margin_purchase_amount
-collateral (int): collateral
-short_sale_margin (int): short_sale_margin
-interest (int): interest
+id (int): 部位代碼
+code (str): 商品代碼
+direction (Action): {Buy: 買, Sell: 賣}
+quantity (int): 數量
+price (float): 平均價格
+last_price (float): 目前股價
+pnl (float): 損益
+yd_quantity (int): 昨日庫存數量
+cond (StockOrderCond): {
+    Cash: 現股(預設值), 
+    Netting: 餘額交割,
+    MarginTrading: 融資, 
+    ShortSelling: 融券, 
+    Emerging: 興櫃
+    }
+margin_purchase_amount (int): 融資金額 
+collateral (int): 擔保品 
+short_sale_margin (int): 保證金
+interest (int): 利息
 
 ```
 
-#### Odd Stocks
+#### 零股部位
 
-The unit is the number of shares.
+單位為股數
 
 In
 
@@ -2148,9 +1095,9 @@ Out
 
 ```
 
-### Futures and Options
+### 期貨選擇權
 
-`account` is defaulted as a Stock account, and if you want to query the Futures or Options content, you need to bring in the `futopt_account`.
+`account`預設為證券帳號，若欲查詢期權內容需帶入期權帳號。
 
 In
 
@@ -2176,7 +1123,7 @@ Out
 
 ```
 
-To DataFrame
+轉成DataFrame
 
 In
 
@@ -2194,22 +1141,21 @@ Out
 FuturePosition
 
 ```
-id (int): position id
-code (str): contract id
-direction (Action): action
-    {Buy, Sell}
-quantity (int): quantity
-price (float): the average price
-last_price (float): last price
-pnl (float): unrealized profit
+id (int): 部位代碼
+code (str): 商品代碼
+direction (Action): {Buy: 買, Sell: 賣}
+quantity (int): 數量
+price (float): 平均價格
+last_price (float): 目前價格
+pnl (float): 損益
 
 ```
 
-## Position Detail
+## 未實現損益 - 明細
 
-Using the result obtained from `list_positions`, bring the `id` into `detail_id` to query the details of that position.
+可從針對`list_positions`得到的結果，將`id`帶入`detail_id`查詢該筆明細。
 
-### Stocks
+### 證券
 
 In
 
@@ -2266,7 +1212,7 @@ Out
 
 ```
 
-To DataFrame
+轉成DataFrame
 
 In
 
@@ -2283,26 +1229,31 @@ Out
 屬性
 
 ```
-date (str): trade date
-code (str): contract id    
-quantity (int): quantity
-price (float): price
-last_price (float): last price
-dseq (str): detail seqno no
-direction (Action): {Buy, Sell}
-pnl (decimal): unrealized profit
-currency (string): {NTD, USD, HKD, EUR, CAD, BAS}
-fee (decimal): fee
-cond (StockOrderCond): Default Cash
-    {Cash, Netting, MarginTrading,ShortSelling, Emerging}
-ex_dividends(int): ex-dividend amount
-interest (int): interest
-margintrading_amt(int): margin trading amount
-collateral (int): collateral 
+date (str): 交易日期
+code (str): 商品代碼    
+quantity (int): 數量
+price (float): 付出成本
+last_price (float): 現值
+dseq (str): 委託書號
+direction (Action): {Buy: 買, Sell: 賣}
+pnl (decimal): 損益
+currency (string): 幣別 {NTD, USD, HKD, EUR, CAD, BAS}
+fee (decimal): 交易手續費
+cond (StockOrderCond): {
+    Cash: 現股(預設值), 
+    Netting: 餘額交割,
+    MarginTrading: 融資, 
+    ShortSelling: 融券, 
+    Emerging: 興櫃
+    }
+ex_dividends(int): 除息金額
+interest (int): 除息
+margintrading_amt(int): 融資金額
+collateral (int): 擔保品 
 
 ```
 
-### Futures and Options
+### 期貨選擇權
 
 In
 
@@ -2332,7 +1283,7 @@ Out
 
 ```
 
-To DataFrame
+轉成DataFrame
 
 In
 
@@ -2349,25 +1300,23 @@ Out
 屬性
 
 ```
-code (str): contract id
-date (str): trade date
-quantity (int): quantity
-price (float): price
-last_price (float): last price    
-dseq (str): detail seqno no
-direction (Action): {Buy, Sell}
-pnl (float): unrealized profit
-currency (str): {NTD, USD, HKD, EUR, CAD, BAS}
-fee (float or int): fee
-entry_quantity(int): entry quantity
+code (str): 商品代碼
+date (str): 交易日期
+quantity (int): 數量
+price (float): 價格
+last_price (float): 目前股價    
+dseq (str): 委託書號
+direction (Action): {Buy: 買, Sell: 賣}
+pnl (float): 損益
+currency (str): 幣別 {NTD, USD, HKD, EUR, CAD, BAS}
+fee (float or int): 交易手續費
+entry_quantity(int): 新倉數量
 
 ```
 
-You need to [login](../../login) first.
+需要先[登錄](../../login)。
 
-## Profit Loss
-
-The feature of list_profit_loss is used to query realized profit loss of account.
+## 已實現損益
 
 In
 
@@ -2399,7 +1348,7 @@ Docstring:
 
 ```
 
-Enter the time interval you want to query. `begin_date` is the start time, and `end_date` is the end time. `unit` is the quantity unit, where `Common` represents whole shares and `Share` represents fractional shares.
+帶入想查詢的時間區間。`begin_date`為起始時間，`end_date`為結束時間。`unit`為數量單位，`Common`為整股，`Share`為零股。
 
 In
 
@@ -2429,7 +1378,7 @@ Out
 
 ```
 
-To DataFrame
+轉成DataFrame
 
 In
 
@@ -2446,37 +1395,43 @@ Out
 StockProfitLoss
 
 ```
-id (int): use to find detail
-code (str): contract id
-seqno (str): seqno no
-dseq (str): seqno no
-quantity (int): quantity
-price (float): price
-pnl (float): profit and loss
-pr_ratio (float): profit rate
-cond (StockOrderCond): {Cash, Netting, MarginTrading, ShortSelling}
-date (str): trade date
+id (int): 可利用此id查詢明細
+code (str): 商品代碼
+seqno (str): seqno no.
+dseq (str): seqno no.
+quantity (int): 數量
+price (float): 價格
+pnl (float): 損益
+pr_ratio (float): 損益比
+cond (StockOrderCond): {
+                Cash: 現股(預設值), 
+                Netting: 餘額交割,
+                MarginTrading: 融資, 
+                ShortSelling: 融券, 
+                Emerging: 興櫃
+            }
+date (str): 交易日期
 
 ```
 
 FutureProfitLoss
 
 ```
-id (int): use to find detail
-code (str): contract id
-quantity (int): quantity
-pnl (float): profit and loss
-date (str): trade date
-entry_price (int): entry price
-cover_price (int): cover price
-tax (int): tax
-fee (int): transaction fee
+id (int): 可利用此id查詢明細
+code (str): 商品代碼
+quantity (int): 數量
+pnl (float): 損益
+date (str): 交易日期
+entry_price (int): 進倉價格
+cover_price (int): 平倉價格
+tax (int): 交易稅
+fee (int): 交易手續費
 
 ```
 
-## Profit Loss Detail
+## 已實現損益 - 明細
 
-The feature of list_profit_loss_detail is used to query profit loss detail of account. `unit` is the quantity unit, where `Common` represents whole shares and `Share` represents fractional shares.
+可從針對`list_profit_loss`得到的結果，將`id`帶入`detail_id`查詢該筆明細。`unit`為數量單位，`Common`為整股，`Share`為零股。
 
 In
 
@@ -2539,7 +1494,7 @@ Out
 
 ```
 
-To DataFrame
+轉成DataFrame
 
 In
 
@@ -2556,46 +1511,52 @@ Out
 StockProfitDetail
 
 ```
-date (str): trade date
-code (str): contract id
-quantity (int): quantity
-dseq (str): detail seqno no
-fee (int): fee
-tax (int): trading tax
-currency (str): {NTD, USD, HKD, EUR, CAD, BAS}
-price (float): price
-cost (int): cost of price
-rep_margintrading_amt (int): repay amount of margin trading
-rep_collateral (int): repay collateral
-rep_margin (int): repay margin
-shortselling_fee (int): fee of short selling
-ex_dividend_amt: ex-dividend amount
-interest (int): interest
+date (str): 交易日期
+code (str): 商品代碼
+quantity (int): 數量
+dseq (str): 委託書號
+fee (int): 交易手續費
+tax (int): 交易稅
+currency (str): 幣別 {NTD, USD, HKD, EUR, CAD, BAS}
+price (float): 成交單價
+cost (int): 付出成本
+rep_margintrading_amt (int): 償還融資金額
+rep_collateral (int): 償還擔保品
+rep_margin (int): 償還保證金
+shortselling_fee (int): 融券手續費
+ex_dividend_amt: 除息金額
+interest (int): 利息
 trade_type (TradeType): {Common, DayTrade}
-cond (StockOrderCond): {Cash, Netting, MarginTrading, ShortSelling}
+cond (StockOrderCond): {
+                Cash: 現股(預設值), 
+                Netting: 餘額交割,
+                MarginTrading: 融資, 
+                ShortSelling: 融券, 
+                Emerging: 興櫃
+            }
 
 ```
 
 FutureProfitDetail
 
 ```
-date (str): trade date
-code (str): contract id
-quantity (int): quantity
-dseq (str): detail seqno no
-fee (int): fee
-tax (int): trading tax
-currency (str): {NTD, USD, HKD, EUR, CAD, BAS}
-direction (Action): {Buy, Sell}
-entry_price (int): entry price
-cover_price (int): cover price
-pnl (int): profit and loss
+date (str): 交易日期
+code (str): 商品代碼
+quantity (int): 數量
+dseq (str): 委託書號
+fee (int): 交易手續費
+tax (int): 交易稅
+currency (str): 幣別 {NTD, USD, HKD, EUR, CAD, BAS}
+direction (Action): 買賣別 {Buy, Sell}
+entry_price (int): 進倉價格
+cover_price (int): 平倉價格
+pnl (int): 損益
 
 ```
 
-## Profit Loss Summary
+## 已實現損益 - 彙總
 
-The feature of list_profit_loss_summary is used to query summary of profit loss for a period of time.
+用於查詢一段時間內的損益彙總。
 
 In
 
@@ -2626,7 +1587,7 @@ Args:
 
 ```
 
-Enter the time interval you want to query. `begin_date` is the start time, and `end_date` is the end time.
+帶入想查詢的時間區間。`begin_date`為起始時間，`end_date`為結束時間。
 
 In
 
@@ -2667,7 +1628,7 @@ ProfitLossSummaryTotal(
 
 ```
 
-To DataFrame
+轉成DataFrame
 
 In
 
@@ -2684,37 +1645,43 @@ Out
 StockProfitLossSummary
 
 ```
-code (str): contract id
-quantity (int): quantity
-entry_price (int): price of entry
-cover_price (int): price of cover
-pnl (float): profit and loss
-currency (str): currency
-entry_cost (int): cost of entry
-cover_cost (int): cost of cover
-buy_cost (int): cost of buy
-sell_cost (int): cost of sell
-pr_ratio (float): profit rate
-cond (StockOrderCond): {Cash, Netting, MarginTrading, ShortSelling}
+code (str): 商品代碼
+quantity (int): 數量
+entry_price (int): 進倉價格
+cover_price (int): 平倉價格
+pnl (float): 損益
+currency (str): 幣別
+entry_cost (int): 進倉金額(不含手續費及交易稅)
+cover_cost (int): 平倉金額(不含手續費及交易稅)
+buy_cost (int): 付出成本
+sell_cost (int): 賣出收入
+pr_ratio (float): 損益比
+cond (StockOrderCond): {
+                Cash: 現股(預設值), 
+                Netting: 餘額交割,
+                MarginTrading: 融資, 
+                ShortSelling: 融券, 
+                Emerging: 興櫃
+            }
 
 ```
 
 FutureProfitLossSummary
 
 ```
-code (str): contract id
-quantity (int): quantity
-entry_price (int): price of entry
-cover_price (int): price of cover
-pnl (float): profit and loss
-currency (str): currency
-direction (Action): {Buy, Sell}
-tax (int): tax
-fee (int): fee
+code (str): 商品代碼
+quantity (int): 數量
+entry_price (int): 進倉價格
+cover_price (int): 平倉價格
+pnl (float): 損益
+currency (str): 幣別
+direction (Action): 買賣別 {Buy, Sell}
+tax (int): 交易稅
+fee (int): 交易手續費
 
 ```
 
-The feature of settlements is used to query settlements of stock account and you need to [login](../../login) first.
+用於查詢交割款，需要先[登錄](../../login)。
 
 ## Settlements
 
@@ -2757,7 +1724,7 @@ Out
 
 ```
 
-To DataFrame
+轉成DataFrame
 
 In
 
@@ -2774,19 +1741,19 @@ out
 SettlementV1
 
 ```
-date (datetime.date): date of Tday
-amount (float): settlement amount
+date (datetime.date): 交割日期
+amount (float): 交割金額
 T (int): Tday
 
 ```
 
-Blocking is a pattern where a function must wait for something to complete. Every function is waiting, whether it is doing I/O or doing CPU tasks. For example, if the function tries to get data from the database, it needs to stop and wait for the return result, and then continue processing the next task after receiving the return result. In contrast, non-blocking mode does not wait for operations to complete. Non-blocking mode is useful if you are trying to send batch operation in a short period of time. We provide the following examples to give you a better understanding of the difference.
+阻塞(Blocking)模式為函數必須等待某事完成。每個函數都是等待的，不管是在做 I/O 還是在做 CPU 任務。舉例來說，如果函數試圖從資料庫中獲取數據，那麼它需要停下來等待回傳結果，收到回傳結果後，才會繼續處理接下來的任務。相反地，非阻塞(non-blocking)模式，不會等待操作完成。如果您嘗試在短時間內發送批量操作，則非阻塞模式非常有用。我們提供以下範例讓您更了解之間的區別。
 
-To switch blocking/non-blocking mode use parameter `timeout`. Set the API parameter `timeout` to `0` for non-blocking mode. The default value of `timeout` is 5000 (milliseconds), which means the function waits for up to 5 seconds.
+切換阻塞/非阻塞模式為利用參數`timeout`。將API參數`timeout`設置為`0`為非阻塞模式。`timeout`預設值為 5000（毫秒），表示該函數最多等待 5 秒。
 
-### Non-Blocking Place Order
+### 非阻塞模式下單
 
-Set `timeout = 0` in `place_order` function.
+將`place_order` 函數中設置 `timeout = 0`。
 
 In
 
@@ -2843,9 +1810,9 @@ Trade(
 
 ```
 
-The `Trade` object obtained in non-blocking mode will lack some information because the order is still in transit and has not been sent to the exchange. There are no `id` and `seqno` in the `Order` object, `id`, `status_code`, `order_datetime` and `deals` are missing in the `OrderStatus` object, and `status` is displayed as `Inactive`. In the non-blocking mode, there are two ways to obtain the above-mentioned information: \`\`order event callback`and`non-blocking place order callback\`.
+在非阻塞模式中取得的`Trade`物件，因為委託單仍在傳輸中還未送至交易所，所以會缺少一些資訊。在`Order`物件中沒有`id`和`seqno`，`OrderStatus`物件中沒有 `id`、`status_code`、`order_datetime` 和 `deals`，`status`顯示為`Inactive`。在非阻塞模式中要取得上述提到的資訊可利用`委託回報`和`非阻塞模式下單回調`兩種方式。
 
-#### Order event callback
+#### 委託回報
 
 Out
 
@@ -2885,7 +1852,7 @@ OrderState.FuturesOrder {
 
 ```
 
-#### Non-blocking place order callback
+#### 非阻塞模式下單回調
 
 In
 
@@ -2950,9 +1917,9 @@ status=OrderStatus(
 
 ```
 
-### Compare both modes
+### 比較兩者模式
 
-In non-wait mode, executing `place_order` takes about 0.01 seconds, which is 12 times faster than the execution time in blocking mode. Although it is more efficient to place order in the non-blocking mode, the order will not take effect until the exchange receives the order.
+在非阻塞模式下，執行 `place_order` 大約需要 0.01 秒，這比阻塞模式下的執行時間快 12 倍。雖然非阻塞模式下單效率更高，需等待交易所收到委託後，委託單才會生效。
 
 contract and order
 
@@ -2990,7 +1957,7 @@ print(time.time() - start_time)
 
 ```
 
-Non-Blocking mode Supported Function
+支援非等待模式的函數
 
 ```
 - place_order
@@ -3009,11 +1976,11 @@ Non-Blocking mode Supported Function
 
 ```
 
-Shioaji provides quote-binding mode which you can store tick/bidask in queue, push them to redis, or submit a stop order inside quote callback function. We show examples to make you more understand how to use quote-binding mode.
+Shioaji 提供綁訂報價模式，可以用來將報價儲存於訊息佇列，將報價推送至Redis Stream，或者實現觸價委託單。我們提供以下範例，讓您可以更了解綁訂報價模式如何運作。
 
-## Examples
+## 範例
 
-### Bind quote to message queue
+### 綁訂報價至訊息佇列
 
 In: pythonic way by using decorator
 
@@ -3068,9 +2035,9 @@ defaultdict(collections.deque,
 
 ```
 
-### Push quote to redis stream
+### 將報價推送至Redis Stream
 
-Before start, please install [redis](https://github.com/andymccurdy/redis-py) first. Below example shows how to push quote massages to redis stream.
+在開始之前，請先安裝[redis](https://github.com/andymccurdy/redis-py)。
 
 In
 
@@ -3166,11 +2133,11 @@ Out
 
 ```
 
-### Stop Order Implementation
+### 觸價委託單
 
-A [stop order](https://www.investopedia.com/terms/s/stoporder.asp) is an order to buy or sell a security when its price moves past a particular point, ensuring a higher probability of achieving a predetermined entry or exit price, limiting the investor's loss, or locking in a profit. Once the price crosses the predefined entry/exit point, the stop order becomes a market order.
+[觸價委託單](https://www.investopedia.com/terms/s/stoporder.asp)，在市場價格觸及委託單上所設定之價位時，委託單立刻轉為限價單或市價單。
 
-We provide an example of stop order below. **Please use at your own risk.**
+**以下僅為範例，請小心使用並自行承擔風險**
 
 Example: stop order
 
@@ -3262,9 +2229,9 @@ class StopOrderExcecutor:
 
 ```
 
-- We use mid price of snapshots as our reference price to differentiate the direction of stop order.
+- 使用snapshots的中價作為參考價格，以區分觸價委託單的方向。
 
-Basically, order will be pending at your computer. The order won't be submitted to exchange until close/mid price hit the stop price. Below example shows how to submit a stop-limit order.
+基本上，委託單會在您的電腦上待命，只有在商品價格觸擊所設定價格時，觸價委託單才會被送出，以下範例顯示如何提交限價觸價委託單(Stop-Limit Order)。
 
 Set up a stop order
 
@@ -3323,9 +2290,9 @@ add stop order: {
 
 ```
 
-- Stop-Market Order: `price_type = 'MKT'`
+- 市價觸價委託單(Stop-Market Order): `price_type = 'MKT'`
 
-Finally, we bind `StopOrderExcecutor` to quote callback function. Note that you have to subscribe quote, so that stop order will be executed.
+最後，我們將`StopOrderExcecutor`綁訂在報價上。請注意，您必須訂略商品報價，觸價委託單才會執行。
 
 Set up context and callback function
 
@@ -3386,28 +2353,28 @@ execute stop order: {
 
 ```
 
-the whole project code can be found in [sj-trading](https://github.com/Sinotrade/sj-trading-demo), the whole example jupyter notebook can be found in [quote_manager_usage](https://github.com/Sinotrade/sj-trading-demo/blob/main/quote_manager_usage.ipynb).
+本篇教學完整專案的程式碼可以參考 [sj-trading](https://github.com/Sinotrade/sj-trading-demo)， 完整使用範例 jupyter notebook 可以參考 [quote_manager_usage](https://github.com/Sinotrade/sj-trading-demo/blob/main/quote_manager_usage.ipynb)。
 
-this project is created by using `uv`, if you are not familiar with how to use `uv` to create a project and manage dependencies, it is recommended to learn from the [environment setup](../../../env_setup/) chapter.
+本專案是使用 `uv` 建立的，如果還不熟悉如何使用 `uv` 建立專案並使用 `uv` 管理依賴，建議回到 [環境設定](../../../env_setup/) 章節從頭學習起。
 
-before start writing the quote manager, we will use the Polars package to process the quote data, so we need to add it to the project dependencies, at the same time, this tutorial will have an example of how to use Polars to quickly calculate technical indicators for multiple commodities, so we also need to add the polars_talib package to the project dependencies.
+在開始進行行情管理器的編寫前，我們會使用 Polars 這個套件來處理行情資料，所以需要將它加入專案的依賴中，同時本篇教學中會有如何用 Polars 快速對多商品計算技術指標的範例，所以也需要將 polars_talib 這個套件加入專案的依這個。
 
-add Polars dependencies
+新增 Polars 依賴
 
 ```
 uv add polars polars_talib
 
 ```
 
-if you are not familiar with Polars, you can refer to the [Polars official documentation](https://docs.pola.rs/user-guide/getting-started/) to learn how to use it.
+如果你對 Polars 不熟悉，可以參考 [Polars 官方文件](https://docs.pola.rs/user-guide/getting-started/) 來了解該如何使用他。
 
-polars_talib is a Polars extension package that provides the complete functionality of the ta-lib library in the polars expression version, allowing us to easily calculate technical indicators using Polars. It is developed by the shioaji author, and detailed usage can be found in [polars_ta_extension](https://github.com/Yvictor/polars_ta_extension).
+polars_talib 是一個 Polars 的擴充套件，它提供了 polars expression 版本的 ta-lib 完整功能，讓我們可以很方便的用 Polars 進行技術指標的計算，他是由 shioaji 作者開發的，詳細使用可以參考 [polars_ta_extension](https://github.com/Yvictor/polars_ta_extension)。
 
-Polars is an efficient DataFrame package that is suitable for processing large amounts of data and can use multiple cores without any additional configuration. In this example, we can see how to use the Shioaji quote manager to obtain quote data, and use Polars for parallel computation, while converting the ticks of the commodity into K lines, and performing parallel multi-commodity technical indicator calculations.
+Polars 是一個高效的 DataFrame 套件，適合用來處理大量資料，並且不需要任何額外的設定，就可以使用多核心來加速資料處理。這篇範例中我們可以看到如何使用 Shioaji 的行情管理器來取得行情資料，並且使用 Polars 來做並行化運算，同時將商品的 ticks 進行分 K 轉換，並且做平行化的多商品技術指標計算。
 
-add quote.py
+新增 quote.py
 
-add `quote.py` file in `src/sj_trading/`, and add the following code
+在 `src/sj_trading/` 新增 `quote.py` 檔案，並且新增以下程式碼
 
 ```
 import shioaji as sj
@@ -3429,9 +2396,9 @@ class QuoteManager:
 
 ```
 
-this part is relatively simple, let the handle func of receiving the quote data do as little as possible, we define a `QuoteManager` class, and register two callback functions in the initialization, respectively `on_stk_v1_tick_handler` and `on_fop_v1_tick_handler`, these two functions will be called when receiving the quote data, and the quote data will be stored in `ticks_stk_v1` and `ticks_fop_v1`.
+這個部分比較單純，讓收到行情的 handle func 盡可能地做最少的事，我們定義了一個 `QuoteManager` 類別，並且在初始化時設定了註冊兩個回調函數，分別是 `on_stk_v1_tick_handler` 和 `on_fop_v1_tick_handler`，這兩個函數會在接收到行情資料時被呼叫，並且將行情資料存入 `ticks_stk_v1` 和 `ticks_fop_v1` 中。
 
-add `QuoteManager` subscribe and unsubscribe methods
+增加 `QuoteManager` 訂閱與取消訂閱的方法
 
 ```
 def __init__(self, api: sj.Shioaji):
@@ -3461,9 +2428,9 @@ def unsubscribe_all_stk_tick(self):
 
 ```
 
-in the above code, we have added the `subscribe_stk_tick` method, this method will add the commodity codes in the incoming commodity code list to the `subscribed_stk_tick`, and call the `subscribe` method of Shioaji to subscribe to the market, `subscribed_stk_tick` is a `Set`, used to store the commodity codes that have been subscribed to avoid duplicate subscriptions and facilitate subsequent unsubscribing all subscribed commodities.
+上面我們增加了 `subscribe_stk_tick` 方法，這個方法會將傳入的商品代碼列表中的商品代碼加入到 `subscribed_stk_tick` 中，並且呼叫 Shioaji 的 `subscribe` 方法來訂閱行情，`subscribed_stk_tick` 是一個 `Set`，用來存放已經訂閱的商品代碼，避免重複訂閱以及方便後續將所有訂閱商品取消訂閱。
 
-add `QuoteManager` get ticks method
+增加 `QuoteManager` 拿出訂閱的 ticks 的方法
 
 ```
 def __init__(self, api: sj.Shioaji):
@@ -3493,9 +2460,9 @@ def get_df_stk(self) -> pl.DataFrame:
 
 ```
 
-in `__init__` we define a `df_stk` Polars DataFrame, used to store all subscribed stock tick data, `get_df_stk` method will convert the `ticks_stk_v1` list to a Polars DataFrame, and return it, at this point, we have already got a DataFrame that can be used to calculate technical indicators.
+`__init__` 中我們定義了一個 `df_stk` 的 Polars DataFrame，用來存放所有訂閱的台股 tick 資料，`get_df_stk` 方法會將 `ticks_stk_v1` 中的資料轉換成 Polars DataFrame，並且回傳，到這邊我們就已經可以初步看到可以拿出來的 DataFrame 了。
 
-add `QuoteManager` get kbar method
+增加 `QuoteManager` 將 ticks 轉換成 K 線的方法
 
 ```
 def get_df_stk_kbar(
@@ -3519,11 +2486,9 @@ def get_df_stk_kbar(
 
 ```
 
-in `get_df_stk_kbar` method, we will use `get_df_stk` method to get the Ticks DataFrame and then group the data by truncated `datetime` and `code`, and then aggregate the data in each group to get the K line data, finally, we will return the K line DataFrame. Here we remain the `exprs` parameter, allowing users to pass in additional expressions for more calculations.
+在 `get_df_stk_kbar` 方法中，我們將 `get_df_stk` 拿到 Ticks 的 DataFrame 根據 code 和 truncate 後的 datetime 進行分組，並且對每個分組進行聚合開高低收量，最後回傳一個新的 DataFrame，這個 DataFrame 就是我們所需要的 K 線資料了，並且這邊保留了 `exprs` 參數，讓使用者可以傳入一些額外的運算式，來進行更多的運算。 在這邊 truncate 的單位我們使用 `1m` 來表示 1 分鐘，如果想要拿到 5 分鐘的 K 線，可以將單位改成 `5m`， 1 小時 K 可以將單位改成 `1h`，如果想要更多不同的單位可以參考 [truncate](https://docs.pola.rs/api/python/stable/reference/expressions/api/polars.Expr.dt.truncate.html) 的 API 文件。
 
-In this part, we use `1m` to represent 1 minute, if you want to get 5 minutes K line, you can change the unit to `5m`, 1 hour K line can be changed to `1h`, if you want more different units, you can refer to the [truncate](https://docs.pola.rs/api/python/stable/reference/expressions/api/polars.Expr.dt.truncate.html) API documentation.
-
-add custom technical indicator calculation method
+自定義技術指標計算
 
 ```
 import polars as pl
@@ -3536,13 +2501,13 @@ quote_manager.get_df_stk_kbar("5m", [
 
 ```
 
-in this part, we use polars_ta to calculate technical indicators and add them to the K line data, here we calculate `ema` and `macd` two indicators, more indicators can refer to [polars_ta_extension supported indicators list](https://github.com/Yvictor/polars_ta_extension?tab=readme-ov-file#supported-indicators-and-functions).
+在這邊使用 polars_ta 的 expression 來計算技術指標，並且將計算出來的指標加入到 K 線資料中，這邊我們計算了 `ema` 和 `macd` 兩種指標，更多指標可以參考 [polars_ta_extension 支援指標列表](https://github.com/Yvictor/polars_ta_extension?tab=readme-ov-file#supported-indicators-and-functions)。
 
-in this polars_ta expression, we use `over("code")` to group the data by commodity code for independent calculation of each commodity, so even if all commodities are in the same DataFrame, the calculation results are independent of each other, and this `over` partition is automatically parallel computing, so even if there are a large number of commodities, the calculation can be very fast and then using `alias` to set the field name of the calculation result as `ema5`, in the `macd` indicator, the return is a struct with multiple fields, and this part gets the `macd` field.
+在這個 polars_ta 的 expression 中，使用 `over("code")` 來將指標計算結果根據商品代碼進行分組做每個商品獨立的運算 ，所以即使所有的商品都在同一個 DataFrame 中，計算出來的結果還是每個商品獨立的，並且這個 `over` 的 partition 是會自動平行運算的，所以即使有大量的商品，也可以很快的計算出來，使用 `alias` 來將計算結果的欄位名稱設置為 `ema5`，在 `macd` 指標中回傳的是多個欄位的 struct ，這邊取出 struct 中的 macd 欄位。
 
-because this part only passes in expressions and is very lightweight, you can pass in any expressions you need according to your needs, and you can also make your own indicators using polars expression, this part just provides an interface for calculation and a simple usage example.
+因為這邊傳入的只是表達式非常輕量，可以根據你需要的任何表達式進行新增就可以看到你需要的各種技術指標了，當然如果你要使用 polars expression 做出自己的指標，也是可以的，這邊只是提供一個可以做運算的接口以及簡單的使用範例。
 
-add `QuoteManager` backfill missed ticks method
+回補錯過的行情
 
 ```
 def fetch_ticks(self, contract: BaseContract) -> pl.DataFrame:
@@ -3573,17 +2538,17 @@ def subscribe_stk_tick(self, codes: List[str], recover: bool = False):
 
 ```
 
-in `subscribe_stk_tick` method, we will check if the `recover` parameter is true, if it is, we will call `fetch_ticks` method to get the historical ticks data, and then use `filter` method to filter out the ticks data that have been received, and use `vstack` method to add the historical ticks data to the `df_stk` DataFrame.
+在訂閱的時候我們可能會超過當天開盤的時間，這時候訂閱即時資料將會缺乏錯過的資料，所以這邊我們實作使用 api 回補歷史 tick 的資料，這邊我們使用 `fetch_ticks` 方法來取得歷史 tick 的資料，並且將取得資料加入到 `df_stk` 中。
 
-In above we have completed a quote manager that can subscribe to market data, backfill missed ticks, and calculate technical indicators. Next, we will integrate all the code and use it in a jupyter lab environment.
+以上我們已經完成了一個可以訂閱行情、回補錯過行情、計算技術指標的行情管理器了，這邊我們將所有程式碼整合起來，並且在 jupyter lab 中使用。
 
-The complete QuoteManager can be found in [quote.py](https://github.com/Sinotrade/sj-trading-demo/blob/main/src/sj_trading/quote.py).
+完整的 QuoteManager 可以參考 [quote.py](https://github.com/Sinotrade/sj-trading-demo/blob/main/src/sj_trading/quote.py)。
 
-The complete example jupyter notebook can be found in [quote_manager_usage](https://github.com/Sinotrade/sj-trading-demo/blob/main/quote_manager_usage.ipynb).
+完整使用範例 jupyter notebook 可以參考 [quote_manager_usage](https://github.com/Sinotrade/sj-trading-demo/blob/main/quote_manager_usage.ipynb)。
 
-## Touch Price Order
+## 觸價委託範例
 
-Here is a simple example that how to build your price monitor and when price touches the condition will place the order.
+這是一個簡單的範例，說明如何實作價格監控以及觸價委託。
 
 ```
 from pydantic import BaseModel
@@ -3614,9 +2579,9 @@ class TouchOrder:
 
 ```
 
-Complete [TouchPrice Order Extention](https://github.com/SsallyLin/touchprice) can be found here.
+完整程式碼詳見 [TouchPrice Order Extention](https://github.com/SsallyLin/touchprice)
 
-In this api, we use solace as mesh broker. This event mean the status for your client with solace connection situation. If you have no experience with networking, please skip this part, In defalut, we help you reconnect solace broker 50 times without any setting. Best way is keep your network connection alive.
+我們使用solace作為mesh broker。事件可視為你與solace的連接狀態。如果你沒有相關網路經驗，可以略過此部分。不用擔心在不用任何的設定下，我們將重連預設為50次。只需要請你確保你的網絡連接狀態正常。
 
 In
 
@@ -3634,7 +2599,7 @@ Event code: 16 | Event: Subscribe or Unsubscribe ok
 
 ```
 
-Like the quote callback, your can also set event cllback with two way.
+如同報價callback，你可以利用兩種方式設定事件callback。
 
 In
 
@@ -3646,23 +2611,24 @@ api.quote.set_event_callback?
 Out
 
 ```
-Signature: api.quote.set_event_callback(func:Callable[[int, int, str, str], NoneType]) -> None
-Docstring: <no docstring>
-Type:      method
+Signature: 
+    api.quote.set_event_callback(func:Callable[[int, int, str, str], NoneType]) -> None
+Docstring:  <no docstring>
+Type:  method
 
 ```
 
-### Event Code
+### 事件代碼
 
 | Event Code | Event Code Enumerator | Description | | --- | --- | --- | | 0 | SOLCLIENT_SESSION_EVENT_UP_NOTICE | The Session is established. | | 1 | SOLCLIENT_SESSION_EVENT_DOWN_ERROR | The Session was established and then went down. | | 2 | SOLCLIENT_SESSION_EVENT_CONNECT_FAILED_ERROR | The Session attempted to connect but was unsuccessful. | | 3 | SOLCLIENT_SESSION_EVENT_REJECTED_MSG_ERROR | The appliance rejected a published message. | | 4 | SOLCLIENT_SESSION_EVENT_SUBSCRIPTION_ERROR | The appliance rejected a subscription (add or remove). | | 5 | SOLCLIENT_SESSION_EVENT_RX_MSG_TOO_BIG_ERROR | The API discarded a received message that exceeded the Session buffer size. | | 6 | SOLCLIENT_SESSION_EVENT_ACKNOWLEDGEMENT | The oldest transmitted Persistent/Non-Persistent message that has been acknowledged. | | 7 | SOLCLIENT_SESSION_EVENT_ASSURED_PUBLISHING_UP | Deprecated -- see notes in solClient_session_startAssuredPublishing.The AD Handshake (that is, Guaranteed Delivery handshake) has completed for the publisher and Guaranteed messages can be sent. | | 8 | SOLCLIENT_SESSION_EVENT_ASSURED_CONNECT_FAILED | Deprecated -- see notes in solClient_session_startAssuredPublishing.The appliance rejected the AD Handshake to start Guaranteed publishing. Use SOLCLIENT_SESSION_EVENT_ASSURED_DELIVERY_DOWN instead. | | 8 | SOLCLIENT_SESSION_EVENT_ASSURED_DELIVERY_DOWN | Guaranteed Delivery publishing is not available.The guaranteed delivery capability on the session has been disabled by some action on the appliance. | | 9 | SOLCLIENT_SESSION_EVENT_TE_UNSUBSCRIBE_ERROR | The Topic Endpoint unsubscribe command failed. | | 9 | SOLCLIENT_SESSION_EVENT_DTE_UNSUBSCRIBE_ERROR | Deprecated name; SOLCLIENT_SESSION_EVENT_TE_UNSUBSCRIBE_ERROR is preferred. | | 10 | SOLCLIENT_SESSION_EVENT_TE_UNSUBSCRIBE_OK | The Topic Endpoint unsubscribe completed. | | 10 | SOLCLIENT_SESSION_EVENT_DTE_UNSUBSCRIBE_OK | Deprecated name; SOLCLIENT_SESSION_EVENT_TE_UNSUBSCRIBE_OK is preferred. | | 11 | SOLCLIENT_SESSION_EVENT_CAN_SEND | The send is no longer blocked. | | 12 | SOLCLIENT_SESSION_EVENT_RECONNECTING_NOTICE | The Session has gone down, and an automatic reconnect attempt is in progress. | | 13 | SOLCLIENT_SESSION_EVENT_RECONNECTED_NOTICE | The automatic reconnect of the Session was successful, and the Session was established again. | | 14 | SOLCLIENT_SESSION_EVENT_PROVISION_ERROR | The endpoint create/delete command failed. | | 15 | SOLCLIENT_SESSION_EVENT_PROVISION_OK | The endpoint create/delete command completed. | | 16 | SOLCLIENT_SESSION_EVENT_SUBSCRIPTION_OK | The subscribe or unsubscribe operation has succeeded. | | 17 | SOLCLIENT_SESSION_EVENT_VIRTUAL_ROUTER_NAME_CHANGED | The appliance's Virtual Router Name changed during a reconnect operation.This could render existing queues or temporary topics invalid. | | 18 | SOLCLIENT_SESSION_EVENT_MODIFYPROP_OK | The session property modification completed. | | 19 | SOLCLIENT_SESSION_EVENT_MODIFYPROP_FAIL | The session property modification failed. | | 20 | SOLCLIENT_SESSION_EVENT_REPUBLISH_UNACKED_MESSAGES | After successfully reconnecting a disconnected session, the SDK received an unknown publisher flow name response when reconnecting the GD publisher flow. |
 
-Each time you `place_order`, `update_order` or `cancel_order`, by default, you will recieve an order event (or deal event) from exchange. If you don't want recieve both events, please refer to [Subscribe Trade](../../login/#subscribe-trade). We also provide interface to handle order and deal events. It's extremely helpful if you are implementing your custom trading system.
+每次您使用 `place_order`、`update_order` 或者 `cancel_order` 時，預設皆會收到來自交易所的委託或成交回報。如果您不想收到任何回報通知，您可以參考[訂閱委託回報](../../login/#subscribe-trade)將其關閉。我們亦提供了處理委託及成交回報的介面。如果您正在建立自己的交易系統，這會非常有幫助。
 
-## Handle Order Callback
+## 處理委託及成交回報
 
-You can use `set_order_callback` to handle order/deal events. The example below shows custom order callback function (`order_cb`), which will print `my_order_callback` first and then print the order/deal event.
+您可以使用 `set_order_callback` 來處理委託及成交回報。以下範例顯示，自製的委託回報函數(`order_cb`)將先 print `my_order_callback` 然後才 print 委託及成交回報。
 
-Set Order Callback
+設定委託回報函式
 
 ```
 def order_cb(stat, msg):
@@ -3673,7 +2639,7 @@ api.set_order_callback(order_cb)
 
 ```
 
-Place Order
+下單
 
 ```
 contract = api.Contracts.Stocks.TSE.TSE2890
@@ -3707,9 +2673,9 @@ trade = api.place_order(contract, order)
 
 ```
 
-### Order Event
+### 委託回報
 
-Order Event
+委託回報
 
 ```
 my_order_callback
@@ -3807,9 +2773,9 @@ OrderState.TFTOrder {
 
 ```
 
-### Deal Event
+### 成交回報
 
-Deal Event
+成交回報
 
 ```
 my_order_callback
@@ -3869,7 +2835,7 @@ api.credit_enquires(
 
 ```
 
-## Example
+## 範例
 
 In
 
@@ -3898,7 +2864,7 @@ Out
 
 ```
 
-To DataFrame
+轉成DataFrame
 
 In
 
@@ -3913,22 +2879,22 @@ Out
 
 | | margin_unit | short_unit | stock_id | system | update_time | | --- | --- | --- | --- | --- | --- | | 0 | 1381 | 0 | 2330 | HE | 2020-12-11 13:30:13 | | 1 | 1371 | 0 | 2330 | HC | 2020-12-11 13:30:02 | | 2 | 1357 | 0 | 2330 | HN | 2020-12-11 14:31:19 | | 3 | 1314 | 0 | 2330 | HF | 2020-12-11 14:31:19 | | 4 | 0 | 0 | 2890 | HE | 2020-12-09 10:56:05 | | 5 | 0 | 0 | 2890 | HN | 2020-12-11 09:33:04 | | 6 | 0 | 0 | 2890 | HF | 2020-12-02 09:01:03 |
 
-## Attributes
+## 屬性
 
 CreditEnquire
 
 ```
-update_time (str): update time
-system (str): system
-stock_id (str): stock id
-margin_unit (int): margin unit
-short_unit (int): short unit
+update_time (str): 更新時間
+system (str): 類別
+stock_id (str): 商品代碼
+margin_unit (int): 資餘額
+short_unit (int): 券餘額
 
 ```
 
 ## Ticks
 
-Ticks can get all day, period of time or last counts of the day. The default is get ticks of last trade day .
+取得方式可以以一整天、某時間區段或是某天的最後幾筆。預設為商品最近交易日的Ticks。
 
 Ticks
 
@@ -3951,7 +2917,7 @@ Docstring:
 
 ```
 
-### By Date
+### 取得特定日期 Ticks
 
 In
 
@@ -3984,17 +2950,17 @@ Ticks
 
 ```
 ts (int): timestamp
-close (float): close
-volume (int): volume
-bid_price (float): bid price
-bid_volume (int): bid volume
-ask_price (float): ask price
-ask_volume (int): ask volume
+close (float): 成交價
+volume (int): 成交量
+bid_price (float): 委買價
+bid_volume (int): 委買量
+ask_price (float): 委賣價
+ask_volume (int): 委賣量
 tick_type (int): 內外盤別{1: 外盤, 2: 內盤, 0: 無法判定}
 
 ```
 
-To DataFrame
+轉成DataFrame
 
 In
 
@@ -4010,7 +2976,7 @@ Out
 
 | ts | ask_price | close | bid_volume | volume | ask_volume | tick_type | bid_price | | --- | --- | --- | --- | --- | --- | --- | --- | | 2023-01-16 09:00:00.113699 | 506 | 506 | 122 | 3340 | 13 | 1 | 505 | | 2023-01-16 09:00:00.228800 | 506 | 505 | 320 | 1 | 22 | 2 | 505 | | 2023-01-16 09:00:00.244294 | 507 | 506 | 60 | 17 | 702 | 1 | 506 | | 2023-01-16 09:00:00.308595 | 507 | 506 | 58 | 2 | 702 | 2 | 506 |
 
-### Range Time
+### 取得特定時間區段 Ticks
 
 In
 
@@ -4042,7 +3008,7 @@ Ticks(
 
 ```
 
-### Last Count
+### 取得最後數筆 Ticks
 
 In
 
@@ -4131,7 +3097,7 @@ Volume (int): volume
 
 ```
 
-To DataFrame
+轉成DataFrame
 
 In
 
@@ -4147,15 +3113,15 @@ Out
 
 | Close | Amount | Low | Volume | ts | Open | High | | --- | --- | --- | --- | --- | --- | --- | | 505 | 2.68731e+09 | 505 | 5308 | 2023-01-16 09:01:00 | 506 | 508 | | 505 | 5.14132e+08 | 505 | 1018 | 2023-01-16 09:02:00 | 505 | 506 | | 504 | 2.74112e+08 | 504 | 543 | 2023-01-16 09:03:00 | 505 | 506 | | 504 | 1.0542e+08 | 504 | 209 | 2023-01-16 09:04:00 | 504 | 505 |
 
-## Historical Periods
+## 資料歷史期間
 
 Historical Periods
 
 | | Start Date | End Date | | --- | --- | --- | | Index | 2020-03-02 | Today | | Stock | 2020-03-02 | Today | | Futures | 2020-03-22 | Today |
 
-## Continuous Futures
+## 連續期貨合約
 
-Once a futures contract passes its expiration date, the contract is invalid, and it will not exist in your `api.Contracts`. In order to get historical data for expired futures contract, we provide continuous futures contracts. `R1`, `R2` are continuous near-month and next-to-near-month futures contracts respectively. They will automatically roll contracts on delivery date. You can get historical data by using `R1`, `R2` contracts, ex `api.Contracts.Futures.TXF.TXFR1`. We show examples below.
+期貨合約一旦到期，合約即不再有效，亦即他將不會出現在您的`api.Contracts`裡。為了取得到期的期貨合約歷史資料，我們提供連續期貨合約。`R1`, `R2`是近月及次月的連續期貨合約，他們會自動在結算日更換新的合約。您可以使用`R1`, `R2`合約來取得歷史資料，例如`api.Contracts.Futures.TXF.TXFR1`。以下顯示如何使用`R1`, `R2`合約取得到期期貨的歷史`Ticks`及`Kbars`。
 
 Ticks
 
@@ -4214,7 +3180,7 @@ Kbars(
 
 ```
 
-Scanners can use parameter of scannertype to get the rank of ChangePercent, ChangePrice, DayRange, Volume and Amount.
+包含漲跌幅、漲跌、高低價差、成交量及成交金額排行。`Scanners`利用`scanner_type`去取得不同類型的排行。
 
 Scanners
 
@@ -4233,22 +3199,22 @@ api.scanners(
 
 ```
 
-Ascending is sorted from largest to smallest by default, and the value of ascending is True. Set ascending to False to sort in descending order, and the other ranking methods are the same. `count` is how many ranks you get.
+排名預設為由大到小排序，`ascending`預設值為`True`。若要由小到大排序請將`ascending`設為`False`。`count`為排行數量。
 
-Supported Scanner Type
-
-```
-ChangePercentRank: rank by price percentage change
-ChangePriceRank: rank by price change
-DayRangeRank: rank by day range
-VolumeRank: rank by volume
-AmountRank: rank by amount
+支援的排行類別
 
 ```
+ChangePercentRank: 依價格漲跌幅排序
+ChangePriceRank: 依價格漲跌排序
+DayRangeRank: 依高低價差排序
+VolumeRank: 依成交量排序
+AmountRank: 依成交金額排序
 
-## Example
+```
 
-ChangePercentRank
+## 範例
+
+依價格漲跌幅排序
 
 ```
 scanners = api.scanners(
@@ -4296,7 +3262,7 @@ Out
 
 ```
 
-To DataFrame
+轉成 DataFrame
 
 In
 
@@ -4315,43 +3281,43 @@ Out
 
 | date | code | name | ts | open | high | low | close | price_range | tick_type | change_price | change_type | average_price | volume | total_volume | amount | total_amount | yesterday_volume | volume_ratio | buy_price | buy_volume | sell_price | sell_volume | bid_orders | bid_volumes | ask_orders | ask_volumes | | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | | 2023-01-17 | 6259 | 百徽 | 2023-01-17 11:11:41.030000 | 22.8 | 23.75 | 22.45 | 23.75 | 1.3 | 1 | 2.15 | 1 | 23.58 | 4 | 137 | 95000 | 3230900 | 26 | 5.27 | 0 | 8 | 0 | 0 | 65 | 211 | 5 | 11 | | 2023-01-17 | 6788 | 華景電 | 2023-01-17 11:19:01.924000 | 107 | 116 | 107 | 116 | 9 | 1 | 10.5 | 1 | 113.61 | 1 | 4292 | 116000 | 487606000 | 682 | 6.29 | 0 | 1053 | 0 | 0 | 1044 | 3786 | 501 | 1579 | | 2023-01-17 | 2540 | 愛山林 | 2023-01-17 11:17:39.435000 | 85.2 | 85.2 | 83 | 85.2 | 2.2 | 1 | 7.7 | 1 | 85.04 | 1 | 1226 | 85200 | 104253800 | 702 | 1.75 | 0 | 142 | 0 | 0 | 362 | 5779 | 121 | 1831 | | 2023-01-17 | 8478 | 東哥遊艇 | 2023-01-17 11:18:33.702000 | 350.5 | 378 | 347 | 378 | 31 | 1 | 34 | 1 | 363.39 | 1 | 12115 | 378000 | 4402427500 | 8639 | 1.4 | 0 | 3307 | 0 | 0 | 3754 | 235724 | 1906 | 29843 | | 2023-01-17 | 6612 | 奈米醫材 | 2023-01-17 11:15:32.752000 | 102 | 109 | 102 | 109 | 7 | 1 | 9.7 | 1 | 106.95 | 1 | 1329 | 109000 | 142134500 | 1022 | 1.3 | 0 | 298 | 0 | 0 | 467 | 22718 | 162 | 1016 |
 
-## Attributes
+## 屬性
 
 ChangePercentRank
 
 ```
-date (str): date 
-code (str): code
-name (str): name
-ts (int): timestamp
-open (float): open price
-high (float): high price
-low (float): low price
-close (float): close price
-price_range (float): range of price
-tick_type (int): 內外盤別{1: 外盤, 2: 內盤, 0: 無法判定}
-change_price (float): change in price
-change_type (int): 
+date (str): 交易日 
+code (str): 股票代號
+name (str): 股票名稱
+ts (int): 時間戳記
+open (float): 開盤價
+high (float): 最高價
+low (float): 最低價
+close (float): 收盤價
+price_range (float): 價格區間(最高價-最低價)
+tick_type (int): 內外盤別 {1: 內盤, 2: 外盤, 0: 無法判定}
+change_price (float): 價格漲跌
+change_type (int): 漲跌
     {LimitUp, Up, Unchanged, Down, LimitDown}
-average_price (float): average price
-volume (int): volume
-total_volume (int): total volume since market open
-amount (int): amount
-total_amount (int): total amount since market open
-yesterday_volume (int): yesterday volume
-volume_ratio (float): total_volume/yestoday_volume
-buy_price (float): bid
-buy_volume (int): bid volume
-sell_price (float): ask
-sell_volume (int): ask volume
-bid_orders (int): number of orders that deal at bid
-bid_volumes (int): total volume that deal at bid
-ask_orders (int): number of orders that deal at ask
-ask_volumes (int): total volume that deal at ask
+average_price (float): 均價
+volume (int): 成交量
+total_volume (int): 總成交量
+amount (int): 成交金額
+total_amount (int): 總成交金額
+yesterday_volume (int): 昨日總成交量
+volume_ratio (float): 總成交量/昨日總成交量
+buy_price (float): 委買價
+buy_volume (int): 委買量
+sell_price (float): 委賣價
+sell_volume (int): 委賣量
+bid_orders (int): 內盤總成交單量
+bid_volumes (int): 內盤總成交量
+ask_orders (int): 外盤總成交單量
+ask_volumes (int): 外盤總成交量
 
 ```
 
-Short Stock Sources
+或有券源
 
 ```
 >> api.short_stock_sources?
@@ -4365,7 +3331,7 @@ api.short_stock_sources(
 
 ```
 
-## Example
+## 範例
 
 In
 
@@ -4389,7 +3355,7 @@ Out
 
 ```
 
-To DataFrame
+轉成 DataFrame
 
 In
 
@@ -4404,24 +3370,24 @@ Out
 
 | code | short_stock_source | ts | | --- | --- | --- | | 2330 | 58260 | 2023-01-17 08:17:13 | | 2317 | 75049 | 2023-01-17 08:17:13 |
 
-## Attributes
+## 屬性
 
 ShortStockSource
 
 ```
-code (str): contract id
-short_stock_source (float): short stock source
-ts (int): timeStamp
+code (str): 商品代碼
+short_stock_source (float): 或有券源
+ts (int): 時間戳記
 
 ```
 
-Snapshot is a present stock, future, option info. It contain open, high, low, close, change price, average price, volume, total volume, buy price, buy volume, sell price, sell volume and yesterday volume.
+市場快照為證券、期貨及選擇權當下資訊。內容包含開盤價、最高價、最低價、收盤價、變動價、均價、成交量、總成交量、委買價、委買量、委賣價、委賣量和昨量。
 
-Reminder
+提醒
 
-Each snapshot can contain up to 500 contracts.
+市場快照每次最多500檔商品。
 
-Snapshots
+市場快照
 
 ```
 >> api.snapshots?
@@ -4437,15 +3403,12 @@ get contract snapshot info
 
 ```
 
-## Example
+## 範例
 
 In
 
 ```
-contracts = [
-    api.Contracts.Stocks['2330'], 
-    api.Contracts.Stocks['2317']
-]
+contracts = [api.Contracts.Stocks['2330'],api.Contracts.Stocks['2317']]
 snapshots = api.snapshots(contracts)
 snapshots
 
@@ -4507,7 +3470,7 @@ Out
 
 ```
 
-To DataFrame
+轉成Dataframe
 
 In
 
@@ -4522,39 +3485,37 @@ Out
 
 | ts | code | exchange | open | high | low | close | tick_type | change_price | change_rate | change_type | average_price | volume | total_volume | amount | total_amount | yesterday_volume | buy_price | buy_volume | sell_price | sell_volume | volume_ratio | | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | | 2023-01-13 14:30:00 | 2330 | TSE | 507 | 509 | 499 | 500 | Sell | 13.5 | 2.77 | Up | 502.42 | 48 | 77606 | 24000000 | 38990557755 | 20963 | 500 | 122 | 501 | 1067 | 3.7 | | 2023-01-13 14:30:00 | 2317 | TSE | 99 | 99.5 | 98.6 | 98.6 | Sell | 0 | 0 | Unchanged | 98.96 | 63 | 17809 | 6211800 | 1762344817 | 18537 | 98.6 | 607 | 98.7 | 4 | 0.96 |
 
-## Attributes
+## 屬性
 
 Snapshot
 
 ```
-ts (int): TimeStamp
-code (str): Contract id
-exchange (Exchange): exchange
-open (float): open
-high (float): high
-low (float): low
-close (float): close
-tick_type (TickType): Close is buy or sell price
-    {None, Buy, Sell}
-change_price (float): change price
-change_rate (float): change rate
-change_type (ChangeType):
-    {LimitUp, Up, Unchanged, Down, LimitDown}
-avgerage_price (float): avgerage of price
-volume (int): volume
-total_volume (int): total volume
-amount (int): Deal amount
-total_amount (int): Total deal amount
-yestoday_volume (float): Volume of yestoday
-buy_price (float): Price of buy
-buy_volume (float): Volume of sell
-sell_price (float): Price of sell
-sell_volume (int): Volume of sell
-volume_ratio (float): total_volume/yestoday_volume
+ts (int): 取得資訊時間戳記
+code (str): 商品代碼
+exchange (Exchange): 交易所
+open (float): 開盤價
+high (float): 最高價
+low (float): 最低價
+close (float): 收盤價
+tick_type (TickType): 收盤買賣別 {None, Buy, Sell}
+change_price (float): 漲跌
+change_rate (float): 漲跌幅
+change_type (ChangeType): 漲跌 {LimitUp, Up, Unchanged, Down, LimitDown}
+avgerage_price (float): 均價
+volume (int): 單量
+total_volume (int): 成交量
+amount (int): 單量成交金額
+total_amount (int): 成交金額
+yestoday_volume (float): 昨量
+buy_price (float): 委買價
+buy_volume (float): 委買量
+sell_price (float): 賣出價
+sell_volume (int): 委賣量
+volume_ratio (float): 昨量比
 
 ```
 
-To subscribe quotes is very easy, just call `subscribe` function with [contract](../../../contract/) which we've discussed in previous topic.
+利用訂閱[商品檔](../../../contract/)的方式去取得即時行情。
 
 Subscribe
 
@@ -4576,18 +3537,15 @@ api.quote.subscribe?
 Quote Parameters:
 
 ```
-quote_type: tick price or bid/ask price to subscribe
-    {'tick', 'bidask'}
-intraday_odd: 盤中零股
-    {True, False}
-version: version of quote format
-    {'v1', 'v0'}
+quote_type: 訂閱類型 {'tick', 'bidask'}
+intraday_odd: 盤中零股 {True, False}
+version: 行情版本 {'v1', 'v0'}
 
 ```
 
 ## Tick
 
-### Example
+### 範例
 
 In
 
@@ -4658,7 +3616,7 @@ L/TFE/TXFG1
 
 ```
 
-### Attributes
+### 屬性
 
 Tick
 
@@ -4710,7 +3668,7 @@ Volume (list of int): 成交量 (lot)
 
 ## BidAsk
 
-### Example
+### 範例
 
 In
 
@@ -4777,7 +3735,7 @@ Q/TFE/TXFG1
 
 ```
 
-### Attributes
+### 屬性
 
 BidAsk
 
@@ -4825,11 +3783,11 @@ Time (str): 時間 (HH:mm:ss.ffffff)
 
 ## Callback
 
-In default, we set quote callback as print function. You can modify callback function as you wish. Just remember, always avoid making calulations inside the callback function.
+預設狀況下我們將即時行情使用`print`的方式呈現。可根據個人需求修改函數。請避免在函數內進行運算。
 
 ### Tick
 
-In: pythonic way by using decorator
+decorator方式
 
 ```
 from shioaji import TickFOPv1, Exchange
@@ -4847,7 +3805,7 @@ def quote_callback(topic: str, quote: dict):
 
 ```
 
-In: traditional way
+傳統方式
 
 ```
 from shioaji import TickFOPv1, Exchange
@@ -4881,7 +3839,7 @@ Topic: L/TFE/TXFG1, Quote: {'Amount': [17654.0], 'AmountSum': [1682856730.0], 'A
 
 ### BidAsk
 
-In: pythonic way by using decorator
+decorator方式
 
 ```
 from shioaji import BidAskFOPv1, Exchange
@@ -4899,7 +3857,7 @@ def quote_callback(topic: str, quote: dict):
 
 ```
 
-In: traditional way
+傳統方式
 
 ```
 from shioaji import BidAskFOPv1, Exchange
@@ -4931,9 +3889,9 @@ Topic: Q/TFE/TXFG1, Quote: {'AskPrice': [17653.0, 17654.0, 17655.0, 17656.0, 176
 
 ```
 
-- Advanced quote callback settings please refer to [Quote-Binding Mode](../../../advanced/quote_binding/).
+- 更進階的callback使用可以參見[綁訂報價模式](../../../advanced/quote_binding/)。
 
-To subscribe quotes is very easy, just call `subscribe` function with [contract](../../../contract/) which we've discussed in previous topic.
+利用訂閱[商品檔](../../../contract/)的方式去取得即時行情。
 
 Subscribe
 
@@ -4950,21 +3908,18 @@ Signature:
 
 ```
 
-Quote Parameters
+Quote Parameters:
 
 ```
-quote_type: tick price or bid/ask price to subscribe
-    {'tick', 'bidask'}
-intraday_odd: 盤中零股
-    {True, False}
-version: version of quote format
-    {'v1', 'v0'}
+quote_type: 訂閱類型 {'tick', 'bidask'}
+intraday_odd: 盤中零股 {True, False}
+version: 行情版本 {'v1', 'v0'}
 
 ```
 
 ## Tick
 
-### Common Stock
+### 整股
 
 In
 
@@ -5028,7 +3983,7 @@ MKT/idcdmzpcr01/TSE/2330
 
 ```
 
-### Intraday odd
+### 盤中零股
 
 In
 
@@ -5093,7 +4048,7 @@ TIC/v2/replay/TSE/2330/ODDLOT
 
 ```
 
-### Attributes
+### 屬性
 
 Tick
 
@@ -5138,7 +4093,7 @@ Volume (:List:int): 成交量 (張)
 
 ## BidAsk
 
-### Common Stock
+### 整股
 
 In
 
@@ -5188,7 +4143,7 @@ QUT/idcdmzpcr01/TSE/2330
 
 ```
 
-### Intraday odd
+### 盤中零股
 
 In
 
@@ -5240,7 +4195,7 @@ QUO/v2/replay/TSE/2330/ODDLOT
 
 ```
 
-### Attributes
+### 屬性
 
 BidAsk
 
@@ -5270,7 +4225,7 @@ Time (time): 時間 (HH:mm:ss.ffffff)
 
 ## Quote
 
-### Common Stock
+### 整股
 
 In
 
@@ -5329,7 +4284,7 @@ Quote(
 
 ```
 
-### Attributes
+### 屬性
 
 Quote
 
@@ -5374,11 +4329,11 @@ simtrade (bool): 試撮
 
 ## Callback
 
-In default, we set quote callback as print function. You can modify callback function as you wish. Just remember, always avoid making calulations inside the callback function.
+預設狀況下我們將即時行情使用`print`的方式呈現。可根據個人需求修改函數。請避免在函數內進行運算。
 
-### Tick
+#### Tick
 
-In: pythonic way by using decorator
+decorator方式
 
 ```
 from shioaji import TickSTKv1, Exchange
@@ -5396,7 +4351,7 @@ def quote_callback(topic: str, quote: dict):
 
 ```
 
-In: traditional way
+傳統方式
 
 ```
 from shioaji import TickSTKv1, Exchange
@@ -5430,7 +4385,7 @@ Topic: MKT/*/TSE/2330, Quote: {'AmountSum': [4739351000.0], 'Close': [596.0], 'D
 
 ### BidAsk
 
-In: pythonic way by using decorator
+decorator方式
 
 ```
 from shioaji import BidAskSTKv1, Exchange
@@ -5448,7 +4403,7 @@ def quote_callback(topic: str, quote: dict):
 
 ```
 
-In: traditional way
+傳統方式
 
 ```
 from shioaji import BidAskSTKv1, Exchange
@@ -5482,7 +4437,7 @@ Topic: QUT/idcdmzpcr01/TSE/2330, Quote: {'AskPrice': [590.0, 591.0, 592.0, 593.0
 
 ### Quote
 
-In: pythonic way by using decorator
+decorator方式
 
 ```
 from shioaji import QuoteSTKv1, Exchange
@@ -5493,7 +4448,7 @@ def quote_callback(exchange: Exchange, quote:QuoteSTKv1):
 
 ```
 
-In: traditional way
+傳統方式
 
 ```
 from shioaji import QuoteSTKv1, Exchange
@@ -5512,16 +4467,16 @@ Exchange: TSE, Quote: Quote(code='2330', datetime=datetime.datetime(2022, 7, 1, 
 
 ```
 
-- Intraday odd share the callback function with common stock.
-- Advanced quote callback settings please refer to [Quote-Binding Mode](../../../advanced/quote_binding/).
+- 盤中零股與一般證券共用 callback函式。
+- 更進階的callback使用可以參見[綁訂報價模式](../../../advanced/quote_binding/)。
 
-Reminder
+提醒
 
-First, you need to [login](../../login/) and [activate CA](../../prepare/terms/).
+下單前必須先[登入](../../login/)及啟用[憑證](../../prepare/terms/)。
 
-### Place Combo Order.
+## 下單
 
-Combo orders offer types include: **Price Call/Put Spreads**, **Time Call/Put Spreads**, **Straddles**, **Strangles**, **Conversions** and **Reversal**. Please refer to the futures exchange [document](https://www.taifex.com.tw/cht/5/margingReqIndexOpt) for details on the combo rules.
+組合單提供類型包括:**價格價差**、**時間價差**、**跨式**、**勒式**、**轉換**以及**逆轉**。組合規則詳見期交所[文件](https://www.taifex.com.tw/cht/5/margingReqIndexOpt)。
 
 place_comboorder
 
@@ -5540,9 +4495,9 @@ api.place_comboorder?
 
 ```
 
-Product information ( `contract`) and order information ( `order`) must be provided when placing an order. The order of the contracts is irrelevant, only the approved combination is required.
+下單時必須提供商品資訊`contract`及下單資訊`order`。商品資訊無關前後順序，只需提供認可的組合。
 
-Combo Contract
+商品資訊
 
 ```
 contract_1 = api.Contracts.Options.TX4.TX4202111017850C
@@ -5556,7 +4511,7 @@ combo_contract = sj.contracts.ComboContract(
 
 ```
 
-Order
+下單資訊
 
 ```
 order = api.ComboOrder(
@@ -5572,13 +4527,13 @@ order = api.ComboOrder(
 In
 
 ```
-trade = api.place_comboorder(combo_c, order)
+trade = api.place_comboorder(combo_contract, order)
 
 ```
 
-### Cancel Combo Order
+## 刪單
 
-`Trade` is the order to be deleted, which can be obtained from the [`update_combostatus`](#update-combo-status).
+`trade`為要刪的單，可從[查詢](#_3)取得。
 
 In
 
@@ -5587,9 +4542,9 @@ api.cancel_comboorder(trade)
 
 ```
 
-### Update Combo Status
+## 查詢狀態
 
-Like `list_trades` and `update_status` concepts. Before getting the combo status, the status must be updated with `update_combostatus`.
+如同 `list_trades` 及 `update_status` 的概念。在取得組合單狀態前，必須利用 `update_combostatus` 更新狀態。
 
 In
 
@@ -5676,35 +4631,31 @@ Out
 
 ```
 
-Reminder
+提醒
 
-First, you need to [login](../../login/) and [activate CA](../../prepare/terms/).
+下單前必須先[登入](../../login/)及啟用[憑證](../../prepare/terms/)。
 
-### Futures Order
+### 期貨委託單
 
-Order Attributes
+期貨委託單
 
 ```
-price (float or int): the price of order
-quantity (int): the quantity of order
-action (str): order action to buy or sell
-    {Buy, Sell}
-price_type (str): pricing type of order
-    {LMT, MKT, MKP}
-order_type (str): the type of order
-    {ROD, IOC, FOK}
-octype (str): the type or order to open new position or close position future only
-    {Auto, New, Cover, DayTrade} (自動、新倉、平倉、當沖)
-account (:obj:Account): which account to place this order
-ca (binary): the ca of this order
+price (float or int): 價格
+quantity (int): 委託數量
+action (str): {Buy: 買, Sell: 賣}
+price_type (str): {LMT: 限價, MKT: 市價, MKP: 範圍市價}
+order_type (str): 委託類別 {ROD, IOC, FOK}
+octype (str): {Auto: 自動, New: 新倉, Cover: 平倉, DayTrade: 當沖} 
+account (:obj:Account): 下單帳號
+ca (binary): 憑證
 
 ```
 
-### Place Order
+### 下單
 
-Product information ( `contract`) and order information ( `order`) must be provided when placing an order.
+下單時必須提供商品資訊`contract`及下單資訊`order`。
 
-Place Order
+下單
 
 ```
 api.place_order?
@@ -5721,14 +4672,14 @@ api.place_order?
 
 ```
 
-Contract
+商品檔
 
 ```
 contract = api.Contracts.Futures.TXF.TXF202301
 
 ```
 
-Order
+委託單
 
 ```
 order = api.Order(
@@ -5756,7 +4707,7 @@ order = api.Order(
 
 ```
 
-Place Order
+下單
 
 ```
 trade = api.place_order(contract, order)
@@ -5810,11 +4761,11 @@ Trade(
 
 ```
 
-After `place_order`, you will also receive the information sent back from the exchange. For details, please refer to [Order & Deal Event](../order_deal_event/stocks/).
+下單完同時也會收到從交易所傳回來的資料，詳情內容可詳見[下單回報](../order_deal_event/stocks/)。
 
-To update the `trade` status, you need to call `update_status`.
+您需要執行`update_status`已更新`trade`物件的狀態。
 
-Update Status
+更新委託狀態
 
 ```
 api.update_status(api.futopt_account)
@@ -5868,19 +4819,19 @@ Trade(
 
 ```
 
-Status of Trade
+委託單狀態
 
-- `PendingSubmit`: Sending
-- `PreSubmitted`: Reservation
-- `Submitted`: Send Successfully
-- `Failed`: Failed
-- `Cancelled`: Cancelled
-- `Filled`: Complete Fill
-- `Filling`: Part Fill
+- `PendingSubmit`: 傳送中
+- `PreSubmitted`: 預約單
+- `Submitted`: 傳送成功
+- `Failed`: 失敗
+- `Cancelled`: 已刪除
+- `Filled`: 完全成交
+- `Filling`: 部分成交
 
-### Update Order
+### 改單
 
-Update Order
+改單
 
 ```
 api.update_order?
@@ -5897,9 +4848,9 @@ api.update_order?
 
 ```
 
-#### Update Price
+#### 改價
 
-Update Price
+改價
 
 ```
 api.update_order(trade=trade, price=14450)
@@ -5956,11 +4907,11 @@ Trade(
 
 ```
 
-#### Update Quantity (Reduce)
+#### 改量(減量)
 
-`update_order` can only reduce the quantity of the order.
+`update_order` 只能用來**減少**原委託單的委託數量。
 
-Update Quantity
+改量(減量)
 
 ```
 api.update_order(trade=trade, qty=1)
@@ -6017,9 +4968,9 @@ Trade(
 
 ```
 
-### Cancel Order
+### 刪單
 
-Cancel Order
+刪單
 
 ```
 api.cancel_order(trade)
@@ -6076,9 +5027,9 @@ Trade(
 
 ```
 
-### Deal
+### 成交
 
-Update Status
+更新委託狀態(成交後)
 
 ```
 api.update_status(api.futopt_account)
@@ -6135,13 +5086,13 @@ Trade(
 
 ```
 
-## Examples
+## 範例
 
-[Future and Option place order jupyter link](https://nbviewer.jupyter.org/github/Sinotrade/Sinotrade.github.io/blob/master/tutorial/future_and_option.ipynb)
+[期權下單範例 ( jupyter)](https://nbviewer.jupyter.org/github/Sinotrade/Sinotrade.github.io/blob/master/tutorial/future_and_option.ipynb)
 
-### Action
+### 買賣別
 
-Buy
+買
 
 ```
 order = api.Order(
@@ -6156,7 +5107,7 @@ order = api.Order(
 
 ```
 
-Sell
+賣
 
 ```
 order = api.Order(
@@ -6188,15 +5139,15 @@ order = api.Order(
 
 ```
 
-Reminder
+[零股下單範例 ( jupyter)](https://nbviewer.jupyter.org/github/Sinotrade/Sinotrade.github.io/blob/master/tutorial/stock_intraday_odd.ipynb)
 
-First, you need to [login](../../login/) and [activate CA](../../prepare/terms/).
+提醒
 
-[place intraday odd order jupyter link](https://nbviewer.jupyter.org/github/Sinotrade/Sinotrade.github.io/blob/master/tutorial/stock_intraday_odd.ipynb)
+下單前必須先[登入](../../login/)及啟用[憑證](../../prepare/terms/)。
 
-### Place Order
+### 下單
 
-In
+下單
 
 ```
 contract = api.Contracts.Stocks.TSE.TSE0050
@@ -6262,15 +5213,15 @@ Trade(
 
 ```
 
-### Update Order
+### 改單
 
-Attention
+注意
 
-**Intraday Odd cannot update price.**
+**零股不能進行改價**
 
-`update_order` can only reduce the quantity of the order.
+`update_order` 只能用來**減少**原委託單的委託數量。
 
-Update Quantity
+改量(減量)
 
 ```
 api.update_order(trade=trade, qty=2)
@@ -6326,9 +5277,9 @@ Trade(
 
 ```
 
-### Cancel Order
+### 刪單
 
-Cancel Order
+刪單
 
 ```
 api.cancel_order(trade)
@@ -6385,14 +5336,14 @@ Trade(
 
 ```
 
-When Stock triggers some transaction abnormal conditions, it is necessary to `Reserve Order` in advance. Abnormal conditions include: watch out for stocks, warn about stocks, dispose of stocks, and manage stocks.
+當現貨觸發一些交易異常條件，需先預收券款。異常條件包括: 注意股票、警示股票、處置股票及管理股票。
 
-Reminder
+提醒
 
-- First, you need to [login](../../login/) and [activate CA](../../prepare/terms/).
-- Service hours are from 8:00 to 14:30 on trading days.
+- 必須先[登入](../../login/)及啟用[憑證](../../prepare/terms/)。
+- 服務時間為交易日8:00~14:30。
 
-### Get Stock Reserve Summay Status
+### 查詢圈券狀態
 
 In
 
@@ -6429,7 +5380,7 @@ ReserveStocksSummaryResponse(
 
 ```
 
-### Reserve Stock
+### 借券圈券申請
 
 In
 
@@ -6463,7 +5414,7 @@ ReserveStockResponse(
 
 ```
 
-### Get Stock Reserve Detail Satus
+### 查詢圈券明細
 
 In
 
@@ -6500,7 +5451,7 @@ ReserveStocksDetailResponse(
 
 ```
 
-### Reserve Earmarking
+### 預收款項申請
 
 In
 
@@ -6535,7 +5486,7 @@ ReserveEarmarkingResponse(
 
 ```
 
-### Get Earmarking Detail Status
+### 查詢預收款項
 
 In
 
@@ -6587,9 +5538,9 @@ EarmarkStocksDetailResponse(
 
 ```
 
-### Example
+### 範例
 
-Query the reserve status of all accounts under your name.
+查詢所有名下帳號的圈券狀態
 
 In
 
@@ -6616,61 +5567,59 @@ for account in accounts:
 
 ```
 
-Reminder
+提醒
 
-First, you need to [login](../../login/) and [activate CA](../../prepare/terms/).
+下單前必須先[登入](../../login/)及啟用[憑證](../../prepare/terms/)。
 
-### Stock Order
+### 證券委託單
 
-Order Attributes
-
-```
-price (float or int): the price of order
-quantity (int): the quantity of order
-action (str): order action to buy or sell
-    {Buy, Sell}
-price_type (str): pricing type of order
-    {LMT, MKT, MKP} (限價、市價、範圍市價)
-order_type (str): the type of order
-    {ROD, IOC, FOK}
-order_cond (str): order condition stock only
-    {Cash, MarginTrading, ShortSelling} (現股、融資、融券)
-order_lot (str): the type of order
-    {Common, Fixing, Odd, IntradayOdd} (整股、定盤、盤後零股、盤中零股)
-daytrade_short {bool}: the type of first sell
-    {True, False}
-custom_field {str}: memo field, only letters and numbers are allowed, and the maximum length is 6.
-account (:obj:Account): which account to place this order
-ca (binary): the ca of this order
+證券委託單
 
 ```
-
-```
-price (float or int): the price of order
-quantity (int): the quantity of order
-action (str): order action to buy or sell
-    {Buy, Sell}
-price_type (str): pricing type of order
-    {LMT, MKT, MKP} (限價、市價、範圍市價)
-order_type (str): the type of order
-    {ROD, IOC, FOK}
-order_cond (str): order condition stock only
-    {Cash, MarginTrading, ShortSelling} (現股、融資、融券)
-order_lot (str): the type of order
-    {Common, Fixing, Odd, IntradayOdd} (整股、定盤、盤後零股、盤中零股)
-first_sell {str}: the type of first sell
-    {true, false}
-custom_field {str}: memo field, only letters and numbers are allowed, and the maximum length is 6.
-account (:obj:Account): which account to place this order
-ca (binary): the ca of this order
+price (float or int): 價格
+quantity (int): 委託數量
+action (str): {Buy: 買, Sell: 賣}
+price_type (str): {LMT: 限價, MKT: 市價, MKP: 範圍市價}
+order_type (str): 委託類別 {ROD, IOC, FOK}
+order_cond (str): {Cash:現股, MarginTrading:融資, ShortSelling:融券}
+order_lot (str): {
+        Common:整股, 
+        Fixing:定盤, 
+        Odd:盤後零股, 
+        IntradayOdd:盤中零股
+    }
+daytrade_short (bool): 先賣後買
+custom_field (str): 備註，只允許輸入大小寫英文字母及數字，且長度最長為 6
+account (:obj:Account): 下單帳號
+ca (binary): 憑證
 
 ```
 
-### Place Order
+```
+price (float or int): 價格
+quantity (int): 委託數量
+action (str): {Buy: 買, Sell: 賣}
+price_type (str): {LMT: 限價, MKT: 市價, MKP: 範圍市價}
+order_type (str): 委託類別 {ROD, IOC, FOK}
+order_cond (str): {Cash:現股, MarginTrading:融資, ShortSelling:融券}
+order_lot (str): {
+        Common:整股, 
+        Fixing:定盤, 
+        Odd:盤後零股, 
+        IntradayOdd:盤中零股
+    }
+first_sell (str): 先賣後買 {true, false}
+custom_field (str): 備註，只允許輸入大小寫英文字母及數字，且長度最長為 6
+account (:obj:Account): 下單帳號
+ca (binary): 憑證
 
-Product information ( `contract`) and order information ( `order`) must be provided when placing an order.
+```
 
-Place Order
+### 下單
+
+下單時必須提供商品資訊`contract`及下單資訊`order`。
+
+下單
 
 ```
 api.place_order?
@@ -6687,14 +5636,14 @@ api.place_order?
 
 ```
 
-Contract
+商品檔
 
 ```
 contract = api.Contracts.Stocks.TSE.TSE2890
 
 ```
 
-Order
+委託單
 
 ```
 order = api.Order(
@@ -6726,7 +5675,7 @@ order = api.Order(
 
 ```
 
-Place Order
+下單
 
 ```
 trade = api.place_order(contract, order)
@@ -6781,11 +5730,11 @@ Trade(
 
 ```
 
-After `place_order`, you will also receive the information sent back from the exchange. For details, please refer to [Order & Deal Event](../order_deal_event/stocks/).
+下單完同時也會收到從交易所傳回來的資料，詳情內容可詳見[下單回報](../order_deal_event/stocks/)。
 
-To update the `trade` status, you need to call `update_status`.
+您需要執行`update_status`已更新`trade`物件的狀態。
 
-Update Status
+更新委託狀態(成交後)
 
 ```
 api.update_status(api.stock_account)
@@ -6841,19 +5790,19 @@ Trade(
 
 ```
 
-Status of Trade
+委託單狀態
 
-- `PendingSubmit`: Sending
-- `PreSubmitted`: Reservation
-- `Submitted`: Send Successfully
-- `Failed`: Failed
-- `Cancelled`: Cancelled
-- `Filled`: Complete Fill
-- `Filling`: Part Fill
+- `PendingSubmit`: 傳送中
+- `PreSubmitted`: 預約單
+- `Submitted`: 傳送成功
+- `Failed`: 失敗
+- `Cancelled`: 已刪除
+- `Filled`: 完全成交
+- `Filling`: 部分成交
 
-### Update Order
+### 改單
 
-Update Order
+改單
 
 ```
 api.update_order?
@@ -6870,9 +5819,9 @@ api.update_order?
 
 ```
 
-#### Update Price
+#### 改價
 
-Update Price
+改價
 
 ```
 api.update_order(trade=trade, price=17.5)
@@ -6930,11 +5879,11 @@ Trade(
 
 ```
 
-#### Update Quantity (Reduce)
+#### 改量(減量)
 
-`update_order` can only reduce the quantity of the order.
+`update_order` 只能用來**減少**原委託單的委託數量。
 
-Update Quantity
+改量(減量)
 
 ```
 api.update_order(trade=trade, qty=1)
@@ -6992,9 +5941,9 @@ Trade(
 
 ```
 
-### Cancel Order
+### 刪單
 
-Cancel Order
+刪單
 
 ```
 api.cancel_order(trade)
@@ -7052,9 +6001,9 @@ Trade(
 
 ```
 
-### Deal
+### 成交
 
-Update Status
+更新委託狀態
 
 ```
 api.update_status(api.stock_account)
@@ -7112,13 +6061,13 @@ Trade(
 
 ```
 
-## Examples
+## 範例
 
-[Stock place order jupyter link](https://nbviewer.jupyter.org/github/Sinotrade/Sinotrade.github.io/blob/master/tutorial/stock.ipynb)
+[證券下單範例 ( jupyter)](https://nbviewer.jupyter.org/github/Sinotrade/Sinotrade.github.io/blob/master/tutorial/stock.ipynb)
 
-### Action
+### 買賣別
 
-Buy
+買
 
 ```
 order = api.Order(
@@ -7134,7 +6083,7 @@ order = api.Order(
 
 ```
 
-Sell
+賣
 
 ```
 order = api.Order(
@@ -7214,13 +6163,11 @@ order = api.Order(
 
 ```
 
-Reminder
+提醒
 
-First, you need to [login](../../login/) and [activate CA](../../prepare/terms/).
+必須先[登入](../../login/)及啟用[憑證](../../prepare/terms/)。
 
-Before obtaining the `Trade` status, it must be updated with `update_status`. If you cannot successfully `update_order` or `cancel_order`, you can use `update_status` to update the specific `trade` status, and check the `OrderStatus` in `trade`, whether it is available to modify the order.
-
-The update_status defaults to querying all accounts under the user's name. If you wish to inquire about a specific account, provide the account as a parameter to account.
+在取得 `Trade` 狀態前，必須先利用`update_status`進行更新。如果無法成功刪單或改單，你可以對特定`trade`物件進行更新，並確認在`trade`中的`OrderStatus`，是否為可刪改狀態。`update_status` 預設查詢為名下所有帳號。若想查詢特定帳號，將帳號帶入`account`。
 
 Update Status
 
@@ -7243,9 +6190,9 @@ Docstring: update status of all trades you have
 
 ```
 
-### Get Stock Trades
+### 取得證券委託狀態
 
-Get Stock Trades
+取得證券委託狀態
 
 ```
 api.update_status(api.stock_account)
@@ -7305,9 +6252,9 @@ Out
 
 ```
 
-### Get Futures Trades
+### 取得期貨委託狀態
 
-Get Futures Trades
+取得期貨委託狀態
 
 ```
 api.update_status(api.futopt_account)
@@ -7366,9 +6313,9 @@ Out
 
 ```
 
-### Update Specific Trade
+### 更新特定交易狀態
 
-Update Trade
+更新特定交易狀態
 
 ```
 # you can get trade from place_order
@@ -7381,37 +6328,45 @@ api.update_status(trade=trade)
 
 ```
 
-### Trade Status
+### 委託及成交狀態屬性
 
-OrderStatus
-
-```
-id (str): the id uses to correlate the order object
-status (:obj:Status): the status of order {Cancelled, Filled, PartFilled, Failed, PendingSubmit, PreSubmitted, Submitted}
-status_code (str): the code of status
-order_datetime (datetime): order time
-order_quantity (int): order quantity
-modified_price (float): the price of modification
-cancel_quantity (int): the quantity of cancel
-deals (:List:Deal): information of filled order
+委託狀態屬性
 
 ```
-
-Deal
-
-```
-seq (str): deal sequence number
-price (int or float): deal price
-quantity (int): deal quantity
-ts (float): deal timestamp
+id (str): 關聯Order物件編碼
+status (:obj:Status): {
+            Cancelled: 已刪除, 
+            Filled: 完全成交, 
+            PartFilled: 部分成交, 
+            Failed: 失敗, 
+            PendingSubmit: 傳送中, 
+            PreSubmitted: 預約單, 
+            Submitted: 傳送成功
+        }
+status_code (str): 狀態碼
+order_datetime (datetime): 委託時間
+order_quantity (int): 委託數量
+modified_price (float): 改價金額
+cancel_quantity (int): 取消委託數量
+deals (:List:Deal): 成交資訊
 
 ```
 
-### Order CallBack
+成交屬性
 
-When the exchange receives the order, it will return the callback. The callback is divided into four parts, including operation, order, status and contract. We will explain in detail below.
+```
+seq (str): 成交序號
+price (int or float): 成交價
+quantity (int): 成交數量
+ts (float): 成交時間戳
 
-Order Event
+```
+
+### 委託回報
+
+當期交所收到委託將會回傳回報。在回報中分為四部分，包括operation、order、status及contract。以下我們會在進行詳細的說明。
+
+委託回報
 
 ```
 OrderState.FuturesOrder {
@@ -7511,71 +6466,76 @@ OrderState.FOrder {
 
 ```
 
-Order CallBack Info.
+委託回報資訊
 
 **operation**
 
 ```
 op_type (str): {
-            "New": new order, 
-            "Cancel": cancel order, 
-            "UpdatePrice": update price, 
-            "UpdateQty": update quantity
-        }
-op_code (str): {"00": success, others: fail}
-op_msg (str): error message
+        "New": 新單, 
+        "Cancel": 刪單, 
+        "UpdatePrice": 改價, 
+        "UpdateQty": 改量
+    }
+op_code (str): {"00": 成功, others: 失敗}
+op_msg (str): 錯誤訊息
 
 ```
 
 **order**
 
 ```
-id (str): same as the trade_id in FuturesDeal
-seqno (str): sequence number
-ordno (str): order number
-account (dict): account info
-action (str): {Buy, Sell}
-price (float or int): order price
-quantity (int): order quantity
-order_type (str): the type of order {ROD, IOC, FOK}
-price_type (str): pricing type of order {LMT, MKT, MKP}
-market_type (str): {Day, Night}
-oc_type (str): {New: 新倉, Cover: 平倉, Auto: 自動}
-subaccount (str): subaccount
-combo (bool): whether order is combo order
+id (str): 與成交回報的trade_id相同
+seqno (str): 平台單號
+ordno (str): 委託單號
+account (dict): 帳號資訊
+action (str): 買賣別
+price (float or int): 委託價
+quantity (int): 委託量
+order_cond (str): {
+            Cash: 現股, 
+            MarginTrading: 融資, 
+            ShortSelling: 融券
+        }
+order_type (str): 委託類別 {ROD, IOC, FOK}
+price_type (str): {LMT: 限價, MKT: 市價, MKP: 範圍市價}
+market_type (str): 市場別 {Day:日盤, Night:夜盤}
+oc_type(str): {New: 新倉, Cover: 平倉, Auto: 自動}
+subaccount(str): 子帳號
+combo (bool): 是否為組合單
 
 ```
 
 **status**
 
 ```
-id (str): same as the trade_id in FuturesDeal
-exchange_ts (int): exchange time
-modified_price (float or int): modified price
-cancel_quantity (int): cancel quantity
-order_quantity (int): irder quantity
-web_id (str): web id
+id (str): 與成交回報的trade_id相同
+exchange_ts (int): 交易所時間
+modified_price (float or int): 改價
+cancel_quantity (int): 取消數量
+order_quantity (int): 委託數量
+web_id (str): 下單平台代碼
 
 ```
 
 **contract**
 
 ```
-security_type (str): security type
-code (str): code id
-exchange (str): exchange
-delivery_month (str): delivery month
-delivery_date (str): delivery date
-strike_price (float): strike price
+security_type (str): 商品類別
+code (str): 商品代碼
+exchange (str): 交易所
+delivery_month (str): 交割月份
+delivery_date (str): 交割日期
+strike_price (float): 履約價
 option_right (str): {Future, OptionCall, OptionPut}
 
 ```
 
-### Deal CallBack
+### 成交回報
 
-When the matching is successful, the exchange will send a transaction report notification. Successful matching includes partial transactions and complete transactions. You can confirm whether it is the same order from the `id` in the order callback to the `trade_id` in the deal callback.
+當搓合成功，期交所會傳送成交回報告知。搓合成功包含部分成交以及完全成交，可以從委託回報中的`id`去對應成交回報中的`trade_id`去確認是否為同一筆委託單。
 
-Deal Event
+成交回報
 
 ```
 OrderState.FuturesDeal {
@@ -7625,42 +6585,42 @@ OrderState.FDeal {
 
 ```
 
-FuturesDeal
+成交回報
 
 ```
-trade_id (str): same as the id in FuturesOrder
-seqno (str): sequence number
-ordno (str): The first 5 characters is the same as ordno in FuturesOrder. The last 3 characters represent the deal sequence number.
-exchange_seq (str): exchange sequence number
-broker_id (str): broker id
-account_id (str): account
-action (str): buy/sell
-code (str): code
-price (float or int): deal price
-quantity (int): deal quantity
-subaccount (str): subaccount
-security_type (str): security type
-delivery_month (str): delivery month
-strike_price (float): strike price
+trade_id (str): 與委託回報id相同
+seqno (str): 平台單號
+ordno (str): 前五碼為同委託回報委託單號，後三碼為同筆委託成交交易序號。
+exchange_seq (str): 回報序號
+broker_id (str): 分行代碼
+account_id (str): 帳號
+action (str): 買賣別
+code (str): 商品代碼
+price (float or int): 成交價
+quantity (int): 成交量
+subaccount (str): 子帳號
+security_type (str): 商品類別
+delivery_month (str): 交割月份
+strike_price (float): 履約價
 option_right (str): {Future, OptionCall, OptionPut}
 market_type (str): {Day, Night}
-ts (int): deal timestamp    
+ts (int): 成交時間戳    
 
 ```
 
-Note
+注意
 
-you "may" recieve the deal event sooner than the order event due to message priority in exchange.
+交易所回傳訊息優先順序成交回報大於委託回報，所以當委託立即成交可能會先收到成交回報。
 
-### Handle Callback
+### 回報處理
 
-If you would like to handle callback info, please refer to [Callback](../../../callback/orderdeal_event/).
+欲處理委託、成交回報，詳細可參見[Callback](../../../callback/orderdeal_event/)。
 
-### Order CallBack
+### 委託回報
 
-When the exchange receives the order, it will return the callback. The callback is divided into four parts, including operation, order, status and contract. We will explain in detail below.
+當證交所收到委託將會回傳回報。在回報中分為四部分，包括operation、order、status及contract。以下我們會在進行詳細的說明。
 
-Order Event
+委託回報
 
 ```
 OrderState.StockOrder {
@@ -7756,34 +6716,34 @@ OrderState.TFTOrder {
 
 ```
 
-Order CallBack Info.
+委託回報資訊
 
 **operation**
 
 ```
 op_type (str): {
-        "New": new order, 
-        "Cancel": cancel order, 
-        "UpdatePrice": update price, 
-        "UpdateQty": update quantity
-    }
-op_code (str): {"00": success, others: fail}
-op_msg (str): error message
+            "New": 新單, 
+            "Cancel": 刪單, 
+            "UpdatePrice": 改價, 
+            "UpdateQty": 改量
+        }
+op_code (str): {"00": 成功, others: 失敗}
+op_msg (str): 錯誤訊息
 
 ```
 
 **order**
 
 ```
-id (str): same as the trade_id in SDeal
-seqno (str): sequence number
-ordno (str): order number
-account (dict): account info
-action (str): {Buy, Sell}
-price (float or int): order price
-quantity (int): order quantity
-order_type (str): the type of order {ROD, IOC, FOK}
-price_type (str): pricing type of order {LMT, MKT, MKP}
+id (str): 與成交回報的trade_id相同
+seqno (str): 平台單號
+ordno (str): 委託單號
+account (dict): 帳號資訊
+action (str): 買賣別 {Buy, Sell}
+price (float or int): 委託價格
+quantity (int): 委託數量
+order_type (str): 委託類別 {ROD, IOC, FOK}
+price_type (str): {LMT: 限價, MKT: 市價, MKP: 範圍市價}
 order_cond (str): {
             Cash: 現股, 
             MarginTrading: 融資, 
@@ -7795,39 +6755,39 @@ order_lot (str): {
             Odd: 盤後零股, 
             IntradayOdd: 盤中零股
         }
-custom_field (str): memo field
+custom_field (str): 自訂欄位
 
 ```
 
 **status**
 
 ```
-id (str): same as the trade_id in SDeal
-exchange_ts (int): exchange time
-modified_price (float or int): modified price
-cancel_quantity (int): cancel quantity
-order_quantity (int): order quantity
-web_id (str): web id
+id (str): 與成交回報的trade_id相同
+exchange_ts (int): 交易所時間
+modified_price (float or int): 改價
+cancel_quantity (int): 取消數量
+order_quantity (int): 委託數量
+web_id (str): 下單平台代碼
 
 ```
 
 **contract**
 
 ```
-security_type (str): security type
-exchange (str): exchange
-code (str): code id
-symbol (str): symbol
-name (str): name
-currency (str): currency
+security_type (str): 商品類別
+exchange (str): 交易所
+code (str): 商品代碼
+symbol (str): 符號
+name (str): 商品名稱
+currency (str): 幣別
 
 ```
 
-### Deal CallBack
+### 成交回報
 
-When the matching is successful, the exchange will send a transaction report notification. Successful matching includes partial transactions and complete transactions. You can confirm whether it is the same order from the `id` in the order callback to the `trade_id` in the deal callback.
+當搓合成功，證交所會傳送成交回報告知。搓合成功包含部分成交以及完全成交，可以從委託回報中的`id`去對應成交回報中的`trade_id`去確認是否為同一筆委託單。
 
-Deal Event
+成交回報
 
 ```
 OrderState.StockDeal {
@@ -7871,17 +6831,17 @@ OrderState.TFTDeal {
 
 ```
 
-Deal Callback Info.
+成交回報
 
 ```
-trade_id (str): same as the id in StockOrder
-seqno (str): sequence number
-ordno (str): The first 5 characters is the same as ordno in StockOrder. The last 3 characters represent the deal sequence number.
-exchange_seq (str): exchange sequence number
-broker_id (str): broker id
-account_id (str): account
-action (str): {Buy, Sell}
-code (str): code id
+trade_id (str): 與委託回報id相同
+seqno (str): 平台單號
+ordno (str): 前五碼為同委託回報委託單號，後三碼為同筆委託成交交易序號。
+exchange_seq (str): 回報序號
+broker_id (str): 分行代碼
+account_id (str): 帳號
+action (str): 買賣別 {Buy, Sell}
+code (str): 商品代碼
 order_cond (str): {
             Cash: 現股, 
             MarginTrading: 融資, 
@@ -7893,29 +6853,29 @@ order_lot (str): {
             Odd: 盤後零股, 
             IntradayOdd: 盤中零股
         }
-price (float or int): deal price
-quantity (int): deal quantity
-web_id (str): web id
-custom_field (str): memo field
-ts (int): deal timestamp    
+price (float or int): 成交價
+quantity (int): 成交量
+web_id (str): 平台代碼
+custom_field (str): 自訂欄位
+ts (int): 成交時間戳
 
 ```
 
-Note
+注意
 
-you "may" recieve the deal event sooner than the order event due to message priority in exchange.
+交易所回傳訊息優先順序成交回報大於委託回報，所以當委託立即成交可能會先收到成交回報。
 
-### Handle Callback
+### 回報處理
 
-If you would like to handle callback info, please refer to [Callback](../../../callback/orderdeal_event/).
+欲處理委託、成交回報，詳細可參見[Callback](../../../callback/orderdeal_event/)。
 
-First, we extend the project `sj-trading` created using `uv` in the environment creation chapter to add the testing flow part.
+首先，我們延伸前面在環境建立章節使用 `uv` 建立的專案 `sj-trading` 來新增測試流程的部分。
 
-The complete project code can be referred to [sj-trading https://github.com/Sinotrade/sj-trading-demo](https://github.com/Sinotrade/sj-trading-demo).
+這部分完整專案的程式碼可以參考 [sj-trading https://github.com/Sinotrade/sj-trading-demo](https://github.com/Sinotrade/sj-trading-demo)。
 
-You can use `git` to clone the entire environment to your local machine and use it directly.
+可以使用 `git` 將整個環境複製到本地就可以直接使用
 
-Download Project
+下載專案
 
 ```
 git clone https://github.com/Sinotrade/sj-trading-demo.git
@@ -7923,15 +6883,15 @@ cd sj-trading-demo
 
 ```
 
-Next, we will step by step introduce how to add the testing flow.
+下面我們將一步一步的介紹如何新增測試流程。
 
-### Shioaji Version
+### Shioaji 版本
 
-Get Shioaji version information
+獲取 Shioaji 版本資訊
 
-Add Version Information
+新增版本資訊
 
-Add the following content to `src/sj_trading/__init__.py`
+在 `src/sj_trading/__init__.py` 新增
 
 ```
 def show_version() -> str:
@@ -7940,9 +6900,9 @@ def show_version() -> str:
 
 ```
 
-Add `version` Command to Project
+新增版本指令到專案
 
-Add `version` command to `pyproject.toml`
+在 `pyproject.toml` 新增 `version` 的指令
 
 ```
 [project.scripts]
@@ -7950,20 +6910,20 @@ version = "sj_trading:show_version"
 
 ```
 
-Execute `uv run version` to see the Shioaji version information
+執行 `uv run version` 就可以看到 Shioaji 的版本資訊
 
 ```
 Shioaji Version: 1.2.0
 
 ```
 
-### Stock Testing
+### 現貨下單測試
 
-Add Stock Testing File
+新增下單測試檔案
 
-Add file `testing_flow.py` to `src/sj_trading`
+在 `src/sj_trading` 新增檔案 `testing_flow.py`
 
-Add the following content
+新增以下內容
 
 ```
 import shioaji as sj
@@ -7971,48 +6931,48 @@ from shioaji.constant import Action, StockPriceType, OrderType
 import os
 
 def testing_stock_ordering():
-    # Login to the testing environment
+    # 測試環境登入
     api = sj.Shioaji(simulation=True)
     accounts = api.login(
         api_key=os.environ["API_KEY"],
         secret_key=os.environ["SECRET_KEY"],
     )
-    # Show all available accounts
+    # 顯示所有可用的帳戶
     print(f"Available accounts: {accounts}")
     api.activate_ca(
         ca_path=os.environ["CA_CERT_PATH"],
         ca_passwd=os.environ["CA_PASSWORD"],
     )
 
-    # Prepare the Contract for Ordering
-    # Use 2890 Fubon Financial as an example
+    # 準備下單的 Contract
+    # 使用 2890 永豐金為例
     contract = api.Contracts.Stocks["2890"]
     print(f"Contract: {contract}")
 
-    # Create an Order for Ordering
+    # 建立委託下單的 Order
     order = sj.order.StockOrder(
-        action=Action.Buy, # Buy
-        price=contract.reference, # Buy at the reference price
-        quantity=1, # Order quantity
-        price_type=StockPriceType.LMT, # Limit price order
-        order_type=OrderType.ROD, # Effective for the day
-        account=api.stock_account, # Use the default account
+        action=Action.Buy, # 買進
+        price=contract.reference, # 以平盤價買進
+        quantity=1, # 下單數量
+        price_type=StockPriceType.LMT, # 限價單
+        order_type=OrderType.ROD, # 當日有效單
+        account=api.stock_account, # 使用預設的帳戶
     )
     print(f"Order: {order}")
 
-    # Send the order
+    # 送出委託單
     trade = api.place_order(contract=contract, order=order)
     print(f"Trade: {trade}")
 
-    # Update the status
+    # 更新狀態
     api.update_status()
     print(f"Status: {trade.status}")
 
 ```
 
-Add `stock_testing` Command to Project
+新增測試下單指令到專案
 
-Add `stock_testing` command to `pyproject.toml`
+在 `pyproject.toml` 新增 `stock_testing` 的指令
 
 ```
 [project.scripts]
@@ -8020,13 +6980,13 @@ stock_testing = "sj_trading.testing_flow:testing_stock_ordering"
 
 ```
 
-Execute `uv run stock_testing` to start testing stock ordering
+執行 `uv run stock_testing` 就開始進行測試下單了
 
-### Futures Testing
+### 期貨下單測試
 
-Add Futures Testing Content
+新增期貨下單測試
 
-Add the following content to `src/sj_trading/testing_flow.py`
+在 `src/sj_trading/testing_flow.py` 新增以下內容
 
 ```
 from shioaji.constant import (
@@ -8035,49 +6995,48 @@ from shioaji.constant import (
 )
 
 def testing_futures_ordering():
-    # Login to the testing environment
+    # 測試環境登入
     api = sj.Shioaji(simulation=True)
     accounts = api.login(
         api_key=os.environ["API_KEY"],
         secret_key=os.environ["SECRET_KEY"],
     )
-    # Show all available accounts
+    # 顯示所有可用的帳戶
     print(f"Available accounts: {accounts}")
     api.activate_ca(
         ca_path=os.environ["CA_CERT_PATH"],
         ca_passwd=os.environ["CA_PASSWORD"],
     )
 
-    # Get the contract for ordering
-    # Use TXFR1 as an example
+    # 取得合約 使用台指期近月為例
     contract = api.Contracts.Futures["TXFR1"]
     print(f"Contract: {contract}")
 
-    # Create an Order for Ordering
+    # 建立期貨委託下單的 Order
     order = sj.order.FuturesOrder(
-        action=Action.Buy,  # Buy
-        price=contract.reference,  # Buy at the reference price
-        quantity=1,  # Order quantity
-        price_type=FuturesPriceType.LMT,  # Limit price order
-        order_type=OrderType.ROD,  # Effective for the day
-        octype=FuturesOCType.Auto,  # Auto select new close
-        account=api.futopt_account,  # Use the default account
+        action=Action.Buy,  # 買進
+        price=contract.reference,  # 以平盤價買進
+        quantity=1,  # 下單數量
+        price_type=FuturesPriceType.LMT,  # 限價單
+        order_type=OrderType.ROD,  # 當日有效單
+        octype=FuturesOCType.Auto,  # 自動選擇新平倉
+        account=api.futopt_account,  # 使用預設的帳戶
     )
     print(f"Order: {order}")
 
-    # Send the order
+    # 送出委託單
     trade = api.place_order(contract=contract, order=order)
     print(f"Trade: {trade}")
 
-    # Update the status
+    # 更新狀態
     api.update_status()
     print(f"Status: {trade.status}")
 
 ```
 
-Add `futures_testing` Command to Project
+新增期貨下單指令到專案
 
-Add `futures_testing` command to `pyproject.toml`
+在 `pyproject.toml` 新增 `futures_testing` 的指令
 
 ```
 [project.scripts]
@@ -8085,50 +7044,55 @@ futures_testing = "sj_trading.testing_flow:testing_futures_ordering"
 
 ```
 
-Execute `uv run futures_testing` to start testing futures ordering
+執行 `uv run futures_testing` 就開始進行測試下單了
 
-To use Shioaji, you must have a SinoPac Securities account. If you do not have a SinoPac Securities account yet, please follow the steps below to open an account:
+使用Shioaji必須擁有永豐金帳戶。若你還沒有擁永豐金帳戶，請依據下列步驟開戶:
 
-1. To [Open Account](https://www.sinotrade.com.tw/openact?utm_campaign=OP_inchannel&utm_source=newweb&utm_medium=button_top&strProd=0037&strWeb=0035) Page.
-1. If you do not have a bank account with Bank SinoPac, please open a bank account as your delivery account.
-1. Please select**我要開DAWHO+大戶投**, to open a bank account and a securities account.
-1. Complete bank and securities account opening.
+1. 至[開戶](https://www.sinotrade.com.tw/openact?utm_campaign=OP_inchannel&utm_source=newweb&utm_medium=button_top&strProd=0037&strWeb=0035)頁面
+1. 若你沒有永豐銀行帳戶，請先開銀行帳戶當你的交割戶
+1. 請選取**我要開DAWHO+大戶投**，為開銀行戶以及證券戶
+1. 完成銀行及證券開戶
 
-Restricted by Taiwan's financial regulations, new users need to sign relevant documents and complete a test report in the simulation mode before using it in a production environment.
+受限於台灣金融法規，新用戶首次使用需簽署相關文件並在測試模式完成測試報告才能進行正式環境的使用。
 
-## Sign Documents
+開戶
 
-Please refer to [sign center](https://www.sinotrade.com.tw/newweb/Inside_Frame?URL=https://service.sinotrade.com.tw/signCenter/index/) and **read the documents carefully** before you sign.
+在開始之前必須先擁有[永豐金帳戶](https://www.sinotrade.com.tw/openact?utm_campaign=OP_inchannel&utm_source=newweb&utm_medium=button_top&strProd=0037&strWeb=0035)。
 
-## Test Report
+## 簽署文件
 
-To ensure that you fully understand how to use Shioaji, you need to complete the test in the simulation mode, which includes the following functions:
+請參見[簽署中心](https://www.sinotrade.com.tw/newweb/Inside_Frame?URL=https://service.sinotrade.com.tw/signCenter/index/)並在簽署前**仔細閱讀文件**。
 
-- `login`
-- `place_order`
+## API測試
+
+確保您完全理解如何使用，需在模擬模式完成測試報告，內容包含以下功能:
+
+- 登入測試 `login`
+- 下單測試 `place_order`
 
 Attention
 
-Service Hour:
+可測試時間:
 
-- In response to the company's information security regulations, the test service is Monday to Friday 08:00 ~ 20:00
-- 18:00 ~ 20:00: Only allow Taiwan IP
-- 08:00 ~ 18:00: No limit
+- 因應公司資訊安全規定，測試報告服務為星期一至五 08:00 ~ 20:00
+- 18:00 ~ 20:00: 只允許台灣IP
+- 08:00 ~ 18:00: 沒有限制
 
-Version Restriction:
+版本限制:
 
-- version >= 1.2:\
-  install command: `uv add shioaji` or `pip install -U shioaji`
+- 版本 >= 1.2:
 
-Others:
+  安裝指令: `uv add shioaji` or `pip install -U shioaji`
 
-- You should sign the API related document before you test!
-- Stock and Futures account should be test separately.
-- The time interval between stock place order test and futures place order test should be more than 1 second.
+其他:
 
-### Version Check
+- API下單簽署時間須早於API測試的時間，以利審核通過
+- 證券、期貨戶須各別測試
+- 證券/期貨下單測試，需間隔1秒以上，以利系統留存測試紀錄
 
-version
+### 查詢使用版本
+
+版本
 
 ```
 import shioaji as sj
@@ -8138,72 +7102,72 @@ print(sj.__version__)
 
 ```
 
-- please note the **Version Restriction**.
+- 請注意**版本限制**
 
-### Login Test
+### 登入測試
 
-Login
+登入
 
 ```
-api = sj.Shioaji(simulation=True)   # Simulation Mode
+api = sj.Shioaji(simulation=True) # 模擬模式
 api.login(
-    api_key="YOUR_API_KEY",         # edit it
-    secret_key="YOUR_SECRET_KEY"    # edit it
+    api_key="金鑰",     # 請修改此處
+    secret_key="密鑰"   # 請修改此處
 )
 
 ```
 
 ```
-api = sj.Shioaji(simulation=True)   # Simulation Mode
+api = sj.Shioaji(simulation=True) # 模擬模式
 api.login(
-    person_id="YOUR_PERSON_ID",     # edit it
-    passwd="YOUR_PASSWORD",         # edit it
+    person_id="身分證字號", # 請修改此處
+    passwd="密碼",          # 請修改此處
 )
 
 ```
 
-- version >= 1.0: use `api_key` to login, if you haven't applied for the API Key, please refer to [Token](../token/) section.
-- version < 1.0: use `person_id` to login.
+- 版本 >= 1.0: 使用 `API Key` 進行登入，若您尚未申請 API Key，可參考 [Token](../token/)
+- 版本 < 1.0: 使用`身分證字號`進行登入
 
-### Place Order Test - Stock
+### 證券下單測試
 
-Stock Order
+證券
 
 ```
-# contract - edit it
+# 商品檔 - 請修改此處
 contract = api.Contracts.Stocks.TSE["2890"]
 
-# order - edit it
+# 證券委託單 - 請修改此處
 order = api.Order(
-    price=18, 
-    quantity=1, 
-    action=sj.constant.Action.Buy, 
-    price_type=sj.constant.StockPriceType.LMT, 
-    order_type=sj.constant.OrderType.ROD, 
-    account=api.stock_account
+    price=18,                                       # 價格
+    quantity=1,                                     # 數量
+    action=sj.constant.Action.Buy,                  # 買賣別
+    price_type=sj.constant.StockPriceType.LMT,      # 委託價格類別
+    order_type=sj.constant.OrderType.ROD,           # 委託條件
+    account=api.stock_account                       # 下單帳號
 )
 
-# place order
+# 下單
 trade = api.place_order(contract, order)
 trade
 
 ```
 
 ```
-# contract - edit it
+# 商品檔 - 請修改此處
 contract = api.Contracts.Stocks.TSE["2890"]
 
-# order - edit it
+# 證券委託單 - 請修改此處
 order = api.Order(
-    price=18, 
-    quantity=1, 
-    action=sj.constant.Action.Buy, 
-    price_type=sj.constant.TFTStockPriceType.LMT, 
-    order_type=sj.constant.TFTOrderType.ROD, 
-    account=api.stock_account
+    price=18,                                       # 價格
+    quantity=1,                                     # 數量
+    action=sj.constant.Action.Buy,                  # 買賣別
+    price_type=sj.constant.TFTStockPriceType.LMT,   # 委託價格類別
+    order_type=sj.constant.TFTOrderType.ROD,        # 委託條件
+    account=api.stock_account                       # 下單帳號
 )
 
-# place order
+# 下單
 trade = api.place_order(contract, order)
 trade
 
@@ -8229,24 +7193,24 @@ Trade(
 
 ```
 
-- You should receive the message, `Response Code: 0 | Event Code: 0 | Info: host '218.32.76.102:80' ...`, which means that you have successfully connected to our testing server. The message will only appear on your first order. If you don't receive the connected message, please confirm that all the following conditions are met.
+- 收到此訊息，`Response Code: 0 | Event Code: 0 | Info: host '218.32.76.102:80' ...`，代表您成功連結上測試伺服器。此訊息只有首次下單會顯示。若您未收到此訊息，請確認一下狀況均符合
 
-  1. Doing test in the service hour
-  1. Version restriction
-  1. `signed` is not present in your account
+  1. 在`可測試時間`進行測試
+  1. 版本限制
+  1. `signed` 未在您的帳號中顯示
 
-- order status should **NOT** be `Failed`. If you got `Failed` status, please modify your order correctly and then `place_order` again.
+- 委託單狀態不應為`Failed`，若您的委託單狀態`Failed`，請正確的修改委託單然後再次執行`place_order`
 
-- [Contract](../../contract/)
+- [商品檔](../../contract/)
 
-- [Stock Order](../../order/Stock/)
+- [證券委託下單](../../order/Stock/)
 
-### Place Order Test - Futures
+### 期貨下單測試
 
-Future Order
+期貨
 
 ```
-# near-month TXF - edit it
+# 商品檔 - 近月台指期貨, 請修改此處
 contract = min(
     [
         x for x in api.Contracts.Futures.TXF 
@@ -8255,25 +7219,24 @@ contract = min(
     key=lambda x: x.delivery_date
 )
 
-# order - edit it
+# 期貨委託單 - 請修改此處
 order = api.Order(
-    action=sj.constant.Action.Buy,
-    price=15000,
-    quantity=1,
-    price_type=sj.constant.FuturesPriceType.LMT,
-    order_type=sj.constant.OrderType.ROD, 
-    octype=sj.constant.FuturesOCType.Auto,
-    account=api.futopt_account
+    action=sj.constant.Action.Buy,                   # 買賣別
+    price=15000,                                     # 價格
+    quantity=1,                                      # 數量
+    price_type=sj.constant.FuturesPriceType.LMT,     # 委託價格類別
+    order_type=sj.constant.OrderType.ROD,            # 委託條件
+    octype=sj.constant.FuturesOCType.Auto,           # 倉別
+    account=api.futopt_account                       # 下單帳號
 )
 
-# place order
+# 下單
 trade = api.place_order(contract, order)
-trade
 
 ```
 
 ```
-# near-month TXF - edit it
+# 商品檔 - 近月台指期貨, 請修改此處
 contract = min(
     [
         x for x in api.Contracts.Futures.TXF 
@@ -8282,20 +7245,19 @@ contract = min(
     key=lambda x: x.delivery_date
 )
 
-# order - edit it
+# 期貨委託單 - 請修改此處
 order = api.Order(
-    action=sj.constant.Action.Buy,
-    price=15000,
-    quantity=1,
-    price_type=sj.constant.FuturesPriceType.LMT,
-    order_type=sj.constant.FuturesOrderType.ROD, 
-    octype=sj.constant.FuturesOCType.Auto,
-    account=api.futopt_account
+    action=sj.constant.Action.Buy,                  # 買賣別
+    price=15000,                                    # 價格
+    quantity=1,                                     # 數量
+    price_type=sj.constant.FuturesPriceType.LMT,    # 委託價格類別
+    order_type=sj.constant.FuturesOrderType.ROD,    # 委託條件
+    octype=sj.constant.FuturesOCType.Auto,          # 倉別
+    account=api.futopt_account                      # 下單帳號
 )
 
-# place order
+# 下單
 trade = api.place_order(contract, order)
-trade
 
 ```
 
@@ -8305,7 +7267,7 @@ Out
 Response Code: 0 | Event Code: 0 | Info: host '218.32.76.102:80', IP 218.32.76.102:80 (host 1 of 1) (host connection attempt 1 of 1) (total connection attempt 1 of 1) | Event: Session up
 
 Trade(
-    contract=Future(...), 
+    contract=Stock(...), 
     order=Order(...),
     status=OrderStatus(
         id='531e27af', 
@@ -8319,30 +7281,30 @@ Trade(
 
 ```
 
-- You should receive the message, `Response Code: 0 | Event Code: 0 | Info: host '218.32.76.102:80' ...`, which means that you have successfully connected to our testing server. The message will only appear on your first order. If you don't receive the connected message, please confirm that all the following conditions are met.
+- 收到此訊息，`Response Code: 0 | Event Code: 0 | Info: host '218.32.76.102:80' ...`，代表您成功連結上測試伺服器。此訊息只有首次下單會顯示。若您未收到此訊息，請確認一下狀況均符合
 
-  1. Doing test in the service hour
-  1. Version restriction
-  1. `signed` is not present in your account
+  1. 在`可測試時間`進行測試
+  1. 版本限制
+  1. `signed` 未在您的帳號中顯示
 
-- order status should **NOT** be `Failed`. If you got `Failed` status, please modify your order correctly and then `place_order` again.
+- 委託單狀態不應為`Failed`，若您的委託單狀態`Failed`，請正確的修改委託單然後再次執行`place_order`
 
-- [Contract](../../contract/)
+- [商品檔](../../contract/)
 
-- [Future Order](../../order/FutureOption/)
+- [期貨委託下單](../../order/FutureOption/)
 
-### Check if API tests has passed
+### 查詢是否通過API測試
 
 Attention
 
-Before you check, please confirm the following conditions are met.
+在查詢前，請確認以下狀況均符合
 
-- Sign the API related document before you test, or you will not pass the test.
-- Doing test in service hour.
-- Stock accounts and Futures accounts should be tested separately.
-- Waiting for reviewing your tests at least 5 minutes.
+- API下單簽署時間須早於API測試的時間，以利審核通過
+- 在可測試時間進行測試
+- 證券、期貨戶須各別測試
+- 等待API測試審核(約5分鐘)
 
-Sign Status
+簽署狀態
 
 ```
 import shioaji as sj
@@ -8378,25 +7340,25 @@ StockAccount(person_id='QBCCAIGJBJ', broker_id='9A95', account_id='0504350', use
 
 ```
 
-- `signed=True`: Congrats, done! Ex: FutureAccount.
-- `signed=False` or `signed` not present: the account haven't passed the api tests or haven't been signed the api documents. Ex: StockAccount.
+- `signed=True`: 恭喜完成測試! Ex: FutureAccount.
+- `signed=False` 或 `signed` 未顯示: 此帳號尚未通過API測試或尚未簽署API下單文件. Ex: StockAccount.
 
-## CA
+## 憑證
 
-You must **apply** and **activate** the CA before `place_order`.
+下單前必須**申請**並**啟用**憑證
 
-### Apply CA
+#### 申請憑證
 
-1. Go to [SinoPac Securities](https://www.sinotrade.com.tw/CSCenter/CSCenter_13_3) to download eleader
-1. Login eleader
-1. Select (3303)帳號資料設定 from the 帳戶資料 above
-1. Click "步驟說明"
-1. CA Operation steps
+1. 至[理財網](https://www.sinotrade.com.tw/CSCenter/CSCenter_13_3)下載 eleader
+1. 登入 eleader
+1. 從上方帳戶資料選取(3303)帳號資料設定
+1. 點選"步驟說明"
+1. 憑證操作步驟說明
 
-### Activate CA
+#### 啟用憑證
 
-- If you use simulation account, you don't have to activate CA.
-- If you are a macOS user, you may subject to version-issue. We suggest you to use [docker](https://github.com/Sinotrade/Shioaji) and run shioaji service on docker.
+- 若是使用測試帳號無需啟用憑證
+- 如果您使用macOS，可能會遇到版本上的問題。我們建議您使用 [docker](https://github.com/Sinotrade/Shioaji) 去運行shioaji。
 
 In
 
@@ -8412,11 +7374,11 @@ print(result)
 
 ```
 
-The Certification Path
+憑證路徑
 
-In Windows you copy the file path with `\` to separate the file, you need to replace it with `/`.
+在 Windows 系統中，如果文件路徑使用 \\ 來分隔文件，您需要將它替換為 /。
 
-#### Check CA expire time
+#### 確認憑證效期
 
 In
 
@@ -8425,56 +7387,56 @@ api.get_ca_expiretime("Person ID")
 
 ```
 
-After version 1.0, we will use Token as our login method. Please follow the steps below to apply and use.
+在版本1.0之後，我們將使用Token作為我們的登入方式。請根據下列的步驟進行申請及使用。
 
-### Apply The API Key
+## 申請金鑰
 
-1. Go to the [API management](https://www.sinotrade.com.tw/newweb/PythonAPIKey/) page in the personal service.
+1. 至[理財網](https://www.sinotrade.com.tw/newweb/PythonAPIKey/)個人服務中的API管理頁面
 
-1. Click Add API KEY.
+1. 點選新增API KEY
 
-1. Use your mobile phone or email to do two-factor authentication, and the API KEY can only be established if the verification is successful.
+1. 利用手機或是信箱做雙因子驗證，驗證成功才能建立API KEY。
 
-1. You can set expiration time, permission, which account can be used, whether it can be used in the production environment and allowed IP list of the key.
+1. 進行API KEY的到期時間設定，以及勾選權限與帳戶，並且設定IP限制。
 
-   Permission Description
+   權限勾選說明
 
-   - Market / Data : Whether to use the market / data related API
-   - Account : Whether to use the account related API
-   - Trading : Whether to use the trading related API
-   - Production Environment : Whether to use in the production environment
+   - 行情 / 資料 : 可否使用行情 / 資料相關 API
+   - 帳務 : 可否使用帳務相關 API
+   - 交易 : 可否使用交易相關 API
+   - 正式環境 : 可否在正式環境中使用
 
-   Attention
+   注意
 
-   It is recommended to limit the use of IP, which can improve the security of the KEY.
+   IP建議使用限制，能使該KEY安全性提高。
 
-1. If you add successfully, you will get the API Key and Secret Key.
+1. 新增成功會得到金鑰(API Key)與密鑰(Secret Key)
 
-   Attention
+   注意
 
-   - Please keep your key properly and do not disclose it to anyone to avoid property loss.
-   - The Secret Key is only obtained when the establishment is successful, and there is no way to obtain it after that, please make sure to save it.
+   - 請妥善保存您的鑰匙，勿將其透漏給任何人，以免造成資產損失。
+   - Secret Key 僅在建立成功時取得，此後再無任何方法得到，請確保以保存
 
-### Download Certificate
+## 憑證下載
 
-1. Click the Download Certificate button
-1. Download the certificate and place it into the folder that the API can read
+1. 點選下載憑證按鈕
+1. 下載完成請前往下載資料夾將憑證放置到 API 要讀取的路徑
 
-## Confirm The API Key And Certificate
+## 確認密鑰與憑證
 
-Continue with the previous project `sj-trading`, add `.env` file in the project folder, and add the following content
+延續前面開好的專案 `sj-trading`，在專案資料夾中新增 `.env` 檔案，並且新增以下內容
 
-`.env`
-
-```
-API_KEY=<API Key>
-SECRET_KEY=<Secret Key>
-CA_CERT_PATH=<CA Certificate Path>
-CA_PASSWORD=<CA Certificate Password>
+`.env` 檔案內容如下
 
 ```
+API_KEY=<前面申請的API Key>
+SECRET_KEY=<前面申請的Secret Key>
+CA_CERT_PATH=<前面設定的憑證路徑>
+CA_PASSWORD=<憑證密碼>
 
-the project folder structure should be like this
+```
+
+專案資料夾結構如下
 
 ```
 sj-trading
@@ -8488,14 +7450,14 @@ sj-trading
 
 ```
 
-Add the `python-dotenv` package to load the key and certificate into environment variables
+加入 python-dotenv 套件來將 .env 的金鑰與憑證載入環境變數
 
 ```
 uv add python-dotenv
 
 ```
 
-Add the following content into `src/sj_trading/__init__.py`
+在 `src/sj_trading/__init__.py` 中新增以下內容
 
 ```
 import os
@@ -8518,21 +7480,21 @@ def main():
 
 ```
 
-Add the `main` command into `pyproject.toml`
+在 `pyproject.toml` 中 `[project.scripts]` 新增 `main` 指令
 
 ```
 [project.scripts]
-main = "sj_trading"
+main = "sj_trading:main"
 
 ```
 
-Run the `main` command
+執行 `main` 指令
 
 ```
 uv run main
 
 ```
 
-If you see `login and activate ca success`, it means you have successfully logged in to the simulation environment.
+如果看到 `login and activate ca success` 代表成功登入模擬環境了
 
-Next, if you have not yet completed the API usage signature, please proceed to the next chapter to complete the signature and pass the audit for the API.
+接著如果你還有沒有進行 API 簽署的話，請前往下一章進行簽署與測試審核。

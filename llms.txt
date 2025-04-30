@@ -4,10 +4,6 @@
 
 ## Usage documentation
 
-- [總覽](https://sinotrade.github.io/zh/index.md)
-- [環境設定](https://sinotrade.github.io/zh/env_setup/index.md)
-- [快速入門](https://sinotrade.github.io/zh/quickstart/index.md)
-- [升版指南](https://sinotrade.github.io/zh/upgrade/index.md)
 - [商品檔](https://sinotrade.github.io/zh/tutor/contract/index.md)
 - [使用限制](https://sinotrade.github.io/zh/tutor/limit/index.md)
 - [登入](https://sinotrade.github.io/zh/tutor/login/index.md)

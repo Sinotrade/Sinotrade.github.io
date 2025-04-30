@@ -1,58 +1,56 @@
-Reminder
+提醒
 
-First, you need to [login](../../login/) and [activate CA](../../prepare/terms/).
+下單前必須先[登入](../../login/)及啟用[憑證](../../prepare/terms/)。
 
-### Stock Order
+### 證券委託單
 
-Order Attributes
-
-```
-price (float or int): the price of order
-quantity (int): the quantity of order
-action (str): order action to buy or sell
-    {Buy, Sell}
-price_type (str): pricing type of order
-    {LMT, MKT, MKP} (限價、市價、範圍市價)
-order_type (str): the type of order
-    {ROD, IOC, FOK}
-order_cond (str): order condition stock only
-    {Cash, MarginTrading, ShortSelling} (現股、融資、融券)
-order_lot (str): the type of order
-    {Common, Fixing, Odd, IntradayOdd} (整股、定盤、盤後零股、盤中零股)
-daytrade_short {bool}: the type of first sell
-    {True, False}
-custom_field {str}: memo field, only letters and numbers are allowed, and the maximum length is 6.
-account (:obj:Account): which account to place this order
-ca (binary): the ca of this order
+證券委託單
 
 ```
-
-```
-price (float or int): the price of order
-quantity (int): the quantity of order
-action (str): order action to buy or sell
-    {Buy, Sell}
-price_type (str): pricing type of order
-    {LMT, MKT, MKP} (限價、市價、範圍市價)
-order_type (str): the type of order
-    {ROD, IOC, FOK}
-order_cond (str): order condition stock only
-    {Cash, MarginTrading, ShortSelling} (現股、融資、融券)
-order_lot (str): the type of order
-    {Common, Fixing, Odd, IntradayOdd} (整股、定盤、盤後零股、盤中零股)
-first_sell {str}: the type of first sell
-    {true, false}
-custom_field {str}: memo field, only letters and numbers are allowed, and the maximum length is 6.
-account (:obj:Account): which account to place this order
-ca (binary): the ca of this order
+price (float or int): 價格
+quantity (int): 委託數量
+action (str): {Buy: 買, Sell: 賣}
+price_type (str): {LMT: 限價, MKT: 市價, MKP: 範圍市價}
+order_type (str): 委託類別 {ROD, IOC, FOK}
+order_cond (str): {Cash:現股, MarginTrading:融資, ShortSelling:融券}
+order_lot (str): {
+        Common:整股, 
+        Fixing:定盤, 
+        Odd:盤後零股, 
+        IntradayOdd:盤中零股
+    }
+daytrade_short (bool): 先賣後買
+custom_field (str): 備註，只允許輸入大小寫英文字母及數字，且長度最長為 6
+account (:obj:Account): 下單帳號
+ca (binary): 憑證
 
 ```
 
-### Place Order
+```
+price (float or int): 價格
+quantity (int): 委託數量
+action (str): {Buy: 買, Sell: 賣}
+price_type (str): {LMT: 限價, MKT: 市價, MKP: 範圍市價}
+order_type (str): 委託類別 {ROD, IOC, FOK}
+order_cond (str): {Cash:現股, MarginTrading:融資, ShortSelling:融券}
+order_lot (str): {
+        Common:整股, 
+        Fixing:定盤, 
+        Odd:盤後零股, 
+        IntradayOdd:盤中零股
+    }
+first_sell (str): 先賣後買 {true, false}
+custom_field (str): 備註，只允許輸入大小寫英文字母及數字，且長度最長為 6
+account (:obj:Account): 下單帳號
+ca (binary): 憑證
 
-Product information ( `contract`) and order information ( `order`) must be provided when placing an order.
+```
 
-Place Order
+### 下單
+
+下單時必須提供商品資訊`contract`及下單資訊`order`。
+
+下單
 
 ```
 api.place_order?
@@ -69,14 +67,14 @@ api.place_order?
 
 ```
 
-Contract
+商品檔
 
 ```
 contract = api.Contracts.Stocks.TSE.TSE2890
 
 ```
 
-Order
+委託單
 
 ```
 order = api.Order(
@@ -108,7 +106,7 @@ order = api.Order(
 
 ```
 
-Place Order
+下單
 
 ```
 trade = api.place_order(contract, order)
@@ -163,11 +161,11 @@ Trade(
 
 ```
 
-After `place_order`, you will also receive the information sent back from the exchange. For details, please refer to [Order & Deal Event](../order_deal_event/stocks/).
+下單完同時也會收到從交易所傳回來的資料，詳情內容可詳見[下單回報](../order_deal_event/stocks/)。
 
-To update the `trade` status, you need to call `update_status`.
+您需要執行`update_status`已更新`trade`物件的狀態。
 
-Update Status
+更新委託狀態(成交後)
 
 ```
 api.update_status(api.stock_account)
@@ -223,19 +221,19 @@ Trade(
 
 ```
 
-Status of Trade
+委託單狀態
 
-- `PendingSubmit`: Sending
-- `PreSubmitted`: Reservation
-- `Submitted`: Send Successfully
-- `Failed`: Failed
-- `Cancelled`: Cancelled
-- `Filled`: Complete Fill
-- `Filling`: Part Fill
+- `PendingSubmit`: 傳送中
+- `PreSubmitted`: 預約單
+- `Submitted`: 傳送成功
+- `Failed`: 失敗
+- `Cancelled`: 已刪除
+- `Filled`: 完全成交
+- `Filling`: 部分成交
 
-### Update Order
+### 改單
 
-Update Order
+改單
 
 ```
 api.update_order?
@@ -252,9 +250,9 @@ api.update_order?
 
 ```
 
-#### Update Price
+#### 改價
 
-Update Price
+改價
 
 ```
 api.update_order(trade=trade, price=17.5)
@@ -312,11 +310,11 @@ Trade(
 
 ```
 
-#### Update Quantity (Reduce)
+#### 改量(減量)
 
-`update_order` can only reduce the quantity of the order.
+`update_order` 只能用來**減少**原委託單的委託數量。
 
-Update Quantity
+改量(減量)
 
 ```
 api.update_order(trade=trade, qty=1)
@@ -374,9 +372,9 @@ Trade(
 
 ```
 
-### Cancel Order
+### 刪單
 
-Cancel Order
+刪單
 
 ```
 api.cancel_order(trade)
@@ -434,9 +432,9 @@ Trade(
 
 ```
 
-### Deal
+### 成交
 
-Update Status
+更新委託狀態
 
 ```
 api.update_status(api.stock_account)
@@ -494,13 +492,13 @@ Trade(
 
 ```
 
-## Examples
+## 範例
 
-[Stock place order jupyter link](https://nbviewer.jupyter.org/github/Sinotrade/Sinotrade.github.io/blob/master/tutorial/stock.ipynb)
+[證券下單範例 ( jupyter)](https://nbviewer.jupyter.org/github/Sinotrade/Sinotrade.github.io/blob/master/tutorial/stock.ipynb)
 
-### Action
+### 買賣別
 
-Buy
+買
 
 ```
 order = api.Order(
@@ -516,7 +514,7 @@ order = api.Order(
 
 ```
 
-Sell
+賣
 
 ```
 order = api.Order(

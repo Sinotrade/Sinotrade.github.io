@@ -1,10 +1,10 @@
-Reminder
+提醒
 
-First, you need to [login](../../login/) and [activate CA](../../prepare/terms/).
+下單前必須先[登入](../../login/)及啟用[憑證](../../prepare/terms/)。
 
-### Place Combo Order.
+## 下單
 
-Combo orders offer types include: **Price Call/Put Spreads**, **Time Call/Put Spreads**, **Straddles**, **Strangles**, **Conversions** and **Reversal**. Please refer to the futures exchange [document](https://www.taifex.com.tw/cht/5/margingReqIndexOpt) for details on the combo rules.
+組合單提供類型包括:**價格價差**、**時間價差**、**跨式**、**勒式**、**轉換**以及**逆轉**。組合規則詳見期交所[文件](https://www.taifex.com.tw/cht/5/margingReqIndexOpt)。
 
 place_comboorder
 
@@ -23,9 +23,9 @@ api.place_comboorder?
 
 ```
 
-Product information ( `contract`) and order information ( `order`) must be provided when placing an order. The order of the contracts is irrelevant, only the approved combination is required.
+下單時必須提供商品資訊`contract`及下單資訊`order`。商品資訊無關前後順序，只需提供認可的組合。
 
-Combo Contract
+商品資訊
 
 ```
 contract_1 = api.Contracts.Options.TX4.TX4202111017850C
@@ -39,7 +39,7 @@ combo_contract = sj.contracts.ComboContract(
 
 ```
 
-Order
+下單資訊
 
 ```
 order = api.ComboOrder(
@@ -55,13 +55,13 @@ order = api.ComboOrder(
 In
 
 ```
-trade = api.place_comboorder(combo_c, order)
+trade = api.place_comboorder(combo_contract, order)
 
 ```
 
-### Cancel Combo Order
+## 刪單
 
-`Trade` is the order to be deleted, which can be obtained from the [`update_combostatus`](#update-combo-status).
+`trade`為要刪的單，可從[查詢](#_3)取得。
 
 In
 
@@ -70,9 +70,9 @@ api.cancel_comboorder(trade)
 
 ```
 
-### Update Combo Status
+## 查詢狀態
 
-Like `list_trades` and `update_status` concepts. Before getting the combo status, the status must be updated with `update_combostatus`.
+如同 `list_trades` 及 `update_status` 的概念。在取得組合單狀態前，必須利用 `update_combostatus` 更新狀態。
 
 In
 

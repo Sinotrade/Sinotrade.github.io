@@ -88,7 +88,7 @@
     <div data-md-component="skip">
       
         
-        <a href="#example" class="md-skip">
+        <a href="#_1" class="md-skip">
           跳转至
         </a>
       
@@ -759,18 +759,18 @@
     <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
       
         <li class="md-nav__item">
-  <a href="#example" class="md-nav__link">
+  <a href="#_1" class="md-nav__link">
     <span class="md-ellipsis">
-      Example
+      範例
     </span>
   </a>
   
 </li>
       
         <li class="md-nav__item">
-  <a href="#attributes" class="md-nav__link">
+  <a href="#_2" class="md-nav__link">
     <span class="md-ellipsis">
-      Attributes
+      屬性
     </span>
   </a>
   
@@ -1694,18 +1694,18 @@
     <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
       
         <li class="md-nav__item">
-  <a href="#example" class="md-nav__link">
+  <a href="#_1" class="md-nav__link">
     <span class="md-ellipsis">
-      Example
+      範例
     </span>
   </a>
   
 </li>
       
         <li class="md-nav__item">
-  <a href="#attributes" class="md-nav__link">
+  <a href="#_2" class="md-nav__link">
     <span class="md-ellipsis">
-      Attributes
+      屬性
     </span>
   </a>
   
@@ -1729,13 +1729,13 @@
 
   <h1>市場快照</h1>
 
-<p>Snapshot is a present stock, future, option info. It contain open, high, low, close, change price, average price, volume, total volume, buy price, buy volume, sell price, sell volume and yesterday volume.</p>
+<p>市場快照為證券、期貨及選擇權當下資訊。內容包含開盤價、最高價、最低價、收盤價、變動價、均價、成交量、總成交量、委買價、委買量、委賣價、委賣量和昨量。</p>
 <div class="admonition attention">
-<p class="admonition-title">Reminder </p>
-<p>Each snapshot can contain up to 500 contracts.</p>
+<p class="admonition-title">提醒</p>
+<p>市場快照每次最多500檔商品。</p>
 </div>
 <div class="admonition example">
-<p class="admonition-title">Snapshots</p>
+<p class="admonition-title">市場快照</p>
 <div class="highlight"><pre><span></span><code><span class="o">&gt;&gt;</span> <span class="n">api</span><span class="o">.</span><span class="n">snapshots</span><span class="err">?</span>
 
 <span class="n">Signature</span><span class="p">:</span>
@@ -1748,13 +1748,10 @@
 <span class="n">get</span> <span class="n">contract</span> <span class="n">snapshot</span> <span class="n">info</span>
 </code></pre></div>
 </div>
-<h2 id="example">Example<a class="headerlink" href="#example" title="Permanent link">&para;</a></h2>
+<h2 id="_1">範例<a class="headerlink" href="#_1" title="Permanent link">&para;</a></h2>
 <div class="admonition info">
 <p class="admonition-title">In</p>
-<div class="highlight"><pre><span></span><code><span class="n">contracts</span> <span class="o">=</span> <span class="p">[</span>
-    <span class="n">api</span><span class="o">.</span><span class="n">Contracts</span><span class="o">.</span><span class="n">Stocks</span><span class="p">[</span><span class="s1">&#39;2330&#39;</span><span class="p">],</span> 
-    <span class="n">api</span><span class="o">.</span><span class="n">Contracts</span><span class="o">.</span><span class="n">Stocks</span><span class="p">[</span><span class="s1">&#39;2317&#39;</span><span class="p">]</span>
-<span class="p">]</span>
+<div class="highlight"><pre><span></span><code><span class="n">contracts</span> <span class="o">=</span> <span class="p">[</span><span class="n">api</span><span class="o">.</span><span class="n">Contracts</span><span class="o">.</span><span class="n">Stocks</span><span class="p">[</span><span class="s1">&#39;2330&#39;</span><span class="p">],</span><span class="n">api</span><span class="o">.</span><span class="n">Contracts</span><span class="o">.</span><span class="n">Stocks</span><span class="p">[</span><span class="s1">&#39;2317&#39;</span><span class="p">]]</span>
 <span class="n">snapshots</span> <span class="o">=</span> <span class="n">api</span><span class="o">.</span><span class="n">snapshots</span><span class="p">(</span><span class="n">contracts</span><span class="p">)</span>
 <span class="n">snapshots</span>
 </code></pre></div>
@@ -1813,7 +1810,7 @@
 <span class="p">]</span>
 </code></pre></div>
 </div>
-<p>To DataFrame</p>
+<p>轉成Dataframe</p>
 <div class="admonition info">
 <p class="admonition-title">In</p>
 <div class="highlight"><pre><span></span><code><span class="n">df</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">(</span><span class="n">s</span><span class="o">.</span><span class="vm">__dict__</span> <span class="k">for</span> <span class="n">s</span> <span class="ow">in</span> <span class="n">snapshots</span><span class="p">)</span>
@@ -1902,33 +1899,31 @@
 </tbody>
 </table>
 </div>
-<h2 id="attributes">Attributes<a class="headerlink" href="#attributes" title="Permanent link">&para;</a></h2>
+<h2 id="_2">屬性<a class="headerlink" href="#_2" title="Permanent link">&para;</a></h2>
 <div class="admonition example">
 <p class="admonition-title">Snapshot</p>
-<div class="highlight"><pre><span></span><code><span class="n">ts</span> <span class="p">(</span><span class="nb">int</span><span class="p">):</span> <span class="n">TimeStamp</span>
-<span class="n">code</span> <span class="p">(</span><span class="nb">str</span><span class="p">):</span> <span class="n">Contract</span> <span class="nb">id</span>
-<span class="n">exchange</span> <span class="p">(</span><span class="n">Exchange</span><span class="p">):</span> <span class="n">exchange</span>
-<span class="nb">open</span> <span class="p">(</span><span class="nb">float</span><span class="p">):</span> <span class="nb">open</span>
-<span class="n">high</span> <span class="p">(</span><span class="nb">float</span><span class="p">):</span> <span class="n">high</span>
-<span class="n">low</span> <span class="p">(</span><span class="nb">float</span><span class="p">):</span> <span class="n">low</span>
-<span class="n">close</span> <span class="p">(</span><span class="nb">float</span><span class="p">):</span> <span class="n">close</span>
-<span class="n">tick_type</span> <span class="p">(</span><span class="n">TickType</span><span class="p">):</span> <span class="n">Close</span> <span class="ow">is</span> <span class="n">buy</span> <span class="ow">or</span> <span class="n">sell</span> <span class="n">price</span>
-    <span class="p">{</span><span class="kc">None</span><span class="p">,</span> <span class="n">Buy</span><span class="p">,</span> <span class="n">Sell</span><span class="p">}</span>
-<span class="n">change_price</span> <span class="p">(</span><span class="nb">float</span><span class="p">):</span> <span class="n">change</span> <span class="n">price</span>
-<span class="n">change_rate</span> <span class="p">(</span><span class="nb">float</span><span class="p">):</span> <span class="n">change</span> <span class="n">rate</span>
-<span class="n">change_type</span> <span class="p">(</span><span class="n">ChangeType</span><span class="p">):</span>
-    <span class="p">{</span><span class="n">LimitUp</span><span class="p">,</span> <span class="n">Up</span><span class="p">,</span> <span class="n">Unchanged</span><span class="p">,</span> <span class="n">Down</span><span class="p">,</span> <span class="n">LimitDown</span><span class="p">}</span>
-<span class="n">avgerage_price</span> <span class="p">(</span><span class="nb">float</span><span class="p">):</span> <span class="n">avgerage</span> <span class="n">of</span> <span class="n">price</span>
-<span class="n">volume</span> <span class="p">(</span><span class="nb">int</span><span class="p">):</span> <span class="n">volume</span>
-<span class="n">total_volume</span> <span class="p">(</span><span class="nb">int</span><span class="p">):</span> <span class="n">total</span> <span class="n">volume</span>
-<span class="n">amount</span> <span class="p">(</span><span class="nb">int</span><span class="p">):</span> <span class="n">Deal</span> <span class="n">amount</span>
-<span class="n">total_amount</span> <span class="p">(</span><span class="nb">int</span><span class="p">):</span> <span class="n">Total</span> <span class="n">deal</span> <span class="n">amount</span>
-<span class="n">yestoday_volume</span> <span class="p">(</span><span class="nb">float</span><span class="p">):</span> <span class="n">Volume</span> <span class="n">of</span> <span class="n">yestoday</span>
-<span class="n">buy_price</span> <span class="p">(</span><span class="nb">float</span><span class="p">):</span> <span class="n">Price</span> <span class="n">of</span> <span class="n">buy</span>
-<span class="n">buy_volume</span> <span class="p">(</span><span class="nb">float</span><span class="p">):</span> <span class="n">Volume</span> <span class="n">of</span> <span class="n">sell</span>
-<span class="n">sell_price</span> <span class="p">(</span><span class="nb">float</span><span class="p">):</span> <span class="n">Price</span> <span class="n">of</span> <span class="n">sell</span>
-<span class="n">sell_volume</span> <span class="p">(</span><span class="nb">int</span><span class="p">):</span> <span class="n">Volume</span> <span class="n">of</span> <span class="n">sell</span>
-<span class="n">volume_ratio</span> <span class="p">(</span><span class="nb">float</span><span class="p">):</span> <span class="n">total_volume</span><span class="o">/</span><span class="n">yestoday_volume</span>
+<div class="highlight"><pre><span></span><code><span class="n">ts</span> <span class="p">(</span><span class="nb">int</span><span class="p">):</span> <span class="n">取得資訊時間戳記</span>
+<span class="n">code</span> <span class="p">(</span><span class="nb">str</span><span class="p">):</span> <span class="n">商品代碼</span>
+<span class="n">exchange</span> <span class="p">(</span><span class="n">Exchange</span><span class="p">):</span> <span class="n">交易所</span>
+<span class="nb">open</span> <span class="p">(</span><span class="nb">float</span><span class="p">):</span> <span class="n">開盤價</span>
+<span class="n">high</span> <span class="p">(</span><span class="nb">float</span><span class="p">):</span> <span class="n">最高價</span>
+<span class="n">low</span> <span class="p">(</span><span class="nb">float</span><span class="p">):</span> <span class="n">最低價</span>
+<span class="n">close</span> <span class="p">(</span><span class="nb">float</span><span class="p">):</span> <span class="n">收盤價</span>
+<span class="n">tick_type</span> <span class="p">(</span><span class="n">TickType</span><span class="p">):</span> <span class="n">收盤買賣別</span> <span class="p">{</span><span class="kc">None</span><span class="p">,</span> <span class="n">Buy</span><span class="p">,</span> <span class="n">Sell</span><span class="p">}</span>
+<span class="n">change_price</span> <span class="p">(</span><span class="nb">float</span><span class="p">):</span> <span class="n">漲跌</span>
+<span class="n">change_rate</span> <span class="p">(</span><span class="nb">float</span><span class="p">):</span> <span class="n">漲跌幅</span>
+<span class="n">change_type</span> <span class="p">(</span><span class="n">ChangeType</span><span class="p">):</span> <span class="n">漲跌</span> <span class="p">{</span><span class="n">LimitUp</span><span class="p">,</span> <span class="n">Up</span><span class="p">,</span> <span class="n">Unchanged</span><span class="p">,</span> <span class="n">Down</span><span class="p">,</span> <span class="n">LimitDown</span><span class="p">}</span>
+<span class="n">avgerage_price</span> <span class="p">(</span><span class="nb">float</span><span class="p">):</span> <span class="n">均價</span>
+<span class="n">volume</span> <span class="p">(</span><span class="nb">int</span><span class="p">):</span> <span class="n">單量</span>
+<span class="n">total_volume</span> <span class="p">(</span><span class="nb">int</span><span class="p">):</span> <span class="n">成交量</span>
+<span class="n">amount</span> <span class="p">(</span><span class="nb">int</span><span class="p">):</span> <span class="n">單量成交金額</span>
+<span class="n">total_amount</span> <span class="p">(</span><span class="nb">int</span><span class="p">):</span> <span class="n">成交金額</span>
+<span class="n">yestoday_volume</span> <span class="p">(</span><span class="nb">float</span><span class="p">):</span> <span class="n">昨量</span>
+<span class="n">buy_price</span> <span class="p">(</span><span class="nb">float</span><span class="p">):</span> <span class="n">委買價</span>
+<span class="n">buy_volume</span> <span class="p">(</span><span class="nb">float</span><span class="p">):</span> <span class="n">委買量</span>
+<span class="n">sell_price</span> <span class="p">(</span><span class="nb">float</span><span class="p">):</span> <span class="n">賣出價</span>
+<span class="n">sell_volume</span> <span class="p">(</span><span class="nb">int</span><span class="p">):</span> <span class="n">委賣量</span>
+<span class="n">volume_ratio</span> <span class="p">(</span><span class="nb">float</span><span class="p">):</span> <span class="n">昨量比</span>
 </code></pre></div>
 </div>
 

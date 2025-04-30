@@ -1,10 +1,10 @@
-Snapshot is a present stock, future, option info. It contain open, high, low, close, change price, average price, volume, total volume, buy price, buy volume, sell price, sell volume and yesterday volume.
+市場快照為證券、期貨及選擇權當下資訊。內容包含開盤價、最高價、最低價、收盤價、變動價、均價、成交量、總成交量、委買價、委買量、委賣價、委賣量和昨量。
 
-Reminder
+提醒
 
-Each snapshot can contain up to 500 contracts.
+市場快照每次最多500檔商品。
 
-Snapshots
+市場快照
 
 ```
 >> api.snapshots?
@@ -20,15 +20,12 @@ get contract snapshot info
 
 ```
 
-## Example
+## 範例
 
 In
 
 ```
-contracts = [
-    api.Contracts.Stocks['2330'], 
-    api.Contracts.Stocks['2317']
-]
+contracts = [api.Contracts.Stocks['2330'],api.Contracts.Stocks['2317']]
 snapshots = api.snapshots(contracts)
 snapshots
 
@@ -90,7 +87,7 @@ Out
 
 ```
 
-To DataFrame
+轉成Dataframe
 
 In
 
@@ -105,34 +102,32 @@ Out
 
 | ts | code | exchange | open | high | low | close | tick_type | change_price | change_rate | change_type | average_price | volume | total_volume | amount | total_amount | yesterday_volume | buy_price | buy_volume | sell_price | sell_volume | volume_ratio | | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | | 2023-01-13 14:30:00 | 2330 | TSE | 507 | 509 | 499 | 500 | Sell | 13.5 | 2.77 | Up | 502.42 | 48 | 77606 | 24000000 | 38990557755 | 20963 | 500 | 122 | 501 | 1067 | 3.7 | | 2023-01-13 14:30:00 | 2317 | TSE | 99 | 99.5 | 98.6 | 98.6 | Sell | 0 | 0 | Unchanged | 98.96 | 63 | 17809 | 6211800 | 1762344817 | 18537 | 98.6 | 607 | 98.7 | 4 | 0.96 |
 
-## Attributes
+## 屬性
 
 Snapshot
 
 ```
-ts (int): TimeStamp
-code (str): Contract id
-exchange (Exchange): exchange
-open (float): open
-high (float): high
-low (float): low
-close (float): close
-tick_type (TickType): Close is buy or sell price
-    {None, Buy, Sell}
-change_price (float): change price
-change_rate (float): change rate
-change_type (ChangeType):
-    {LimitUp, Up, Unchanged, Down, LimitDown}
-avgerage_price (float): avgerage of price
-volume (int): volume
-total_volume (int): total volume
-amount (int): Deal amount
-total_amount (int): Total deal amount
-yestoday_volume (float): Volume of yestoday
-buy_price (float): Price of buy
-buy_volume (float): Volume of sell
-sell_price (float): Price of sell
-sell_volume (int): Volume of sell
-volume_ratio (float): total_volume/yestoday_volume
+ts (int): 取得資訊時間戳記
+code (str): 商品代碼
+exchange (Exchange): 交易所
+open (float): 開盤價
+high (float): 最高價
+low (float): 最低價
+close (float): 收盤價
+tick_type (TickType): 收盤買賣別 {None, Buy, Sell}
+change_price (float): 漲跌
+change_rate (float): 漲跌幅
+change_type (ChangeType): 漲跌 {LimitUp, Up, Unchanged, Down, LimitDown}
+avgerage_price (float): 均價
+volume (int): 單量
+total_volume (int): 成交量
+amount (int): 單量成交金額
+total_amount (int): 成交金額
+yestoday_volume (float): 昨量
+buy_price (float): 委買價
+buy_volume (float): 委買量
+sell_price (float): 賣出價
+sell_volume (int): 委賣量
+volume_ratio (float): 昨量比
 
 ```

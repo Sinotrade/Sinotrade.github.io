@@ -1,6 +1,6 @@
 ## Ticks
 
-Ticks can get all day, period of time or last counts of the day. The default is get ticks of last trade day .
+取得方式可以以一整天、某時間區段或是某天的最後幾筆。預設為商品最近交易日的Ticks。
 
 Ticks
 
@@ -23,7 +23,7 @@ Docstring:
 
 ```
 
-### By Date
+### 取得特定日期 Ticks
 
 In
 
@@ -56,17 +56,17 @@ Ticks
 
 ```
 ts (int): timestamp
-close (float): close
-volume (int): volume
-bid_price (float): bid price
-bid_volume (int): bid volume
-ask_price (float): ask price
-ask_volume (int): ask volume
+close (float): 成交價
+volume (int): 成交量
+bid_price (float): 委買價
+bid_volume (int): 委買量
+ask_price (float): 委賣價
+ask_volume (int): 委賣量
 tick_type (int): 內外盤別{1: 外盤, 2: 內盤, 0: 無法判定}
 
 ```
 
-To DataFrame
+轉成DataFrame
 
 In
 
@@ -82,7 +82,7 @@ Out
 
 | ts | ask_price | close | bid_volume | volume | ask_volume | tick_type | bid_price | | --- | --- | --- | --- | --- | --- | --- | --- | | 2023-01-16 09:00:00.113699 | 506 | 506 | 122 | 3340 | 13 | 1 | 505 | | 2023-01-16 09:00:00.228800 | 506 | 505 | 320 | 1 | 22 | 2 | 505 | | 2023-01-16 09:00:00.244294 | 507 | 506 | 60 | 17 | 702 | 1 | 506 | | 2023-01-16 09:00:00.308595 | 507 | 506 | 58 | 2 | 702 | 2 | 506 |
 
-### Range Time
+### 取得特定時間區段 Ticks
 
 In
 
@@ -114,7 +114,7 @@ Ticks(
 
 ```
 
-### Last Count
+### 取得最後數筆 Ticks
 
 In
 
@@ -203,7 +203,7 @@ Volume (int): volume
 
 ```
 
-To DataFrame
+轉成DataFrame
 
 In
 
@@ -219,15 +219,15 @@ Out
 
 | Close | Amount | Low | Volume | ts | Open | High | | --- | --- | --- | --- | --- | --- | --- | | 505 | 2.68731e+09 | 505 | 5308 | 2023-01-16 09:01:00 | 506 | 508 | | 505 | 5.14132e+08 | 505 | 1018 | 2023-01-16 09:02:00 | 505 | 506 | | 504 | 2.74112e+08 | 504 | 543 | 2023-01-16 09:03:00 | 505 | 506 | | 504 | 1.0542e+08 | 504 | 209 | 2023-01-16 09:04:00 | 504 | 505 |
 
-## Historical Periods
+## 資料歷史期間
 
 Historical Periods
 
 | | Start Date | End Date | | --- | --- | --- | | Index | 2020-03-02 | Today | | Stock | 2020-03-02 | Today | | Futures | 2020-03-22 | Today |
 
-## Continuous Futures
+## 連續期貨合約
 
-Once a futures contract passes its expiration date, the contract is invalid, and it will not exist in your `api.Contracts`. In order to get historical data for expired futures contract, we provide continuous futures contracts. `R1`, `R2` are continuous near-month and next-to-near-month futures contracts respectively. They will automatically roll contracts on delivery date. You can get historical data by using `R1`, `R2` contracts, ex `api.Contracts.Futures.TXF.TXFR1`. We show examples below.
+期貨合約一旦到期，合約即不再有效，亦即他將不會出現在您的`api.Contracts`裡。為了取得到期的期貨合約歷史資料，我們提供連續期貨合約。`R1`, `R2`是近月及次月的連續期貨合約，他們會自動在結算日更換新的合約。您可以使用`R1`, `R2`合約來取得歷史資料，例如`api.Contracts.Futures.TXF.TXFR1`。以下顯示如何使用`R1`, `R2`合約取得到期期貨的歷史`Ticks`及`Kbars`。
 
 Ticks
 

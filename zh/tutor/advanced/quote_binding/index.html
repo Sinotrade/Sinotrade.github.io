@@ -88,7 +88,7 @@
     <div data-md-component="skip">
       
         
-        <a href="#examples" class="md-skip">
+        <a href="#_1" class="md-skip">
           跳转至
         </a>
       
@@ -1449,37 +1449,37 @@
     <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
       
         <li class="md-nav__item">
-  <a href="#examples" class="md-nav__link">
+  <a href="#_1" class="md-nav__link">
     <span class="md-ellipsis">
-      Examples
+      範例
     </span>
   </a>
   
-    <nav class="md-nav" aria-label="Examples">
+    <nav class="md-nav" aria-label="範例">
       <ul class="md-nav__list">
         
           <li class="md-nav__item">
-  <a href="#bind-quote-to-message-queue" class="md-nav__link">
+  <a href="#_2" class="md-nav__link">
     <span class="md-ellipsis">
-      Bind quote to message queue
+      綁訂報價至訊息佇列
     </span>
   </a>
   
 </li>
         
           <li class="md-nav__item">
-  <a href="#push-quote-to-redis-stream" class="md-nav__link">
+  <a href="#redis-stream" class="md-nav__link">
     <span class="md-ellipsis">
-      Push quote to redis stream
+      將報價推送至Redis Stream
     </span>
   </a>
   
 </li>
         
           <li class="md-nav__item">
-  <a href="#stop-order-implementation" class="md-nav__link">
+  <a href="#_3" class="md-nav__link">
     <span class="md-ellipsis">
-      Stop Order Implementation
+      觸價委託單
     </span>
   </a>
   
@@ -1718,37 +1718,37 @@
     <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
       
         <li class="md-nav__item">
-  <a href="#examples" class="md-nav__link">
+  <a href="#_1" class="md-nav__link">
     <span class="md-ellipsis">
-      Examples
+      範例
     </span>
   </a>
   
-    <nav class="md-nav" aria-label="Examples">
+    <nav class="md-nav" aria-label="範例">
       <ul class="md-nav__list">
         
           <li class="md-nav__item">
-  <a href="#bind-quote-to-message-queue" class="md-nav__link">
+  <a href="#_2" class="md-nav__link">
     <span class="md-ellipsis">
-      Bind quote to message queue
+      綁訂報價至訊息佇列
     </span>
   </a>
   
 </li>
         
           <li class="md-nav__item">
-  <a href="#push-quote-to-redis-stream" class="md-nav__link">
+  <a href="#redis-stream" class="md-nav__link">
     <span class="md-ellipsis">
-      Push quote to redis stream
+      將報價推送至Redis Stream
     </span>
   </a>
   
 </li>
         
           <li class="md-nav__item">
-  <a href="#stop-order-implementation" class="md-nav__link">
+  <a href="#_3" class="md-nav__link">
     <span class="md-ellipsis">
-      Stop Order Implementation
+      觸價委託單
     </span>
   </a>
   
@@ -1777,9 +1777,9 @@
 
   <h1>綁訂報價模式</h1>
 
-<p>Shioaji provides quote-binding mode which you can store tick/bidask in queue, push them to redis, or submit a stop order inside quote callback function. We show examples to make you more understand how to use quote-binding mode.</p>
-<h2 id="examples">Examples<a class="headerlink" href="#examples" title="Permanent link">&para;</a></h2>
-<h3 id="bind-quote-to-message-queue">Bind quote to message queue<a class="headerlink" href="#bind-quote-to-message-queue" title="Permanent link">&para;</a></h3>
+<p>Shioaji 提供綁訂報價模式，可以用來將報價儲存於訊息佇列，將報價推送至Redis Stream，或者實現觸價委託單。我們提供以下範例，讓您可以更了解綁訂報價模式如何運作。</p>
+<h2 id="_1">範例<a class="headerlink" href="#_1" title="Permanent link">&para;</a></h2>
+<h3 id="_2">綁訂報價至訊息佇列<a class="headerlink" href="#_2" title="Permanent link">&para;</a></h3>
 <div class="admonition info">
 <p class="admonition-title">In: pythonic way by using decorator</p>
 <div class="highlight"><pre><span></span><code><span class="kn">from</span><span class="w"> </span><span class="nn">collections</span><span class="w"> </span><span class="kn">import</span> <span class="n">defaultdict</span><span class="p">,</span> <span class="n">deque</span>
@@ -1827,8 +1827,8 @@
 <span class="p">)</span>
 </code></pre></div>
 </div>
-<h3 id="push-quote-to-redis-stream">Push quote to redis stream<a class="headerlink" href="#push-quote-to-redis-stream" title="Permanent link">&para;</a></h3>
-<p>Before start, please install <a href="https://github.com/andymccurdy/redis-py">redis</a> first. Below example shows how to push quote massages to redis stream.</p>
+<h3 id="redis-stream">將報價推送至Redis Stream<a class="headerlink" href="#redis-stream" title="Permanent link">&para;</a></h3>
+<p>在開始之前，請先安裝<a href="https://github.com/andymccurdy/redis-py">redis</a>。</p>
 <div class="admonition info">
 <p class="admonition-title">In</p>
 <div class="highlight"><pre><span></span><code><span class="kn">import</span><span class="w"> </span><span class="nn">redis</span>
@@ -1919,9 +1919,9 @@
 <span class="p">]</span>
 </code></pre></div>
 </div>
-<h3 id="stop-order-implementation">Stop Order Implementation<a class="headerlink" href="#stop-order-implementation" title="Permanent link">&para;</a></h3>
-<p>A <a href="https://www.investopedia.com/terms/s/stoporder.asp">stop order</a> is an order to buy or sell a security when its price moves past a particular point, ensuring a higher probability of achieving a predetermined entry or exit price, limiting the investor's loss, or locking in a profit. Once the price crosses the predefined entry/exit point, the stop order becomes a market order.  </p>
-<p>We provide an example of stop order below. <strong>Please use at your own risk.</strong></p>
+<h3 id="_3">觸價委託單<a class="headerlink" href="#_3" title="Permanent link">&para;</a></h3>
+<p><a href="https://www.investopedia.com/terms/s/stoporder.asp">觸價委託單</a>，在市場價格觸及委託單上所設定之價位時，委託單立刻轉為限價單或市價單。</p>
+<p><strong>以下僅為範例，請小心使用並自行承擔風險</strong></p>
 <div class="admonition info">
 <p class="admonition-title">Example: stop order</p>
 <div class="highlight"><pre><span></span><code><span class="kn">import</span><span class="w"> </span><span class="nn">time</span>
@@ -2011,9 +2011,9 @@
 </code></pre></div>
 </div>
 <ul>
-<li>We use mid price of snapshots as our reference price to differentiate the direction of stop order.</li>
+<li>使用snapshots的中價作為參考價格，以區分觸價委託單的方向。</li>
 </ul>
-<p>Basically, order will be pending at your computer. The order won't be submitted to exchange until close/mid price hit the stop price. Below example shows how to submit a stop-limit order. </p>
+<p>基本上，委託單會在您的電腦上待命，只有在商品價格觸擊所設定價格時，觸價委託單才會被送出，以下範例顯示如何提交限價觸價委託單(Stop-Limit Order)。</p>
 <div class="admonition info">
 <p class="admonition-title">Set up a stop order</p>
 <div class="highlight"><pre><span></span><code><span class="c1"># shioaji order</span>
@@ -2068,9 +2068,9 @@
 </code></pre></div>
 </div>
 <ul>
-<li>Stop-Market Order: <code>price_type = 'MKT'</code></li>
+<li>市價觸價委託單(Stop-Market Order): <code>price_type = 'MKT'</code></li>
 </ul>
-<p>Finally, we bind <code>StopOrderExcecutor</code> to quote callback function. Note that you have to subscribe quote, so that stop order will be executed.</p>
+<p>最後，我們將<code>StopOrderExcecutor</code>綁訂在報價上。請注意，您必須訂略商品報價，觸價委託單才會執行。</p>
 <div class="admonition info">
 <p class="admonition-title">Set up context and callback function</p>
 <div class="highlight"><pre><span></span><code><span class="kn">from</span><span class="w"> </span><span class="nn">shioaji</span><span class="w"> </span><span class="kn">import</span> <span class="n">TickFOPv1</span><span class="p">,</span> <span class="n">Exchange</span>

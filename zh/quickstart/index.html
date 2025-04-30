@@ -88,7 +88,7 @@
     <div data-md-component="skip">
       
         
-        <a href="#login-and-activate-ca" class="md-skip">
+        <a href="#_1" class="md-skip">
           跳转至
         </a>
       
@@ -336,36 +336,36 @@
     <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
       
         <li class="md-nav__item">
-  <a href="#login-and-activate-ca" class="md-nav__link">
+  <a href="#_1" class="md-nav__link">
     <span class="md-ellipsis">
-      Login and Activate CA
+      登入並啟用憑證
     </span>
   </a>
   
 </li>
       
         <li class="md-nav__item">
-  <a href="#streaming-market-data" class="md-nav__link">
+  <a href="#_2" class="md-nav__link">
     <span class="md-ellipsis">
-      Streaming Market Data
+      訂閱行情
     </span>
   </a>
   
 </li>
       
         <li class="md-nav__item">
-  <a href="#place-order" class="md-nav__link">
+  <a href="#_3" class="md-nav__link">
     <span class="md-ellipsis">
-      Place Order
+      下單
     </span>
   </a>
   
 </li>
       
         <li class="md-nav__item">
-  <a href="#conclusion" class="md-nav__link">
+  <a href="#_4" class="md-nav__link">
     <span class="md-ellipsis">
-      Conclusion
+      總結
     </span>
   </a>
   
@@ -1708,36 +1708,36 @@
     <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
       
         <li class="md-nav__item">
-  <a href="#login-and-activate-ca" class="md-nav__link">
+  <a href="#_1" class="md-nav__link">
     <span class="md-ellipsis">
-      Login and Activate CA
+      登入並啟用憑證
     </span>
   </a>
   
 </li>
       
         <li class="md-nav__item">
-  <a href="#streaming-market-data" class="md-nav__link">
+  <a href="#_2" class="md-nav__link">
     <span class="md-ellipsis">
-      Streaming Market Data
+      訂閱行情
     </span>
   </a>
   
 </li>
       
         <li class="md-nav__item">
-  <a href="#place-order" class="md-nav__link">
+  <a href="#_3" class="md-nav__link">
     <span class="md-ellipsis">
-      Place Order
+      下單
     </span>
   </a>
   
 </li>
       
         <li class="md-nav__item">
-  <a href="#conclusion" class="md-nav__link">
+  <a href="#_4" class="md-nav__link">
     <span class="md-ellipsis">
-      Conclusion
+      總結
     </span>
   </a>
   
@@ -1761,12 +1761,14 @@
 
   <h1>快速入門</h1>
 
-<p>Just import our API library like other popular python library and new the instance to start using our API. Login your account and activate the certification then you can start placing order.</p>
+<p><font size=3>
+只需像使用其他流行的 Python 套件一樣，導入我們的應用程式介面並新建實例即可開始使用我們的應用程式介面。
+<font></p>
 <div class="admonition attention">
-<p class="admonition-title">Note</p>
-<p>** Please complete the Prepare before starting, including <a href="../tutor/prepare/open_account/"><u>Open Account</u></a>, <a href="../tutor/prepare/terms/"><u>Terms of Service</u></a> and <a href="../tutor/prepare/token/"><u>Token</u></a>. **</p>
+<p class="admonition-title">注意</p>
+<p><strong>在開始前請還需完成前置作業，包含<a href="../tutor/prepare/open_account/"><u>開戶</u></a>、<a href="./tutor/prepare/terms.zh_TW.md"><u>服務條款</u></a> 及 <a href="./tutor/prepare/token.zh_TW.md"><u>Token</u></a>。</strong></p>
 </div>
-<h4 id="login-and-activate-ca">Login and Activate CA<a class="headerlink" href="#login-and-activate-ca" title="Permanent link">&para;</a></h4>
+<h3 id="_1">登入並啟用憑證<a class="headerlink" href="#_1" title="Permanent link">&para;</a></h3>
 <div class="tabbed-set tabbed-alternate" data-tabs="1:2"><input checked="checked" id="__tabbed_1_1" name="__tabbed_1" type="radio" /><input id="__tabbed_1_2" name="__tabbed_1" type="radio" /><div class="tabbed-labels"><label for="__tabbed_1_1">version&gt;=1.0</label><label for="__tabbed_1_2">version&lt;1.0</label></div>
 <div class="tabbed-content">
 <div class="tabbed-block">
@@ -1796,21 +1798,21 @@
 </div>
 </div>
 <div class="admonition attention">
-<p class="admonition-title">The Certification Path</p>
-<p>In Windows you copy the file path with <code>\</code> to separate the file, you need to replace it with <code>/</code>.</p>
+<p class="admonition-title">認證路徑</p>
+<p>Windows環境下複製文件路徑時用<code>\</code>分隔文件，需要用<code>/</code>替換。</p>
 </div>
-<h2 id="streaming-market-data">Streaming Market Data<a class="headerlink" href="#streaming-market-data" title="Permanent link">&para;</a></h2>
-<p>Subscribe the real time market data. Simplely pass contract into quote <code>subscribe</code> function and give the quote type will receive the streaming data.</p>
+<h3 id="_2">訂閱行情<a class="headerlink" href="#_2" title="Permanent link">&para;</a></h3>
+<p><font size=3>訂閱行情需將合約帶入 <code>subscribe</code> 功能，並指定行情類型，就可以接收資料。<font></p>
 <div class="highlight"><pre><span></span><code><span class="n">api</span><span class="o">.</span><span class="n">quote</span><span class="o">.</span><span class="n">subscribe</span><span class="p">(</span><span class="n">api</span><span class="o">.</span><span class="n">Contracts</span><span class="o">.</span><span class="n">Stocks</span><span class="p">[</span><span class="s2">&quot;2330&quot;</span><span class="p">],</span> <span class="n">quote_type</span><span class="o">=</span><span class="s2">&quot;tick&quot;</span><span class="p">)</span>
 <span class="n">api</span><span class="o">.</span><span class="n">quote</span><span class="o">.</span><span class="n">subscribe</span><span class="p">(</span><span class="n">api</span><span class="o">.</span><span class="n">Contracts</span><span class="o">.</span><span class="n">Stocks</span><span class="p">[</span><span class="s2">&quot;2330&quot;</span><span class="p">],</span> <span class="n">quote_type</span><span class="o">=</span><span class="s2">&quot;bidask&quot;</span><span class="p">)</span>
 <span class="n">api</span><span class="o">.</span><span class="n">quote</span><span class="o">.</span><span class="n">subscribe</span><span class="p">(</span><span class="n">api</span><span class="o">.</span><span class="n">Contracts</span><span class="o">.</span><span class="n">Futures</span><span class="p">[</span><span class="s2">&quot;TXFC0&quot;</span><span class="p">],</span> <span class="n">quote_type</span><span class="o">=</span><span class="s2">&quot;tick&quot;</span><span class="p">)</span>
 </code></pre></div>
 <div class="admonition tip">
-<p class="admonition-title">Quote Type</p>
-<p>Currently we support two quote type you can see in <code class="highlight"><span class="n">shioaji</span><span class="o">.</span><span class="n">constent</span><span class="o">.</span><span class="n">QuoteType</span></code>. The best way to use that is directly pass this enum into <code class="highlight"><span class="n">subscribe</span></code> function. </p>
+<p class="admonition-title">行情類型</p>
+<p>目前我們支持 <code class="highlight"><span class="n">shioaji</span><span class="o">.</span><span class="n">constent</span><span class="o">.</span><span class="n">QuoteType</span></code> 中的兩種行情類型。最好的使用方法是直接將這個枚舉類型傳入 <code class="highlight"><span class="n">subscribe</span></code> 函數。</p>
 </div>
-<h2 id="place-order">Place Order<a class="headerlink" href="#place-order" title="Permanent link">&para;</a></h2>
-<p>Like the above subscribing market data using the contract, then need to define the order. Pass them into <code class="highlight"><span class="n">place_order</span></code> function, then it will return the trade that describe the status of your order.</p>
+<h3 id="_3">下單<a class="headerlink" href="#_3" title="Permanent link">&para;</a></h3>
+<p><font size=3>與上面訂閱行情的方法雷同，需將合約及定義下單資訊帶入 <code class="highlight"><span class="n">place_order</span></code> 函數，然後它將返回描述您交易狀態。<font></p>
 <div class="highlight"><pre><span></span><code><span class="n">contract</span> <span class="o">=</span> <span class="n">api</span><span class="o">.</span><span class="n">Contracts</span><span class="o">.</span><span class="n">Stocks</span><span class="p">[</span><span class="s2">&quot;2890&quot;</span><span class="p">]</span>
 <span class="n">order</span> <span class="o">=</span> <span class="n">api</span><span class="o">.</span><span class="n">Order</span><span class="p">(</span>
     <span class="n">price</span><span class="o">=</span><span class="mi">12</span><span class="p">,</span>
@@ -1821,8 +1823,8 @@
 <span class="p">)</span>
 <span class="n">trade</span> <span class="o">=</span> <span class="n">api</span><span class="o">.</span><span class="n">place_order</span><span class="p">(</span><span class="n">contract</span><span class="p">,</span> <span class="n">order</span><span class="p">)</span>
 </code></pre></div>
-<h2 id="conclusion">Conclusion<a class="headerlink" href="#conclusion" title="Permanent link">&para;</a></h2>
-<p>This quickstart demonstrates how easy to use our package for native Python users. Unlike many other trading API is hard for Python developer. We focus on making more pythonic trading API for our users. </p>
+<h2 id="_4">總結<a class="headerlink" href="#_4" title="Permanent link">&para;</a></h2>
+<p>這個快速入門演示了我們使用原生 Python 的套件是有多簡單，與許多其他交易應用程式介面不同。我們致力於為用戶提供更具有 Python 特色的交易應用程式介面。</p>
 
 
 

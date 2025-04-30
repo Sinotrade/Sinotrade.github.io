@@ -88,7 +88,7 @@
     <div data-md-component="skip">
       
         
-        <a href="#place-order" class="md-skip">
+        <a href="#_1" class="md-skip">
           跳转至
         </a>
       
@@ -943,27 +943,27 @@
     <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
       
         <li class="md-nav__item">
-  <a href="#place-order" class="md-nav__link">
+  <a href="#_1" class="md-nav__link">
     <span class="md-ellipsis">
-      Place Order
+      下單
     </span>
   </a>
   
 </li>
       
         <li class="md-nav__item">
-  <a href="#update-order" class="md-nav__link">
+  <a href="#_2" class="md-nav__link">
     <span class="md-ellipsis">
-      Update Order
+      改單
     </span>
   </a>
   
 </li>
       
         <li class="md-nav__item">
-  <a href="#cancel-order" class="md-nav__link">
+  <a href="#_3" class="md-nav__link">
     <span class="md-ellipsis">
-      Cancel Order
+      刪單
     </span>
   </a>
   
@@ -1703,27 +1703,27 @@
     <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
       
         <li class="md-nav__item">
-  <a href="#place-order" class="md-nav__link">
+  <a href="#_1" class="md-nav__link">
     <span class="md-ellipsis">
-      Place Order
+      下單
     </span>
   </a>
   
 </li>
       
         <li class="md-nav__item">
-  <a href="#update-order" class="md-nav__link">
+  <a href="#_2" class="md-nav__link">
     <span class="md-ellipsis">
-      Update Order
+      改單
     </span>
   </a>
   
 </li>
       
         <li class="md-nav__item">
-  <a href="#cancel-order" class="md-nav__link">
+  <a href="#_3" class="md-nav__link">
     <span class="md-ellipsis">
-      Cancel Order
+      刪單
     </span>
   </a>
   
@@ -1747,14 +1747,14 @@
 
   <h1>零股</h1>
 
+<p><a href="https://nbviewer.jupyter.org/github/Sinotrade/Sinotrade.github.io/blob/master/tutorial/stock_intraday_odd.ipynb">零股下單範例 ( jupyter)</a></p>
 <div class="admonition attention">
-<p class="admonition-title">Reminder </p>
-<p>First, you need to <a href="../../login/">login</a> and <a href="../../prepare/terms/">activate CA</a>.</p>
+<p class="admonition-title">提醒</p>
+<p>下單前必須先<a href="../../login/">登入</a>及啟用<a href="../../prepare/terms/">憑證</a>。</p>
 </div>
-<p><a href="https://nbviewer.jupyter.org/github/Sinotrade/Sinotrade.github.io/blob/master/tutorial/stock_intraday_odd.ipynb">place intraday odd order jupyter link</a></p>
-<h3 id="place-order">Place Order<a class="headerlink" href="#place-order" title="Permanent link">&para;</a></h3>
+<h3 id="_1">下單<a class="headerlink" href="#_1" title="Permanent link">&para;</a></h3>
 <div class="admonition info">
-<p class="admonition-title">In</p>
+<p class="admonition-title">下單</p>
 <div class="highlight"><pre><span></span><code><span class="n">contract</span> <span class="o">=</span> <span class="n">api</span><span class="o">.</span><span class="n">Contracts</span><span class="o">.</span><span class="n">Stocks</span><span class="o">.</span><span class="n">TSE</span><span class="o">.</span><span class="n">TSE0050</span>
 <span class="n">order</span> <span class="o">=</span> <span class="n">api</span><span class="o">.</span><span class="n">Order</span><span class="p">(</span>
     <span class="n">price</span><span class="o">=</span><span class="mi">90</span><span class="p">,</span>
@@ -1815,14 +1815,14 @@
 <span class="p">)</span>
 </code></pre></div>
 </div>
-<h3 id="update-order">Update Order<a class="headerlink" href="#update-order" title="Permanent link">&para;</a></h3>
+<h3 id="_2">改單<a class="headerlink" href="#_2" title="Permanent link">&para;</a></h3>
 <div class="admonition attention">
-<p class="admonition-title">Attention</p>
-<p><strong>Intraday Odd cannot update price.</strong></p>
+<p class="admonition-title">注意</p>
+<p><strong>零股不能進行改價</strong></p>
 </div>
-<p><code>update_order</code> can only reduce the quantity of the order.</p>
+<p><code>update_order</code> 只能用來<strong>減少</strong>原委託單的委託數量。</p>
 <div class="admonition info">
-<p class="admonition-title">Update Quantity</p>
+<p class="admonition-title">改量(減量)</p>
 <div class="highlight"><pre><span></span><code><span class="n">api</span><span class="o">.</span><span class="n">update_order</span><span class="p">(</span><span class="n">trade</span><span class="o">=</span><span class="n">trade</span><span class="p">,</span> <span class="n">qty</span><span class="o">=</span><span class="mi">2</span><span class="p">)</span>
 <span class="n">api</span><span class="o">.</span><span class="n">update_status</span><span class="p">(</span><span class="n">api</span><span class="o">.</span><span class="n">stock_account</span><span class="p">)</span>
 <span class="n">trade</span>
@@ -1873,9 +1873,9 @@
 <span class="p">)</span>
 </code></pre></div>
 </div>
-<h3 id="cancel-order">Cancel Order<a class="headerlink" href="#cancel-order" title="Permanent link">&para;</a></h3>
+<h3 id="_3">刪單<a class="headerlink" href="#_3" title="Permanent link">&para;</a></h3>
 <div class="admonition info">
-<p class="admonition-title">Cancel Order</p>
+<p class="admonition-title">刪單</p>
 <div class="highlight"><pre><span></span><code><span class="n">api</span><span class="o">.</span><span class="n">cancel_order</span><span class="p">(</span><span class="n">trade</span><span class="p">)</span>
 <span class="n">api</span><span class="o">.</span><span class="n">update_status</span><span class="p">(</span><span class="n">api</span><span class="o">.</span><span class="n">stock_account</span><span class="p">)</span>
 <span class="n">trade</span>

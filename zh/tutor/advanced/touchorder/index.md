@@ -1,6 +1,6 @@
-## Touch Price Order
+## 觸價委託範例
 
-Here is a simple example that how to build your price monitor and when price touches the condition will place the order.
+這是一個簡單的範例，說明如何實作價格監控以及觸價委託。
 
 ```
 from pydantic import BaseModel
@@ -31,4 +31,4 @@ class TouchOrder:
 
 ```
 
-Complete [TouchPrice Order Extention](https://github.com/SsallyLin/touchprice) can be found here.
+完整程式碼詳見 [TouchPrice Order Extention](https://github.com/SsallyLin/touchprice)

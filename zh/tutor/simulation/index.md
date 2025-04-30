@@ -1,6 +1,6 @@
-Users can first familiarize themselves with the API services in the simulation mode, which can avoid the loss of property caused by operational errors in the production environment.
+使用者能先在模擬環境熟悉我們所提供的服務，可避免在正式環境操作失誤造成財物的損失。以下會詳細說明在測試環境所提供的功能。
 
-Simulation
+模擬環境
 
 ```
 import shioaji as sj
@@ -8,9 +8,9 @@ api = sj.Shioaji(simulation=True)
 
 ```
 
-## Available APIs
+## 可使用的APIs
 
-Data
+行情資料
 
 ```
 1. quote.subscribe
@@ -24,7 +24,7 @@ Data
 
 ```
 
-Order
+下單
 
 ```
 1. place_order
@@ -35,7 +35,7 @@ Order
 
 ```
 
-Account
+帳務
 
 ```
 1. list_positions

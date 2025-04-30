@@ -1,4 +1,4 @@
-Short Stock Sources
+或有券源
 
 ```
 >> api.short_stock_sources?
@@ -12,7 +12,7 @@ api.short_stock_sources(
 
 ```
 
-## Example
+## 範例
 
 In
 
@@ -36,7 +36,7 @@ Out
 
 ```
 
-To DataFrame
+轉成 DataFrame
 
 In
 
@@ -51,13 +51,13 @@ Out
 
 | code | short_stock_source | ts | | --- | --- | --- | | 2330 | 58260 | 2023-01-17 08:17:13 | | 2317 | 75049 | 2023-01-17 08:17:13 |
 
-## Attributes
+## 屬性
 
 ShortStockSource
 
 ```
-code (str): contract id
-short_stock_source (float): short stock source
-ts (int): timeStamp
+code (str): 商品代碼
+short_stock_source (float): 或有券源
+ts (int): 時間戳記
 
 ```

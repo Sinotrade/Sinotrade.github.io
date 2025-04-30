@@ -88,7 +88,7 @@
     <div data-md-component="skip">
       
         
-        <a href="#get-stock-trades" class="md-skip">
+        <a href="#_1" class="md-skip">
           跳转至
         </a>
       
@@ -1012,36 +1012,36 @@
     <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
       
         <li class="md-nav__item">
-  <a href="#get-stock-trades" class="md-nav__link">
+  <a href="#_1" class="md-nav__link">
     <span class="md-ellipsis">
-      Get Stock Trades
+      取得證券委託狀態
     </span>
   </a>
   
 </li>
       
         <li class="md-nav__item">
-  <a href="#get-futures-trades" class="md-nav__link">
+  <a href="#_2" class="md-nav__link">
     <span class="md-ellipsis">
-      Get Futures Trades
+      取得期貨委託狀態
     </span>
   </a>
   
 </li>
       
         <li class="md-nav__item">
-  <a href="#update-specific-trade" class="md-nav__link">
+  <a href="#_3" class="md-nav__link">
     <span class="md-ellipsis">
-      Update Specific Trade
+      更新特定交易狀態
     </span>
   </a>
   
 </li>
       
         <li class="md-nav__item">
-  <a href="#trade-status" class="md-nav__link">
+  <a href="#_4" class="md-nav__link">
     <span class="md-ellipsis">
-      Trade Status
+      委託及成交狀態屬性
     </span>
   </a>
   
@@ -1712,36 +1712,36 @@
     <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
       
         <li class="md-nav__item">
-  <a href="#get-stock-trades" class="md-nav__link">
+  <a href="#_1" class="md-nav__link">
     <span class="md-ellipsis">
-      Get Stock Trades
+      取得證券委託狀態
     </span>
   </a>
   
 </li>
       
         <li class="md-nav__item">
-  <a href="#get-futures-trades" class="md-nav__link">
+  <a href="#_2" class="md-nav__link">
     <span class="md-ellipsis">
-      Get Futures Trades
+      取得期貨委託狀態
     </span>
   </a>
   
 </li>
       
         <li class="md-nav__item">
-  <a href="#update-specific-trade" class="md-nav__link">
+  <a href="#_3" class="md-nav__link">
     <span class="md-ellipsis">
-      Update Specific Trade
+      更新特定交易狀態
     </span>
   </a>
   
 </li>
       
         <li class="md-nav__item">
-  <a href="#trade-status" class="md-nav__link">
+  <a href="#_4" class="md-nav__link">
     <span class="md-ellipsis">
-      Trade Status
+      委託及成交狀態屬性
     </span>
   </a>
   
@@ -1766,11 +1766,10 @@
   <h1>查詢狀態</h1>
 
 <div class="admonition attention">
-<p class="admonition-title">Reminder </p>
-<p>First, you need to <a href="../../login/">login</a> and <a href="../../prepare/terms/">activate CA</a>.</p>
+<p class="admonition-title">提醒</p>
+<p>必須先<a href="../../login/">登入</a>及啟用<a href="../../prepare/terms/">憑證</a>。</p>
 </div>
-<p>Before obtaining the <code>Trade</code> status, it must be updated with <code>update_status</code>. If you cannot successfully <code>update_order</code> or <code>cancel_order</code>, you can use <code>update_status</code> to update the specific <code>trade</code> status, and check the <code>OrderStatus</code> in <code>trade</code>, whether it is available to modify the order.</p>
-<p>The update_status defaults to querying all accounts under the user's name. If you wish to inquire about a specific account, provide the account as a parameter to account.</p>
+<p>在取得 <code>Trade</code> 狀態前，必須先利用<code>update_status</code>進行更新。如果無法成功刪單或改單，你可以對特定<code>trade</code>物件進行更新，並確認在<code>trade</code>中的<code>OrderStatus</code>，是否為可刪改狀態。<code>update_status</code> 預設查詢為名下所有帳號。若想查詢特定帳號，將帳號帶入<code>account</code>。</p>
 <div class="admonition info">
 <p class="admonition-title">Update Status</p>
 <div class="highlight"><pre><span></span><code><span class="n">api</span><span class="o">.</span><span class="n">update_status</span><span class="err">?</span>
@@ -1788,9 +1787,9 @@
 <span class="n">Docstring</span><span class="p">:</span> <span class="n">update</span> <span class="n">status</span> <span class="n">of</span> <span class="nb">all</span> <span class="n">trades</span> <span class="n">you</span> <span class="n">have</span>
 </code></pre></div>
 </div>
-<h3 id="get-stock-trades">Get Stock Trades<a class="headerlink" href="#get-stock-trades" title="Permanent link">&para;</a></h3>
+<h3 id="_1">取得證券委託狀態<a class="headerlink" href="#_1" title="Permanent link">&para;</a></h3>
 <div class="admonition info">
-<p class="admonition-title">Get Stock Trades</p>
+<p class="admonition-title">取得證券委託狀態</p>
 <div class="highlight"><pre><span></span><code><span class="n">api</span><span class="o">.</span><span class="n">update_status</span><span class="p">(</span><span class="n">api</span><span class="o">.</span><span class="n">stock_account</span><span class="p">)</span>
 <span class="n">api</span><span class="o">.</span><span class="n">list_trades</span><span class="p">()</span>
 </code></pre></div>
@@ -1845,9 +1844,9 @@
 <span class="p">]</span>
 </code></pre></div>
 </div>
-<h3 id="get-futures-trades">Get Futures Trades<a class="headerlink" href="#get-futures-trades" title="Permanent link">&para;</a></h3>
+<h3 id="_2">取得期貨委託狀態<a class="headerlink" href="#_2" title="Permanent link">&para;</a></h3>
 <div class="admonition info">
-<p class="admonition-title">Get Futures Trades</p>
+<p class="admonition-title">取得期貨委託狀態</p>
 <div class="highlight"><pre><span></span><code><span class="n">api</span><span class="o">.</span><span class="n">update_status</span><span class="p">(</span><span class="n">api</span><span class="o">.</span><span class="n">futopt_account</span><span class="p">)</span>
 <span class="n">api</span><span class="o">.</span><span class="n">list_trades</span><span class="p">()</span>
 </code></pre></div>
@@ -1901,9 +1900,9 @@
 <span class="p">]</span>
 </code></pre></div>
 </div>
-<h3 id="update-specific-trade">Update Specific Trade<a class="headerlink" href="#update-specific-trade" title="Permanent link">&para;</a></h3>
+<h3 id="_3">更新特定交易狀態<a class="headerlink" href="#_3" title="Permanent link">&para;</a></h3>
 <div class="admonition info">
-<p class="admonition-title">Update Trade</p>
+<p class="admonition-title">更新特定交易狀態</p>
 <div class="highlight"><pre><span></span><code><span class="c1"># you can get trade from place_order</span>
 <span class="c1"># trade = api.place_order(contract, order)</span>
 
@@ -1913,25 +1912,33 @@
 <span class="n">api</span><span class="o">.</span><span class="n">update_status</span><span class="p">(</span><span class="n">trade</span><span class="o">=</span><span class="n">trade</span><span class="p">)</span>
 </code></pre></div>
 </div>
-<h3 id="trade-status">Trade Status<a class="headerlink" href="#trade-status" title="Permanent link">&para;</a></h3>
+<h3 id="_4">委託及成交狀態屬性<a class="headerlink" href="#_4" title="Permanent link">&para;</a></h3>
 <div class="admonition example">
-<p class="admonition-title">OrderStatus</p>
-<div class="highlight"><pre><span></span><code><span class="nb">id</span> <span class="p">(</span><span class="nb">str</span><span class="p">):</span> <span class="n">the</span> <span class="nb">id</span> <span class="n">uses</span> <span class="n">to</span> <span class="n">correlate</span> <span class="n">the</span> <span class="n">order</span> <span class="nb">object</span>
-<span class="n">status</span> <span class="p">(:</span><span class="n">obj</span><span class="p">:</span><span class="n">Status</span><span class="p">):</span> <span class="n">the</span> <span class="n">status</span> <span class="n">of</span> <span class="n">order</span> <span class="p">{</span><span class="n">Cancelled</span><span class="p">,</span> <span class="n">Filled</span><span class="p">,</span> <span class="n">PartFilled</span><span class="p">,</span> <span class="n">Failed</span><span class="p">,</span> <span class="n">PendingSubmit</span><span class="p">,</span> <span class="n">PreSubmitted</span><span class="p">,</span> <span class="n">Submitted</span><span class="p">}</span>
-<span class="n">status_code</span> <span class="p">(</span><span class="nb">str</span><span class="p">):</span> <span class="n">the</span> <span class="n">code</span> <span class="n">of</span> <span class="n">status</span>
-<span class="n">order_datetime</span> <span class="p">(</span><span class="n">datetime</span><span class="p">):</span> <span class="n">order</span> <span class="n">time</span>
-<span class="n">order_quantity</span> <span class="p">(</span><span class="nb">int</span><span class="p">):</span> <span class="n">order</span> <span class="n">quantity</span>
-<span class="n">modified_price</span> <span class="p">(</span><span class="nb">float</span><span class="p">):</span> <span class="n">the</span> <span class="n">price</span> <span class="n">of</span> <span class="n">modification</span>
-<span class="n">cancel_quantity</span> <span class="p">(</span><span class="nb">int</span><span class="p">):</span> <span class="n">the</span> <span class="n">quantity</span> <span class="n">of</span> <span class="n">cancel</span>
-<span class="n">deals</span> <span class="p">(:</span><span class="n">List</span><span class="p">:</span><span class="n">Deal</span><span class="p">):</span> <span class="n">information</span> <span class="n">of</span> <span class="n">filled</span> <span class="n">order</span>
+<p class="admonition-title">委託狀態屬性</p>
+<div class="highlight"><pre><span></span><code><span class="nb">id</span> <span class="p">(</span><span class="nb">str</span><span class="p">):</span> <span class="n">關聯Order物件編碼</span>
+<span class="n">status</span> <span class="p">(:</span><span class="n">obj</span><span class="p">:</span><span class="n">Status</span><span class="p">):</span> <span class="p">{</span>
+            <span class="n">Cancelled</span><span class="p">:</span> <span class="n">已刪除</span><span class="p">,</span> 
+            <span class="n">Filled</span><span class="p">:</span> <span class="n">完全成交</span><span class="p">,</span> 
+            <span class="n">PartFilled</span><span class="p">:</span> <span class="n">部分成交</span><span class="p">,</span> 
+            <span class="n">Failed</span><span class="p">:</span> <span class="n">失敗</span><span class="p">,</span> 
+            <span class="n">PendingSubmit</span><span class="p">:</span> <span class="n">傳送中</span><span class="p">,</span> 
+            <span class="n">PreSubmitted</span><span class="p">:</span> <span class="n">預約單</span><span class="p">,</span> 
+            <span class="n">Submitted</span><span class="p">:</span> <span class="n">傳送成功</span>
+        <span class="p">}</span>
+<span class="n">status_code</span> <span class="p">(</span><span class="nb">str</span><span class="p">):</span> <span class="n">狀態碼</span>
+<span class="n">order_datetime</span> <span class="p">(</span><span class="n">datetime</span><span class="p">):</span> <span class="n">委託時間</span>
+<span class="n">order_quantity</span> <span class="p">(</span><span class="nb">int</span><span class="p">):</span> <span class="n">委託數量</span>
+<span class="n">modified_price</span> <span class="p">(</span><span class="nb">float</span><span class="p">):</span> <span class="n">改價金額</span>
+<span class="n">cancel_quantity</span> <span class="p">(</span><span class="nb">int</span><span class="p">):</span> <span class="n">取消委託數量</span>
+<span class="n">deals</span> <span class="p">(:</span><span class="n">List</span><span class="p">:</span><span class="n">Deal</span><span class="p">):</span> <span class="n">成交資訊</span>
 </code></pre></div>
 </div>
 <div class="admonition example">
-<p class="admonition-title">Deal</p>
-<div class="highlight"><pre><span></span><code><span class="n">seq</span> <span class="p">(</span><span class="nb">str</span><span class="p">):</span> <span class="n">deal</span> <span class="n">sequence</span> <span class="n">number</span>
-<span class="n">price</span> <span class="p">(</span><span class="nb">int</span> <span class="ow">or</span> <span class="nb">float</span><span class="p">):</span> <span class="n">deal</span> <span class="n">price</span>
-<span class="n">quantity</span> <span class="p">(</span><span class="nb">int</span><span class="p">):</span> <span class="n">deal</span> <span class="n">quantity</span>
-<span class="n">ts</span> <span class="p">(</span><span class="nb">float</span><span class="p">):</span> <span class="n">deal</span> <span class="n">timestamp</span>
+<p class="admonition-title">成交屬性</p>
+<div class="highlight"><pre><span></span><code><span class="n">seq</span> <span class="p">(</span><span class="nb">str</span><span class="p">):</span> <span class="n">成交序號</span>
+<span class="n">price</span> <span class="p">(</span><span class="nb">int</span> <span class="ow">or</span> <span class="nb">float</span><span class="p">):</span> <span class="n">成交價</span>
+<span class="n">quantity</span> <span class="p">(</span><span class="nb">int</span><span class="p">):</span> <span class="n">成交數量</span>
+<span class="n">ts</span> <span class="p">(</span><span class="nb">float</span><span class="p">):</span> <span class="n">成交時間戳</span>
 </code></pre></div>
 </div>
 

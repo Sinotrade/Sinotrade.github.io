@@ -88,7 +88,7 @@
     <div data-md-component="skip">
       
         
-        <a href="#handle-order-callback" class="md-skip">
+        <a href="#_1" class="md-skip">
           跳转至
         </a>
       
@@ -1173,28 +1173,28 @@
     <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
       
         <li class="md-nav__item">
-  <a href="#handle-order-callback" class="md-nav__link">
+  <a href="#_1" class="md-nav__link">
     <span class="md-ellipsis">
-      Handle Order Callback
+      處理委託及成交回報
     </span>
   </a>
   
-    <nav class="md-nav" aria-label="Handle Order Callback">
+    <nav class="md-nav" aria-label="處理委託及成交回報">
       <ul class="md-nav__list">
         
           <li class="md-nav__item">
-  <a href="#order-event" class="md-nav__link">
+  <a href="#_2" class="md-nav__link">
     <span class="md-ellipsis">
-      Order Event
+      委託回報
     </span>
   </a>
   
 </li>
         
           <li class="md-nav__item">
-  <a href="#deal-event" class="md-nav__link">
+  <a href="#_3" class="md-nav__link">
     <span class="md-ellipsis">
-      Deal Event
+      成交回報
     </span>
   </a>
   
@@ -1709,28 +1709,28 @@
     <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
       
         <li class="md-nav__item">
-  <a href="#handle-order-callback" class="md-nav__link">
+  <a href="#_1" class="md-nav__link">
     <span class="md-ellipsis">
-      Handle Order Callback
+      處理委託及成交回報
     </span>
   </a>
   
-    <nav class="md-nav" aria-label="Handle Order Callback">
+    <nav class="md-nav" aria-label="處理委託及成交回報">
       <ul class="md-nav__list">
         
           <li class="md-nav__item">
-  <a href="#order-event" class="md-nav__link">
+  <a href="#_2" class="md-nav__link">
     <span class="md-ellipsis">
-      Order Event
+      委託回報
     </span>
   </a>
   
 </li>
         
           <li class="md-nav__item">
-  <a href="#deal-event" class="md-nav__link">
+  <a href="#_3" class="md-nav__link">
     <span class="md-ellipsis">
-      Deal Event
+      成交回報
     </span>
   </a>
   
@@ -1759,11 +1759,11 @@
 
   <h1>委託回報</h1>
 
-<p>Each time you <code>place_order</code>, <code>update_order</code> or <code>cancel_order</code>, by default, you will recieve an order event (or deal event) from exchange. If you don't want recieve both events, please refer to <a href="../../login/#subscribe-trade">Subscribe Trade</a>. We also provide interface to handle order and deal events. It's extremely helpful if you are implementing your custom trading system.</p>
-<h2 id="handle-order-callback">Handle Order Callback<a class="headerlink" href="#handle-order-callback" title="Permanent link">&para;</a></h2>
-<p>You can use <code>set_order_callback</code> to handle order/deal events. The example below shows custom order callback function (<code>order_cb</code>), which will print <code>my_order_callback</code> first and then print the order/deal event. </p>
+<p>每次您使用 <code>place_order</code>、<code>update_order</code> 或者 <code>cancel_order</code> 時，預設皆會收到來自交易所的委託或成交回報。如果您不想收到任何回報通知，您可以參考<a href="../../login/#subscribe-trade">訂閱委託回報</a>將其關閉。我們亦提供了處理委託及成交回報的介面。如果您正在建立自己的交易系統，這會非常有幫助。</p>
+<h2 id="_1">處理委託及成交回報<a class="headerlink" href="#_1" title="Permanent link">&para;</a></h2>
+<p>您可以使用 <code>set_order_callback</code> 來處理委託及成交回報。以下範例顯示，自製的委託回報函數(<code>order_cb</code>)將先 print <code>my_order_callback</code> 然後才 print 委託及成交回報。</p>
 <div class="admonition info">
-<p class="admonition-title">Set Order Callback</p>
+<p class="admonition-title">設定委託回報函式</p>
 <div class="highlight"><pre><span></span><code><span class="k">def</span><span class="w"> </span><span class="nf">order_cb</span><span class="p">(</span><span class="n">stat</span><span class="p">,</span> <span class="n">msg</span><span class="p">):</span>
     <span class="nb">print</span><span class="p">(</span><span class="s1">&#39;my_order_callback&#39;</span><span class="p">)</span>
     <span class="nb">print</span><span class="p">(</span><span class="n">stat</span><span class="p">,</span> <span class="n">msg</span><span class="p">)</span>
@@ -1772,7 +1772,7 @@
 </code></pre></div>
 </div>
 <div class="admonition info">
-<p class="admonition-title">Place Order</p>
+<p class="admonition-title">下單</p>
 <div class="tabbed-set tabbed-alternate" data-tabs="1:2"><input checked="checked" id="__tabbed_1_1" name="__tabbed_1" type="radio" /><input id="__tabbed_1_2" name="__tabbed_1" type="radio" /><div class="tabbed-labels"><label for="__tabbed_1_1">version&gt;=1.0</label><label for="__tabbed_1_2">version&lt;1.0</label></div>
 <div class="tabbed-content">
 <div class="tabbed-block">
@@ -1808,9 +1808,9 @@
 </div>
 </div>
 </div>
-<h3 id="order-event">Order Event<a class="headerlink" href="#order-event" title="Permanent link">&para;</a></h3>
+<h3 id="_2">委託回報<a class="headerlink" href="#_2" title="Permanent link">&para;</a></h3>
 <div class="admonition done">
-<p class="admonition-title">Order Event</p>
+<p class="admonition-title">委託回報</p>
 <div class="tabbed-set tabbed-alternate" data-tabs="2:2"><input checked="checked" id="__tabbed_2_1" name="__tabbed_2" type="radio" /><input id="__tabbed_2_2" name="__tabbed_2" type="radio" /><div class="tabbed-labels"><label for="__tabbed_2_1">version&gt;=1.0</label><label for="__tabbed_2_2">version&lt;1.0</label></div>
 <div class="tabbed-content">
 <div class="tabbed-block">
@@ -1910,9 +1910,9 @@
 </div>
 </div>
 </div>
-<h3 id="deal-event">Deal Event<a class="headerlink" href="#deal-event" title="Permanent link">&para;</a></h3>
+<h3 id="_3">成交回報<a class="headerlink" href="#_3" title="Permanent link">&para;</a></h3>
 <div class="admonition done">
-<p class="admonition-title">Deal Event</p>
+<p class="admonition-title">成交回報</p>
 <div class="tabbed-set tabbed-alternate" data-tabs="3:2"><input checked="checked" id="__tabbed_3_1" name="__tabbed_3" type="radio" /><input id="__tabbed_3_2" name="__tabbed_3" type="radio" /><div class="tabbed-labels"><label for="__tabbed_3_1">version&gt;=1.0</label><label for="__tabbed_3_2">version&lt;1.0</label></div>
 <div class="tabbed-content">
 <div class="tabbed-block">

@@ -1,10 +1,10 @@
-Contract object will be used by a lot of place like place order, subscribe quote, etc.
+商品檔將在很多地方被使用，例如下單、訂閱行情...等。
 
-### Get Contracts
+### 取得商品檔
 
-The following provides two methods to get contracts:
+下方提供兩種方法取得商品檔:
 
-- method 1: After [Login](../../tutor/login/) success we will start to fetch all kind of contract but fetching will not block other action. So how to know the fetch action is done ? We have status of contracts download that you can use `Contracts.status`. If you set contracts_timeout inside `login` set to 10000, it will block the fetch and wait 10 second until the contract is back.
+- 方法1: [登入](../../tutor/login)成功後，將開始下載商品檔。但這個下載過程將不會影響其他的操作。若您想了解是否下載完成，可利用`Contracts.status`去得到下載狀態。`contracts_timeout` 設定為10000，它將等待10秒下載商品檔。
 
 In
 
@@ -30,7 +30,7 @@ api.login(
 
 ```
 
-- method 2: If `fetch_contract` inside `login` is set to False, it will not download contract. You can use `fetch_contracts` to download.
+- 方法2: 若不想在登入時下載商品檔，將`fetch_contract` 設定為`False`。利用 `fetch_contracts` 下載商品檔
 
 In
 
@@ -58,9 +58,9 @@ api.fetch_contracts(contract_download=True)
 
 ```
 
-### Contracts Information
+### 商品檔資訊
 
-The contracts we currently offer include: stocks, futures, options and indices. The products we provide can get more detailed information through the following ways.
+目前我們所提供的商品包含:證券、期貨、選擇權以及指數。可從下列方法更詳細得到我們所提供的商品。
 
 In
 
@@ -76,7 +76,7 @@ Contracts(Indexs=(OTC, TSE), Stocks=(OES, OTC, TSE), Futures=(BRF, CAF, CBF, CCF
 
 ```
 
-#### Stock
+#### 證券
 
 In
 
@@ -108,44 +108,23 @@ Stock(
 Stock
 
 ```
-exchange (Exchange): Attributes of industry
-    {OES, OTC, TSE ...etc}
-code (str): Id
-symbol (str): Symbol
-name (str): Name
-category (str): Category
-unit (int): Unit
-limit_up (float): Limit up
-limit_down (float): Limit down
-reference (float): Reference price
-update_date (str): Update date
-margin_trading_balance (int): Margin trading balance
-short_selling_balance (int): Short selling balance
-day_trade (DayTrade): Day trade
-    {Yes, No, OnlyBuy}
+exchange (Exchange): 交易所 {OES, OTC, TSE ...等}
+code (str): 商品代碼
+symbol (str): 符號
+name (str): 商品名稱
+category (str): 類別
+unit (int): 單位
+limit_up (float): 漲停價
+limit_down (float): 跌停價
+reference (float): 參考價
+update_date (str): 更新日期
+margin_trading_balance (int): 融資餘額
+short_selling_balance (int): 融券餘額
+day_trade (DayTrade): 可否當沖 {Yes, No, OnlyBuy}
 
 ```
 
-Out
-
-```
-Stock(
-    exchange=<Exchange.TSE: 'TSE'>, 
-    code='2890', 
-    symbol='TSE2890', 
-    name='永豐金', 
-    category='17', 
-    unit=1000, 
-    limit_up=19.1, 
-    limit_down=15.7, 
-    reference=17.4, 
-    update_date='2023/01/17', 
-    day_trade=<DayTrade.Yes: 'Yes'>
-)
-
-```
-
-#### Futures
+#### 期貨
 
 In
 
@@ -178,22 +157,22 @@ Future(
 Future
 
 ```
-code (str): Id
-symbol (str): Symbol
-name (str): Name
-category (str): Category
-delivery_month (str): Delivery Month
-delivery_date (str): Delivery Date
-underlying_kind (str): Underlying Kind
-unit (int): Unit
-limit_up (float): Limit up
-limit_down (float): Limit down
-reference (float): Reference price
-update_date (str): Update date
+code (str): 商品代碼
+symbol (str): 符號
+name (str): 商品名稱
+category (str): 類別
+delivery_month (str): 交割月份
+delivery_date (str): 結算日
+underlying_kind (str): 標的類型
+unit (int): 單位
+limit_up (float): 漲停價
+limit_down (float): 跌停價
+reference (float): 參考價
+update_date (str): 更新時間
 
 ```
 
-#### Options
+#### 選擇權
 
 In
 
@@ -228,26 +207,25 @@ Option(
 Option
 
 ```
-code (str): Id
-symbol (str): Symbol
-name (str): Name
-category (str): Category
-delivery_month (str): Delivery Month
-delivery_date (str): Delivery Date
-strike_price (int or float): Strike Price
-option_right (OptionRight): Option Right
-underlying_kind (str): Underlying Kind
-unit (int): Unit
-limit_up (float): Limit up
-limit_down (float): Limit down
-reference (float): Reference price
-update_date (str): Update date
+code (str): 商品代碼
+symbol (str): 符號
+name (str): 商品名稱
+category (str): 類型
+delivery_month (str): 交割月份
+delivery_date (str): 交割日期
+strike_price (int or float): 屢約價
+option_right (OptionRight): 買賣權別
+underlying_kind (str): 標的類型
+limit_up (float): 漲停價
+limit_down (float): 跌停價
+reference (float): 參考價
+update_date (str): 更新時間
 
 ```
 
-#### Index
+#### 指數
 
-The `Indexs` object shows all supported index contracts, among other categories. Index contracts do not support place_order, but allow subscribing to market quotes. This will be discussed in the next topic.
+`Indexs`物件顯示所有可以支援的指數商品，其他類別亦然。指數類的商品不支援下單，但允許訂閱行情。
 
 In
 
@@ -286,10 +264,9 @@ Index(
 Index
 
 ```
-exchange (Exchange): exchange
-    {OES, OTC, TSE ...etc}
-code (str): Code
-symbol (str): Symbol
-name (str): Name
+exchange (Exchange): 交易所{OES, OTC, TSE ...等}
+code (str): 商品代碼
+symbol (str): 符號
+name (str): 商品名稱
 
 ```

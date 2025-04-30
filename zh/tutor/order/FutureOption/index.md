@@ -1,32 +1,28 @@
-Reminder
+提醒
 
-First, you need to [login](../../login/) and [activate CA](../../prepare/terms/).
+下單前必須先[登入](../../login/)及啟用[憑證](../../prepare/terms/)。
 
-### Futures Order
+### 期貨委託單
 
-Order Attributes
+期貨委託單
 
 ```
-price (float or int): the price of order
-quantity (int): the quantity of order
-action (str): order action to buy or sell
-    {Buy, Sell}
-price_type (str): pricing type of order
-    {LMT, MKT, MKP}
-order_type (str): the type of order
-    {ROD, IOC, FOK}
-octype (str): the type or order to open new position or close position future only
-    {Auto, New, Cover, DayTrade} (自動、新倉、平倉、當沖)
-account (:obj:Account): which account to place this order
-ca (binary): the ca of this order
+price (float or int): 價格
+quantity (int): 委託數量
+action (str): {Buy: 買, Sell: 賣}
+price_type (str): {LMT: 限價, MKT: 市價, MKP: 範圍市價}
+order_type (str): 委託類別 {ROD, IOC, FOK}
+octype (str): {Auto: 自動, New: 新倉, Cover: 平倉, DayTrade: 當沖} 
+account (:obj:Account): 下單帳號
+ca (binary): 憑證
 
 ```
 
-### Place Order
+### 下單
 
-Product information ( `contract`) and order information ( `order`) must be provided when placing an order.
+下單時必須提供商品資訊`contract`及下單資訊`order`。
 
-Place Order
+下單
 
 ```
 api.place_order?
@@ -43,14 +39,14 @@ api.place_order?
 
 ```
 
-Contract
+商品檔
 
 ```
 contract = api.Contracts.Futures.TXF.TXF202301
 
 ```
 
-Order
+委託單
 
 ```
 order = api.Order(
@@ -78,7 +74,7 @@ order = api.Order(
 
 ```
 
-Place Order
+下單
 
 ```
 trade = api.place_order(contract, order)
@@ -132,11 +128,11 @@ Trade(
 
 ```
 
-After `place_order`, you will also receive the information sent back from the exchange. For details, please refer to [Order & Deal Event](../order_deal_event/stocks/).
+下單完同時也會收到從交易所傳回來的資料，詳情內容可詳見[下單回報](../order_deal_event/stocks/)。
 
-To update the `trade` status, you need to call `update_status`.
+您需要執行`update_status`已更新`trade`物件的狀態。
 
-Update Status
+更新委託狀態
 
 ```
 api.update_status(api.futopt_account)
@@ -190,19 +186,19 @@ Trade(
 
 ```
 
-Status of Trade
+委託單狀態
 
-- `PendingSubmit`: Sending
-- `PreSubmitted`: Reservation
-- `Submitted`: Send Successfully
-- `Failed`: Failed
-- `Cancelled`: Cancelled
-- `Filled`: Complete Fill
-- `Filling`: Part Fill
+- `PendingSubmit`: 傳送中
+- `PreSubmitted`: 預約單
+- `Submitted`: 傳送成功
+- `Failed`: 失敗
+- `Cancelled`: 已刪除
+- `Filled`: 完全成交
+- `Filling`: 部分成交
 
-### Update Order
+### 改單
 
-Update Order
+改單
 
 ```
 api.update_order?
@@ -219,9 +215,9 @@ api.update_order?
 
 ```
 
-#### Update Price
+#### 改價
 
-Update Price
+改價
 
 ```
 api.update_order(trade=trade, price=14450)
@@ -278,11 +274,11 @@ Trade(
 
 ```
 
-#### Update Quantity (Reduce)
+#### 改量(減量)
 
-`update_order` can only reduce the quantity of the order.
+`update_order` 只能用來**減少**原委託單的委託數量。
 
-Update Quantity
+改量(減量)
 
 ```
 api.update_order(trade=trade, qty=1)
@@ -339,9 +335,9 @@ Trade(
 
 ```
 
-### Cancel Order
+### 刪單
 
-Cancel Order
+刪單
 
 ```
 api.cancel_order(trade)
@@ -398,9 +394,9 @@ Trade(
 
 ```
 
-### Deal
+### 成交
 
-Update Status
+更新委託狀態(成交後)
 
 ```
 api.update_status(api.futopt_account)
@@ -457,13 +453,13 @@ Trade(
 
 ```
 
-## Examples
+## 範例
 
-[Future and Option place order jupyter link](https://nbviewer.jupyter.org/github/Sinotrade/Sinotrade.github.io/blob/master/tutorial/future_and_option.ipynb)
+[期權下單範例 ( jupyter)](https://nbviewer.jupyter.org/github/Sinotrade/Sinotrade.github.io/blob/master/tutorial/future_and_option.ipynb)
 
-### Action
+### 買賣別
 
-Buy
+買
 
 ```
 order = api.Order(
@@ -478,7 +474,7 @@ order = api.Order(
 
 ```
 
-Sell
+賣
 
 ```
 order = api.Order(

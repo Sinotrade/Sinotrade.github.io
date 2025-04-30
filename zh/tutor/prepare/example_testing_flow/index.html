@@ -88,7 +88,7 @@
     <div data-md-component="skip">
       
         
-        <a href="#shioaji-version" class="md-skip">
+        <a href="#shioaji" class="md-skip">
           跳转至
         </a>
       
@@ -529,27 +529,27 @@
     <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
       
         <li class="md-nav__item">
-  <a href="#shioaji-version" class="md-nav__link">
+  <a href="#shioaji" class="md-nav__link">
     <span class="md-ellipsis">
-      Shioaji Version
+      Shioaji 版本
     </span>
   </a>
   
 </li>
       
         <li class="md-nav__item">
-  <a href="#stock-testing" class="md-nav__link">
+  <a href="#_1" class="md-nav__link">
     <span class="md-ellipsis">
-      Stock Testing
+      現貨下單測試
     </span>
   </a>
   
 </li>
       
         <li class="md-nav__item">
-  <a href="#futures-testing" class="md-nav__link">
+  <a href="#_2" class="md-nav__link">
     <span class="md-ellipsis">
-      Futures Testing
+      期貨下單測試
     </span>
   </a>
   
@@ -1703,27 +1703,27 @@
     <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
       
         <li class="md-nav__item">
-  <a href="#shioaji-version" class="md-nav__link">
+  <a href="#shioaji" class="md-nav__link">
     <span class="md-ellipsis">
-      Shioaji Version
+      Shioaji 版本
     </span>
   </a>
   
 </li>
       
         <li class="md-nav__item">
-  <a href="#stock-testing" class="md-nav__link">
+  <a href="#_1" class="md-nav__link">
     <span class="md-ellipsis">
-      Stock Testing
+      現貨下單測試
     </span>
   </a>
   
 </li>
       
         <li class="md-nav__item">
-  <a href="#futures-testing" class="md-nav__link">
+  <a href="#_2" class="md-nav__link">
     <span class="md-ellipsis">
-      Futures Testing
+      期貨下單測試
     </span>
   </a>
   
@@ -1747,149 +1747,148 @@
 
   <h1>測試專案範例</h1>
 
-<p>First, we extend the project <code>sj-trading</code> created using <code>uv</code> in the environment creation chapter to add the testing flow part.</p>
-<p>The complete project code can be referred to <a href="https://github.com/Sinotrade/sj-trading-demo">sj-trading https://github.com/Sinotrade/sj-trading-demo</a>.</p>
-<p>You can use <code>git</code> to clone the entire environment to your local machine and use it directly.</p>
+<p>首先，我們延伸前面在環境建立章節使用 <code>uv</code> 建立的專案 <code>sj-trading</code> 來新增測試流程的部分。</p>
+<p>這部分完整專案的程式碼可以參考 <a href="https://github.com/Sinotrade/sj-trading-demo">sj-trading https://github.com/Sinotrade/sj-trading-demo</a>。</p>
+<p>可以使用 <code>git</code> 將整個環境複製到本地就可以直接使用</p>
 <div class="admonition info">
-<p class="admonition-title">Download Project</p>
+<p class="admonition-title">下載專案</p>
 <div class="highlight"><pre><span></span><code>git clone https://github.com/Sinotrade/sj-trading-demo.git
 cd sj-trading-demo
 </code></pre></div>
 </div>
-<p>Next, we will step by step introduce how to add the testing flow.</p>
-<h3 id="shioaji-version">Shioaji Version<a class="headerlink" href="#shioaji-version" title="Permanent link">&para;</a></h3>
-<p>Get Shioaji version information</p>
+<p>下面我們將一步一步的介紹如何新增測試流程。</p>
+<h3 id="shioaji">Shioaji 版本<a class="headerlink" href="#shioaji" title="Permanent link">&para;</a></h3>
+<p>獲取 Shioaji 版本資訊</p>
 <div class="admonition info">
-<p class="admonition-title">Add Version Information</p>
-<p>Add the following content to <code>src/sj_trading/__init__.py</code></p>
+<p class="admonition-title">新增版本資訊</p>
+<p>在 <code>src/sj_trading/__init__.py</code> 新增</p>
 <div class="highlight"><pre><span></span><code><span class="k">def</span><span class="w"> </span><span class="nf">show_version</span><span class="p">()</span> <span class="o">-&gt;</span> <span class="nb">str</span><span class="p">:</span>
     <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Shioaji Version: </span><span class="si">{</span><span class="n">sj</span><span class="o">.</span><span class="n">__version__</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
     <span class="k">return</span> <span class="n">sj</span><span class="o">.</span><span class="n">__version__</span>
 </code></pre></div>
 </div>
 <div class="admonition info">
-<p class="admonition-title">Add <code>version</code> Command to Project</p>
-<p>Add <code>version</code> command to <code>pyproject.toml</code></p>
+<p class="admonition-title">新增版本指令到專案</p>
+<p>在 <code>pyproject.toml</code> 新增 <code>version</code> 的指令
 <div class="highlight"><pre><span></span><code><span class="k">[project.scripts]</span>
 <span class="n">version</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">&quot;sj_trading:show_version&quot;</span>
-</code></pre></div>
+</code></pre></div></p>
 </div>
-<p>Execute <code>uv run version</code> to see the Shioaji version information</p>
+<p>執行 <code>uv run version</code> 就可以看到 Shioaji 的版本資訊</p>
 <div class="highlight"><pre><span></span><code>Shioaji Version: 1.2.0
 </code></pre></div>
-<h3 id="stock-testing">Stock Testing<a class="headerlink" href="#stock-testing" title="Permanent link">&para;</a></h3>
+<h3 id="_1">現貨下單測試<a class="headerlink" href="#_1" title="Permanent link">&para;</a></h3>
 <div class="admonition info">
-<p class="admonition-title">Add Stock Testing File</p>
-<p>Add file <code>testing_flow.py</code> to <code>src/sj_trading</code></p>
-<p>Add the following content
+<p class="admonition-title">新增下單測試檔案</p>
+<p>在 <code>src/sj_trading</code> 新增檔案 <code>testing_flow.py</code></p>
+<p>新增以下內容
 <div class="highlight"><pre><span></span><code><span class="kn">import</span><span class="w"> </span><span class="nn">shioaji</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">sj</span>
 <span class="kn">from</span><span class="w"> </span><span class="nn">shioaji.constant</span><span class="w"> </span><span class="kn">import</span> <span class="n">Action</span><span class="p">,</span> <span class="n">StockPriceType</span><span class="p">,</span> <span class="n">OrderType</span>
 <span class="kn">import</span><span class="w"> </span><span class="nn">os</span>
 
 <span class="k">def</span><span class="w"> </span><span class="nf">testing_stock_ordering</span><span class="p">():</span>
-    <span class="c1"># Login to the testing environment</span>
+    <span class="c1"># 測試環境登入</span>
     <span class="n">api</span> <span class="o">=</span> <span class="n">sj</span><span class="o">.</span><span class="n">Shioaji</span><span class="p">(</span><span class="n">simulation</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
     <span class="n">accounts</span> <span class="o">=</span> <span class="n">api</span><span class="o">.</span><span class="n">login</span><span class="p">(</span>
         <span class="n">api_key</span><span class="o">=</span><span class="n">os</span><span class="o">.</span><span class="n">environ</span><span class="p">[</span><span class="s2">&quot;API_KEY&quot;</span><span class="p">],</span>
         <span class="n">secret_key</span><span class="o">=</span><span class="n">os</span><span class="o">.</span><span class="n">environ</span><span class="p">[</span><span class="s2">&quot;SECRET_KEY&quot;</span><span class="p">],</span>
     <span class="p">)</span>
-    <span class="c1"># Show all available accounts</span>
+    <span class="c1"># 顯示所有可用的帳戶</span>
     <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Available accounts: </span><span class="si">{</span><span class="n">accounts</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
     <span class="n">api</span><span class="o">.</span><span class="n">activate_ca</span><span class="p">(</span>
         <span class="n">ca_path</span><span class="o">=</span><span class="n">os</span><span class="o">.</span><span class="n">environ</span><span class="p">[</span><span class="s2">&quot;CA_CERT_PATH&quot;</span><span class="p">],</span>
         <span class="n">ca_passwd</span><span class="o">=</span><span class="n">os</span><span class="o">.</span><span class="n">environ</span><span class="p">[</span><span class="s2">&quot;CA_PASSWORD&quot;</span><span class="p">],</span>
     <span class="p">)</span>
 
-    <span class="c1"># Prepare the Contract for Ordering</span>
-    <span class="c1"># Use 2890 Fubon Financial as an example</span>
+    <span class="c1"># 準備下單的 Contract</span>
+    <span class="c1"># 使用 2890 永豐金為例</span>
     <span class="n">contract</span> <span class="o">=</span> <span class="n">api</span><span class="o">.</span><span class="n">Contracts</span><span class="o">.</span><span class="n">Stocks</span><span class="p">[</span><span class="s2">&quot;2890&quot;</span><span class="p">]</span>
     <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Contract: </span><span class="si">{</span><span class="n">contract</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
 
-    <span class="c1"># Create an Order for Ordering</span>
+    <span class="c1"># 建立委託下單的 Order</span>
     <span class="n">order</span> <span class="o">=</span> <span class="n">sj</span><span class="o">.</span><span class="n">order</span><span class="o">.</span><span class="n">StockOrder</span><span class="p">(</span>
-        <span class="n">action</span><span class="o">=</span><span class="n">Action</span><span class="o">.</span><span class="n">Buy</span><span class="p">,</span> <span class="c1"># Buy</span>
-        <span class="n">price</span><span class="o">=</span><span class="n">contract</span><span class="o">.</span><span class="n">reference</span><span class="p">,</span> <span class="c1"># Buy at the reference price</span>
-        <span class="n">quantity</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span> <span class="c1"># Order quantity</span>
-        <span class="n">price_type</span><span class="o">=</span><span class="n">StockPriceType</span><span class="o">.</span><span class="n">LMT</span><span class="p">,</span> <span class="c1"># Limit price order</span>
-        <span class="n">order_type</span><span class="o">=</span><span class="n">OrderType</span><span class="o">.</span><span class="n">ROD</span><span class="p">,</span> <span class="c1"># Effective for the day</span>
-        <span class="n">account</span><span class="o">=</span><span class="n">api</span><span class="o">.</span><span class="n">stock_account</span><span class="p">,</span> <span class="c1"># Use the default account</span>
+        <span class="n">action</span><span class="o">=</span><span class="n">Action</span><span class="o">.</span><span class="n">Buy</span><span class="p">,</span> <span class="c1"># 買進</span>
+        <span class="n">price</span><span class="o">=</span><span class="n">contract</span><span class="o">.</span><span class="n">reference</span><span class="p">,</span> <span class="c1"># 以平盤價買進</span>
+        <span class="n">quantity</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span> <span class="c1"># 下單數量</span>
+        <span class="n">price_type</span><span class="o">=</span><span class="n">StockPriceType</span><span class="o">.</span><span class="n">LMT</span><span class="p">,</span> <span class="c1"># 限價單</span>
+        <span class="n">order_type</span><span class="o">=</span><span class="n">OrderType</span><span class="o">.</span><span class="n">ROD</span><span class="p">,</span> <span class="c1"># 當日有效單</span>
+        <span class="n">account</span><span class="o">=</span><span class="n">api</span><span class="o">.</span><span class="n">stock_account</span><span class="p">,</span> <span class="c1"># 使用預設的帳戶</span>
     <span class="p">)</span>
     <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Order: </span><span class="si">{</span><span class="n">order</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
 
-    <span class="c1"># Send the order</span>
+    <span class="c1"># 送出委託單</span>
     <span class="n">trade</span> <span class="o">=</span> <span class="n">api</span><span class="o">.</span><span class="n">place_order</span><span class="p">(</span><span class="n">contract</span><span class="o">=</span><span class="n">contract</span><span class="p">,</span> <span class="n">order</span><span class="o">=</span><span class="n">order</span><span class="p">)</span>
     <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Trade: </span><span class="si">{</span><span class="n">trade</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
 
-    <span class="c1"># Update the status</span>
+    <span class="c1"># 更新狀態</span>
     <span class="n">api</span><span class="o">.</span><span class="n">update_status</span><span class="p">()</span>
     <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Status: </span><span class="si">{</span><span class="n">trade</span><span class="o">.</span><span class="n">status</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
 </code></pre></div></p>
 </div>
 <div class="admonition info">
-<p class="admonition-title">Add <code>stock_testing</code> Command to Project</p>
-<p>Add <code>stock_testing</code> command to <code>pyproject.toml</code></p>
+<p class="admonition-title">新增測試下單指令到專案</p>
+<p>在 <code>pyproject.toml</code> 新增 <code>stock_testing</code> 的指令
 <div class="highlight"><pre><span></span><code><span class="k">[project.scripts]</span>
 <span class="n">stock_testing</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">&quot;sj_trading.testing_flow:testing_stock_ordering&quot;</span>
-</code></pre></div>
+</code></pre></div></p>
 </div>
-<p>Execute <code>uv run stock_testing</code> to start testing stock ordering</p>
-<h3 id="futures-testing">Futures Testing<a class="headerlink" href="#futures-testing" title="Permanent link">&para;</a></h3>
+<p>執行 <code>uv run stock_testing</code> 就開始進行測試下單了</p>
+<h3 id="_2">期貨下單測試<a class="headerlink" href="#_2" title="Permanent link">&para;</a></h3>
 <div class="admonition info">
-<p class="admonition-title">Add Futures Testing Content</p>
-<p>Add the following content to <code>src/sj_trading/testing_flow.py</code></p>
+<p class="admonition-title">新增期貨下單測試</p>
+<p>在 <code>src/sj_trading/testing_flow.py</code> 新增以下內容
 <div class="highlight"><pre><span></span><code><span class="kn">from</span><span class="w"> </span><span class="nn">shioaji.constant</span><span class="w"> </span><span class="kn">import</span> <span class="p">(</span>
     <span class="n">FuturesPriceType</span><span class="p">,</span>
     <span class="n">FuturesOCType</span><span class="p">,</span>
 <span class="p">)</span>
 
 <span class="k">def</span><span class="w"> </span><span class="nf">testing_futures_ordering</span><span class="p">():</span>
-    <span class="c1"># Login to the testing environment</span>
+    <span class="c1"># 測試環境登入</span>
     <span class="n">api</span> <span class="o">=</span> <span class="n">sj</span><span class="o">.</span><span class="n">Shioaji</span><span class="p">(</span><span class="n">simulation</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
     <span class="n">accounts</span> <span class="o">=</span> <span class="n">api</span><span class="o">.</span><span class="n">login</span><span class="p">(</span>
         <span class="n">api_key</span><span class="o">=</span><span class="n">os</span><span class="o">.</span><span class="n">environ</span><span class="p">[</span><span class="s2">&quot;API_KEY&quot;</span><span class="p">],</span>
         <span class="n">secret_key</span><span class="o">=</span><span class="n">os</span><span class="o">.</span><span class="n">environ</span><span class="p">[</span><span class="s2">&quot;SECRET_KEY&quot;</span><span class="p">],</span>
     <span class="p">)</span>
-    <span class="c1"># Show all available accounts</span>
+    <span class="c1"># 顯示所有可用的帳戶</span>
     <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Available accounts: </span><span class="si">{</span><span class="n">accounts</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
     <span class="n">api</span><span class="o">.</span><span class="n">activate_ca</span><span class="p">(</span>
         <span class="n">ca_path</span><span class="o">=</span><span class="n">os</span><span class="o">.</span><span class="n">environ</span><span class="p">[</span><span class="s2">&quot;CA_CERT_PATH&quot;</span><span class="p">],</span>
         <span class="n">ca_passwd</span><span class="o">=</span><span class="n">os</span><span class="o">.</span><span class="n">environ</span><span class="p">[</span><span class="s2">&quot;CA_PASSWORD&quot;</span><span class="p">],</span>
     <span class="p">)</span>
 
-    <span class="c1"># Get the contract for ordering</span>
-    <span class="c1"># Use TXFR1 as an example</span>
+    <span class="c1"># 取得合約 使用台指期近月為例</span>
     <span class="n">contract</span> <span class="o">=</span> <span class="n">api</span><span class="o">.</span><span class="n">Contracts</span><span class="o">.</span><span class="n">Futures</span><span class="p">[</span><span class="s2">&quot;TXFR1&quot;</span><span class="p">]</span>
     <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Contract: </span><span class="si">{</span><span class="n">contract</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
 
-    <span class="c1"># Create an Order for Ordering</span>
+    <span class="c1"># 建立期貨委託下單的 Order</span>
     <span class="n">order</span> <span class="o">=</span> <span class="n">sj</span><span class="o">.</span><span class="n">order</span><span class="o">.</span><span class="n">FuturesOrder</span><span class="p">(</span>
-        <span class="n">action</span><span class="o">=</span><span class="n">Action</span><span class="o">.</span><span class="n">Buy</span><span class="p">,</span>  <span class="c1"># Buy</span>
-        <span class="n">price</span><span class="o">=</span><span class="n">contract</span><span class="o">.</span><span class="n">reference</span><span class="p">,</span>  <span class="c1"># Buy at the reference price</span>
-        <span class="n">quantity</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span>  <span class="c1"># Order quantity</span>
-        <span class="n">price_type</span><span class="o">=</span><span class="n">FuturesPriceType</span><span class="o">.</span><span class="n">LMT</span><span class="p">,</span>  <span class="c1"># Limit price order</span>
-        <span class="n">order_type</span><span class="o">=</span><span class="n">OrderType</span><span class="o">.</span><span class="n">ROD</span><span class="p">,</span>  <span class="c1"># Effective for the day</span>
-        <span class="n">octype</span><span class="o">=</span><span class="n">FuturesOCType</span><span class="o">.</span><span class="n">Auto</span><span class="p">,</span>  <span class="c1"># Auto select new close</span>
-        <span class="n">account</span><span class="o">=</span><span class="n">api</span><span class="o">.</span><span class="n">futopt_account</span><span class="p">,</span>  <span class="c1"># Use the default account</span>
+        <span class="n">action</span><span class="o">=</span><span class="n">Action</span><span class="o">.</span><span class="n">Buy</span><span class="p">,</span>  <span class="c1"># 買進</span>
+        <span class="n">price</span><span class="o">=</span><span class="n">contract</span><span class="o">.</span><span class="n">reference</span><span class="p">,</span>  <span class="c1"># 以平盤價買進</span>
+        <span class="n">quantity</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span>  <span class="c1"># 下單數量</span>
+        <span class="n">price_type</span><span class="o">=</span><span class="n">FuturesPriceType</span><span class="o">.</span><span class="n">LMT</span><span class="p">,</span>  <span class="c1"># 限價單</span>
+        <span class="n">order_type</span><span class="o">=</span><span class="n">OrderType</span><span class="o">.</span><span class="n">ROD</span><span class="p">,</span>  <span class="c1"># 當日有效單</span>
+        <span class="n">octype</span><span class="o">=</span><span class="n">FuturesOCType</span><span class="o">.</span><span class="n">Auto</span><span class="p">,</span>  <span class="c1"># 自動選擇新平倉</span>
+        <span class="n">account</span><span class="o">=</span><span class="n">api</span><span class="o">.</span><span class="n">futopt_account</span><span class="p">,</span>  <span class="c1"># 使用預設的帳戶</span>
     <span class="p">)</span>
     <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Order: </span><span class="si">{</span><span class="n">order</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
 
-    <span class="c1"># Send the order</span>
+    <span class="c1"># 送出委託單</span>
     <span class="n">trade</span> <span class="o">=</span> <span class="n">api</span><span class="o">.</span><span class="n">place_order</span><span class="p">(</span><span class="n">contract</span><span class="o">=</span><span class="n">contract</span><span class="p">,</span> <span class="n">order</span><span class="o">=</span><span class="n">order</span><span class="p">)</span>
     <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Trade: </span><span class="si">{</span><span class="n">trade</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
 
-    <span class="c1"># Update the status</span>
+    <span class="c1"># 更新狀態</span>
     <span class="n">api</span><span class="o">.</span><span class="n">update_status</span><span class="p">()</span>
     <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Status: </span><span class="si">{</span><span class="n">trade</span><span class="o">.</span><span class="n">status</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
-</code></pre></div>
+</code></pre></div></p>
 </div>
 <div class="admonition info">
-<p class="admonition-title">Add <code>futures_testing</code> Command to Project</p>
-<p>Add <code>futures_testing</code> command to <code>pyproject.toml</code></p>
+<p class="admonition-title">新增期貨下單指令到專案</p>
+<p>在 <code>pyproject.toml</code> 新增 <code>futures_testing</code> 的指令
 <div class="highlight"><pre><span></span><code><span class="k">[project.scripts]</span>
 <span class="n">futures_testing</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">&quot;sj_trading.testing_flow:testing_futures_ordering&quot;</span>
-</code></pre></div>
+</code></pre></div></p>
 </div>
-<p>Execute <code>uv run futures_testing</code> to start testing futures ordering</p>
+<p>執行 <code>uv run futures_testing</code> 就開始進行測試下單了</p>
 
 
 

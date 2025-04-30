@@ -1,38 +1,43 @@
-Restricted by Taiwan's financial regulations, new users need to sign relevant documents and complete a test report in the simulation mode before using it in a production environment.
+受限於台灣金融法規，新用戶首次使用需簽署相關文件並在測試模式完成測試報告才能進行正式環境的使用。
 
-## Sign Documents
+開戶
 
-Please refer to [sign center](https://www.sinotrade.com.tw/newweb/Inside_Frame?URL=https://service.sinotrade.com.tw/signCenter/index/) and **read the documents carefully** before you sign.
+在開始之前必須先擁有[永豐金帳戶](https://www.sinotrade.com.tw/openact?utm_campaign=OP_inchannel&utm_source=newweb&utm_medium=button_top&strProd=0037&strWeb=0035)。
 
-## Test Report
+## 簽署文件
 
-To ensure that you fully understand how to use Shioaji, you need to complete the test in the simulation mode, which includes the following functions:
+請參見[簽署中心](https://www.sinotrade.com.tw/newweb/Inside_Frame?URL=https://service.sinotrade.com.tw/signCenter/index/)並在簽署前**仔細閱讀文件**。
 
-- `login`
-- `place_order`
+## API測試
+
+確保您完全理解如何使用，需在模擬模式完成測試報告，內容包含以下功能:
+
+- 登入測試 `login`
+- 下單測試 `place_order`
 
 Attention
 
-Service Hour:
+可測試時間:
 
-- In response to the company's information security regulations, the test service is Monday to Friday 08:00 ~ 20:00
-- 18:00 ~ 20:00: Only allow Taiwan IP
-- 08:00 ~ 18:00: No limit
+- 因應公司資訊安全規定，測試報告服務為星期一至五 08:00 ~ 20:00
+- 18:00 ~ 20:00: 只允許台灣IP
+- 08:00 ~ 18:00: 沒有限制
 
-Version Restriction:
+版本限制:
 
-- version >= 1.2:\
-  install command: `uv add shioaji` or `pip install -U shioaji`
+- 版本 >= 1.2:
 
-Others:
+  安裝指令: `uv add shioaji` or `pip install -U shioaji`
 
-- You should sign the API related document before you test!
-- Stock and Futures account should be test separately.
-- The time interval between stock place order test and futures place order test should be more than 1 second.
+其他:
 
-### Version Check
+- API下單簽署時間須早於API測試的時間，以利審核通過
+- 證券、期貨戶須各別測試
+- 證券/期貨下單測試，需間隔1秒以上，以利系統留存測試紀錄
 
-version
+### 查詢使用版本
+
+版本
 
 ```
 import shioaji as sj
@@ -42,72 +47,72 @@ print(sj.__version__)
 
 ```
 
-- please note the **Version Restriction**.
+- 請注意**版本限制**
 
-### Login Test
+### 登入測試
 
-Login
+登入
 
 ```
-api = sj.Shioaji(simulation=True)   # Simulation Mode
+api = sj.Shioaji(simulation=True) # 模擬模式
 api.login(
-    api_key="YOUR_API_KEY",         # edit it
-    secret_key="YOUR_SECRET_KEY"    # edit it
+    api_key="金鑰",     # 請修改此處
+    secret_key="密鑰"   # 請修改此處
 )
 
 ```
 
 ```
-api = sj.Shioaji(simulation=True)   # Simulation Mode
+api = sj.Shioaji(simulation=True) # 模擬模式
 api.login(
-    person_id="YOUR_PERSON_ID",     # edit it
-    passwd="YOUR_PASSWORD",         # edit it
+    person_id="身分證字號", # 請修改此處
+    passwd="密碼",          # 請修改此處
 )
 
 ```
 
-- version >= 1.0: use `api_key` to login, if you haven't applied for the API Key, please refer to [Token](../token/) section.
-- version < 1.0: use `person_id` to login.
+- 版本 >= 1.0: 使用 `API Key` 進行登入，若您尚未申請 API Key，可參考 [Token](../token/)
+- 版本 < 1.0: 使用`身分證字號`進行登入
 
-### Place Order Test - Stock
+### 證券下單測試
 
-Stock Order
+證券
 
 ```
-# contract - edit it
+# 商品檔 - 請修改此處
 contract = api.Contracts.Stocks.TSE["2890"]
 
-# order - edit it
+# 證券委託單 - 請修改此處
 order = api.Order(
-    price=18, 
-    quantity=1, 
-    action=sj.constant.Action.Buy, 
-    price_type=sj.constant.StockPriceType.LMT, 
-    order_type=sj.constant.OrderType.ROD, 
-    account=api.stock_account
+    price=18,                                       # 價格
+    quantity=1,                                     # 數量
+    action=sj.constant.Action.Buy,                  # 買賣別
+    price_type=sj.constant.StockPriceType.LMT,      # 委託價格類別
+    order_type=sj.constant.OrderType.ROD,           # 委託條件
+    account=api.stock_account                       # 下單帳號
 )
 
-# place order
+# 下單
 trade = api.place_order(contract, order)
 trade
 
 ```
 
 ```
-# contract - edit it
+# 商品檔 - 請修改此處
 contract = api.Contracts.Stocks.TSE["2890"]
 
-# order - edit it
+# 證券委託單 - 請修改此處
 order = api.Order(
-    price=18, 
-    quantity=1, 
-    action=sj.constant.Action.Buy, 
-    price_type=sj.constant.TFTStockPriceType.LMT, 
-    order_type=sj.constant.TFTOrderType.ROD, 
-    account=api.stock_account
+    price=18,                                       # 價格
+    quantity=1,                                     # 數量
+    action=sj.constant.Action.Buy,                  # 買賣別
+    price_type=sj.constant.TFTStockPriceType.LMT,   # 委託價格類別
+    order_type=sj.constant.TFTOrderType.ROD,        # 委託條件
+    account=api.stock_account                       # 下單帳號
 )
 
-# place order
+# 下單
 trade = api.place_order(contract, order)
 trade
 
@@ -133,24 +138,24 @@ Trade(
 
 ```
 
-- You should receive the message, `Response Code: 0 | Event Code: 0 | Info: host '218.32.76.102:80' ...`, which means that you have successfully connected to our testing server. The message will only appear on your first order. If you don't receive the connected message, please confirm that all the following conditions are met.
+- 收到此訊息，`Response Code: 0 | Event Code: 0 | Info: host '218.32.76.102:80' ...`，代表您成功連結上測試伺服器。此訊息只有首次下單會顯示。若您未收到此訊息，請確認一下狀況均符合
 
-  1. Doing test in the service hour
-  1. Version restriction
-  1. `signed` is not present in your account
+  1. 在`可測試時間`進行測試
+  1. 版本限制
+  1. `signed` 未在您的帳號中顯示
 
-- order status should **NOT** be `Failed`. If you got `Failed` status, please modify your order correctly and then `place_order` again.
+- 委託單狀態不應為`Failed`，若您的委託單狀態`Failed`，請正確的修改委託單然後再次執行`place_order`
 
-- [Contract](../../contract/)
+- [商品檔](../../contract/)
 
-- [Stock Order](../../order/Stock/)
+- [證券委託下單](../../order/Stock/)
 
-### Place Order Test - Futures
+### 期貨下單測試
 
-Future Order
+期貨
 
 ```
-# near-month TXF - edit it
+# 商品檔 - 近月台指期貨, 請修改此處
 contract = min(
     [
         x for x in api.Contracts.Futures.TXF 
@@ -159,25 +164,24 @@ contract = min(
     key=lambda x: x.delivery_date
 )
 
-# order - edit it
+# 期貨委託單 - 請修改此處
 order = api.Order(
-    action=sj.constant.Action.Buy,
-    price=15000,
-    quantity=1,
-    price_type=sj.constant.FuturesPriceType.LMT,
-    order_type=sj.constant.OrderType.ROD, 
-    octype=sj.constant.FuturesOCType.Auto,
-    account=api.futopt_account
+    action=sj.constant.Action.Buy,                   # 買賣別
+    price=15000,                                     # 價格
+    quantity=1,                                      # 數量
+    price_type=sj.constant.FuturesPriceType.LMT,     # 委託價格類別
+    order_type=sj.constant.OrderType.ROD,            # 委託條件
+    octype=sj.constant.FuturesOCType.Auto,           # 倉別
+    account=api.futopt_account                       # 下單帳號
 )
 
-# place order
+# 下單
 trade = api.place_order(contract, order)
-trade
 
 ```
 
 ```
-# near-month TXF - edit it
+# 商品檔 - 近月台指期貨, 請修改此處
 contract = min(
     [
         x for x in api.Contracts.Futures.TXF 
@@ -186,20 +190,19 @@ contract = min(
     key=lambda x: x.delivery_date
 )
 
-# order - edit it
+# 期貨委託單 - 請修改此處
 order = api.Order(
-    action=sj.constant.Action.Buy,
-    price=15000,
-    quantity=1,
-    price_type=sj.constant.FuturesPriceType.LMT,
-    order_type=sj.constant.FuturesOrderType.ROD, 
-    octype=sj.constant.FuturesOCType.Auto,
-    account=api.futopt_account
+    action=sj.constant.Action.Buy,                  # 買賣別
+    price=15000,                                    # 價格
+    quantity=1,                                     # 數量
+    price_type=sj.constant.FuturesPriceType.LMT,    # 委託價格類別
+    order_type=sj.constant.FuturesOrderType.ROD,    # 委託條件
+    octype=sj.constant.FuturesOCType.Auto,          # 倉別
+    account=api.futopt_account                      # 下單帳號
 )
 
-# place order
+# 下單
 trade = api.place_order(contract, order)
-trade
 
 ```
 
@@ -209,7 +212,7 @@ Out
 Response Code: 0 | Event Code: 0 | Info: host '218.32.76.102:80', IP 218.32.76.102:80 (host 1 of 1) (host connection attempt 1 of 1) (total connection attempt 1 of 1) | Event: Session up
 
 Trade(
-    contract=Future(...), 
+    contract=Stock(...), 
     order=Order(...),
     status=OrderStatus(
         id='531e27af', 
@@ -223,30 +226,30 @@ Trade(
 
 ```
 
-- You should receive the message, `Response Code: 0 | Event Code: 0 | Info: host '218.32.76.102:80' ...`, which means that you have successfully connected to our testing server. The message will only appear on your first order. If you don't receive the connected message, please confirm that all the following conditions are met.
+- 收到此訊息，`Response Code: 0 | Event Code: 0 | Info: host '218.32.76.102:80' ...`，代表您成功連結上測試伺服器。此訊息只有首次下單會顯示。若您未收到此訊息，請確認一下狀況均符合
 
-  1. Doing test in the service hour
-  1. Version restriction
-  1. `signed` is not present in your account
+  1. 在`可測試時間`進行測試
+  1. 版本限制
+  1. `signed` 未在您的帳號中顯示
 
-- order status should **NOT** be `Failed`. If you got `Failed` status, please modify your order correctly and then `place_order` again.
+- 委託單狀態不應為`Failed`，若您的委託單狀態`Failed`，請正確的修改委託單然後再次執行`place_order`
 
-- [Contract](../../contract/)
+- [商品檔](../../contract/)
 
-- [Future Order](../../order/FutureOption/)
+- [期貨委託下單](../../order/FutureOption/)
 
-### Check if API tests has passed
+### 查詢是否通過API測試
 
 Attention
 
-Before you check, please confirm the following conditions are met.
+在查詢前，請確認以下狀況均符合
 
-- Sign the API related document before you test, or you will not pass the test.
-- Doing test in service hour.
-- Stock accounts and Futures accounts should be tested separately.
-- Waiting for reviewing your tests at least 5 minutes.
+- API下單簽署時間須早於API測試的時間，以利審核通過
+- 在可測試時間進行測試
+- 證券、期貨戶須各別測試
+- 等待API測試審核(約5分鐘)
 
-Sign Status
+簽署狀態
 
 ```
 import shioaji as sj
@@ -282,25 +285,25 @@ StockAccount(person_id='QBCCAIGJBJ', broker_id='9A95', account_id='0504350', use
 
 ```
 
-- `signed=True`: Congrats, done! Ex: FutureAccount.
-- `signed=False` or `signed` not present: the account haven't passed the api tests or haven't been signed the api documents. Ex: StockAccount.
+- `signed=True`: 恭喜完成測試! Ex: FutureAccount.
+- `signed=False` 或 `signed` 未顯示: 此帳號尚未通過API測試或尚未簽署API下單文件. Ex: StockAccount.
 
-## CA
+## 憑證
 
-You must **apply** and **activate** the CA before `place_order`.
+下單前必須**申請**並**啟用**憑證
 
-### Apply CA
+#### 申請憑證
 
-1. Go to [SinoPac Securities](https://www.sinotrade.com.tw/CSCenter/CSCenter_13_3) to download eleader
-1. Login eleader
-1. Select (3303)帳號資料設定 from the 帳戶資料 above
-1. Click "步驟說明"
-1. CA Operation steps
+1. 至[理財網](https://www.sinotrade.com.tw/CSCenter/CSCenter_13_3)下載 eleader
+1. 登入 eleader
+1. 從上方帳戶資料選取(3303)帳號資料設定
+1. 點選"步驟說明"
+1. 憑證操作步驟說明
 
-### Activate CA
+#### 啟用憑證
 
-- If you use simulation account, you don't have to activate CA.
-- If you are a macOS user, you may subject to version-issue. We suggest you to use [docker](https://github.com/Sinotrade/Shioaji) and run shioaji service on docker.
+- 若是使用測試帳號無需啟用憑證
+- 如果您使用macOS，可能會遇到版本上的問題。我們建議您使用 [docker](https://github.com/Sinotrade/Shioaji) 去運行shioaji。
 
 In
 
@@ -316,11 +319,11 @@ print(result)
 
 ```
 
-The Certification Path
+憑證路徑
 
-In Windows you copy the file path with `\` to separate the file, you need to replace it with `/`.
+在 Windows 系統中，如果文件路徑使用 \\ 來分隔文件，您需要將它替換為 /。
 
-#### Check CA expire time
+#### 確認憑證效期
 
 In
 
