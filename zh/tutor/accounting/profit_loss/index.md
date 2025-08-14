@@ -106,6 +106,7 @@ code (str): 商品代碼
 quantity (int): 數量
 pnl (float): 損益
 date (str): 交易日期
+direction (Action): 買賣別 {Buy, Sell}
 entry_price (int): 進倉價格
 cover_price (int): 平倉價格
 tax (int): 交易稅
@@ -232,6 +233,7 @@ fee (int): 交易手續費
 tax (int): 交易稅
 currency (str): 幣別 {NTD, USD, HKD, EUR, CAD, BAS}
 direction (Action): 買賣別 {Buy, Sell}
+entry_date (str): 進倉日期
 entry_price (int): 進倉價格
 cover_price (int): 平倉價格
 pnl (int): 損益

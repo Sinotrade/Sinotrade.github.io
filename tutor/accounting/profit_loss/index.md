@@ -102,6 +102,7 @@ code (str): contract id
 quantity (int): quantity
 pnl (float): profit and loss
 date (str): trade date
+direction (Action): {Buy, Sell}
 entry_price (int): entry price
 cover_price (int): cover price
 tax (int): tax
@@ -222,6 +223,7 @@ fee (int): fee
 tax (int): trading tax
 currency (str): {NTD, USD, HKD, EUR, CAD, BAS}
 direction (Action): {Buy, Sell}
+entry_date (str): entry date
 entry_price (int): entry price
 cover_price (int): cover price
 pnl (int): profit and loss
