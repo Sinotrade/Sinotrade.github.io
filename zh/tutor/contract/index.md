@@ -263,10 +263,16 @@ Index(
 
 Index
 
-```
+````python
 exchange (Exchange): 交易所{OES, OTC, TSE ...等}
 code (str): 商品代碼
 symbol (str): 符號
 name (str): 商品名稱
 
-```
+商品檔更新資訊
+
+- 07:50 期貨商品檔更新
+- 08:00 全市場商品檔更新
+- 14:50 期貨夜盤商品檔更新
+- 17:15 期貨夜盤商品檔更新```
+````
