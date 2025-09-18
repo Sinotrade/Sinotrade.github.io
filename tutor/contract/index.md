@@ -298,5 +298,5 @@ Contract Update Information
 
 - 07:50 Futures contract update
 - 08:00 All market contract update
-- 14:50 Futures night contract update
+- 14:45 Futures night contract update
 - 17:15 Futures night contract update
