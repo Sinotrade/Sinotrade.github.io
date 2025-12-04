@@ -6395,7 +6395,7 @@ OrderState.FuturesOrder {
             'signed': True
         }, 
         'action': 'Buy', 
-        'price': 14000.0, 
+        'price': 27000.0, 
         'quantity': 1, 
         'order_type': 'ROD', 
         'price_type': 'LMT', 
@@ -6406,7 +6406,7 @@ OrderState.FuturesOrder {
     }, 
     'status': {
         'id': 'fcb42a6e', 
-        'exchange_ts': 1673512283.0, 
+        'exchange_ts': 1764731566.0, 
         'modified_price': 0.0, 
         'cancel_quantity': 0, 
         'order_quantity': 1, 
@@ -6415,8 +6415,9 @@ OrderState.FuturesOrder {
     'contract': {
         'security_type': 'FUT', 
         'code': 'TXF', 
+        'full_code': 'TXFL5', 
         'exchange': 'TIM', 
-        'delivery_month': '202301', 
+        'delivery_month': '202512', 
         'delivery_date': '', 
         'strike_price': 0.0, 
         'option_right': 'Future'
@@ -6444,7 +6445,7 @@ OrderState.FOrder {
             'signed': True
         }, 
         'action': 'Buy', 
-        'price': 14000.0, 
+        'price': 27000.0, 
         'quantity': 1, 
         'order_type': 'ROD', 
         'price_type': 'LMT', 
@@ -6455,7 +6456,7 @@ OrderState.FOrder {
     }, 
     'status': {
         'id': 'fcb42a6e', 
-        'exchange_ts': 1673512283.0, 
+        'exchange_ts': 1764731566.0, 
         'modified_price': 0.0, 
         'cancel_quantity': 0, 
         'order_quantity': 1, 
@@ -6464,6 +6465,7 @@ OrderState.FOrder {
     'contract': {
         'security_type': 'FUT', 
         'code': 'TXF', 
+        'full_code': 'TXFL5', 
         'exchange': 'TIM', 
         'delivery_month': '202301', 
         'delivery_date': '', 
@@ -6531,6 +6533,7 @@ web_id (str): 下單平台代碼
 ```
 security_type (str): 商品類別
 code (str): 商品代碼
+full_code (str): 商品代碼(含交割月份)
 exchange (str): 交易所
 delivery_month (str): 交割月份
 delivery_date (str): 交割日期
@@ -6554,17 +6557,18 @@ OrderState.FuturesDeal {
     'broker_id': 'F002000', 
     'account_id': '1234567', 
     'action': 'Sell', 
-    'code': 'TXO', 
-    'price': 58.0, 
+    'code': 'TX1', 
+    'full_code': 'TX127900L5',
+    'price': 25.0, 
     'quantity': 1, 
     'subaccount': '', 
     'security_type': 'OPT', 
-    'delivery_month': '202301', 
-    'strike_price': 14300.0, 
-    'option_right': 'OptionPut', 
+    'delivery_month': '202512', 
+    'strike_price': 27900.0, 
+    'option_right': 'OptionCall', 
     'market_type': 'Day', 
     'combo': False, 
-    'ts': 1673270852.0
+    'ts': 1764685425.0
 }
 
 ```
@@ -6578,17 +6582,18 @@ OrderState.FDeal {
     'broker_id': 'F002000', 
     'account_id': '1234567', 
     'action': 'Sell', 
-    'code': 'TXO', 
-    'price': 58.0, 
+    'code': 'TX1', 
+    'full_code': 'TX127900L5',
+    'price': 25.0, 
     'quantity': 1, 
     'subaccount': '', 
     'security_type': 'OPT', 
-    'delivery_month': '202301', 
-    'strike_price': 14300.0, 
-    'option_right': 'OptionPut', 
+    'delivery_month': '202512', 
+    'strike_price': 27900.0, 
+    'option_right': 'OptionCall', 
     'market_type': 'Day', 
     'combo': False, 
-    'ts': 1673270852.0
+    'ts': 1764685425.0
 }
 
 ```
@@ -6604,6 +6609,7 @@ broker_id (str): 分行代碼
 account_id (str): 帳號
 action (str): 買賣別
 code (str): 商品代碼
+full_code (str): 商品代碼(含交割月份)
 price (float or int): 成交價
 quantity (int): 成交量
 subaccount (str): 子帳號

@@ -23,7 +23,7 @@ OrderState.FuturesOrder {
             'signed': True
         }, 
         'action': 'Buy', 
-        'price': 14000.0, 
+        'price': 27000.0, 
         'quantity': 1, 
         'order_type': 'ROD', 
         'price_type': 'LMT', 
@@ -34,7 +34,7 @@ OrderState.FuturesOrder {
     }, 
     'status': {
         'id': 'fcb42a6e', 
-        'exchange_ts': 1673512283.0, 
+        'exchange_ts': 1764731566.0, 
         'modified_price': 0.0, 
         'cancel_quantity': 0, 
         'order_quantity': 1, 
@@ -43,8 +43,9 @@ OrderState.FuturesOrder {
     'contract': {
         'security_type': 'FUT', 
         'code': 'TXF', 
+        'full_code': 'TXFL5', 
         'exchange': 'TIM', 
-        'delivery_month': '202301', 
+        'delivery_month': '202512', 
         'delivery_date': '', 
         'strike_price': 0.0, 
         'option_right': 'Future'
@@ -72,7 +73,7 @@ OrderState.FOrder {
             'signed': True
         }, 
         'action': 'Buy', 
-        'price': 14000.0, 
+        'price': 27000.0, 
         'quantity': 1, 
         'order_type': 'ROD', 
         'price_type': 'LMT', 
@@ -83,7 +84,7 @@ OrderState.FOrder {
     }, 
     'status': {
         'id': 'fcb42a6e', 
-        'exchange_ts': 1673512283.0, 
+        'exchange_ts': 1764731566.0, 
         'modified_price': 0.0, 
         'cancel_quantity': 0, 
         'order_quantity': 1, 
@@ -92,8 +93,9 @@ OrderState.FOrder {
     'contract': {
         'security_type': 'FUT', 
         'code': 'TXF', 
+        'full_code': 'TXFL5', 
         'exchange': 'TIM', 
-        'delivery_month': '202301', 
+        'delivery_month': '202512', 
         'delivery_date': '', 
         'strike_price': 0.0, 
         'option_right': 'Future'
@@ -154,6 +156,7 @@ web_id (str): web id
 ```
 security_type (str): security type
 code (str): code id
+full_code (str): code id (with delivery month)
 exchange (str): exchange
 delivery_month (str): delivery month
 delivery_date (str): delivery date
@@ -177,17 +180,18 @@ OrderState.FuturesDeal {
     'broker_id': 'F002000', 
     'account_id': '1234567', 
     'action': 'Sell', 
-    'code': 'TXO', 
-    'price': 58.0, 
+    'code': 'TX1', 
+    'full_code': 'TX127900L5',
+    'price': 25.0, 
     'quantity': 1, 
     'subaccount': '', 
     'security_type': 'OPT', 
-    'delivery_month': '202301', 
-    'strike_price': 14300.0, 
-    'option_right': 'OptionPut', 
+    'delivery_month': '202512', 
+    'strike_price': 27900.0, 
+    'option_right': 'OptionCall', 
     'market_type': 'Day', 
     'combo': False, 
-    'ts': 1673270852.0
+    'ts': 1764685425.0
 }
 
 ```
@@ -201,17 +205,18 @@ OrderState.FDeal {
     'broker_id': 'F002000', 
     'account_id': '1234567', 
     'action': 'Sell', 
-    'code': 'TXO', 
-    'price': 58.0, 
+    'code': 'TX1', 
+    'full_code': 'TX127900L5',
+    'price': 25.0, 
     'quantity': 1, 
     'subaccount': '', 
     'security_type': 'OPT', 
-    'delivery_month': '202301', 
-    'strike_price': 14300.0, 
-    'option_right': 'OptionPut', 
+    'delivery_month': '202512', 
+    'strike_price': 27900.0, 
+    'option_right': 'OptionCall', 
     'market_type': 'Day', 
     'combo': False, 
-    'ts': 1673270852.0
+    'ts': 1764685425.0
 }
 
 ```
@@ -226,7 +231,8 @@ exchange_seq (str): exchange sequence number
 broker_id (str): broker id
 account_id (str): account
 action (str): buy/sell
-code (str): code
+code (str): code id
+full_code (str): code id (with delivery month)
 price (float or int): deal price
 quantity (int): deal quantity
 subaccount (str): subaccount
