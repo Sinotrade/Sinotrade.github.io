@@ -229,7 +229,7 @@ Trade(
 - `Failed`: 失敗
 - `Cancelled`: 已刪除
 - `Filled`: 完全成交
-- `Filling`: 部分成交
+- `PartFilled`: 部分成交
 
 ### 改單
 

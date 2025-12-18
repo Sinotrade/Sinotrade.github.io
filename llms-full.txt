@@ -1755,6 +1755,73 @@ T (int): Tday
 
 ```
 
+提醒
+
+查詢時間為交易日 8:30~15:00。
+
+用於查詢證券帳戶交易額度，需要先[登入](../../login)。
+
+In
+
+```
+api.trading_limits?
+
+```
+
+Out
+
+```
+Signature:
+api.trading_limits(
+    account: shioaji.account.Account = None,
+    timeout: int = 5000,
+    cb: Callable[[shioaji.position.TradingLimits], NoneType] = None,
+) -> shioaji.position.TradingLimits
+Docstring: query stock account trading limits
+
+```
+
+In
+
+```
+api.trading_limits(api.stock_account)
+
+```
+
+Out
+
+```
+TradingLimits(
+    status=<FetchStatus.Fetched: 'Fetched'>,
+    trading_limit=1000000,
+    trading_used=0,
+    trading_available=1000000,
+    margin_limit=0,
+    margin_used=0,
+    margin_available=0,
+    short_limit=0,
+    short_used=0,
+    short_available=0
+)
+
+```
+
+TradingLimits
+
+```
+status (FetchStatus): 資料回傳狀態
+trading_limit (int): 電子交易總額度
+trading_used (int): 電子交易已用額度
+trading_available (int): 電子交易可用額度
+margin_limit (int): 融資額度上限
+margin_used (int): 融資已用額度
+margin_available (int): 融資可用額度
+short_limit (int): 融券額度上限
+short_used (int): 融券已用額度
+short_available (int): 融券可用額度
+
+```
+
 阻塞(Blocking)模式為函數必須等待某事完成。每個函數都是等待的，不管是在做 I/O 還是在做 CPU 任務。舉例來說，如果函數試圖從資料庫中獲取數據，那麼它需要停下來等待回傳結果，收到回傳結果後，才會繼續處理接下來的任務。相反地，非阻塞(non-blocking)模式，不會等待操作完成。如果您嘗試在短時間內發送批量操作，則非阻塞模式非常有用。我們提供以下範例讓您更了解之間的區別。
 
 切換阻塞/非阻塞模式為利用參數`timeout`。將API參數`timeout`設置為`0`為非阻塞模式。`timeout`預設值為 5000（毫秒），表示該函數最多等待 5 秒。
@@ -2900,6 +2967,148 @@ short_unit (int): 券餘額
 
 ```
 
+## 處置股
+
+Disposition Stocks
+
+```
+>> api.punish?
+
+Signature:
+api.punish(
+    timeout: int = 5000,
+    cb: Callable[[shioaji.data.Punish], NoneType] = None,
+) -> shioaji.data.Punish
+Docstring: get punish information
+
+```
+
+### 範例
+
+In
+
+```
+punish = api.punish()
+punish
+
+```
+
+Out
+
+```
+Punish(
+    code=['2349', '2408', ...],
+    start_date=[datetime.date(2025, 12, 17), datetime.date(2025, 12, 8), ...],
+    end_date=[datetime.date(2025, 12, 31), datetime.date(2025, 12, 19), ...],
+    updated_at=[datetime.datetime(2025, 12, 16, 18, 18, 20), datetime.datetime(2025, 12, 16, 18, 18, 20), ...],
+    interval=['5分鐘', '5分鐘', ...],
+    unit_limit=[10.0, 10.0, ...],
+    total_limit=[30.0, 30.0, ...],
+    description=['...', '...', ...],
+    announced_date=[datetime.date(2025, 12, 16), datetime.date(2025, 12, 5), ...]
+)
+
+```
+
+轉成DataFrame
+
+In
+
+```
+df = pd.DataFrame(punish.__dict__)
+df
+
+```
+
+Out
+
+| code | start_date | end_date | updated_at | interval | unit_limit | total_limit | description | announced_date | | --- | --- | --- | --- | --- | --- | --- | --- | --- | | 2349 | 2025-12-17 | 2025-12-31 | 2025-12-16 18:18:20 | 5分鐘 | 10.0 | 30.0 | ... | 2025-12-16 | | 2408 | 2025-12-08 | 2025-12-19 | 2025-12-16 18:18:20 | 5分鐘 | 10.0 | 30.0 | ... | 2025-12-05 |
+
+### 屬性
+
+Punish
+
+```
+code (list[str]): 商品代碼
+start_date (list[date]): 處置開始日期
+end_date (list[date]): 處置結束日期
+updated_at (list[datetime]): 更新時間
+interval (list[str]): 撮合間隔
+unit_limit (list[float]): 單筆委託上限
+total_limit (list[float]): 單日委託上限
+description (list[str]): 處置內容
+announced_date (list[date]): 公告日期
+
+```
+
+______________________________________________________________________
+
+## 注意股
+
+Attention Stocks
+
+```
+>> api.notice?
+
+Signature:
+api.notice(
+    timeout: int = 5000,
+    cb: Callable[[shioaji.data.Notice], NoneType] = None,
+) -> shioaji.data.Notice
+Docstring: get notice information
+
+```
+
+### 範例
+
+In
+
+```
+notice = api.notice()
+notice
+
+```
+
+Out
+
+```
+Notice(
+    code=['089508', '2349', ...],
+    updated_at=[datetime.datetime(2025, 12, 16, 18, 18, 19), datetime.datetime(2025, 12, 16, 18, 18, 19), ...],
+    close=[9.85, 16.2, ...],
+    reason=['最近六個營業日累積收盤價漲幅達39.34%﹝第一款﹞。', '最近六個營業日累積收盤價漲幅達41.59%﹝第一款﹞...', ...],
+    announced_date=[datetime.date(2025, 12, 16), datetime.date(2025, 12, 16), ...]
+)
+
+```
+
+轉成DataFrame
+
+In
+
+```
+df = pd.DataFrame(notice.__dict__)
+df
+
+```
+
+Out
+
+| code | updated_at | close | reason | announced_date | | --- | --- | --- | --- | --- | | 089508 | 2025-12-16 18:18:19 | 9.85 | 最近六個營業日累積收盤價漲幅達39.34%﹝第一款﹞。 | 2025-12-16 | | 2349 | 2025-12-16 18:18:19 | 16.2 | 最近六個營業日累積收盤價漲幅達41.59%﹝第一款﹞... | 2025-12-16 |
+
+### 屬性
+
+Notice
+
+```
+code (list[str]): 商品代碼
+updated_at (list[datetime]): 更新時間
+close (list[float]): 收盤價
+reason (list[str]): 注意交易資訊
+announced_date (list[date]): 公告日期
+
+```
+
 ## Ticks
 
 取得方式可以以一整天、某時間區段或是某天的最後幾筆。預設為商品最近交易日的Ticks。
@@ -3545,7 +3754,7 @@ api.quote.subscribe?
 Quote Parameters:
 
 ```
-quote_type: 訂閱類型 {'tick', 'bidask'}
+quote_type: 訂閱類型 {'tick', 'bidask', 'quote'}
 intraday_odd: 盤中零股 {True, False}
 version: 行情版本 {'v1', 'v0'}
 
@@ -3789,6 +3998,102 @@ Time (str): 時間 (HH:mm:ss.ffffff)
 
 ```
 
+## Quote
+
+### 範例
+
+In
+
+```
+api.quote.subscribe(
+    api.Contracts.Futures.TXF['TXF202512'],
+    quote_type = sj.constant.QuoteType.Quote,
+    version = sj.constant.QuoteVersion.v1,
+)
+
+```
+
+Out
+
+```
+Response Code: 200 | Event Code: 16 | Info: QUO/v2/FOP/*/TFE/TXFL5 | Event: Subscribe or Unsubscribe ok
+
+Exchange.TAIFEX
+Quote(
+    code = 'TXFL5',
+    datetime = datetime.datetime(2025, 12, 12, 11, 29, 46, 247000),
+    open = Decimal('28266'),
+    avg_price = Decimal('28284.374007'),
+    close = Decimal('28220'),
+    high = Decimal('28342'),
+    low = Decimal('28192'),
+    amount = Decimal('28220'),
+    total_amount = Decimal('946904273'),
+    volume = 0,
+    total_volume = 33478,
+    tick_type = 1,
+    chg_type = 2,
+    price_chg = Decimal('119'),
+    pct_chg = Decimal('0.423472'),
+    bid_side_total_vol = 15254,
+    ask_side_total_vol = 17295,
+    bid_side_total_cnt = 22855,
+    ask_side_total_cnt = 21882,
+    bid_price = [Decimal('28218'), Decimal('28217'), Decimal('28216'), Decimal('28215'), Decimal('28214')],
+    bid_volume = [5, 6, 11, 6, 10],
+    diff_bid_vol = [0, 0, 0, 0, 0],
+    ask_price = [Decimal('28220'), Decimal('28221'), Decimal('28222'), Decimal('28223'), Decimal('28224')],
+    ask_volume = [2, 8, 14, 9, 9],
+    diff_ask_vol = [0, -1, 1, 0, 0],
+    first_derived_bid_price = Decimal('28215'),
+    first_derived_ask_price = Decimal('28222'),
+    first_derived_bid_vol = 1,
+    first_derived_ask_vol = 1,
+    underlying_price = Decimal('28185.62'),
+    simtrade = False
+)
+
+```
+
+### 屬性
+
+Quote
+
+```
+code (str): 商品代碼
+datetime (datetime.datetime): 時間
+open (Decimal): 開盤價
+avg_price (Decimal): 均價
+close (Decimal): 成交價
+high (Decimal): 最高價(自開盤)
+low (Decimal): 最低價(自開盤)
+amount (Decimal): 成交額 (NTD)
+total_amount (Decimal): 總成交額 (NTD)
+volume (int): 成交量 (lot)
+total_volume (int): 總成交量 (lot)
+tick_type (int): 內外盤別{1: 外盤, 2: 內盤, 0: 無法判定}
+chg_type (int): 漲跌註記{1: 漲停, 2: 漲, 3: 平盤, 4: 跌, 5: 跌停}
+price_chg (Decimal): 漲跌
+pct_chg (Decimal): 漲跌幅 (%)
+bid_side_total_vol (int): 買盤成交總量 (lot)
+ask_side_total_vol (int): 賣盤成交總量 (lot)
+bid_side_total_cnt (int): 買盤成交筆數
+ask_side_total_cnt (int): 賣盤成交筆數
+bid_price (:List:Decimal): 委買價
+bid_volume (:List:int): 委買量 (lot)
+diff_bid_vol (:List:int): 委買價增減量 (lot)
+ask_price (:List:Decimal): 委賣價
+ask_volume (:List:int): 委賣量 (lot)
+diff_ask_vol (:List:int): 委賣價增減量 (lot)
+first_derived_bid_price (Decimal): 衍生一檔委買價
+first_derived_ask_price (Decimal): 衍生一檔委賣價
+first_derived_bid_vol (int): 衍生一檔委買量
+first_derived_ask_vol (int): 衍生一檔委賣量
+underlying_price (Decimal): 標的物價格
+simtrade (bool): 試撮
+
+```
+
 ## Callback
 
 預設狀況下我們將即時行情使用`print`的方式呈現。可根據個人需求修改函數。請避免在函數內進行運算。
@@ -3894,6 +4199,38 @@ Exchange: Exchange.TAIFEX, BidAsk: BidAsk(code='TXFG1', datetime=datetime.dateti
 
 ```
 Topic: Q/TFE/TXFG1, Quote: {'AskPrice': [17653.0, 17654.0, 17655.0, 17656.0, 17657.0], 'AskVolSum': 85, 'AskVolume': [3, 16, 24, 22, 20], 'BidPrice': [17651.0, 17650.0, 17649.0, 17648.0, 17647.0], 'BidVolSum': 67, 'BidVolume': [10, 10, 18, 18, 11], 'Code': 'TXFG1', 'Date': '2021/07/02', 'DiffAskVol': [-4, -2, 0, 0, 0], 'DiffAskVolSum': 0, 'DiffBidVol': [1, 0, 2, 0, 0], 'DiffBidVolSum': 0, 'FirstDerivedAskPrice': 17657.0, 'FirstDerivedAskVolume': 3, 'FirstDerivedBidPrice': 17647.0, 'FirstDerivedBidVolume': 2, 'TargetKindPrice': 17716.19, 'Time': '13:17:57.809000'}
+
+```
+
+### Quote
+
+decorator方式
+
+```
+from shioaji import QuoteFOPv1, Exchange
+
+@api.on_quote_fop_v1()
+def quote_callback(exchange:Exchange, quote:QuoteFOPv1):
+    print(f"Exchange: {exchange}, Quote: {quote}")
+
+```
+
+傳統方式
+
+```
+from shioaji import QuoteFOPv1, Exchange
+
+def quote_callback(exchange:Exchange, quote:QuoteFOPv1):
+    print(f"Exchange: {exchange}, Quote: {quote}")
+
+api.quote.set_on_quote_fop_v1_callback(quote_callback)
+
+```
+
+Out
+
+```
+Exchange: Exchange.TAIFEX, Quote: Quote(code='TXFL5', datetime=datetime.datetime(2025, 12, 12, 11, 29, 46, 247000), open=Decimal('28266'), avg_price=Decimal('28284.374007'), close=Decimal('28220'), high=Decimal('28342'), low=Decimal('28192'), amount=Decimal('28220'), total_amount=Decimal('946904273'), volume=0, total_volume=33478, tick_type=1, chg_type=2, price_chg=Decimal('119'), pct_chg=Decimal('0.423472'), bid_side_total_vol=15254, ask_side_total_vol=17295, bid_side_total_cnt=22855, ask_side_total_cnt=21882, bid_price=[Decimal('28218'), Decimal('28217'), Decimal('28216'), Decimal('28215'), Decimal('28214')], bid_volume=[5, 6, 11, 6, 10], diff_bid_vol=[0, 0, 0, 0, 0], ask_price=[Decimal('28220'), Decimal('28221'), Decimal('28222'), Decimal('28223'), Decimal('28224')], ask_volume=[2, 8, 14, 9, 9], diff_ask_vol=[0, -1, 1, 0, 0], first_derived_bid_price=Decimal('28215'), first_derived_ask_price=Decimal('28222'), first_derived_bid_vol=1, first_derived_ask_vol=1, underlying_price=Decimal('28185.62'), simtrade=False)
 
 ```
 
@@ -4835,7 +5172,7 @@ Trade(
 - `Failed`: 失敗
 - `Cancelled`: 已刪除
 - `Filled`: 完全成交
-- `Filling`: 部分成交
+- `PartFilled`: 部分成交
 
 ### 改單
 
@@ -5806,7 +6143,7 @@ Trade(
 - `Failed`: 失敗
 - `Cancelled`: 已刪除
 - `Filled`: 完全成交
-- `Filling`: 部分成交
+- `PartFilled`: 部分成交
 
 ### 改單
 
@@ -7075,7 +7412,7 @@ futures_testing = "sj_trading.testing_flow:testing_futures_ordering"
 
 ## 簽署文件
 
-請參見[簽署中心](https://www.sinotrade.com.tw/newweb/Inside_Frame?URL=https://service.sinotrade.com.tw/signCenter/index/)並在簽署前**仔細閱讀文件**。
+請參見[簽署中心](https://www.sinotrade.com.tw/newweb/signCenter/signCenterIndex/)並在簽署前**仔細閱讀文件**。
 
 ## API測試
 

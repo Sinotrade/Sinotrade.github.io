@@ -2,7 +2,7 @@ Restricted by Taiwan's financial regulations, new users need to sign relevant do
 
 ## Sign Documents
 
-Please refer to [sign center](https://www.sinotrade.com.tw/newweb/Inside_Frame?URL=https://service.sinotrade.com.tw/signCenter/index/) and **read the documents carefully** before you sign.
+Please refer to [sign center](https://www.sinotrade.com.tw/newweb/signCenter/signCenterIndex/) and **read the documents carefully** before you sign.
 
 ## Test Report
 

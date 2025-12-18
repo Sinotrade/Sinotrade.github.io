@@ -801,6 +801,39 @@
 </li>
       
         <li class="md-nav__item">
+  <a href="#quote" class="md-nav__link">
+    <span class="md-ellipsis">
+      Quote
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Quote">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#_5" class="md-nav__link">
+    <span class="md-ellipsis">
+      範例
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_6" class="md-nav__link">
+    <span class="md-ellipsis">
+      屬性
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
   <a href="#callback" class="md-nav__link">
     <span class="md-ellipsis">
       Callback
@@ -823,6 +856,15 @@
   <a href="#bidask_1" class="md-nav__link">
     <span class="md-ellipsis">
       BidAsk
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#quote_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      Quote
     </span>
   </a>
   
@@ -955,6 +997,29 @@
   
   <span class="md-ellipsis">
     排行
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../disposition_attention/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    處置及注意股
     
   </span>
   
@@ -1392,6 +1457,29 @@
   
   <span class="md-ellipsis">
     銀行餘額
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../accounting/trading_limits/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    交易額度
     
   </span>
   
@@ -1871,6 +1959,39 @@
 </li>
       
         <li class="md-nav__item">
+  <a href="#quote" class="md-nav__link">
+    <span class="md-ellipsis">
+      Quote
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Quote">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#_5" class="md-nav__link">
+    <span class="md-ellipsis">
+      範例
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_6" class="md-nav__link">
+    <span class="md-ellipsis">
+      屬性
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
   <a href="#callback" class="md-nav__link">
     <span class="md-ellipsis">
       Callback
@@ -1893,6 +2014,15 @@
   <a href="#bidask_1" class="md-nav__link">
     <span class="md-ellipsis">
       BidAsk
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#quote_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      Quote
     </span>
   </a>
   
@@ -1939,7 +2069,7 @@
 </div>
 <div class="admonition done">
 <p class="admonition-title">Quote Parameters:</p>
-<div class="highlight"><pre><span></span><code>quote_type: 訂閱類型 {&#39;tick&#39;, &#39;bidask&#39;}
+<div class="highlight"><pre><span></span><code>quote_type: 訂閱類型 {&#39;tick&#39;, &#39;bidask&#39;, &#39;quote&#39;}
 intraday_odd: 盤中零股 {True, False}
 version: 行情版本 {&#39;v1&#39;, &#39;v0&#39;}
 </code></pre></div>
@@ -2184,6 +2314,93 @@ Time (str): 時間 (HH:mm:ss.ffffff)
 </div>
 </div>
 </div>
+<h2 id="quote">Quote<a class="headerlink" href="#quote" title="Permanent link">&para;</a></h2>
+<h3 id="_5">範例<a class="headerlink" href="#_5" title="Permanent link">&para;</a></h3>
+<div class="admonition info">
+<p class="admonition-title">In</p>
+<div class="highlight"><pre><span></span><code><span class="n">api</span><span class="o">.</span><span class="n">quote</span><span class="o">.</span><span class="n">subscribe</span><span class="p">(</span>
+    <span class="n">api</span><span class="o">.</span><span class="n">Contracts</span><span class="o">.</span><span class="n">Futures</span><span class="o">.</span><span class="n">TXF</span><span class="p">[</span><span class="s1">&#39;TXF202512&#39;</span><span class="p">],</span>
+<span class="hll">    <span class="n">quote_type</span> <span class="o">=</span> <span class="n">sj</span><span class="o">.</span><span class="n">constant</span><span class="o">.</span><span class="n">QuoteType</span><span class="o">.</span><span class="n">Quote</span><span class="p">,</span>
+</span>    <span class="n">version</span> <span class="o">=</span> <span class="n">sj</span><span class="o">.</span><span class="n">constant</span><span class="o">.</span><span class="n">QuoteVersion</span><span class="o">.</span><span class="n">v1</span><span class="p">,</span>
+<span class="p">)</span>
+</code></pre></div>
+</div>
+<div class="admonition done">
+<p class="admonition-title">Out</p>
+<div class="highlight"><pre><span></span><code><span class="n">Response</span> <span class="n">Code</span><span class="p">:</span> <span class="mi">200</span> <span class="o">|</span> <span class="n">Event</span> <span class="n">Code</span><span class="p">:</span> <span class="mi">16</span> <span class="o">|</span> <span class="n">Info</span><span class="p">:</span> <span class="n">QUO</span><span class="o">/</span><span class="n">v2</span><span class="o">/</span><span class="n">FOP</span><span class="o">/*/</span><span class="n">TFE</span><span class="o">/</span><span class="n">TXFL5</span> <span class="o">|</span> <span class="n">Event</span><span class="p">:</span> <span class="n">Subscribe</span> <span class="ow">or</span> <span class="n">Unsubscribe</span> <span class="n">ok</span>
+
+<span class="n">Exchange</span><span class="o">.</span><span class="n">TAIFEX</span>
+<span class="n">Quote</span><span class="p">(</span>
+    <span class="n">code</span> <span class="o">=</span> <span class="s1">&#39;TXFL5&#39;</span><span class="p">,</span>
+    <span class="n">datetime</span> <span class="o">=</span> <span class="n">datetime</span><span class="o">.</span><span class="n">datetime</span><span class="p">(</span><span class="mi">2025</span><span class="p">,</span> <span class="mi">12</span><span class="p">,</span> <span class="mi">12</span><span class="p">,</span> <span class="mi">11</span><span class="p">,</span> <span class="mi">29</span><span class="p">,</span> <span class="mi">46</span><span class="p">,</span> <span class="mi">247000</span><span class="p">),</span>
+    <span class="nb">open</span> <span class="o">=</span> <span class="n">Decimal</span><span class="p">(</span><span class="s1">&#39;28266&#39;</span><span class="p">),</span>
+    <span class="n">avg_price</span> <span class="o">=</span> <span class="n">Decimal</span><span class="p">(</span><span class="s1">&#39;28284.374007&#39;</span><span class="p">),</span>
+    <span class="n">close</span> <span class="o">=</span> <span class="n">Decimal</span><span class="p">(</span><span class="s1">&#39;28220&#39;</span><span class="p">),</span>
+    <span class="n">high</span> <span class="o">=</span> <span class="n">Decimal</span><span class="p">(</span><span class="s1">&#39;28342&#39;</span><span class="p">),</span>
+    <span class="n">low</span> <span class="o">=</span> <span class="n">Decimal</span><span class="p">(</span><span class="s1">&#39;28192&#39;</span><span class="p">),</span>
+    <span class="n">amount</span> <span class="o">=</span> <span class="n">Decimal</span><span class="p">(</span><span class="s1">&#39;28220&#39;</span><span class="p">),</span>
+    <span class="n">total_amount</span> <span class="o">=</span> <span class="n">Decimal</span><span class="p">(</span><span class="s1">&#39;946904273&#39;</span><span class="p">),</span>
+    <span class="n">volume</span> <span class="o">=</span> <span class="mi">0</span><span class="p">,</span>
+    <span class="n">total_volume</span> <span class="o">=</span> <span class="mi">33478</span><span class="p">,</span>
+    <span class="n">tick_type</span> <span class="o">=</span> <span class="mi">1</span><span class="p">,</span>
+    <span class="n">chg_type</span> <span class="o">=</span> <span class="mi">2</span><span class="p">,</span>
+    <span class="n">price_chg</span> <span class="o">=</span> <span class="n">Decimal</span><span class="p">(</span><span class="s1">&#39;119&#39;</span><span class="p">),</span>
+    <span class="n">pct_chg</span> <span class="o">=</span> <span class="n">Decimal</span><span class="p">(</span><span class="s1">&#39;0.423472&#39;</span><span class="p">),</span>
+    <span class="n">bid_side_total_vol</span> <span class="o">=</span> <span class="mi">15254</span><span class="p">,</span>
+    <span class="n">ask_side_total_vol</span> <span class="o">=</span> <span class="mi">17295</span><span class="p">,</span>
+    <span class="n">bid_side_total_cnt</span> <span class="o">=</span> <span class="mi">22855</span><span class="p">,</span>
+    <span class="n">ask_side_total_cnt</span> <span class="o">=</span> <span class="mi">21882</span><span class="p">,</span>
+    <span class="n">bid_price</span> <span class="o">=</span> <span class="p">[</span><span class="n">Decimal</span><span class="p">(</span><span class="s1">&#39;28218&#39;</span><span class="p">),</span> <span class="n">Decimal</span><span class="p">(</span><span class="s1">&#39;28217&#39;</span><span class="p">),</span> <span class="n">Decimal</span><span class="p">(</span><span class="s1">&#39;28216&#39;</span><span class="p">),</span> <span class="n">Decimal</span><span class="p">(</span><span class="s1">&#39;28215&#39;</span><span class="p">),</span> <span class="n">Decimal</span><span class="p">(</span><span class="s1">&#39;28214&#39;</span><span class="p">)],</span>
+    <span class="n">bid_volume</span> <span class="o">=</span> <span class="p">[</span><span class="mi">5</span><span class="p">,</span> <span class="mi">6</span><span class="p">,</span> <span class="mi">11</span><span class="p">,</span> <span class="mi">6</span><span class="p">,</span> <span class="mi">10</span><span class="p">],</span>
+    <span class="n">diff_bid_vol</span> <span class="o">=</span> <span class="p">[</span><span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">],</span>
+    <span class="n">ask_price</span> <span class="o">=</span> <span class="p">[</span><span class="n">Decimal</span><span class="p">(</span><span class="s1">&#39;28220&#39;</span><span class="p">),</span> <span class="n">Decimal</span><span class="p">(</span><span class="s1">&#39;28221&#39;</span><span class="p">),</span> <span class="n">Decimal</span><span class="p">(</span><span class="s1">&#39;28222&#39;</span><span class="p">),</span> <span class="n">Decimal</span><span class="p">(</span><span class="s1">&#39;28223&#39;</span><span class="p">),</span> <span class="n">Decimal</span><span class="p">(</span><span class="s1">&#39;28224&#39;</span><span class="p">)],</span>
+    <span class="n">ask_volume</span> <span class="o">=</span> <span class="p">[</span><span class="mi">2</span><span class="p">,</span> <span class="mi">8</span><span class="p">,</span> <span class="mi">14</span><span class="p">,</span> <span class="mi">9</span><span class="p">,</span> <span class="mi">9</span><span class="p">],</span>
+    <span class="n">diff_ask_vol</span> <span class="o">=</span> <span class="p">[</span><span class="mi">0</span><span class="p">,</span> <span class="o">-</span><span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">],</span>
+    <span class="n">first_derived_bid_price</span> <span class="o">=</span> <span class="n">Decimal</span><span class="p">(</span><span class="s1">&#39;28215&#39;</span><span class="p">),</span>
+    <span class="n">first_derived_ask_price</span> <span class="o">=</span> <span class="n">Decimal</span><span class="p">(</span><span class="s1">&#39;28222&#39;</span><span class="p">),</span>
+    <span class="n">first_derived_bid_vol</span> <span class="o">=</span> <span class="mi">1</span><span class="p">,</span>
+    <span class="n">first_derived_ask_vol</span> <span class="o">=</span> <span class="mi">1</span><span class="p">,</span>
+    <span class="n">underlying_price</span> <span class="o">=</span> <span class="n">Decimal</span><span class="p">(</span><span class="s1">&#39;28185.62&#39;</span><span class="p">),</span>
+    <span class="n">simtrade</span> <span class="o">=</span> <span class="kc">False</span>
+<span class="p">)</span>
+</code></pre></div>
+</div>
+<h3 id="_6">屬性<a class="headerlink" href="#_6" title="Permanent link">&para;</a></h3>
+<div class="admonition example">
+<p class="admonition-title">Quote</p>
+<div class="highlight"><pre><span></span><code>code (str): 商品代碼
+datetime (datetime.datetime): 時間
+open (Decimal): 開盤價
+avg_price (Decimal): 均價
+close (Decimal): 成交價
+high (Decimal): 最高價(自開盤)
+low (Decimal): 最低價(自開盤)
+amount (Decimal): 成交額 (NTD)
+total_amount (Decimal): 總成交額 (NTD)
+volume (int): 成交量 (lot)
+total_volume (int): 總成交量 (lot)
+tick_type (int): 內外盤別{1: 外盤, 2: 內盤, 0: 無法判定}
+chg_type (int): 漲跌註記{1: 漲停, 2: 漲, 3: 平盤, 4: 跌, 5: 跌停}
+price_chg (Decimal): 漲跌
+pct_chg (Decimal): 漲跌幅 (%)
+bid_side_total_vol (int): 買盤成交總量 (lot)
+ask_side_total_vol (int): 賣盤成交總量 (lot)
+bid_side_total_cnt (int): 買盤成交筆數
+ask_side_total_cnt (int): 賣盤成交筆數
+bid_price (:List:Decimal): 委買價
+bid_volume (:List:int): 委買量 (lot)
+diff_bid_vol (:List:int): 委買價增減量 (lot)
+ask_price (:List:Decimal): 委賣價
+ask_volume (:List:int): 委賣量 (lot)
+diff_ask_vol (:List:int): 委賣價增減量 (lot)
+first_derived_bid_price (Decimal): 衍生一檔委買價
+first_derived_ask_price (Decimal): 衍生一檔委賣價
+first_derived_bid_vol (int): 衍生一檔委買量
+first_derived_ask_vol (int): 衍生一檔委賣量
+underlying_price (Decimal): 標的物價格
+simtrade (bool): 試撮
+</code></pre></div>
+</div>
 <h2 id="callback">Callback<a class="headerlink" href="#callback" title="Permanent link">&para;</a></h2>
 <p>預設狀況下我們將即時行情使用<code>print</code>的方式呈現。可根據個人需求修改函數。請避免在函數內進行運算。</p>
 <h3 id="tick_1">Tick<a class="headerlink" href="#tick_1" title="Permanent link">&para;</a></h3>
@@ -2305,6 +2522,31 @@ Time (str): 時間 (HH:mm:ss.ffffff)
 </div>
 </div>
 </div>
+</div>
+<h3 id="quote_1">Quote<a class="headerlink" href="#quote_1" title="Permanent link">&para;</a></h3>
+<div class="admonition info">
+<p class="admonition-title">decorator方式</p>
+<div class="highlight"><pre><span></span><code><span class="kn">from</span><span class="w"> </span><span class="nn">shioaji</span><span class="w"> </span><span class="kn">import</span> <span class="n">QuoteFOPv1</span><span class="p">,</span> <span class="n">Exchange</span>
+
+<span class="nd">@api</span><span class="o">.</span><span class="n">on_quote_fop_v1</span><span class="p">()</span>
+<span class="k">def</span><span class="w"> </span><span class="nf">quote_callback</span><span class="p">(</span><span class="n">exchange</span><span class="p">:</span><span class="n">Exchange</span><span class="p">,</span> <span class="n">quote</span><span class="p">:</span><span class="n">QuoteFOPv1</span><span class="p">):</span>
+    <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Exchange: </span><span class="si">{</span><span class="n">exchange</span><span class="si">}</span><span class="s2">, Quote: </span><span class="si">{</span><span class="n">quote</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+</code></pre></div>
+</div>
+<div class="admonition info">
+<p class="admonition-title">傳統方式</p>
+<div class="highlight"><pre><span></span><code><span class="kn">from</span><span class="w"> </span><span class="nn">shioaji</span><span class="w"> </span><span class="kn">import</span> <span class="n">QuoteFOPv1</span><span class="p">,</span> <span class="n">Exchange</span>
+
+<span class="k">def</span><span class="w"> </span><span class="nf">quote_callback</span><span class="p">(</span><span class="n">exchange</span><span class="p">:</span><span class="n">Exchange</span><span class="p">,</span> <span class="n">quote</span><span class="p">:</span><span class="n">QuoteFOPv1</span><span class="p">):</span>
+    <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Exchange: </span><span class="si">{</span><span class="n">exchange</span><span class="si">}</span><span class="s2">, Quote: </span><span class="si">{</span><span class="n">quote</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+
+<span class="n">api</span><span class="o">.</span><span class="n">quote</span><span class="o">.</span><span class="n">set_on_quote_fop_v1_callback</span><span class="p">(</span><span class="n">quote_callback</span><span class="p">)</span>
+</code></pre></div>
+</div>
+<div class="admonition done">
+<p class="admonition-title">Out</p>
+<div class="highlight"><pre><span></span><code><span class="n">Exchange</span><span class="p">:</span> <span class="n">Exchange</span><span class="o">.</span><span class="n">TAIFEX</span><span class="p">,</span> <span class="n">Quote</span><span class="p">:</span> <span class="n">Quote</span><span class="p">(</span><span class="n">code</span><span class="o">=</span><span class="s1">&#39;TXFL5&#39;</span><span class="p">,</span> <span class="n">datetime</span><span class="o">=</span><span class="n">datetime</span><span class="o">.</span><span class="n">datetime</span><span class="p">(</span><span class="mi">2025</span><span class="p">,</span> <span class="mi">12</span><span class="p">,</span> <span class="mi">12</span><span class="p">,</span> <span class="mi">11</span><span class="p">,</span> <span class="mi">29</span><span class="p">,</span> <span class="mi">46</span><span class="p">,</span> <span class="mi">247000</span><span class="p">),</span> <span class="nb">open</span><span class="o">=</span><span class="n">Decimal</span><span class="p">(</span><span class="s1">&#39;28266&#39;</span><span class="p">),</span> <span class="n">avg_price</span><span class="o">=</span><span class="n">Decimal</span><span class="p">(</span><span class="s1">&#39;28284.374007&#39;</span><span class="p">),</span> <span class="n">close</span><span class="o">=</span><span class="n">Decimal</span><span class="p">(</span><span class="s1">&#39;28220&#39;</span><span class="p">),</span> <span class="n">high</span><span class="o">=</span><span class="n">Decimal</span><span class="p">(</span><span class="s1">&#39;28342&#39;</span><span class="p">),</span> <span class="n">low</span><span class="o">=</span><span class="n">Decimal</span><span class="p">(</span><span class="s1">&#39;28192&#39;</span><span class="p">),</span> <span class="n">amount</span><span class="o">=</span><span class="n">Decimal</span><span class="p">(</span><span class="s1">&#39;28220&#39;</span><span class="p">),</span> <span class="n">total_amount</span><span class="o">=</span><span class="n">Decimal</span><span class="p">(</span><span class="s1">&#39;946904273&#39;</span><span class="p">),</span> <span class="n">volume</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span> <span class="n">total_volume</span><span class="o">=</span><span class="mi">33478</span><span class="p">,</span> <span class="n">tick_type</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span> <span class="n">chg_type</span><span class="o">=</span><span class="mi">2</span><span class="p">,</span> <span class="n">price_chg</span><span class="o">=</span><span class="n">Decimal</span><span class="p">(</span><span class="s1">&#39;119&#39;</span><span class="p">),</span> <span class="n">pct_chg</span><span class="o">=</span><span class="n">Decimal</span><span class="p">(</span><span class="s1">&#39;0.423472&#39;</span><span class="p">),</span> <span class="n">bid_side_total_vol</span><span class="o">=</span><span class="mi">15254</span><span class="p">,</span> <span class="n">ask_side_total_vol</span><span class="o">=</span><span class="mi">17295</span><span class="p">,</span> <span class="n">bid_side_total_cnt</span><span class="o">=</span><span class="mi">22855</span><span class="p">,</span> <span class="n">ask_side_total_cnt</span><span class="o">=</span><span class="mi">21882</span><span class="p">,</span> <span class="n">bid_price</span><span class="o">=</span><span class="p">[</span><span class="n">Decimal</span><span class="p">(</span><span class="s1">&#39;28218&#39;</span><span class="p">),</span> <span class="n">Decimal</span><span class="p">(</span><span class="s1">&#39;28217&#39;</span><span class="p">),</span> <span class="n">Decimal</span><span class="p">(</span><span class="s1">&#39;28216&#39;</span><span class="p">),</span> <span class="n">Decimal</span><span class="p">(</span><span class="s1">&#39;28215&#39;</span><span class="p">),</span> <span class="n">Decimal</span><span class="p">(</span><span class="s1">&#39;28214&#39;</span><span class="p">)],</span> <span class="n">bid_volume</span><span class="o">=</span><span class="p">[</span><span class="mi">5</span><span class="p">,</span> <span class="mi">6</span><span class="p">,</span> <span class="mi">11</span><span class="p">,</span> <span class="mi">6</span><span class="p">,</span> <span class="mi">10</span><span class="p">],</span> <span class="n">diff_bid_vol</span><span class="o">=</span><span class="p">[</span><span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">],</span> <span class="n">ask_price</span><span class="o">=</span><span class="p">[</span><span class="n">Decimal</span><span class="p">(</span><span class="s1">&#39;28220&#39;</span><span class="p">),</span> <span class="n">Decimal</span><span class="p">(</span><span class="s1">&#39;28221&#39;</span><span class="p">),</span> <span class="n">Decimal</span><span class="p">(</span><span class="s1">&#39;28222&#39;</span><span class="p">),</span> <span class="n">Decimal</span><span class="p">(</span><span class="s1">&#39;28223&#39;</span><span class="p">),</span> <span class="n">Decimal</span><span class="p">(</span><span class="s1">&#39;28224&#39;</span><span class="p">)],</span> <span class="n">ask_volume</span><span class="o">=</span><span class="p">[</span><span class="mi">2</span><span class="p">,</span> <span class="mi">8</span><span class="p">,</span> <span class="mi">14</span><span class="p">,</span> <span class="mi">9</span><span class="p">,</span> <span class="mi">9</span><span class="p">],</span> <span class="n">diff_ask_vol</span><span class="o">=</span><span class="p">[</span><span class="mi">0</span><span class="p">,</span> <span class="o">-</span><span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">],</span> <span class="n">first_derived_bid_price</span><span class="o">=</span><span class="n">Decimal</span><span class="p">(</span><span class="s1">&#39;28215&#39;</span><span class="p">),</span> <span class="n">first_derived_ask_price</span><span class="o">=</span><span class="n">Decimal</span><span class="p">(</span><span class="s1">&#39;28222&#39;</span><span class="p">),</span> <span class="n">first_derived_bid_vol</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span> <span class="n">first_derived_ask_vol</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span> <span class="n">underlying_price</span><span class="o">=</span><span class="n">Decimal</span><span class="p">(</span><span class="s1">&#39;28185.62&#39;</span><span class="p">),</span> <span class="n">simtrade</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
+</code></pre></div>
 </div>
 <ul>
 <li>更進階的callback使用可以參見<a href="../../../advanced/quote_binding/">綁訂報價模式</a>。</li>

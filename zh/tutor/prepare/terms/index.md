@@ -6,7 +6,7 @@
 
 ## 簽署文件
 
-請參見[簽署中心](https://www.sinotrade.com.tw/newweb/Inside_Frame?URL=https://service.sinotrade.com.tw/signCenter/index/)並在簽署前**仔細閱讀文件**。
+請參見[簽署中心](https://www.sinotrade.com.tw/newweb/signCenter/signCenterIndex/)並在簽署前**仔細閱讀文件**。
 
 ## API測試
 

@@ -198,7 +198,7 @@ Status of Trade
 - `Failed`: Failed
 - `Cancelled`: Cancelled
 - `Filled`: Complete Fill
-- `Filling`: Part Fill
+- `PartFilled`: Part Fill
 
 ### Update Order
 

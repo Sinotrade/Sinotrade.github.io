@@ -20,7 +20,7 @@ api.quote.subscribe?
 Quote Parameters:
 
 ```
-quote_type: 訂閱類型 {'tick', 'bidask'}
+quote_type: 訂閱類型 {'tick', 'bidask', 'quote'}
 intraday_odd: 盤中零股 {True, False}
 version: 行情版本 {'v1', 'v0'}
 
@@ -264,6 +264,102 @@ Time (str): 時間 (HH:mm:ss.ffffff)
 
 ```
 
+## Quote
+
+### 範例
+
+In
+
+```
+api.quote.subscribe(
+    api.Contracts.Futures.TXF['TXF202512'],
+    quote_type = sj.constant.QuoteType.Quote,
+    version = sj.constant.QuoteVersion.v1,
+)
+
+```
+
+Out
+
+```
+Response Code: 200 | Event Code: 16 | Info: QUO/v2/FOP/*/TFE/TXFL5 | Event: Subscribe or Unsubscribe ok
+
+Exchange.TAIFEX
+Quote(
+    code = 'TXFL5',
+    datetime = datetime.datetime(2025, 12, 12, 11, 29, 46, 247000),
+    open = Decimal('28266'),
+    avg_price = Decimal('28284.374007'),
+    close = Decimal('28220'),
+    high = Decimal('28342'),
+    low = Decimal('28192'),
+    amount = Decimal('28220'),
+    total_amount = Decimal('946904273'),
+    volume = 0,
+    total_volume = 33478,
+    tick_type = 1,
+    chg_type = 2,
+    price_chg = Decimal('119'),
+    pct_chg = Decimal('0.423472'),
+    bid_side_total_vol = 15254,
+    ask_side_total_vol = 17295,
+    bid_side_total_cnt = 22855,
+    ask_side_total_cnt = 21882,
+    bid_price = [Decimal('28218'), Decimal('28217'), Decimal('28216'), Decimal('28215'), Decimal('28214')],
+    bid_volume = [5, 6, 11, 6, 10],
+    diff_bid_vol = [0, 0, 0, 0, 0],
+    ask_price = [Decimal('28220'), Decimal('28221'), Decimal('28222'), Decimal('28223'), Decimal('28224')],
+    ask_volume = [2, 8, 14, 9, 9],
+    diff_ask_vol = [0, -1, 1, 0, 0],
+    first_derived_bid_price = Decimal('28215'),
+    first_derived_ask_price = Decimal('28222'),
+    first_derived_bid_vol = 1,
+    first_derived_ask_vol = 1,
+    underlying_price = Decimal('28185.62'),
+    simtrade = False
+)
+
+```
+
+### 屬性
+
+Quote
+
+```
+code (str): 商品代碼
+datetime (datetime.datetime): 時間
+open (Decimal): 開盤價
+avg_price (Decimal): 均價
+close (Decimal): 成交價
+high (Decimal): 最高價(自開盤)
+low (Decimal): 最低價(自開盤)
+amount (Decimal): 成交額 (NTD)
+total_amount (Decimal): 總成交額 (NTD)
+volume (int): 成交量 (lot)
+total_volume (int): 總成交量 (lot)
+tick_type (int): 內外盤別{1: 外盤, 2: 內盤, 0: 無法判定}
+chg_type (int): 漲跌註記{1: 漲停, 2: 漲, 3: 平盤, 4: 跌, 5: 跌停}
+price_chg (Decimal): 漲跌
+pct_chg (Decimal): 漲跌幅 (%)
+bid_side_total_vol (int): 買盤成交總量 (lot)
+ask_side_total_vol (int): 賣盤成交總量 (lot)
+bid_side_total_cnt (int): 買盤成交筆數
+ask_side_total_cnt (int): 賣盤成交筆數
+bid_price (:List:Decimal): 委買價
+bid_volume (:List:int): 委買量 (lot)
+diff_bid_vol (:List:int): 委買價增減量 (lot)
+ask_price (:List:Decimal): 委賣價
+ask_volume (:List:int): 委賣量 (lot)
+diff_ask_vol (:List:int): 委賣價增減量 (lot)
+first_derived_bid_price (Decimal): 衍生一檔委買價
+first_derived_ask_price (Decimal): 衍生一檔委賣價
+first_derived_bid_vol (int): 衍生一檔委買量
+first_derived_ask_vol (int): 衍生一檔委賣量
+underlying_price (Decimal): 標的物價格
+simtrade (bool): 試撮
+
+```
+
 ## Callback
 
 預設狀況下我們將即時行情使用`print`的方式呈現。可根據個人需求修改函數。請避免在函數內進行運算。
@@ -369,6 +465,38 @@ Exchange: Exchange.TAIFEX, BidAsk: BidAsk(code='TXFG1', datetime=datetime.dateti
 
 ```
 Topic: Q/TFE/TXFG1, Quote: {'AskPrice': [17653.0, 17654.0, 17655.0, 17656.0, 17657.0], 'AskVolSum': 85, 'AskVolume': [3, 16, 24, 22, 20], 'BidPrice': [17651.0, 17650.0, 17649.0, 17648.0, 17647.0], 'BidVolSum': 67, 'BidVolume': [10, 10, 18, 18, 11], 'Code': 'TXFG1', 'Date': '2021/07/02', 'DiffAskVol': [-4, -2, 0, 0, 0], 'DiffAskVolSum': 0, 'DiffBidVol': [1, 0, 2, 0, 0], 'DiffBidVolSum': 0, 'FirstDerivedAskPrice': 17657.0, 'FirstDerivedAskVolume': 3, 'FirstDerivedBidPrice': 17647.0, 'FirstDerivedBidVolume': 2, 'TargetKindPrice': 17716.19, 'Time': '13:17:57.809000'}
+
+```
+
+### Quote
+
+decorator方式
+
+```
+from shioaji import QuoteFOPv1, Exchange
+
+@api.on_quote_fop_v1()
+def quote_callback(exchange:Exchange, quote:QuoteFOPv1):
+    print(f"Exchange: {exchange}, Quote: {quote}")
+
+```
+
+傳統方式
+
+```
+from shioaji import QuoteFOPv1, Exchange
+
+def quote_callback(exchange:Exchange, quote:QuoteFOPv1):
+    print(f"Exchange: {exchange}, Quote: {quote}")
+
+api.quote.set_on_quote_fop_v1_callback(quote_callback)
+
+```
+
+Out
+
+```
+Exchange: Exchange.TAIFEX, Quote: Quote(code='TXFL5', datetime=datetime.datetime(2025, 12, 12, 11, 29, 46, 247000), open=Decimal('28266'), avg_price=Decimal('28284.374007'), close=Decimal('28220'), high=Decimal('28342'), low=Decimal('28192'), amount=Decimal('28220'), total_amount=Decimal('946904273'), volume=0, total_volume=33478, tick_type=1, chg_type=2, price_chg=Decimal('119'), pct_chg=Decimal('0.423472'), bid_side_total_vol=15254, ask_side_total_vol=17295, bid_side_total_cnt=22855, ask_side_total_cnt=21882, bid_price=[Decimal('28218'), Decimal('28217'), Decimal('28216'), Decimal('28215'), Decimal('28214')], bid_volume=[5, 6, 11, 6, 10], diff_bid_vol=[0, 0, 0, 0, 0], ask_price=[Decimal('28220'), Decimal('28221'), Decimal('28222'), Decimal('28223'), Decimal('28224')], ask_volume=[2, 8, 14, 9, 9], diff_ask_vol=[0, -1, 1, 0, 0], first_derived_bid_price=Decimal('28215'), first_derived_ask_price=Decimal('28222'), first_derived_bid_vol=1, first_derived_ask_vol=1, underlying_price=Decimal('28185.62'), simtrade=False)
 
 ```
 

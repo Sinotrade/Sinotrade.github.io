@@ -113,6 +113,13 @@
         <xhtml:link rel="alternate" hreflang="zh" href="https://sinotrade.github.io/zh/tutor/accounting/settlements/"/>
     </url>
     <url>
+        <loc>https://sinotrade.github.io/tutor/accounting/trading_limits/</loc>
+        <lastmod>2025-12-18</lastmod>
+        <changefreq>daily</changefreq>
+        <xhtml:link rel="alternate" hreflang="en" href="https://sinotrade.github.io/tutor/accounting/trading_limits/"/>
+        <xhtml:link rel="alternate" hreflang="zh" href="https://sinotrade.github.io/zh/tutor/accounting/trading_limits/"/>
+    </url>
+    <url>
         <loc>https://sinotrade.github.io/tutor/advanced/nonblock/</loc>
         <lastmod>2025-12-18</lastmod>
         <changefreq>daily</changefreq>
@@ -160,6 +167,13 @@
         <changefreq>daily</changefreq>
         <xhtml:link rel="alternate" hreflang="en" href="https://sinotrade.github.io/tutor/market_data/credit_enquires/"/>
         <xhtml:link rel="alternate" hreflang="zh" href="https://sinotrade.github.io/zh/tutor/market_data/credit_enquires/"/>
+    </url>
+    <url>
+        <loc>https://sinotrade.github.io/tutor/market_data/disposition_attention/</loc>
+        <lastmod>2025-12-18</lastmod>
+        <changefreq>daily</changefreq>
+        <xhtml:link rel="alternate" hreflang="en" href="https://sinotrade.github.io/tutor/market_data/disposition_attention/"/>
+        <xhtml:link rel="alternate" hreflang="zh" href="https://sinotrade.github.io/zh/tutor/market_data/disposition_attention/"/>
     </url>
     <url>
         <loc>https://sinotrade.github.io/tutor/market_data/historical/</loc>
@@ -400,6 +414,13 @@
         <xhtml:link rel="alternate" hreflang="en" href="https://sinotrade.github.io/tutor/accounting/settlements/"/>
     </url>
     <url>
+        <loc>https://sinotrade.github.io/zh/tutor/accounting/trading_limits/</loc>
+        <lastmod>2025-12-18</lastmod>
+        <changefreq>daily</changefreq>
+        <xhtml:link rel="alternate" hreflang="zh" href="https://sinotrade.github.io/zh/tutor/accounting/trading_limits/"/>
+        <xhtml:link rel="alternate" hreflang="en" href="https://sinotrade.github.io/tutor/accounting/trading_limits/"/>
+    </url>
+    <url>
         <loc>https://sinotrade.github.io/zh/tutor/advanced/nonblock/</loc>
         <lastmod>2025-12-18</lastmod>
         <changefreq>daily</changefreq>
@@ -447,6 +468,13 @@
         <changefreq>daily</changefreq>
         <xhtml:link rel="alternate" hreflang="zh" href="https://sinotrade.github.io/zh/tutor/market_data/credit_enquires/"/>
         <xhtml:link rel="alternate" hreflang="en" href="https://sinotrade.github.io/tutor/market_data/credit_enquires/"/>
+    </url>
+    <url>
+        <loc>https://sinotrade.github.io/zh/tutor/market_data/disposition_attention/</loc>
+        <lastmod>2025-12-18</lastmod>
+        <changefreq>daily</changefreq>
+        <xhtml:link rel="alternate" hreflang="zh" href="https://sinotrade.github.io/zh/tutor/market_data/disposition_attention/"/>
+        <xhtml:link rel="alternate" hreflang="en" href="https://sinotrade.github.io/tutor/market_data/disposition_attention/"/>
     </url>
     <url>
         <loc>https://sinotrade.github.io/zh/tutor/market_data/historical/</loc>
