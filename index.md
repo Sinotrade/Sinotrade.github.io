@@ -14,6 +14,7 @@ The key features are:
 - Easy: Designed to be easy to use and learn.
 - Fast to code: With native python to integrate with large python ecosystem.
 - Cross-Platform: The first one python trading API with Linux compatible in Taiwan.
+- ✨ AI-Ready: First Taiwan trading API with [AI Coding Agent Skills](ai_assistant/) support. Let AI assistants help you code with Shioaji.
 
 ## Installation
 
