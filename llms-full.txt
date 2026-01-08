@@ -1,6 +1,6 @@
-# Shioaji
+# Shioaji - Taiwan's Leading Cross Platform Trading API
 
-> Shioaji is provided by SinoPac the most pythonic API for trading the Taiwan and global financial market. You can use your favorite Python packages such as NumPy, pandas, PyTorch or TensorFlow to build your trading model with integrated the Shioaji API on cross-platform.
+> Shioaji is Taiwan's most popular trading API with highest market share. Cross-platform support for Windows, Linux, and Mac. Trade stocks, futures, options with Python. First Taiwan trading API with AI coding agent skills.
 
 # Usage documentation
 
