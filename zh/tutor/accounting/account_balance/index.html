@@ -1768,10 +1768,11 @@
 <p class="admonition-title">Out</p>
 <div class="highlight"><pre><span></span><code><span class="n">Signature</span><span class="p">:</span>
     <span class="n">api</span><span class="o">.</span><span class="n">account_balance</span><span class="p">(</span>
+        <span class="n">account</span><span class="p">:</span> <span class="n">shioaji</span><span class="o">.</span><span class="n">account</span><span class="o">.</span><span class="n">Account</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
         <span class="n">timeout</span><span class="p">:</span> <span class="nb">int</span> <span class="o">=</span> <span class="mi">5000</span><span class="p">,</span>
         <span class="n">cb</span><span class="p">:</span> <span class="n">Callable</span><span class="p">[[</span><span class="n">shioaji</span><span class="o">.</span><span class="n">position</span><span class="o">.</span><span class="n">AccountBalance</span><span class="p">],</span> <span class="n">NoneType</span><span class="p">]</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
     <span class="p">)</span>
-<span class="n">Docstring</span><span class="p">:</span> <span class="n">query</span> <span class="n">stock</span> <span class="n">account</span> <span class="n">balance</span> 
+<span class="n">Docstring</span><span class="p">:</span> <span class="n">query</span> <span class="n">stock</span> <span class="n">account</span> <span class="n">balance</span>
 </code></pre></div>
 </div>
 <div class="admonition info">
@@ -1782,9 +1783,24 @@
 <div class="admonition done">
 <p class="admonition-title">Out</p>
 <div class="highlight"><pre><span></span><code><span class="n">AccountBalance</span><span class="p">(</span>
-    <span class="n">status</span><span class="o">=&lt;</span><span class="n">FetchStatus</span><span class="o">.</span><span class="n">Fetched</span><span class="p">:</span> <span class="s1">&#39;Fetched&#39;</span><span class="o">&gt;</span><span class="p">,</span> 
-    <span class="n">acc_balance</span><span class="o">=</span><span class="mf">100000.0</span><span class="p">,</span> 
-    <span class="n">date</span><span class="o">=</span><span class="s1">&#39;2023-01-06 13:30:00.000000&#39;</span><span class="p">,</span> 
+    <span class="n">status</span><span class="o">=&lt;</span><span class="n">FetchStatus</span><span class="o">.</span><span class="n">Fetched</span><span class="p">:</span> <span class="s1">&#39;Fetched&#39;</span><span class="o">&gt;</span><span class="p">,</span>
+    <span class="n">acc_balance</span><span class="o">=</span><span class="mf">100000.0</span><span class="p">,</span>
+    <span class="n">date</span><span class="o">=</span><span class="s1">&#39;2023-01-06 13:30:00.000000&#39;</span><span class="p">,</span>
+    <span class="n">errmsg</span><span class="o">=</span><span class="s1">&#39;&#39;</span>
+<span class="p">)</span>
+</code></pre></div>
+</div>
+<div class="admonition info">
+<p class="admonition-title">In - 帶 account 參數</p>
+<div class="highlight"><pre><span></span><code><span class="n">api</span><span class="o">.</span><span class="n">account_balance</span><span class="p">(</span><span class="n">account</span><span class="o">=</span><span class="n">api</span><span class="o">.</span><span class="n">stock_account</span><span class="p">)</span>
+</code></pre></div>
+</div>
+<div class="admonition done">
+<p class="admonition-title">Out</p>
+<div class="highlight"><pre><span></span><code><span class="n">AccountBalance</span><span class="p">(</span>
+    <span class="n">status</span><span class="o">=&lt;</span><span class="n">FetchStatus</span><span class="o">.</span><span class="n">Fetched</span><span class="p">:</span> <span class="s1">&#39;Fetched&#39;</span><span class="o">&gt;</span><span class="p">,</span>
+    <span class="n">acc_balance</span><span class="o">=</span><span class="mf">100000.0</span><span class="p">,</span>
+    <span class="n">date</span><span class="o">=</span><span class="s1">&#39;2023-01-06 13:30:00.000000&#39;</span><span class="p">,</span>
     <span class="n">errmsg</span><span class="o">=</span><span class="s1">&#39;&#39;</span>
 <span class="p">)</span>
 </code></pre></div>
