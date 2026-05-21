@@ -1,150 +1,165 @@
-當現貨觸發一些交易異常條件，需先預收券款。異常條件包括: 注意股票、警示股票、處置股票及管理股票。
+當現貨觸發[注意股、警示股、處置股、管理股](../../market_data/disposition_attention/)等交易異常條件時，需先預收券款。
 
 提醒
 
-- 必須先[登入](../../login/)及啟用[憑證](../../prepare/terms/)。
-- 服務時間為交易日8:00~14:30。
+- 下單前必須先[登入](../../login/)及啟用[憑證](../../prepare/terms/)。
+- 服務時間為交易日 8:00–14:30。
 
-### 查詢圈券狀態
+## 預收款項
+
+reserve_earmarking / earmarking_detail
+
+```
+api.reserve_earmarking?
+
+Signature:
+    api.reserve_earmarking(
+        contract: sj.Stock,
+        share: int,
+        price: float,
+        account: Optional[sj.Account] = None,
+        timeout: Optional[int] = 5000,
+        cb: Optional[Callable[[sj.EarmarkingOrderResp], None]] = None,
+    ) -> sj.EarmarkingOrderResp
+
+api.earmarking_detail?
+
+Signature:
+    api.earmarking_detail(
+        account: Optional[sj.Account] = None,
+        timeout: Optional[int] = 5000,
+        cb: Optional[Callable[[sj.EarmarkStocksDetail], None]] = None,
+    ) -> sj.EarmarkStocksDetail
+
+```
+
+Parameters
+
+```
+reserve_earmarking
+    contract: 商品檔（由 api.Contracts.Stocks.* 取得）
+    share:    預收股數
+    price:    預收價格
+    account:  證券帳號
+    timeout:  逾時毫秒
+    cb:       選填，callback 函式
+
+earmarking_detail
+    account:  證券帳號
+    timeout:  逾時毫秒
+    cb:       選填，callback 函式
+
+```
+
+reserve_earmarking / earmarking_detail
+
+```
+POST /api/v1/order/reserve_earmarking
+Content-Type: application/json
+
+{
+  "contract": { "security_type": "STK", "exchange": <Exchange>, "code": <string> },
+  "share": <integer>,
+  "price": <number>,
+  "account": { "broker_id": <string>, "account_id": <string> }
+}
+
+POST /api/v1/order/earmarking_detail
+Content-Type: application/json
+
+{
+  "account": { "broker_id": <string>, "account_id": <string> }
+}
+
+```
+
+Parameters
+
+```
+reserve_earmarking
+    contract.exchange: 交易所 {TSE, OTC}
+    contract.code:     商品代碼
+    share:             預收股數
+    price:             預收價格
+    account:           證券帳號
+
+earmarking_detail
+    account:           證券帳號
+
+```
+
+### 申請預收款項
+
+Order
+
+```
+# 商品檔
+contract = api.Contracts.Stocks.TSE.TSE1217
+# 預收款項內容
+share = 1000
+price = 9
+
+```
 
 In
 
 ```
-reserve_summary_resp = api.stock_reserve_summary(account)
+# 申請預收款項
+resp = api.reserve_earmarking(contract, share, price, account=api.stock_account)
+resp
 
 ```
 
 Out
 
 ```
-ReserveStocksSummaryResponse(
-    response=ReserveStocksSummary(
-        stocks=[
-            ReserveStockSummary(
-                contract=Contract(
-                    security_type=<SecurityType.Stock: 'STK'>, 
-                    exchange=<Exchange.TSE: 'TSE'>, 
-                    code='2890', 
-                    name='永豐金'
-                ),
-                available_share=5000, 
-                reserved_share=0
-            )
-        ], 
-        account=StockAccount(
-            person_id='X123456789', 
-            broker_id='9A95', 
-            account_id='12345678', 
-            signed=True
-            )
-        )
-    )
-
-```
-
-### 借券圈券申請
-
-In
-
-```
-contract = api.Contracts.Stocks["2890"]
-resp = api.reserve_stock(account, contract, 1000)
-
-```
-
-Out
-
-```
-ReserveStockResponse(
-    response=ReserveOrderResp(
-        contract=Stock(
-            exchange=<Exchange.TSE: 'TSE'>, 
-            code='2890', 
-            symbol='TSE2890', 
-            name='永豐金'
-        ), 
-        account=StockAccount(
-            person_id='X123456789', 
-            broker_id='9A95', 
-            account_id='12345678', 
-            signed=True), 
-        share=1000, 
-        status=True, 
-        info=''
-    )
+EarmarkingOrderResp(
+    contract=Contract(
+        security_type='STK',
+        exchange='TSE',
+        code='1217',
+        target_code=''
+    ),
+    account=StockAccount(
+        person_id='YOUR_PERSON_ID',
+        broker_id='YOUR_BROKER_ID',
+        account_id='YOUR_ACCOUNT_ID',
+        signed=true,
+        username=''
+    ),
+    share=1000,
+    price=9,
+    status=true,
+    info='OK'
 )
 
 ```
 
-### 查詢圈券明細
-
 In
 
 ```
-resp = api.stock_reserve_detail(account)
+curl -X POST http://localhost:8080/api/v1/order/reserve_earmarking \
+  -H 'Content-Type: application/json' \
+  -d '{
+    "contract": {
+      "security_type": "STK",
+      "exchange": "TSE",
+      "code": "1217"
+    },
+    "share": 1000,
+    "price": 9,
+    "account": {
+      "broker_id": "YOUR_BROKER_ID",
+      "account_id": "YOUR_ACCOUNT_ID"
+    }
+  }'
 
 ```
 
 Out
 
 ```
-ReserveStocksDetailResponse(
-    response=ReserveStocksDetail(stocks=[
-            ReserveStockDetail(
-                contract=Contract(
-                    security_type=<SecurityType.Stock: 'STK'>, 
-                    exchange=<Exchange.TSE: 'TSE'>, 
-                    code='6153', 
-                    name='嘉聯益'
-                ), 
-                share=1000, 
-                order_ts=1638253253, 
-                status=True, 
-                info='已完成'
-            )
-        ], 
-        account=StockAccount(
-            person_id='X123456789', 
-            broker_id='9A95', 
-            account_id='12345678', 
-            signed=True)
-        )
-)
-
-```
-
-### 預收款項申請
-
-In
-
-```
-contract = api.Contracts.Stocks["2890"]
-resp = api.reserve_earmarking(account, contract, 1000, 15.15)
-
-```
-
-Out
-
-```
-ReserveEarmarkingResponse(
-    response=EarmarkingOrderResp(
-        contract=Stock(
-            exchange=<Exchange.TSE: 'TSE'>, 
-            code='2890', 
-            symbol='TSE2890', 
-            name='永豐金', 
-        ), 
-        account=StockAccount(
-            person_id='X123456789', 
-            broker_id='9A95', 
-            account_id='12345678', 
-            signed=True)
-        ), 
-        share=1000, 
-        price=15.15, 
-        status=True, 
-        info='OK')
-)
+{"contract":{"security_type":"STK","exchange":"TSE","code":"1217","target_code":""},"account":{"account_type":"S","person_id":"YOUR_PERSON_ID","broker_id":"YOUR_BROKER_ID","account_id":"YOUR_ACCOUNT_ID","signed":true,"username":""},"share":1000,"price":9.0,"status":true,"info":"OK"}
 
 ```
 
@@ -153,56 +168,359 @@ ReserveEarmarkingResponse(
 In
 
 ```
-api.earmarking_detail(account)
+resp = api.earmarking_detail(account=api.stock_account)
+resp
 
 ```
 
 Out
 
 ```
-EarmarkStocksDetailResponse(
-    response=EarmarkStocksDetail(
-        stocks=[
-            EarmarkStockDetail(
-                contract=Contract(
-                    security_type=<SecurityType.Stock: 'STK'>, 
-                    exchange=<Exchange.TSE: 'TSE'>, 
-                    code='2890', 
-                    name='永豐金'
-                ), 
-                share=1000, 
-                price=15.15, 
-                amount=15171, 
-                order_ts=1638416488, 
-                status=False, 
-                info='扣款失敗'), 
-            EarmarkStockDetail(
-                contract=Contract(
-                    security_type=<SecurityType.Stock: 'STK'>, 
-                    exchange=<Exchange.TSE: 'TSE'>, 
-                    code='2890', 
-                    name='永豐金'
-                ), 
-                share=1000, 
-                price=15.15, 
-                amount=15171, 
-                order_ts=1638415662, status=True, 
-                info='')
-            ], 
-            account=StockAccount(
-                person_id='X123456789', 
-                broker_id='9A95', 
-                account_id='12345678', 
-                signed=True)
-            )
+EarmarkStocksDetail(
+    stocks=[
+        EarmarkStockDetail(
+            contract=Contract(
+                security_type='STK',
+                exchange='TSE',
+                code='1217',
+                target_code=''
+            ),
+            share=1000,
+            price=9,
+            amount=9020,
+            order_datetime='2026-05-20T15:16:28+08:00',
+            status=true,
+            info='成功'
         )
+    ],
+    account=StockAccount(
+        person_id='YOUR_PERSON_ID',
+        broker_id='YOUR_BROKER_ID',
+        account_id='YOUR_ACCOUNT_ID',
+        signed=true,
+        username=''
     )
+)
 
 ```
 
-### 範例
+In
 
-查詢所有名下帳號的圈券狀態
+```
+curl -X POST http://localhost:8080/api/v1/order/earmarking_detail \
+  -H 'Content-Type: application/json' \
+  -d '{
+    "account": {
+      "broker_id": "YOUR_BROKER_ID",
+      "account_id": "YOUR_ACCOUNT_ID"
+    }
+  }'
+
+```
+
+Out
+
+```
+{"stocks":[{"contract":{"security_type":"STK","exchange":"TSE","code":"1217","target_code":""},"share":1000,"price":9.0,"amount":9020,"order_datetime":"2026-05-20T15:16:28+08:00","status":true,"info":"成功"}],"account":{"account_type":"S","person_id":"YOUR_PERSON_ID","broker_id":"YOUR_BROKER_ID","account_id":"YOUR_ACCOUNT_ID","signed":true,"username":""}}
+
+```
+
+## 預收股票
+
+reserve_stock / stock_reserve_summary / stock_reserve_detail
+
+```
+api.reserve_stock?
+
+Signature:
+    api.reserve_stock(
+        contract: sj.Stock,
+        share: int,
+        account: Optional[sj.Account] = None,
+        timeout: Optional[int] = 5000,
+        cb: Optional[Callable[[sj.ReserveOrderResp], None]] = None,
+    ) -> sj.ReserveOrderResp
+
+api.stock_reserve_summary?
+
+Signature:
+    api.stock_reserve_summary(
+        account: Optional[sj.Account] = None,
+        timeout: Optional[int] = 5000,
+        cb: Optional[Callable[[sj.ReserveStocksSummary], None]] = None,
+    ) -> sj.ReserveStocksSummary
+
+api.stock_reserve_detail?
+
+Signature:
+    api.stock_reserve_detail(
+        account: Optional[sj.Account] = None,
+        timeout: Optional[int] = 5000,
+        cb: Optional[Callable[[sj.ReserveStocksDetail], None]] = None,
+    ) -> sj.ReserveStocksDetail
+
+```
+
+Parameters
+
+```
+reserve_stock
+    contract: 商品檔（由 api.Contracts.Stocks.* 取得）
+    share:    預收股數
+    account:  證券帳號
+    timeout:  逾時毫秒
+    cb:       選填，callback 函式
+
+stock_reserve_summary
+    account:  證券帳號
+    timeout:  逾時毫秒
+    cb:       選填，callback 函式
+
+stock_reserve_detail
+    account:  證券帳號
+    timeout:  逾時毫秒
+    cb:       選填，callback 函式
+
+```
+
+reserve_stock / stock_reserve_summary / stock_reserve_detail
+
+```
+POST /api/v1/order/reserve_stock
+Content-Type: application/json
+
+{
+  "contract": { "security_type": "STK", "exchange": <Exchange>, "code": <string> },
+  "share": <integer>,
+  "account": { "broker_id": <string>, "account_id": <string> }
+}
+
+POST /api/v1/order/stock_reserve_summary
+Content-Type: application/json
+
+{
+  "account": { "broker_id": <string>, "account_id": <string> }
+}
+
+POST /api/v1/order/stock_reserve_detail
+Content-Type: application/json
+
+{
+  "account": { "broker_id": <string>, "account_id": <string> }
+}
+
+```
+
+Parameters
+
+```
+reserve_stock
+    contract.exchange: 交易所 {TSE, OTC}
+    contract.code:     商品代碼
+    share:             預收股數
+    account:           證券帳號
+
+stock_reserve_summary
+    account:           證券帳號
+
+stock_reserve_detail
+    account:           證券帳號
+
+```
+
+### 申請預收股票
+
+Order
+
+```
+# 商品檔
+contract = api.Contracts.Stocks.TSE.TSE1217
+# 預收股數
+share = 1000
+
+```
+
+In
+
+```
+# 申請預收股票
+resp = api.reserve_stock(contract, share, account=api.stock_account)
+resp
+
+```
+
+Out
+
+```
+ReserveOrderResp(
+    contract=Contract(
+        security_type='STK',
+        exchange='TSE',
+        code='1217',
+        target_code=''
+    ),
+    account=StockAccount(
+        person_id='YOUR_PERSON_ID',
+        broker_id='YOUR_BROKER_ID',
+        account_id='YOUR_ACCOUNT_ID',
+        signed=true,
+        username=''
+    ),
+    share=1000,
+    status=true,
+    info=''
+)
+
+```
+
+In
+
+```
+curl -X POST http://localhost:8080/api/v1/order/reserve_stock \
+  -H 'Content-Type: application/json' \
+  -d '{
+    "contract": {
+      "security_type": "STK",
+      "exchange": "TSE",
+      "code": "1217"
+    },
+    "share": 1000,
+    "account": {
+      "broker_id": "YOUR_BROKER_ID",
+      "account_id": "YOUR_ACCOUNT_ID"
+    }
+  }'
+
+```
+
+Out
+
+```
+{"contract":{"security_type":"STK","exchange":"TSE","code":"1217","target_code":""},"account":{"account_type":"S","person_id":"YOUR_PERSON_ID","broker_id":"YOUR_BROKER_ID","account_id":"YOUR_ACCOUNT_ID","signed":true,"username":""},"share":1000,"status":true,"info":""}
+
+```
+
+### 查詢預收股票狀態
+
+In
+
+```
+resp = api.stock_reserve_summary(account=api.stock_account)
+resp
+
+```
+
+Out
+
+```
+ReserveStocksSummary(
+    stocks=[
+        ReserveStockSummary(
+            contract=Contract(
+                security_type='STK',
+                exchange='TSE',
+                code='2890',
+                target_code=''
+            ),
+            available_share=5000,
+            reserved_share=0
+        )
+    ],
+    account=StockAccount(
+        person_id='YOUR_PERSON_ID',
+        broker_id='YOUR_BROKER_ID',
+        account_id='YOUR_ACCOUNT_ID',
+        signed=true,
+        username=''
+    )
+)
+
+```
+
+In
+
+```
+curl -X POST http://localhost:8080/api/v1/order/stock_reserve_summary \
+  -H 'Content-Type: application/json' \
+  -d '{
+    "account": {
+      "broker_id": "YOUR_BROKER_ID",
+      "account_id": "YOUR_ACCOUNT_ID"
+    }
+  }'
+
+```
+
+Out
+
+```
+{"stocks":[{"contract":{"security_type":"STK","exchange":"TSE","code":"2890","target_code":""},"available_share":5000,"reserved_share":0}],"account":{"account_type":"S","person_id":"YOUR_PERSON_ID","broker_id":"YOUR_BROKER_ID","account_id":"YOUR_ACCOUNT_ID","signed":true,"username":""}}
+
+```
+
+### 查詢預收股票明細
+
+In
+
+```
+resp = api.stock_reserve_detail(account=api.stock_account)
+resp
+
+```
+
+Out
+
+```
+ReserveStocksDetail(
+    stocks=[
+        ReserveStockDetail(
+            contract=Contract(
+                security_type='STK',
+                exchange='TSE',
+                code='6153',
+                target_code=''
+            ),
+            share=1000,
+            order_datetime='2026-05-20T15:16:28+08:00',
+            status=true,
+            info='已完成'
+        )
+    ],
+    account=StockAccount(
+        person_id='YOUR_PERSON_ID',
+        broker_id='YOUR_BROKER_ID',
+        account_id='YOUR_ACCOUNT_ID',
+        signed=true,
+        username=''
+    )
+)
+
+```
+
+In
+
+```
+curl -X POST http://localhost:8080/api/v1/order/stock_reserve_detail \
+  -H 'Content-Type: application/json' \
+  -d '{
+    "account": {
+      "broker_id": "YOUR_BROKER_ID",
+      "account_id": "YOUR_ACCOUNT_ID"
+    }
+  }'
+
+```
+
+Out
+
+```
+{"stocks":[{"contract":{"security_type":"STK","exchange":"TSE","code":"6153","target_code":""},"share":1000,"order_datetime":"2026-05-20T15:16:28+08:00","status":true,"info":"已完成"}],"account":{"account_type":"S","person_id":"YOUR_PERSON_ID","broker_id":"YOUR_BROKER_ID","account_id":"YOUR_ACCOUNT_ID","signed":true,"username":""}}
+
+```
+
+### 應用範例
+
+查詢所有名下證券帳號的圈券狀態，將可圈額度全數申請預收股票。
 
 In
 
@@ -210,21 +528,25 @@ In
 import shioaji as sj
 
 api = sj.Shioaji()
-accounts = api.login("YOUR_PERSON_ID", "YOUR_PASSWORD", contracts_timeout=10000)
-api.activate_ca(
-    ca_path="/c/your/ca/path/Sinopac.pfx",
-    ca_passwd="YOUR_CA_PASSWORD",
-    person_id="Person of this Ca",
+accounts = api.login(
+    api_key="YOUR_API_KEY",
+    secret_key="YOUR_SECRET_KEY",
 )
+api.activate_ca(
+    ca_path="your/ca/path/Sinopac.pfx",
+    ca_passwd="YOUR_CA_PASSWORD",
+    person_id="YOUR_PERSON_ID",
+)
+
 for account in accounts:
-    if account.account_type == AccountType.Stock:
-        reserve_summary_resp = api.stock_reserve_summary(account)
-        for reserve_stock_summary in reserve_summary_resp.response.stocks:
-                if reserve_stock_summary.available_share:
-                    resp = api.reserve_stock(
-                        account, 
-                        reserve_stock_summary.contract,
-                        reserve_stock_summary.available_share
-                    )
+    if account.account_type == sj.AccountType.Stock:
+        summary = api.stock_reserve_summary(account=account)
+        for s in summary.stocks:
+            if s.available_share:
+                api.reserve_stock(
+                    s.contract,
+                    s.available_share,
+                    account=account,
+                )
 
 ```

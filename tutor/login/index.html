@@ -373,9 +373,20 @@
   
   
   
-    <li class="md-nav__item">
-      <a href="../../env_setup/" class="md-nav__link">
+    
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
         
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_4" >
+        
+          
+          <label class="md-nav__link" for="__nav_4" id="__nav_4_label" tabindex="0">
+            
   
   
   <span class="md-ellipsis">
@@ -384,7 +395,65 @@
   </span>
   
 
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_4_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_4">
+            <span class="md-nav__icon md-icon"></span>
+            Environment Setup
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../env_setup/python/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Python User
+    
+  </span>
+  
+
       </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../env_setup/other/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Other Language User
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
     </li>
   
 
@@ -525,7 +594,7 @@
   
   
   <span class="md-ellipsis">
-    Terms of service
+    API Signing and Test
     
   </span>
   
@@ -630,15 +699,6 @@
       <ul class="md-nav__list">
         
           <li class="md-nav__item">
-  <a href="#fetch-contracts-callback" class="md-nav__link">
-    <span class="md-ellipsis">
-      Fetch Contracts Callback
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
   <a href="#subscribe-trade" class="md-nav__link">
     <span class="md-ellipsis">
       Subscribe Trade
@@ -675,6 +735,15 @@
   <a href="#default-account" class="md-nav__link">
     <span class="md-ellipsis">
       Default Account
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#set-default-account" class="md-nav__link">
+    <span class="md-ellipsis">
+      Set Default Account
     </span>
   </a>
   
@@ -1728,6 +1797,44 @@
   
   
   
+    
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_6" >
+        
+          
+          <label class="md-nav__link" for="__nav_6" id="__nav_6_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    Upgrading
+    
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_6_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_6">
+            <span class="md-nav__icon md-icon"></span>
+            Upgrading
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
     <li class="md-nav__item">
       <a href="../../upgrade/" class="md-nav__link">
         
@@ -1740,6 +1847,37 @@
   
 
       </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../upgrade_to_1_5/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Upgrading to 1.5
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
     </li>
   
 
@@ -1779,28 +1917,6 @@
   
   <span class="md-ellipsis">
     Release Note
-    
-  </span>
-  
-
-      </a>
-    </li>
-  
-
-    
-      
-      
-  
-  
-  
-  
-    <li class="md-nav__item">
-      <a href="https://sinotrade.github.io/Shioaji.Csharp/" class="md-nav__link">
-        
-  
-  
-  <span class="md-ellipsis">
-    C#
     
   </span>
   
@@ -1867,15 +1983,6 @@
       <ul class="md-nav__list">
         
           <li class="md-nav__item">
-  <a href="#fetch-contracts-callback" class="md-nav__link">
-    <span class="md-ellipsis">
-      Fetch Contracts Callback
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
   <a href="#subscribe-trade" class="md-nav__link">
     <span class="md-ellipsis">
       Subscribe Trade
@@ -1917,6 +2024,15 @@
   
 </li>
         
+          <li class="md-nav__item">
+  <a href="#set-default-account" class="md-nav__link">
+    <span class="md-ellipsis">
+      Set Default Account
+    </span>
+  </a>
+  
+</li>
+        
       </ul>
     </nav>
   
@@ -1949,51 +2065,38 @@
 
   <h1>Login</h1>
 
-<p>Login must have a SinoPac Securities account. If you do not have a SinoPac Securities account yet. See the <a href="../prepare/open_account/">document</a> for details.</p>
+<p>Login requires a SinoPac Securities account. If you don't have one yet, see <a href="../prepare/open_account/">Open Account</a>.</p>
 <h2 id="login">Login<a class="headerlink" href="#login" title="Permanent link">&para;</a></h2>
 <div class="admonition attention">
-<p class="admonition-title">Token login</p>
-<p>After version 1.0, we are using token as our <code>login</code> method. You can be found in <a href="../prepare/token/">Token</a>. Before version 1.0, using person id and password.</p>
+<p class="admonition-title">API Key</p>
+<p>Shioaji uses API Key as the login method. See <a href="../prepare/token/">Token &amp; Certificate</a> to apply.</p>
 </div>
-<div class="admonition info">
-<p class="admonition-title">In</p>
-<div class="tabbed-set tabbed-alternate" data-tabs="1:2"><input checked="checked" id="__tabbed_1_1" name="__tabbed_1" type="radio" /><input id="__tabbed_1_2" name="__tabbed_1" type="radio" /><div class="tabbed-labels"><label for="__tabbed_1_1">version&gt;=1.0</label><label for="__tabbed_1_2">version&lt;1.0</label></div>
+<div class="tabbed-set tabbed-alternate" data-tabs="1:2"><input checked="checked" id="__tabbed_1_1" name="__tabbed_1" type="radio" /><input id="__tabbed_1_2" name="__tabbed_1" type="radio" /><div class="tabbed-labels"><label for="__tabbed_1_1">Python</label><label for="__tabbed_1_2">Other Languages</label></div>
 <div class="tabbed-content">
 <div class="tabbed-block">
+<div class="admonition info">
+<p class="admonition-title">In</p>
 <div class="highlight"><pre><span></span><code><span class="kn">import</span><span class="w"> </span><span class="nn">shioaji</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">sj</span>
-<span class="n">api</span> <span class="o">=</span> <span class="n">sj</span><span class="o">.</span><span class="n">Shioaji</span><span class="p">()</span>
+<span class="n">api</span> <span class="o">=</span> <span class="n">sj</span><span class="o">.</span><span class="n">Shioaji</span><span class="p">(</span><span class="n">simulation</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>  <span class="c1"># whether to enter simulation mode</span>
 <span class="n">api</span><span class="o">.</span><span class="n">login</span><span class="p">(</span>
-    <span class="n">api_key</span><span class="o">=</span><span class="s2">&quot;YOUR_API_KEY&quot;</span><span class="p">,</span> 
+    <span class="n">api_key</span><span class="o">=</span><span class="s2">&quot;YOUR_API_KEY&quot;</span><span class="p">,</span>
     <span class="n">secret_key</span><span class="o">=</span><span class="s2">&quot;YOUR_SECRET_KEY&quot;</span>
 <span class="p">)</span>
 </code></pre></div>
 </div>
-<div class="tabbed-block">
-<div class="highlight"><pre><span></span><code><span class="kn">import</span><span class="w"> </span><span class="nn">shioaji</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">sj</span>
-<span class="n">api</span> <span class="o">=</span> <span class="n">sj</span><span class="o">.</span><span class="n">Shioaji</span><span class="p">()</span>
-<span class="n">api</span><span class="o">.</span><span class="n">login</span><span class="p">(</span>
-    <span class="n">person_id</span><span class="o">=</span><span class="s2">&quot;YOUR_PERSON_ID&quot;</span><span class="p">,</span> 
-    <span class="n">passwd</span><span class="o">=</span><span class="s2">&quot;YOUR_PASSWORD&quot;</span><span class="p">,</span>
-<span class="p">)</span>
-</code></pre></div>
-</div>
-</div>
-</div>
-</div>
 <div class="admonition done">
 <p class="admonition-title">Out</p>
-<div class="highlight"><pre><span></span><code><span class="p">[</span><span class="n">FutureAccount</span><span class="p">(</span><span class="n">person_id</span><span class="o">=</span><span class="s1">&#39;&#39;</span><span class="p">,</span> <span class="n">broker_id</span><span class="o">=</span><span class="s1">&#39;&#39;</span><span class="p">,</span> <span class="n">account_id</span><span class="o">=</span><span class="s1">&#39;&#39;</span><span class="p">,</span> <span class="n">signed</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">username</span><span class="o">=</span><span class="s1">&#39;&#39;</span><span class="p">),</span>
-<span class="n">StockAccount</span><span class="p">(</span><span class="n">person_id</span><span class="o">=</span><span class="s1">&#39;&#39;</span><span class="p">,</span> <span class="n">broker_id</span><span class="o">=</span><span class="s1">&#39;&#39;</span><span class="p">,</span> <span class="n">account_id</span><span class="o">=</span><span class="s1">&#39;&#39;</span><span class="p">,</span> <span class="n">signed</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">username</span><span class="o">=</span><span class="s1">&#39;&#39;</span><span class="p">)]</span>
+<div class="highlight"><pre><span></span><code># Connection to Solace market data server established
+Response Code: 0 | Event Code: 0 | Info: host &#39;&lt;IP&gt;:80&#39;, hostname &#39;&lt;IP&gt;:80&#39; IP &lt;IP&gt;:80 (host 1 of 1) (host connection attempt 1 of 1) (total connection attempt 1 of 2) | Event: Session up
+
+# Account list returned after login
+[FutureAccount(person_id=&#39;&#39;, broker_id=&#39;&#39;, account_id=&#39;&#39;, signed=true, username=&#39;&#39;),
+ IntlAccount(person_id=&#39;&#39;, broker_id=&#39;&#39;, account_id=&#39;&#39;, signed=false, username=&#39;&#39;),
+ StockAccount(person_id=&#39;&#39;, broker_id=&#39;&#39;, account_id=&#39;&#39;, signed=true, username=&#39;&#39;)]
 </code></pre></div>
 </div>
-<ul>
-<li>If you cannot find <code>signed</code> in your accounts, please refer to <a href="../prepare/terms/">terms of service</a> first.</li>
-</ul>
 <div class="admonition example">
 <p class="admonition-title">Login Arguments</p>
-<div class="tabbed-set tabbed-alternate" data-tabs="2:2"><input checked="checked" id="__tabbed_2_1" name="__tabbed_2" type="radio" /><input id="__tabbed_2_2" name="__tabbed_2" type="radio" /><div class="tabbed-labels"><label for="__tabbed_2_1">version&gt;=1.0</label><label for="__tabbed_2_2">version&lt;1.0</label></div>
-<div class="tabbed-content">
-<div class="tabbed-block">
 <div class="highlight"><pre><span></span><code><span class="n">api_key</span> <span class="p">(</span><span class="nb">str</span><span class="p">):</span> <span class="n">API</span> <span class="n">Key</span>
 <span class="n">secret_key</span> <span class="p">(</span><span class="nb">str</span><span class="p">):</span> <span class="n">Secret</span> <span class="n">Key</span>
 <span class="n">fetch_contract</span> <span class="p">(</span><span class="nb">bool</span><span class="p">):</span> <span class="n">whether</span> <span class="n">to</span> <span class="n">load</span> <span class="n">contracts</span> <span class="kn">from</span><span class="w"> </span><span class="nn">cache</span> <span class="ow">or</span> <span class="n">server</span> <span class="p">(</span><span class="n">Default</span><span class="p">:</span> <span class="kc">True</span><span class="p">)</span>
@@ -2003,51 +2106,26 @@
 <span class="n">receive_window</span> <span class="p">(</span><span class="nb">int</span><span class="p">):</span> <span class="n">valid</span> <span class="n">duration</span> <span class="k">for</span> <span class="n">login</span> <span class="n">execution</span><span class="o">.</span> <span class="p">(</span><span class="n">Default</span><span class="p">:</span> <span class="mi">30</span><span class="p">,</span><span class="mi">000</span> <span class="n">ms</span><span class="p">)</span>
 </code></pre></div>
 </div>
-<div class="tabbed-block">
-<div class="highlight"><pre><span></span><code><span class="n">person_id</span> <span class="p">(</span><span class="nb">str</span><span class="p">):</span> <span class="n">person_id</span>
-<span class="n">passwd</span> <span class="p">(</span><span class="nb">str</span><span class="p">):</span> <span class="n">password</span>
-<span class="n">hashed</span> <span class="p">(</span><span class="nb">bool</span><span class="p">):</span> <span class="n">whether</span> <span class="n">password</span> <span class="n">has</span> <span class="n">been</span> <span class="n">hashed</span> <span class="p">(</span><span class="n">Default</span><span class="p">:</span> <span class="kc">False</span><span class="p">)</span>
-<span class="n">fetch_contract</span> <span class="p">(</span><span class="nb">bool</span><span class="p">):</span> <span class="n">whether</span> <span class="n">to</span> <span class="n">load</span> <span class="n">contracts</span> <span class="kn">from</span><span class="w"> </span><span class="nn">cache</span> <span class="ow">or</span> <span class="n">server</span> <span class="p">(</span><span class="n">Default</span><span class="p">:</span> <span class="kc">True</span><span class="p">)</span>
-<span class="n">contracts_timeout</span> <span class="p">(</span><span class="nb">int</span><span class="p">):</span> <span class="n">fetch</span> <span class="n">contract</span> <span class="n">timeout</span> <span class="p">(</span><span class="n">Default</span><span class="p">:</span> <span class="mi">0</span> <span class="n">ms</span><span class="p">)</span>
-<span class="n">contracts_cb</span> <span class="p">(</span><span class="n">typing</span><span class="o">.</span><span class="n">Callable</span><span class="p">):</span> <span class="n">fetch</span> <span class="n">contract</span> <span class="n">callback</span> <span class="p">(</span><span class="n">Default</span><span class="p">:</span> <span class="kc">None</span><span class="p">)</span>
-<span class="n">subscribe_trade</span> <span class="p">(</span><span class="nb">bool</span><span class="p">):</span> <span class="n">whether</span> <span class="n">to</span> <span class="n">subscribe</span> <span class="n">Order</span><span class="o">/</span><span class="n">Deal</span> <span class="n">event</span> <span class="n">callback</span> <span class="p">(</span><span class="n">Default</span><span class="p">:</span> <span class="kc">True</span><span class="p">)</span>
-</code></pre></div>
-</div>
-</div>
-</div>
-</div>
 <div class="admonition attention">
-<p class="admonition-title">Warning</p>
-<p>When the version is greater than 1.0, you may receive <strong>Sign data is timeout</strong> when login. That is, login has exceeded the effective execution time. It may be that <u>the time difference between your computer and server is too large</u>, you need to calibrate your computer time. Or <u>login execution time exceeds valid time</u>, you can increase <code>receive_window</code>.</p>
+<p class="admonition-title">Note</p>
+<p>If you receive <strong>Sign data is timeout</strong>, login exceeded the effective execution time. Possible causes:</p>
+<ul>
+<li>System time differs too much from server time → calibrate system time</li>
+<li>Login execution exceeds <code>receive_window</code> → increase <code>receive_window</code> (Default: 30,000 ms)</li>
+</ul>
 </div>
-<h3 id="fetch-contracts-callback">Fetch Contracts Callback<a class="headerlink" href="#fetch-contracts-callback" title="Permanent link">&para;</a></h3>
-<p>You can use <code>contracts_cb</code> as print to check contract download status.</p>
+<p><strong>Fetch Contracts Callback</strong></p>
+<p>Use <code>contracts_cb</code> to monitor contract fetch progress:</p>
 <div class="admonition info">
 <p class="admonition-title">In</p>
-<div class="tabbed-set tabbed-alternate" data-tabs="3:2"><input checked="checked" id="__tabbed_3_1" name="__tabbed_3" type="radio" /><input id="__tabbed_3_2" name="__tabbed_3" type="radio" /><div class="tabbed-labels"><label for="__tabbed_3_1">version&gt;=1.0</label><label for="__tabbed_3_2">version&lt;1.0</label></div>
-<div class="tabbed-content">
-<div class="tabbed-block">
 <div class="highlight"><pre><span></span><code><span class="kn">import</span><span class="w"> </span><span class="nn">shioaji</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">sj</span>
 <span class="n">api</span> <span class="o">=</span> <span class="n">sj</span><span class="o">.</span><span class="n">Shioaji</span><span class="p">()</span>
 <span class="n">api</span><span class="o">.</span><span class="n">login</span><span class="p">(</span>
-    <span class="n">api_key</span><span class="o">=</span><span class="s2">&quot;YOUR_API_KEY&quot;</span><span class="p">,</span> 
-    <span class="n">secret_key</span><span class="o">=</span><span class="s2">&quot;YOUR_SECRET_KEY&quot;</span><span class="p">,</span> 
+    <span class="n">api_key</span><span class="o">=</span><span class="s2">&quot;YOUR_API_KEY&quot;</span><span class="p">,</span>
+    <span class="n">secret_key</span><span class="o">=</span><span class="s2">&quot;YOUR_SECRET_KEY&quot;</span><span class="p">,</span>
     <span class="n">contracts_cb</span><span class="o">=</span><span class="k">lambda</span> <span class="n">security_type</span><span class="p">:</span> <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="nb">repr</span><span class="p">(</span><span class="n">security_type</span><span class="p">)</span><span class="si">}</span><span class="s2"> fetch done.&quot;</span><span class="p">)</span>
 <span class="p">)</span>
 </code></pre></div>
-</div>
-<div class="tabbed-block">
-<div class="highlight"><pre><span></span><code><span class="kn">import</span><span class="w"> </span><span class="nn">shioaji</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">sj</span>
-<span class="n">api</span> <span class="o">=</span> <span class="n">sj</span><span class="o">.</span><span class="n">Shioaji</span><span class="p">()</span>
-<span class="n">api</span><span class="o">.</span><span class="n">login</span><span class="p">(</span>
-    <span class="n">person_id</span><span class="o">=</span><span class="s2">&quot;YOUR_PERSON_ID&quot;</span><span class="p">,</span> 
-    <span class="n">passwd</span><span class="o">=</span><span class="s2">&quot;YOUR_PASSWORD&quot;</span><span class="p">,</span> 
-    <span class="n">contracts_cb</span><span class="o">=</span><span class="k">lambda</span> <span class="n">security_type</span><span class="p">:</span> <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="nb">repr</span><span class="p">(</span><span class="n">security_type</span><span class="p">)</span><span class="si">}</span><span class="s2"> fetch done.&quot;</span><span class="p">)</span>
-<span class="p">)</span>
-</code></pre></div>
-</div>
-</div>
-</div>
 </div>
 <div class="admonition done">
 <p class="admonition-title">Out</p>
@@ -2061,86 +2139,421 @@
 <span class="o">&lt;</span><span class="n">SecurityType</span><span class="o">.</span><span class="n">Stock</span><span class="p">:</span> <span class="s1">&#39;STK&#39;</span><span class="o">&gt;</span> <span class="n">fetch</span> <span class="n">done</span><span class="o">.</span>
 </code></pre></div>
 </div>
-<h3 id="subscribe-trade">Subscribe Trade<a class="headerlink" href="#subscribe-trade" title="Permanent link">&para;</a></h3>
-<p>There are 2 options that you can adjust whether to subscribe trade (Order/Deal Event Callback).<br />
-The first is <code>subscribe_trade</code> in login aruguments. Default value of <code>subscribe_trade</code> is <code>True</code>, and it will automatically subscribe trade from all accounts. You don't need to make any adjustments, if you would like to receive Order/Deal Events.</p>
+</div>
+<div class="tabbed-block">
 <div class="admonition info">
 <p class="admonition-title">In</p>
-<div class="tabbed-set tabbed-alternate" data-tabs="4:2"><input checked="checked" id="__tabbed_4_1" name="__tabbed_4" type="radio" /><input id="__tabbed_4_2" name="__tabbed_4" type="radio" /><div class="tabbed-labels"><label for="__tabbed_4_1">version&gt;=1.0</label><label for="__tabbed_4_2">version&lt;1.0</label></div>
-<div class="tabbed-content">
-<div class="tabbed-block">
-<div class="highlight"><pre><span></span><code><span class="kn">import</span><span class="w"> </span><span class="nn">shioaji</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">sj</span>
-<span class="n">api</span> <span class="o">=</span> <span class="n">sj</span><span class="o">.</span><span class="n">Shioaji</span><span class="p">()</span>
-<span class="n">api</span><span class="o">.</span><span class="n">login</span><span class="p">(</span>
-    <span class="n">api_key</span><span class="o">=</span><span class="s2">&quot;YOUR_API_KEY&quot;</span><span class="p">,</span> 
-    <span class="n">secret_key</span><span class="o">=</span><span class="s2">&quot;YOUR_SECRET_KEY&quot;</span><span class="p">,</span> 
-    <span class="n">subscribe_trade</span><span class="o">=</span><span class="kc">True</span>
-<span class="p">)</span>
-</code></pre></div>
-</div>
-<div class="tabbed-block">
-<div class="highlight"><pre><span></span><code><span class="kn">import</span><span class="w"> </span><span class="nn">shioaji</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">sj</span>
-<span class="n">api</span> <span class="o">=</span> <span class="n">sj</span><span class="o">.</span><span class="n">Shioaji</span><span class="p">()</span>
-<span class="n">api</span><span class="o">.</span><span class="n">login</span><span class="p">(</span>
-    <span class="n">person_id</span><span class="o">=</span><span class="s2">&quot;YOUR_PERSON_ID&quot;</span><span class="p">,</span> 
-    <span class="n">passwd</span><span class="o">=</span><span class="s2">&quot;YOUR_PASSWORD&quot;</span><span class="p">,</span> 
-    <span class="n">subscribe_trade</span><span class="o">=</span><span class="kc">True</span>
-<span class="p">)</span>
-</code></pre></div>
-</div>
-</div>
-</div>
-</div>
-<p>The second one is to manually use the API <code>subscribe_trade</code> and <code>unsubscribe_trade</code> for specific account.</p>
-<div class="admonition info">
-<p class="admonition-title">subscribe trade</p>
-<div class="highlight"><pre><span></span><code><span class="n">api</span><span class="o">.</span><span class="n">subscribe_trade</span><span class="p">(</span><span class="n">account</span><span class="p">)</span>
-</code></pre></div>
-</div>
-<div class="admonition info">
-<p class="admonition-title">unsubscribe trade</p>
-<div class="highlight"><pre><span></span><code><span class="n">api</span><span class="o">.</span><span class="n">unsubscribe_trade</span><span class="p">(</span><span class="n">account</span><span class="p">)</span>
-</code></pre></div>
-</div>
-<h2 id="account">Account<a class="headerlink" href="#account" title="Permanent link">&para;</a></h2>
-<h3 id="list-accounts">List Accounts<a class="headerlink" href="#list-accounts" title="Permanent link">&para;</a></h3>
-<div class="admonition info">
-<p class="admonition-title">In:</p>
-<div class="highlight"><pre><span></span><code><span class="n">accounts</span> <span class="o">=</span> <span class="n">api</span><span class="o">.</span><span class="n">list_accounts</span><span class="p">()</span>
+<div class="highlight"><pre><span></span><code><span class="c1"># .env (in the working directory) should contain:</span>
+<span class="nv">SJ_API_KEY</span><span class="o">=</span>YOUR_API_KEY<span class="w">                </span><span class="c1"># edit it</span>
+<span class="nv">SJ_SEC_KEY</span><span class="o">=</span>YOUR_SECRET_KEY<span class="w">             </span><span class="c1"># edit it</span>
+<span class="nv">SJ_PRODUCTION</span><span class="o">=</span><span class="nb">true</span><span class="w">                     </span><span class="c1"># whether to enter production mode</span>
+
+<span class="c1"># Start server (auto-reads .env and logs in)</span>
+shioaji<span class="w"> </span>server<span class="w"> </span>start
 </code></pre></div>
 </div>
 <div class="admonition done">
 <p class="admonition-title">Out</p>
-<div class="highlight"><pre><span></span><code><span class="c1"># print(accounts)</span>
-<span class="p">[</span>
-    <span class="n">FutureAccount</span><span class="p">(</span><span class="n">person_id</span><span class="o">=</span><span class="s1">&#39;PERSON_ID_1&#39;</span><span class="p">,</span> <span class="n">broker_id</span><span class="o">=</span><span class="s1">&#39;BROKER_ID_1&#39;</span><span class="p">,</span> <span class="n">account_id</span><span class="o">=</span><span class="s1">&#39;ACCOUNT_ID_1&#39;</span><span class="p">,</span> <span class="n">signed</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">username</span><span class="o">=</span><span class="s1">&#39;USERNAME_1&#39;</span><span class="p">),</span> 
-    <span class="n">FutureAccount</span><span class="p">(</span><span class="n">person_id</span><span class="o">=</span><span class="s1">&#39;PERSON_ID_2&#39;</span><span class="p">,</span> <span class="n">broker_id</span><span class="o">=</span><span class="s1">&#39;BROKER_ID_2&#39;</span><span class="p">,</span> <span class="n">account_id</span><span class="o">=</span><span class="s1">&#39;ACCOUNT_ID_2&#39;</span><span class="p">,</span> <span class="n">username</span><span class="o">=</span><span class="s1">&#39;USERNAME_2&#39;</span><span class="p">),</span> 
-    <span class="n">StockAccount</span><span class="p">(</span><span class="n">person_id</span><span class="o">=</span><span class="s1">&#39;PERSON_ID_3&#39;</span><span class="p">,</span> <span class="n">broker_id</span><span class="o">=</span><span class="s1">&#39;BROKER_ID_3&#39;</span><span class="p">,</span> <span class="n">account_id</span><span class="o">=</span><span class="s1">&#39;ACCOUNT_ID_3&#39;</span><span class="p">,</span> <span class="n">username</span><span class="o">=</span><span class="s1">&#39;USERNAME_3&#39;</span><span class="p">),</span> 
-    <span class="n">StockAccount</span><span class="p">(</span><span class="n">person_id</span><span class="o">=</span><span class="s1">&#39;PERSON_ID_4&#39;</span><span class="p">,</span> <span class="n">broker_id</span><span class="o">=</span><span class="s1">&#39;BROKER_ID_4&#39;</span><span class="p">,</span> <span class="n">account_id</span><span class="o">=</span><span class="s1">&#39;ACCOUNT_ID_4&#39;</span><span class="p">,</span> <span class="n">signed</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">username</span><span class="o">=</span><span class="s1">&#39;USERNAME_4&#39;</span><span class="p">)</span>
+<div class="highlight"><pre><span></span><code># Reads API key and settings from .env
+Loaded environment variables from .env file
+INFO shioaji::cli::server: Starting Shioaji API Server...
+
+# First login (no cached token)
+INFO shioaji::api::api_v1::auth::token_login: No cached token available, performing new login
+INFO shioaji::api::api_v1::auth::token_login: Stored new token in slot 1
+
+# Contract fetch progress
+INFO shioaji::api::api_v1::contracts::api: Fetched 127 IND contracts (1 pages)
+INFO shioaji::api::api_v1::contracts::api: Fetched 42787 STK contracts (9 pages)
+INFO shioaji::api::api_v1::contracts::api: Fetched 2489 FUT contracts (1 pages)
+INFO shioaji::api::api_v1::contracts::api: Fetched 8653 OPT contracts (2 pages)
+INFO shioaji::server: Loaded 54056 contracts
+
+# CA certificate loaded
+INFO shioaji::server: CA certificate activated successfully
+
+# Authentication successful, login complete
+INFO shioaji::cli::server: Successfully authenticated with Shioaji API
+
+# HTTP server up, ready to accept requests
+INFO shioaji::cli::server: 🚀 Shioaji API Server is running on http://127.0.0.1:8080
+INFO salvo_core::server: listening [HTTP/1.1] on http://127.0.0.1:8080
+</code></pre></div>
+</div>
+<div class="admonition example">
+<p class="admonition-title">Login Arguments</p>
+<div class="highlight"><pre><span></span><code>SJ_API_KEY<span class="w">      </span>API<span class="w"> </span>Key<span class="w"> </span><span class="o">(</span>required<span class="o">)</span>
+SJ_SEC_KEY<span class="w">      </span>Secret<span class="w"> </span>Key<span class="w"> </span><span class="o">(</span>required<span class="o">)</span>
+SJ_PRODUCTION<span class="w">   </span>whether<span class="w"> </span>to<span class="w"> </span>enter<span class="w"> </span>production<span class="w"> </span>mode<span class="w"> </span><span class="o">(</span>Default:<span class="w"> </span><span class="nb">false</span><span class="o">)</span>
+</code></pre></div>
+</div>
+<div class="admonition attention">
+<p class="admonition-title">Note</p>
+<p>If you receive <strong>Sign data is timeout</strong>, login exceeded the effective execution time. Please calibrate system time.</p>
+</div>
+</div>
+</div>
+</div>
+<h3 id="subscribe-trade">Subscribe Trade<a class="headerlink" href="#subscribe-trade" title="Permanent link">&para;</a></h3>
+<div class="tabbed-set tabbed-alternate" data-tabs="2:3"><input checked="checked" id="__tabbed_2_1" name="__tabbed_2" type="radio" /><input id="__tabbed_2_2" name="__tabbed_2" type="radio" /><input id="__tabbed_2_3" name="__tabbed_2" type="radio" /><div class="tabbed-labels"><label for="__tabbed_2_1">Python</label><label for="__tabbed_2_2">CLI</label><label for="__tabbed_2_3">HTTP</label></div>
+<div class="tabbed-content">
+<div class="tabbed-block">
+<p>There are 2 options to adjust trade subscription (Order/Deal Event Callback). The first is the <code>subscribe_trade</code> argument of <code>login</code>. Its default value is <code>True</code>, which auto-subscribes trade events from all accounts.</p>
+<div class="admonition info">
+<p class="admonition-title">In</p>
+<div class="highlight"><pre><span></span><code><span class="kn">import</span><span class="w"> </span><span class="nn">shioaji</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">sj</span>
+<span class="n">api</span> <span class="o">=</span> <span class="n">sj</span><span class="o">.</span><span class="n">Shioaji</span><span class="p">()</span>
+<span class="n">api</span><span class="o">.</span><span class="n">login</span><span class="p">(</span>
+<span class="hll">    <span class="n">api_key</span><span class="o">=</span><span class="s2">&quot;YOUR_API_KEY&quot;</span><span class="p">,</span>
+</span><span class="hll">    <span class="n">secret_key</span><span class="o">=</span><span class="s2">&quot;YOUR_SECRET_KEY&quot;</span><span class="p">,</span>
+</span><span class="hll">    <span class="n">subscribe_trade</span><span class="o">=</span><span class="kc">True</span>
+</span><span class="p">)</span>
+</code></pre></div>
+</div>
+<p>The second option is to call <code>subscribe_trade</code> / <code>unsubscribe_trade</code> on a specific account to subscribe or unsubscribe.</p>
+<div class="admonition info">
+<p class="admonition-title">subscribe trade</p>
+<div class="highlight"><pre><span></span><code><span class="hll"><span class="n">api</span><span class="o">.</span><span class="n">subscribe_trade</span><span class="p">(</span><span class="n">account</span><span class="p">)</span>
+</span></code></pre></div>
+</div>
+<div class="admonition info">
+<p class="admonition-title">unsubscribe trade</p>
+<div class="highlight"><pre><span></span><code><span class="hll"><span class="n">api</span><span class="o">.</span><span class="n">unsubscribe_trade</span><span class="p">(</span><span class="n">account</span><span class="p">)</span>
+</span></code></pre></div>
+</div>
+</div>
+<div class="tabbed-block">
+<div class="admonition warning">
+<p class="admonition-title">Use HTTP</p>
+<p>Shioaji 1.5.x CLI doesn't provide a <code>subscribe-trade</code> subcommand. Use HTTP instead.</p>
+</div>
+</div>
+<div class="tabbed-block">
+<p>The server doesn't auto-subscribe on startup; subscribe per account.</p>
+<div class="admonition info">
+<p class="admonition-title">subscribe trade</p>
+<div class="highlight"><pre><span></span><code>curl<span class="w"> </span>-X<span class="w"> </span>POST<span class="w"> </span>http://localhost:8080/api/v1/auth/subscribe_trade<span class="w"> </span><span class="se">\</span>
+<span class="w">  </span>-H<span class="w"> </span><span class="s2">&quot;Content-Type: application/json&quot;</span><span class="w"> </span><span class="se">\</span>
+<span class="hll"><span class="w">  </span>-d<span class="w"> </span><span class="s1">&#39;{&quot;broker_id&quot;: &quot;YOUR_BROKER_ID&quot;, &quot;account_id&quot;: &quot;YOUR_ACCOUNT_ID&quot;}&#39;</span>
+</span></code></pre></div>
+</div>
+<div class="admonition info">
+<p class="admonition-title">unsubscribe trade</p>
+<div class="highlight"><pre><span></span><code>curl<span class="w"> </span>-X<span class="w"> </span>POST<span class="w"> </span>http://localhost:8080/api/v1/auth/unsubscribe_trade<span class="w"> </span><span class="se">\</span>
+<span class="w">  </span>-H<span class="w"> </span><span class="s2">&quot;Content-Type: application/json&quot;</span><span class="w"> </span><span class="se">\</span>
+<span class="hll"><span class="w">  </span>-d<span class="w"> </span><span class="s1">&#39;{&quot;broker_id&quot;: &quot;YOUR_BROKER_ID&quot;, &quot;account_id&quot;: &quot;YOUR_ACCOUNT_ID&quot;}&#39;</span>
+</span></code></pre></div>
+</div>
+</div>
+</div>
+</div>
+<!--
+=== "JavaScript"
+    The server doesn't auto-subscribe on startup; subscribe per account.
+
+    !!! info "subscribe trade"
+        <div class="highlight"><pre><span></span><code><span class="kd">const</span><span class="w"> </span><span class="nx">res</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="k">await</span><span class="w"> </span><span class="nx">fetch</span><span class="p">(</span><span class="s1">&#39;http://localhost:8080/api/v1/auth/subscribe_trade&#39;</span><span class="p">,</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="nx">method</span><span class="o">:</span><span class="w"> </span><span class="s1">&#39;POST&#39;</span><span class="p">,</span>
+<span class="w">    </span><span class="nx">headers</span><span class="o">:</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="s1">&#39;Content-Type&#39;</span><span class="o">:</span><span class="w"> </span><span class="s1">&#39;application/json&#39;</span><span class="w"> </span><span class="p">},</span>
+<span class="hll"><span class="w">    </span><span class="nx">body</span><span class="o">:</span><span class="w"> </span><span class="nb">JSON</span><span class="p">.</span><span class="nx">stringify</span><span class="p">({</span><span class="w"> </span><span class="nx">broker_id</span><span class="o">:</span><span class="w"> </span><span class="s1">&#39;YOUR_BROKER_ID&#39;</span><span class="p">,</span><span class="w"> </span><span class="nx">account_id</span><span class="o">:</span><span class="w"> </span><span class="s1">&#39;YOUR_ACCOUNT_ID&#39;</span><span class="w"> </span><span class="p">}),</span>
+</span><span class="p">});</span>
+<span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="k">await</span><span class="w"> </span><span class="nx">res</span><span class="p">.</span><span class="nx">json</span><span class="p">());</span>
+</code></pre></div>
+
+    !!! info "unsubscribe trade"
+        <div class="highlight"><pre><span></span><code><span class="kd">const</span><span class="w"> </span><span class="nx">res</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="k">await</span><span class="w"> </span><span class="nx">fetch</span><span class="p">(</span><span class="s1">&#39;http://localhost:8080/api/v1/auth/unsubscribe_trade&#39;</span><span class="p">,</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="nx">method</span><span class="o">:</span><span class="w"> </span><span class="s1">&#39;POST&#39;</span><span class="p">,</span>
+<span class="w">    </span><span class="nx">headers</span><span class="o">:</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="s1">&#39;Content-Type&#39;</span><span class="o">:</span><span class="w"> </span><span class="s1">&#39;application/json&#39;</span><span class="w"> </span><span class="p">},</span>
+<span class="hll"><span class="w">    </span><span class="nx">body</span><span class="o">:</span><span class="w"> </span><span class="nb">JSON</span><span class="p">.</span><span class="nx">stringify</span><span class="p">({</span><span class="w"> </span><span class="nx">broker_id</span><span class="o">:</span><span class="w"> </span><span class="s1">&#39;YOUR_BROKER_ID&#39;</span><span class="p">,</span><span class="w"> </span><span class="nx">account_id</span><span class="o">:</span><span class="w"> </span><span class="s1">&#39;YOUR_ACCOUNT_ID&#39;</span><span class="w"> </span><span class="p">}),</span>
+</span><span class="p">});</span>
+<span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="k">await</span><span class="w"> </span><span class="nx">res</span><span class="p">.</span><span class="nx">json</span><span class="p">());</span>
+</code></pre></div>
+
+=== "Go"
+    The server doesn't auto-subscribe on startup; subscribe per account.
+
+    !!! info "subscribe trade"
+        <div class="highlight"><pre><span></span><code><span class="kn">package</span><span class="w"> </span><span class="nx">main</span>
+
+<span class="kn">import</span><span class="w"> </span><span class="p">(</span>
+<span class="w">    </span><span class="s">&quot;bytes&quot;</span>
+<span class="w">    </span><span class="s">&quot;encoding/json&quot;</span>
+<span class="w">    </span><span class="s">&quot;fmt&quot;</span>
+<span class="w">    </span><span class="s">&quot;net/http&quot;</span>
+<span class="p">)</span>
+
+<span class="kd">func</span><span class="w"> </span><span class="nx">main</span><span class="p">()</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="nx">body</span><span class="p">,</span><span class="w"> </span><span class="nx">_</span><span class="w"> </span><span class="o">:=</span><span class="w"> </span><span class="nx">json</span><span class="p">.</span><span class="nx">Marshal</span><span class="p">(</span><span class="kd">map</span><span class="p">[</span><span class="kt">string</span><span class="p">]</span><span class="kt">string</span><span class="p">{</span>
+<span class="hll"><span class="w">        </span><span class="s">&quot;broker_id&quot;</span><span class="p">:</span><span class="w">  </span><span class="s">&quot;YOUR_BROKER_ID&quot;</span><span class="p">,</span>
+</span><span class="hll"><span class="w">        </span><span class="s">&quot;account_id&quot;</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;YOUR_ACCOUNT_ID&quot;</span><span class="p">,</span>
+</span><span class="w">    </span><span class="p">})</span>
+<span class="w">    </span><span class="nx">res</span><span class="p">,</span><span class="w"> </span><span class="nx">_</span><span class="w"> </span><span class="o">:=</span><span class="w"> </span><span class="nx">http</span><span class="p">.</span><span class="nx">Post</span><span class="p">(</span>
+<span class="w">        </span><span class="s">&quot;http://localhost:8080/api/v1/auth/subscribe_trade&quot;</span><span class="p">,</span>
+<span class="w">        </span><span class="s">&quot;application/json&quot;</span><span class="p">,</span>
+<span class="w">        </span><span class="nx">bytes</span><span class="p">.</span><span class="nx">NewReader</span><span class="p">(</span><span class="nx">body</span><span class="p">),</span>
+<span class="w">    </span><span class="p">)</span>
+<span class="w">    </span><span class="k">defer</span><span class="w"> </span><span class="nx">res</span><span class="p">.</span><span class="nx">Body</span><span class="p">.</span><span class="nx">Close</span><span class="p">()</span>
+
+<span class="w">    </span><span class="kd">var</span><span class="w"> </span><span class="nx">out</span><span class="w"> </span><span class="kd">map</span><span class="p">[</span><span class="kt">string</span><span class="p">]</span><span class="kt">any</span>
+<span class="w">    </span><span class="nx">json</span><span class="p">.</span><span class="nx">NewDecoder</span><span class="p">(</span><span class="nx">res</span><span class="p">.</span><span class="nx">Body</span><span class="p">).</span><span class="nx">Decode</span><span class="p">(</span><span class="o">&amp;</span><span class="nx">out</span><span class="p">)</span>
+<span class="w">    </span><span class="nx">fmt</span><span class="p">.</span><span class="nx">Println</span><span class="p">(</span><span class="nx">out</span><span class="p">)</span>
+<span class="p">}</span>
+</code></pre></div>
+
+    !!! info "unsubscribe trade"
+        <div class="highlight"><pre><span></span><code><span class="kn">package</span><span class="w"> </span><span class="nx">main</span>
+
+<span class="kn">import</span><span class="w"> </span><span class="p">(</span>
+<span class="w">    </span><span class="s">&quot;bytes&quot;</span>
+<span class="w">    </span><span class="s">&quot;encoding/json&quot;</span>
+<span class="w">    </span><span class="s">&quot;fmt&quot;</span>
+<span class="w">    </span><span class="s">&quot;net/http&quot;</span>
+<span class="p">)</span>
+
+<span class="kd">func</span><span class="w"> </span><span class="nx">main</span><span class="p">()</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="nx">body</span><span class="p">,</span><span class="w"> </span><span class="nx">_</span><span class="w"> </span><span class="o">:=</span><span class="w"> </span><span class="nx">json</span><span class="p">.</span><span class="nx">Marshal</span><span class="p">(</span><span class="kd">map</span><span class="p">[</span><span class="kt">string</span><span class="p">]</span><span class="kt">string</span><span class="p">{</span>
+<span class="hll"><span class="w">        </span><span class="s">&quot;broker_id&quot;</span><span class="p">:</span><span class="w">  </span><span class="s">&quot;YOUR_BROKER_ID&quot;</span><span class="p">,</span>
+</span><span class="hll"><span class="w">        </span><span class="s">&quot;account_id&quot;</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;YOUR_ACCOUNT_ID&quot;</span><span class="p">,</span>
+</span><span class="w">    </span><span class="p">})</span>
+<span class="w">    </span><span class="nx">res</span><span class="p">,</span><span class="w"> </span><span class="nx">_</span><span class="w"> </span><span class="o">:=</span><span class="w"> </span><span class="nx">http</span><span class="p">.</span><span class="nx">Post</span><span class="p">(</span>
+<span class="w">        </span><span class="s">&quot;http://localhost:8080/api/v1/auth/unsubscribe_trade&quot;</span><span class="p">,</span>
+<span class="w">        </span><span class="s">&quot;application/json&quot;</span><span class="p">,</span>
+<span class="w">        </span><span class="nx">bytes</span><span class="p">.</span><span class="nx">NewReader</span><span class="p">(</span><span class="nx">body</span><span class="p">),</span>
+<span class="w">    </span><span class="p">)</span>
+<span class="w">    </span><span class="k">defer</span><span class="w"> </span><span class="nx">res</span><span class="p">.</span><span class="nx">Body</span><span class="p">.</span><span class="nx">Close</span><span class="p">()</span>
+
+<span class="w">    </span><span class="kd">var</span><span class="w"> </span><span class="nx">out</span><span class="w"> </span><span class="kd">map</span><span class="p">[</span><span class="kt">string</span><span class="p">]</span><span class="kt">any</span>
+<span class="w">    </span><span class="nx">json</span><span class="p">.</span><span class="nx">NewDecoder</span><span class="p">(</span><span class="nx">res</span><span class="p">.</span><span class="nx">Body</span><span class="p">).</span><span class="nx">Decode</span><span class="p">(</span><span class="o">&amp;</span><span class="nx">out</span><span class="p">)</span>
+<span class="w">    </span><span class="nx">fmt</span><span class="p">.</span><span class="nx">Println</span><span class="p">(</span><span class="nx">out</span><span class="p">)</span>
+<span class="p">}</span>
+</code></pre></div>
+
+=== "C++"
+    The server doesn't auto-subscribe on startup; subscribe per account.
+
+    !!! info "subscribe trade"
+        <div class="highlight"><pre><span></span><code><span class="cp">#include</span><span class="w"> </span><span class="cpf">&lt;curl/curl.h&gt;</span>
+<span class="cp">#include</span><span class="w"> </span><span class="cpf">&lt;iostream&gt;</span>
+<span class="cp">#include</span><span class="w"> </span><span class="cpf">&lt;string&gt;</span>
+
+<span class="k">static</span><span class="w"> </span><span class="kt">size_t</span><span class="w"> </span><span class="nf">write_cb</span><span class="p">(</span><span class="kt">void</span><span class="o">*</span><span class="w"> </span><span class="n">contents</span><span class="p">,</span><span class="w"> </span><span class="kt">size_t</span><span class="w"> </span><span class="n">size</span><span class="p">,</span><span class="w"> </span><span class="kt">size_t</span><span class="w"> </span><span class="n">nmemb</span><span class="p">,</span><span class="w"> </span><span class="n">std</span><span class="o">::</span><span class="n">string</span><span class="o">*</span><span class="w"> </span><span class="n">s</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="n">s</span><span class="o">-&gt;</span><span class="n">append</span><span class="p">(</span><span class="k">static_cast</span><span class="o">&lt;</span><span class="kt">char</span><span class="o">*&gt;</span><span class="p">(</span><span class="n">contents</span><span class="p">),</span><span class="w"> </span><span class="n">size</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="n">nmemb</span><span class="p">);</span>
+<span class="w">    </span><span class="k">return</span><span class="w"> </span><span class="n">size</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="n">nmemb</span><span class="p">;</span>
+<span class="p">}</span>
+
+<span class="kt">int</span><span class="w"> </span><span class="nf">main</span><span class="p">()</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="n">CURL</span><span class="o">*</span><span class="w"> </span><span class="n">curl</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">curl_easy_init</span><span class="p">();</span>
+<span class="w">    </span><span class="n">std</span><span class="o">::</span><span class="n">string</span><span class="w"> </span><span class="n">resp</span><span class="p">;</span>
+<span class="hll"><span class="w">    </span><span class="n">std</span><span class="o">::</span><span class="n">string</span><span class="w"> </span><span class="n">body</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="sa">R</span><span class="s">&quot;</span><span class="dl">(</span><span class="s">{&quot;broker_id&quot;: &quot;YOUR_BROKER_ID&quot;, &quot;account_id&quot;: &quot;YOUR_ACCOUNT_ID&quot;}</span><span class="dl">)</span><span class="s">&quot;</span><span class="p">;</span>
+</span><span class="w">    </span><span class="k">struct</span><span class="w"> </span><span class="nc">curl_slist</span><span class="o">*</span><span class="w"> </span><span class="n">headers</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">curl_slist_append</span><span class="p">(</span><span class="k">nullptr</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;Content-Type: application/json&quot;</span><span class="p">);</span>
+
+<span class="w">    </span><span class="n">curl_easy_setopt</span><span class="p">(</span><span class="n">curl</span><span class="p">,</span><span class="w"> </span><span class="n">CURLOPT_URL</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;http://localhost:8080/api/v1/auth/subscribe_trade&quot;</span><span class="p">);</span>
+<span class="w">    </span><span class="n">curl_easy_setopt</span><span class="p">(</span><span class="n">curl</span><span class="p">,</span><span class="w"> </span><span class="n">CURLOPT_HTTPHEADER</span><span class="p">,</span><span class="w"> </span><span class="n">headers</span><span class="p">);</span>
+<span class="w">    </span><span class="n">curl_easy_setopt</span><span class="p">(</span><span class="n">curl</span><span class="p">,</span><span class="w"> </span><span class="n">CURLOPT_POSTFIELDS</span><span class="p">,</span><span class="w"> </span><span class="n">body</span><span class="p">.</span><span class="n">c_str</span><span class="p">());</span>
+<span class="w">    </span><span class="n">curl_easy_setopt</span><span class="p">(</span><span class="n">curl</span><span class="p">,</span><span class="w"> </span><span class="n">CURLOPT_WRITEFUNCTION</span><span class="p">,</span><span class="w"> </span><span class="n">write_cb</span><span class="p">);</span>
+<span class="w">    </span><span class="n">curl_easy_setopt</span><span class="p">(</span><span class="n">curl</span><span class="p">,</span><span class="w"> </span><span class="n">CURLOPT_WRITEDATA</span><span class="p">,</span><span class="w"> </span><span class="o">&amp;</span><span class="n">resp</span><span class="p">);</span>
+<span class="w">    </span><span class="n">curl_easy_perform</span><span class="p">(</span><span class="n">curl</span><span class="p">);</span>
+<span class="w">    </span><span class="n">curl_slist_free_all</span><span class="p">(</span><span class="n">headers</span><span class="p">);</span>
+<span class="w">    </span><span class="n">curl_easy_cleanup</span><span class="p">(</span><span class="n">curl</span><span class="p">);</span>
+
+<span class="w">    </span><span class="n">std</span><span class="o">::</span><span class="n">cout</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="n">resp</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="n">std</span><span class="o">::</span><span class="n">endl</span><span class="p">;</span>
+<span class="w">    </span><span class="k">return</span><span class="w"> </span><span class="mi">0</span><span class="p">;</span>
+<span class="p">}</span>
+</code></pre></div>
+
+    !!! info "unsubscribe trade"
+        <div class="highlight"><pre><span></span><code><span class="cp">#include</span><span class="w"> </span><span class="cpf">&lt;curl/curl.h&gt;</span>
+<span class="cp">#include</span><span class="w"> </span><span class="cpf">&lt;iostream&gt;</span>
+<span class="cp">#include</span><span class="w"> </span><span class="cpf">&lt;string&gt;</span>
+
+<span class="k">static</span><span class="w"> </span><span class="kt">size_t</span><span class="w"> </span><span class="nf">write_cb</span><span class="p">(</span><span class="kt">void</span><span class="o">*</span><span class="w"> </span><span class="n">contents</span><span class="p">,</span><span class="w"> </span><span class="kt">size_t</span><span class="w"> </span><span class="n">size</span><span class="p">,</span><span class="w"> </span><span class="kt">size_t</span><span class="w"> </span><span class="n">nmemb</span><span class="p">,</span><span class="w"> </span><span class="n">std</span><span class="o">::</span><span class="n">string</span><span class="o">*</span><span class="w"> </span><span class="n">s</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="n">s</span><span class="o">-&gt;</span><span class="n">append</span><span class="p">(</span><span class="k">static_cast</span><span class="o">&lt;</span><span class="kt">char</span><span class="o">*&gt;</span><span class="p">(</span><span class="n">contents</span><span class="p">),</span><span class="w"> </span><span class="n">size</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="n">nmemb</span><span class="p">);</span>
+<span class="w">    </span><span class="k">return</span><span class="w"> </span><span class="n">size</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="n">nmemb</span><span class="p">;</span>
+<span class="p">}</span>
+
+<span class="kt">int</span><span class="w"> </span><span class="nf">main</span><span class="p">()</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="n">CURL</span><span class="o">*</span><span class="w"> </span><span class="n">curl</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">curl_easy_init</span><span class="p">();</span>
+<span class="w">    </span><span class="n">std</span><span class="o">::</span><span class="n">string</span><span class="w"> </span><span class="n">resp</span><span class="p">;</span>
+<span class="hll"><span class="w">    </span><span class="n">std</span><span class="o">::</span><span class="n">string</span><span class="w"> </span><span class="n">body</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="sa">R</span><span class="s">&quot;</span><span class="dl">(</span><span class="s">{&quot;broker_id&quot;: &quot;YOUR_BROKER_ID&quot;, &quot;account_id&quot;: &quot;YOUR_ACCOUNT_ID&quot;}</span><span class="dl">)</span><span class="s">&quot;</span><span class="p">;</span>
+</span><span class="w">    </span><span class="k">struct</span><span class="w"> </span><span class="nc">curl_slist</span><span class="o">*</span><span class="w"> </span><span class="n">headers</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">curl_slist_append</span><span class="p">(</span><span class="k">nullptr</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;Content-Type: application/json&quot;</span><span class="p">);</span>
+
+<span class="w">    </span><span class="n">curl_easy_setopt</span><span class="p">(</span><span class="n">curl</span><span class="p">,</span><span class="w"> </span><span class="n">CURLOPT_URL</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;http://localhost:8080/api/v1/auth/unsubscribe_trade&quot;</span><span class="p">);</span>
+<span class="w">    </span><span class="n">curl_easy_setopt</span><span class="p">(</span><span class="n">curl</span><span class="p">,</span><span class="w"> </span><span class="n">CURLOPT_HTTPHEADER</span><span class="p">,</span><span class="w"> </span><span class="n">headers</span><span class="p">);</span>
+<span class="w">    </span><span class="n">curl_easy_setopt</span><span class="p">(</span><span class="n">curl</span><span class="p">,</span><span class="w"> </span><span class="n">CURLOPT_POSTFIELDS</span><span class="p">,</span><span class="w"> </span><span class="n">body</span><span class="p">.</span><span class="n">c_str</span><span class="p">());</span>
+<span class="w">    </span><span class="n">curl_easy_setopt</span><span class="p">(</span><span class="n">curl</span><span class="p">,</span><span class="w"> </span><span class="n">CURLOPT_WRITEFUNCTION</span><span class="p">,</span><span class="w"> </span><span class="n">write_cb</span><span class="p">);</span>
+<span class="w">    </span><span class="n">curl_easy_setopt</span><span class="p">(</span><span class="n">curl</span><span class="p">,</span><span class="w"> </span><span class="n">CURLOPT_WRITEDATA</span><span class="p">,</span><span class="w"> </span><span class="o">&amp;</span><span class="n">resp</span><span class="p">);</span>
+<span class="w">    </span><span class="n">curl_easy_perform</span><span class="p">(</span><span class="n">curl</span><span class="p">);</span>
+<span class="w">    </span><span class="n">curl_slist_free_all</span><span class="p">(</span><span class="n">headers</span><span class="p">);</span>
+<span class="w">    </span><span class="n">curl_easy_cleanup</span><span class="p">(</span><span class="n">curl</span><span class="p">);</span>
+
+<span class="w">    </span><span class="n">std</span><span class="o">::</span><span class="n">cout</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="n">resp</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="n">std</span><span class="o">::</span><span class="n">endl</span><span class="p">;</span>
+<span class="w">    </span><span class="k">return</span><span class="w"> </span><span class="mi">0</span><span class="p">;</span>
+<span class="p">}</span>
+</code></pre></div>
+
+=== "C#"
+    The server doesn't auto-subscribe on startup; subscribe per account.
+
+    !!! info "subscribe trade"
+        <div class="highlight"><pre><span></span><code><span class="k">using</span><span class="w"> </span><span class="nn">System.Net.Http</span><span class="p">;</span>
+<span class="k">using</span><span class="w"> </span><span class="nn">System.Text</span><span class="p">;</span>
+
+<span class="k">using</span><span class="w"> </span><span class="nn">var</span><span class="w"> </span><span class="n">http</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="k">new</span><span class="w"> </span><span class="n">HttpClient</span><span class="p">();</span>
+<span class="hll"><span class="kt">var</span><span class="w"> </span><span class="n">body</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">&quot;&quot;&quot;{&quot;</span><span class="n">broker_id</span><span class="s">&quot;: &quot;</span><span class="n">YOUR_BROKER_ID</span><span class="s">&quot;, &quot;</span><span class="n">account_id</span><span class="s">&quot;: &quot;</span><span class="n">YOUR_ACCOUNT_ID</span><span class="s">&quot;}&quot;&quot;&quot;</span><span class="p">;</span>
+</span><span class="kt">var</span><span class="w"> </span><span class="n">res</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="k">await</span><span class="w"> </span><span class="n">http</span><span class="p">.</span><span class="n">PostAsync</span><span class="p">(</span>
+<span class="w">    </span><span class="s">&quot;http://localhost:8080/api/v1/auth/subscribe_trade&quot;</span><span class="p">,</span>
+<span class="w">    </span><span class="k">new</span><span class="w"> </span><span class="nf">StringContent</span><span class="p">(</span><span class="n">body</span><span class="p">,</span><span class="w"> </span><span class="n">Encoding</span><span class="p">.</span><span class="n">UTF8</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;application/json&quot;</span><span class="p">));</span>
+<span class="n">Console</span><span class="p">.</span><span class="n">WriteLine</span><span class="p">(</span><span class="k">await</span><span class="w"> </span><span class="n">res</span><span class="p">.</span><span class="n">Content</span><span class="p">.</span><span class="n">ReadAsStringAsync</span><span class="p">());</span>
+</code></pre></div>
+
+    !!! info "unsubscribe trade"
+        <div class="highlight"><pre><span></span><code><span class="k">using</span><span class="w"> </span><span class="nn">System.Net.Http</span><span class="p">;</span>
+<span class="k">using</span><span class="w"> </span><span class="nn">System.Text</span><span class="p">;</span>
+
+<span class="k">using</span><span class="w"> </span><span class="nn">var</span><span class="w"> </span><span class="n">http</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="k">new</span><span class="w"> </span><span class="n">HttpClient</span><span class="p">();</span>
+<span class="hll"><span class="kt">var</span><span class="w"> </span><span class="n">body</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">&quot;&quot;&quot;{&quot;</span><span class="n">broker_id</span><span class="s">&quot;: &quot;</span><span class="n">YOUR_BROKER_ID</span><span class="s">&quot;, &quot;</span><span class="n">account_id</span><span class="s">&quot;: &quot;</span><span class="n">YOUR_ACCOUNT_ID</span><span class="s">&quot;}&quot;&quot;&quot;</span><span class="p">;</span>
+</span><span class="kt">var</span><span class="w"> </span><span class="n">res</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="k">await</span><span class="w"> </span><span class="n">http</span><span class="p">.</span><span class="n">PostAsync</span><span class="p">(</span>
+<span class="w">    </span><span class="s">&quot;http://localhost:8080/api/v1/auth/unsubscribe_trade&quot;</span><span class="p">,</span>
+<span class="w">    </span><span class="k">new</span><span class="w"> </span><span class="nf">StringContent</span><span class="p">(</span><span class="n">body</span><span class="p">,</span><span class="w"> </span><span class="n">Encoding</span><span class="p">.</span><span class="n">UTF8</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;application/json&quot;</span><span class="p">));</span>
+<span class="n">Console</span><span class="p">.</span><span class="n">WriteLine</span><span class="p">(</span><span class="k">await</span><span class="w"> </span><span class="n">res</span><span class="p">.</span><span class="n">Content</span><span class="p">.</span><span class="n">ReadAsStringAsync</span><span class="p">());</span>
+</code></pre></div>
+
+=== "Rust"
+    The server doesn't auto-subscribe on startup; subscribe per account.
+
+    !!! info "subscribe trade"
+        <div class="highlight"><pre><span></span><code><span class="k">use</span><span class="w"> </span><span class="n">serde_json</span><span class="p">::</span><span class="n">json</span><span class="p">;</span>
+
+<span class="cp">#[tokio::main]</span>
+<span class="k">async</span><span class="w"> </span><span class="k">fn</span><span class="w"> </span><span class="nf">main</span><span class="p">()</span><span class="w"> </span><span class="p">-&gt;</span><span class="w"> </span><span class="nb">Result</span><span class="o">&lt;</span><span class="p">(),</span><span class="w"> </span><span class="n">reqwest</span><span class="p">::</span><span class="n">Error</span><span class="o">&gt;</span><span class="w"> </span><span class="p">{</span>
+<span class="hll"><span class="w">    </span><span class="kd">let</span><span class="w"> </span><span class="n">body</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">json</span><span class="o">!</span><span class="p">({</span><span class="s">&quot;broker_id&quot;</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;YOUR_BROKER_ID&quot;</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;account_id&quot;</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;YOUR_ACCOUNT_ID&quot;</span><span class="p">});</span>
+</span><span class="w">    </span><span class="kd">let</span><span class="w"> </span><span class="n">res</span><span class="p">:</span><span class="w"> </span><span class="nc">serde_json</span><span class="p">::</span><span class="n">Value</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">reqwest</span><span class="p">::</span><span class="n">Client</span><span class="p">::</span><span class="n">new</span><span class="p">()</span>
+<span class="w">        </span><span class="p">.</span><span class="n">post</span><span class="p">(</span><span class="s">&quot;http://localhost:8080/api/v1/auth/subscribe_trade&quot;</span><span class="p">)</span>
+<span class="w">        </span><span class="p">.</span><span class="n">json</span><span class="p">(</span><span class="o">&amp;</span><span class="n">body</span><span class="p">)</span>
+<span class="w">        </span><span class="p">.</span><span class="n">send</span><span class="p">()</span>
+<span class="w">        </span><span class="p">.</span><span class="k">await</span><span class="o">?</span>
+<span class="w">        </span><span class="p">.</span><span class="n">json</span><span class="p">()</span>
+<span class="w">        </span><span class="p">.</span><span class="k">await</span><span class="o">?</span><span class="p">;</span>
+<span class="w">    </span><span class="fm">println!</span><span class="p">(</span><span class="s">&quot;{:#}&quot;</span><span class="p">,</span><span class="w"> </span><span class="n">res</span><span class="p">);</span>
+<span class="w">    </span><span class="nb">Ok</span><span class="p">(())</span>
+<span class="p">}</span>
+</code></pre></div>
+
+    !!! info "unsubscribe trade"
+        <div class="highlight"><pre><span></span><code><span class="k">use</span><span class="w"> </span><span class="n">serde_json</span><span class="p">::</span><span class="n">json</span><span class="p">;</span>
+
+<span class="cp">#[tokio::main]</span>
+<span class="k">async</span><span class="w"> </span><span class="k">fn</span><span class="w"> </span><span class="nf">main</span><span class="p">()</span><span class="w"> </span><span class="p">-&gt;</span><span class="w"> </span><span class="nb">Result</span><span class="o">&lt;</span><span class="p">(),</span><span class="w"> </span><span class="n">reqwest</span><span class="p">::</span><span class="n">Error</span><span class="o">&gt;</span><span class="w"> </span><span class="p">{</span>
+<span class="hll"><span class="w">    </span><span class="kd">let</span><span class="w"> </span><span class="n">body</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">json</span><span class="o">!</span><span class="p">({</span><span class="s">&quot;broker_id&quot;</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;YOUR_BROKER_ID&quot;</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;account_id&quot;</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;YOUR_ACCOUNT_ID&quot;</span><span class="p">});</span>
+</span><span class="w">    </span><span class="kd">let</span><span class="w"> </span><span class="n">res</span><span class="p">:</span><span class="w"> </span><span class="nc">serde_json</span><span class="p">::</span><span class="n">Value</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">reqwest</span><span class="p">::</span><span class="n">Client</span><span class="p">::</span><span class="n">new</span><span class="p">()</span>
+<span class="w">        </span><span class="p">.</span><span class="n">post</span><span class="p">(</span><span class="s">&quot;http://localhost:8080/api/v1/auth/unsubscribe_trade&quot;</span><span class="p">)</span>
+<span class="w">        </span><span class="p">.</span><span class="n">json</span><span class="p">(</span><span class="o">&amp;</span><span class="n">body</span><span class="p">)</span>
+<span class="w">        </span><span class="p">.</span><span class="n">send</span><span class="p">()</span>
+<span class="w">        </span><span class="p">.</span><span class="k">await</span><span class="o">?</span>
+<span class="w">        </span><span class="p">.</span><span class="n">json</span><span class="p">()</span>
+<span class="w">        </span><span class="p">.</span><span class="k">await</span><span class="o">?</span><span class="p">;</span>
+<span class="w">    </span><span class="fm">println!</span><span class="p">(</span><span class="s">&quot;{:#}&quot;</span><span class="p">,</span><span class="w"> </span><span class="n">res</span><span class="p">);</span>
+<span class="w">    </span><span class="nb">Ok</span><span class="p">(())</span>
+<span class="p">}</span>
+</code></pre></div>
+
+=== "Java"
+    The server doesn't auto-subscribe on startup; subscribe per account.
+
+    !!! info "subscribe trade"
+        <div class="highlight"><pre><span></span><code><span class="kn">import</span><span class="w"> </span><span class="nn">java.net.URI</span><span class="p">;</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">java.net.http.HttpClient</span><span class="p">;</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">java.net.http.HttpRequest</span><span class="p">;</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">java.net.http.HttpResponse</span><span class="p">;</span>
+
+<span class="kd">public</span><span class="w"> </span><span class="kd">class</span> <span class="nc">Test</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="kd">public</span><span class="w"> </span><span class="kd">static</span><span class="w"> </span><span class="kt">void</span><span class="w"> </span><span class="nf">main</span><span class="p">(</span><span class="n">String</span><span class="o">[]</span><span class="w"> </span><span class="n">args</span><span class="p">)</span><span class="w"> </span><span class="kd">throws</span><span class="w"> </span><span class="n">Exception</span><span class="w"> </span><span class="p">{</span>
+<span class="w">        </span><span class="n">String</span><span class="w"> </span><span class="n">body</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">&quot;&quot;&quot;</span>
+<span class="s">            {&quot;broker_id&quot;: &quot;YOUR_BROKER_ID&quot;, &quot;account_id&quot;: &quot;YOUR_ACCOUNT_ID&quot;}</span>
+<span class="hll"><span class="s">            &quot;&quot;&quot;</span><span class="p">;</span>
+</span><span class="w">        </span><span class="n">HttpClient</span><span class="w"> </span><span class="n">client</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">HttpClient</span><span class="p">.</span><span class="na">newHttpClient</span><span class="p">();</span>
+<span class="w">        </span><span class="n">HttpRequest</span><span class="w"> </span><span class="n">req</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">HttpRequest</span><span class="p">.</span><span class="na">newBuilder</span><span class="p">()</span>
+<span class="w">            </span><span class="p">.</span><span class="na">uri</span><span class="p">(</span><span class="n">URI</span><span class="p">.</span><span class="na">create</span><span class="p">(</span><span class="s">&quot;http://localhost:8080/api/v1/auth/subscribe_trade&quot;</span><span class="p">))</span>
+<span class="w">            </span><span class="p">.</span><span class="na">header</span><span class="p">(</span><span class="s">&quot;Content-Type&quot;</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;application/json&quot;</span><span class="p">)</span>
+<span class="w">            </span><span class="p">.</span><span class="na">POST</span><span class="p">(</span><span class="n">HttpRequest</span><span class="p">.</span><span class="na">BodyPublishers</span><span class="p">.</span><span class="na">ofString</span><span class="p">(</span><span class="n">body</span><span class="p">))</span>
+<span class="w">            </span><span class="p">.</span><span class="na">build</span><span class="p">();</span>
+<span class="w">        </span><span class="n">System</span><span class="p">.</span><span class="na">out</span><span class="p">.</span><span class="na">println</span><span class="p">(</span><span class="n">client</span><span class="p">.</span><span class="na">send</span><span class="p">(</span><span class="n">req</span><span class="p">,</span><span class="w"> </span><span class="n">HttpResponse</span><span class="p">.</span><span class="na">BodyHandlers</span><span class="p">.</span><span class="na">ofString</span><span class="p">()).</span><span class="na">body</span><span class="p">());</span>
+<span class="w">    </span><span class="p">}</span>
+<span class="p">}</span>
+</code></pre></div>
+
+    !!! info "unsubscribe trade"
+        <div class="highlight"><pre><span></span><code><span class="kn">import</span><span class="w"> </span><span class="nn">java.net.URI</span><span class="p">;</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">java.net.http.HttpClient</span><span class="p">;</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">java.net.http.HttpRequest</span><span class="p">;</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">java.net.http.HttpResponse</span><span class="p">;</span>
+
+<span class="kd">public</span><span class="w"> </span><span class="kd">class</span> <span class="nc">Test</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="kd">public</span><span class="w"> </span><span class="kd">static</span><span class="w"> </span><span class="kt">void</span><span class="w"> </span><span class="nf">main</span><span class="p">(</span><span class="n">String</span><span class="o">[]</span><span class="w"> </span><span class="n">args</span><span class="p">)</span><span class="w"> </span><span class="kd">throws</span><span class="w"> </span><span class="n">Exception</span><span class="w"> </span><span class="p">{</span>
+<span class="w">        </span><span class="n">String</span><span class="w"> </span><span class="n">body</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">&quot;&quot;&quot;</span>
+<span class="s">            {&quot;broker_id&quot;: &quot;YOUR_BROKER_ID&quot;, &quot;account_id&quot;: &quot;YOUR_ACCOUNT_ID&quot;}</span>
+<span class="hll"><span class="s">            &quot;&quot;&quot;</span><span class="p">;</span>
+</span><span class="w">        </span><span class="n">HttpClient</span><span class="w"> </span><span class="n">client</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">HttpClient</span><span class="p">.</span><span class="na">newHttpClient</span><span class="p">();</span>
+<span class="w">        </span><span class="n">HttpRequest</span><span class="w"> </span><span class="n">req</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">HttpRequest</span><span class="p">.</span><span class="na">newBuilder</span><span class="p">()</span>
+<span class="w">            </span><span class="p">.</span><span class="na">uri</span><span class="p">(</span><span class="n">URI</span><span class="p">.</span><span class="na">create</span><span class="p">(</span><span class="s">&quot;http://localhost:8080/api/v1/auth/unsubscribe_trade&quot;</span><span class="p">))</span>
+<span class="w">            </span><span class="p">.</span><span class="na">header</span><span class="p">(</span><span class="s">&quot;Content-Type&quot;</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;application/json&quot;</span><span class="p">)</span>
+<span class="w">            </span><span class="p">.</span><span class="na">POST</span><span class="p">(</span><span class="n">HttpRequest</span><span class="p">.</span><span class="na">BodyPublishers</span><span class="p">.</span><span class="na">ofString</span><span class="p">(</span><span class="n">body</span><span class="p">))</span>
+<span class="w">            </span><span class="p">.</span><span class="na">build</span><span class="p">();</span>
+<span class="w">        </span><span class="n">System</span><span class="p">.</span><span class="na">out</span><span class="p">.</span><span class="na">println</span><span class="p">(</span><span class="n">client</span><span class="p">.</span><span class="na">send</span><span class="p">(</span><span class="n">req</span><span class="p">,</span><span class="w"> </span><span class="n">HttpResponse</span><span class="p">.</span><span class="na">BodyHandlers</span><span class="p">.</span><span class="na">ofString</span><span class="p">()).</span><span class="na">body</span><span class="p">());</span>
+<span class="w">    </span><span class="p">}</span>
+<span class="p">}</span>
+</code></pre></div>
+
+
+-->
+<h2 id="account">Account<a class="headerlink" href="#account" title="Permanent link">&para;</a></h2>
+<p>Accounts are classified by <code>account_type</code>:</p>
+<ul>
+<li><code>S</code>: Stock account (<code>StockAccount</code>)</li>
+<li><code>F</code>: Futures account (<code>FutureAccount</code>)</li>
+<li><code>H</code>: International (sub-brokerage) account — not yet supported for API trading in shioaji.</li>
+</ul>
+<div class="tabbed-set tabbed-alternate" data-tabs="3:3"><input checked="checked" id="__tabbed_3_1" name="__tabbed_3" type="radio" /><input id="__tabbed_3_2" name="__tabbed_3" type="radio" /><input id="__tabbed_3_3" name="__tabbed_3" type="radio" /><div class="tabbed-labels"><label for="__tabbed_3_1">Python</label><label for="__tabbed_3_2">CLI</label><label for="__tabbed_3_3">HTTP</label></div>
+<div class="tabbed-content">
+<div class="tabbed-block">
+<h4 id="list-accounts">List Accounts<a class="headerlink" href="#list-accounts" title="Permanent link">&para;</a></h4>
+<div class="admonition info">
+<p class="admonition-title">In</p>
+<div class="highlight"><pre><span></span><code><span class="n">accounts</span> <span class="o">=</span> <span class="n">api</span><span class="o">.</span><span class="n">list_accounts</span><span class="p">()</span>
+<span class="n">accounts</span>
+</code></pre></div>
+</div>
+<div class="admonition done">
+<p class="admonition-title">Out</p>
+<div class="highlight"><pre><span></span><code><span class="p">[</span>
+    <span class="n">FutureAccount</span><span class="p">(</span><span class="n">person_id</span><span class="o">=</span><span class="s1">&#39;PERSON_ID_1&#39;</span><span class="p">,</span> <span class="n">broker_id</span><span class="o">=</span><span class="s1">&#39;BROKER_ID_1&#39;</span><span class="p">,</span> <span class="n">account_id</span><span class="o">=</span><span class="s1">&#39;ACCOUNT_ID_1&#39;</span><span class="p">,</span> <span class="n">signed</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">username</span><span class="o">=</span><span class="s1">&#39;USERNAME_1&#39;</span><span class="p">),</span>
+    <span class="n">IntlAccount</span><span class="p">(</span><span class="n">person_id</span><span class="o">=</span><span class="s1">&#39;PERSON_ID_1&#39;</span><span class="p">,</span> <span class="n">broker_id</span><span class="o">=</span><span class="s1">&#39;BROKER_ID_2&#39;</span><span class="p">,</span> <span class="n">account_id</span><span class="o">=</span><span class="s1">&#39;ACCOUNT_ID_2&#39;</span><span class="p">,</span> <span class="n">signed</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span> <span class="n">username</span><span class="o">=</span><span class="s1">&#39;USERNAME_1&#39;</span><span class="p">),</span>
+    <span class="n">StockAccount</span><span class="p">(</span><span class="n">person_id</span><span class="o">=</span><span class="s1">&#39;PERSON_ID_1&#39;</span><span class="p">,</span> <span class="n">broker_id</span><span class="o">=</span><span class="s1">&#39;BROKER_ID_2&#39;</span><span class="p">,</span> <span class="n">account_id</span><span class="o">=</span><span class="s1">&#39;ACCOUNT_ID_3&#39;</span><span class="p">,</span> <span class="n">signed</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">username</span><span class="o">=</span><span class="s1">&#39;USERNAME_1&#39;</span><span class="p">)</span>
 <span class="p">]</span>
 </code></pre></div>
 </div>
 <ul>
-<li>If <code>signed</code> does not appear in the account list, like ACCOUNT_ID_2 and ACCOUNT_ID_3, it means that the account has not signed or completed the test report in the simulation mode. Please refer to <a href="../prepare/terms/">Terms of service</a>.</li>
+<li>If <code>signed</code> does not appear in the account list (e.g. <code>ACCOUNT_ID_2</code>), the account has not been signed or has not completed the test report in simulation mode. Please refer to <a href="../prepare/terms/">API Signing and Test</a>.</li>
 </ul>
-<h3 id="default-account">Default Account<a class="headerlink" href="#default-account" title="Permanent link">&para;</a></h3>
+<h4 id="default-account">Default Account<a class="headerlink" href="#default-account" title="Permanent link">&para;</a></h4>
 <div class="admonition info">
 <p class="admonition-title">In</p>
-<div class="highlight"><pre><span></span><code><span class="c1"># Futures default account</span>
+<div class="highlight"><pre><span></span><code><span class="nb">print</span><span class="p">(</span><span class="n">api</span><span class="o">.</span><span class="n">stock_account</span><span class="p">)</span>
 <span class="nb">print</span><span class="p">(</span><span class="n">api</span><span class="o">.</span><span class="n">futopt_account</span><span class="p">)</span>
 </code></pre></div>
 </div>
 <div class="admonition done">
 <p class="admonition-title">Out</p>
-<div class="highlight"><pre><span></span><code><span class="n">FutureAccount</span><span class="p">(</span><span class="n">person_id</span><span class="o">=</span><span class="s1">&#39;PERSON_ID_1&#39;</span><span class="p">,</span> <span class="n">broker_id</span><span class="o">=</span><span class="s1">&#39;BROKER_ID_1&#39;</span><span class="p">,</span> <span class="n">account_id</span><span class="o">=</span><span class="s1">&#39;ACCOUNT_ID_1&#39;</span><span class="p">,</span> <span class="n">signed</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">username</span><span class="o">=</span><span class="s1">&#39;USERNAME_1&#39;</span><span class="p">)</span>
+<div class="highlight"><pre><span></span><code><span class="n">StockAccount</span><span class="p">(</span><span class="n">person_id</span><span class="o">=</span><span class="s1">&#39;PERSON_ID_1&#39;</span><span class="p">,</span> <span class="n">broker_id</span><span class="o">=</span><span class="s1">&#39;BROKER_ID_2&#39;</span><span class="p">,</span> <span class="n">account_id</span><span class="o">=</span><span class="s1">&#39;ACCOUNT_ID_3&#39;</span><span class="p">,</span> <span class="n">signed</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">username</span><span class="o">=</span><span class="s1">&#39;USERNAME_1&#39;</span><span class="p">)</span>
+<span class="n">FutureAccount</span><span class="p">(</span><span class="n">person_id</span><span class="o">=</span><span class="s1">&#39;PERSON_ID_1&#39;</span><span class="p">,</span> <span class="n">broker_id</span><span class="o">=</span><span class="s1">&#39;BROKER_ID_1&#39;</span><span class="p">,</span> <span class="n">account_id</span><span class="o">=</span><span class="s1">&#39;ACCOUNT_ID_1&#39;</span><span class="p">,</span> <span class="n">signed</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">username</span><span class="o">=</span><span class="s1">&#39;USERNAME_1&#39;</span><span class="p">)</span>
 </code></pre></div>
 </div>
-<p>Set default account</p>
+<h4 id="set-default-account">Set Default Account<a class="headerlink" href="#set-default-account" title="Permanent link">&para;</a></h4>
 <div class="admonition info">
 <p class="admonition-title">In</p>
-<div class="highlight"><pre><span></span><code><span class="c1"># Default futures account switch to ACCOUNT_ID_2 from ACCOUNT_ID_1. </span>
-<span class="n">api</span><span class="o">.</span><span class="n">set_default_account</span><span class="p">(</span><span class="n">accounts</span><span class="p">[</span><span class="mi">1</span><span class="p">])</span>
-<span class="nb">print</span><span class="p">(</span><span class="n">api</span><span class="o">.</span><span class="n">futopt_account</span><span class="p">)</span>
+<div class="highlight"><pre><span></span><code><span class="c1"># Switch the default futures account from ACCOUNT_ID_1 to ACCOUNT_ID_2</span>
+<span class="hll"><span class="n">api</span><span class="o">.</span><span class="n">set_default_account</span><span class="p">(</span><span class="n">accounts</span><span class="p">[</span><span class="mi">1</span><span class="p">])</span>
+</span><span class="nb">print</span><span class="p">(</span><span class="n">api</span><span class="o">.</span><span class="n">futopt_account</span><span class="p">)</span>
 </code></pre></div>
 </div>
 <div class="admonition done">
@@ -2148,28 +2561,275 @@ The first is <code>subscribe_trade</code> in login aruguments. Default value of 
 <div class="highlight"><pre><span></span><code><span class="n">FutureAccount</span><span class="p">(</span><span class="n">person_id</span><span class="o">=</span><span class="s1">&#39;PERSON_ID_2&#39;</span><span class="p">,</span> <span class="n">broker_id</span><span class="o">=</span><span class="s1">&#39;BROKER_ID_2&#39;</span><span class="p">,</span> <span class="n">account_id</span><span class="o">=</span><span class="s1">&#39;ACCOUNT_ID_2&#39;</span><span class="p">,</span> <span class="n">username</span><span class="o">=</span><span class="s1">&#39;USERNAME_2&#39;</span><span class="p">)</span>
 </code></pre></div>
 </div>
-<p><br/>
-In Order object, you need to specify which account you want to place order. For more information about Order, please refer to <a href="../order/Stock/">Stock Order</a> and <a href="../order/FutureOption/">Futures Order</a>.</p>
-<div class="highlight"><pre><span></span><code><span class="n">order</span> <span class="o">=</span> <span class="n">api</span><span class="o">.</span><span class="n">Order</span><span class="p">(</span>
-    <span class="n">price</span><span class="o">=</span><span class="mi">12</span><span class="p">,</span> 
-    <span class="n">quantity</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span> 
-    <span class="n">action</span><span class="o">=</span><span class="n">sj</span><span class="o">.</span><span class="n">constant</span><span class="o">.</span><span class="n">Action</span><span class="o">.</span><span class="n">Buy</span><span class="p">,</span> 
-    <span class="n">price_type</span><span class="o">=</span><span class="n">sj</span><span class="o">.</span><span class="n">constant</span><span class="o">.</span><span class="n">StockPriceType</span><span class="o">.</span><span class="n">LMT</span><span class="p">,</span> 
-    <span class="n">order_type</span><span class="o">=</span><span class="n">sj</span><span class="o">.</span><span class="n">constant</span><span class="o">.</span><span class="n">OrderType</span><span class="o">.</span><span class="n">ROD</span><span class="p">,</span> 
-    <span class="n">order_lot</span><span class="o">=</span><span class="n">sj</span><span class="o">.</span><span class="n">constant</span><span class="o">.</span><span class="n">StockOrderLot</span><span class="o">.</span><span class="n">Common</span><span class="p">,</span> 
+</div>
+<div class="tabbed-block">
+<p><strong>List Accounts</strong></p>
+<div class="admonition info">
+<p class="admonition-title">In</p>
+<div class="highlight"><pre><span></span><code>shioaji<span class="w"> </span>auth<span class="w"> </span>accounts
+</code></pre></div>
+</div>
+<div class="admonition done">
+<p class="admonition-title">Out</p>
+<div class="highlight"><pre><span></span><code><span class="p p-Indicator">[</span><span class="nv">3</span><span class="p p-Indicator">]{</span><span class="nv">account_type</span><span class="p p-Indicator">,</span><span class="nv">person_id</span><span class="p p-Indicator">,</span><span class="nv">broker_id</span><span class="p p-Indicator">,</span><span class="nv">account_id</span><span class="p p-Indicator">,</span><span class="nv">signed</span><span class="p p-Indicator">,</span><span class="nv">username</span><span class="p p-Indicator">}:</span>
+<span class="w">  </span><span class="l l-Scalar l-Scalar-Plain">F,PERSON_ID_1,BROKER_ID_1,&quot;ACCOUNT_ID_1&quot;,true,USERNAME_1</span>
+<span class="w">  </span><span class="l l-Scalar l-Scalar-Plain">H,PERSON_ID_1,BROKER_ID_2,&quot;ACCOUNT_ID_2&quot;,false,USERNAME_1</span>
+<span class="w">  </span><span class="l l-Scalar l-Scalar-Plain">S,PERSON_ID_1,BROKER_ID_2,&quot;ACCOUNT_ID_3&quot;,true,USERNAME_1</span>
+</code></pre></div>
+</div>
+<ul>
+<li>If <code>signed</code> does not appear in the account list, the account has not been signed or has not completed the test report in simulation mode. Please refer to <a href="../prepare/terms/">API Signing and Test</a>.</li>
+</ul>
+<p><strong>Default Account</strong></p>
+<p>The server picks the first stock / futures account as the default on startup. If <code>--account</code> is not given on order placement, the default is used; to use a specific account, pass <code>--account BROKER-ACCOUNT</code>.</p>
+</div>
+<div class="tabbed-block">
+<p><strong>List Accounts</strong></p>
+<div class="admonition info">
+<p class="admonition-title">In</p>
+<div class="highlight"><pre><span></span><code>curl<span class="w"> </span>http://localhost:8080/api/v1/auth/accounts
+</code></pre></div>
+</div>
+<div class="admonition done">
+<p class="admonition-title">Out</p>
+<div class="highlight"><pre><span></span><code><span class="p">[{</span><span class="nt">&quot;account_type&quot;</span><span class="p">:</span><span class="s2">&quot;F&quot;</span><span class="p">,</span><span class="nt">&quot;person_id&quot;</span><span class="p">:</span><span class="s2">&quot;PERSON_ID_1&quot;</span><span class="p">,</span><span class="nt">&quot;broker_id&quot;</span><span class="p">:</span><span class="s2">&quot;BROKER_ID_1&quot;</span><span class="p">,</span><span class="nt">&quot;account_id&quot;</span><span class="p">:</span><span class="s2">&quot;ACCOUNT_ID_1&quot;</span><span class="p">,</span><span class="nt">&quot;signed&quot;</span><span class="p">:</span><span class="kc">true</span><span class="p">,</span><span class="nt">&quot;username&quot;</span><span class="p">:</span><span class="s2">&quot;USERNAME_1&quot;</span><span class="p">},{</span><span class="nt">&quot;account_type&quot;</span><span class="p">:</span><span class="s2">&quot;H&quot;</span><span class="p">,</span><span class="nt">&quot;person_id&quot;</span><span class="p">:</span><span class="s2">&quot;PERSON_ID_1&quot;</span><span class="p">,</span><span class="nt">&quot;broker_id&quot;</span><span class="p">:</span><span class="s2">&quot;BROKER_ID_2&quot;</span><span class="p">,</span><span class="nt">&quot;account_id&quot;</span><span class="p">:</span><span class="s2">&quot;ACCOUNT_ID_2&quot;</span><span class="p">,</span><span class="nt">&quot;signed&quot;</span><span class="p">:</span><span class="kc">false</span><span class="p">,</span><span class="nt">&quot;username&quot;</span><span class="p">:</span><span class="s2">&quot;USERNAME_1&quot;</span><span class="p">},{</span><span class="nt">&quot;account_type&quot;</span><span class="p">:</span><span class="s2">&quot;S&quot;</span><span class="p">,</span><span class="nt">&quot;person_id&quot;</span><span class="p">:</span><span class="s2">&quot;PERSON_ID_1&quot;</span><span class="p">,</span><span class="nt">&quot;broker_id&quot;</span><span class="p">:</span><span class="s2">&quot;BROKER_ID_2&quot;</span><span class="p">,</span><span class="nt">&quot;account_id&quot;</span><span class="p">:</span><span class="s2">&quot;ACCOUNT_ID_3&quot;</span><span class="p">,</span><span class="nt">&quot;signed&quot;</span><span class="p">:</span><span class="kc">true</span><span class="p">,</span><span class="nt">&quot;username&quot;</span><span class="p">:</span><span class="s2">&quot;USERNAME_1&quot;</span><span class="p">}]</span>
+</code></pre></div>
+</div>
+<ul>
+<li>If <code>signed</code> does not appear in the account list, the account has not been signed or has not completed the test report in simulation mode. Please refer to <a href="../prepare/terms/">API Signing and Test</a>.</li>
+</ul>
+<p><strong>Default Account</strong></p>
+<p>The server picks the first stock / futures account as the default on startup. If the order request <code>account</code> omits <code>broker_id</code> / <code>account_id</code>, the default is used; to use a specific account, include <code>broker_id</code> + <code>account_id</code>.</p>
+</div>
+</div>
+</div>
+<!--
+=== "JavaScript"
+    **List Accounts**
+
+    !!! info "In"
+        <div class="highlight"><pre><span></span><code><span class="kd">const</span><span class="w"> </span><span class="nx">res</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="k">await</span><span class="w"> </span><span class="nx">fetch</span><span class="p">(</span><span class="s1">&#39;http://localhost:8080/api/v1/auth/accounts&#39;</span><span class="p">);</span>
+<span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="k">await</span><span class="w"> </span><span class="nx">res</span><span class="p">.</span><span class="nx">json</span><span class="p">());</span>
+</code></pre></div>
+
+    !!! done "Out"
+        <div class="highlight"><pre><span></span><code><span class="p">[</span>
+<span class="w">  </span><span class="p">{</span>
+<span class="w">    </span><span class="nx">account_type</span><span class="o">:</span><span class="w"> </span><span class="s1">&#39;F&#39;</span><span class="p">,</span>
+<span class="w">    </span><span class="nx">person_id</span><span class="o">:</span><span class="w"> </span><span class="s1">&#39;PERSON_ID_1&#39;</span><span class="p">,</span>
+<span class="w">    </span><span class="nx">broker_id</span><span class="o">:</span><span class="w"> </span><span class="s1">&#39;BROKER_ID_1&#39;</span><span class="p">,</span>
+<span class="w">    </span><span class="nx">account_id</span><span class="o">:</span><span class="w"> </span><span class="s1">&#39;ACCOUNT_ID_1&#39;</span><span class="p">,</span>
+<span class="w">    </span><span class="nx">signed</span><span class="o">:</span><span class="w"> </span><span class="kc">true</span><span class="p">,</span>
+<span class="w">    </span><span class="nx">username</span><span class="o">:</span><span class="w"> </span><span class="s1">&#39;USERNAME_1&#39;</span>
+<span class="w">  </span><span class="p">},</span>
+<span class="w">  </span><span class="p">{</span>
+<span class="w">    </span><span class="nx">account_type</span><span class="o">:</span><span class="w"> </span><span class="s1">&#39;H&#39;</span><span class="p">,</span>
+<span class="w">    </span><span class="nx">person_id</span><span class="o">:</span><span class="w"> </span><span class="s1">&#39;PERSON_ID_1&#39;</span><span class="p">,</span>
+<span class="w">    </span><span class="nx">broker_id</span><span class="o">:</span><span class="w"> </span><span class="s1">&#39;BROKER_ID_2&#39;</span><span class="p">,</span>
+<span class="w">    </span><span class="nx">account_id</span><span class="o">:</span><span class="w"> </span><span class="s1">&#39;ACCOUNT_ID_2&#39;</span><span class="p">,</span>
+<span class="w">    </span><span class="nx">signed</span><span class="o">:</span><span class="w"> </span><span class="kc">false</span><span class="p">,</span>
+<span class="w">    </span><span class="nx">username</span><span class="o">:</span><span class="w"> </span><span class="s1">&#39;USERNAME_1&#39;</span>
+<span class="w">  </span><span class="p">},</span>
+<span class="w">  </span><span class="p">{</span>
+<span class="w">    </span><span class="nx">account_type</span><span class="o">:</span><span class="w"> </span><span class="s1">&#39;S&#39;</span><span class="p">,</span>
+<span class="w">    </span><span class="nx">person_id</span><span class="o">:</span><span class="w"> </span><span class="s1">&#39;PERSON_ID_1&#39;</span><span class="p">,</span>
+<span class="w">    </span><span class="nx">broker_id</span><span class="o">:</span><span class="w"> </span><span class="s1">&#39;BROKER_ID_2&#39;</span><span class="p">,</span>
+<span class="w">    </span><span class="nx">account_id</span><span class="o">:</span><span class="w"> </span><span class="s1">&#39;ACCOUNT_ID_3&#39;</span><span class="p">,</span>
+<span class="w">    </span><span class="nx">signed</span><span class="o">:</span><span class="w"> </span><span class="kc">true</span><span class="p">,</span>
+<span class="w">    </span><span class="nx">username</span><span class="o">:</span><span class="w"> </span><span class="s1">&#39;USERNAME_1&#39;</span>
+<span class="w">  </span><span class="p">}</span>
+<span class="p">]</span>
+</code></pre></div>
+
+    * If `signed` does not appear in the account list, the account has not been signed or has not completed the test report in simulation mode. Please refer to [API Signing and Test](./prepare/terms.md).
+
+    **Default Account**
+
+    The server picks the first stock / futures account as the default on startup. If the order request `account` omits `broker_id` / `account_id`, the default is used; to use a specific account, include `broker_id` + `account_id`.
+
+=== "Go"
+    **List Accounts**
+
+    !!! info "In"
+        <div class="highlight"><pre><span></span><code><span class="kn">package</span><span class="w"> </span><span class="nx">main</span>
+
+<span class="kn">import</span><span class="w"> </span><span class="p">(</span>
+<span class="w">    </span><span class="s">&quot;fmt&quot;</span>
+<span class="w">    </span><span class="s">&quot;io&quot;</span>
+<span class="w">    </span><span class="s">&quot;net/http&quot;</span>
+<span class="p">)</span>
+
+<span class="kd">func</span><span class="w"> </span><span class="nx">main</span><span class="p">()</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="nx">res</span><span class="p">,</span><span class="w"> </span><span class="nx">_</span><span class="w"> </span><span class="o">:=</span><span class="w"> </span><span class="nx">http</span><span class="p">.</span><span class="nx">Get</span><span class="p">(</span><span class="s">&quot;http://localhost:8080/api/v1/auth/accounts&quot;</span><span class="p">)</span>
+<span class="w">    </span><span class="k">defer</span><span class="w"> </span><span class="nx">res</span><span class="p">.</span><span class="nx">Body</span><span class="p">.</span><span class="nx">Close</span><span class="p">()</span>
+<span class="w">    </span><span class="nx">body</span><span class="p">,</span><span class="w"> </span><span class="nx">_</span><span class="w"> </span><span class="o">:=</span><span class="w"> </span><span class="nx">io</span><span class="p">.</span><span class="nx">ReadAll</span><span class="p">(</span><span class="nx">res</span><span class="p">.</span><span class="nx">Body</span><span class="p">)</span>
+<span class="w">    </span><span class="nx">fmt</span><span class="p">.</span><span class="nx">Println</span><span class="p">(</span><span class="nb">string</span><span class="p">(</span><span class="nx">body</span><span class="p">))</span>
+<span class="p">}</span>
+</code></pre></div>
+
+    !!! done "Out"
+        <div class="highlight"><pre><span></span><code>[{&quot;account_type&quot;:&quot;F&quot;,&quot;person_id&quot;:&quot;PERSON_ID_1&quot;,&quot;broker_id&quot;:&quot;BROKER_ID_1&quot;,&quot;account_id&quot;:&quot;ACCOUNT_ID_1&quot;,&quot;signed&quot;:true,&quot;username&quot;:&quot;USERNAME_1&quot;},{&quot;account_type&quot;:&quot;H&quot;,&quot;person_id&quot;:&quot;PERSON_ID_1&quot;,&quot;broker_id&quot;:&quot;BROKER_ID_2&quot;,&quot;account_id&quot;:&quot;ACCOUNT_ID_2&quot;,&quot;signed&quot;:false,&quot;username&quot;:&quot;USERNAME_1&quot;},{&quot;account_type&quot;:&quot;S&quot;,&quot;person_id&quot;:&quot;PERSON_ID_1&quot;,&quot;broker_id&quot;:&quot;BROKER_ID_2&quot;,&quot;account_id&quot;:&quot;ACCOUNT_ID_3&quot;,&quot;signed&quot;:true,&quot;username&quot;:&quot;USERNAME_1&quot;}]
+</code></pre></div>
+
+    * If `signed` does not appear in the account list, the account has not been signed or has not completed the test report in simulation mode. Please refer to [API Signing and Test](./prepare/terms.md).
+
+    **Default Account**
+
+    The server picks the first stock / futures account as the default on startup. If the order request `account` omits `broker_id` / `account_id`, the default is used; to use a specific account, include `broker_id` + `account_id`.
+
+=== "C++"
+    **List Accounts**
+
+    !!! info "In"
+        <div class="highlight"><pre><span></span><code><span class="cp">#include</span><span class="w"> </span><span class="cpf">&lt;curl/curl.h&gt;</span>
+<span class="cp">#include</span><span class="w"> </span><span class="cpf">&lt;iostream&gt;</span>
+<span class="cp">#include</span><span class="w"> </span><span class="cpf">&lt;string&gt;</span>
+
+<span class="k">static</span><span class="w"> </span><span class="kt">size_t</span><span class="w"> </span><span class="nf">write_cb</span><span class="p">(</span><span class="kt">void</span><span class="o">*</span><span class="w"> </span><span class="n">contents</span><span class="p">,</span><span class="w"> </span><span class="kt">size_t</span><span class="w"> </span><span class="n">size</span><span class="p">,</span><span class="w"> </span><span class="kt">size_t</span><span class="w"> </span><span class="n">nmemb</span><span class="p">,</span><span class="w"> </span><span class="n">std</span><span class="o">::</span><span class="n">string</span><span class="o">*</span><span class="w"> </span><span class="n">s</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="n">s</span><span class="o">-&gt;</span><span class="n">append</span><span class="p">(</span><span class="k">static_cast</span><span class="o">&lt;</span><span class="kt">char</span><span class="o">*&gt;</span><span class="p">(</span><span class="n">contents</span><span class="p">),</span><span class="w"> </span><span class="n">size</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="n">nmemb</span><span class="p">);</span>
+<span class="w">    </span><span class="k">return</span><span class="w"> </span><span class="n">size</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="n">nmemb</span><span class="p">;</span>
+<span class="p">}</span>
+
+<span class="kt">int</span><span class="w"> </span><span class="nf">main</span><span class="p">()</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="n">CURL</span><span class="o">*</span><span class="w"> </span><span class="n">curl</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">curl_easy_init</span><span class="p">();</span>
+<span class="w">    </span><span class="n">std</span><span class="o">::</span><span class="n">string</span><span class="w"> </span><span class="n">body</span><span class="p">;</span>
+
+<span class="w">    </span><span class="n">curl_easy_setopt</span><span class="p">(</span><span class="n">curl</span><span class="p">,</span><span class="w"> </span><span class="n">CURLOPT_URL</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;http://localhost:8080/api/v1/auth/accounts&quot;</span><span class="p">);</span>
+<span class="w">    </span><span class="n">curl_easy_setopt</span><span class="p">(</span><span class="n">curl</span><span class="p">,</span><span class="w"> </span><span class="n">CURLOPT_WRITEFUNCTION</span><span class="p">,</span><span class="w"> </span><span class="n">write_cb</span><span class="p">);</span>
+<span class="w">    </span><span class="n">curl_easy_setopt</span><span class="p">(</span><span class="n">curl</span><span class="p">,</span><span class="w"> </span><span class="n">CURLOPT_WRITEDATA</span><span class="p">,</span><span class="w"> </span><span class="o">&amp;</span><span class="n">body</span><span class="p">);</span>
+<span class="w">    </span><span class="n">curl_easy_perform</span><span class="p">(</span><span class="n">curl</span><span class="p">);</span>
+<span class="w">    </span><span class="n">curl_easy_cleanup</span><span class="p">(</span><span class="n">curl</span><span class="p">);</span>
+
+<span class="w">    </span><span class="n">std</span><span class="o">::</span><span class="n">cout</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="n">body</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="n">std</span><span class="o">::</span><span class="n">endl</span><span class="p">;</span>
+<span class="w">    </span><span class="k">return</span><span class="w"> </span><span class="mi">0</span><span class="p">;</span>
+<span class="p">}</span>
+</code></pre></div>
+
+    !!! done "Out"
+        <div class="highlight"><pre><span></span><code>[{&quot;account_type&quot;:&quot;F&quot;,&quot;person_id&quot;:&quot;PERSON_ID_1&quot;,&quot;broker_id&quot;:&quot;BROKER_ID_1&quot;,&quot;account_id&quot;:&quot;ACCOUNT_ID_1&quot;,&quot;signed&quot;:true,&quot;username&quot;:&quot;USERNAME_1&quot;},{&quot;account_type&quot;:&quot;H&quot;,&quot;person_id&quot;:&quot;PERSON_ID_1&quot;,&quot;broker_id&quot;:&quot;BROKER_ID_2&quot;,&quot;account_id&quot;:&quot;ACCOUNT_ID_2&quot;,&quot;signed&quot;:false,&quot;username&quot;:&quot;USERNAME_1&quot;},{&quot;account_type&quot;:&quot;S&quot;,&quot;person_id&quot;:&quot;PERSON_ID_1&quot;,&quot;broker_id&quot;:&quot;BROKER_ID_2&quot;,&quot;account_id&quot;:&quot;ACCOUNT_ID_3&quot;,&quot;signed&quot;:true,&quot;username&quot;:&quot;USERNAME_1&quot;}]
+</code></pre></div>
+
+    * If `signed` does not appear in the account list, the account has not been signed or has not completed the test report in simulation mode. Please refer to [API Signing and Test](./prepare/terms.md).
+
+    **Default Account**
+
+    The server picks the first stock / futures account as the default on startup. If the order request `account` omits `broker_id` / `account_id`, the default is used; to use a specific account, include `broker_id` + `account_id`.
+
+=== "C#"
+    **List Accounts**
+
+    !!! info "In"
+        <div class="highlight"><pre><span></span><code><span class="k">using</span><span class="w"> </span><span class="nn">System.Net.Http</span><span class="p">;</span>
+
+<span class="k">using</span><span class="w"> </span><span class="nn">var</span><span class="w"> </span><span class="n">http</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="k">new</span><span class="w"> </span><span class="n">HttpClient</span><span class="p">();</span>
+<span class="n">Console</span><span class="p">.</span><span class="n">WriteLine</span><span class="p">(</span><span class="k">await</span><span class="w"> </span><span class="n">http</span><span class="p">.</span><span class="n">GetStringAsync</span><span class="p">(</span><span class="s">&quot;http://localhost:8080/api/v1/auth/accounts&quot;</span><span class="p">));</span>
+</code></pre></div>
+
+    !!! done "Out"
+        <div class="highlight"><pre><span></span><code>[{&quot;account_type&quot;:&quot;F&quot;,&quot;person_id&quot;:&quot;PERSON_ID_1&quot;,&quot;broker_id&quot;:&quot;BROKER_ID_1&quot;,&quot;account_id&quot;:&quot;ACCOUNT_ID_1&quot;,&quot;signed&quot;:true,&quot;username&quot;:&quot;USERNAME_1&quot;},{&quot;account_type&quot;:&quot;H&quot;,&quot;person_id&quot;:&quot;PERSON_ID_1&quot;,&quot;broker_id&quot;:&quot;BROKER_ID_2&quot;,&quot;account_id&quot;:&quot;ACCOUNT_ID_2&quot;,&quot;signed&quot;:false,&quot;username&quot;:&quot;USERNAME_1&quot;},{&quot;account_type&quot;:&quot;S&quot;,&quot;person_id&quot;:&quot;PERSON_ID_1&quot;,&quot;broker_id&quot;:&quot;BROKER_ID_2&quot;,&quot;account_id&quot;:&quot;ACCOUNT_ID_3&quot;,&quot;signed&quot;:true,&quot;username&quot;:&quot;USERNAME_1&quot;}]
+</code></pre></div>
+
+    * If `signed` does not appear in the account list, the account has not been signed or has not completed the test report in simulation mode. Please refer to [API Signing and Test](./prepare/terms.md).
+
+    **Default Account**
+
+    The server picks the first stock / futures account as the default on startup. If the order request `account` omits `broker_id` / `account_id`, the default is used; to use a specific account, include `broker_id` + `account_id`.
+
+=== "Rust"
+    **List Accounts**
+
+    !!! info "In"
+        <div class="highlight"><pre><span></span><code><span class="cp">#[tokio::main]</span>
+<span class="k">async</span><span class="w"> </span><span class="k">fn</span><span class="w"> </span><span class="nf">main</span><span class="p">()</span><span class="w"> </span><span class="p">-&gt;</span><span class="w"> </span><span class="nb">Result</span><span class="o">&lt;</span><span class="p">(),</span><span class="w"> </span><span class="n">reqwest</span><span class="p">::</span><span class="n">Error</span><span class="o">&gt;</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="kd">let</span><span class="w"> </span><span class="n">body</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">reqwest</span><span class="p">::</span><span class="n">get</span><span class="p">(</span><span class="s">&quot;http://localhost:8080/api/v1/auth/accounts&quot;</span><span class="p">)</span>
+<span class="w">        </span><span class="p">.</span><span class="k">await</span><span class="o">?</span>
+<span class="w">        </span><span class="p">.</span><span class="n">text</span><span class="p">()</span>
+<span class="w">        </span><span class="p">.</span><span class="k">await</span><span class="o">?</span><span class="p">;</span>
+<span class="w">    </span><span class="fm">println!</span><span class="p">(</span><span class="s">&quot;{}&quot;</span><span class="p">,</span><span class="w"> </span><span class="n">body</span><span class="p">);</span>
+<span class="w">    </span><span class="nb">Ok</span><span class="p">(())</span>
+<span class="p">}</span>
+</code></pre></div>
+
+    !!! done "Out"
+        <div class="highlight"><pre><span></span><code>[{&quot;account_type&quot;:&quot;F&quot;,&quot;person_id&quot;:&quot;PERSON_ID_1&quot;,&quot;broker_id&quot;:&quot;BROKER_ID_1&quot;,&quot;account_id&quot;:&quot;ACCOUNT_ID_1&quot;,&quot;signed&quot;:true,&quot;username&quot;:&quot;USERNAME_1&quot;},{&quot;account_type&quot;:&quot;H&quot;,&quot;person_id&quot;:&quot;PERSON_ID_1&quot;,&quot;broker_id&quot;:&quot;BROKER_ID_2&quot;,&quot;account_id&quot;:&quot;ACCOUNT_ID_2&quot;,&quot;signed&quot;:false,&quot;username&quot;:&quot;USERNAME_1&quot;},{&quot;account_type&quot;:&quot;S&quot;,&quot;person_id&quot;:&quot;PERSON_ID_1&quot;,&quot;broker_id&quot;:&quot;BROKER_ID_2&quot;,&quot;account_id&quot;:&quot;ACCOUNT_ID_3&quot;,&quot;signed&quot;:true,&quot;username&quot;:&quot;USERNAME_1&quot;}]
+</code></pre></div>
+
+    * If `signed` does not appear in the account list, the account has not been signed or has not completed the test report in simulation mode. Please refer to [API Signing and Test](./prepare/terms.md).
+
+    **Default Account**
+
+    The server picks the first stock / futures account as the default on startup. If the order request `account` omits `broker_id` / `account_id`, the default is used; to use a specific account, include `broker_id` + `account_id`.
+
+=== "Java"
+    **List Accounts**
+
+    !!! info "In"
+        <div class="highlight"><pre><span></span><code><span class="kn">import</span><span class="w"> </span><span class="nn">java.net.URI</span><span class="p">;</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">java.net.http.HttpClient</span><span class="p">;</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">java.net.http.HttpRequest</span><span class="p">;</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">java.net.http.HttpResponse</span><span class="p">;</span>
+
+<span class="kd">public</span><span class="w"> </span><span class="kd">class</span> <span class="nc">Test</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="kd">public</span><span class="w"> </span><span class="kd">static</span><span class="w"> </span><span class="kt">void</span><span class="w"> </span><span class="nf">main</span><span class="p">(</span><span class="n">String</span><span class="o">[]</span><span class="w"> </span><span class="n">args</span><span class="p">)</span><span class="w"> </span><span class="kd">throws</span><span class="w"> </span><span class="n">Exception</span><span class="w"> </span><span class="p">{</span>
+<span class="w">        </span><span class="n">HttpClient</span><span class="w"> </span><span class="n">client</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">HttpClient</span><span class="p">.</span><span class="na">newHttpClient</span><span class="p">();</span>
+<span class="w">        </span><span class="n">HttpRequest</span><span class="w"> </span><span class="n">req</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">HttpRequest</span><span class="p">.</span><span class="na">newBuilder</span><span class="p">()</span>
+<span class="w">            </span><span class="p">.</span><span class="na">uri</span><span class="p">(</span><span class="n">URI</span><span class="p">.</span><span class="na">create</span><span class="p">(</span><span class="s">&quot;http://localhost:8080/api/v1/auth/accounts&quot;</span><span class="p">))</span>
+<span class="w">            </span><span class="p">.</span><span class="na">GET</span><span class="p">()</span>
+<span class="w">            </span><span class="p">.</span><span class="na">build</span><span class="p">();</span>
+<span class="w">        </span><span class="n">System</span><span class="p">.</span><span class="na">out</span><span class="p">.</span><span class="na">println</span><span class="p">(</span><span class="n">client</span><span class="p">.</span><span class="na">send</span><span class="p">(</span><span class="n">req</span><span class="p">,</span><span class="w"> </span><span class="n">HttpResponse</span><span class="p">.</span><span class="na">BodyHandlers</span><span class="p">.</span><span class="na">ofString</span><span class="p">()).</span><span class="na">body</span><span class="p">());</span>
+<span class="w">    </span><span class="p">}</span>
+<span class="p">}</span>
+</code></pre></div>
+
+    !!! done "Out"
+        <div class="highlight"><pre><span></span><code>[{&quot;account_type&quot;:&quot;F&quot;,&quot;person_id&quot;:&quot;PERSON_ID_1&quot;,&quot;broker_id&quot;:&quot;BROKER_ID_1&quot;,&quot;account_id&quot;:&quot;ACCOUNT_ID_1&quot;,&quot;signed&quot;:true,&quot;username&quot;:&quot;USERNAME_1&quot;},{&quot;account_type&quot;:&quot;H&quot;,&quot;person_id&quot;:&quot;PERSON_ID_1&quot;,&quot;broker_id&quot;:&quot;BROKER_ID_2&quot;,&quot;account_id&quot;:&quot;ACCOUNT_ID_2&quot;,&quot;signed&quot;:false,&quot;username&quot;:&quot;USERNAME_1&quot;},{&quot;account_type&quot;:&quot;S&quot;,&quot;person_id&quot;:&quot;PERSON_ID_1&quot;,&quot;broker_id&quot;:&quot;BROKER_ID_2&quot;,&quot;account_id&quot;:&quot;ACCOUNT_ID_3&quot;,&quot;signed&quot;:true,&quot;username&quot;:&quot;USERNAME_1&quot;}]
+</code></pre></div>
+
+    * If `signed` does not appear in the account list, the account has not been signed or has not completed the test report in simulation mode. Please refer to [API Signing and Test](./prepare/terms.md).
+
+    **Default Account**
+
+    The server picks the first stock / futures account as the default on startup. If the order request `account` omits `broker_id` / `account_id`, the default is used; to use a specific account, include `broker_id` + `account_id`.
+
+
+In the Order object you must specify the account to place the order with. For more details please refer to [Stock Order](./order/Stock.md) and [Futures Order](./order/FutureOption.md).
+
+<div class="highlight"><pre><span></span><code><span class="n">order</span> <span class="o">=</span> <span class="n">sj</span><span class="o">.</span><span class="n">StockOrder</span><span class="p">(</span>
+    <span class="n">action</span><span class="o">=</span><span class="n">sj</span><span class="o">.</span><span class="n">Action</span><span class="o">.</span><span class="n">Buy</span><span class="p">,</span>
+    <span class="n">price</span><span class="o">=</span><span class="mi">28</span><span class="p">,</span>
+    <span class="n">quantity</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span>
+    <span class="n">price_type</span><span class="o">=</span><span class="n">sj</span><span class="o">.</span><span class="n">StockPriceType</span><span class="o">.</span><span class="n">LMT</span><span class="p">,</span>
+    <span class="n">order_type</span><span class="o">=</span><span class="n">sj</span><span class="o">.</span><span class="n">OrderType</span><span class="o">.</span><span class="n">ROD</span><span class="p">,</span>
+    <span class="n">order_lot</span><span class="o">=</span><span class="n">sj</span><span class="o">.</span><span class="n">StockOrderLot</span><span class="o">.</span><span class="n">Common</span><span class="p">,</span>
+    <span class="n">order_cond</span><span class="o">=</span><span class="n">sj</span><span class="o">.</span><span class="n">StockOrderCond</span><span class="o">.</span><span class="n">Cash</span><span class="p">,</span>
 <span class="hll">    <span class="n">account</span><span class="o">=</span><span class="n">api</span><span class="o">.</span><span class="n">stock_account</span>
 </span><span class="p">)</span>
 </code></pre></div>
+
+
+-->
 <h2 id="logout">Logout<a class="headerlink" href="#logout" title="Permanent link">&para;</a></h2>
-<p>Logout funciton will close the connection between the client and the server.<br />
-In order to provide high quality services, starting from 2021/08/06, 
-we've limit the <a href="../limit/">number of connections used</a>. It's a good practice 
-to logout or to terminate the program when it is not in use.</p>
+<p>Logout closes the connection between the client and the server. To provide quality service, we <a href="../limit/">limit the number of connections</a> since 2021/08/06. It is good practice to terminate the program when not in use.</p>
+<div class="tabbed-set tabbed-alternate" data-tabs="4:2"><input checked="checked" id="__tabbed_4_1" name="__tabbed_4" type="radio" /><input id="__tabbed_4_2" name="__tabbed_4" type="radio" /><div class="tabbed-labels"><label for="__tabbed_4_1">Python</label><label for="__tabbed_4_2">Other Languages</label></div>
+<div class="tabbed-content">
+<div class="tabbed-block">
 <div class="admonition info">
-<p class="admonition-title">logout</p>
+<p class="admonition-title">In</p>
 <div class="highlight"><pre><span></span><code><span class="n">api</span><span class="o">.</span><span class="n">logout</span><span class="p">()</span>
-<span class="c1"># True</span>
 </code></pre></div>
+</div>
+<div class="admonition done">
+<p class="admonition-title">Out</p>
+<div class="highlight"><pre><span></span><code><span class="kc">True</span>
+</code></pre></div>
+</div>
+</div>
+<div class="tabbed-block">
+<p>Stop the daemon started by <code>shioaji server start</code>:</p>
+<div class="highlight"><pre><span></span><code>shioaji<span class="w"> </span>server<span class="w"> </span>stop
+</code></pre></div>
+</div>
+</div>
 </div>
 
 
@@ -2224,14 +2884,6 @@ to logout or to terminate the program when it is not in use.</p>
     
     <a href="https://github.com/Sinotrade/Shioaji" target="_blank" rel="noopener" title="github.com" class="md-social__link">
       <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 480 512"><!--! Font Awesome Free 6.7.2 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2024 Fonticons, Inc.--><path d="M186.1 328.7c0 20.9-10.9 55.1-36.7 55.1s-36.7-34.2-36.7-55.1 10.9-55.1 36.7-55.1 36.7 34.2 36.7 55.1M480 278.2c0 31.9-3.2 65.7-17.5 95-37.9 76.6-142.1 74.8-216.7 74.8-75.8 0-186.2 2.7-225.6-74.8-14.6-29-20.2-63.1-20.2-95 0-41.9 13.9-81.5 41.5-113.6-5.2-15.8-7.7-32.4-7.7-48.8 0-21.5 4.9-32.3 14.6-51.8 45.3 0 74.3 9 108.8 36 29-6.9 58.8-10 88.7-10 27 0 54.2 2.9 80.4 9.2 34-26.7 63-35.2 107.8-35.2 9.8 19.5 14.6 30.3 14.6 51.8 0 16.4-2.6 32.7-7.7 48.2 27.5 32.4 39 72.3 39 114.2m-64.3 50.5c0-43.9-26.7-82.6-73.5-82.6-18.9 0-37 3.4-56 6-14.9 2.3-29.8 3.2-45.1 3.2-15.2 0-30.1-.9-45.1-3.2-18.7-2.6-37-6-56-6-46.8 0-73.5 38.7-73.5 82.6 0 87.8 80.4 101.3 150.4 101.3h48.2c70.3 0 150.6-13.4 150.6-101.3m-82.6-55.1c-25.8 0-36.7 34.2-36.7 55.1s10.9 55.1 36.7 55.1 36.7-34.2 36.7-55.1-10.9-55.1-36.7-55.1"/></svg>
-    </a>
-  
-    
-    
-    
-    
-    <a href="/zh/shioaji.pdf" target="_blank" rel="noopener" title="Download PDF" class="md-social__link">
-      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><!--! Font Awesome Free 6.7.2 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2024 Fonticons, Inc.--><path d="M0 64C0 28.7 28.7 0 64 0h160v128c0 17.7 14.3 32 32 32h128v144H176c-35.3 0-64 28.7-64 64v144H64c-35.3 0-64-28.7-64-64zm384 64H256V0zM176 352h32c30.9 0 56 25.1 56 56s-25.1 56-56 56h-16v32c0 8.8-7.2 16-16 16s-16-7.2-16-16V368c0-8.8 7.2-16 16-16m32 80c13.3 0 24-10.7 24-24s-10.7-24-24-24h-16v48zm96-80h32c26.5 0 48 21.5 48 48v64c0 26.5-21.5 48-48 48h-32c-8.8 0-16-7.2-16-16V368c0-8.8 7.2-16 16-16m32 128c8.8 0 16-7.2 16-16v-64c0-8.8-7.2-16-16-16h-16v96zm80-112c0-8.8 7.2-16 16-16h48c8.8 0 16 7.2 16 16s-7.2 16-16 16h-32v32h32c8.8 0 16 7.2 16 16s-7.2 16-16 16h-32v48c0 8.8-7.2 16-16 16s-16-7.2-16-16V368"/></svg>
     </a>
   
     

@@ -5,93 +5,47 @@ When the exchange receives the order, it will return the callback. The callback 
 Order Event
 
 ```
-OrderState.StockOrder {
+<OrderState.StockOrder: 'SORDER'> {
     'operation': {
-        'op_type': 'New', 
-        'op_code': '00', 
+        'op_type': 'New',
+        'op_code': '00',
         'op_msg': ''
-    }, 
+    },
     'order': {
-        'id': '97b63e2f', 
-        'seqno': '267677', 
-        'ordno': 'IM394', 
+        'id': '348d1c6a',
+        'seqno': '351522',
+        'ordno': 'Y1S5N',
         'account': {
-            'account_type': 'S', 
-            'person_id': '', 
-            'broker_id': '9A95', 
-            'account_id': '1234567', 
-            'signed': True
-        }, 
-        'action': 'Buy', 
-        'price': 16.0, 
-        'quantity': 1, 
-        'order_type': 'ROD', 
-        'price_type': 'LMT', 
-        'order_cond': 'Cash', 
-        'order_lot': 'Common', 
-        'custom_field': 'test'
-    }, 
+            'account_type': 'S',
+            'person_id': '',
+            'broker_id': 'YOUR_BROKER_ID',
+            'account_id': 'YOUR_ACCOUNT_ID',
+            'signed': True,
+            'username': ''
+        },
+        'action': 'Buy',
+        'price': 27.0,
+        'quantity': 1,
+        'order_type': 'ROD',
+        'price_type': 'LMT',
+        'order_cond': 'Cash',
+        'order_lot': 'Common',
+        'custom_field': ''
+    },
     'status': {
-        'id': '97b63e2f', 
-        'exchange_ts': 1673576134.038, 
-        'modified_price': 0.0, 
-        'cancel_quantity': 0, 
-        'order_quantity': 1, 
+        'id': '348d1c6a',
+        'exchange_ts': 1779331286.678,
+        'modified_price': 0.0,
+        'cancel_quantity': 0,
+        'order_quantity': 1,
         'web_id': '137'
-    }, 
+    },
     'contract': {
-        'security_type': 'STK', 
-        'exchange': 'TSE', 
-        'code': '2890', 
-        'symbol': '', 
-        'name': '', 
-        'currency': 'TWD'
-    }
-}
-
-```
-
-```
-OrderState.TFTOrder {
-    'operation': {
-        'op_type': 'New', 
-        'op_code': '00', 
-        'op_msg': ''
-    }, 
-    'order': {
-        'id': '97b63e2f', 
-        'seqno': '267677', 
-        'ordno': 'IM394', 
-        'account': {
-            'account_type': 'S', 
-            'person_id': '', 
-            'broker_id': '9A95', 
-            'account_id': '1234567', 
-            'signed': True
-        }, 
-        'action': 'Buy', 
-        'price': 16.0, 
-        'quantity': 1, 
-        'order_type': 'ROD', 
-        'price_type': 'LMT', 
-        'order_cond': 'Cash', 
-        'order_lot': 'Common', 
-        'custom_field': 'test'
-    }, 
-    'status': {
-        'id': '97b63e2f', 
-        'exchange_ts': 1673576134.038, 
-        'modified_price': 0.0, 
-        'cancel_quantity': 0, 
-        'order_quantity': 1, 
-        'web_id': '137'
-    }, 
-    'contract': {
-        'security_type': 'STK', 
-        'exchange': 'TSE', 
-        'code': '2890', 
-        'symbol': '', 
-        'name': '', 
+        'exchange': 'TSE',
+        'code': '2890',
+        'security_type': 'STK',
+        'symbol': '',
+        'name': '',
         'currency': 'TWD'
     }
 }
@@ -172,42 +126,21 @@ When the matching is successful, the exchange will send a transaction report not
 Deal Event
 
 ```
-OrderState.StockDeal {
-    'trade_id': '9c6ae2eb', 
-    'seqno': '269866', 
-    'ordno': 'IN497', 
-    'exchange_seq': '669915', 
-    'broker_id': '9A95', 
-    'account_id': '1234567', 
-    'action': 'Buy', 
-    'code': '2890', 
-    'order_cond': 'Cash', 
-    'order_lot': 'IntradayOdd', 
-    'price': 267.5, 
-    'quantity': 3, 
-    'web_id': '137', 
-    'custom_field': 'test', 
-    'ts': 1673577256.354
-}
-
-```
-
-```
-OrderState.TFTDeal {
-    'trade_id': '9c6ae2eb', 
-    'seqno': '269866', 
-    'ordno': 'IN497', 
-    'exchange_seq': '669915', 
-    'broker_id': '9A95', 
-    'account_id': '1234567', 
-    'action': 'Buy', 
-    'code': '2890', 
-    'order_cond': 'Cash', 
-    'order_lot': 'IntradayOdd', 
-    'price': 267.5, 
-    'quantity': 3, 
-    'web_id': '137', 
-    'custom_field': 'test', 
+<OrderState.StockDeal: 'SDEAL'> {
+    'trade_id': '9c6ae2eb',
+    'seqno': '269866',
+    'ordno': 'IN497',
+    'exchange_seq': '669915',
+    'broker_id': 'YOUR_BROKER_ID',
+    'account_id': 'YOUR_ACCOUNT_ID',
+    'action': 'Buy',
+    'code': '2890',
+    'order_cond': 'Cash',
+    'order_lot': 'IntradayOdd',
+    'price': 267.5,
+    'quantity': 3,
+    'web_id': '137',
+    'custom_field': 'test',
     'ts': 1673577256.354
 }
 

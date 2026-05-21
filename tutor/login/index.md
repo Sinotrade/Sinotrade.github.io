@@ -1,29 +1,19 @@
-Login must have a SinoPac Securities account. If you do not have a SinoPac Securities account yet. See the [document](../prepare/open_account/) for details.
+Login requires a SinoPac Securities account. If you don't have one yet, see [Open Account](../prepare/open_account/).
 
 ## Login
 
-Token login
+API Key
 
-After version 1.0, we are using token as our `login` method. You can be found in [Token](../prepare/token/). Before version 1.0, using person id and password.
+Shioaji uses API Key as the login method. See [Token & Certificate](../prepare/token/) to apply.
 
 In
 
 ```
 import shioaji as sj
-api = sj.Shioaji()
+api = sj.Shioaji(simulation=False)  # whether to enter simulation mode
 api.login(
-    api_key="YOUR_API_KEY", 
+    api_key="YOUR_API_KEY",
     secret_key="YOUR_SECRET_KEY"
-)
-
-```
-
-```
-import shioaji as sj
-api = sj.Shioaji()
-api.login(
-    person_id="YOUR_PERSON_ID", 
-    passwd="YOUR_PASSWORD",
 )
 
 ```
@@ -31,12 +21,15 @@ api.login(
 Out
 
 ```
-[FutureAccount(person_id='', broker_id='', account_id='', signed=True, username=''),
-StockAccount(person_id='', broker_id='', account_id='', signed=True, username='')]
+# Connection to Solace market data server established
+Response Code: 0 | Event Code: 0 | Info: host '<IP>:80', hostname '<IP>:80' IP <IP>:80 (host 1 of 1) (host connection attempt 1 of 1) (total connection attempt 1 of 2) | Event: Session up
+
+# Account list returned after login
+[FutureAccount(person_id='', broker_id='', account_id='', signed=true, username=''),
+ IntlAccount(person_id='', broker_id='', account_id='', signed=false, username=''),
+ StockAccount(person_id='', broker_id='', account_id='', signed=true, username='')]
 
 ```
-
-- If you cannot find `signed` in your accounts, please refer to [terms of service](../prepare/terms/) first.
 
 Login Arguments
 
@@ -51,24 +44,16 @@ receive_window (int): valid duration for login execution. (Default: 30,000 ms)
 
 ```
 
-```
-person_id (str): person_id
-passwd (str): password
-hashed (bool): whether password has been hashed (Default: False)
-fetch_contract (bool): whether to load contracts from cache or server (Default: True)
-contracts_timeout (int): fetch contract timeout (Default: 0 ms)
-contracts_cb (typing.Callable): fetch contract callback (Default: None)
-subscribe_trade (bool): whether to subscribe Order/Deal event callback (Default: True)
+Note
 
-```
+If you receive **Sign data is timeout**, login exceeded the effective execution time. Possible causes:
 
-Warning
+- System time differs too much from server time → calibrate system time
+- Login execution exceeds `receive_window` → increase `receive_window` (Default: 30,000 ms)
 
-When the version is greater than 1.0, you may receive **Sign data is timeout** when login. That is, login has exceeded the effective execution time. It may be that the time difference between your computer and server is too large, you need to calibrate your computer time. Or login execution time exceeds valid time, you can increase `receive_window`.
+**Fetch Contracts Callback**
 
-### Fetch Contracts Callback
-
-You can use `contracts_cb` as print to check contract download status.
+Use `contracts_cb` to monitor contract fetch progress:
 
 In
 
@@ -76,19 +61,8 @@ In
 import shioaji as sj
 api = sj.Shioaji()
 api.login(
-    api_key="YOUR_API_KEY", 
-    secret_key="YOUR_SECRET_KEY", 
-    contracts_cb=lambda security_type: print(f"{repr(security_type)} fetch done.")
-)
-
-```
-
-```
-import shioaji as sj
-api = sj.Shioaji()
-api.login(
-    person_id="YOUR_PERSON_ID", 
-    passwd="YOUR_PASSWORD", 
+    api_key="YOUR_API_KEY",
+    secret_key="YOUR_SECRET_KEY",
     contracts_cb=lambda security_type: print(f"{repr(security_type)} fetch done.")
 )
 
@@ -108,10 +82,65 @@ Out
 
 ```
 
+In
+
+```
+# .env (in the working directory) should contain:
+SJ_API_KEY=YOUR_API_KEY                # edit it
+SJ_SEC_KEY=YOUR_SECRET_KEY             # edit it
+SJ_PRODUCTION=true                     # whether to enter production mode
+
+# Start server (auto-reads .env and logs in)
+shioaji server start
+
+```
+
+Out
+
+```
+# Reads API key and settings from .env
+Loaded environment variables from .env file
+INFO shioaji::cli::server: Starting Shioaji API Server...
+
+# First login (no cached token)
+INFO shioaji::api::api_v1::auth::token_login: No cached token available, performing new login
+INFO shioaji::api::api_v1::auth::token_login: Stored new token in slot 1
+
+# Contract fetch progress
+INFO shioaji::api::api_v1::contracts::api: Fetched 127 IND contracts (1 pages)
+INFO shioaji::api::api_v1::contracts::api: Fetched 42787 STK contracts (9 pages)
+INFO shioaji::api::api_v1::contracts::api: Fetched 2489 FUT contracts (1 pages)
+INFO shioaji::api::api_v1::contracts::api: Fetched 8653 OPT contracts (2 pages)
+INFO shioaji::server: Loaded 54056 contracts
+
+# CA certificate loaded
+INFO shioaji::server: CA certificate activated successfully
+
+# Authentication successful, login complete
+INFO shioaji::cli::server: Successfully authenticated with Shioaji API
+
+# HTTP server up, ready to accept requests
+INFO shioaji::cli::server: 🚀 Shioaji API Server is running on http://127.0.0.1:8080
+INFO salvo_core::server: listening [HTTP/1.1] on http://127.0.0.1:8080
+
+```
+
+Login Arguments
+
+```
+SJ_API_KEY      API Key (required)
+SJ_SEC_KEY      Secret Key (required)
+SJ_PRODUCTION   whether to enter production mode (Default: false)
+
+```
+
+Note
+
+If you receive **Sign data is timeout**, login exceeded the effective execution time. Please calibrate system time.
+
 ### Subscribe Trade
 
-There are 2 options that you can adjust whether to subscribe trade (Order/Deal Event Callback).\
-The first is `subscribe_trade` in login aruguments. Default value of `subscribe_trade` is `True`, and it will automatically subscribe trade from all accounts. You don't need to make any adjustments, if you would like to receive Order/Deal Events.
+There are 2 options to adjust trade subscription (Order/Deal Event Callback). The first is the `subscribe_trade` argument of `login`. Its default value is `True`, which auto-subscribes trade events from all accounts.
 
 In
 
@@ -119,25 +148,14 @@ In
 import shioaji as sj
 api = sj.Shioaji()
 api.login(
-    api_key="YOUR_API_KEY", 
-    secret_key="YOUR_SECRET_KEY", 
+    api_key="YOUR_API_KEY",
+    secret_key="YOUR_SECRET_KEY",
     subscribe_trade=True
 )
 
 ```
 
-```
-import shioaji as sj
-api = sj.Shioaji()
-api.login(
-    person_id="YOUR_PERSON_ID", 
-    passwd="YOUR_PASSWORD", 
-    subscribe_trade=True
-)
-
-```
-
-The second one is to manually use the API `subscribe_trade` and `unsubscribe_trade` for specific account.
+The second option is to call `subscribe_trade` / `unsubscribe_trade` on a specific account to subscribe or unsubscribe.
 
 subscribe trade
 
@@ -153,38 +171,67 @@ api.unsubscribe_trade(account)
 
 ```
 
+Use HTTP
+
+Shioaji 1.5.x CLI doesn't provide a `subscribe-trade` subcommand. Use HTTP instead.
+
+The server doesn't auto-subscribe on startup; subscribe per account.
+
+subscribe trade
+
+```
+curl -X POST http://localhost:8080/api/v1/auth/subscribe_trade \
+  -H "Content-Type: application/json" \
+  -d '{"broker_id": "YOUR_BROKER_ID", "account_id": "YOUR_ACCOUNT_ID"}'
+
+```
+
+unsubscribe trade
+
+```
+curl -X POST http://localhost:8080/api/v1/auth/unsubscribe_trade \
+  -H "Content-Type: application/json" \
+  -d '{"broker_id": "YOUR_BROKER_ID", "account_id": "YOUR_ACCOUNT_ID"}'
+
+```
+
 ## Account
 
-### List Accounts
+Accounts are classified by `account_type`:
 
-In:
+- `S`: Stock account (`StockAccount`)
+- `F`: Futures account (`FutureAccount`)
+- `H`: International (sub-brokerage) account — not yet supported for API trading in shioaji.
+
+#### List Accounts
+
+In
 
 ```
 accounts = api.list_accounts()
+accounts
 
 ```
 
 Out
 
 ```
-# print(accounts)
 [
-    FutureAccount(person_id='PERSON_ID_1', broker_id='BROKER_ID_1', account_id='ACCOUNT_ID_1', signed=True, username='USERNAME_1'), 
-    FutureAccount(person_id='PERSON_ID_2', broker_id='BROKER_ID_2', account_id='ACCOUNT_ID_2', username='USERNAME_2'), 
-    StockAccount(person_id='PERSON_ID_3', broker_id='BROKER_ID_3', account_id='ACCOUNT_ID_3', username='USERNAME_3'), 
-    StockAccount(person_id='PERSON_ID_4', broker_id='BROKER_ID_4', account_id='ACCOUNT_ID_4', signed=True, username='USERNAME_4')
+    FutureAccount(person_id='PERSON_ID_1', broker_id='BROKER_ID_1', account_id='ACCOUNT_ID_1', signed=True, username='USERNAME_1'),
+    IntlAccount(person_id='PERSON_ID_1', broker_id='BROKER_ID_2', account_id='ACCOUNT_ID_2', signed=False, username='USERNAME_1'),
+    StockAccount(person_id='PERSON_ID_1', broker_id='BROKER_ID_2', account_id='ACCOUNT_ID_3', signed=True, username='USERNAME_1')
 ]
 
 ```
 
-- If `signed` does not appear in the account list, like ACCOUNT_ID_2 and ACCOUNT_ID_3, it means that the account has not signed or completed the test report in the simulation mode. Please refer to [Terms of service](../prepare/terms/).
+- If `signed` does not appear in the account list (e.g. `ACCOUNT_ID_2`), the account has not been signed or has not completed the test report in simulation mode. Please refer to [API Signing and Test](../prepare/terms/).
 
-### Default Account
+#### Default Account
 
 In
 
 ```
-# Futures default account
+print(api.stock_account)
 print(api.futopt_account)
 
 ```
@@ -192,16 +239,17 @@ print(api.futopt_account)
 Out
 
 ```
+StockAccount(person_id='PERSON_ID_1', broker_id='BROKER_ID_2', account_id='ACCOUNT_ID_3', signed=True, username='USERNAME_1')
 FutureAccount(person_id='PERSON_ID_1', broker_id='BROKER_ID_1', account_id='ACCOUNT_ID_1', signed=True, username='USERNAME_1')
 
 ```
 
-Set default account
+#### Set Default Account
 
 In
 
 ```
-# Default futures account switch to ACCOUNT_ID_2 from ACCOUNT_ID_1. 
+# Switch the default futures account from ACCOUNT_ID_1 to ACCOUNT_ID_2
 api.set_default_account(accounts[1])
 print(api.futopt_account)
 
@@ -214,30 +262,74 @@ FutureAccount(person_id='PERSON_ID_2', broker_id='BROKER_ID_2', account_id='ACCO
 
 ```
 
-In Order object, you need to specify which account you want to place order. For more information about Order, please refer to [Stock Order](../order/Stock/) and [Futures Order](../order/FutureOption/).
+**List Accounts**
+
+In
 
 ```
-order = api.Order(
-    price=12, 
-    quantity=1, 
-    action=sj.constant.Action.Buy, 
-    price_type=sj.constant.StockPriceType.LMT, 
-    order_type=sj.constant.OrderType.ROD, 
-    order_lot=sj.constant.StockOrderLot.Common, 
-    account=api.stock_account
-)
+shioaji auth accounts
 
 ```
+
+Out
+
+```
+[3]{account_type,person_id,broker_id,account_id,signed,username}:
+  F,PERSON_ID_1,BROKER_ID_1,"ACCOUNT_ID_1",true,USERNAME_1
+  H,PERSON_ID_1,BROKER_ID_2,"ACCOUNT_ID_2",false,USERNAME_1
+  S,PERSON_ID_1,BROKER_ID_2,"ACCOUNT_ID_3",true,USERNAME_1
+
+```
+
+- If `signed` does not appear in the account list, the account has not been signed or has not completed the test report in simulation mode. Please refer to [API Signing and Test](../prepare/terms/).
+
+**Default Account**
+
+The server picks the first stock / futures account as the default on startup. If `--account` is not given on order placement, the default is used; to use a specific account, pass `--account BROKER-ACCOUNT`.
+
+**List Accounts**
+
+In
+
+```
+curl http://localhost:8080/api/v1/auth/accounts
+
+```
+
+Out
+
+```
+[{"account_type":"F","person_id":"PERSON_ID_1","broker_id":"BROKER_ID_1","account_id":"ACCOUNT_ID_1","signed":true,"username":"USERNAME_1"},{"account_type":"H","person_id":"PERSON_ID_1","broker_id":"BROKER_ID_2","account_id":"ACCOUNT_ID_2","signed":false,"username":"USERNAME_1"},{"account_type":"S","person_id":"PERSON_ID_1","broker_id":"BROKER_ID_2","account_id":"ACCOUNT_ID_3","signed":true,"username":"USERNAME_1"}]
+
+```
+
+- If `signed` does not appear in the account list, the account has not been signed or has not completed the test report in simulation mode. Please refer to [API Signing and Test](../prepare/terms/).
+
+**Default Account**
+
+The server picks the first stock / futures account as the default on startup. If the order request `account` omits `broker_id` / `account_id`, the default is used; to use a specific account, include `broker_id` + `account_id`.
 
 ## Logout
 
-Logout funciton will close the connection between the client and the server.\
-In order to provide high quality services, starting from 2021/08/06, we've limit the [number of connections used](../limit/). It's a good practice to logout or to terminate the program when it is not in use.
+Logout closes the connection between the client and the server. To provide quality service, we [limit the number of connections](../limit/) since 2021/08/06. It is good practice to terminate the program when not in use.
 
-logout
+In
 
 ```
 api.logout()
-# True
+
+```
+
+Out
+
+```
+True
+
+```
+
+Stop the daemon started by `shioaji server start`:
+
+```
+shioaji server stop
 
 ```

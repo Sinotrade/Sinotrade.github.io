@@ -1,86 +1,111 @@
 Reminder
 
-First, you need to [login](../../login/) and [activate CA](../../prepare/terms/).
-
-### Futures Order
-
-Order Attributes
-
-```
-price (float or int): the price of order
-quantity (int): the quantity of order
-action (str): order action to buy or sell
-    {Buy, Sell}
-price_type (str): pricing type of order
-    {LMT, MKT, MKP}
-order_type (str): the type of order
-    {ROD, IOC, FOK}
-octype (str): the type or order to open new position or close position future only
-    {Auto, New, Cover, DayTrade} (自動、新倉、平倉、當沖)
-account (:obj:Account): which account to place this order
-ca (binary): the ca of this order
-
-```
+Before placing orders, you must first [login](../../login/) and [activate CA](../../prepare/terms/).
 
 ### Place Order
 
-Product information ( `contract`) and order information ( `order`) must be provided when placing an order.
+Both contract information (`contract`) and order information (`order`) must be provided when placing an order.
 
-Place Order
+place_order
 
 ```
 api.place_order?
 
-    Signature:
-        api.place_order(
-            contract: shioaji.contracts.Contract,
-            order: shioaji.order.Order,
-            timeout: int = 5000,
-            cb: Callable[[shioaji.order.Trade], NoneType] = None,
-        ) -> shioaji.order.Trade
-    Docstring:
+Signature:
+    api.place_order(
+        contract: sj.Future,
+        order: sj.FuturesOrder,
+        timeout: Optional[int] = 30000,
+        cb: Optional[Callable[[sj.Trade], None]] = None,
+    ) -> sj.Trade
+Docstring:
     placing order
 
 ```
 
-Contract
+Parameters
 
 ```
-contract = api.Contracts.Futures.TXF.TXF202301
+contract: contract (obtained via api.Contracts.Futures.*)
+order:    futures order object
+timeout:  timeout in milliseconds
+cb:       optional callback function
 
 ```
+
+sj.FuturesOrder
+
+```
+action (Action):                order action {Buy, Sell}
+price (float or int):           price
+quantity (int):                 quantity
+price_type (FuturesPriceType):  price type {LMT, MKT, MKP}
+order_type (OrderType):         order condition {ROD, IOC, FOK}
+octype (FuturesOCType):         open/close type {Auto, New, Cover, DayTrade}
+account (Account):              order account
+
+```
+
+place_order
+
+```
+POST /api/v1/order/place_order
+Content-Type: application/json
+
+{
+  "contract": { "security_type": "FUT", "exchange": "TAIFEX", "code": <string> },
+  "futures_order": {
+    "action": <Action>,
+    "price": <number>,
+    "quantity": <integer>,
+    "price_type": <FuturesPriceType>,
+    "order_type": <OrderType>,
+    "octype": <FuturesOCType>,
+    "account": { "broker_id": <string>, "account_id": <string> }
+  }
+}
+
+```
+
+Parameters
+
+```
+contract.security_type:   security type {FUT, OPT}
+contract.code:            security code
+futures_order.action:     order action {Buy, Sell}
+futures_order.price:      price
+futures_order.quantity:   quantity
+futures_order.price_type: price type {LMT, MKT, MKP}
+futures_order.order_type: order condition {ROD, IOC, FOK}
+futures_order.octype:     open/close type {Auto, New, Cover, DayTrade}
+futures_order.account:    order account (omit to use the default futures account)
+
+```
+
+#### Example: Place Order
 
 Order
 
 ```
-order = api.Order(
-    action=sj.constant.Action.Buy,
-    price=14400,
-    quantity=3,
-    price_type=sj.constant.FuturesPriceType.LMT,
-    order_type=sj.constant.OrderType.ROD, 
-    octype=sj.constant.FuturesOCType.Auto,
-    account=api.futopt_account
+# contract
+contract = api.Contracts.Futures.TMF.TMFR1
+# order
+order = sj.FuturesOrder(
+    action=sj.Action.Buy,
+    price=36216,
+    quantity=2,
+    price_type=sj.FuturesPriceType.LMT,
+    order_type=sj.OrderType.ROD,
+    octype=sj.FuturesOCType.Auto,
+    account=api.futopt_account,
 )
 
 ```
 
-```
-order = api.Order(
-    action=sj.constant.Action.Buy,
-    price=14400,
-    quantity=3,
-    price_type=sj.constant.FuturesPriceType.LMT,
-    order_type=sj.constant.FuturesOrderType.ROD, 
-    octype=sj.constant.FuturesOCType.Auto,
-    account=api.futopt_account
-)
+In
 
 ```
-
-Place Order
-
-```
+# place order
 trade = api.place_order(contract, order)
 trade
 
@@ -90,53 +115,44 @@ Out
 
 ```
 Trade(
-    contract=Future(
-        code='TXFA3', 
-        symbol='TXF202301', 
-        name='臺股期貨01', 
-        category='TXF', 
-        delivery_month='202301', 
-        delivery_date='2023/01/30', 
-        underlying_kind='I', 
-        unit=1, 
-        limit_up=16270.0, 
-        limit_down=13312.0, 
-        reference=14791.0, 
-        update_date='2023/01/12'
-    ), 
+    contract=Contract(
+        security_type='FUT',
+        exchange='TAIFEX',
+        code='TMFE6',
+        target_code='TMFE6'
+    ),
     order=Order(
-        action=<Action.Buy: 'Buy'>, 
-        price=14400, 
-        quantity=3, 
-        id='5efffde1', 
-        seqno='000004', 
-        ordno='000003', 
-        account=Account(
-            account_type=<AccountType.Future: 'F'>,
-            person_id='A123456789', 
-            broker_id='F002000', 
-            account_id='1234567', 
-            signed=True
-        ), 
-        price_type=<StockPriceType.LMT: 'LMT'>, 
-        order_type=<OrderType.ROD: 'ROD'>
-    ), 
+        id='e0ae2459',
+        action=<Action.Buy: 'Buy'>,
+        price=36216,
+        quantity=2,
+        seqno='242472',
+        order_type=<OrderType.ROD: 'ROD'>,
+        price_type=<PriceType.LMT: 'LMT'>,
+        account=FutureAccount(
+            person_id='YOUR_PERSON_ID',
+            broker_id='YOUR_BROKER_ID',
+            account_id='YOUR_ACCOUNT_ID',
+            signed=true,
+            username='YOUR_USERNAME'
+        ),
+        octype=<FuturesOCType.Auto: 'Auto'>
+    ),
     status=OrderStatus(
-        id='5efffde1', 
-        status=<Status.PendingSubmit: 'PendingSubmit'>, 
-        status_code='00', 
-        order_datetime=datetime.datetime(2023, 1, 12, 14, 56, 13, 995651), 
-        deals=[]
+        id='e0ae2459',
+        status=<OrderStatus.PendingSubmit: 'PendingSubmit'>,
+        status_code='    ',
+        order_datetime=datetime.datetime(2026, 5, 19, 18, 3, 7, tzinfo=datetime.timezone(datetime.timedelta(hours=8)))
     )
 )
 
 ```
 
-After `place_order`, you will also receive the information sent back from the exchange. For details, please refer to [Order & Deal Event](../order_deal_event/stocks/).
+After placing the order, the exchange will send back the order/deal events. See [Order & Deal Event](../order_deal_event/stocks/) for details.
 
-To update the `trade` status, you need to call `update_status`.
+If `place_order` returns a `trade` with `status` equal to `PendingSubmit`, call `update_status` to refresh it. See [Order Status](../UpdateStatus/) for details.
 
-Update Status
+In
 
 ```
 api.update_status(api.futopt_account)
@@ -148,83 +164,264 @@ Out
 
 ```
 Trade(
-    contract=Future(
-        code='TXFA3', 
-        symbol='TXF202301', 
-        name='臺股期貨01', 
-        category='TXF', 
-        delivery_month='202301', 
-        delivery_date='2023/01/30', 
-        underlying_kind='I', 
-        unit=1, 
-        limit_up=16270.0, 
-        limit_down=13312.0, 
-        reference=14791.0, 
-        update_date='2023/01/12'
-    ), 
+    contract=Contract(
+        security_type='FUT',
+        exchange='TAIFEX',
+        code='TMFE6'
+    ),
     order=Order(
-        action=<Action.Buy: 'Buy'>, 
-        price=14400, 
-        quantity=3, 
-        id='5efffde1', 
-        seqno='000004', 
-        ordno='000003', 
-        account=Account(
-            account_type=<AccountType.Future: 'F'>,
-            person_id='A123456789', 
-            broker_id='F002000', 
-            account_id='1234567', 
-            signed=True
-        ), 
-        price_type=<StockPriceType.LMT: 'LMT'>, 
-        order_type=<OrderType.ROD: 'ROD'>
-    ), 
+        id='e0ae2459',
+        action=<Action.Buy: 'Buy'>,
+        price=36216,
+        quantity=2,
+        seqno='242472',
+        ordno='vE0Dr',
+        order_type=<OrderType.ROD: 'ROD'>,
+        price_type=<PriceType.LMT: 'LMT'>,
+        account=FutureAccount(
+            person_id='YOUR_PERSON_ID',
+            broker_id='YOUR_BROKER_ID',
+            account_id='YOUR_ACCOUNT_ID',
+            signed=true,
+            username=''
+        ),
+        octype=<FuturesOCType.NewPosition: 'NewPosition'>
+    ),
     status=OrderStatus(
-        id='5efffde1', 
-        status=<Status.Submitted: 'Submitted'>,
-        status_code='00', 
-        order_datetime=datetime.datetime(2023, 1, 12, 14, 56, 13, 995651), 
-        deals=[]
+        id='e0ae2459',
+        status=<OrderStatus.Submitted: 'Submitted'>,
+        status_code='0000',
+        order_datetime=datetime.datetime(2026, 5, 19, 18, 3, 7, tzinfo=datetime.timezone(datetime.timedelta(hours=8))),
+        web_id='Z',
+        modified_time=datetime.datetime(2026, 5, 19, 18, 3, 7, tzinfo=datetime.timezone(datetime.timedelta(hours=8))),
+        modified_price=36216,
+        order_quantity=2
     )
 )
 
 ```
 
-Status of Trade
+In
 
-- `PendingSubmit`: Sending
-- `PreSubmitted`: Reservation
-- `Submitted`: Send Successfully
-- `Failed`: Failed
-- `Cancelled`: Cancelled
-- `Filled`: Complete Fill
-- `PartFilled`: Part Fill
+```
+curl -X POST http://localhost:8080/api/v1/order/place_order \
+  -H 'Content-Type: application/json' \
+  -d '{
+    "contract": {"security_type": "FUT", "exchange": "TAIFEX", "code": "TMFR1"},
+    "futures_order": {
+      "action": "Buy",
+      "price": 36216,
+      "quantity": 2,
+      "price_type": "LMT",
+      "order_type": "ROD",
+      "octype": "Auto",
+      "account": {
+        "broker_id": "YOUR_BROKER_ID",
+        "account_id": "YOUR_ACCOUNT_ID"
+      }
+    }
+  }'
+
+```
+
+Out
+
+```
+{
+  "contract": {
+    "security_type": "FUT",
+    "exchange": "TAIFEX",
+    "code": "TMFE6",
+    "target_code": ""
+  },
+  "order": {
+    "id": "bf2ca5b0",
+    "seqno": "243121",
+    "ordno": "",
+    "action": "Buy",
+    "price": 36216.0,
+    "quantity": 2,
+    "order_type": "ROD",
+    "price_type": "LMT",
+    "custom_field": "",
+    "account": {
+      "account_type": "F",
+      "person_id": "YOUR_PERSON_ID",
+      "broker_id": "YOUR_BROKER_ID",
+      "account_id": "YOUR_ACCOUNT_ID",
+      "signed": true,
+      "username": "YOUR_USERNAME"
+    },
+    "ca": "YOUR_CA_BASE64",
+    "octype": "Auto"
+  },
+  "status": {
+    "id": "bf2ca5b0",
+    "status": "PendingSubmit",
+    "status_code": "    ",
+    "web_id": "",
+    "order_ts": 1779187550.0,
+    "msg": "",
+    "modified_ts": 0.0,
+    "modified_price": 0.0,
+    "order_quantity": 0,
+    "deal_quantity": 0,
+    "cancel_quantity": 0,
+    "deals": []
+  }
+}
+
+```
+
+After placing the order, the exchange will send back the order/deal events. See [Order & Deal Event](../order_deal_event/stocks/) for details.
+
+If `POST /api/v1/order/place_order` returns `status` equal to `PendingSubmit`, call `POST /api/v1/order/trades` to refresh it. See [Order Status](../UpdateStatus/) for details.
+
+In
+
+```
+curl -X POST http://localhost:8080/api/v1/order/trades \
+  -H 'Content-Type: application/json' \
+  -d '{
+    "broker_id": "YOUR_BROKER_ID",
+    "account_id": "YOUR_ACCOUNT_ID"
+  }'
+
+```
+
+Out
+
+```
+[
+  {
+    "contract": {
+      "security_type": "FUT",
+      "exchange": "TAIFEX",
+      "code": "TMFE6"
+    },
+    "order": {
+      "id": "bf2ca5b0",
+      "seqno": "243121",
+      "ordno": "vE0FK",
+      "action": "Buy",
+      "price": 36216.0,
+      "quantity": 2,
+      "order_type": "ROD",
+      "price_type": "LMT",
+      "custom_field": "",
+      "account": {
+        "account_type": "F",
+        "person_id": "YOUR_PERSON_ID",
+        "broker_id": "YOUR_BROKER_ID",
+        "account_id": "YOUR_ACCOUNT_ID",
+        "signed": true,
+        "username": ""
+      },
+      "ca": "YOUR_CA_BASE64",
+      "octype": "New"
+    },
+    "status": {
+      "id": "bf2ca5b0",
+      "status": "Submitted",
+      "status_code": "0000",
+      "web_id": "Z",
+      "order_ts": 1779187550.0,
+      "msg": "",
+      "modified_ts": 1779187550.0,
+      "modified_price": 36216.0,
+      "order_quantity": 2,
+      "deal_quantity": 0,
+      "cancel_quantity": 0,
+      "deals": []
+    }
+  }
+]
+
+```
+
+Order Status
+
+- `PendingSubmit`: sending
+- `PreSubmitted`: reservation
+- `Submitted`: send successfully
+- `Failed`: failed
+- `Cancelled`: cancelled
+- `Filled`: complete fill
+- `PartFilled`: part fill
 
 ### Update Order
 
-Update Order
+To update an order, the original `trade` object must be provided. There are two ways to update — by price or by quantity; quantity updates can only decrease.
+
+update_order
 
 ```
 api.update_order?
 
-    Signature:
-        api.update_order(
-            trade: shioaji.order.Trade,
-            price: Union[pydantic.types.StrictInt, float] = None,
-            qty: int = None,
-            timeout: int = 5000,
-            cb: Ca  lable[[shioaji.order.Trade], NoneType] = None,
-        ) -> shioaji.order.Trade
-    Docstring: update the order price or qty
+Signature:
+    api.update_order(
+        trade: sj.Trade,
+        price: Optional[float] = None,
+        qty: Optional[int] = None,
+        timeout: Optional[int] = 30000,
+        cb: Optional[Callable[[sj.Trade], None]] = None,
+    ) -> sj.Trade
+Docstring:
+    update the order price or qty
 
 ```
 
-#### Update Price
-
-Update Price
+Parameters
 
 ```
-api.update_order(trade=trade, price=14450)
+trade:    order object
+price:    new price (provide when updating price)
+qty:      new quantity (provide when updating quantity, decrease only)
+timeout:  timeout in milliseconds
+cb:       optional callback function
+
+```
+
+update_price / update_qty
+
+```
+POST /api/v1/order/update_price
+Content-Type: application/json
+
+{
+  "trade_id": <string>,
+  "price": <number>
+}
+
+POST /api/v1/order/update_qty
+Content-Type: application/json
+
+{
+  "trade_id": <string>,
+  "quantity": <integer>
+}
+
+```
+
+Parameters
+
+```
+trade_id: trade ID (from the status.id in the place response)
+price:    new price
+quantity: new quantity (decrease only)
+
+```
+
+Note
+
+Before updating an order, call `update_status` first to obtain the order number (`ordno`).
+
+#### Example: Update Price
+
+In
+
+```
+api.update_order(trade=trade, price=36220)
 api.update_status(api.futopt_account)
 trade
 
@@ -234,55 +431,110 @@ Out
 
 ```
 Trade(
-    contract=Future(
-        code='TXFA3', 
-        symbol='TXF202301', 
-        name='臺股期貨01', 
-        category='TXF', 
-        delivery_month='202301', 
-        delivery_date='2023/01/30', 
-        underlying_kind='I', 
-        unit=1, 
-        limit_up=16270.0, 
-        limit_down=13312.0, 
-        reference=14791.0, 
-        update_date='2023/01/12'
-    ), 
+    contract=Contract(
+        security_type='FUT',
+        exchange='TAIFEX',
+        code='TMFE6'
+    ),
     order=Order(
-        action=<Action.Buy: 'Buy'>, 
-        price=14400, 
-        quantity=3, 
-        id='5efffde1', 
-        seqno='000004', 
-        ordno='000003', 
-        account=Account(
-            account_type=<AccountType.Future: 'F'>,
-            person_id='A123456789', 
-            broker_id='F002000', 
-            account_id='1234567', 
-            signed=True
-        ), 
-        price_type=<StockPriceType.LMT: 'LMT'>, 
-        order_type=<OrderType.ROD: 'ROD'>
-    ), 
+        id='259e3b09',
+        action=<Action.Buy: 'Buy'>,
+        price=36216,
+        quantity=1,
+        seqno='242656',
+        ordno='vE0E5',
+        order_type=<OrderType.ROD: 'ROD'>,
+        price_type=<PriceType.LMT: 'LMT'>,
+        account=FutureAccount(
+            person_id='YOUR_PERSON_ID',
+            broker_id='YOUR_BROKER_ID',
+            account_id='YOUR_ACCOUNT_ID',
+            signed=true,
+            username=''
+        ),
+        octype=<FuturesOCType.NewPosition: 'NewPosition'>
+    ),
     status=OrderStatus(
-        id='5efffde1', 
-        status=<Status.Submitted: 'Submitted'>,
-        status_code='00', 
-        order_datetime=datetime.datetime(2023, 1, 12, 14, 56, 13, 995651), 
-        modified_price=14450,
-        order_quantity=3,
-        deals=[]
+        id='259e3b09',
+        status=<OrderStatus.Submitted: 'Submitted'>,
+        status_code='0000',
+        order_datetime=datetime.datetime(2026, 5, 19, 18, 13, 36, tzinfo=datetime.timezone(datetime.timedelta(hours=8))),
+        web_id='Z',
+        modified_time=datetime.datetime(2026, 5, 19, 18, 13, 42, tzinfo=datetime.timezone(datetime.timedelta(hours=8))),
+        modified_price=36220,
+        order_quantity=1
     )
 )
 
 ```
 
-#### Update Quantity (Reduce)
+In
 
-`update_order` can only reduce the quantity of the order.
+```
+curl -X POST http://localhost:8080/api/v1/order/update_price \
+  -H 'Content-Type: application/json' \
+  -d '{
+    "trade_id": "YOUR_TRADE_ID",
+    "price": 36220
+  }'
 
-Update Quantity
+```
+
+Out
+
+```
+{
+  "contract": {
+    "security_type": "FUT",
+    "exchange": "TAIFEX",
+    "code": "TMFE6"
+  },
+  "order": {
+    "id": "5dbaf55e",
+    "seqno": "243390",
+    "ordno": "vE0Fz",
+    "action": "Buy",
+    "price": 36220.0,
+    "quantity": 1,
+    "order_type": "ROD",
+    "price_type": "LMT",
+    "custom_field": "",
+    "account": {
+      "account_type": "F",
+      "person_id": "YOUR_PERSON_ID",
+      "broker_id": "YOUR_BROKER_ID",
+      "account_id": "YOUR_ACCOUNT_ID",
+      "signed": true,
+      "username": ""
+    },
+    "ca": "YOUR_CA_BASE64",
+    "octype": "New"
+  },
+  "status": {
+    "id": "5dbaf55e",
+    "status": "Submitted",
+    "status_code": "0000",
+    "web_id": "Z",
+    "order_ts": 1779188357.0,
+    "msg": "",
+    "modified_ts": 1779188357.0,
+    "modified_price": 36216.0,
+    "order_quantity": 1,
+    "deal_quantity": 0,
+    "cancel_quantity": 0,
+    "deals": []
+  }
+}
+
+```
+
+#### Example: Update Quantity (Reduce)
+
+Note
+
+`update_order` can only be used to **reduce** the quantity of an order.
+
+In
 
 ```
 api.update_order(trade=trade, qty=1)
@@ -295,53 +547,159 @@ Out
 
 ```
 Trade(
-    contract=Future(
-        code='TXFA3', 
-        symbol='TXF202301', 
-        name='臺股期貨01', 
-        category='TXF', 
-        delivery_month='202301', 
-        delivery_date='2023/01/30', 
-        underlying_kind='I', 
-        unit=1, 
-        limit_up=16270.0, 
-        limit_down=13312.0, 
-        reference=14791.0, 
-        update_date='2023/01/12'
-    ), 
+    contract=Contract(
+        security_type='FUT',
+        exchange='TAIFEX',
+        code='TMFE6'
+    ),
     order=Order(
-        action=<Action.Buy: 'Buy'>, 
-        price=14400, 
-        quantity=3, 
-        id='5efffde1', 
-        seqno='000004', 
-        ordno='000003', 
-        account=Account(
-            account_type=<AccountType.Future: 'F'>,
-            person_id='A123456789', 
-            broker_id='F002000', 
-            account_id='1234567', 
-            signed=True
-        ), 
-        price_type=<StockPriceType.LMT: 'LMT'>, 
-        order_type=<OrderType.ROD: 'ROD'>
-    ), 
+        id='e0ae2459',
+        action=<Action.Buy: 'Buy'>,
+        price=36216,
+        quantity=2,
+        seqno='242472',
+        ordno='vE0Dr',
+        order_type=<OrderType.ROD: 'ROD'>,
+        price_type=<PriceType.LMT: 'LMT'>,
+        account=FutureAccount(
+            person_id='YOUR_PERSON_ID',
+            broker_id='YOUR_BROKER_ID',
+            account_id='YOUR_ACCOUNT_ID',
+            signed=true,
+            username=''
+        ),
+        octype=<FuturesOCType.NewPosition: 'NewPosition'>
+    ),
     status=OrderStatus(
-        id='5efffde1', 
-        status=<Status.Submitted: 'Submitted'>,
-        status_code='00', 
-        order_datetime=datetime.datetime(2023, 1, 12, 14, 56, 13, 995651), 
-        order_quantity=3,
-        cancel_quantity=1,
-        deals=[]
+        id='e0ae2459',
+        status=<OrderStatus.Submitted: 'Submitted'>,
+        status_code='0000',
+        order_datetime=datetime.datetime(2026, 5, 19, 18, 3, 7, tzinfo=datetime.timezone(datetime.timedelta(hours=8))),
+        web_id='Z',
+        modified_time=datetime.datetime(2026, 5, 19, 18, 3, 12, tzinfo=datetime.timezone(datetime.timedelta(hours=8))),
+        modified_price=36216,
+        order_quantity=1,
+        cancel_quantity=1
     )
 )
 
 ```
 
+In
+
+```
+curl -X POST http://localhost:8080/api/v1/order/update_qty \
+  -H 'Content-Type: application/json' \
+  -d '{
+    "trade_id": "YOUR_TRADE_ID",
+    "quantity": 1
+  }'
+
+```
+
+Out
+
+```
+{
+  "contract": {
+    "security_type": "FUT",
+    "exchange": "TAIFEX",
+    "code": "TMFE6"
+  },
+  "order": {
+    "id": "bf2ca5b0",
+    "seqno": "243121",
+    "ordno": "vE0FK",
+    "action": "Buy",
+    "price": 36216.0,
+    "quantity": 1,
+    "order_type": "ROD",
+    "price_type": "LMT",
+    "custom_field": "",
+    "account": {
+      "account_type": "F",
+      "person_id": "YOUR_PERSON_ID",
+      "broker_id": "YOUR_BROKER_ID",
+      "account_id": "YOUR_ACCOUNT_ID",
+      "signed": true,
+      "username": ""
+    },
+    "ca": "YOUR_CA_BASE64",
+    "octype": "New"
+  },
+  "status": {
+    "id": "bf2ca5b0",
+    "status": "Submitted",
+    "status_code": "0000",
+    "web_id": "Z",
+    "order_ts": 1779187550.0,
+    "msg": "",
+    "modified_ts": 1779187550.0,
+    "modified_price": 36216.0,
+    "order_quantity": 1,
+    "cancel_quantity": 1,
+    "deal_quantity": 0,
+    "deals": []
+  }
+}
+
+```
+
 ### Cancel Order
 
-Cancel Order
+To cancel an order, the original `trade` object must be provided.
+
+cancel_order
+
+```
+api.cancel_order?
+
+Signature:
+    api.cancel_order(
+        trade: sj.Trade,
+        timeout: Optional[int] = 30000,
+        cb: Optional[Callable[[sj.Trade], None]] = None,
+    ) -> sj.Trade
+Docstring:
+    cancel order
+
+```
+
+Parameters
+
+```
+trade:   order object
+timeout: timeout in milliseconds
+cb:      optional callback function
+
+```
+
+cancel_order
+
+```
+POST /api/v1/order/cancel_order
+Content-Type: application/json
+
+{
+  "trade_id": <string>
+}
+
+```
+
+Parameters
+
+```
+trade_id: trade ID (from the status.id in the place response)
+
+```
+
+Note
+
+Before cancelling an order, call `update_status` first to obtain the order number (`ordno`).
+
+#### Example: Cancel Order
+
+In
 
 ```
 api.cancel_order(trade)
@@ -354,53 +712,107 @@ Out
 
 ```
 Trade(
-    contract=Future(
-        code='TXFA3', 
-        symbol='TXF202301', 
-        name='臺股期貨01', 
-        category='TXF', 
-        delivery_month='202301', 
-        delivery_date='2023/01/30', 
-        underlying_kind='I', 
-        unit=1, 
-        limit_up=16270.0, 
-        limit_down=13312.0, 
-        reference=14791.0, 
-        update_date='2023/01/12'
-    ), 
+    contract=Contract(
+        security_type='FUT',
+        exchange='TAIFEX',
+        code='TMFE6'
+    ),
     order=Order(
-        action=<Action.Buy: 'Buy'>, 
-        price=14400, 
-        quantity=3, 
-        id='5efffde1', 
-        seqno='000004', 
-        ordno='000003', 
-        account=Account(
-            account_type=<AccountType.Future: 'F'>,
-            person_id='A123456789', 
-            broker_id='F002000', 
-            account_id='1234567', 
-            signed=True
-        ), 
-        price_type=<StockPriceType.LMT: 'LMT'>, 
-        order_type=<OrderType.ROD: 'ROD'>
-    ), 
+        id='e0ae2459',
+        action=<Action.Buy: 'Buy'>,
+        price=36216,
+        quantity=2,
+        seqno='242472',
+        ordno='vE0Dr',
+        order_type=<OrderType.ROD: 'ROD'>,
+        price_type=<PriceType.LMT: 'LMT'>,
+        account=FutureAccount(
+            person_id='YOUR_PERSON_ID',
+            broker_id='YOUR_BROKER_ID',
+            account_id='YOUR_ACCOUNT_ID',
+            signed=true,
+            username=''
+        ),
+        octype=<FuturesOCType.NewPosition: 'NewPosition'>
+    ),
     status=OrderStatus(
-        id='5efffde1', 
-        status=<Status.Cancelled: 'Cancelled'>, 
-        status_code='00', 
-        order_datetime=datetime.datetime(2023, 1, 12, 14, 56, 13, 995651), 
-        order_quantity=3,
-        cancel_quantity=3,
-        deals=[]
+        id='e0ae2459',
+        status=<OrderStatus.Cancelled: 'Cancelled'>,
+        status_code='0000',
+        order_datetime=datetime.datetime(2026, 5, 19, 18, 3, 7, tzinfo=datetime.timezone(datetime.timedelta(hours=8))),
+        web_id='Z',
+        modified_time=datetime.datetime(2026, 5, 19, 18, 3, 16, tzinfo=datetime.timezone(datetime.timedelta(hours=8))),
+        modified_price=36216,
+        cancel_quantity=2
     )
 )
 
 ```
 
+In
+
+```
+curl -X POST http://localhost:8080/api/v1/order/cancel_order \
+  -H 'Content-Type: application/json' \
+  -d '{
+    "trade_id": "YOUR_TRADE_ID"
+  }'
+
+```
+
+Out
+
+```
+{
+  "contract": {
+    "security_type": "FUT",
+    "exchange": "TAIFEX",
+    "code": "TMFE6"
+  },
+  "order": {
+    "id": "bf2ca5b0",
+    "seqno": "243121",
+    "ordno": "vE0FK",
+    "action": "Buy",
+    "price": 36216.0,
+    "quantity": 2,
+    "order_type": "ROD",
+    "price_type": "LMT",
+    "custom_field": "",
+    "account": {
+      "account_type": "F",
+      "person_id": "YOUR_PERSON_ID",
+      "broker_id": "YOUR_BROKER_ID",
+      "account_id": "YOUR_ACCOUNT_ID",
+      "signed": true,
+      "username": ""
+    },
+    "ca": "YOUR_CA_BASE64",
+    "octype": "New"
+  },
+  "status": {
+    "id": "bf2ca5b0",
+    "status": "Cancelled",
+    "status_code": "0000",
+    "web_id": "Z",
+    "order_ts": 1779187550.0,
+    "msg": "",
+    "modified_ts": 1779187550.0,
+    "modified_price": 36216.0,
+    "order_quantity": 0,
+    "cancel_quantity": 2,
+    "deal_quantity": 0,
+    "deals": []
+  }
+}
+
+```
+
 ### Deal
 
-Update Status
+After an order is filled, calling `update_status` will show `status` transitioning to `Filled` and the `deals` field populated with execution details.
+
+In
 
 ```
 api.update_status(api.futopt_account)
@@ -412,48 +824,113 @@ Out
 
 ```
 Trade(
-    contract=Future(
-        code='TXFA3', 
-        symbol='TXF202301', 
-        name='臺股期貨01', 
-        category='TXF', 
-        delivery_month='202301', 
-        delivery_date='2023/01/30', 
-        underlying_kind='I', 
-        unit=1, 
-        limit_up=16270.0, 
-        limit_down=13312.0, 
-        reference=14791.0, 
-        update_date='2023/01/12'
-    ), 
+    contract=Contract(
+        security_type='FUT',
+        exchange='TAIFEX',
+        code='TMFE6'
+    ),
     order=Order(
-        action=<Action.Buy: 'Buy'>, 
-        price=14400, 
-        quantity=3, 
-        id='5efffde1', 
-        seqno='000004', 
-        ordno='000003', 
-        account=Account(
-            account_type=<AccountType.Future: 'F'>,
-            person_id='A123456789', 
-            broker_id='F002000', 
-            account_id='1234567', 
-            signed=True
-        ), 
-        price_type=<StockPriceType.LMT: 'LMT'>, 
-        order_type=<OrderType.ROD: 'ROD'>
-    ), 
+        id='bf2ca5b0',
+        action=<Action.Buy: 'Buy'>,
+        price=36216,
+        quantity=1,
+        seqno='243121',
+        ordno='vE0FK',
+        order_type=<OrderType.ROD: 'ROD'>,
+        price_type=<PriceType.LMT: 'LMT'>,
+        account=FutureAccount(
+            person_id='YOUR_PERSON_ID',
+            broker_id='YOUR_BROKER_ID',
+            account_id='YOUR_ACCOUNT_ID',
+            signed=true,
+            username=''
+        ),
+        octype=<FuturesOCType.NewPosition: 'NewPosition'>
+    ),
     status=OrderStatus(
-        id='5efffde1', 
-        status=<Status.Filled: 'Filled'>,
-        status_code='00', 
-        order_datetime=datetime.datetime(2023, 1, 12, 14, 56, 13, 995651), 
-        order_quantity=3,
+        id='bf2ca5b0',
+        status=<OrderStatus.Filled: 'Filled'>,
+        status_code='0000',
+        order_datetime=datetime.datetime(2026, 5, 19, 18, 5, 50, tzinfo=datetime.timezone(datetime.timedelta(hours=8))),
+        web_id='Z',
+        modified_time=datetime.datetime(2026, 5, 19, 18, 5, 50, tzinfo=datetime.timezone(datetime.timedelta(hours=8))),
+        modified_price=36216,
+        order_quantity=1,
+        deal_quantity=1,
         deals=[
-            Deal(seq='000001', price=14400, quantity=3, ts=1673501631.62918)
+            Deal(seq='000001', price=36216, quantity=1, ts=1779187550.0)
         ]
     )
 )
+
+```
+
+In
+
+```
+curl -X POST http://localhost:8080/api/v1/order/trades \
+  -H 'Content-Type: application/json' \
+  -d '{
+    "broker_id": "YOUR_BROKER_ID",
+    "account_id": "YOUR_ACCOUNT_ID"
+  }'
+
+```
+
+Out
+
+```
+[
+  {
+    "contract": {
+      "security_type": "FUT",
+      "exchange": "TAIFEX",
+      "code": "TMFE6"
+    },
+    "order": {
+      "id": "bf2ca5b0",
+      "seqno": "243121",
+      "ordno": "vE0FK",
+      "action": "Buy",
+      "price": 36216.0,
+      "quantity": 1,
+      "order_type": "ROD",
+      "price_type": "LMT",
+      "custom_field": "",
+      "account": {
+        "account_type": "F",
+        "person_id": "YOUR_PERSON_ID",
+        "broker_id": "YOUR_BROKER_ID",
+        "account_id": "YOUR_ACCOUNT_ID",
+        "signed": true,
+        "username": ""
+      },
+      "ca": "YOUR_CA_BASE64",
+      "octype": "New"
+    },
+    "status": {
+      "id": "bf2ca5b0",
+      "status": "Filled",
+      "status_code": "0000",
+      "web_id": "Z",
+      "order_ts": 1779187550.0,
+      "msg": "",
+      "modified_ts": 1779187550.0,
+      "modified_price": 36216.0,
+      "order_quantity": 1,
+      "deal_quantity": 1,
+      "cancel_quantity": 0,
+      "deals": [
+        {
+          "seq": "000001",
+          "price": 36216.0,
+          "quantity": 1,
+          "ts": 1779187550.0
+        }
+      ]
+    }
+  }
+]
 
 ```
 

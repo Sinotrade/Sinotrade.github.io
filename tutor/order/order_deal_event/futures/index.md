@@ -5,99 +5,50 @@ When the exchange receives the order, it will return the callback. The callback 
 Order Event
 
 ```
-OrderState.FuturesOrder {
+<OrderState.FuturesOrder: 'FORDER'> {
     'operation': {
-        'op_type': 'New', 
-        'op_code': '00', 
+        'op_type': 'New',
+        'op_code': '00',
         'op_msg': ''
-    }, 
+    },
     'order': {
-        'id': 'fcb42a6e', 
-        'seqno': '585886', 
-        'ordno': '00', 
+        'id': '0bbe4f6d',
+        'seqno': '354926',
+        'ordno': 'ta0fu',
         'account': {
-            'account_type': 'F', 
-            'person_id': '', 
-            'broker_id': 'F002000', 
-            'account_id': '1234567', 
-            'signed': True
-        }, 
-        'action': 'Buy', 
-        'price': 27000.0, 
-        'quantity': 1, 
-        'order_type': 'ROD', 
-        'price_type': 'LMT', 
-        'market_type': 'Night', 
-        'oc_type': 'New', 
-        'subaccount': '', 
+            'account_type': 'F',
+            'person_id': '',
+            'broker_id': 'YOUR_BROKER_ID',
+            'account_id': 'YOUR_ACCOUNT_ID',
+            'signed': True,
+            'username': ''
+        },
+        'action': 'Buy',
+        'price': 36112.0,
+        'quantity': 1,
+        'order_type': 'ROD',
+        'price_type': 'LMT',
+        'market_type': 'Day',
+        'oc_type': 'New',
+        'subaccount': '',
         'combo': False
-    }, 
+    },
     'status': {
-        'id': 'fcb42a6e', 
-        'exchange_ts': 1764731566.0, 
-        'modified_price': 0.0, 
-        'cancel_quantity': 0, 
-        'order_quantity': 1, 
+        'id': '0bbe4f6d',
+        'exchange_ts': 1779331888.0,
+        'modified_price': 0.0,
+        'cancel_quantity': 0,
+        'order_quantity': 1,
         'web_id': 'Z'
-    }, 
+    },
     'contract': {
-        'security_type': 'FUT', 
-        'code': 'TXF', 
-        'full_code': 'TXFL5', 
-        'exchange': 'TIM', 
-        'delivery_month': '202512', 
-        'delivery_date': '', 
-        'strike_price': 0.0, 
-        'option_right': 'Future'
-    }
-}
-
-```
-
-```
-OrderState.FOrder {
-    'operation': {
-        'op_type': 'New', 
-        'op_code': '00', 
-        'op_msg': ''
-    }, 
-    'order': {
-        'id': 'fcb42a6e', 
-        'seqno': '585886', 
-        'ordno': '00', 
-        'account': {
-            'account_type': 'F', 
-            'person_id': '', 
-            'broker_id': 'F002000', 
-            'account_id': '1234567', 
-            'signed': True
-        }, 
-        'action': 'Buy', 
-        'price': 27000.0, 
-        'quantity': 1, 
-        'order_type': 'ROD', 
-        'price_type': 'LMT', 
-        'market_type': 'Night', 
-        'oc_type': 'New', 
-        'subaccount': '', 
-        'combo': False
-    }, 
-    'status': {
-        'id': 'fcb42a6e', 
-        'exchange_ts': 1764731566.0, 
-        'modified_price': 0.0, 
-        'cancel_quantity': 0, 
-        'order_quantity': 1, 
-        'web_id': 'Z'
-    }, 
-    'contract': {
-        'security_type': 'FUT', 
-        'code': 'TXF', 
-        'full_code': 'TXFL5', 
-        'exchange': 'TIM', 
-        'delivery_month': '202512', 
-        'delivery_date': '', 
-        'strike_price': 0.0, 
+        'security_type': 'FUT',
+        'code': 'TMF',
+        'exchange': 'TIM',
+        'delivery_month': '202606',
+        'full_code': 'TMFF6',
+        'delivery_date': '',
+        'strike_price': 0.0,
         'option_right': 'Future'
     }
 }
@@ -133,7 +84,12 @@ quantity (int): order quantity
 order_type (str): the type of order {ROD, IOC, FOK}
 price_type (str): pricing type of order {LMT, MKT, MKP}
 market_type (str): {Day, Night}
-oc_type (str): {New: 新倉, Cover: 平倉, Auto: 自動}
+oc_type (str): {
+            New: open position, 
+            Cover: close position, 
+            Auto: auto, 
+            DayTrade: day trade
+        }
 subaccount (str): subaccount
 combo (bool): whether order is combo order
 
@@ -172,51 +128,26 @@ When the matching is successful, the exchange will send a transaction report not
 Deal Event
 
 ```
-OrderState.FuturesDeal {
-    'trade_id': '4e6df0f6', 
-    'seqno': '458545', 
-    'ordno': 'tA0deX1O', 
-    'exchange_seq': 'j5006396', 
-    'broker_id': 'F002000', 
-    'account_id': '1234567', 
-    'action': 'Sell', 
-    'code': 'TX1', 
+<OrderState.FuturesDeal: 'FDEAL'> {
+    'trade_id': '4e6df0f6',
+    'seqno': '458545',
+    'ordno': 'tA0deX1O',
+    'exchange_seq': 'j5006396',
+    'action': 'Sell',
+    'code': 'TX1',
+    'price': 25.0,
+    'quantity': 1,
+    'subaccount': '',
+    'security_type': 'OPT',
+    'delivery_month': '202512',
+    'ts': 1764685425.0,
+    'broker_id': 'YOUR_BROKER_ID',
+    'account_id': 'YOUR_ACCOUNT_ID',
     'full_code': 'TX127900L5',
-    'price': 25.0, 
-    'quantity': 1, 
-    'subaccount': '', 
-    'security_type': 'OPT', 
-    'delivery_month': '202512', 
-    'strike_price': 27900.0, 
-    'option_right': 'OptionCall', 
-    'market_type': 'Day', 
-    'combo': False, 
-    'ts': 1764685425.0
-}
-
-```
-
-```
-OrderState.FDeal {
-    'trade_id': '4e6df0f6', 
-    'seqno': '458545', 
-    'ordno': 'tA0deX1O', 
-    'exchange_seq': 'j5006396', 
-    'broker_id': 'F002000', 
-    'account_id': '1234567', 
-    'action': 'Sell', 
-    'code': 'TX1', 
-    'full_code': 'TX127900L5',
-    'price': 25.0, 
-    'quantity': 1, 
-    'subaccount': '', 
-    'security_type': 'OPT', 
-    'delivery_month': '202512', 
-    'strike_price': 27900.0, 
-    'option_right': 'OptionCall', 
-    'market_type': 'Day', 
-    'combo': False, 
-    'ts': 1764685425.0
+    'strike_price': 27900.0,
+    'option_right': 'OptionCall',
+    'market_type': 'Day',
+    'combo': False
 }
 
 ```

@@ -1,40 +1,102 @@
-用於查詢帳戶未實現損益，需要先[登入](../../login)。
+用於查詢**證券／期貨選擇權帳戶**未實現損益，需要先[登入](../../login)。
 
 ## 未實現損益
 
-In
+list_positions
 
 ```
 api.list_positions?
 
-```
-
-Out
-
-```
 Signature:
-api.list_positions(
-    account: shioaji.account.Account = None,
-    unit: shioaji.constant.Unit = <Unit.Common: 'Common'>,
-    timeout: int = 5000,
-    cb: Callable[[List[Union[shioaji.position.StockPosition, shioaji.position.FuturePosition]]], NoneType] = None,
-) -> List[Union[shioaji.position.StockPosition, shioaji.position.FuturePosition]]
-Docstring:
-query account of unrealized gain or loss
-Args:
-    account (:obj:Account):
-        choice the account from listing account (Default: stock account)
+    api.list_positions(
+        account: shioaji.account.Account = None,
+        unit: shioaji.Unit = <Unit.Common: 'Common'>,
+        timeout: int = 5000,
+        cb: Callable[[List[Union[shioaji.position.StockPosition, shioaji.position.FuturePosition]]], NoneType] = None,
+    ) -> List[Union[shioaji.position.StockPosition, shioaji.position.FuturePosition]]
+
+```
+
+Parameters
+
+```
+account: 選填，證券或期貨選擇權帳戶（省略則使用 api.stock_account）
+unit:    選填，Unit.Common（整股／預設）或 Unit.Share（零股）
+timeout: 逾時毫秒
+cb:      選填，callback 函式，timeout=0 時使用
+
+```
+
+list_positions
+
+```
+shioaji portfolio positions [--account-type S|F] [--unit common|share] [--account BROKER_ID-ACCOUNT_ID]
+
+```
+
+Parameters
+
+```
+--account-type: 選填，S（證券／預設）或 F（期貨選擇權）
+--unit:         選填，common（整股／預設）或 share（零股）
+--account:      選填，BROKER_ID-ACCOUNT_ID 格式，省略則使用預設帳戶
+
+```
+
+list_positions
+
+```
+POST /api/v1/portfolio/position_unit
+Content-Type: application/json
+
+{
+  "account_type": "S",
+  "unit": "Common",
+  "broker_id": <string>,
+  "account_id": <string>,
+  "person_id": <string>
+}
+
+```
+
+Parameters
+
+```
+account_type: 選填，"S"（證券／預設）或 "F"（期貨選擇權）
+unit:         選填，"Common"（整股／預設）或 "Share"（零股）
+broker_id:    選填，券商代碼
+account_id:   選填，帳戶代碼
+person_id:    選填，身分證字號
 
 ```
 
 ### 證券
 
-#### 整股部位
+StockPosition
+
+```
+id (int):                       部位代碼
+code (str):                     商品代碼
+direction (Action):             買賣別 {Buy: 買, Sell: 賣}
+quantity (int):                 數量
+price (float):                  平均價格
+last_price (float):             目前股價
+pnl (float):                    損益
+yd_quantity (int):              昨日庫存數量
+cond (StockOrderCond):          {Cash: 現股, Netting: 餘額交割, MarginTrading: 融資, ShortSelling: 融券, Emerging: 興櫃}
+margin_purchase_amount (int):   融資金額
+collateral (int):               擔保品
+short_sale_margin (int):        保證金
+interest (int):                 利息
+
+```
+
+#### 整股
 
 In
 
 ```
-api.list_positions(api.stock_account)
+api.list_positions(account=api.stock_account)
 
 ```
 
@@ -43,74 +105,62 @@ Out
 ```
 [
     StockPosition(
-        id=0, 
-        code='2890', 
-        direction=<Action.Buy: 'Buy'>, 
-        quantity=12, 
-        price=2.79, 
-        last_price=16.95, 
-        pnl=169171.0, 
-        yd_quantity=12, 
-        margin_purchase_amount=0, 
-        collateral=0, 
-        short_sale_margin=0, 
-        interest=0
-    )
+        id=0,
+        code='2890',
+        direction=<Action.Buy: 'Buy'>,
+        quantity=1,
+        price=30.0,
+        last_price=31.0,
+        pnl=1000,
+        yd_quantity=1,
+        cond=<StockOrderCond.Cash: 'Cash'>,
+        margin_purchase_amount=0,
+        collateral=0,
+        short_sale_margin=0,
+        interest=0,
+    ),
+    StockPosition(
+        id=1,
+        code='2330',
+        direction=<Action.Buy: 'Buy'>,
+        quantity=1,
+        price=2000.0,
+        last_price=1980.0,
+        pnl=-20000,
+        yd_quantity=1,
+        cond=<StockOrderCond.Cash: 'Cash'>,
+        margin_purchase_amount=0,
+        collateral=0,
+        short_sale_margin=0,
+        interest=0,
+    ),
 ]
 
 ```
 
-轉成DataFrame
+**轉成 DataFrame（以 polars 示範）**
 
 In
 
 ```
-positions = api.list_positions(api.stock_account)
-df = pd.DataFrame(s.__dict__ for s in positions)
+import polars as pl
+positions = api.list_positions(account=api.stock_account)
+df = pl.DataFrame(p.dict() for p in positions)
 df
 
 ```
 
 Out
 
-| id | code | direction | quantity | price | last_price | pnl | yd_quantity | cond | margin_purchase_amount | collateral | short_sale_margin | interest | | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | | 0 | 0 | 2890 | Buy | 12 | 2.79 | 16.95 | 169172 | 12 | Cash | 0 | 0 | 0 |
+| id | code | direction | quantity | price | last_price | pnl | yd_quantity | cond | margin_purchase_amount | collateral | short_sale_margin | interest | | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | | 0 | 2890 | Buy | 1 | 30.0 | 31.0 | 1000 | 1 | Cash | 0 | 0 | 0 | 0 | | 1 | 2330 | Buy | 1 | 2000.0 | 1980.0 | -20000 | 1 | Cash | 0 | 0 | 0 | 0 |
 
-StockPosition
-
-```
-id (int): 部位代碼
-code (str): 商品代碼
-direction (Action): {Buy: 買, Sell: 賣}
-quantity (int): 數量
-price (float): 平均價格
-last_price (float): 目前股價
-pnl (float): 損益
-yd_quantity (int): 昨日庫存數量
-cond (StockOrderCond): {
-    Cash: 現股(預設值), 
-    Netting: 餘額交割,
-    MarginTrading: 融資, 
-    ShortSelling: 融券, 
-    Emerging: 興櫃
-    }
-margin_purchase_amount (int): 融資金額 
-collateral (int): 擔保品 
-short_sale_margin (int): 保證金
-interest (int): 利息
-
-```
-
-#### 零股部位
-
-單位為股數
+#### 零股
 
 In
 
 ```
-api.list_positions(
-    api.stock_account, 
-    unit=sj.constant.Unit.Share
-)
+from shioaji import Unit
+api.list_positions(account=api.stock_account, unit=Unit.Share)
 
 ```
 
@@ -119,31 +169,192 @@ Out
 ```
 [
     StockPosition(
-        id=0, 
-        code='2890', 
-        direction=<Action.Buy: 'Buy'>, 
-        quantity=10000, 
-        price=10.1, 
-        last_price=12.0, 
-        pnl=1234.0, 
-        yd_quantity=10000, 
-        margin_purchase_amount=0, 
-        collateral=0, 
-        short_sale_margin=0, 
-        interest=0
-    )
+        id=0,
+        code='2890',
+        direction=<Action.Buy: 'Buy'>,
+        quantity=1000,
+        price=30.0,
+        last_price=31.0,
+        pnl=1000,
+        yd_quantity=1000,
+        cond=<StockOrderCond.Cash: 'Cash'>,
+        margin_purchase_amount=0,
+        collateral=0,
+        short_sale_margin=0,
+        interest=0,
+    ),
+    StockPosition(
+        id=1,
+        code='2330',
+        direction=<Action.Buy: 'Buy'>,
+        quantity=1000,
+        price=2000.0,
+        last_price=1980.0,
+        pnl=-20000,
+        yd_quantity=1000,
+        cond=<StockOrderCond.Cash: 'Cash'>,
+        margin_purchase_amount=0,
+        collateral=0,
+        short_sale_margin=0,
+        interest=0,
+    ),
+]
+
+```
+
+**整股**
+
+In
+
+```
+shioaji portfolio positions --account YOUR_BROKER_ID-YOUR_ACCOUNT_ID
+
+```
+
+Out
+
+```
+[2]{id,code,direction,quantity,price,last_price,pnl,yd_quantity,cond,margin_purchase_amount,collateral,short_sale_margin,interest}:
+  0,"2890",Buy,1,30.0,31.0,1000,1,Cash,0,0,0,0
+  1,"2330",Buy,1,2000.0,1980.0,-20000,1,Cash,0,0,0,0
+
+```
+
+**零股**
+
+In
+
+```
+shioaji portfolio positions --unit share --account YOUR_BROKER_ID-YOUR_ACCOUNT_ID
+
+```
+
+Out
+
+```
+[2]{id,code,direction,quantity,price,last_price,pnl,yd_quantity,cond,margin_purchase_amount,collateral,short_sale_margin,interest}:
+  0,"2890",Buy,1000,30.0,31.0,1000,1000,Cash,0,0,0,0
+  1,"2330",Buy,1000,2000.0,1980.0,-20000,1000,Cash,0,0,0,0
+
+```
+
+**整股**
+
+In
+
+```
+curl -X POST http://localhost:8080/api/v1/portfolio/position_unit \
+  -H 'Content-Type: application/json' \
+  -d '{"account_type": "S", "broker_id": "YOUR_BROKER_ID", "account_id": "YOUR_ACCOUNT_ID"}'
+
+```
+
+Out
+
+```
+[
+  {
+    "id": 0,
+    "code": "2890",
+    "direction": "Buy",
+    "quantity": 1,
+    "price": 30.0,
+    "last_price": 31.0,
+    "pnl": 1000.0,
+    "yd_quantity": 1,
+    "cond": "Cash",
+    "margin_purchase_amount": 0,
+    "collateral": 0,
+    "short_sale_margin": 0,
+    "interest": 0
+  },
+  {
+    "id": 1,
+    "code": "2330",
+    "direction": "Buy",
+    "quantity": 1,
+    "price": 2000.0,
+    "last_price": 1980.0,
+    "pnl": -20000.0,
+    "yd_quantity": 1,
+    "cond": "Cash",
+    "margin_purchase_amount": 0,
+    "collateral": 0,
+    "short_sale_margin": 0,
+    "interest": 0
+  }
+]
+
+```
+
+**零股**
+
+In
+
+```
+curl -X POST http://localhost:8080/api/v1/portfolio/position_unit \
+  -H 'Content-Type: application/json' \
+  -d '{"account_type": "S", "unit": "Share", "broker_id": "YOUR_BROKER_ID", "account_id": "YOUR_ACCOUNT_ID"}'
+
+```
+
+Out
+
+```
+[
+  {
+    "id": 0,
+    "code": "2890",
+    "direction": "Buy",
+    "quantity": 1000,
+    "price": 30.0,
+    "last_price": 31.0,
+    "pnl": 1000.0,
+    "yd_quantity": 1000,
+    "cond": "Cash",
+    "margin_purchase_amount": 0,
+    "collateral": 0,
+    "short_sale_margin": 0,
+    "interest": 0
+  },
+  {
+    "id": 1,
+    "code": "2330",
+    "direction": "Buy",
+    "quantity": 1000,
+    "price": 2000.0,
+    "last_price": 1980.0,
+    "pnl": -20000.0,
+    "yd_quantity": 1000,
+    "cond": "Cash",
+    "margin_purchase_amount": 0,
+    "collateral": 0,
+    "short_sale_margin": 0,
+    "interest": 0
+  }
 ]
 
 ```
 
 ### 期貨選擇權
 
-`account`預設為證券帳號，若欲查詢期權內容需帶入期權帳號。
+FuturePosition
+
+```
+id (int):           部位代碼
+code (str):         商品代碼
+direction (Action): 買賣別 {Buy: 買, Sell: 賣}
+quantity (int):     數量
+price (float):      平均價格
+last_price (float): 目前價格
+pnl (float):        損益
+
+```
 
 In
 
 ```
-api.list_positions(api.futopt_account)
+api.list_positions(account=api.futopt_account)
 
 ```
 
@@ -153,83 +364,141 @@ Out
 [
     FuturePosition(
         id=0,
-        code='TX201370J2', 
-        direction=<Action.Buy: 'Buy'>, 
-        quantity=3, 
-        price=131.0000, 
-        last_price=126.0, 
-        pnl=-750.00
-    )
+        code='TXO20260620200C',
+        direction=<Action.Buy: 'Buy'>,
+        quantity=3,
+        price=131.0,
+        last_price=126.0,
+        pnl=-750.0,
+    ),
 ]
 
 ```
 
-轉成DataFrame
-
 In
 
 ```
-positions = api.list_positions(api.futopt_account)
-df = pd.DataFrame(p.__dict__ for p in positions)
-df
+shioaji portfolio positions --account-type F --account YOUR_BROKER_ID-YOUR_ACCOUNT_ID
 
 ```
 
 Out
 
-| id | code | direction | quantity | price | last_price | pnl | | --- | --- | --- | --- | --- | --- | --- | | 0 | TXFA3 | Buy | 4 | 14181 | 14375 | 155200 |
-
-FuturePosition
+```
+[1]{id,code,direction,quantity,price,last_price,pnl}:
+  0,"TXO20260620200C",Buy,3,131.0,126.0,-750.0
 
 ```
-id (int): 部位代碼
-code (str): 商品代碼
-direction (Action): {Buy: 買, Sell: 賣}
-quantity (int): 數量
-price (float): 平均價格
-last_price (float): 目前價格
-pnl (float): 損益
+
+In
+
+```
+curl -X POST http://localhost:8080/api/v1/portfolio/position_unit \
+  -H 'Content-Type: application/json' \
+  -d '{"account_type": "F", "broker_id": "YOUR_BROKER_ID", "account_id": "YOUR_ACCOUNT_ID"}'
+
+```
+
+Out
+
+```
+[
+  {
+    "id": 0,
+    "code": "TXO20260620200C",
+    "direction": "Buy",
+    "quantity": 3,
+    "price": 131.0,
+    "last_price": 126.0,
+    "pnl": -750.0
+  }
+]
 
 ```
 
 ## 未實現損益 - 明細
 
-可從針對`list_positions`得到的結果，將`id`帶入`detail_id`查詢該筆明細。
+`detail_id` 為[未實現損益](#%E6%9C%AA%E5%AF%A6%E7%8F%BE%E6%90%8D%E7%9B%8A)回傳結果中的 `id`，用於查詢該筆部位的明細。
 
-### 證券
-
-In
+list_position_detail
 
 ```
 api.list_position_detail?
 
-```
-
-Out
-
-```
 Signature:
     api.list_position_detail(
-    account: shioaji.account.Account = None,
-    detail_id: int = 0,
-    timeout: int = 5000,
-    cb: Callable[[List[Union[shioaji.position.StockPositionDetail, shioaji.position.    FuturePositionDetail]]], NoneType] = None,
-) -> List[Union[shioaji.position.StockPositionDetail, shioaji.position.FuturePositionDetail]]
-Docstring:
-query account of position detail
+        account: shioaji.account.Account = None,
+        detail_id: int = 0,
+        timeout: int = 5000,
+        cb: Callable[[List[Union[shioaji.position.StockPositionDetail, shioaji.position.FuturePositionDetail]]], NoneType] = None,
+    ) -> List[Union[shioaji.position.StockPositionDetail, shioaji.position.FuturePositionDetail]]
 
-Args:
-    account (:obj:Account):
-        choice the account from listing account (Default: stock account)
-    detail_id (int): the id is from Position object, Position is from list_positions
+```
+
+Parameters
+
+```
+account:   選填，證券或期貨選擇權帳戶（省略則使用 api.stock_account）
+detail_id: 選填，部位 ID（從 list_positions 結果取得）
+timeout:   逾時毫秒
+cb:        選填，callback 函式，timeout=0 時使用
+
+```
+
+list_position_detail
+
+```
+POST /api/v1/portfolio/position_detail
+Content-Type: application/json
+
+{
+  "account_type": "S",
+  "detail_id": <int>,
+  "broker_id": <string>,
+  "account_id": <string>,
+  "person_id": <string>
+}
+
+```
+
+Parameters
+
+```
+account_type: 選填，"S"（證券／預設）或 "F"（期貨選擇權）
+detail_id:    選填，部位 ID（從 list_positions 結果取得）
+broker_id:    選填，券商代碼
+account_id:   選填，帳戶代碼
+person_id:    選填，身分證字號
+
+```
+
+### 證券
+
+StockPositionDetail
+
+```
+date (str):              交易日期
+code (str):              商品代碼
+quantity (int):          數量
+price (float):           付出成本
+last_price (float):      現值
+dseq (str):              委託書號
+direction (Action):      買賣別 {Buy: 買, Sell: 賣}
+pnl (float):             損益
+currency (Currency):     幣別 {TWD, USD, HKD, EUR, CAD, BAS}
+fee (float):             交易手續費
+cond (StockOrderCond):   {Cash: 現股, Netting: 餘額交割, MarginTrading: 融資, ShortSelling: 融券, Emerging: 興櫃}
+ex_dividends (int):      除息金額
+interest (int):          利息
+margintrading_amt (int): 融資金額
+collateral (int):        擔保品
 
 ```
 
 In
 
 ```
-position_detail = api.list_position_detail(api.stock_account, 1)
-position_detail
+api.list_position_detail(account=api.stock_account, detail_id=0)
 
 ```
 
@@ -238,69 +507,83 @@ Out
 ```
 [
     StockPositionDetail(
-        date='2023-02-22', 
-        code='3558', 
-        quantity=0, 
-        price=1461.0, 
-        last_price=1470.0, 
-        dseq='WA371', 
-        direction=<Action.Buy: 'Buy'>, 
-        pnl=9.0, 
-        currency=<Currency.TWD: 'TWD'>, 
-        fee=1.0
-    )
+        date='2026-05-18',
+        code='2890',
+        quantity=1,
+        price=30000,
+        last_price=31000,
+        dseq='Y1QDH',
+        direction=<Action.Buy: 'Buy'>,
+        pnl=1000,
+        currency=<Currency.TWD: 'TWD'>,
+        fee=100,
+        cond=<StockOrderCond.Cash: 'Cash'>,
+        ex_dividends=0,
+        interest=0,
+        margintrading_amt=0,
+        collateral=0,
+    ),
 ]
 
 ```
 
-轉成DataFrame
-
 In
 
 ```
-df = pd.DataFrame(pnl.__dict__ for pnl in position_detail)
-df
+curl -X POST http://localhost:8080/api/v1/portfolio/position_detail \
+  -H 'Content-Type: application/json' \
+  -d '{"account_type": "S", "detail_id": 0, "broker_id": "YOUR_BROKER_ID", "account_id": "YOUR_ACCOUNT_ID"}'
 
 ```
 
 Out
 
-| date | code | quantity | price | last_price | direction | pnl | currency | fee | cond | ex_dividends | interest | margintrading_amt | collateral | | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | | 2023-02-22 | 3558 | 0 | 1461.0 | WA371 | Action.Buy | 11.0 | Currency.TWD | 1.0 | StockOrderCond.Cash | 0 | 0 | 0 | 0 |
-
-屬性
-
 ```
-date (str): 交易日期
-code (str): 商品代碼    
-quantity (int): 數量
-price (float): 付出成本
-last_price (float): 現值
-dseq (str): 委託書號
-direction (Action): {Buy: 買, Sell: 賣}
-pnl (decimal): 損益
-currency (string): 幣別 {NTD, USD, HKD, EUR, CAD, BAS}
-fee (decimal): 交易手續費
-cond (StockOrderCond): {
-    Cash: 現股(預設值), 
-    Netting: 餘額交割,
-    MarginTrading: 融資, 
-    ShortSelling: 融券, 
-    Emerging: 興櫃
-    }
-ex_dividends(int): 除息金額
-interest (int): 除息
-margintrading_amt(int): 融資金額
-collateral (int): 擔保品 
+[
+  {
+    "date": "2026-05-18",
+    "code": "2890",
+    "quantity": 1,
+    "price": 30000.0,
+    "last_price": 31000.0,
+    "dseq": "Y1QDH",
+    "direction": "Buy",
+    "pnl": 1000.0,
+    "currency": "TWD",
+    "fee": 100.0,
+    "cond": "Cash",
+    "ex_dividends": 0,
+    "interest": 0,
+    "margintrading_amt": 0,
+    "collateral": 0
+  }
+]
 
 ```
 
 ### 期貨選擇權
 
+FuturePositionDetail
+
+```
+date (str):           交易日期
+code (str):           商品代碼
+quantity (int):       數量
+price (float):        平均價格
+last_price (float):   目前價格
+dseq (str):           委託書號
+direction (Action):   買賣別 {Buy: 買, Sell: 賣}
+pnl (float):          損益
+currency (Currency):  幣別 {TWD, USD, HKD, EUR, CAD, BAS}
+fee (float):          交易手續費
+entry_quantity (int): 新倉數量
+
+```
+
 In
 
 ```
-position_detail = api.list_position_detail(api.futopt_account, 0)
-position_detail
+api.list_position_detail(account=api.futopt_account, detail_id=0)
 
 ```
 
@@ -309,48 +592,48 @@ Out
 ```
 [
     FuturePositionDetail(
-        date='2023-02-14', 
-        code='MXFC3', 
-        quantity=1, 
-        price=15611.0, 
-        last_price=15541.0, 
-        dseq='tA0n8', 
-        direction=<Action.Buy: 'Buy'>, 
-        pnl=-3500.0, 
-        currency=<Currency.TWD: 'TWD'>, 
-        entry_quantity=1
-    )
+        date='2026-05-21',
+        code='TXO20260620200C',
+        quantity=3,
+        price=131.0,
+        last_price=126.0,
+        dseq='tA0n8',
+        direction=<Action.Buy: 'Buy'>,
+        pnl=-750.0,
+        currency=<Currency.TWD: 'TWD'>,
+        fee=120.0,
+        entry_quantity=3,
+    ),
 ]
 
 ```
 
-轉成DataFrame
-
 In
 
 ```
-df = pd.DataFrame(pnl.__dict__ for pnl in position_detail)
-df
+curl -X POST http://localhost:8080/api/v1/portfolio/position_detail \
+  -H 'Content-Type: application/json' \
+  -d '{"account_type": "F", "detail_id": 0, "broker_id": "YOUR_BROKER_ID", "account_id": "YOUR_ACCOUNT_ID"}'
 
 ```
 
 Out
 
-| date | code | quantity | price | last_price | dseq | direction | pnl | currency | entry_quantity | | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | | 2023-02-14 | MXFC3 | 1 | 15611.0 | 15541.0 | tA0n8 | Action.Buy | -3500.0 | Currency.TWD | 1 |
-
-屬性
-
 ```
-code (str): 商品代碼
-date (str): 交易日期
-quantity (int): 數量
-price (float): 價格
-last_price (float): 目前股價    
-dseq (str): 委託書號
-direction (Action): {Buy: 買, Sell: 賣}
-pnl (float): 損益
-currency (str): 幣別 {NTD, USD, HKD, EUR, CAD, BAS}
-fee (float or int): 交易手續費
-entry_quantity(int): 新倉數量
+[
+  {
+    "date": "2026-05-21",
+    "code": "TXO20260620200C",
+    "quantity": 3,
+    "price": 131.0,
+    "last_price": 126.0,
+    "dseq": "tA0n8",
+    "direction": "Buy",
+    "pnl": -750.0,
+    "currency": "TWD",
+    "fee": 120.0,
+    "entry_quantity": 3
+  }
+]
 
 ```

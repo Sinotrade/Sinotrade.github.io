@@ -1,16 +1,26 @@
-Each time you `place_order`, `update_order` or `cancel_order`, by default, you will recieve an order event (or deal event) from exchange. If you don't want recieve both events, please refer to [Subscribe Trade](../../login/#subscribe-trade). We also provide interface to handle order and deal events. It's extremely helpful if you are implementing your custom trading system.
+Each time you call `place_order`, `update_order`, or `cancel_order`, you will receive an order or deal event from the exchange. We also provide an interface to handle these events, which is extremely helpful if you are building your own trading system.
 
-## Handle Order Callback
+Note
 
-You can use `set_order_callback` to handle order/deal events. The example below shows custom order callback function (`order_cb`), which will print `my_order_callback` first and then print the order/deal event.
+Reserved orders (placed pre-market) do not trigger event callbacks at placement time. Reserved orders are dispatched at 08:30 each trading day, and event callbacks fire only after dispatch.
+
+## Handle Order and Deal Events
+
+You can use `set_order_callback` to handle order/deal events. The example below shows a custom callback function (`order_cb`) that prints `my_order_callback` first and then the order/deal event payload.
 
 Set Order Callback
 
 ```
+# Option 1: decorator
+@api.on_order
 def order_cb(stat, msg):
     print('my_order_callback')
     print(stat, msg)
 
+# Option 2: traditional
+def order_cb(stat, msg):
+    print('my_order_callback')
+    print(stat, msg)
 api.set_order_callback(order_cb)
 
 ```
@@ -18,181 +28,324 @@ api.set_order_callback(order_cb)
 Place Order
 
 ```
+# Contract
 contract = api.Contracts.Stocks.TSE.TSE2890
-order = api.Order(
-    price=16, 
-    quantity=1, 
-    action=sj.constant.Action.Buy, 
-    price_type=sj.constant.StockPriceType.LMT, 
-    order_type=sj.constant.OrderType.ROD, 
-    order_lot=sj.constant.StockOrderLot.Common, 
-    custom_field="test",
-    account=api.stock_account
+# Order
+order = sj.StockOrder(
+    action=sj.Action.Buy,
+    price=27.1,
+    quantity=2,
+    price_type=sj.StockPriceType.LMT,
+    order_type=sj.OrderType.ROD,
+    order_lot=sj.StockOrderLot.Common,
+    order_cond=sj.StockOrderCond.Cash,
+    account=api.stock_account,
 )
+# Place
 trade = api.place_order(contract, order)
 
 ```
 
-```
-contract = api.Contracts.Stocks.TSE.TSE2890
-order = api.Order(
-    price=16, 
-    quantity=1, 
-    action=sj.constant.Action.Buy, 
-    price_type=sj.constant.TFTStockPriceType.LMT, 
-    order_type=sj.constant.TFTOrderType.ROD, 
-    order_lot=sj.constant.TFTStockOrderLot.Common, 
-    custom_field="test",
-    account=api.stock_account
-)
-trade = api.place_order(contract, order)
+#### Order Event
 
-```
-
-### Order Event
-
-Order Event
+Out
 
 ```
 my_order_callback
-OrderState.StockOrder {
+<OrderState.StockOrder: 'SORDER'> {
     'operation': {
-        'op_type': 'New', 
-        'op_code': '00', 
+        'op_type': 'New',
+        'op_code': '00',
         'op_msg': ''
-    }, 
+    },
     'order': {
-        'id': '97b63e2f', 
-        'seqno': '267677', 
-        'ordno': 'IM394', 
+        'id': '892f730b',
+        'seqno': '361840',
+        'ordno': 'Y23CL',
         'account': {
-            'account_type': 'S', 
-            'person_id': '', 
-            'broker_id': '9A95', 
-            'account_id': '1234567', 
-            'signed': True
-        }, 
-        'action': 'Buy', 
-        'price': 16.0, 
-        'quantity': 1, 
-        'order_type': 'ROD', 
-        'price_type': 'LMT', 
-        'order_cond': 'Cash', 
-        'order_lot': 'Common', 
-        'custom_field': 'test'
-    }, 
+            'account_type': 'S',
+            'person_id': '',
+            'broker_id': 'YOUR_BROKER_ID',
+            'account_id': 'YOUR_ACCOUNT_ID',
+            'signed': True,
+            'username': ''
+        },
+        'action': 'Buy',
+        'price': 26.85,
+        'quantity': 1,
+        'order_type': 'ROD',
+        'price_type': 'LMT',
+        'order_cond': 'Cash',
+        'order_lot': 'Common',
+        'custom_field': ''
+    },
     'status': {
-        'id': '97b63e2f', 
-        'exchange_ts': 1673576134.038, 
-        'modified_price': 0.0, 
-        'cancel_quantity': 0, 
-        'order_quantity': 1, 
+        'id': '892f730b',
+        'exchange_ts': 1779333919.92,
+        'modified_price': 0.0,
+        'cancel_quantity': 0,
+        'order_quantity': 1,
         'web_id': '137'
-    }, 
+    },
     'contract': {
-        'security_type': 'STK', 
-        'exchange': 'TSE', 
-        'code': '2890', 
-        'symbol': '', 
-        'name': '', 
+        'exchange': 'TSE',
+        'code': '2890',
+        'security_type': 'STK',
+        'symbol': '',
+        'name': '',
         'currency': 'TWD'
     }
 }
 
 ```
 
+#### Deal Event
+
+Out
+
 ```
 my_order_callback
-OrderState.TFTOrder {
-    'operation': {
-        'op_type': 'New', 
-        'op_code': '00', 
-        'op_msg': ''
-    }, 
-    'order': {
-        'id': '97b63e2f', 
-        'seqno': '267677', 
-        'ordno': 'IM394', 
-        'account': {
-            'account_type': 'S', 
-            'person_id': '', 
-            'broker_id': '9A95', 
-            'account_id': '1234567', 
-            'signed': True
-        }, 
-        'action': 'Buy', 
-        'price': 16.0, 
-        'quantity': 1, 
-        'order_type': 'ROD', 
-        'price_type': 'LMT', 
-        'order_cond': 'Cash', 
-        'order_lot': 'Common', 
-        'custom_field': 'test'
-    }, 
-    'status': {
-        'id': '97b63e2f', 
-        'exchange_ts': 1673576134.038, 
-        'modified_price': 0.0, 
-        'cancel_quantity': 0, 
-        'order_quantity': 1, 
-        'web_id': '137'
-    }, 
-    'contract': {
-        'security_type': 'STK', 
-        'exchange': 'TSE', 
-        'code': '2890', 
-        'symbol': '', 
-        'name': '', 
-        'currency': 'TWD'
+<OrderState.StockDeal: 'SDEAL'> {
+    'trade_id': '9c6ae2eb',
+    'seqno': '269866',
+    'ordno': 'IN497',
+    'exchange_seq': '669915',
+    'broker_id': 'YOUR_BROKER_ID',
+    'account_id': 'YOUR_ACCOUNT_ID',
+    'action': 'Buy',
+    'code': '2890',
+    'order_cond': 'Cash',
+    'order_lot': 'Common',
+    'price': 27.1,
+    'quantity': 2,
+    'web_id': '137',
+    'custom_field': '',
+    'ts': 1779333920.0
+}
+
+```
+
+Receive Order/Deal Events
+
+```
+shioaji order events
+
+```
+
+This command streams order/deal events continuously. Press Ctrl+C to stop.
+
+Place Order (run in another terminal)
+
+```
+shioaji order place \
+  --code 2890 \
+  --action buy \
+  --price 27.1 \
+  --quantity 2 \
+  --price-type lmt \
+  --order-type rod \
+  --order-lot common \
+  --account YOUR_BROKER_ID-YOUR_ACCOUNT_ID
+
+```
+
+**Order Event**
+
+Out
+
+```
+{
+  "state": "StockOrder",
+  "data": {
+    "StockOrder": {
+      "operation": {"op_type": "New", "op_code": "00", "op_msg": ""},
+      "order": {
+        "id": "892f730b",
+        "seqno": "361840",
+        "ordno": "Y23CL",
+        "account": {
+          "account_type": "S",
+          "person_id": "",
+          "broker_id": "YOUR_BROKER_ID",
+          "account_id": "YOUR_ACCOUNT_ID",
+          "signed": true,
+          "username": ""
+        },
+        "action": "Buy",
+        "price": 26.85,
+        "quantity": 1,
+        "order_type": "ROD",
+        "price_type": "LMT",
+        "order_cond": "Cash",
+        "order_lot": "Common",
+        "custom_field": ""
+      },
+      "status": {
+        "id": "892f730b",
+        "exchange_ts": 1779333919.92,
+        "modified_price": 0.0,
+        "cancel_quantity": 0,
+        "order_quantity": 1,
+        "web_id": "137"
+      },
+      "contract": {
+        "exchange": "TSE",
+        "code": "2890",
+        "security_type": "STK",
+        "symbol": "",
+        "name": "",
+        "currency": "TWD"
+      }
     }
+  }
 }
 
 ```
 
-### Deal Event
+**Deal Event**
 
-Deal Event
+Out
 
 ```
-my_order_callback
-OrderState.StockDeal {
-    'trade_id': '9c6ae2eb', 
-    'seqno': '269866', 
-    'ordno': 'IN497', 
-    'exchange_seq': '669915', 
-    'broker_id': '9A95', 
-    'account_id': '1234567', 
-    'action': 'Buy', 
-    'code': '2890', 
-    'order_cond': 'Cash', 
-    'order_lot': 'IntradayOdd', 
-    'price': 267.5, 
-    'quantity': 3, 
-    'web_id': '137', 
-    'custom_field': 'test', 
-    'ts': 1673577256.354
+{
+  "state": "StockDeal",
+  "data": {
+    "StockDeal": {
+      "trade_id": "9c6ae2eb",
+      "seqno": "269866",
+      "ordno": "IN497",
+      "exchange_seq": "669915",
+      "broker_id": "YOUR_BROKER_ID",
+      "account_id": "YOUR_ACCOUNT_ID",
+      "action": "Buy",
+      "code": "2890",
+      "order_cond": "Cash",
+      "order_lot": "Common",
+      "price": 27.1,
+      "quantity": 2,
+      "web_id": "137",
+      "custom_field": "",
+      "ts": 1779333920.0
+    }
+  }
 }
 
 ```
 
+Receive Order/Deal Events
+
 ```
-my_order_callback
-OrderState.TFTDeal {
-    'trade_id': '9c6ae2eb', 
-    'seqno': '269866', 
-    'ordno': 'IN497', 
-    'exchange_seq': '669915', 
-    'broker_id': '9A95', 
-    'account_id': '1234567', 
-    'action': 'Buy', 
-    'code': '2890', 
-    'order_cond': 'Cash', 
-    'order_lot': 'IntradayOdd', 
-    'price': 267.5, 
-    'quantity': 3, 
-    'web_id': '137', 
-    'custom_field': 'test', 
-    'ts': 1673577256.354
+curl -N http://localhost:8080/api/v1/stream/data/order_event
+
+```
+
+This command streams order/deal events continuously. Press Ctrl+C to stop.
+
+Place Order (run in another terminal)
+
+```
+curl -X POST http://localhost:8080/api/v1/order/place_order \
+  -H 'Content-Type: application/json' \
+  -d '{
+    "contract": {"security_type": "STK", "exchange": "TSE", "code": "2890"},
+    "stock_order": {
+      "action": "Buy",
+      "price": 27.1,
+      "quantity": 2,
+      "price_type": "LMT",
+      "order_type": "ROD",
+      "order_lot": "Common",
+      "order_cond": "Cash",
+      "account": {
+        "broker_id": "YOUR_BROKER_ID",
+        "account_id": "YOUR_ACCOUNT_ID"
+      }
+    }
+  }'
+
+```
+
+**Order Event**
+
+Out
+
+```
+event:order_event
+data:{
+  "state": "StockOrder",
+  "data": {
+    "StockOrder": {
+      "operation": {"op_type": "New", "op_code": "00", "op_msg": ""},
+      "order": {
+        "id": "892f730b",
+        "seqno": "361840",
+        "ordno": "Y23CL",
+        "account": {
+          "account_type": "S",
+          "person_id": "",
+          "broker_id": "YOUR_BROKER_ID",
+          "account_id": "YOUR_ACCOUNT_ID",
+          "signed": true,
+          "username": ""
+        },
+        "action": "Buy",
+        "price": 26.85,
+        "quantity": 1,
+        "order_type": "ROD",
+        "price_type": "LMT",
+        "order_cond": "Cash",
+        "order_lot": "Common",
+        "custom_field": ""
+      },
+      "status": {
+        "id": "892f730b",
+        "exchange_ts": 1779333919.92,
+        "modified_price": 0.0,
+        "cancel_quantity": 0,
+        "order_quantity": 1,
+        "web_id": "137"
+      },
+      "contract": {
+        "exchange": "TSE",
+        "code": "2890",
+        "security_type": "STK",
+        "symbol": "",
+        "name": "",
+        "currency": "TWD"
+      }
+    }
+  }
+}
+
+```
+
+**Deal Event**
+
+Out
+
+```
+event:order_event
+data:{
+  "state": "StockDeal",
+  "data": {
+    "StockDeal": {
+      "trade_id": "9c6ae2eb",
+      "seqno": "269866",
+      "ordno": "IN497",
+      "exchange_seq": "669915",
+      "broker_id": "YOUR_BROKER_ID",
+      "account_id": "YOUR_ACCOUNT_ID",
+      "action": "Buy",
+      "code": "2890",
+      "order_cond": "Cash",
+      "order_lot": "Common",
+      "price": 27.1,
+      "quantity": 2,
+      "web_id": "137",
+      "custom_field": "",
+      "ts": 1779333920.0
+    }
+  }
 }
 
 ```

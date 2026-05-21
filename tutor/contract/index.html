@@ -373,9 +373,20 @@
   
   
   
-    <li class="md-nav__item">
-      <a href="../../env_setup/" class="md-nav__link">
+    
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
         
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_4" >
+        
+          
+          <label class="md-nav__link" for="__nav_4" id="__nav_4_label" tabindex="0">
+            
   
   
   <span class="md-ellipsis">
@@ -384,7 +395,65 @@
   </span>
   
 
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_4_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_4">
+            <span class="md-nav__icon md-icon"></span>
+            Environment Setup
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../env_setup/python/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Python User
+    
+  </span>
+  
+
       </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../env_setup/other/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Other Language User
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
     </li>
   
 
@@ -525,7 +594,7 @@
   
   
   <span class="md-ellipsis">
-    Terms of service
+    API Signing and Test
     
   </span>
   
@@ -662,9 +731,9 @@
       <ul class="md-nav__list">
         
           <li class="md-nav__item">
-  <a href="#stock" class="md-nav__link">
+  <a href="#stocks" class="md-nav__link">
     <span class="md-ellipsis">
-      Stock
+      Stocks
     </span>
   </a>
   
@@ -689,9 +758,9 @@
 </li>
         
           <li class="md-nav__item">
-  <a href="#index" class="md-nav__link">
+  <a href="#indices" class="md-nav__link">
     <span class="md-ellipsis">
-      Index
+      Indices
     </span>
   </a>
   
@@ -1713,6 +1782,44 @@
   
   
   
+    
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_6" >
+        
+          
+          <label class="md-nav__link" for="__nav_6" id="__nav_6_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    Upgrading
+    
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_6_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_6">
+            <span class="md-nav__icon md-icon"></span>
+            Upgrading
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
     <li class="md-nav__item">
       <a href="../../upgrade/" class="md-nav__link">
         
@@ -1725,6 +1832,37 @@
   
 
       </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../upgrade_to_1_5/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Upgrading to 1.5
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
     </li>
   
 
@@ -1764,28 +1902,6 @@
   
   <span class="md-ellipsis">
     Release Note
-    
-  </span>
-  
-
-      </a>
-    </li>
-  
-
-    
-      
-      
-  
-  
-  
-  
-    <li class="md-nav__item">
-      <a href="https://sinotrade.github.io/Shioaji.Csharp/" class="md-nav__link">
-        
-  
-  
-  <span class="md-ellipsis">
-    C#
     
   </span>
   
@@ -1861,9 +1977,9 @@
       <ul class="md-nav__list">
         
           <li class="md-nav__item">
-  <a href="#stock" class="md-nav__link">
+  <a href="#stocks" class="md-nav__link">
     <span class="md-ellipsis">
-      Stock
+      Stocks
     </span>
   </a>
   
@@ -1888,9 +2004,9 @@
 </li>
         
           <li class="md-nav__item">
-  <a href="#index" class="md-nav__link">
+  <a href="#indices" class="md-nav__link">
     <span class="md-ellipsis">
-      Index
+      Indices
     </span>
   </a>
   
@@ -1919,75 +2035,92 @@
 
   <h1>Contract</h1>
 
-<p>Contract object will be used by a lot of place like place order, subscribe quote, etc.</p>
+<p>Contract objects are used in many places, such as placing orders and subscribing to quotes.</p>
+<p>Contracts are updated daily at the following times. Plan your downloads accordingly.</p>
+<div class="admonition attention">
+<p class="admonition-title">Contract update schedule</p>
+<ul>
+<li>07:50 Futures contract update</li>
+<li>08:00 Full-market contract update</li>
+<li>14:45 Futures night-session contract update</li>
+<li>17:15 Futures night-session contract update</li>
+</ul>
+</div>
 <h3 id="get-contracts">Get Contracts<a class="headerlink" href="#get-contracts" title="Permanent link">&para;</a></h3>
 <p>The following provides two methods to get contracts:</p>
-<ul>
-<li>method 1:
-  After <a href="../../tutor/login/">Login</a> success we will start to fetch all kind of contract but fetching will not block other action. So how to know the fetch action is done ? We have status of contracts download that you can use <code>Contracts.status</code>. If you set contracts_timeout inside <code>login</code> set to 10000, it will block the fetch and wait 10 second until the contract is back.</li>
-</ul>
-<div class="admonition info">
-<p class="admonition-title">In</p>
-<div class="tabbed-set tabbed-alternate" data-tabs="1:2"><input checked="checked" id="__tabbed_1_1" name="__tabbed_1" type="radio" /><input id="__tabbed_1_2" name="__tabbed_1" type="radio" /><div class="tabbed-labels"><label for="__tabbed_1_1">version&gt;=1.0</label><label for="__tabbed_1_2">version&lt;1.0</label></div>
+<div class="tabbed-set tabbed-alternate" data-tabs="1:2"><input checked="checked" id="__tabbed_1_1" name="__tabbed_1" type="radio" /><input id="__tabbed_1_2" name="__tabbed_1" type="radio" /><div class="tabbed-labels"><label for="__tabbed_1_1">Python</label><label for="__tabbed_1_2">Other languages</label></div>
 <div class="tabbed-content">
 <div class="tabbed-block">
+<p><strong>Method 1</strong></p>
+<p>After <a href="../../tutor/login/">Login</a> succeeds, all kinds of contracts will start downloading, but the download will not block other actions. To check whether the download has finished, use <code>Contracts.status</code>. Setting <code>contracts_timeout</code> inside <code>login</code> to 10000 will block until the contracts come back, waiting up to 10 seconds.</p>
+<div class="admonition info">
+<p class="admonition-title">In</p>
 <div class="highlight"><pre><span></span><code><span class="kn">import</span><span class="w"> </span><span class="nn">shioaji</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">sj</span>
 <span class="n">api</span> <span class="o">=</span> <span class="n">sj</span><span class="o">.</span><span class="n">Shioaji</span><span class="p">()</span>
 <span class="n">api</span><span class="o">.</span><span class="n">login</span><span class="p">(</span>
-    <span class="n">api_key</span><span class="o">=</span><span class="s2">&quot;YOUR_API_KEY&quot;</span><span class="p">,</span> 
+    <span class="n">api_key</span><span class="o">=</span><span class="s2">&quot;YOUR_API_KEY&quot;</span><span class="p">,</span>
     <span class="n">secret_key</span><span class="o">=</span><span class="s2">&quot;YOUR_SECRET_KEY&quot;</span><span class="p">,</span>
 <span class="hll">    <span class="n">contracts_timeout</span><span class="o">=</span><span class="mi">10000</span><span class="p">,</span>
 </span><span class="p">)</span>
 </code></pre></div>
 </div>
-<div class="tabbed-block">
-<div class="highlight"><pre><span></span><code><span class="kn">import</span><span class="w"> </span><span class="nn">shioaji</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">sj</span>
-<span class="n">api</span> <span class="o">=</span> <span class="n">sj</span><span class="o">.</span><span class="n">Shioaji</span><span class="p">()</span>
-<span class="n">api</span><span class="o">.</span><span class="n">login</span><span class="p">(</span>
-    <span class="n">person_id</span><span class="o">=</span><span class="s2">&quot;YOUR_PERSON_ID&quot;</span><span class="p">,</span> 
-    <span class="n">passwd</span><span class="o">=</span><span class="s2">&quot;YOUR_PASSWORD&quot;</span><span class="p">,</span>
-<span class="hll">    <span class="n">contracts_timeout</span><span class="o">=</span><span class="mi">10000</span><span class="p">,</span>
-</span><span class="p">)</span>
-</code></pre></div>
-</div>
-</div>
-</div>
-</div>
-<ul>
-<li>method 2:
-  If <code>fetch_contract</code> inside <code>login</code> is set to False, it will not download contract. You can use <code>fetch_contracts</code> to download.</li>
-</ul>
+<p><strong>Method 2</strong></p>
+<p>If <code>fetch_contract</code> inside <code>login</code> is set to <code>False</code>, contracts will not be downloaded at login. You can then use <code>fetch_contracts</code> to download them later.</p>
 <div class="admonition info">
 <p class="admonition-title">In</p>
-<div class="tabbed-set tabbed-alternate" data-tabs="2:2"><input checked="checked" id="__tabbed_2_1" name="__tabbed_2" type="radio" /><input id="__tabbed_2_2" name="__tabbed_2" type="radio" /><div class="tabbed-labels"><label for="__tabbed_2_1">version&gt;=1.0</label><label for="__tabbed_2_2">version&lt;1.0</label></div>
-<div class="tabbed-content">
-<div class="tabbed-block">
 <div class="highlight"><pre><span></span><code><span class="kn">import</span><span class="w"> </span><span class="nn">shioaji</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">sj</span>
 <span class="n">api</span> <span class="o">=</span> <span class="n">sj</span><span class="o">.</span><span class="n">Shioaji</span><span class="p">()</span>
 <span class="n">api</span><span class="o">.</span><span class="n">login</span><span class="p">(</span>
-    <span class="n">api_key</span><span class="o">=</span><span class="s2">&quot;YOUR_API_KEY&quot;</span><span class="p">,</span> 
+    <span class="n">api_key</span><span class="o">=</span><span class="s2">&quot;YOUR_API_KEY&quot;</span><span class="p">,</span>
     <span class="n">secret_key</span><span class="o">=</span><span class="s2">&quot;YOUR_SECRET_KEY&quot;</span><span class="p">,</span>
 <span class="hll">    <span class="n">fetch_contract</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span>
 </span><span class="p">)</span>
 <span class="hll"><span class="n">api</span><span class="o">.</span><span class="n">fetch_contracts</span><span class="p">(</span><span class="n">contract_download</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
 </span></code></pre></div>
 </div>
-<div class="tabbed-block">
-<div class="highlight"><pre><span></span><code><span class="kn">import</span><span class="w"> </span><span class="nn">shioaji</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">sj</span>
-<span class="n">api</span> <span class="o">=</span> <span class="n">sj</span><span class="o">.</span><span class="n">Shioaji</span><span class="p">()</span>
-<span class="n">api</span><span class="o">.</span><span class="n">login</span><span class="p">(</span>
-    <span class="n">person_id</span><span class="o">=</span><span class="s2">&quot;YOUR_PERSON_ID&quot;</span><span class="p">,</span> 
-    <span class="n">passwd</span><span class="o">=</span><span class="s2">&quot;YOUR_PASSWORD&quot;</span><span class="p">,</span>
-<span class="hll">    <span class="n">fetch_contract</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span>
-</span><span class="p">)</span>
-<span class="hll"><span class="n">api</span><span class="o">.</span><span class="n">fetch_contracts</span><span class="p">(</span><span class="n">contract_download</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
-</span></code></pre></div>
 </div>
+<div class="tabbed-block">
+<p>Contracts are loaded automatically by the server when <code>shioaji server start</code> is executed (see the server startup log on the <a href="../login/">Login</a> page). No additional action is required.</p>
 </div>
 </div>
 </div>
 <h3 id="contracts-information">Contracts Information<a class="headerlink" href="#contracts-information" title="Permanent link">&para;</a></h3>
-<p>The contracts we currently offer include: stocks, futures, options and indices. The products we provide can get more detailed information through the following ways.</p>
+<p>The contracts we currently offer for the Taiwan market include stocks, futures, options, and indices. Use the methods below for more details.</p>
+<div class="admonition example">
+<p class="admonition-title">Contract</p>
+<div class="highlight"><pre><span></span><code><span class="n">security_type</span> <span class="p">(</span><span class="nb">str</span><span class="p">):</span> <span class="n">Security</span> <span class="nb">type</span> <span class="p">{</span><span class="n">STK</span><span class="p">,</span> <span class="n">FUT</span><span class="p">,</span> <span class="n">OPT</span><span class="p">,</span> <span class="n">IND</span><span class="p">}</span>
+<span class="n">exchange</span> <span class="p">(</span><span class="nb">str</span><span class="p">):</span> <span class="n">Exchange</span>
+<span class="n">code</span> <span class="p">(</span><span class="nb">str</span><span class="p">):</span> <span class="n">Product</span> <span class="n">code</span>
+<span class="n">symbol</span> <span class="p">(</span><span class="nb">str</span><span class="p">):</span> <span class="n">Symbol</span>
+<span class="n">name</span> <span class="p">(</span><span class="nb">str</span><span class="p">):</span> <span class="n">Product</span> <span class="n">name</span>
+<span class="n">category</span> <span class="p">(</span><span class="nb">str</span><span class="p">):</span> <span class="n">Category</span>
+<span class="n">currency</span> <span class="p">(</span><span class="nb">str</span><span class="p">):</span> <span class="n">Settlement</span> <span class="n">currency</span>
+<span class="n">delivery_month</span> <span class="p">(</span><span class="nb">str</span><span class="p">):</span> <span class="n">Delivery</span> <span class="n">month</span> <span class="p">(</span><span class="n">FUT</span><span class="o">/</span><span class="n">OPT</span><span class="p">)</span>
+<span class="n">delivery_date</span> <span class="p">(</span><span class="nb">str</span><span class="p">):</span> <span class="n">Settlement</span> <span class="n">date</span> <span class="p">(</span><span class="n">FUT</span><span class="o">/</span><span class="n">OPT</span><span class="p">)</span>
+<span class="n">strike_price</span> <span class="p">(</span><span class="nb">float</span><span class="p">):</span> <span class="n">Strike</span> <span class="n">price</span> <span class="p">(</span><span class="n">OPT</span><span class="p">)</span>
+<span class="n">option_right</span> <span class="p">(</span><span class="nb">str</span><span class="p">):</span> <span class="n">Call</span> <span class="ow">or</span> <span class="n">Put</span> <span class="p">(</span><span class="n">OPT</span><span class="p">)</span>
+<span class="n">underlying_kind</span> <span class="p">(</span><span class="nb">str</span><span class="p">):</span> <span class="n">Underlying</span> <span class="nb">type</span> <span class="p">(</span><span class="n">FUT</span><span class="o">/</span><span class="n">OPT</span><span class="p">)</span>
+<span class="n">underlying_code</span> <span class="p">(</span><span class="nb">str</span><span class="p">):</span> <span class="n">Underlying</span> <span class="n">product</span> <span class="n">code</span> <span class="p">(</span><span class="n">OPT</span><span class="p">)</span>
+<span class="n">unit</span> <span class="p">(</span><span class="nb">float</span><span class="p">):</span> <span class="n">Trading</span> <span class="n">unit</span>
+<span class="n">multiplier</span> <span class="p">(</span><span class="nb">int</span><span class="p">):</span> <span class="n">Contract</span> <span class="n">multiplier</span> <span class="p">(</span><span class="n">FUT</span><span class="o">/</span><span class="n">OPT</span><span class="p">)</span>
+<span class="n">limit_up</span> <span class="p">(</span><span class="nb">float</span><span class="p">):</span> <span class="n">Limit</span><span class="o">-</span><span class="n">up</span> <span class="n">price</span>
+<span class="n">limit_down</span> <span class="p">(</span><span class="nb">float</span><span class="p">):</span> <span class="n">Limit</span><span class="o">-</span><span class="n">down</span> <span class="n">price</span>
+<span class="n">reference</span> <span class="p">(</span><span class="nb">float</span><span class="p">):</span> <span class="n">Reference</span> <span class="n">price</span>
+<span class="n">update_date</span> <span class="p">(</span><span class="nb">str</span><span class="p">):</span> <span class="n">Update</span> <span class="n">date</span>
+<span class="n">margin_trading_balance</span> <span class="p">(</span><span class="nb">int</span><span class="p">):</span> <span class="n">Margin</span> <span class="n">trading</span> <span class="n">balance</span> <span class="p">(</span><span class="n">STK</span><span class="p">)</span>
+<span class="n">short_selling_balance</span> <span class="p">(</span><span class="nb">int</span><span class="p">):</span> <span class="n">Short</span> <span class="n">selling</span> <span class="n">balance</span> <span class="p">(</span><span class="n">STK</span><span class="p">)</span>
+<span class="n">day_trade</span> <span class="p">(</span><span class="nb">str</span><span class="p">):</span> <span class="n">Day</span> <span class="n">trade</span> <span class="n">availability</span> <span class="p">{</span><span class="n">Yes</span><span class="p">,</span> <span class="n">No</span><span class="p">,</span> <span class="n">OnlyBuy</span><span class="p">}</span> <span class="p">(</span><span class="n">STK</span><span class="p">)</span>
+<span class="n">target_code</span> <span class="p">(</span><span class="nb">str</span><span class="p">):</span> <span class="n">Resolved</span> <span class="n">target</span> <span class="n">product</span> <span class="n">code</span><span class="p">;</span> <span class="n">only</span> <span class="n">continuous</span><span class="o">-</span><span class="n">month</span> <span class="n">aliases</span> <span class="p">(</span><span class="n">e</span><span class="o">.</span><span class="n">g</span><span class="o">.</span> <span class="n">TXFR1</span><span class="o">/</span><span class="n">R2</span><span class="p">)</span> <span class="n">carry</span> <span class="n">a</span> <span class="n">value</span> <span class="p">(</span><span class="n">FUT</span><span class="p">)</span>
+</code></pre></div>
+<ul>
+<li>Unused fields are returned as empty strings or 0</li>
+<li>Python SDK object reprs omit fields whose value is 0</li>
+</ul>
+</div>
+<p><strong>Query All Contracts</strong></p>
+<div class="tabbed-set tabbed-alternate" data-tabs="2:2"><input checked="checked" id="__tabbed_2_1" name="__tabbed_2" type="radio" /><input id="__tabbed_2_2" name="__tabbed_2" type="radio" /><div class="tabbed-labels"><label for="__tabbed_2_1">Python</label><label for="__tabbed_2_2">Other languages</label></div>
+<div class="tabbed-content">
+<div class="tabbed-block">
 <div class="admonition info">
 <p class="admonition-title">In</p>
 <div class="highlight"><pre><span></span><code><span class="n">api</span><span class="o">.</span><span class="n">Contracts</span>
@@ -1995,167 +2128,98 @@
 </div>
 <div class="admonition done">
 <p class="admonition-title">Out</p>
-<div class="highlight"><pre><span></span><code><span class="n">Contracts</span><span class="p">(</span><span class="n">Indexs</span><span class="o">=</span><span class="p">(</span><span class="n">OTC</span><span class="p">,</span> <span class="n">TSE</span><span class="p">),</span> <span class="n">Stocks</span><span class="o">=</span><span class="p">(</span><span class="n">OES</span><span class="p">,</span> <span class="n">OTC</span><span class="p">,</span> <span class="n">TSE</span><span class="p">),</span> <span class="n">Futures</span><span class="o">=</span><span class="p">(</span><span class="n">BRF</span><span class="p">,</span> <span class="n">CAF</span><span class="p">,</span> <span class="n">CBF</span><span class="p">,</span> <span class="n">CCF</span><span class="p">,</span> <span class="n">CDF</span><span class="p">,</span> <span class="n">CEF</span><span class="p">,</span> <span class="n">CFF</span><span class="p">,</span> <span class="n">CGF</span><span class="p">,</span> <span class="n">CHF</span><span class="p">,</span> <span class="n">CJF</span><span class="p">,</span> <span class="n">CK1</span><span class="p">,</span> <span class="n">CKF</span><span class="p">,</span> <span class="n">CLF</span><span class="p">,</span> <span class="n">CM1</span><span class="p">,</span> <span class="n">CMF</span><span class="p">,</span> <span class="n">CNF</span><span class="p">,</span> <span class="n">CQF</span><span class="p">,</span> <span class="n">CRF</span><span class="p">,</span> <span class="n">CSF</span><span class="p">,</span> <span class="n">CU1</span><span class="p">,</span> <span class="n">CUF</span><span class="p">,</span> <span class="n">CWF</span><span class="p">,</span> <span class="n">CXF</span><span class="p">,</span> <span class="n">CYF</span><span class="p">,</span> <span class="n">CZ1</span><span class="p">,</span> <span class="n">CZF</span><span class="p">,</span> <span class="n">DCF</span><span class="p">,</span> <span class="n">DD1</span><span class="p">,</span> <span class="n">DDF</span><span class="p">,</span> <span class="n">DEF</span><span class="p">,</span> <span class="n">DFF</span><span class="p">,</span> <span class="n">DGF</span><span class="p">,</span> <span class="n">DHF</span><span class="p">,</span> <span class="n">DIF</span><span class="p">,</span> <span class="n">DJF</span><span class="p">,</span> <span class="n">DKF</span><span class="p">,</span> <span class="n">DLF</span><span class="p">,</span> <span class="n">DNF</span><span class="p">,</span> <span class="n">DOF</span><span class="p">,</span> <span class="n">DPF</span><span class="p">,</span> <span class="n">DQF</span><span class="p">,</span> <span class="n">DSF</span><span class="p">,</span> <span class="n">DUF</span><span class="p">,</span> <span class="n">DVF</span><span class="p">,</span> <span class="n">DWF</span><span class="p">,</span> <span class="n">DXF</span><span class="p">,</span> <span class="n">DYF</span><span class="p">,</span> <span class="n">DZF</span><span class="p">,</span> <span class="n">EEF</span><span class="p">,</span> <span class="n">EGF</span><span class="p">,</span> <span class="n">EHF</span><span class="p">,</span> <span class="n">EMF</span><span class="p">,</span> <span class="n">EPF</span><span class="p">,</span> <span class="n">ERF</span><span class="p">,</span> <span class="n">EXF</span><span class="p">,</span> <span class="n">EY1</span><span class="p">,</span> <span class="n">EYF</span><span class="p">,</span> <span class="n">FEF</span><span class="p">,</span> <span class="n">FFF</span><span class="p">,</span> <span class="n">FGF</span><span class="p">,</span> <span class="n">FKF</span><span class="p">,</span> <span class="n">FQF</span><span class="p">,</span> <span class="n">FRF</span><span class="p">,</span> <span class="n">FTF</span><span class="p">,</span> <span class="n">FVF</span><span class="p">,</span> <span class="n">FWF</span><span class="p">,</span> <span class="n">FXF</span><span class="p">,</span> <span class="n">FYF</span><span class="p">,</span> <span class="n">FZF</span><span class="p">,</span> <span class="n">G2F</span><span class="p">,</span> <span class="n">GAF</span><span class="p">,</span> <span class="n">GCF</span><span class="p">,</span> <span class="n">GDF</span><span class="p">,</span> <span class="n">GHF</span><span class="p">,</span> <span class="n">GIF</span><span class="p">,</span> <span class="n">GJF</span><span class="p">,</span> <span class="n">GLF</span><span class="p">,</span> <span class="n">GMF</span><span class="p">,</span> <span class="n">GNF</span><span class="p">,</span> <span class="n">GOF</span><span class="p">,</span> <span class="n">GRF</span><span class="p">,</span> <span class="n">GTF</span><span class="p">,</span> <span class="n">GUF</span><span class="p">,</span> <span class="n">GWF</span><span class="p">,</span> <span class="n">GXF</span><span class="p">,</span> <span class="n">GZF</span><span class="p">,</span> <span class="n">HAF</span><span class="p">,</span> <span class="n">HBF</span><span class="p">,</span> <span class="n">HCF</span><span class="p">,</span> <span class="n">HHF</span><span class="p">,</span> <span class="n">HIF</span><span class="p">,</span> <span class="n">HLF</span><span class="p">,</span> <span class="n">HOF</span><span class="p">,</span> <span class="n">HS1</span><span class="p">,</span> <span class="n">HSF</span><span class="p">,</span> <span class="n">HY1</span><span class="p">,</span> <span class="n">HYF</span><span class="p">,</span> <span class="n">IA1</span><span class="p">,</span> <span class="n">IAF</span><span class="p">,</span> <span class="n">IHF</span><span class="p">,</span> <span class="n">IIF</span><span class="p">,</span> <span class="n">IJF</span><span class="p">,</span> <span class="n">IMF</span><span class="p">,</span> <span class="n">IOF</span><span class="p">,</span> <span class="n">IPF</span><span class="p">,</span> <span class="n">IQF</span><span class="p">,</span> <span class="n">IRF</span><span class="p">,</span> <span class="n">ITF</span><span class="p">,</span> <span class="n">IXF</span><span class="p">,</span> <span class="n">IYF</span><span class="p">,</span> <span class="n">IZF</span><span class="p">,</span> <span class="n">JBF</span><span class="p">,</span> <span class="n">JFF</span><span class="p">,</span> <span class="n">JNF</span><span class="p">,</span> <span class="n">JPF</span><span class="p">,</span> <span class="n">JSF</span><span class="p">,</span> <span class="n">JWF</span><span class="p">,</span> <span class="n">JZF</span><span class="p">,</span> <span class="n">KAF</span><span class="p">,</span> <span class="n">KB1</span><span class="p">,</span> <span class="n">KBF</span><span class="p">,</span> <span class="n">KCF</span><span class="p">,</span> <span class="n">KDF</span><span class="p">,</span> <span class="n">KFF</span><span class="p">,</span> <span class="n">KGF</span><span class="p">,</span> <span class="n">KIF</span><span class="p">,</span> <span class="n">KKF</span><span class="p">,</span> <span class="n">KLF</span><span class="p">,</span> <span class="n">KOF</span><span class="p">,</span> <span class="n">KPF</span><span class="p">,</span> <span class="n">KSF</span><span class="p">,</span> <span class="n">KWF</span><span class="p">,</span> <span class="n">LBF</span><span class="p">,</span> <span class="n">LCF</span><span class="p">,</span> <span class="n">LE1</span><span class="p">,</span> <span class="n">LEF</span><span class="p">,</span> <span class="n">LIF</span><span class="p">,</span> <span class="n">LMF</span><span class="p">,</span> <span class="n">LOF</span><span class="p">,</span> <span class="n">LQF</span><span class="p">,</span> <span class="n">LRF</span><span class="p">,</span> <span class="n">LTF</span><span class="p">,</span> <span class="n">LUF</span><span class="p">,</span> <span class="n">LVF</span><span class="p">,</span> <span class="n">LWF</span><span class="p">,</span> <span class="n">LXF</span><span class="p">,</span> <span class="n">LYF</span><span class="p">,</span> <span class="n">MAF</span><span class="p">,</span> <span class="n">MBF</span><span class="p">,</span> <span class="n">MCF</span><span class="p">,</span> <span class="n">MJF</span><span class="p">,</span> <span class="n">MKF</span><span class="p">,</span> <span class="n">MPF</span><span class="p">,</span> <span class="n">MQF</span><span class="p">,</span> <span class="n">MVF</span><span class="p">,</span> <span class="n">MX1</span><span class="p">,</span> <span class="n">MXF</span><span class="p">,</span> <span class="n">MYF</span><span class="p">,</span> <span class="n">NAF</span><span class="p">,</span> <span class="n">NBF</span><span class="p">,</span> <span class="n">NCF</span><span class="p">,</span> <span class="n">NDF</span><span class="p">,</span> <span class="n">NEF</span><span class="p">,</span> <span class="n">NGF</span><span class="p">,</span> <span class="n">NHF</span><span class="p">,</span> <span class="n">NIF</span><span class="p">,</span> <span class="n">NJF</span><span class="p">,</span> <span class="n">NLF</span><span class="p">,</span> <span class="n">NMF</span><span class="p">,</span> <span class="n">NNF</span><span class="p">,</span> <span class="n">NOF</span><span class="p">,</span> <span class="n">NQF</span><span class="p">,</span> <span class="n">NSF</span><span class="p">,</span> <span class="n">NUF</span><span class="p">,</span> <span class="n">NVF</span><span class="p">,</span> <span class="n">NWF</span><span class="p">,</span> <span class="n">NXF</span><span class="p">,</span> <span class="n">NYF</span><span class="p">,</span> <span class="n">NZF</span><span class="p">,</span> <span class="n">OAF</span><span class="p">,</span> <span class="n">OBF</span><span class="p">,</span> <span class="n">OCF</span><span class="p">,</span> <span class="n">ODF</span><span class="p">,</span> <span class="n">OEF</span><span class="p">,</span> <span class="n">OGF</span><span class="p">,</span> <span class="n">OHF</span><span class="p">,</span> <span class="n">OJF</span><span class="p">,</span> <span class="n">OKF</span><span class="p">,</span> <span class="n">OLF</span><span class="p">,</span> <span class="n">OMF</span><span class="p">,</span> <span class="n">OOF</span><span class="p">,</span> <span class="n">OPF</span><span class="p">,</span> <span class="n">OQF</span><span class="p">,</span> <span class="n">ORF</span><span class="p">,</span> <span class="n">OS1</span><span class="p">,</span> <span class="n">OSF</span><span class="p">,</span> <span class="n">OTF</span><span class="p">,</span> <span class="n">OUF</span><span class="p">,</span> <span class="n">OVF</span><span class="p">,</span> <span class="n">OWF</span><span class="p">,</span> <span class="n">OXF</span><span class="p">,</span> <span class="n">OYF</span><span class="p">,</span> <span class="n">OZF</span><span class="p">,</span> <span class="n">PAF</span><span class="p">,</span> <span class="n">PBF</span><span class="p">,</span> <span class="n">PCF</span><span class="p">,</span> <span class="n">PDF</span><span class="p">,</span> <span class="n">PEF</span><span class="p">,</span> <span class="n">PFF</span><span class="p">,</span> <span class="n">PGF</span><span class="p">,</span> <span class="n">PHF</span><span class="p">,</span> <span class="n">PIF</span><span class="p">,</span> <span class="n">PJF</span><span class="p">,</span> <span class="n">PKF</span><span class="p">,</span> <span class="n">PLF</span><span class="p">,</span> <span class="n">PMF</span><span class="p">,</span> <span class="n">PNF</span><span class="p">,</span> <span class="n">POF</span><span class="p">,</span> <span class="n">PPF</span><span class="p">,</span> <span class="n">PQF</span><span class="p">,</span> <span class="n">RHF</span><span class="p">,</span> <span class="n">RTF</span><span class="p">,</span> <span class="n">SPF</span><span class="p">,</span> <span class="n">T5F</span><span class="p">,</span> <span class="n">TGF</span><span class="p">,</span> <span class="n">TJF</span><span class="p">,</span> <span class="n">TXF</span><span class="p">,</span> <span class="n">UDF</span><span class="p">,</span> <span class="n">UNF</span><span class="p">,</span> <span class="n">XAF</span><span class="p">,</span> <span class="n">XBF</span><span class="p">,</span> <span class="n">XEF</span><span class="p">,</span> <span class="n">XIF</span><span class="p">,</span> <span class="n">XJF</span><span class="p">),</span> <span class="n">Options</span><span class="o">=</span><span class="p">(</span><span class="n">CAO</span><span class="p">,</span> <span class="n">CBO</span><span class="p">,</span> <span class="n">CCO</span><span class="p">,</span> <span class="n">CDO</span><span class="p">,</span> <span class="n">CEO</span><span class="p">,</span> <span class="n">CFO</span><span class="p">,</span> <span class="n">CGO</span><span class="p">,</span> <span class="n">CHO</span><span class="p">,</span> <span class="n">CJO</span><span class="p">,</span> <span class="n">CKO</span><span class="p">,</span> <span class="n">CLO</span><span class="p">,</span> <span class="n">CMO</span><span class="p">,</span> <span class="n">CNO</span><span class="p">,</span> <span class="n">CQO</span><span class="p">,</span> <span class="n">CRO</span><span class="p">,</span> <span class="n">CSO</span><span class="p">,</span> <span class="n">CXO</span><span class="p">,</span> <span class="n">CZO</span><span class="p">,</span> <span class="n">DCO</span><span class="p">,</span> <span class="n">DEO</span><span class="p">,</span> <span class="n">DFO</span><span class="p">,</span> <span class="n">DGO</span><span class="p">,</span> <span class="n">DHO</span><span class="p">,</span> <span class="n">DJO</span><span class="p">,</span> <span class="n">DKO</span><span class="p">,</span> <span class="n">DLO</span><span class="p">,</span> <span class="n">DNO</span><span class="p">,</span> <span class="n">DOO</span><span class="p">,</span> <span class="n">DPO</span><span class="p">,</span> <span class="n">DQO</span><span class="p">,</span> <span class="n">DSO</span><span class="p">,</span> <span class="n">DUO</span><span class="p">,</span> <span class="n">DVO</span><span class="p">,</span> <span class="n">DWO</span><span class="p">,</span> <span class="n">DXO</span><span class="p">,</span> <span class="n">GIO</span><span class="p">,</span> <span class="n">GXO</span><span class="p">,</span> <span class="n">HCO</span><span class="p">,</span> <span class="n">IJO</span><span class="p">,</span> <span class="n">LOO</span><span class="p">,</span> <span class="n">NYA</span><span class="p">,</span> <span class="n">NYO</span><span class="p">,</span> <span class="n">NZO</span><span class="p">,</span> <span class="n">OAO</span><span class="p">,</span> <span class="n">OBO</span><span class="p">,</span> <span class="n">OCO</span><span class="p">,</span> <span class="n">OJO</span><span class="p">,</span> <span class="n">OKO</span><span class="p">,</span> <span class="n">OOO</span><span class="p">,</span> <span class="n">OZO</span><span class="p">,</span> <span class="n">RHO</span><span class="p">,</span> <span class="n">RTO</span><span class="p">,</span> <span class="n">TEO</span><span class="p">,</span> <span class="n">TFO</span><span class="p">,</span> <span class="n">TGO</span><span class="p">,</span> <span class="n">TX1</span><span class="p">,</span> <span class="n">TXO</span><span class="p">))</span>
+<div class="highlight"><pre><span></span><code><span class="n">Contracts</span><span class="p">(</span><span class="n">Indexs</span><span class="o">=</span><span class="p">(</span><span class="n">OTC</span><span class="p">,</span> <span class="n">TAIFEX</span><span class="p">,</span> <span class="n">TSE</span><span class="p">),</span> <span class="n">Stocks</span><span class="o">=</span><span class="p">(</span><span class="n">OES</span><span class="p">,</span> <span class="n">OTC</span><span class="p">,</span> <span class="n">TSE</span><span class="p">),</span> <span class="n">Futures</span><span class="o">=</span><span class="p">(</span><span class="n">BRF</span><span class="p">,</span> <span class="n">BTF</span><span class="p">,</span> <span class="n">CAF</span><span class="p">,</span> <span class="n">CBF</span><span class="p">,</span> <span class="n">CCF</span><span class="p">,</span> <span class="n">CDF</span><span class="p">,</span> <span class="n">CEF</span><span class="p">,</span> <span class="n">CFF</span><span class="p">,</span> <span class="n">CGF</span><span class="p">,</span> <span class="n">CHF</span><span class="p">,</span> <span class="n">CJF</span><span class="p">,</span> <span class="n">CKF</span><span class="p">,</span> <span class="n">CLF</span><span class="p">,</span> <span class="n">CMF</span><span class="p">,</span> <span class="n">CNF</span><span class="p">,</span> <span class="n">CQF</span><span class="p">,</span> <span class="n">CRF</span><span class="p">,</span> <span class="n">CSF</span><span class="p">,</span> <span class="n">CUF</span><span class="p">,</span> <span class="n">CWF</span><span class="p">,</span> <span class="n">CXF</span><span class="p">,</span> <span class="n">CYF</span><span class="p">,</span> <span class="n">CZF</span><span class="p">,</span> <span class="n">DAF</span><span class="p">,</span> <span class="n">DBF</span><span class="p">,</span> <span class="n">DCF</span><span class="p">,</span> <span class="n">DE1</span><span class="p">,</span> <span class="n">DEF</span><span class="p">,</span> <span class="n">DFF</span><span class="p">,</span> <span class="n">DGF</span><span class="p">,</span> <span class="n">DHF</span><span class="p">,</span> <span class="n">DIF</span><span class="p">,</span> <span class="n">DJF</span><span class="p">,</span> <span class="n">DKF</span><span class="p">,</span> <span class="n">DLF</span><span class="p">,</span> <span class="n">DNF</span><span class="p">,</span> <span class="n">DOF</span><span class="p">,</span> <span class="n">DPF</span><span class="p">,</span> <span class="n">DQF</span><span class="p">,</span> <span class="n">DSF</span><span class="p">,</span> <span class="n">DVF</span><span class="p">,</span> <span class="n">DWF</span><span class="p">,</span> <span class="n">DXF</span><span class="p">,</span> <span class="n">DYF</span><span class="p">,</span> <span class="n">DZF</span><span class="p">,</span> <span class="n">E4F</span><span class="p">,</span> <span class="n">ECF</span><span class="p">,</span> <span class="n">ECI</span><span class="p">,</span> <span class="n">ECL</span><span class="p">,</span> <span class="n">EEF</span><span class="p">,</span> <span class="n">EGF</span><span class="p">,</span> <span class="n">EHF</span><span class="p">,</span> <span class="n">EKF</span><span class="p">,</span> <span class="n">EMF</span><span class="p">,</span> <span class="n">EOF</span><span class="p">,</span> <span class="n">EPF</span><span class="p">,</span> <span class="n">ESF</span><span class="p">,</span> <span class="n">ESI</span><span class="p">,</span> <span class="n">ESL</span><span class="p">,</span> <span class="n">EXF</span><span class="p">,</span> <span class="n">EYF</span><span class="p">,</span> <span class="n">EZF</span><span class="p">,</span> <span class="n">F1F</span><span class="p">,</span> <span class="n">FBF</span><span class="p">,</span> <span class="n">FCF</span><span class="p">,</span> <span class="n">FEF</span><span class="p">,</span> <span class="n">FFF</span><span class="p">,</span> <span class="n">FGF</span><span class="p">,</span> <span class="n">FKF</span><span class="p">,</span> <span class="n">FNF</span><span class="p">,</span> <span class="n">FQF</span><span class="p">,</span> <span class="n">FRF</span><span class="p">,</span> <span class="n">FSF</span><span class="p">,</span> <span class="n">FTF</span><span class="p">,</span> <span class="n">FVF</span><span class="p">,</span> <span class="n">FWF</span><span class="p">,</span> <span class="n">FXF</span><span class="p">,</span> <span class="n">FYF</span><span class="p">,</span> <span class="n">FZF</span><span class="p">,</span> <span class="n">G2F</span><span class="p">,</span> <span class="n">GAF</span><span class="p">,</span> <span class="n">GCF</span><span class="p">,</span> <span class="n">GDF</span><span class="p">,</span> <span class="n">GHF</span><span class="p">,</span> <span class="n">GIF</span><span class="p">,</span> <span class="n">GJF</span><span class="p">,</span> <span class="n">GKF</span><span class="p">,</span> <span class="n">GLF</span><span class="p">,</span> <span class="n">GMF</span><span class="p">,</span> <span class="n">GNF</span><span class="p">,</span> <span class="n">GOF</span><span class="p">,</span> <span class="n">GRF</span><span class="p">,</span> <span class="n">GTF</span><span class="p">,</span> <span class="n">GUF</span><span class="p">,</span> <span class="n">GVF</span><span class="p">,</span> <span class="n">GWF</span><span class="p">,</span> <span class="n">GXF</span><span class="p">,</span> <span class="n">GYF</span><span class="p">,</span> <span class="n">GZF</span><span class="p">,</span> <span class="n">HA1</span><span class="p">,</span> <span class="n">HAF</span><span class="p">,</span> <span class="n">HBF</span><span class="p">,</span> <span class="n">HCF</span><span class="p">,</span> <span class="n">HH1</span><span class="p">,</span> <span class="n">HHF</span><span class="p">,</span> <span class="n">HIF</span><span class="p">,</span> <span class="n">HL1</span><span class="p">,</span> <span class="n">HLF</span><span class="p">,</span> <span class="n">HOF</span><span class="p">,</span> <span class="n">HQF</span><span class="p">,</span> <span class="n">HSF</span><span class="p">,</span> <span class="n">IAF</span><span class="p">,</span> <span class="n">IHF</span><span class="p">,</span> <span class="n">IIF</span><span class="p">,</span> <span class="n">IJF</span><span class="p">,</span> <span class="n">IMF</span><span class="p">,</span> <span class="n">IOF</span><span class="p">,</span> <span class="n">IPF</span><span class="p">,</span> <span class="n">IQF</span><span class="p">,</span> <span class="n">IR1</span><span class="p">,</span> <span class="n">IRF</span><span class="p">,</span> <span class="n">ITF</span><span class="p">,</span> <span class="n">IX1</span><span class="p">,</span> <span class="n">IXF</span><span class="p">,</span> <span class="n">IYF</span><span class="p">,</span> <span class="n">IZF</span><span class="p">,</span> <span class="n">JBF</span><span class="p">,</span> <span class="n">JFF</span><span class="p">,</span> <span class="n">JMF</span><span class="p">,</span> <span class="n">JNF</span><span class="p">,</span> <span class="n">JPF</span><span class="p">,</span> <span class="n">JSF</span><span class="p">,</span> <span class="n">JW1</span><span class="p">,</span> <span class="n">JWF</span><span class="p">,</span> <span class="n">JXF</span><span class="p">,</span> <span class="n">JZF</span><span class="p">,</span> <span class="n">KAF</span><span class="p">,</span> <span class="n">KBF</span><span class="p">,</span> <span class="n">KCF</span><span class="p">,</span> <span class="n">KDF</span><span class="p">,</span> <span class="n">KEF</span><span class="p">,</span> <span class="n">KFF</span><span class="p">,</span> <span class="n">KGF</span><span class="p">,</span> <span class="n">KIF</span><span class="p">,</span> <span class="n">KKF</span><span class="p">,</span> <span class="n">KLF</span><span class="p">,</span> <span class="n">KOF</span><span class="p">,</span> <span class="n">KPF</span><span class="p">,</span> <span class="n">KSF</span><span class="p">,</span> <span class="n">KUF</span><span class="p">,</span> <span class="n">KWF</span><span class="p">,</span> <span class="n">LBF</span><span class="p">,</span> <span class="n">LCF</span><span class="p">,</span> <span class="n">LEF</span><span class="p">,</span> <span class="n">LIF</span><span class="p">,</span> <span class="n">LMF</span><span class="p">,</span> <span class="n">LOF</span><span class="p">,</span> <span class="n">LQF</span><span class="p">,</span> <span class="n">LRF</span><span class="p">,</span> <span class="n">LTF</span><span class="p">,</span> <span class="n">LUF</span><span class="p">,</span> <span class="n">LVF</span><span class="p">,</span> <span class="n">LWF</span><span class="p">,</span> <span class="n">LXF</span><span class="p">,</span> <span class="n">LYF</span><span class="p">,</span> <span class="n">M1F</span><span class="p">,</span> <span class="n">MBF</span><span class="p">,</span> <span class="n">MJF</span><span class="p">,</span> <span class="n">MKF</span><span class="p">,</span> <span class="n">MQF</span><span class="p">,</span> <span class="n">MVF</span><span class="p">,</span> <span class="n">MX4</span><span class="p">,</span> <span class="n">MXF</span><span class="p">,</span> <span class="n">MYF</span><span class="p">,</span> <span class="n">NAF</span><span class="p">,</span> <span class="n">NBF</span><span class="p">,</span> <span class="n">NCF</span><span class="p">,</span> <span class="n">NDF</span><span class="p">,</span> <span class="n">NEF</span><span class="p">,</span> <span class="n">NGF</span><span class="p">,</span> <span class="n">NIF</span><span class="p">,</span> <span class="n">NJF</span><span class="p">,</span> <span class="n">NKF</span><span class="p">,</span> <span class="n">NKI</span><span class="p">,</span> <span class="n">NKL</span><span class="p">,</span> <span class="n">NLF</span><span class="p">,</span> <span class="n">NMF</span><span class="p">,</span> <span class="n">NOF</span><span class="p">,</span> <span class="n">NQF</span><span class="p">,</span> <span class="n">NSF</span><span class="p">,</span> <span class="n">NUF</span><span class="p">,</span> <span class="n">NVF</span><span class="p">,</span> <span class="n">NWF</span><span class="p">,</span> <span class="n">NYF</span><span class="p">,</span> <span class="n">OAF</span><span class="p">,</span> <span class="n">OBF</span><span class="p">,</span> <span class="n">ODF</span><span class="p">,</span> <span class="n">OEF</span><span class="p">,</span> <span class="n">OHF</span><span class="p">,</span> <span class="n">OJF</span><span class="p">,</span> <span class="n">OKF</span><span class="p">,</span> <span class="n">OLF</span><span class="p">,</span> <span class="n">OMF</span><span class="p">,</span> <span class="n">OOF</span><span class="p">,</span> <span class="n">OPF</span><span class="p">,</span> <span class="n">OQF</span><span class="p">,</span> <span class="n">ORF</span><span class="p">,</span> <span class="n">OSF</span><span class="p">,</span> <span class="n">OTF</span><span class="p">,</span> <span class="n">OUF</span><span class="p">,</span> <span class="n">OVF</span><span class="p">,</span> <span class="n">OWF</span><span class="p">,</span> <span class="n">OXF</span><span class="p">,</span> <span class="n">OYF</span><span class="p">,</span> <span class="n">OZF</span><span class="p">,</span> <span class="n">PAF</span><span class="p">,</span> <span class="n">PBF</span><span class="p">,</span> <span class="n">PCF</span><span class="p">,</span> <span class="n">PDF</span><span class="p">,</span> <span class="n">PEF</span><span class="p">,</span> <span class="n">PFF</span><span class="p">,</span> <span class="n">PGF</span><span class="p">,</span> <span class="n">PHF</span><span class="p">,</span> <span class="n">PIF</span><span class="p">,</span> <span class="n">PJF</span><span class="p">,</span> <span class="n">PKF</span><span class="p">,</span> <span class="n">PL1</span><span class="p">,</span> <span class="n">PLF</span><span class="p">,</span> <span class="n">PMF</span><span class="p">,</span> <span class="n">PNF</span><span class="p">,</span> <span class="n">PPF</span><span class="p">,</span> <span class="n">PQF</span><span class="p">,</span> <span class="n">PRF</span><span class="p">,</span> <span class="n">PSF</span><span class="p">,</span> <span class="n">PTF</span><span class="p">,</span> <span class="n">PUF</span><span class="p">,</span> <span class="n">PVF</span><span class="p">,</span> <span class="n">PWF</span><span class="p">,</span> <span class="n">PXF</span><span class="p">,</span> <span class="n">PYF</span><span class="p">,</span> <span class="n">PZF</span><span class="p">,</span> <span class="n">QAF</span><span class="p">,</span> <span class="n">QBF</span><span class="p">,</span> <span class="n">QCF</span><span class="p">,</span> <span class="n">QDF</span><span class="p">,</span> <span class="n">QEF</span><span class="p">,</span> <span class="n">QFF</span><span class="p">,</span> <span class="n">QGF</span><span class="p">,</span> <span class="n">QHF</span><span class="p">,</span> <span class="n">QIF</span><span class="p">,</span> <span class="n">QJF</span><span class="p">,</span> <span class="n">QKF</span><span class="p">,</span> <span class="n">QLF</span><span class="p">,</span> <span class="n">QMF</span><span class="p">,</span> <span class="n">QNF</span><span class="p">,</span> <span class="n">QOF</span><span class="p">,</span> <span class="n">QPF</span><span class="p">,</span> <span class="n">QQF</span><span class="p">,</span> <span class="n">QRF</span><span class="p">,</span> <span class="n">QSF</span><span class="p">,</span> <span class="n">QTF</span><span class="p">,</span> <span class="n">QUF</span><span class="p">,</span> <span class="n">QV1</span><span class="p">,</span> <span class="n">QVF</span><span class="p">,</span> <span class="n">QWF</span><span class="p">,</span> <span class="n">QXF</span><span class="p">,</span> <span class="n">QYF</span><span class="p">,</span> <span class="n">QZF</span><span class="p">,</span> <span class="n">RAF</span><span class="p">,</span> <span class="n">RBF</span><span class="p">,</span> <span class="n">RCF</span><span class="p">,</span> <span class="n">RDF</span><span class="p">,</span> <span class="n">REF</span><span class="p">,</span> <span class="n">RFF</span><span class="p">,</span> <span class="n">RGF</span><span class="p">,</span> <span class="n">RHF</span><span class="p">,</span> <span class="n">RIF</span><span class="p">,</span> <span class="n">RJF</span><span class="p">,</span> <span class="n">RKF</span><span class="p">,</span> <span class="n">RLF</span><span class="p">,</span> <span class="n">RNF</span><span class="p">,</span> <span class="n">ROF</span><span class="p">,</span> <span class="n">RPF</span><span class="p">,</span> <span class="n">RRF</span><span class="p">,</span> <span class="n">RSF</span><span class="p">,</span> <span class="n">RTF</span><span class="p">,</span> <span class="n">RUF</span><span class="p">,</span> <span class="n">RVF</span><span class="p">,</span> <span class="n">RWF</span><span class="p">,</span> <span class="n">RXF</span><span class="p">,</span> <span class="n">RYF</span><span class="p">,</span> <span class="n">RZF</span><span class="p">,</span> <span class="n">SAF</span><span class="p">,</span> <span class="n">SBF</span><span class="p">,</span> <span class="n">SCF</span><span class="p">,</span> <span class="n">SDF</span><span class="p">,</span> <span class="n">SEF</span><span class="p">,</span> <span class="n">SFF</span><span class="p">,</span> <span class="n">SGF</span><span class="p">,</span> <span class="n">SHF</span><span class="p">,</span> <span class="n">SIF</span><span class="p">,</span> <span class="n">SJF</span><span class="p">,</span> <span class="n">SKF</span><span class="p">,</span> <span class="n">SLF</span><span class="p">,</span> <span class="n">SMF</span><span class="p">,</span> <span class="n">SNF</span><span class="p">,</span> <span class="n">SOF</span><span class="p">,</span> <span class="n">SPF</span><span class="p">,</span> <span class="n">SQF</span><span class="p">,</span> <span class="n">SRF</span><span class="p">,</span> <span class="n">SSF</span><span class="p">,</span> <span class="n">SUF</span><span class="p">,</span> <span class="n">SVF</span><span class="p">,</span> <span class="n">SWF</span><span class="p">,</span> <span class="n">SXF</span><span class="p">,</span> <span class="n">SYF</span><span class="p">,</span> <span class="n">SZF</span><span class="p">,</span> <span class="n">TGF</span><span class="p">,</span> <span class="n">TJF</span><span class="p">,</span> <span class="n">TMF</span><span class="p">,</span> <span class="n">TWN</span><span class="p">,</span> <span class="n">TXF</span><span class="p">,</span> <span class="n">UAF</span><span class="p">,</span> <span class="n">UBF</span><span class="p">,</span> <span class="n">UCF</span><span class="p">,</span> <span class="n">UDF</span><span class="p">,</span> <span class="n">UEF</span><span class="p">,</span> <span class="n">UFF</span><span class="p">,</span> <span class="n">UGF</span><span class="p">,</span> <span class="n">UHF</span><span class="p">,</span> <span class="n">UIF</span><span class="p">,</span> <span class="n">UJF</span><span class="p">,</span> <span class="n">UKF</span><span class="p">,</span> <span class="n">ULF</span><span class="p">,</span> <span class="n">UMF</span><span class="p">,</span> <span class="n">UNF</span><span class="p">,</span> <span class="n">UOF</span><span class="p">,</span> <span class="n">UPF</span><span class="p">,</span> <span class="n">UQF</span><span class="p">,</span> <span class="n">URF</span><span class="p">,</span> <span class="n">USF</span><span class="p">,</span> <span class="n">UTF</span><span class="p">,</span> <span class="n">UUF</span><span class="p">,</span> <span class="n">UVF</span><span class="p">,</span> <span class="n">UWF</span><span class="p">,</span> <span class="n">UXF</span><span class="p">,</span> <span class="n">UYF</span><span class="p">,</span> <span class="n">UZF</span><span class="p">,</span> <span class="n">VAF</span><span class="p">,</span> <span class="n">VBF</span><span class="p">,</span> <span class="n">VCF</span><span class="p">,</span> <span class="n">VDF</span><span class="p">,</span> <span class="n">VEF</span><span class="p">,</span> <span class="n">VFF</span><span class="p">,</span> <span class="n">VGF</span><span class="p">,</span> <span class="n">VHF</span><span class="p">,</span> <span class="n">VIF</span><span class="p">,</span> <span class="n">VJF</span><span class="p">,</span> <span class="n">VKF</span><span class="p">,</span> <span class="n">XAF</span><span class="p">,</span> <span class="n">XBF</span><span class="p">,</span> <span class="n">XEF</span><span class="p">,</span> <span class="n">XIF</span><span class="p">,</span> <span class="n">XJF</span><span class="p">,</span> <span class="n">YMF</span><span class="p">,</span> <span class="n">YMI</span><span class="p">,</span> <span class="n">YML</span><span class="p">,</span> <span class="n">ZEF</span><span class="p">,</span> <span class="n">ZFF</span><span class="p">),</span> <span class="n">Options</span><span class="o">=</span><span class="p">(</span><span class="n">CAO</span><span class="p">,</span> <span class="n">CBO</span><span class="p">,</span> <span class="n">CCO</span><span class="p">,</span> <span class="n">CDA</span><span class="p">,</span> <span class="n">CDO</span><span class="p">,</span> <span class="n">CEO</span><span class="p">,</span> <span class="n">CFO</span><span class="p">,</span> <span class="n">CGO</span><span class="p">,</span> <span class="n">CHO</span><span class="p">,</span> <span class="n">CKO</span><span class="p">,</span> <span class="n">CMO</span><span class="p">,</span> <span class="n">CNO</span><span class="p">,</span> <span class="n">CSO</span><span class="p">,</span> <span class="n">CZO</span><span class="p">,</span> <span class="n">DFO</span><span class="p">,</span> <span class="n">DGO</span><span class="p">,</span> <span class="n">DHO</span><span class="p">,</span> <span class="n">DJO</span><span class="p">,</span> <span class="n">DKO</span><span class="p">,</span> <span class="n">DQO</span><span class="p">,</span> <span class="n">DSO</span><span class="p">,</span> <span class="n">DVO</span><span class="p">,</span> <span class="n">DXO</span><span class="p">,</span> <span class="n">GIO</span><span class="p">,</span> <span class="n">GXO</span><span class="p">,</span> <span class="n">HCO</span><span class="p">,</span> <span class="n">HSO</span><span class="p">,</span> <span class="n">IJO</span><span class="p">,</span> <span class="n">IRO</span><span class="p">,</span> <span class="n">NYO</span><span class="p">,</span> <span class="n">OAO</span><span class="p">,</span> <span class="n">OBO</span><span class="p">,</span> <span class="n">OJO</span><span class="p">,</span> <span class="n">OKO</span><span class="p">,</span> <span class="n">OOO</span><span class="p">,</span> <span class="n">OZO</span><span class="p">,</span> <span class="n">TEO</span><span class="p">,</span> <span class="n">TFO</span><span class="p">,</span> <span class="n">TGO</span><span class="p">,</span> <span class="n">TX4</span><span class="p">,</span> <span class="n">TXO</span><span class="p">,</span> <span class="n">TXX</span><span class="p">,</span> <span class="n">TXY</span><span class="p">),</span> <span class="n">status</span><span class="o">=&lt;</span><span class="n">FetchStatus</span><span class="o">.</span><span class="n">Fetched</span><span class="p">:</span> <span class="s1">&#39;Fetched&#39;</span><span class="o">&gt;</span><span class="p">)</span>
 </code></pre></div>
 </div>
-<h4 id="stock">Stock<a class="headerlink" href="#stock" title="Permanent link">&para;</a></h4>
+</div>
+<div class="tabbed-block">
+<p>See the per-category sections below (Stocks / Futures / Options / Indices).</p>
+</div>
+</div>
+</div>
+<p><strong>Query a Single Contract</strong></p>
+<div class="tabbed-set tabbed-alternate" data-tabs="3:3"><input checked="checked" id="__tabbed_3_1" name="__tabbed_3" type="radio" /><input id="__tabbed_3_2" name="__tabbed_3" type="radio" /><input id="__tabbed_3_3" name="__tabbed_3" type="radio" /><div class="tabbed-labels"><label for="__tabbed_3_1">Python</label><label for="__tabbed_3_2">CLI</label><label for="__tabbed_3_3">HTTP</label></div>
+<div class="tabbed-content">
+<div class="tabbed-block">
+<p>Use the categories under <code>api.Contracts</code> to access a single contract; this returns the corresponding SDK object (Stock / Future / Option / Index).</p>
+<h4 id="stocks">Stocks<a class="headerlink" href="#stocks" title="Permanent link">&para;</a></h4>
 <div class="admonition info">
 <p class="admonition-title">In</p>
-<div class="highlight"><pre><span></span><code><span class="n">api</span><span class="o">.</span><span class="n">Contracts</span><span class="o">.</span><span class="n">Stocks</span><span class="p">[</span><span class="s2">&quot;2890&quot;</span><span class="p">]</span>
-<span class="c1"># or api.Contracts.Stocks.TSE.TSE2890</span>
+<div class="highlight"><pre><span></span><code><span class="n">api</span><span class="o">.</span><span class="n">Contracts</span><span class="o">.</span><span class="n">Stocks</span><span class="p">[</span><span class="s2">&quot;2330&quot;</span><span class="p">]</span>
+<span class="c1"># or api.Contracts.Stocks.TSE.TSE2330</span>
 </code></pre></div>
 </div>
 <div class="admonition done">
 <p class="admonition-title">Out</p>
 <div class="highlight"><pre><span></span><code><span class="n">Stock</span><span class="p">(</span>
-    <span class="n">exchange</span><span class="o">=&lt;</span><span class="n">Exchange</span><span class="o">.</span><span class="n">TSE</span><span class="p">:</span> <span class="s1">&#39;TSE&#39;</span><span class="o">&gt;</span><span class="p">,</span> 
-    <span class="n">code</span><span class="o">=</span><span class="s1">&#39;2890&#39;</span><span class="p">,</span> 
-    <span class="n">symbol</span><span class="o">=</span><span class="s1">&#39;TSE2890&#39;</span><span class="p">,</span> 
-    <span class="n">name</span><span class="o">=</span><span class="s1">&#39;永豐金&#39;</span><span class="p">,</span> 
-    <span class="n">category</span><span class="o">=</span><span class="s1">&#39;17&#39;</span><span class="p">,</span> 
-    <span class="n">unit</span><span class="o">=</span><span class="mi">1000</span><span class="p">,</span> 
-    <span class="n">limit_up</span><span class="o">=</span><span class="mf">19.1</span><span class="p">,</span> 
-    <span class="n">limit_down</span><span class="o">=</span><span class="mf">15.7</span><span class="p">,</span> 
-    <span class="n">reference</span><span class="o">=</span><span class="mf">17.4</span><span class="p">,</span> 
-    <span class="n">update_date</span><span class="o">=</span><span class="s1">&#39;2023/01/17&#39;</span><span class="p">,</span> 
-    <span class="n">day_trade</span><span class="o">=&lt;</span><span class="n">DayTrade</span><span class="o">.</span><span class="n">Yes</span><span class="p">:</span> <span class="s1">&#39;Yes&#39;</span><span class="o">&gt;</span>
-<span class="p">)</span>
-</code></pre></div>
-</div>
-<div class="admonition example">
-<p class="admonition-title">Stock</p>
-<div class="highlight"><pre><span></span><code><span class="n">exchange</span> <span class="p">(</span><span class="n">Exchange</span><span class="p">):</span> <span class="n">Attributes</span> <span class="n">of</span> <span class="n">industry</span>
-    <span class="p">{</span><span class="n">OES</span><span class="p">,</span> <span class="n">OTC</span><span class="p">,</span> <span class="n">TSE</span> <span class="o">...</span><span class="n">etc</span><span class="p">}</span>
-<span class="n">code</span> <span class="p">(</span><span class="nb">str</span><span class="p">):</span> <span class="n">Id</span>
-<span class="n">symbol</span> <span class="p">(</span><span class="nb">str</span><span class="p">):</span> <span class="n">Symbol</span>
-<span class="n">name</span> <span class="p">(</span><span class="nb">str</span><span class="p">):</span> <span class="n">Name</span>
-<span class="n">category</span> <span class="p">(</span><span class="nb">str</span><span class="p">):</span> <span class="n">Category</span>
-<span class="n">unit</span> <span class="p">(</span><span class="nb">int</span><span class="p">):</span> <span class="n">Unit</span>
-<span class="n">limit_up</span> <span class="p">(</span><span class="nb">float</span><span class="p">):</span> <span class="n">Limit</span> <span class="n">up</span>
-<span class="n">limit_down</span> <span class="p">(</span><span class="nb">float</span><span class="p">):</span> <span class="n">Limit</span> <span class="n">down</span>
-<span class="n">reference</span> <span class="p">(</span><span class="nb">float</span><span class="p">):</span> <span class="n">Reference</span> <span class="n">price</span>
-<span class="n">update_date</span> <span class="p">(</span><span class="nb">str</span><span class="p">):</span> <span class="n">Update</span> <span class="n">date</span>
-<span class="n">margin_trading_balance</span> <span class="p">(</span><span class="nb">int</span><span class="p">):</span> <span class="n">Margin</span> <span class="n">trading</span> <span class="n">balance</span>
-<span class="n">short_selling_balance</span> <span class="p">(</span><span class="nb">int</span><span class="p">):</span> <span class="n">Short</span> <span class="n">selling</span> <span class="n">balance</span>
-<span class="n">day_trade</span> <span class="p">(</span><span class="n">DayTrade</span><span class="p">):</span> <span class="n">Day</span> <span class="n">trade</span>
-    <span class="p">{</span><span class="n">Yes</span><span class="p">,</span> <span class="n">No</span><span class="p">,</span> <span class="n">OnlyBuy</span><span class="p">}</span>
-</code></pre></div>
-</div>
-<div class="admonition done">
-<p class="admonition-title">Out</p>
-<div class="highlight"><pre><span></span><code><span class="n">Stock</span><span class="p">(</span>
-    <span class="n">exchange</span><span class="o">=&lt;</span><span class="n">Exchange</span><span class="o">.</span><span class="n">TSE</span><span class="p">:</span> <span class="s1">&#39;TSE&#39;</span><span class="o">&gt;</span><span class="p">,</span> 
-    <span class="n">code</span><span class="o">=</span><span class="s1">&#39;2890&#39;</span><span class="p">,</span> 
-    <span class="n">symbol</span><span class="o">=</span><span class="s1">&#39;TSE2890&#39;</span><span class="p">,</span> 
-    <span class="n">name</span><span class="o">=</span><span class="s1">&#39;永豐金&#39;</span><span class="p">,</span> 
-    <span class="n">category</span><span class="o">=</span><span class="s1">&#39;17&#39;</span><span class="p">,</span> 
-    <span class="n">unit</span><span class="o">=</span><span class="mi">1000</span><span class="p">,</span> 
-    <span class="n">limit_up</span><span class="o">=</span><span class="mf">19.1</span><span class="p">,</span> 
-    <span class="n">limit_down</span><span class="o">=</span><span class="mf">15.7</span><span class="p">,</span> 
-    <span class="n">reference</span><span class="o">=</span><span class="mf">17.4</span><span class="p">,</span> 
-    <span class="n">update_date</span><span class="o">=</span><span class="s1">&#39;2023/01/17&#39;</span><span class="p">,</span> 
-    <span class="n">day_trade</span><span class="o">=&lt;</span><span class="n">DayTrade</span><span class="o">.</span><span class="n">Yes</span><span class="p">:</span> <span class="s1">&#39;Yes&#39;</span><span class="o">&gt;</span>
+    <span class="n">exchange</span><span class="o">=&lt;</span><span class="n">Exchange</span><span class="o">.</span><span class="n">TSE</span><span class="p">:</span> <span class="s1">&#39;TSE&#39;</span><span class="o">&gt;</span><span class="p">,</span>
+    <span class="n">code</span><span class="o">=</span><span class="s1">&#39;2330&#39;</span><span class="p">,</span>
+    <span class="n">symbol</span><span class="o">=</span><span class="s1">&#39;TSE2330&#39;</span><span class="p">,</span>
+    <span class="n">name</span><span class="o">=</span><span class="s1">&#39;台積電&#39;</span><span class="p">,</span>
+    <span class="n">category</span><span class="o">=</span><span class="s1">&#39;24&#39;</span><span class="p">,</span>
+    <span class="n">unit</span><span class="o">=</span><span class="mf">1000.0</span><span class="p">,</span>
+    <span class="n">limit_up</span><span class="o">=</span><span class="mf">2440.0</span><span class="p">,</span>
+    <span class="n">limit_down</span><span class="o">=</span><span class="mf">2000.0</span><span class="p">,</span>
+    <span class="n">reference</span><span class="o">=</span><span class="mf">2220.0</span><span class="p">,</span>
+    <span class="n">update_date</span><span class="o">=</span><span class="s1">&#39;2026/05/14&#39;</span><span class="p">,</span>
+    <span class="n">margin_trading_balance</span><span class="o">=</span><span class="mi">167</span><span class="p">,</span>
+    <span class="n">day_trade</span><span class="o">=&lt;</span><span class="n">DayTrade</span><span class="o">.</span><span class="n">Yes</span><span class="p">:</span> <span class="s1">&#39;Yes&#39;</span><span class="o">&gt;</span><span class="p">,</span>
 <span class="p">)</span>
 </code></pre></div>
 </div>
 <h4 id="futures">Futures<a class="headerlink" href="#futures" title="Permanent link">&para;</a></h4>
 <div class="admonition info">
 <p class="admonition-title">In</p>
-<div class="highlight"><pre><span></span><code><span class="n">api</span><span class="o">.</span><span class="n">Contracts</span><span class="o">.</span><span class="n">Futures</span><span class="p">[</span><span class="s2">&quot;TXFA3&quot;</span><span class="p">]</span>
-<span class="c1"># or api.Contracts.Futures.TXF.TXF202301</span>
+<div class="highlight"><pre><span></span><code><span class="n">api</span><span class="o">.</span><span class="n">Contracts</span><span class="o">.</span><span class="n">Futures</span><span class="p">[</span><span class="s2">&quot;TXFR1&quot;</span><span class="p">]</span>
+<span class="c1"># or api.Contracts.Futures.TXF.TXFR1</span>
 </code></pre></div>
 </div>
 <div class="admonition done">
 <p class="admonition-title">Out</p>
 <div class="highlight"><pre><span></span><code><span class="n">Future</span><span class="p">(</span>
-    <span class="n">code</span><span class="o">=</span><span class="s1">&#39;TXFA3&#39;</span><span class="p">,</span> 
-    <span class="n">symbol</span><span class="o">=</span><span class="s1">&#39;TXF202301&#39;</span><span class="p">,</span> 
-    <span class="n">name</span><span class="o">=</span><span class="s1">&#39;臺股期貨01&#39;</span><span class="p">,</span> 
-    <span class="n">category</span><span class="o">=</span><span class="s1">&#39;TXF&#39;</span><span class="p">,</span> 
-    <span class="n">delivery_month</span><span class="o">=</span><span class="s1">&#39;202301&#39;</span><span class="p">,</span> 
-    <span class="n">delivery_date</span><span class="o">=</span><span class="s1">&#39;2023/01/30&#39;</span><span class="p">,</span> 
-    <span class="n">underlying_kind</span><span class="o">=</span><span class="s1">&#39;I&#39;</span><span class="p">,</span> 
-    <span class="n">unit</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span> 
-    <span class="n">limit_up</span><span class="o">=</span><span class="mf">16417.0</span><span class="p">,</span> 
-    <span class="n">limit_down</span><span class="o">=</span><span class="mf">13433.0</span><span class="p">,</span> 
-    <span class="n">reference</span><span class="o">=</span><span class="mf">14925.0</span><span class="p">,</span> 
-    <span class="n">update_date</span><span class="o">=</span><span class="s1">&#39;2023/01/18&#39;</span>
+    <span class="n">code</span><span class="o">=</span><span class="s1">&#39;TXFR1&#39;</span><span class="p">,</span>
+    <span class="n">symbol</span><span class="o">=</span><span class="s1">&#39;TXFR1&#39;</span><span class="p">,</span>
+    <span class="n">name</span><span class="o">=</span><span class="s1">&#39;臺股期貨近月&#39;</span><span class="p">,</span>
+    <span class="n">category</span><span class="o">=</span><span class="s1">&#39;TXF&#39;</span><span class="p">,</span>
+    <span class="n">delivery_month</span><span class="o">=</span><span class="s1">&#39;202605&#39;</span><span class="p">,</span>
+    <span class="n">delivery_date</span><span class="o">=</span><span class="s1">&#39;2026/05/20&#39;</span><span class="p">,</span>
+    <span class="n">underlying_kind</span><span class="o">=</span><span class="s1">&#39;I&#39;</span><span class="p">,</span>
+    <span class="n">unit</span><span class="o">=</span><span class="mf">1.0</span><span class="p">,</span>
+    <span class="n">limit_up</span><span class="o">=</span><span class="mf">45799.0</span><span class="p">,</span>
+    <span class="n">limit_down</span><span class="o">=</span><span class="mf">37473.0</span><span class="p">,</span>
+    <span class="n">reference</span><span class="o">=</span><span class="mf">41636.0</span><span class="p">,</span>
+    <span class="n">update_date</span><span class="o">=</span><span class="s1">&#39;2026/05/15&#39;</span><span class="p">,</span>
+    <span class="n">target_code</span><span class="o">=</span><span class="s1">&#39;TXFE6&#39;</span><span class="p">,</span>
 <span class="p">)</span>
-</code></pre></div>
-</div>
-<div class="admonition example">
-<p class="admonition-title">Future</p>
-<div class="highlight"><pre><span></span><code><span class="n">code</span> <span class="p">(</span><span class="nb">str</span><span class="p">):</span> <span class="n">Id</span>
-<span class="n">symbol</span> <span class="p">(</span><span class="nb">str</span><span class="p">):</span> <span class="n">Symbol</span>
-<span class="n">name</span> <span class="p">(</span><span class="nb">str</span><span class="p">):</span> <span class="n">Name</span>
-<span class="n">category</span> <span class="p">(</span><span class="nb">str</span><span class="p">):</span> <span class="n">Category</span>
-<span class="n">delivery_month</span> <span class="p">(</span><span class="nb">str</span><span class="p">):</span> <span class="n">Delivery</span> <span class="n">Month</span>
-<span class="n">delivery_date</span> <span class="p">(</span><span class="nb">str</span><span class="p">):</span> <span class="n">Delivery</span> <span class="n">Date</span>
-<span class="n">underlying_kind</span> <span class="p">(</span><span class="nb">str</span><span class="p">):</span> <span class="n">Underlying</span> <span class="n">Kind</span>
-<span class="n">unit</span> <span class="p">(</span><span class="nb">int</span><span class="p">):</span> <span class="n">Unit</span>
-<span class="n">limit_up</span> <span class="p">(</span><span class="nb">float</span><span class="p">):</span> <span class="n">Limit</span> <span class="n">up</span>
-<span class="n">limit_down</span> <span class="p">(</span><span class="nb">float</span><span class="p">):</span> <span class="n">Limit</span> <span class="n">down</span>
-<span class="n">reference</span> <span class="p">(</span><span class="nb">float</span><span class="p">):</span> <span class="n">Reference</span> <span class="n">price</span>
-<span class="n">update_date</span> <span class="p">(</span><span class="nb">str</span><span class="p">):</span> <span class="n">Update</span> <span class="n">date</span>
 </code></pre></div>
 </div>
 <h4 id="options">Options<a class="headerlink" href="#options" title="Permanent link">&para;</a></h4>
 <div class="admonition info">
 <p class="admonition-title">In</p>
-<div class="highlight"><pre><span></span><code><span class="n">api</span><span class="o">.</span><span class="n">Contracts</span><span class="o">.</span><span class="n">Options</span><span class="p">[</span><span class="s2">&quot;TXO18000R3&quot;</span><span class="p">]</span>
-<span class="c1"># or api.Contracts.Options.TXO.TXO20230618000P</span>
+<div class="highlight"><pre><span></span><code><span class="n">api</span><span class="o">.</span><span class="n">Contracts</span><span class="o">.</span><span class="n">Options</span><span class="p">[</span><span class="s2">&quot;TXO20260532400C&quot;</span><span class="p">]</span>
 </code></pre></div>
 </div>
 <div class="admonition done">
 <p class="admonition-title">Out</p>
 <div class="highlight"><pre><span></span><code><span class="n">Option</span><span class="p">(</span>
-    <span class="n">code</span><span class="o">=</span><span class="s1">&#39;TXO18000R3&#39;</span><span class="p">,</span> 
-    <span class="n">symbol</span><span class="o">=</span><span class="s1">&#39;TXO20230618000P&#39;</span><span class="p">,</span> 
-    <span class="n">name</span><span class="o">=</span><span class="s1">&#39;臺指選擇權06月 18000P&#39;</span><span class="p">,</span> 
-    <span class="n">category</span><span class="o">=</span><span class="s1">&#39;TXO&#39;</span><span class="p">,</span> 
-    <span class="n">delivery_month</span><span class="o">=</span><span class="s1">&#39;202306&#39;</span><span class="p">,</span> 
-    <span class="n">delivery_date</span><span class="o">=</span><span class="s1">&#39;2023/06/21&#39;</span><span class="p">,</span> 
-    <span class="n">strike_price</span><span class="o">=</span><span class="mi">18000</span><span class="p">,</span> 
-    <span class="n">option_right</span><span class="o">=&lt;</span><span class="n">OptionRight</span><span class="o">.</span><span class="n">Put</span><span class="p">:</span> <span class="s1">&#39;P&#39;</span><span class="o">&gt;</span><span class="p">,</span> 
-    <span class="n">underlying_kind</span><span class="o">=</span><span class="s1">&#39;I&#39;</span><span class="p">,</span> 
-    <span class="n">unit</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span> 
-    <span class="n">limit_up</span><span class="o">=</span><span class="mf">4720.0</span><span class="p">,</span> 
-    <span class="n">limit_down</span><span class="o">=</span><span class="mf">1740.0</span><span class="p">,</span> 
-    <span class="n">reference</span><span class="o">=</span><span class="mf">3230.0</span><span class="p">,</span> 
-    <span class="n">update_date</span><span class="o">=</span><span class="s1">&#39;2023/01/18&#39;</span>
+    <span class="n">code</span><span class="o">=</span><span class="s1">&#39;TXO32400E6&#39;</span><span class="p">,</span>
+    <span class="n">symbol</span><span class="o">=</span><span class="s1">&#39;TXO20260532400C&#39;</span><span class="p">,</span>
+    <span class="n">name</span><span class="o">=</span><span class="s1">&#39;臺指選擇權F505月 32400C&#39;</span><span class="p">,</span>
+    <span class="n">category</span><span class="o">=</span><span class="s1">&#39;TXO&#39;</span><span class="p">,</span>
+    <span class="n">delivery_month</span><span class="o">=</span><span class="s1">&#39;202605&#39;</span><span class="p">,</span>
+    <span class="n">delivery_date</span><span class="o">=</span><span class="s1">&#39;2026/05/20&#39;</span><span class="p">,</span>
+    <span class="n">strike_price</span><span class="o">=</span><span class="mf">32400.0</span><span class="p">,</span>
+    <span class="n">option_right</span><span class="o">=&lt;</span><span class="n">OptionRight</span><span class="o">.</span><span class="n">Call</span><span class="p">:</span> <span class="s1">&#39;C&#39;</span><span class="o">&gt;</span><span class="p">,</span>
+    <span class="n">underlying_kind</span><span class="o">=</span><span class="s1">&#39;I&#39;</span><span class="p">,</span>
+    <span class="n">unit</span><span class="o">=</span><span class="mf">1.0</span><span class="p">,</span>
+    <span class="n">limit_up</span><span class="o">=</span><span class="mf">13400.0</span><span class="p">,</span>
+    <span class="n">limit_down</span><span class="o">=</span><span class="mf">5060.0</span><span class="p">,</span>
+    <span class="n">reference</span><span class="o">=</span><span class="mf">9230.0</span><span class="p">,</span>
+    <span class="n">update_date</span><span class="o">=</span><span class="s1">&#39;2026/05/15&#39;</span><span class="p">,</span>
 <span class="p">)</span>
 </code></pre></div>
 </div>
-<div class="admonition example">
-<p class="admonition-title">Option</p>
-<div class="highlight"><pre><span></span><code><span class="n">code</span> <span class="p">(</span><span class="nb">str</span><span class="p">):</span> <span class="n">Id</span>
-<span class="n">symbol</span> <span class="p">(</span><span class="nb">str</span><span class="p">):</span> <span class="n">Symbol</span>
-<span class="n">name</span> <span class="p">(</span><span class="nb">str</span><span class="p">):</span> <span class="n">Name</span>
-<span class="n">category</span> <span class="p">(</span><span class="nb">str</span><span class="p">):</span> <span class="n">Category</span>
-<span class="n">delivery_month</span> <span class="p">(</span><span class="nb">str</span><span class="p">):</span> <span class="n">Delivery</span> <span class="n">Month</span>
-<span class="n">delivery_date</span> <span class="p">(</span><span class="nb">str</span><span class="p">):</span> <span class="n">Delivery</span> <span class="n">Date</span>
-<span class="n">strike_price</span> <span class="p">(</span><span class="nb">int</span> <span class="ow">or</span> <span class="nb">float</span><span class="p">):</span> <span class="n">Strike</span> <span class="n">Price</span>
-<span class="n">option_right</span> <span class="p">(</span><span class="n">OptionRight</span><span class="p">):</span> <span class="n">Option</span> <span class="n">Right</span>
-<span class="n">underlying_kind</span> <span class="p">(</span><span class="nb">str</span><span class="p">):</span> <span class="n">Underlying</span> <span class="n">Kind</span>
-<span class="n">unit</span> <span class="p">(</span><span class="nb">int</span><span class="p">):</span> <span class="n">Unit</span>
-<span class="n">limit_up</span> <span class="p">(</span><span class="nb">float</span><span class="p">):</span> <span class="n">Limit</span> <span class="n">up</span>
-<span class="n">limit_down</span> <span class="p">(</span><span class="nb">float</span><span class="p">):</span> <span class="n">Limit</span> <span class="n">down</span>
-<span class="n">reference</span> <span class="p">(</span><span class="nb">float</span><span class="p">):</span> <span class="n">Reference</span> <span class="n">price</span>
-<span class="n">update_date</span> <span class="p">(</span><span class="nb">str</span><span class="p">):</span> <span class="n">Update</span> <span class="n">date</span>
-</code></pre></div>
-</div>
-<h4 id="index">Index<a class="headerlink" href="#index" title="Permanent link">&para;</a></h4>
-<p>The <code>Indexs</code> object shows all supported index contracts, among other categories. Index contracts do not support place_order, but allow subscribing to market quotes. This will be discussed in the next topic.</p>
-<div class="admonition info">
-<p class="admonition-title">In</p>
-<div class="highlight"><pre><span></span><code><span class="n">api</span><span class="o">.</span><span class="n">Contracts</span><span class="o">.</span><span class="n">Indexs</span><span class="o">.</span><span class="n">TSE</span>
-</code></pre></div>
-</div>
-<div class="admonition done">
-<p class="admonition-title">Out</p>
-<div class="highlight"><pre><span></span><code><span class="n">TSE</span><span class="p">(</span><span class="n">TSE001</span><span class="p">,</span> <span class="n">TSE015</span><span class="p">,</span> <span class="n">TSE016</span><span class="p">,</span> <span class="n">TSE017</span><span class="p">,</span> <span class="n">TSE018</span><span class="p">,</span> <span class="n">TSE019</span><span class="p">,</span> <span class="n">TSE020</span><span class="p">,</span> <span class="n">TSE022</span><span class="p">,</span> <span class="n">TSE023</span><span class="p">,</span> <span class="n">TSE024</span><span class="p">,</span> <span class="n">TSE025</span><span class="p">,</span> <span class="n">TSE026</span><span class="p">,</span> <span class="n">TSE028</span><span class="p">,</span> <span class="n">TSE029</span><span class="p">,</span> <span class="n">TSE030</span><span class="p">,</span> <span class="n">TSE031</span><span class="p">,</span> <span class="n">TSE032</span><span class="p">,</span> <span class="n">TSE033</span><span class="p">,</span> <span class="n">TSE035</span><span class="p">,</span> <span class="n">TSE036</span><span class="p">,</span> <span class="n">TSE037</span><span class="p">,</span> <span class="n">TSE038</span><span class="p">,</span> <span class="n">TSE039</span><span class="p">,</span> <span class="n">TSE040</span><span class="p">,</span> <span class="n">TSE041</span><span class="p">,</span> <span class="n">TSE042</span><span class="p">,</span> <span class="n">TSE043</span><span class="p">,</span> <span class="n">TSE004</span><span class="p">,</span> <span class="n">TSE005</span><span class="p">)</span>
-</code></pre></div>
-</div>
+<h4 id="indices">Indices<a class="headerlink" href="#indices" title="Permanent link">&para;</a></h4>
 <div class="admonition info">
 <p class="admonition-title">In</p>
 <div class="highlight"><pre><span></span><code><span class="n">api</span><span class="o">.</span><span class="n">Contracts</span><span class="o">.</span><span class="n">Indexs</span><span class="o">.</span><span class="n">TSE</span><span class="p">[</span><span class="s2">&quot;001&quot;</span><span class="p">]</span>
@@ -2165,31 +2229,799 @@
 <div class="admonition done">
 <p class="admonition-title">Out</p>
 <div class="highlight"><pre><span></span><code><span class="n">Index</span><span class="p">(</span>
-    <span class="n">exchange</span><span class="o">=&lt;</span><span class="n">Exchange</span><span class="o">.</span><span class="n">TSE</span><span class="p">:</span> <span class="s1">&#39;TSE&#39;</span><span class="o">&gt;</span><span class="p">,</span> 
-    <span class="n">code</span><span class="o">=</span><span class="s1">&#39;001&#39;</span><span class="p">,</span> 
-    <span class="n">symbol</span><span class="o">=</span><span class="s1">&#39;TSE001&#39;</span><span class="p">,</span> 
-    <span class="n">name</span><span class="o">=</span><span class="s1">&#39;加權指數&#39;</span>
+    <span class="n">exchange</span><span class="o">=&lt;</span><span class="n">Exchange</span><span class="o">.</span><span class="n">TSE</span><span class="p">:</span> <span class="s1">&#39;TSE&#39;</span><span class="o">&gt;</span><span class="p">,</span>
+    <span class="n">code</span><span class="o">=</span><span class="s1">&#39;001&#39;</span><span class="p">,</span>
+    <span class="n">symbol</span><span class="o">=</span><span class="s1">&#39;TSE001&#39;</span><span class="p">,</span>
+    <span class="n">name</span><span class="o">=</span><span class="s1">&#39;加權指數&#39;</span><span class="p">,</span>
 <span class="p">)</span>
 </code></pre></div>
 </div>
-<div class="admonition example">
-<p class="admonition-title">Index</p>
-<div class="highlight"><pre><span></span><code><span class="n">exchange</span> <span class="p">(</span><span class="n">Exchange</span><span class="p">):</span> <span class="n">exchange</span>
-    <span class="p">{</span><span class="n">OES</span><span class="p">,</span> <span class="n">OTC</span><span class="p">,</span> <span class="n">TSE</span> <span class="o">...</span><span class="n">etc</span><span class="p">}</span>
-<span class="n">code</span> <span class="p">(</span><span class="nb">str</span><span class="p">):</span> <span class="n">Code</span>
-<span class="n">symbol</span> <span class="p">(</span><span class="nb">str</span><span class="p">):</span> <span class="n">Symbol</span>
-<span class="n">name</span> <span class="p">(</span><span class="nb">str</span><span class="p">):</span> <span class="n">Name</span>
+</div>
+<div class="tabbed-block">
+<p>The <code>shioaji</code> CLI does not provide a contract-lookup command. Use Python or the HTTP API.</p>
+</div>
+<div class="tabbed-block">
+<p>Send a GET request to the server with <code>curl</code> to retrieve a single contract.</p>
+<ul>
+<li>URL format: <code>/api/v1/data/contracts/{code}?security_type=&lt;TYPE&gt;</code></li>
+<li><code>{code}</code>: product code</li>
+<li><code>security_type</code>: security type (<code>STK</code> / <code>FUT</code> / <code>OPT</code> / <code>IND</code>)</li>
+</ul>
+<p><strong>Stocks</strong></p>
+<div class="admonition info">
+<p class="admonition-title">In</p>
+<div class="highlight"><pre><span></span><code>curl<span class="w"> </span><span class="s2">&quot;http://localhost:8080/api/v1/data/contracts/2330?security_type=STK&quot;</span>
 </code></pre></div>
 </div>
-<div class="admonition attention">
-<p class="admonition-title">Contract Update Information</p>
-<ul>
-<li>07:50 Futures contract update</li>
-<li>08:00 All market contract update</li>
-<li>14:45 Futures night contract update</li>
-<li>17:15 Futures night contract update</li>
-</ul>
+<div class="admonition done">
+<p class="admonition-title">Out</p>
+<div class="highlight"><pre><span></span><code><span class="p">{</span><span class="nt">&quot;security_type&quot;</span><span class="p">:</span><span class="s2">&quot;STK&quot;</span><span class="p">,</span><span class="nt">&quot;exchange&quot;</span><span class="p">:</span><span class="s2">&quot;TSE&quot;</span><span class="p">,</span><span class="nt">&quot;code&quot;</span><span class="p">:</span><span class="s2">&quot;2330&quot;</span><span class="p">,</span><span class="nt">&quot;symbol&quot;</span><span class="p">:</span><span class="s2">&quot;TSE2330&quot;</span><span class="p">,</span><span class="nt">&quot;name&quot;</span><span class="p">:</span><span class="s2">&quot;台積電&quot;</span><span class="p">,</span><span class="nt">&quot;category&quot;</span><span class="p">:</span><span class="s2">&quot;24&quot;</span><span class="p">,</span><span class="nt">&quot;currency&quot;</span><span class="p">:</span><span class="s2">&quot;TWD&quot;</span><span class="p">,</span><span class="nt">&quot;delivery_month&quot;</span><span class="p">:</span><span class="s2">&quot;&quot;</span><span class="p">,</span><span class="nt">&quot;delivery_date&quot;</span><span class="p">:</span><span class="s2">&quot;&quot;</span><span class="p">,</span><span class="nt">&quot;strike_price&quot;</span><span class="p">:</span><span class="mf">0.0</span><span class="p">,</span><span class="nt">&quot;option_right&quot;</span><span class="p">:</span><span class="s2">&quot;&quot;</span><span class="p">,</span><span class="nt">&quot;underlying_kind&quot;</span><span class="p">:</span><span class="s2">&quot;&quot;</span><span class="p">,</span><span class="nt">&quot;underlying_code&quot;</span><span class="p">:</span><span class="s2">&quot;&quot;</span><span class="p">,</span><span class="nt">&quot;unit&quot;</span><span class="p">:</span><span class="mf">1000.0</span><span class="p">,</span><span class="nt">&quot;multiplier&quot;</span><span class="p">:</span><span class="mi">0</span><span class="p">,</span><span class="nt">&quot;limit_up&quot;</span><span class="p">:</span><span class="mf">2440.0</span><span class="p">,</span><span class="nt">&quot;limit_down&quot;</span><span class="p">:</span><span class="mf">2000.0</span><span class="p">,</span><span class="nt">&quot;reference&quot;</span><span class="p">:</span><span class="mf">2220.0</span><span class="p">,</span><span class="nt">&quot;update_date&quot;</span><span class="p">:</span><span class="s2">&quot;2026/05/14&quot;</span><span class="p">,</span><span class="nt">&quot;margin_trading_balance&quot;</span><span class="p">:</span><span class="mi">167</span><span class="p">,</span><span class="nt">&quot;short_selling_balance&quot;</span><span class="p">:</span><span class="mi">0</span><span class="p">,</span><span class="nt">&quot;day_trade&quot;</span><span class="p">:</span><span class="s2">&quot;Yes&quot;</span><span class="p">,</span><span class="nt">&quot;target_code&quot;</span><span class="p">:</span><span class="s2">&quot;&quot;</span><span class="p">}</span>
+</code></pre></div>
 </div>
+<p><strong>Futures</strong></p>
+<div class="admonition info">
+<p class="admonition-title">In</p>
+<div class="highlight"><pre><span></span><code>curl<span class="w"> </span><span class="s2">&quot;http://localhost:8080/api/v1/data/contracts/TXFR1?security_type=FUT&quot;</span>
+</code></pre></div>
+</div>
+<div class="admonition done">
+<p class="admonition-title">Out</p>
+<div class="highlight"><pre><span></span><code><span class="p">{</span><span class="nt">&quot;security_type&quot;</span><span class="p">:</span><span class="s2">&quot;FUT&quot;</span><span class="p">,</span><span class="nt">&quot;exchange&quot;</span><span class="p">:</span><span class="s2">&quot;TAIFEX&quot;</span><span class="p">,</span><span class="nt">&quot;code&quot;</span><span class="p">:</span><span class="s2">&quot;TXFR1&quot;</span><span class="p">,</span><span class="nt">&quot;symbol&quot;</span><span class="p">:</span><span class="s2">&quot;TXFR1&quot;</span><span class="p">,</span><span class="nt">&quot;name&quot;</span><span class="p">:</span><span class="s2">&quot;臺股期貨近月&quot;</span><span class="p">,</span><span class="nt">&quot;category&quot;</span><span class="p">:</span><span class="s2">&quot;TXF&quot;</span><span class="p">,</span><span class="nt">&quot;currency&quot;</span><span class="p">:</span><span class="s2">&quot;TWD&quot;</span><span class="p">,</span><span class="nt">&quot;delivery_month&quot;</span><span class="p">:</span><span class="s2">&quot;202605&quot;</span><span class="p">,</span><span class="nt">&quot;delivery_date&quot;</span><span class="p">:</span><span class="s2">&quot;2026/05/20&quot;</span><span class="p">,</span><span class="nt">&quot;strike_price&quot;</span><span class="p">:</span><span class="mf">0.0</span><span class="p">,</span><span class="nt">&quot;option_right&quot;</span><span class="p">:</span><span class="s2">&quot;&quot;</span><span class="p">,</span><span class="nt">&quot;underlying_kind&quot;</span><span class="p">:</span><span class="s2">&quot;I&quot;</span><span class="p">,</span><span class="nt">&quot;underlying_code&quot;</span><span class="p">:</span><span class="s2">&quot;&quot;</span><span class="p">,</span><span class="nt">&quot;unit&quot;</span><span class="p">:</span><span class="mf">1.0</span><span class="p">,</span><span class="nt">&quot;multiplier&quot;</span><span class="p">:</span><span class="mi">0</span><span class="p">,</span><span class="nt">&quot;limit_up&quot;</span><span class="p">:</span><span class="mf">45799.0</span><span class="p">,</span><span class="nt">&quot;limit_down&quot;</span><span class="p">:</span><span class="mf">37473.0</span><span class="p">,</span><span class="nt">&quot;reference&quot;</span><span class="p">:</span><span class="mf">41636.0</span><span class="p">,</span><span class="nt">&quot;update_date&quot;</span><span class="p">:</span><span class="s2">&quot;2026/05/15&quot;</span><span class="p">,</span><span class="nt">&quot;margin_trading_balance&quot;</span><span class="p">:</span><span class="mi">0</span><span class="p">,</span><span class="nt">&quot;short_selling_balance&quot;</span><span class="p">:</span><span class="mi">0</span><span class="p">,</span><span class="nt">&quot;day_trade&quot;</span><span class="p">:</span><span class="s2">&quot;&quot;</span><span class="p">,</span><span class="nt">&quot;target_code&quot;</span><span class="p">:</span><span class="s2">&quot;TXFE6&quot;</span><span class="p">}</span>
+</code></pre></div>
+</div>
+<p><strong>Options</strong></p>
+<div class="admonition info">
+<p class="admonition-title">In</p>
+<div class="highlight"><pre><span></span><code>curl<span class="w"> </span><span class="s2">&quot;http://localhost:8080/api/v1/data/contracts/TXO20260532400C?security_type=OPT&quot;</span>
+</code></pre></div>
+</div>
+<div class="admonition done">
+<p class="admonition-title">Out</p>
+<div class="highlight"><pre><span></span><code><span class="p">{</span><span class="nt">&quot;security_type&quot;</span><span class="p">:</span><span class="s2">&quot;OPT&quot;</span><span class="p">,</span><span class="nt">&quot;exchange&quot;</span><span class="p">:</span><span class="s2">&quot;TAIFEX&quot;</span><span class="p">,</span><span class="nt">&quot;code&quot;</span><span class="p">:</span><span class="s2">&quot;TXO32400E6&quot;</span><span class="p">,</span><span class="nt">&quot;symbol&quot;</span><span class="p">:</span><span class="s2">&quot;TXO20260532400C&quot;</span><span class="p">,</span><span class="nt">&quot;name&quot;</span><span class="p">:</span><span class="s2">&quot;臺指選擇權F505月 32400C&quot;</span><span class="p">,</span><span class="nt">&quot;category&quot;</span><span class="p">:</span><span class="s2">&quot;TXO&quot;</span><span class="p">,</span><span class="nt">&quot;currency&quot;</span><span class="p">:</span><span class="s2">&quot;TWD&quot;</span><span class="p">,</span><span class="nt">&quot;delivery_month&quot;</span><span class="p">:</span><span class="s2">&quot;202605&quot;</span><span class="p">,</span><span class="nt">&quot;delivery_date&quot;</span><span class="p">:</span><span class="s2">&quot;2026/05/20&quot;</span><span class="p">,</span><span class="nt">&quot;strike_price&quot;</span><span class="p">:</span><span class="mf">32400.0</span><span class="p">,</span><span class="nt">&quot;option_right&quot;</span><span class="p">:</span><span class="s2">&quot;C&quot;</span><span class="p">,</span><span class="nt">&quot;underlying_kind&quot;</span><span class="p">:</span><span class="s2">&quot;I&quot;</span><span class="p">,</span><span class="nt">&quot;underlying_code&quot;</span><span class="p">:</span><span class="s2">&quot;&quot;</span><span class="p">,</span><span class="nt">&quot;unit&quot;</span><span class="p">:</span><span class="mf">1.0</span><span class="p">,</span><span class="nt">&quot;multiplier&quot;</span><span class="p">:</span><span class="mi">0</span><span class="p">,</span><span class="nt">&quot;limit_up&quot;</span><span class="p">:</span><span class="mf">13400.0</span><span class="p">,</span><span class="nt">&quot;limit_down&quot;</span><span class="p">:</span><span class="mf">5060.0</span><span class="p">,</span><span class="nt">&quot;reference&quot;</span><span class="p">:</span><span class="mf">9230.0</span><span class="p">,</span><span class="nt">&quot;update_date&quot;</span><span class="p">:</span><span class="s2">&quot;2026/05/15&quot;</span><span class="p">,</span><span class="nt">&quot;margin_trading_balance&quot;</span><span class="p">:</span><span class="mi">0</span><span class="p">,</span><span class="nt">&quot;short_selling_balance&quot;</span><span class="p">:</span><span class="mi">0</span><span class="p">,</span><span class="nt">&quot;day_trade&quot;</span><span class="p">:</span><span class="s2">&quot;&quot;</span><span class="p">,</span><span class="nt">&quot;target_code&quot;</span><span class="p">:</span><span class="s2">&quot;&quot;</span><span class="p">}</span>
+</code></pre></div>
+</div>
+<p><strong>Indices</strong></p>
+<div class="admonition info">
+<p class="admonition-title">In</p>
+<div class="highlight"><pre><span></span><code>curl<span class="w"> </span><span class="s2">&quot;http://localhost:8080/api/v1/data/contracts/001?security_type=IND&quot;</span>
+</code></pre></div>
+</div>
+<div class="admonition done">
+<p class="admonition-title">Out</p>
+<div class="highlight"><pre><span></span><code><span class="p">{</span><span class="nt">&quot;security_type&quot;</span><span class="p">:</span><span class="s2">&quot;IND&quot;</span><span class="p">,</span><span class="nt">&quot;exchange&quot;</span><span class="p">:</span><span class="s2">&quot;TSE&quot;</span><span class="p">,</span><span class="nt">&quot;code&quot;</span><span class="p">:</span><span class="s2">&quot;001&quot;</span><span class="p">,</span><span class="nt">&quot;symbol&quot;</span><span class="p">:</span><span class="s2">&quot;TSE001&quot;</span><span class="p">,</span><span class="nt">&quot;name&quot;</span><span class="p">:</span><span class="s2">&quot;加權指數&quot;</span><span class="p">,</span><span class="nt">&quot;category&quot;</span><span class="p">:</span><span class="s2">&quot;&quot;</span><span class="p">,</span><span class="nt">&quot;currency&quot;</span><span class="p">:</span><span class="s2">&quot;TWD&quot;</span><span class="p">,</span><span class="nt">&quot;delivery_month&quot;</span><span class="p">:</span><span class="s2">&quot;&quot;</span><span class="p">,</span><span class="nt">&quot;delivery_date&quot;</span><span class="p">:</span><span class="s2">&quot;&quot;</span><span class="p">,</span><span class="nt">&quot;strike_price&quot;</span><span class="p">:</span><span class="mf">0.0</span><span class="p">,</span><span class="nt">&quot;option_right&quot;</span><span class="p">:</span><span class="s2">&quot;&quot;</span><span class="p">,</span><span class="nt">&quot;underlying_kind&quot;</span><span class="p">:</span><span class="s2">&quot;&quot;</span><span class="p">,</span><span class="nt">&quot;underlying_code&quot;</span><span class="p">:</span><span class="s2">&quot;&quot;</span><span class="p">,</span><span class="nt">&quot;unit&quot;</span><span class="p">:</span><span class="mf">0.0</span><span class="p">,</span><span class="nt">&quot;multiplier&quot;</span><span class="p">:</span><span class="mi">0</span><span class="p">,</span><span class="nt">&quot;limit_up&quot;</span><span class="p">:</span><span class="mf">0.0</span><span class="p">,</span><span class="nt">&quot;limit_down&quot;</span><span class="p">:</span><span class="mf">0.0</span><span class="p">,</span><span class="nt">&quot;reference&quot;</span><span class="p">:</span><span class="mf">0.0</span><span class="p">,</span><span class="nt">&quot;update_date&quot;</span><span class="p">:</span><span class="s2">&quot;&quot;</span><span class="p">,</span><span class="nt">&quot;margin_trading_balance&quot;</span><span class="p">:</span><span class="mi">0</span><span class="p">,</span><span class="nt">&quot;short_selling_balance&quot;</span><span class="p">:</span><span class="mi">0</span><span class="p">,</span><span class="nt">&quot;day_trade&quot;</span><span class="p">:</span><span class="s2">&quot;&quot;</span><span class="p">,</span><span class="nt">&quot;target_code&quot;</span><span class="p">:</span><span class="s2">&quot;&quot;</span><span class="p">}</span>
+</code></pre></div>
+</div>
+</div>
+</div>
+</div>
+<!--
+=== "JavaScript"
+    Send a GET request to the server with `fetch` to retrieve a single contract.
+
+    - URL format: `/api/v1/data/contracts/{code}?security_type=<TYPE>`
+    - `{code}`: product code
+    - `security_type`: security type (`STK` / `FUT` / `OPT` / `IND`)
+
+    **Stocks**
+    !!! info "In"
+        <div class="highlight"><pre><span></span><code><span class="kd">const</span><span class="w"> </span><span class="nx">res</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="k">await</span><span class="w"> </span><span class="nx">fetch</span><span class="p">(</span><span class="s1">&#39;http://localhost:8080/api/v1/data/contracts/2330?security_type=STK&#39;</span><span class="p">);</span>
+<span class="kd">const</span><span class="w"> </span><span class="nx">stock</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="k">await</span><span class="w"> </span><span class="nx">res</span><span class="p">.</span><span class="nx">json</span><span class="p">();</span>
+<span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">stock</span><span class="p">);</span>
+</code></pre></div>
+
+    !!! done "Out"
+        <div class="highlight"><pre><span></span><code>{
+  security_type: &#39;STK&#39;,
+  exchange: &#39;TSE&#39;,
+  code: &#39;2330&#39;,
+  symbol: &#39;TSE2330&#39;,
+  name: &#39;台積電&#39;,
+  category: &#39;24&#39;,
+  currency: &#39;TWD&#39;,
+  delivery_month: &#39;&#39;,
+  delivery_date: &#39;&#39;,
+  strike_price: 0,
+  option_right: &#39;&#39;,
+  underlying_kind: &#39;&#39;,
+  underlying_code: &#39;&#39;,
+  unit: 1000,
+  multiplier: 0,
+  limit_up: 2495,
+  limit_down: 2045,
+  reference: 2270,
+  update_date: &#39;2026/05/15&#39;,
+  margin_trading_balance: 169,
+  short_selling_balance: 0,
+  day_trade: &#39;Yes&#39;,
+  target_code: &#39;&#39;
+}
+</code></pre></div>
+
+    **Futures**
+    !!! info "In"
+        <div class="highlight"><pre><span></span><code><span class="kd">const</span><span class="w"> </span><span class="nx">res</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="k">await</span><span class="w"> </span><span class="nx">fetch</span><span class="p">(</span><span class="s1">&#39;http://localhost:8080/api/v1/data/contracts/TXFR1?security_type=FUT&#39;</span><span class="p">);</span>
+<span class="kd">const</span><span class="w"> </span><span class="nx">future</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="k">await</span><span class="w"> </span><span class="nx">res</span><span class="p">.</span><span class="nx">json</span><span class="p">();</span>
+<span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">future</span><span class="p">);</span>
+</code></pre></div>
+
+    !!! done "Out"
+        <div class="highlight"><pre><span></span><code>{
+  security_type: &#39;FUT&#39;,
+  exchange: &#39;TAIFEX&#39;,
+  code: &#39;TXFR1&#39;,
+  symbol: &#39;TXFR1&#39;,
+  name: &#39;臺股期貨近月&#39;,
+  category: &#39;TXF&#39;,
+  currency: &#39;TWD&#39;,
+  delivery_month: &#39;202605&#39;,
+  delivery_date: &#39;2026/05/20&#39;,
+  strike_price: 0,
+  option_right: &#39;&#39;,
+  underlying_kind: &#39;I&#39;,
+  underlying_code: &#39;&#39;,
+  unit: 1,
+  multiplier: 0,
+  limit_up: 45799,
+  limit_down: 37473,
+  reference: 41636,
+  update_date: &#39;2026/05/15&#39;,
+  margin_trading_balance: 0,
+  short_selling_balance: 0,
+  day_trade: &#39;&#39;,
+  target_code: &#39;TXFE6&#39;
+}
+</code></pre></div>
+
+    **Options**
+    !!! info "In"
+        <div class="highlight"><pre><span></span><code><span class="kd">const</span><span class="w"> </span><span class="nx">res</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="k">await</span><span class="w"> </span><span class="nx">fetch</span><span class="p">(</span><span class="s1">&#39;http://localhost:8080/api/v1/data/contracts/TXO20260532400C?security_type=OPT&#39;</span><span class="p">);</span>
+<span class="kd">const</span><span class="w"> </span><span class="nx">option</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="k">await</span><span class="w"> </span><span class="nx">res</span><span class="p">.</span><span class="nx">json</span><span class="p">();</span>
+<span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">option</span><span class="p">);</span>
+</code></pre></div>
+
+    !!! done "Out"
+        <div class="highlight"><pre><span></span><code>{
+  security_type: &#39;OPT&#39;,
+  exchange: &#39;TAIFEX&#39;,
+  code: &#39;TXO32400E6&#39;,
+  symbol: &#39;TXO20260532400C&#39;,
+  name: &#39;臺指選擇權F505月 32400C&#39;,
+  category: &#39;TXO&#39;,
+  currency: &#39;TWD&#39;,
+  delivery_month: &#39;202605&#39;,
+  delivery_date: &#39;2026/05/20&#39;,
+  strike_price: 32400,
+  option_right: &#39;C&#39;,
+  underlying_kind: &#39;I&#39;,
+  underlying_code: &#39;&#39;,
+  unit: 1,
+  multiplier: 0,
+  limit_up: 13400,
+  limit_down: 5060,
+  reference: 9230,
+  update_date: &#39;2026/05/15&#39;,
+  margin_trading_balance: 0,
+  short_selling_balance: 0,
+  day_trade: &#39;&#39;,
+  target_code: &#39;&#39;
+}
+</code></pre></div>
+
+    **Indices**
+    !!! info "In"
+        <div class="highlight"><pre><span></span><code><span class="kd">const</span><span class="w"> </span><span class="nx">res</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="k">await</span><span class="w"> </span><span class="nx">fetch</span><span class="p">(</span><span class="s1">&#39;http://localhost:8080/api/v1/data/contracts/001?security_type=IND&#39;</span><span class="p">);</span>
+<span class="kd">const</span><span class="w"> </span><span class="nx">index</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="k">await</span><span class="w"> </span><span class="nx">res</span><span class="p">.</span><span class="nx">json</span><span class="p">();</span>
+<span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">index</span><span class="p">);</span>
+</code></pre></div>
+
+    !!! done "Out"
+        <div class="highlight"><pre><span></span><code>{
+  security_type: &#39;IND&#39;,
+  exchange: &#39;TSE&#39;,
+  code: &#39;001&#39;,
+  symbol: &#39;TSE001&#39;,
+  name: &#39;加權指數&#39;,
+  category: &#39;&#39;,
+  currency: &#39;TWD&#39;,
+  delivery_month: &#39;&#39;,
+  delivery_date: &#39;&#39;,
+  strike_price: 0,
+  option_right: &#39;&#39;,
+  underlying_kind: &#39;&#39;,
+  underlying_code: &#39;&#39;,
+  unit: 0,
+  multiplier: 0,
+  limit_up: 0,
+  limit_down: 0,
+  reference: 0,
+  update_date: &#39;&#39;,
+  margin_trading_balance: 0,
+  short_selling_balance: 0,
+  day_trade: &#39;&#39;,
+  target_code: &#39;&#39;
+}
+</code></pre></div>
+
+=== "Go"
+    Send a GET request to the server with `net/http` to retrieve a single contract.
+
+    - URL format: `/api/v1/data/contracts/{code}?security_type=<TYPE>`
+    - `{code}`: product code
+    - `security_type`: security type (`STK` / `FUT` / `OPT` / `IND`)
+
+    **Stocks**
+    !!! info "In"
+        <div class="highlight"><pre><span></span><code><span class="kn">package</span><span class="w"> </span><span class="nx">main</span>
+
+<span class="kn">import</span><span class="w"> </span><span class="p">(</span>
+<span class="w">    </span><span class="s">&quot;encoding/json&quot;</span>
+<span class="w">    </span><span class="s">&quot;fmt&quot;</span>
+<span class="w">    </span><span class="s">&quot;net/http&quot;</span>
+<span class="p">)</span>
+
+<span class="kd">func</span><span class="w"> </span><span class="nx">main</span><span class="p">()</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="nx">res</span><span class="p">,</span><span class="w"> </span><span class="nx">_</span><span class="w"> </span><span class="o">:=</span><span class="w"> </span><span class="nx">http</span><span class="p">.</span><span class="nx">Get</span><span class="p">(</span><span class="s">&quot;http://localhost:8080/api/v1/data/contracts/2330?security_type=STK&quot;</span><span class="p">)</span>
+<span class="w">    </span><span class="k">defer</span><span class="w"> </span><span class="nx">res</span><span class="p">.</span><span class="nx">Body</span><span class="p">.</span><span class="nx">Close</span><span class="p">()</span>
+
+<span class="w">    </span><span class="kd">var</span><span class="w"> </span><span class="nx">stock</span><span class="w"> </span><span class="kd">map</span><span class="p">[</span><span class="kt">string</span><span class="p">]</span><span class="kt">any</span>
+<span class="w">    </span><span class="nx">json</span><span class="p">.</span><span class="nx">NewDecoder</span><span class="p">(</span><span class="nx">res</span><span class="p">.</span><span class="nx">Body</span><span class="p">).</span><span class="nx">Decode</span><span class="p">(</span><span class="o">&amp;</span><span class="nx">stock</span><span class="p">)</span>
+<span class="w">    </span><span class="nx">fmt</span><span class="p">.</span><span class="nx">Println</span><span class="p">(</span><span class="nx">stock</span><span class="p">)</span>
+<span class="p">}</span>
+</code></pre></div>
+
+    !!! done "Out"
+        <div class="highlight"><pre><span></span><code>map[category:24 code:2330 currency:TWD day_trade:Yes delivery_date: delivery_month: exchange:TSE limit_down:2045 limit_up:2495 margin_trading_balance:169 multiplier:0 name:台積電 option_right: reference:2270 security_type:STK short_selling_balance:0 strike_price:0 symbol:TSE2330 target_code: underlying_code: underlying_kind: unit:1000 update_date:2026/05/15]
+</code></pre></div>
+
+    **Futures**
+    !!! info "In"
+        <div class="highlight"><pre><span></span><code><span class="kn">package</span><span class="w"> </span><span class="nx">main</span>
+
+<span class="kn">import</span><span class="w"> </span><span class="p">(</span>
+<span class="w">    </span><span class="s">&quot;encoding/json&quot;</span>
+<span class="w">    </span><span class="s">&quot;fmt&quot;</span>
+<span class="w">    </span><span class="s">&quot;net/http&quot;</span>
+<span class="p">)</span>
+
+<span class="kd">func</span><span class="w"> </span><span class="nx">main</span><span class="p">()</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="nx">res</span><span class="p">,</span><span class="w"> </span><span class="nx">_</span><span class="w"> </span><span class="o">:=</span><span class="w"> </span><span class="nx">http</span><span class="p">.</span><span class="nx">Get</span><span class="p">(</span><span class="s">&quot;http://localhost:8080/api/v1/data/contracts/TXFR1?security_type=FUT&quot;</span><span class="p">)</span>
+<span class="w">    </span><span class="k">defer</span><span class="w"> </span><span class="nx">res</span><span class="p">.</span><span class="nx">Body</span><span class="p">.</span><span class="nx">Close</span><span class="p">()</span>
+
+<span class="w">    </span><span class="kd">var</span><span class="w"> </span><span class="nx">future</span><span class="w"> </span><span class="kd">map</span><span class="p">[</span><span class="kt">string</span><span class="p">]</span><span class="kt">any</span>
+<span class="w">    </span><span class="nx">json</span><span class="p">.</span><span class="nx">NewDecoder</span><span class="p">(</span><span class="nx">res</span><span class="p">.</span><span class="nx">Body</span><span class="p">).</span><span class="nx">Decode</span><span class="p">(</span><span class="o">&amp;</span><span class="nx">future</span><span class="p">)</span>
+<span class="w">    </span><span class="nx">fmt</span><span class="p">.</span><span class="nx">Println</span><span class="p">(</span><span class="nx">future</span><span class="p">)</span>
+<span class="p">}</span>
+</code></pre></div>
+
+    !!! done "Out"
+        <div class="highlight"><pre><span></span><code>map[category:TXF code:TXFR1 currency:TWD day_trade: delivery_date:2026/05/20 delivery_month:202605 exchange:TAIFEX limit_down:37473 limit_up:45799 margin_trading_balance:0 multiplier:0 name:臺股期貨近月 option_right: reference:41636 security_type:FUT short_selling_balance:0 strike_price:0 symbol:TXFR1 target_code:TXFE6 underlying_code: underlying_kind:I unit:1 update_date:2026/05/15]
+</code></pre></div>
+
+    **Options**
+    !!! info "In"
+        <div class="highlight"><pre><span></span><code><span class="kn">package</span><span class="w"> </span><span class="nx">main</span>
+
+<span class="kn">import</span><span class="w"> </span><span class="p">(</span>
+<span class="w">    </span><span class="s">&quot;encoding/json&quot;</span>
+<span class="w">    </span><span class="s">&quot;fmt&quot;</span>
+<span class="w">    </span><span class="s">&quot;net/http&quot;</span>
+<span class="p">)</span>
+
+<span class="kd">func</span><span class="w"> </span><span class="nx">main</span><span class="p">()</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="nx">res</span><span class="p">,</span><span class="w"> </span><span class="nx">_</span><span class="w"> </span><span class="o">:=</span><span class="w"> </span><span class="nx">http</span><span class="p">.</span><span class="nx">Get</span><span class="p">(</span><span class="s">&quot;http://localhost:8080/api/v1/data/contracts/TXO20260532400C?security_type=OPT&quot;</span><span class="p">)</span>
+<span class="w">    </span><span class="k">defer</span><span class="w"> </span><span class="nx">res</span><span class="p">.</span><span class="nx">Body</span><span class="p">.</span><span class="nx">Close</span><span class="p">()</span>
+
+<span class="w">    </span><span class="kd">var</span><span class="w"> </span><span class="nx">option</span><span class="w"> </span><span class="kd">map</span><span class="p">[</span><span class="kt">string</span><span class="p">]</span><span class="kt">any</span>
+<span class="w">    </span><span class="nx">json</span><span class="p">.</span><span class="nx">NewDecoder</span><span class="p">(</span><span class="nx">res</span><span class="p">.</span><span class="nx">Body</span><span class="p">).</span><span class="nx">Decode</span><span class="p">(</span><span class="o">&amp;</span><span class="nx">option</span><span class="p">)</span>
+<span class="w">    </span><span class="nx">fmt</span><span class="p">.</span><span class="nx">Println</span><span class="p">(</span><span class="nx">option</span><span class="p">)</span>
+<span class="p">}</span>
+</code></pre></div>
+
+    !!! done "Out"
+        <div class="highlight"><pre><span></span><code>map[category:TXO code:TXO32400E6 currency:TWD day_trade: delivery_date:2026/05/20 delivery_month:202605 exchange:TAIFEX limit_down:5060 limit_up:13400 margin_trading_balance:0 multiplier:0 name:臺指選擇權F505月 32400C option_right:C reference:9230 security_type:OPT short_selling_balance:0 strike_price:32400 symbol:TXO20260532400C target_code: underlying_code: underlying_kind:I unit:1 update_date:2026/05/15]
+</code></pre></div>
+
+    **Indices**
+    !!! info "In"
+        <div class="highlight"><pre><span></span><code><span class="kn">package</span><span class="w"> </span><span class="nx">main</span>
+
+<span class="kn">import</span><span class="w"> </span><span class="p">(</span>
+<span class="w">    </span><span class="s">&quot;encoding/json&quot;</span>
+<span class="w">    </span><span class="s">&quot;fmt&quot;</span>
+<span class="w">    </span><span class="s">&quot;net/http&quot;</span>
+<span class="p">)</span>
+
+<span class="kd">func</span><span class="w"> </span><span class="nx">main</span><span class="p">()</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="nx">res</span><span class="p">,</span><span class="w"> </span><span class="nx">_</span><span class="w"> </span><span class="o">:=</span><span class="w"> </span><span class="nx">http</span><span class="p">.</span><span class="nx">Get</span><span class="p">(</span><span class="s">&quot;http://localhost:8080/api/v1/data/contracts/001?security_type=IND&quot;</span><span class="p">)</span>
+<span class="w">    </span><span class="k">defer</span><span class="w"> </span><span class="nx">res</span><span class="p">.</span><span class="nx">Body</span><span class="p">.</span><span class="nx">Close</span><span class="p">()</span>
+
+<span class="w">    </span><span class="kd">var</span><span class="w"> </span><span class="nx">index</span><span class="w"> </span><span class="kd">map</span><span class="p">[</span><span class="kt">string</span><span class="p">]</span><span class="kt">any</span>
+<span class="w">    </span><span class="nx">json</span><span class="p">.</span><span class="nx">NewDecoder</span><span class="p">(</span><span class="nx">res</span><span class="p">.</span><span class="nx">Body</span><span class="p">).</span><span class="nx">Decode</span><span class="p">(</span><span class="o">&amp;</span><span class="nx">index</span><span class="p">)</span>
+<span class="w">    </span><span class="nx">fmt</span><span class="p">.</span><span class="nx">Println</span><span class="p">(</span><span class="nx">index</span><span class="p">)</span>
+<span class="p">}</span>
+</code></pre></div>
+
+    !!! done "Out"
+        <div class="highlight"><pre><span></span><code>map[category: code:001 currency:TWD day_trade: delivery_date: delivery_month: exchange:TSE limit_down:0 limit_up:0 margin_trading_balance:0 multiplier:0 name:加權指數 option_right: reference:0 security_type:IND short_selling_balance:0 strike_price:0 symbol:TSE001 target_code: underlying_code: underlying_kind: unit:0 update_date:]
+</code></pre></div>
+
+=== "C++"
+    Send a GET request to the server with libcurl to retrieve a single contract.
+
+    - URL format: `/api/v1/data/contracts/{code}?security_type=<TYPE>`
+    - `{code}`: product code
+    - `security_type`: security type (`STK` / `FUT` / `OPT` / `IND`)
+
+    **Stocks**
+    !!! info "In"
+        <div class="highlight"><pre><span></span><code><span class="cp">#include</span><span class="w"> </span><span class="cpf">&lt;curl/curl.h&gt;</span>
+<span class="cp">#include</span><span class="w"> </span><span class="cpf">&lt;iostream&gt;</span>
+<span class="cp">#include</span><span class="w"> </span><span class="cpf">&lt;string&gt;</span>
+
+<span class="k">static</span><span class="w"> </span><span class="kt">size_t</span><span class="w"> </span><span class="nf">write_cb</span><span class="p">(</span><span class="kt">void</span><span class="o">*</span><span class="w"> </span><span class="n">contents</span><span class="p">,</span><span class="w"> </span><span class="kt">size_t</span><span class="w"> </span><span class="n">size</span><span class="p">,</span><span class="w"> </span><span class="kt">size_t</span><span class="w"> </span><span class="n">nmemb</span><span class="p">,</span><span class="w"> </span><span class="n">std</span><span class="o">::</span><span class="n">string</span><span class="o">*</span><span class="w"> </span><span class="n">s</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="n">s</span><span class="o">-&gt;</span><span class="n">append</span><span class="p">(</span><span class="k">static_cast</span><span class="o">&lt;</span><span class="kt">char</span><span class="o">*&gt;</span><span class="p">(</span><span class="n">contents</span><span class="p">),</span><span class="w"> </span><span class="n">size</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="n">nmemb</span><span class="p">);</span>
+<span class="w">    </span><span class="k">return</span><span class="w"> </span><span class="n">size</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="n">nmemb</span><span class="p">;</span>
+<span class="p">}</span>
+
+<span class="kt">int</span><span class="w"> </span><span class="nf">main</span><span class="p">()</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="n">CURL</span><span class="o">*</span><span class="w"> </span><span class="n">curl</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">curl_easy_init</span><span class="p">();</span>
+<span class="w">    </span><span class="n">std</span><span class="o">::</span><span class="n">string</span><span class="w"> </span><span class="n">body</span><span class="p">;</span>
+
+<span class="w">    </span><span class="n">curl_easy_setopt</span><span class="p">(</span><span class="n">curl</span><span class="p">,</span><span class="w"> </span><span class="n">CURLOPT_URL</span><span class="p">,</span>
+<span class="w">        </span><span class="s">&quot;http://localhost:8080/api/v1/data/contracts/2330?security_type=STK&quot;</span><span class="p">);</span>
+<span class="w">    </span><span class="n">curl_easy_setopt</span><span class="p">(</span><span class="n">curl</span><span class="p">,</span><span class="w"> </span><span class="n">CURLOPT_WRITEFUNCTION</span><span class="p">,</span><span class="w"> </span><span class="n">write_cb</span><span class="p">);</span>
+<span class="w">    </span><span class="n">curl_easy_setopt</span><span class="p">(</span><span class="n">curl</span><span class="p">,</span><span class="w"> </span><span class="n">CURLOPT_WRITEDATA</span><span class="p">,</span><span class="w"> </span><span class="o">&amp;</span><span class="n">body</span><span class="p">);</span>
+<span class="w">    </span><span class="n">curl_easy_perform</span><span class="p">(</span><span class="n">curl</span><span class="p">);</span>
+<span class="w">    </span><span class="n">curl_easy_cleanup</span><span class="p">(</span><span class="n">curl</span><span class="p">);</span>
+
+<span class="w">    </span><span class="n">std</span><span class="o">::</span><span class="n">cout</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="n">body</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="n">std</span><span class="o">::</span><span class="n">endl</span><span class="p">;</span>
+<span class="w">    </span><span class="k">return</span><span class="w"> </span><span class="mi">0</span><span class="p">;</span>
+<span class="p">}</span>
+</code></pre></div>
+
+    !!! done "Out"
+        <div class="highlight"><pre><span></span><code>{&quot;security_type&quot;:&quot;STK&quot;,&quot;exchange&quot;:&quot;TSE&quot;,&quot;code&quot;:&quot;2330&quot;,&quot;symbol&quot;:&quot;TSE2330&quot;,&quot;name&quot;:&quot;台積電&quot;,&quot;category&quot;:&quot;24&quot;,&quot;currency&quot;:&quot;TWD&quot;,&quot;delivery_month&quot;:&quot;&quot;,&quot;delivery_date&quot;:&quot;&quot;,&quot;strike_price&quot;:0.0,&quot;option_right&quot;:&quot;&quot;,&quot;underlying_kind&quot;:&quot;&quot;,&quot;underlying_code&quot;:&quot;&quot;,&quot;unit&quot;:1000.0,&quot;multiplier&quot;:0,&quot;limit_up&quot;:2495.0,&quot;limit_down&quot;:2045.0,&quot;reference&quot;:2270.0,&quot;update_date&quot;:&quot;2026/05/15&quot;,&quot;margin_trading_balance&quot;:169,&quot;short_selling_balance&quot;:0,&quot;day_trade&quot;:&quot;Yes&quot;,&quot;target_code&quot;:&quot;&quot;}
+</code></pre></div>
+
+    **Futures**
+    !!! info "In"
+        <div class="highlight"><pre><span></span><code><span class="cp">#include</span><span class="w"> </span><span class="cpf">&lt;curl/curl.h&gt;</span>
+<span class="cp">#include</span><span class="w"> </span><span class="cpf">&lt;iostream&gt;</span>
+<span class="cp">#include</span><span class="w"> </span><span class="cpf">&lt;string&gt;</span>
+
+<span class="k">static</span><span class="w"> </span><span class="kt">size_t</span><span class="w"> </span><span class="nf">write_cb</span><span class="p">(</span><span class="kt">void</span><span class="o">*</span><span class="w"> </span><span class="n">contents</span><span class="p">,</span><span class="w"> </span><span class="kt">size_t</span><span class="w"> </span><span class="n">size</span><span class="p">,</span><span class="w"> </span><span class="kt">size_t</span><span class="w"> </span><span class="n">nmemb</span><span class="p">,</span><span class="w"> </span><span class="n">std</span><span class="o">::</span><span class="n">string</span><span class="o">*</span><span class="w"> </span><span class="n">s</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="n">s</span><span class="o">-&gt;</span><span class="n">append</span><span class="p">(</span><span class="k">static_cast</span><span class="o">&lt;</span><span class="kt">char</span><span class="o">*&gt;</span><span class="p">(</span><span class="n">contents</span><span class="p">),</span><span class="w"> </span><span class="n">size</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="n">nmemb</span><span class="p">);</span>
+<span class="w">    </span><span class="k">return</span><span class="w"> </span><span class="n">size</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="n">nmemb</span><span class="p">;</span>
+<span class="p">}</span>
+
+<span class="kt">int</span><span class="w"> </span><span class="nf">main</span><span class="p">()</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="n">CURL</span><span class="o">*</span><span class="w"> </span><span class="n">curl</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">curl_easy_init</span><span class="p">();</span>
+<span class="w">    </span><span class="n">std</span><span class="o">::</span><span class="n">string</span><span class="w"> </span><span class="n">body</span><span class="p">;</span>
+
+<span class="w">    </span><span class="n">curl_easy_setopt</span><span class="p">(</span><span class="n">curl</span><span class="p">,</span><span class="w"> </span><span class="n">CURLOPT_URL</span><span class="p">,</span>
+<span class="w">        </span><span class="s">&quot;http://localhost:8080/api/v1/data/contracts/TXFR1?security_type=FUT&quot;</span><span class="p">);</span>
+<span class="w">    </span><span class="n">curl_easy_setopt</span><span class="p">(</span><span class="n">curl</span><span class="p">,</span><span class="w"> </span><span class="n">CURLOPT_WRITEFUNCTION</span><span class="p">,</span><span class="w"> </span><span class="n">write_cb</span><span class="p">);</span>
+<span class="w">    </span><span class="n">curl_easy_setopt</span><span class="p">(</span><span class="n">curl</span><span class="p">,</span><span class="w"> </span><span class="n">CURLOPT_WRITEDATA</span><span class="p">,</span><span class="w"> </span><span class="o">&amp;</span><span class="n">body</span><span class="p">);</span>
+<span class="w">    </span><span class="n">curl_easy_perform</span><span class="p">(</span><span class="n">curl</span><span class="p">);</span>
+<span class="w">    </span><span class="n">curl_easy_cleanup</span><span class="p">(</span><span class="n">curl</span><span class="p">);</span>
+
+<span class="w">    </span><span class="n">std</span><span class="o">::</span><span class="n">cout</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="n">body</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="n">std</span><span class="o">::</span><span class="n">endl</span><span class="p">;</span>
+<span class="w">    </span><span class="k">return</span><span class="w"> </span><span class="mi">0</span><span class="p">;</span>
+<span class="p">}</span>
+</code></pre></div>
+
+    !!! done "Out"
+        <div class="highlight"><pre><span></span><code>{&quot;security_type&quot;:&quot;FUT&quot;,&quot;exchange&quot;:&quot;TAIFEX&quot;,&quot;code&quot;:&quot;TXFR1&quot;,&quot;symbol&quot;:&quot;TXFR1&quot;,&quot;name&quot;:&quot;臺股期貨近月&quot;,&quot;category&quot;:&quot;TXF&quot;,&quot;currency&quot;:&quot;TWD&quot;,&quot;delivery_month&quot;:&quot;202605&quot;,&quot;delivery_date&quot;:&quot;2026/05/20&quot;,&quot;strike_price&quot;:0.0,&quot;option_right&quot;:&quot;&quot;,&quot;underlying_kind&quot;:&quot;I&quot;,&quot;underlying_code&quot;:&quot;&quot;,&quot;unit&quot;:1.0,&quot;multiplier&quot;:0,&quot;limit_up&quot;:45799.0,&quot;limit_down&quot;:37473.0,&quot;reference&quot;:41636.0,&quot;update_date&quot;:&quot;2026/05/15&quot;,&quot;margin_trading_balance&quot;:0,&quot;short_selling_balance&quot;:0,&quot;day_trade&quot;:&quot;&quot;,&quot;target_code&quot;:&quot;TXFE6&quot;}
+</code></pre></div>
+
+    **Options**
+    !!! info "In"
+        <div class="highlight"><pre><span></span><code><span class="cp">#include</span><span class="w"> </span><span class="cpf">&lt;curl/curl.h&gt;</span>
+<span class="cp">#include</span><span class="w"> </span><span class="cpf">&lt;iostream&gt;</span>
+<span class="cp">#include</span><span class="w"> </span><span class="cpf">&lt;string&gt;</span>
+
+<span class="k">static</span><span class="w"> </span><span class="kt">size_t</span><span class="w"> </span><span class="nf">write_cb</span><span class="p">(</span><span class="kt">void</span><span class="o">*</span><span class="w"> </span><span class="n">contents</span><span class="p">,</span><span class="w"> </span><span class="kt">size_t</span><span class="w"> </span><span class="n">size</span><span class="p">,</span><span class="w"> </span><span class="kt">size_t</span><span class="w"> </span><span class="n">nmemb</span><span class="p">,</span><span class="w"> </span><span class="n">std</span><span class="o">::</span><span class="n">string</span><span class="o">*</span><span class="w"> </span><span class="n">s</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="n">s</span><span class="o">-&gt;</span><span class="n">append</span><span class="p">(</span><span class="k">static_cast</span><span class="o">&lt;</span><span class="kt">char</span><span class="o">*&gt;</span><span class="p">(</span><span class="n">contents</span><span class="p">),</span><span class="w"> </span><span class="n">size</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="n">nmemb</span><span class="p">);</span>
+<span class="w">    </span><span class="k">return</span><span class="w"> </span><span class="n">size</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="n">nmemb</span><span class="p">;</span>
+<span class="p">}</span>
+
+<span class="kt">int</span><span class="w"> </span><span class="nf">main</span><span class="p">()</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="n">CURL</span><span class="o">*</span><span class="w"> </span><span class="n">curl</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">curl_easy_init</span><span class="p">();</span>
+<span class="w">    </span><span class="n">std</span><span class="o">::</span><span class="n">string</span><span class="w"> </span><span class="n">body</span><span class="p">;</span>
+
+<span class="w">    </span><span class="n">curl_easy_setopt</span><span class="p">(</span><span class="n">curl</span><span class="p">,</span><span class="w"> </span><span class="n">CURLOPT_URL</span><span class="p">,</span>
+<span class="w">        </span><span class="s">&quot;http://localhost:8080/api/v1/data/contracts/TXO20260532400C?security_type=OPT&quot;</span><span class="p">);</span>
+<span class="w">    </span><span class="n">curl_easy_setopt</span><span class="p">(</span><span class="n">curl</span><span class="p">,</span><span class="w"> </span><span class="n">CURLOPT_WRITEFUNCTION</span><span class="p">,</span><span class="w"> </span><span class="n">write_cb</span><span class="p">);</span>
+<span class="w">    </span><span class="n">curl_easy_setopt</span><span class="p">(</span><span class="n">curl</span><span class="p">,</span><span class="w"> </span><span class="n">CURLOPT_WRITEDATA</span><span class="p">,</span><span class="w"> </span><span class="o">&amp;</span><span class="n">body</span><span class="p">);</span>
+<span class="w">    </span><span class="n">curl_easy_perform</span><span class="p">(</span><span class="n">curl</span><span class="p">);</span>
+<span class="w">    </span><span class="n">curl_easy_cleanup</span><span class="p">(</span><span class="n">curl</span><span class="p">);</span>
+
+<span class="w">    </span><span class="n">std</span><span class="o">::</span><span class="n">cout</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="n">body</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="n">std</span><span class="o">::</span><span class="n">endl</span><span class="p">;</span>
+<span class="w">    </span><span class="k">return</span><span class="w"> </span><span class="mi">0</span><span class="p">;</span>
+<span class="p">}</span>
+</code></pre></div>
+
+    !!! done "Out"
+        <div class="highlight"><pre><span></span><code>{&quot;security_type&quot;:&quot;OPT&quot;,&quot;exchange&quot;:&quot;TAIFEX&quot;,&quot;code&quot;:&quot;TXO32400E6&quot;,&quot;symbol&quot;:&quot;TXO20260532400C&quot;,&quot;name&quot;:&quot;臺指選擇權F505月 32400C&quot;,&quot;category&quot;:&quot;TXO&quot;,&quot;currency&quot;:&quot;TWD&quot;,&quot;delivery_month&quot;:&quot;202605&quot;,&quot;delivery_date&quot;:&quot;2026/05/20&quot;,&quot;strike_price&quot;:32400.0,&quot;option_right&quot;:&quot;C&quot;,&quot;underlying_kind&quot;:&quot;I&quot;,&quot;underlying_code&quot;:&quot;&quot;,&quot;unit&quot;:1.0,&quot;multiplier&quot;:0,&quot;limit_up&quot;:13400.0,&quot;limit_down&quot;:5060.0,&quot;reference&quot;:9230.0,&quot;update_date&quot;:&quot;2026/05/15&quot;,&quot;margin_trading_balance&quot;:0,&quot;short_selling_balance&quot;:0,&quot;day_trade&quot;:&quot;&quot;,&quot;target_code&quot;:&quot;&quot;}
+</code></pre></div>
+
+    **Indices**
+    !!! info "In"
+        <div class="highlight"><pre><span></span><code><span class="cp">#include</span><span class="w"> </span><span class="cpf">&lt;curl/curl.h&gt;</span>
+<span class="cp">#include</span><span class="w"> </span><span class="cpf">&lt;iostream&gt;</span>
+<span class="cp">#include</span><span class="w"> </span><span class="cpf">&lt;string&gt;</span>
+
+<span class="k">static</span><span class="w"> </span><span class="kt">size_t</span><span class="w"> </span><span class="nf">write_cb</span><span class="p">(</span><span class="kt">void</span><span class="o">*</span><span class="w"> </span><span class="n">contents</span><span class="p">,</span><span class="w"> </span><span class="kt">size_t</span><span class="w"> </span><span class="n">size</span><span class="p">,</span><span class="w"> </span><span class="kt">size_t</span><span class="w"> </span><span class="n">nmemb</span><span class="p">,</span><span class="w"> </span><span class="n">std</span><span class="o">::</span><span class="n">string</span><span class="o">*</span><span class="w"> </span><span class="n">s</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="n">s</span><span class="o">-&gt;</span><span class="n">append</span><span class="p">(</span><span class="k">static_cast</span><span class="o">&lt;</span><span class="kt">char</span><span class="o">*&gt;</span><span class="p">(</span><span class="n">contents</span><span class="p">),</span><span class="w"> </span><span class="n">size</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="n">nmemb</span><span class="p">);</span>
+<span class="w">    </span><span class="k">return</span><span class="w"> </span><span class="n">size</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="n">nmemb</span><span class="p">;</span>
+<span class="p">}</span>
+
+<span class="kt">int</span><span class="w"> </span><span class="nf">main</span><span class="p">()</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="n">CURL</span><span class="o">*</span><span class="w"> </span><span class="n">curl</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">curl_easy_init</span><span class="p">();</span>
+<span class="w">    </span><span class="n">std</span><span class="o">::</span><span class="n">string</span><span class="w"> </span><span class="n">body</span><span class="p">;</span>
+
+<span class="w">    </span><span class="n">curl_easy_setopt</span><span class="p">(</span><span class="n">curl</span><span class="p">,</span><span class="w"> </span><span class="n">CURLOPT_URL</span><span class="p">,</span>
+<span class="w">        </span><span class="s">&quot;http://localhost:8080/api/v1/data/contracts/001?security_type=IND&quot;</span><span class="p">);</span>
+<span class="w">    </span><span class="n">curl_easy_setopt</span><span class="p">(</span><span class="n">curl</span><span class="p">,</span><span class="w"> </span><span class="n">CURLOPT_WRITEFUNCTION</span><span class="p">,</span><span class="w"> </span><span class="n">write_cb</span><span class="p">);</span>
+<span class="w">    </span><span class="n">curl_easy_setopt</span><span class="p">(</span><span class="n">curl</span><span class="p">,</span><span class="w"> </span><span class="n">CURLOPT_WRITEDATA</span><span class="p">,</span><span class="w"> </span><span class="o">&amp;</span><span class="n">body</span><span class="p">);</span>
+<span class="w">    </span><span class="n">curl_easy_perform</span><span class="p">(</span><span class="n">curl</span><span class="p">);</span>
+<span class="w">    </span><span class="n">curl_easy_cleanup</span><span class="p">(</span><span class="n">curl</span><span class="p">);</span>
+
+<span class="w">    </span><span class="n">std</span><span class="o">::</span><span class="n">cout</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="n">body</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="n">std</span><span class="o">::</span><span class="n">endl</span><span class="p">;</span>
+<span class="w">    </span><span class="k">return</span><span class="w"> </span><span class="mi">0</span><span class="p">;</span>
+<span class="p">}</span>
+</code></pre></div>
+
+    !!! done "Out"
+        <div class="highlight"><pre><span></span><code>{&quot;security_type&quot;:&quot;IND&quot;,&quot;exchange&quot;:&quot;TSE&quot;,&quot;code&quot;:&quot;001&quot;,&quot;symbol&quot;:&quot;TSE001&quot;,&quot;name&quot;:&quot;加權指數&quot;,&quot;category&quot;:&quot;&quot;,&quot;currency&quot;:&quot;TWD&quot;,&quot;delivery_month&quot;:&quot;&quot;,&quot;delivery_date&quot;:&quot;&quot;,&quot;strike_price&quot;:0.0,&quot;option_right&quot;:&quot;&quot;,&quot;underlying_kind&quot;:&quot;&quot;,&quot;underlying_code&quot;:&quot;&quot;,&quot;unit&quot;:0.0,&quot;multiplier&quot;:0,&quot;limit_up&quot;:0.0,&quot;limit_down&quot;:0.0,&quot;reference&quot;:0.0,&quot;update_date&quot;:&quot;&quot;,&quot;margin_trading_balance&quot;:0,&quot;short_selling_balance&quot;:0,&quot;day_trade&quot;:&quot;&quot;,&quot;target_code&quot;:&quot;&quot;}
+</code></pre></div>
+
+=== "C#"
+    Send a GET request to the server with `HttpClient` to retrieve a single contract.
+
+    - URL format: `/api/v1/data/contracts/{code}?security_type=<TYPE>`
+    - `{code}`: product code
+    - `security_type`: security type (`STK` / `FUT` / `OPT` / `IND`)
+
+    **Stocks**
+    !!! info "In"
+        <div class="highlight"><pre><span></span><code><span class="k">using</span><span class="w"> </span><span class="nn">System.Net.Http</span><span class="p">;</span>
+
+<span class="k">using</span><span class="w"> </span><span class="nn">var</span><span class="w"> </span><span class="n">http</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="k">new</span><span class="w"> </span><span class="n">HttpClient</span><span class="p">();</span>
+<span class="kt">var</span><span class="w"> </span><span class="n">stock</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="k">await</span><span class="w"> </span><span class="n">http</span><span class="p">.</span><span class="n">GetStringAsync</span><span class="p">(</span>
+<span class="w">    </span><span class="s">&quot;http://localhost:8080/api/v1/data/contracts/2330?security_type=STK&quot;</span><span class="p">);</span>
+<span class="n">Console</span><span class="p">.</span><span class="n">WriteLine</span><span class="p">(</span><span class="n">stock</span><span class="p">);</span>
+</code></pre></div>
+
+    !!! done "Out"
+        <div class="highlight"><pre><span></span><code>{&quot;security_type&quot;:&quot;STK&quot;,&quot;exchange&quot;:&quot;TSE&quot;,&quot;code&quot;:&quot;2330&quot;,&quot;symbol&quot;:&quot;TSE2330&quot;,&quot;name&quot;:&quot;台積電&quot;,&quot;category&quot;:&quot;24&quot;,&quot;currency&quot;:&quot;TWD&quot;,&quot;delivery_month&quot;:&quot;&quot;,&quot;delivery_date&quot;:&quot;&quot;,&quot;strike_price&quot;:0.0,&quot;option_right&quot;:&quot;&quot;,&quot;underlying_kind&quot;:&quot;&quot;,&quot;underlying_code&quot;:&quot;&quot;,&quot;unit&quot;:1000.0,&quot;multiplier&quot;:0,&quot;limit_up&quot;:2495.0,&quot;limit_down&quot;:2045.0,&quot;reference&quot;:2270.0,&quot;update_date&quot;:&quot;2026/05/15&quot;,&quot;margin_trading_balance&quot;:169,&quot;short_selling_balance&quot;:0,&quot;day_trade&quot;:&quot;Yes&quot;,&quot;target_code&quot;:&quot;&quot;}
+</code></pre></div>
+
+    **Futures**
+    !!! info "In"
+        <div class="highlight"><pre><span></span><code><span class="k">using</span><span class="w"> </span><span class="nn">System.Net.Http</span><span class="p">;</span>
+
+<span class="k">using</span><span class="w"> </span><span class="nn">var</span><span class="w"> </span><span class="n">http</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="k">new</span><span class="w"> </span><span class="n">HttpClient</span><span class="p">();</span>
+<span class="kt">var</span><span class="w"> </span><span class="n">future</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="k">await</span><span class="w"> </span><span class="n">http</span><span class="p">.</span><span class="n">GetStringAsync</span><span class="p">(</span>
+<span class="w">    </span><span class="s">&quot;http://localhost:8080/api/v1/data/contracts/TXFR1?security_type=FUT&quot;</span><span class="p">);</span>
+<span class="n">Console</span><span class="p">.</span><span class="n">WriteLine</span><span class="p">(</span><span class="n">future</span><span class="p">);</span>
+</code></pre></div>
+
+    !!! done "Out"
+        <div class="highlight"><pre><span></span><code>{&quot;security_type&quot;:&quot;FUT&quot;,&quot;exchange&quot;:&quot;TAIFEX&quot;,&quot;code&quot;:&quot;TXFR1&quot;,&quot;symbol&quot;:&quot;TXFR1&quot;,&quot;name&quot;:&quot;臺股期貨近月&quot;,&quot;category&quot;:&quot;TXF&quot;,&quot;currency&quot;:&quot;TWD&quot;,&quot;delivery_month&quot;:&quot;202605&quot;,&quot;delivery_date&quot;:&quot;2026/05/20&quot;,&quot;strike_price&quot;:0.0,&quot;option_right&quot;:&quot;&quot;,&quot;underlying_kind&quot;:&quot;I&quot;,&quot;underlying_code&quot;:&quot;&quot;,&quot;unit&quot;:1.0,&quot;multiplier&quot;:0,&quot;limit_up&quot;:45799.0,&quot;limit_down&quot;:37473.0,&quot;reference&quot;:41636.0,&quot;update_date&quot;:&quot;2026/05/15&quot;,&quot;margin_trading_balance&quot;:0,&quot;short_selling_balance&quot;:0,&quot;day_trade&quot;:&quot;&quot;,&quot;target_code&quot;:&quot;TXFE6&quot;}
+</code></pre></div>
+
+    **Options**
+    !!! info "In"
+        <div class="highlight"><pre><span></span><code><span class="k">using</span><span class="w"> </span><span class="nn">System.Net.Http</span><span class="p">;</span>
+
+<span class="k">using</span><span class="w"> </span><span class="nn">var</span><span class="w"> </span><span class="n">http</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="k">new</span><span class="w"> </span><span class="n">HttpClient</span><span class="p">();</span>
+<span class="kt">var</span><span class="w"> </span><span class="n">option</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="k">await</span><span class="w"> </span><span class="n">http</span><span class="p">.</span><span class="n">GetStringAsync</span><span class="p">(</span>
+<span class="w">    </span><span class="s">&quot;http://localhost:8080/api/v1/data/contracts/TXO20260532400C?security_type=OPT&quot;</span><span class="p">);</span>
+<span class="n">Console</span><span class="p">.</span><span class="n">WriteLine</span><span class="p">(</span><span class="n">option</span><span class="p">);</span>
+</code></pre></div>
+
+    !!! done "Out"
+        <div class="highlight"><pre><span></span><code>{&quot;security_type&quot;:&quot;OPT&quot;,&quot;exchange&quot;:&quot;TAIFEX&quot;,&quot;code&quot;:&quot;TXO32400E6&quot;,&quot;symbol&quot;:&quot;TXO20260532400C&quot;,&quot;name&quot;:&quot;臺指選擇權F505月 32400C&quot;,&quot;category&quot;:&quot;TXO&quot;,&quot;currency&quot;:&quot;TWD&quot;,&quot;delivery_month&quot;:&quot;202605&quot;,&quot;delivery_date&quot;:&quot;2026/05/20&quot;,&quot;strike_price&quot;:32400.0,&quot;option_right&quot;:&quot;C&quot;,&quot;underlying_kind&quot;:&quot;I&quot;,&quot;underlying_code&quot;:&quot;&quot;,&quot;unit&quot;:1.0,&quot;multiplier&quot;:0,&quot;limit_up&quot;:13400.0,&quot;limit_down&quot;:5060.0,&quot;reference&quot;:9230.0,&quot;update_date&quot;:&quot;2026/05/15&quot;,&quot;margin_trading_balance&quot;:0,&quot;short_selling_balance&quot;:0,&quot;day_trade&quot;:&quot;&quot;,&quot;target_code&quot;:&quot;&quot;}
+</code></pre></div>
+
+    **Indices**
+    !!! info "In"
+        <div class="highlight"><pre><span></span><code><span class="k">using</span><span class="w"> </span><span class="nn">System.Net.Http</span><span class="p">;</span>
+
+<span class="k">using</span><span class="w"> </span><span class="nn">var</span><span class="w"> </span><span class="n">http</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="k">new</span><span class="w"> </span><span class="n">HttpClient</span><span class="p">();</span>
+<span class="kt">var</span><span class="w"> </span><span class="n">index</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="k">await</span><span class="w"> </span><span class="n">http</span><span class="p">.</span><span class="n">GetStringAsync</span><span class="p">(</span>
+<span class="w">    </span><span class="s">&quot;http://localhost:8080/api/v1/data/contracts/001?security_type=IND&quot;</span><span class="p">);</span>
+<span class="n">Console</span><span class="p">.</span><span class="n">WriteLine</span><span class="p">(</span><span class="n">index</span><span class="p">);</span>
+</code></pre></div>
+
+    !!! done "Out"
+        <div class="highlight"><pre><span></span><code>{&quot;security_type&quot;:&quot;IND&quot;,&quot;exchange&quot;:&quot;TSE&quot;,&quot;code&quot;:&quot;001&quot;,&quot;symbol&quot;:&quot;TSE001&quot;,&quot;name&quot;:&quot;加權指數&quot;,&quot;category&quot;:&quot;&quot;,&quot;currency&quot;:&quot;TWD&quot;,&quot;delivery_month&quot;:&quot;&quot;,&quot;delivery_date&quot;:&quot;&quot;,&quot;strike_price&quot;:0.0,&quot;option_right&quot;:&quot;&quot;,&quot;underlying_kind&quot;:&quot;&quot;,&quot;underlying_code&quot;:&quot;&quot;,&quot;unit&quot;:0.0,&quot;multiplier&quot;:0,&quot;limit_up&quot;:0.0,&quot;limit_down&quot;:0.0,&quot;reference&quot;:0.0,&quot;update_date&quot;:&quot;&quot;,&quot;margin_trading_balance&quot;:0,&quot;short_selling_balance&quot;:0,&quot;day_trade&quot;:&quot;&quot;,&quot;target_code&quot;:&quot;&quot;}
+</code></pre></div>
+
+=== "Rust"
+    Send a GET request to the server with `reqwest` to retrieve a single contract.
+
+    - URL format: `/api/v1/data/contracts/{code}?security_type=<TYPE>`
+    - `{code}`: product code
+    - `security_type`: security type (`STK` / `FUT` / `OPT` / `IND`)
+
+    **Stocks**
+    !!! info "In"
+        <div class="highlight"><pre><span></span><code><span class="cp">#[tokio::main]</span>
+<span class="k">async</span><span class="w"> </span><span class="k">fn</span><span class="w"> </span><span class="nf">main</span><span class="p">()</span><span class="w"> </span><span class="p">-&gt;</span><span class="w"> </span><span class="nb">Result</span><span class="o">&lt;</span><span class="p">(),</span><span class="w"> </span><span class="n">reqwest</span><span class="p">::</span><span class="n">Error</span><span class="o">&gt;</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="kd">let</span><span class="w"> </span><span class="n">stock</span><span class="p">:</span><span class="w"> </span><span class="nc">serde_json</span><span class="p">::</span><span class="n">Value</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">reqwest</span><span class="p">::</span><span class="n">get</span><span class="p">(</span>
+<span class="w">        </span><span class="s">&quot;http://localhost:8080/api/v1/data/contracts/2330?security_type=STK&quot;</span>
+<span class="w">    </span><span class="p">)</span>
+<span class="w">    </span><span class="p">.</span><span class="k">await</span><span class="o">?</span>
+<span class="w">    </span><span class="p">.</span><span class="n">json</span><span class="p">()</span>
+<span class="w">    </span><span class="p">.</span><span class="k">await</span><span class="o">?</span><span class="p">;</span>
+<span class="w">    </span><span class="fm">println!</span><span class="p">(</span><span class="s">&quot;{:#}&quot;</span><span class="p">,</span><span class="w"> </span><span class="n">stock</span><span class="p">);</span>
+<span class="w">    </span><span class="nb">Ok</span><span class="p">(())</span>
+<span class="p">}</span>
+</code></pre></div>
+
+    !!! done "Out"
+        <div class="highlight"><pre><span></span><code>{
+  &quot;category&quot;: &quot;24&quot;,
+  &quot;code&quot;: &quot;2330&quot;,
+  &quot;currency&quot;: &quot;TWD&quot;,
+  &quot;day_trade&quot;: &quot;Yes&quot;,
+  &quot;delivery_date&quot;: &quot;&quot;,
+  &quot;delivery_month&quot;: &quot;&quot;,
+  &quot;exchange&quot;: &quot;TSE&quot;,
+  &quot;limit_down&quot;: 2045.0,
+  &quot;limit_up&quot;: 2495.0,
+  &quot;margin_trading_balance&quot;: 169,
+  &quot;multiplier&quot;: 0,
+  &quot;name&quot;: &quot;台積電&quot;,
+  &quot;option_right&quot;: &quot;&quot;,
+  &quot;reference&quot;: 2270.0,
+  &quot;security_type&quot;: &quot;STK&quot;,
+  &quot;short_selling_balance&quot;: 0,
+  &quot;strike_price&quot;: 0.0,
+  &quot;symbol&quot;: &quot;TSE2330&quot;,
+  &quot;target_code&quot;: &quot;&quot;,
+  &quot;underlying_code&quot;: &quot;&quot;,
+  &quot;underlying_kind&quot;: &quot;&quot;,
+  &quot;unit&quot;: 1000.0,
+  &quot;update_date&quot;: &quot;2026/05/15&quot;
+}
+</code></pre></div>
+
+    **Futures**
+    !!! info "In"
+        <div class="highlight"><pre><span></span><code><span class="cp">#[tokio::main]</span>
+<span class="k">async</span><span class="w"> </span><span class="k">fn</span><span class="w"> </span><span class="nf">main</span><span class="p">()</span><span class="w"> </span><span class="p">-&gt;</span><span class="w"> </span><span class="nb">Result</span><span class="o">&lt;</span><span class="p">(),</span><span class="w"> </span><span class="n">reqwest</span><span class="p">::</span><span class="n">Error</span><span class="o">&gt;</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="kd">let</span><span class="w"> </span><span class="n">future</span><span class="p">:</span><span class="w"> </span><span class="nc">serde_json</span><span class="p">::</span><span class="n">Value</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">reqwest</span><span class="p">::</span><span class="n">get</span><span class="p">(</span>
+<span class="w">        </span><span class="s">&quot;http://localhost:8080/api/v1/data/contracts/TXFR1?security_type=FUT&quot;</span>
+<span class="w">    </span><span class="p">)</span>
+<span class="w">    </span><span class="p">.</span><span class="k">await</span><span class="o">?</span>
+<span class="w">    </span><span class="p">.</span><span class="n">json</span><span class="p">()</span>
+<span class="w">    </span><span class="p">.</span><span class="k">await</span><span class="o">?</span><span class="p">;</span>
+<span class="w">    </span><span class="fm">println!</span><span class="p">(</span><span class="s">&quot;{:#}&quot;</span><span class="p">,</span><span class="w"> </span><span class="n">future</span><span class="p">);</span>
+<span class="w">    </span><span class="nb">Ok</span><span class="p">(())</span>
+<span class="p">}</span>
+</code></pre></div>
+
+    !!! done "Out"
+        <div class="highlight"><pre><span></span><code>{
+  &quot;category&quot;: &quot;TXF&quot;,
+  &quot;code&quot;: &quot;TXFR1&quot;,
+  &quot;currency&quot;: &quot;TWD&quot;,
+  &quot;day_trade&quot;: &quot;&quot;,
+  &quot;delivery_date&quot;: &quot;2026/05/20&quot;,
+  &quot;delivery_month&quot;: &quot;202605&quot;,
+  &quot;exchange&quot;: &quot;TAIFEX&quot;,
+  &quot;limit_down&quot;: 37473.0,
+  &quot;limit_up&quot;: 45799.0,
+  &quot;margin_trading_balance&quot;: 0,
+  &quot;multiplier&quot;: 0,
+  &quot;name&quot;: &quot;臺股期貨近月&quot;,
+  &quot;option_right&quot;: &quot;&quot;,
+  &quot;reference&quot;: 41636.0,
+  &quot;security_type&quot;: &quot;FUT&quot;,
+  &quot;short_selling_balance&quot;: 0,
+  &quot;strike_price&quot;: 0.0,
+  &quot;symbol&quot;: &quot;TXFR1&quot;,
+  &quot;target_code&quot;: &quot;TXFE6&quot;,
+  &quot;underlying_code&quot;: &quot;&quot;,
+  &quot;underlying_kind&quot;: &quot;I&quot;,
+  &quot;unit&quot;: 1.0,
+  &quot;update_date&quot;: &quot;2026/05/15&quot;
+}
+</code></pre></div>
+
+    **Options**
+    !!! info "In"
+        <div class="highlight"><pre><span></span><code><span class="cp">#[tokio::main]</span>
+<span class="k">async</span><span class="w"> </span><span class="k">fn</span><span class="w"> </span><span class="nf">main</span><span class="p">()</span><span class="w"> </span><span class="p">-&gt;</span><span class="w"> </span><span class="nb">Result</span><span class="o">&lt;</span><span class="p">(),</span><span class="w"> </span><span class="n">reqwest</span><span class="p">::</span><span class="n">Error</span><span class="o">&gt;</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="kd">let</span><span class="w"> </span><span class="n">option</span><span class="p">:</span><span class="w"> </span><span class="nc">serde_json</span><span class="p">::</span><span class="n">Value</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">reqwest</span><span class="p">::</span><span class="n">get</span><span class="p">(</span>
+<span class="w">        </span><span class="s">&quot;http://localhost:8080/api/v1/data/contracts/TXO20260532400C?security_type=OPT&quot;</span>
+<span class="w">    </span><span class="p">)</span>
+<span class="w">    </span><span class="p">.</span><span class="k">await</span><span class="o">?</span>
+<span class="w">    </span><span class="p">.</span><span class="n">json</span><span class="p">()</span>
+<span class="w">    </span><span class="p">.</span><span class="k">await</span><span class="o">?</span><span class="p">;</span>
+<span class="w">    </span><span class="fm">println!</span><span class="p">(</span><span class="s">&quot;{:#}&quot;</span><span class="p">,</span><span class="w"> </span><span class="n">option</span><span class="p">);</span>
+<span class="w">    </span><span class="nb">Ok</span><span class="p">(())</span>
+<span class="p">}</span>
+</code></pre></div>
+
+    !!! done "Out"
+        <div class="highlight"><pre><span></span><code>{
+  &quot;category&quot;: &quot;TXO&quot;,
+  &quot;code&quot;: &quot;TXO32400E6&quot;,
+  &quot;currency&quot;: &quot;TWD&quot;,
+  &quot;day_trade&quot;: &quot;&quot;,
+  &quot;delivery_date&quot;: &quot;2026/05/20&quot;,
+  &quot;delivery_month&quot;: &quot;202605&quot;,
+  &quot;exchange&quot;: &quot;TAIFEX&quot;,
+  &quot;limit_down&quot;: 5060.0,
+  &quot;limit_up&quot;: 13400.0,
+  &quot;margin_trading_balance&quot;: 0,
+  &quot;multiplier&quot;: 0,
+  &quot;name&quot;: &quot;臺指選擇權F505月 32400C&quot;,
+  &quot;option_right&quot;: &quot;C&quot;,
+  &quot;reference&quot;: 9230.0,
+  &quot;security_type&quot;: &quot;OPT&quot;,
+  &quot;short_selling_balance&quot;: 0,
+  &quot;strike_price&quot;: 32400.0,
+  &quot;symbol&quot;: &quot;TXO20260532400C&quot;,
+  &quot;target_code&quot;: &quot;&quot;,
+  &quot;underlying_code&quot;: &quot;&quot;,
+  &quot;underlying_kind&quot;: &quot;I&quot;,
+  &quot;unit&quot;: 1.0,
+  &quot;update_date&quot;: &quot;2026/05/15&quot;
+}
+</code></pre></div>
+
+    **Indices**
+    !!! info "In"
+        <div class="highlight"><pre><span></span><code><span class="cp">#[tokio::main]</span>
+<span class="k">async</span><span class="w"> </span><span class="k">fn</span><span class="w"> </span><span class="nf">main</span><span class="p">()</span><span class="w"> </span><span class="p">-&gt;</span><span class="w"> </span><span class="nb">Result</span><span class="o">&lt;</span><span class="p">(),</span><span class="w"> </span><span class="n">reqwest</span><span class="p">::</span><span class="n">Error</span><span class="o">&gt;</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="kd">let</span><span class="w"> </span><span class="n">index</span><span class="p">:</span><span class="w"> </span><span class="nc">serde_json</span><span class="p">::</span><span class="n">Value</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">reqwest</span><span class="p">::</span><span class="n">get</span><span class="p">(</span>
+<span class="w">        </span><span class="s">&quot;http://localhost:8080/api/v1/data/contracts/001?security_type=IND&quot;</span>
+<span class="w">    </span><span class="p">)</span>
+<span class="w">    </span><span class="p">.</span><span class="k">await</span><span class="o">?</span>
+<span class="w">    </span><span class="p">.</span><span class="n">json</span><span class="p">()</span>
+<span class="w">    </span><span class="p">.</span><span class="k">await</span><span class="o">?</span><span class="p">;</span>
+<span class="w">    </span><span class="fm">println!</span><span class="p">(</span><span class="s">&quot;{:#}&quot;</span><span class="p">,</span><span class="w"> </span><span class="n">index</span><span class="p">);</span>
+<span class="w">    </span><span class="nb">Ok</span><span class="p">(())</span>
+<span class="p">}</span>
+</code></pre></div>
+
+    !!! done "Out"
+        <div class="highlight"><pre><span></span><code>{
+  &quot;category&quot;: &quot;&quot;,
+  &quot;code&quot;: &quot;001&quot;,
+  &quot;currency&quot;: &quot;TWD&quot;,
+  &quot;day_trade&quot;: &quot;&quot;,
+  &quot;delivery_date&quot;: &quot;&quot;,
+  &quot;delivery_month&quot;: &quot;&quot;,
+  &quot;exchange&quot;: &quot;TSE&quot;,
+  &quot;limit_down&quot;: 0.0,
+  &quot;limit_up&quot;: 0.0,
+  &quot;margin_trading_balance&quot;: 0,
+  &quot;multiplier&quot;: 0,
+  &quot;name&quot;: &quot;加權指數&quot;,
+  &quot;option_right&quot;: &quot;&quot;,
+  &quot;reference&quot;: 0.0,
+  &quot;security_type&quot;: &quot;IND&quot;,
+  &quot;short_selling_balance&quot;: 0,
+  &quot;strike_price&quot;: 0.0,
+  &quot;symbol&quot;: &quot;TSE001&quot;,
+  &quot;target_code&quot;: &quot;&quot;,
+  &quot;underlying_code&quot;: &quot;&quot;,
+  &quot;underlying_kind&quot;: &quot;&quot;,
+  &quot;unit&quot;: 0.0,
+  &quot;update_date&quot;: &quot;&quot;
+}
+</code></pre></div>
+
+=== "Java"
+    Send a GET request to the server with `HttpClient` to retrieve a single contract.
+
+    - URL format: `/api/v1/data/contracts/{code}?security_type=<TYPE>`
+    - `{code}`: product code
+    - `security_type`: security type (`STK` / `FUT` / `OPT` / `IND`)
+
+    **Stocks**
+    !!! info "In"
+        <div class="highlight"><pre><span></span><code><span class="kn">import</span><span class="w"> </span><span class="nn">java.net.URI</span><span class="p">;</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">java.net.http.HttpClient</span><span class="p">;</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">java.net.http.HttpRequest</span><span class="p">;</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">java.net.http.HttpResponse</span><span class="p">;</span>
+
+<span class="kd">public</span><span class="w"> </span><span class="kd">class</span> <span class="nc">Test</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="kd">public</span><span class="w"> </span><span class="kd">static</span><span class="w"> </span><span class="kt">void</span><span class="w"> </span><span class="nf">main</span><span class="p">(</span><span class="n">String</span><span class="o">[]</span><span class="w"> </span><span class="n">args</span><span class="p">)</span><span class="w"> </span><span class="kd">throws</span><span class="w"> </span><span class="n">Exception</span><span class="w"> </span><span class="p">{</span>
+<span class="w">        </span><span class="n">HttpClient</span><span class="w"> </span><span class="n">client</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">HttpClient</span><span class="p">.</span><span class="na">newHttpClient</span><span class="p">();</span>
+<span class="w">        </span><span class="n">HttpRequest</span><span class="w"> </span><span class="n">request</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">HttpRequest</span><span class="p">.</span><span class="na">newBuilder</span><span class="p">()</span>
+<span class="w">            </span><span class="p">.</span><span class="na">uri</span><span class="p">(</span><span class="n">URI</span><span class="p">.</span><span class="na">create</span><span class="p">(</span><span class="s">&quot;http://localhost:8080/api/v1/data/contracts/2330?security_type=STK&quot;</span><span class="p">))</span>
+<span class="w">            </span><span class="p">.</span><span class="na">GET</span><span class="p">()</span>
+<span class="w">            </span><span class="p">.</span><span class="na">build</span><span class="p">();</span>
+<span class="w">        </span><span class="n">HttpResponse</span><span class="o">&lt;</span><span class="n">String</span><span class="o">&gt;</span><span class="w"> </span><span class="n">response</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">client</span><span class="p">.</span><span class="na">send</span><span class="p">(</span><span class="n">request</span><span class="p">,</span><span class="w"> </span><span class="n">HttpResponse</span><span class="p">.</span><span class="na">BodyHandlers</span><span class="p">.</span><span class="na">ofString</span><span class="p">());</span>
+<span class="w">        </span><span class="n">System</span><span class="p">.</span><span class="na">out</span><span class="p">.</span><span class="na">println</span><span class="p">(</span><span class="n">response</span><span class="p">.</span><span class="na">body</span><span class="p">());</span>
+<span class="w">    </span><span class="p">}</span>
+<span class="p">}</span>
+</code></pre></div>
+
+    !!! done "Out"
+        <div class="highlight"><pre><span></span><code>{&quot;security_type&quot;:&quot;STK&quot;,&quot;exchange&quot;:&quot;TSE&quot;,&quot;code&quot;:&quot;2330&quot;,&quot;symbol&quot;:&quot;TSE2330&quot;,&quot;name&quot;:&quot;台積電&quot;,&quot;category&quot;:&quot;24&quot;,&quot;currency&quot;:&quot;TWD&quot;,&quot;delivery_month&quot;:&quot;&quot;,&quot;delivery_date&quot;:&quot;&quot;,&quot;strike_price&quot;:0.0,&quot;option_right&quot;:&quot;&quot;,&quot;underlying_kind&quot;:&quot;&quot;,&quot;underlying_code&quot;:&quot;&quot;,&quot;unit&quot;:1000.0,&quot;multiplier&quot;:0,&quot;limit_up&quot;:2495.0,&quot;limit_down&quot;:2045.0,&quot;reference&quot;:2270.0,&quot;update_date&quot;:&quot;2026/05/15&quot;,&quot;margin_trading_balance&quot;:169,&quot;short_selling_balance&quot;:0,&quot;day_trade&quot;:&quot;Yes&quot;,&quot;target_code&quot;:&quot;&quot;}
+</code></pre></div>
+
+    **Futures**
+    !!! info "In"
+        <div class="highlight"><pre><span></span><code><span class="kn">import</span><span class="w"> </span><span class="nn">java.net.URI</span><span class="p">;</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">java.net.http.HttpClient</span><span class="p">;</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">java.net.http.HttpRequest</span><span class="p">;</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">java.net.http.HttpResponse</span><span class="p">;</span>
+
+<span class="kd">public</span><span class="w"> </span><span class="kd">class</span> <span class="nc">Test</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="kd">public</span><span class="w"> </span><span class="kd">static</span><span class="w"> </span><span class="kt">void</span><span class="w"> </span><span class="nf">main</span><span class="p">(</span><span class="n">String</span><span class="o">[]</span><span class="w"> </span><span class="n">args</span><span class="p">)</span><span class="w"> </span><span class="kd">throws</span><span class="w"> </span><span class="n">Exception</span><span class="w"> </span><span class="p">{</span>
+<span class="w">        </span><span class="n">HttpClient</span><span class="w"> </span><span class="n">client</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">HttpClient</span><span class="p">.</span><span class="na">newHttpClient</span><span class="p">();</span>
+<span class="w">        </span><span class="n">HttpRequest</span><span class="w"> </span><span class="n">request</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">HttpRequest</span><span class="p">.</span><span class="na">newBuilder</span><span class="p">()</span>
+<span class="w">            </span><span class="p">.</span><span class="na">uri</span><span class="p">(</span><span class="n">URI</span><span class="p">.</span><span class="na">create</span><span class="p">(</span><span class="s">&quot;http://localhost:8080/api/v1/data/contracts/TXFR1?security_type=FUT&quot;</span><span class="p">))</span>
+<span class="w">            </span><span class="p">.</span><span class="na">GET</span><span class="p">()</span>
+<span class="w">            </span><span class="p">.</span><span class="na">build</span><span class="p">();</span>
+<span class="w">        </span><span class="n">HttpResponse</span><span class="o">&lt;</span><span class="n">String</span><span class="o">&gt;</span><span class="w"> </span><span class="n">response</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">client</span><span class="p">.</span><span class="na">send</span><span class="p">(</span><span class="n">request</span><span class="p">,</span><span class="w"> </span><span class="n">HttpResponse</span><span class="p">.</span><span class="na">BodyHandlers</span><span class="p">.</span><span class="na">ofString</span><span class="p">());</span>
+<span class="w">        </span><span class="n">System</span><span class="p">.</span><span class="na">out</span><span class="p">.</span><span class="na">println</span><span class="p">(</span><span class="n">response</span><span class="p">.</span><span class="na">body</span><span class="p">());</span>
+<span class="w">    </span><span class="p">}</span>
+<span class="p">}</span>
+</code></pre></div>
+
+    !!! done "Out"
+        <div class="highlight"><pre><span></span><code>{&quot;security_type&quot;:&quot;FUT&quot;,&quot;exchange&quot;:&quot;TAIFEX&quot;,&quot;code&quot;:&quot;TXFR1&quot;,&quot;symbol&quot;:&quot;TXFR1&quot;,&quot;name&quot;:&quot;臺股期貨近月&quot;,&quot;category&quot;:&quot;TXF&quot;,&quot;currency&quot;:&quot;TWD&quot;,&quot;delivery_month&quot;:&quot;202605&quot;,&quot;delivery_date&quot;:&quot;2026/05/20&quot;,&quot;strike_price&quot;:0.0,&quot;option_right&quot;:&quot;&quot;,&quot;underlying_kind&quot;:&quot;I&quot;,&quot;underlying_code&quot;:&quot;&quot;,&quot;unit&quot;:1.0,&quot;multiplier&quot;:0,&quot;limit_up&quot;:45799.0,&quot;limit_down&quot;:37473.0,&quot;reference&quot;:41636.0,&quot;update_date&quot;:&quot;2026/05/15&quot;,&quot;margin_trading_balance&quot;:0,&quot;short_selling_balance&quot;:0,&quot;day_trade&quot;:&quot;&quot;,&quot;target_code&quot;:&quot;TXFE6&quot;}
+</code></pre></div>
+
+    **Options**
+    !!! info "In"
+        <div class="highlight"><pre><span></span><code><span class="kn">import</span><span class="w"> </span><span class="nn">java.net.URI</span><span class="p">;</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">java.net.http.HttpClient</span><span class="p">;</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">java.net.http.HttpRequest</span><span class="p">;</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">java.net.http.HttpResponse</span><span class="p">;</span>
+
+<span class="kd">public</span><span class="w"> </span><span class="kd">class</span> <span class="nc">Test</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="kd">public</span><span class="w"> </span><span class="kd">static</span><span class="w"> </span><span class="kt">void</span><span class="w"> </span><span class="nf">main</span><span class="p">(</span><span class="n">String</span><span class="o">[]</span><span class="w"> </span><span class="n">args</span><span class="p">)</span><span class="w"> </span><span class="kd">throws</span><span class="w"> </span><span class="n">Exception</span><span class="w"> </span><span class="p">{</span>
+<span class="w">        </span><span class="n">HttpClient</span><span class="w"> </span><span class="n">client</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">HttpClient</span><span class="p">.</span><span class="na">newHttpClient</span><span class="p">();</span>
+<span class="w">        </span><span class="n">HttpRequest</span><span class="w"> </span><span class="n">request</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">HttpRequest</span><span class="p">.</span><span class="na">newBuilder</span><span class="p">()</span>
+<span class="w">            </span><span class="p">.</span><span class="na">uri</span><span class="p">(</span><span class="n">URI</span><span class="p">.</span><span class="na">create</span><span class="p">(</span><span class="s">&quot;http://localhost:8080/api/v1/data/contracts/TXO20260532400C?security_type=OPT&quot;</span><span class="p">))</span>
+<span class="w">            </span><span class="p">.</span><span class="na">GET</span><span class="p">()</span>
+<span class="w">            </span><span class="p">.</span><span class="na">build</span><span class="p">();</span>
+<span class="w">        </span><span class="n">HttpResponse</span><span class="o">&lt;</span><span class="n">String</span><span class="o">&gt;</span><span class="w"> </span><span class="n">response</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">client</span><span class="p">.</span><span class="na">send</span><span class="p">(</span><span class="n">request</span><span class="p">,</span><span class="w"> </span><span class="n">HttpResponse</span><span class="p">.</span><span class="na">BodyHandlers</span><span class="p">.</span><span class="na">ofString</span><span class="p">());</span>
+<span class="w">        </span><span class="n">System</span><span class="p">.</span><span class="na">out</span><span class="p">.</span><span class="na">println</span><span class="p">(</span><span class="n">response</span><span class="p">.</span><span class="na">body</span><span class="p">());</span>
+<span class="w">    </span><span class="p">}</span>
+<span class="p">}</span>
+</code></pre></div>
+
+    !!! done "Out"
+        <div class="highlight"><pre><span></span><code>{&quot;security_type&quot;:&quot;OPT&quot;,&quot;exchange&quot;:&quot;TAIFEX&quot;,&quot;code&quot;:&quot;TXO32400E6&quot;,&quot;symbol&quot;:&quot;TXO20260532400C&quot;,&quot;name&quot;:&quot;臺指選擇權F505月 32400C&quot;,&quot;category&quot;:&quot;TXO&quot;,&quot;currency&quot;:&quot;TWD&quot;,&quot;delivery_month&quot;:&quot;202605&quot;,&quot;delivery_date&quot;:&quot;2026/05/20&quot;,&quot;strike_price&quot;:32400.0,&quot;option_right&quot;:&quot;C&quot;,&quot;underlying_kind&quot;:&quot;I&quot;,&quot;underlying_code&quot;:&quot;&quot;,&quot;unit&quot;:1.0,&quot;multiplier&quot;:0,&quot;limit_up&quot;:13400.0,&quot;limit_down&quot;:5060.0,&quot;reference&quot;:9230.0,&quot;update_date&quot;:&quot;2026/05/15&quot;,&quot;margin_trading_balance&quot;:0,&quot;short_selling_balance&quot;:0,&quot;day_trade&quot;:&quot;&quot;,&quot;target_code&quot;:&quot;&quot;}
+</code></pre></div>
+
+    **Indices**
+    !!! info "In"
+        <div class="highlight"><pre><span></span><code><span class="kn">import</span><span class="w"> </span><span class="nn">java.net.URI</span><span class="p">;</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">java.net.http.HttpClient</span><span class="p">;</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">java.net.http.HttpRequest</span><span class="p">;</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">java.net.http.HttpResponse</span><span class="p">;</span>
+
+<span class="kd">public</span><span class="w"> </span><span class="kd">class</span> <span class="nc">Test</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="kd">public</span><span class="w"> </span><span class="kd">static</span><span class="w"> </span><span class="kt">void</span><span class="w"> </span><span class="nf">main</span><span class="p">(</span><span class="n">String</span><span class="o">[]</span><span class="w"> </span><span class="n">args</span><span class="p">)</span><span class="w"> </span><span class="kd">throws</span><span class="w"> </span><span class="n">Exception</span><span class="w"> </span><span class="p">{</span>
+<span class="w">        </span><span class="n">HttpClient</span><span class="w"> </span><span class="n">client</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">HttpClient</span><span class="p">.</span><span class="na">newHttpClient</span><span class="p">();</span>
+<span class="w">        </span><span class="n">HttpRequest</span><span class="w"> </span><span class="n">request</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">HttpRequest</span><span class="p">.</span><span class="na">newBuilder</span><span class="p">()</span>
+<span class="w">            </span><span class="p">.</span><span class="na">uri</span><span class="p">(</span><span class="n">URI</span><span class="p">.</span><span class="na">create</span><span class="p">(</span><span class="s">&quot;http://localhost:8080/api/v1/data/contracts/001?security_type=IND&quot;</span><span class="p">))</span>
+<span class="w">            </span><span class="p">.</span><span class="na">GET</span><span class="p">()</span>
+<span class="w">            </span><span class="p">.</span><span class="na">build</span><span class="p">();</span>
+<span class="w">        </span><span class="n">HttpResponse</span><span class="o">&lt;</span><span class="n">String</span><span class="o">&gt;</span><span class="w"> </span><span class="n">response</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">client</span><span class="p">.</span><span class="na">send</span><span class="p">(</span><span class="n">request</span><span class="p">,</span><span class="w"> </span><span class="n">HttpResponse</span><span class="p">.</span><span class="na">BodyHandlers</span><span class="p">.</span><span class="na">ofString</span><span class="p">());</span>
+<span class="w">        </span><span class="n">System</span><span class="p">.</span><span class="na">out</span><span class="p">.</span><span class="na">println</span><span class="p">(</span><span class="n">response</span><span class="p">.</span><span class="na">body</span><span class="p">());</span>
+<span class="w">    </span><span class="p">}</span>
+<span class="p">}</span>
+</code></pre></div>
+
+    !!! done "Out"
+        <div class="highlight"><pre><span></span><code>{&quot;security_type&quot;:&quot;IND&quot;,&quot;exchange&quot;:&quot;TSE&quot;,&quot;code&quot;:&quot;001&quot;,&quot;symbol&quot;:&quot;TSE001&quot;,&quot;name&quot;:&quot;加權指數&quot;,&quot;category&quot;:&quot;&quot;,&quot;currency&quot;:&quot;TWD&quot;,&quot;delivery_month&quot;:&quot;&quot;,&quot;delivery_date&quot;:&quot;&quot;,&quot;strike_price&quot;:0.0,&quot;option_right&quot;:&quot;&quot;,&quot;underlying_kind&quot;:&quot;&quot;,&quot;underlying_code&quot;:&quot;&quot;,&quot;unit&quot;:0.0,&quot;multiplier&quot;:0,&quot;limit_up&quot;:0.0,&quot;limit_down&quot;:0.0,&quot;reference&quot;:0.0,&quot;update_date&quot;:&quot;&quot;,&quot;margin_trading_balance&quot;:0,&quot;short_selling_balance&quot;:0,&quot;day_trade&quot;:&quot;&quot;,&quot;target_code&quot;:&quot;&quot;}
+</code></pre></div>
+
+-->
 
 
 
@@ -2243,14 +3075,6 @@
     
     <a href="https://github.com/Sinotrade/Shioaji" target="_blank" rel="noopener" title="github.com" class="md-social__link">
       <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 480 512"><!--! Font Awesome Free 6.7.2 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2024 Fonticons, Inc.--><path d="M186.1 328.7c0 20.9-10.9 55.1-36.7 55.1s-36.7-34.2-36.7-55.1 10.9-55.1 36.7-55.1 36.7 34.2 36.7 55.1M480 278.2c0 31.9-3.2 65.7-17.5 95-37.9 76.6-142.1 74.8-216.7 74.8-75.8 0-186.2 2.7-225.6-74.8-14.6-29-20.2-63.1-20.2-95 0-41.9 13.9-81.5 41.5-113.6-5.2-15.8-7.7-32.4-7.7-48.8 0-21.5 4.9-32.3 14.6-51.8 45.3 0 74.3 9 108.8 36 29-6.9 58.8-10 88.7-10 27 0 54.2 2.9 80.4 9.2 34-26.7 63-35.2 107.8-35.2 9.8 19.5 14.6 30.3 14.6 51.8 0 16.4-2.6 32.7-7.7 48.2 27.5 32.4 39 72.3 39 114.2m-64.3 50.5c0-43.9-26.7-82.6-73.5-82.6-18.9 0-37 3.4-56 6-14.9 2.3-29.8 3.2-45.1 3.2-15.2 0-30.1-.9-45.1-3.2-18.7-2.6-37-6-56-6-46.8 0-73.5 38.7-73.5 82.6 0 87.8 80.4 101.3 150.4 101.3h48.2c70.3 0 150.6-13.4 150.6-101.3m-82.6-55.1c-25.8 0-36.7 34.2-36.7 55.1s10.9 55.1 36.7 55.1 36.7-34.2 36.7-55.1-10.9-55.1-36.7-55.1"/></svg>
-    </a>
-  
-    
-    
-    
-    
-    <a href="/zh/shioaji.pdf" target="_blank" rel="noopener" title="Download PDF" class="md-social__link">
-      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><!--! Font Awesome Free 6.7.2 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2024 Fonticons, Inc.--><path d="M0 64C0 28.7 28.7 0 64 0h160v128c0 17.7 14.3 32 32 32h128v144H176c-35.3 0-64 28.7-64 64v144H64c-35.3 0-64-28.7-64-64zm384 64H256V0zM176 352h32c30.9 0 56 25.1 56 56s-25.1 56-56 56h-16v32c0 8.8-7.2 16-16 16s-16-7.2-16-16V368c0-8.8 7.2-16 16-16m32 80c13.3 0 24-10.7 24-24s-10.7-24-24-24h-16v48zm96-80h32c26.5 0 48 21.5 48 48v64c0 26.5-21.5 48-48 48h-32c-8.8 0-16-7.2-16-16V368c0-8.8 7.2-16 16-16m32 128c8.8 0 16-7.2 16-16v-64c0-8.8-7.2-16-16-16h-16v96zm80-112c0-8.8 7.2-16 16-16h48c8.8 0 16 7.2 16 16s-7.2 16-16 16h-32v32h32c8.8 0 16 7.2 16 16s-7.2 16-16 16h-32v48c0 8.8-7.2 16-16 16s-16-7.2-16-16V368"/></svg>
     </a>
   
     

@@ -1,33 +1,80 @@
+用於查詢**證券帳戶**交易額度，需要先[登入](../../login)。
+
 提醒
 
 查詢時間為交易日 8:30~15:00。
 
-用於查詢證券帳戶交易額度，需要先[登入](../../login)。
-
-In
+TradingLimits
 
 ```
 api.trading_limits?
 
-```
-
-Out
-
-```
 Signature:
-api.trading_limits(
-    account: shioaji.account.Account = None,
-    timeout: int = 5000,
-    cb: Callable[[shioaji.position.TradingLimits], NoneType] = None,
-) -> shioaji.position.TradingLimits
-Docstring: query stock account trading limits
+    api.trading_limits(
+        account: shioaji.account.Account = None,
+        timeout: int = 5000,
+        cb: Callable[[shioaji.position.TradingLimits], NoneType] = None,
+    ) -> shioaji.position.TradingLimits
 
 ```
+
+Parameters
+
+```
+account: 選填，證券帳戶（省略則使用 api.stock_account）
+timeout: 逾時毫秒
+cb:      選填，callback 函式，timeout=0 時使用
+
+```
+
+TradingLimits
+
+```
+POST /api/v1/portfolio/trading_limits
+Content-Type: application/json
+
+{
+  "account_type": "S",
+  "broker_id": <string>,
+  "account_id": <string>,
+  "person_id": <string>
+}
+
+```
+
+Parameters
+
+```
+account_type: 帳戶類型，固定為 "S"
+broker_id:    選填，券商代碼
+account_id:   選填，帳戶代碼
+person_id:    選填，身分證字號
+
+```
+
+## 屬性
+
+TradingLimits
+
+```
+trading_limit (int):     電子交易總額度
+trading_used (int):      電子交易已用額度
+trading_available (int): 電子交易可用額度
+margin_limit (int):      融資額度上限
+margin_used (int):       融資已用額度
+margin_available (int):  融資可用額度
+short_limit (int):       融券額度上限
+short_used (int):        融券已用額度
+short_available (int):   融券可用額度
+
+```
+
+## 範例
 
 In
 
 ```
-api.trading_limits(api.stock_account)
+api.trading_limits(account=api.stock_account)
 
 ```
 
@@ -35,7 +82,6 @@ Out
 
 ```
 TradingLimits(
-    status=<FetchStatus.Fetched: 'Fetched'>,
     trading_limit=1000000,
     trading_used=0,
     trading_available=1000000,
@@ -49,18 +95,18 @@ TradingLimits(
 
 ```
 
-TradingLimits
+In
 
 ```
-status (FetchStatus): 資料回傳狀態
-trading_limit (int): 電子交易總額度
-trading_used (int): 電子交易已用額度
-trading_available (int): 電子交易可用額度
-margin_limit (int): 融資額度上限
-margin_used (int): 融資已用額度
-margin_available (int): 融資可用額度
-short_limit (int): 融券額度上限
-short_used (int): 融券已用額度
-short_available (int): 融券可用額度
+curl -X POST http://localhost:8080/api/v1/portfolio/trading_limits \
+  -H 'Content-Type: application/json' \
+  -d '{"account_type": "S", "broker_id": "YOUR_BROKER_ID", "account_id": "YOUR_ACCOUNT_ID"}'
+
+```
+
+Out
+
+```
+{"trading_limit":1000000,"trading_used":0,"trading_available":1000000,"margin_limit":0,"margin_used":0,"margin_available":0,"short_limit":0,"short_used":0,"short_available":0}
 
 ```

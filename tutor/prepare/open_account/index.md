@@ -4,3 +4,5 @@ To use Shioaji, you must have a SinoPac Securities account. If you do not have a
 1. If you do not have a bank account with Bank SinoPac, please open a bank account as your delivery account.
 1. Please select**我要開DAWHO+大戶投**, to open a bank account and a securities account.
 1. Complete bank and securities account opening.
+
+After completing, please continue to [Token & Certificate](../token/).

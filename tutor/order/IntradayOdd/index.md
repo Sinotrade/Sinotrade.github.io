@@ -1,25 +1,36 @@
+[Intraday Odd jupyter link](https://nbviewer.jupyter.org/github/Sinotrade/Sinotrade.github.io/blob/master/tutorial/stock_intraday_odd.ipynb)
+
 Reminder
 
-First, you need to [login](../../login/) and [activate CA](../../prepare/terms/).
-
-[place intraday odd order jupyter link](https://nbviewer.jupyter.org/github/Sinotrade/Sinotrade.github.io/blob/master/tutorial/stock_intraday_odd.ipynb)
+Before placing orders, you must first [login](../../login/) and [activate CA](../../prepare/terms/).
 
 ### Place Order
+
+Intraday odd lot orders work the same as [stock orders](../Stock/); the difference is `order_lot` must be set to `IntradayOdd`.
+
+Order
+
+```
+# contract
+contract = api.Contracts.Stocks.TSE.TSE2890
+# order
+order = sj.StockOrder(
+    action=sj.Action.Buy,
+    price=27.1,
+    quantity=10,
+    price_type=sj.StockPriceType.LMT,
+    order_lot=sj.StockOrderLot.IntradayOdd,
+    order_type=sj.OrderType.ROD,
+    order_cond=sj.StockOrderCond.Cash,
+    account=api.stock_account,
+)
+
+```
 
 In
 
 ```
-contract = api.Contracts.Stocks.TSE.TSE0050
-order = api.Order(
-    price=90,
-    quantity=10,
-    action=sj.constant.Action.Buy,
-    price_type=sj.constant.StockPriceType.LMT,
-    order_type=sj.constant.OrderType.ROD,     
-    order_lot=sj.constant.StockOrderLot.IntradayOdd, 
-    account=api.stock_account,
-)
-
+# place order
 trade = api.place_order(contract, order)
 trade
 
@@ -29,58 +40,121 @@ Out
 
 ```
 Trade(
-    contract=Stock(
-        exchange=<Exchange.TSE: 'TSE'>, 
-        code='0050', 
-        symbol='TSE0050', 
-        name='元大台灣50', 
-        category='00', 
-        limit_up=115.8, 
-        limit_down=94.8, 
-        eference=105.3, 
-        update_date='2020/09/21', 
-        margin_trading_balance=15390, 
-        short_selling_balance=2, 
-        day_trade=<DayTrade.Yes: 'Yes'>
-    ), 
+    contract=Contract(
+        security_type='STK',
+        exchange='TSE',
+        code='2890',
+        target_code=''
+    ),
     order=Order(
-        action=<Action.Buy: 'Buy'>, 
-        price=90.0, 
-        quantity=10, 
-        id='38e68afe', 
-        seqno='482283', 
-        ordno='WA313', 
-        account=Account(
-            account_type=<AccountType.Stock: 'S'>, 
-            person_id='YOUR_PERSON_ID', 
-            broker_id='9A95', 
-            account_id='0506112', 
-            signed=True
-        ), 
-        price_type=<StockPriceType.LMT: 'LMT'>, 
-        order_type=<OrderType.ROD: 'ROD'>, 
+        id='a647f23d',
+        action=<Action.Buy: 'Buy'>,
+        price=27.1,
+        quantity=10,
+        seqno='214115',
+        ordno='Y27FI',
+        order_type=<OrderType.ROD: 'ROD'>,
+        price_type=<PriceType.LMT: 'LMT'>,
+        account=StockAccount(
+            person_id='YOUR_PERSON_ID',
+            broker_id='YOUR_BROKER_ID',
+            account_id='YOUR_ACCOUNT_ID',
+            signed=true,
+            username='YOUR_USERNAME'
+        ),
+        order_cond=<StockOrderCond.Cash: 'Cash'>,
         order_lot=<StockOrderLot.IntradayOdd: 'IntradayOdd'>
-    ), 
+    ),
     status=OrderStatus(
-        id='38e68afe', 
-        status=<Status.Submitted: 'Submitted'>, 
-        status_code='00', 
-        order_datetime=datetime.datetime(2020, 9, 21, 14, 38, 51), 
-        deals=[]
+        id='a647f23d',
+        status=<OrderStatus.PendingSubmit: 'PendingSubmit'>,
+        status_code='0',
+        order_datetime=datetime.datetime(2026, 5, 20, 11, 24, 30, tzinfo=datetime.timezone(datetime.timedelta(hours=8))),
+        msg='委託成功'
     )
 )
 
 ```
 
+In
+
+```
+curl -X POST http://localhost:8080/api/v1/order/place_order \
+  -H 'Content-Type: application/json' \
+  -d '{
+    "contract": {"security_type": "STK", "exchange": "TSE", "code": "2890"},
+    "stock_order": {
+      "action": "Buy",
+      "price": 27.1,
+      "quantity": 10,
+      "price_type": "LMT",
+      "order_type": "ROD",
+      "order_lot": "IntradayOdd",
+      "order_cond": "Cash",
+      "account": {
+        "broker_id": "YOUR_BROKER_ID",
+        "account_id": "YOUR_ACCOUNT_ID"
+      }
+    }
+  }'
+
+```
+
+Out
+
+```
+{
+  "contract": {
+    "security_type": "STK",
+    "exchange": "TSE",
+    "code": "2890",
+    "target_code": ""
+  },
+  "order": {
+    "id": "90681873",
+    "seqno": "218626",
+    "ordno": "Y2CO1",
+    "action": "Buy",
+    "price": 27.1,
+    "quantity": 10,
+    "order_type": "ROD",
+    "price_type": "LMT",
+    "custom_field": "",
+    "account": {
+      "account_type": "S",
+      "person_id": "YOUR_PERSON_ID",
+      "broker_id": "YOUR_BROKER_ID",
+      "account_id": "YOUR_ACCOUNT_ID",
+      "signed": true,
+      "username": "YOUR_USERNAME"
+    },
+    "ca": "YOUR_CA_BASE64",
+    "order_cond": "Cash",
+    "order_lot": "IntradayOdd"
+  },
+  "status": {
+    "id": "90681873",
+    "status": "PendingSubmit",
+    "status_code": "0",
+    "web_id": "",
+    "order_ts": 1779248594.0,
+    "msg": "委託成功",
+    "modified_ts": 0.0,
+    "modified_price": 0.0,
+    "order_quantity": 0,
+    "deal_quantity": 0,
+    "cancel_quantity": 0,
+    "deals": []
+  }
+}
+
+```
+
 ### Update Order
 
-Attention
+Intraday odd lot orders **cannot update the price**; only quantity reduction is supported. See [stock orders](../Stock/) for details on updating an order.
 
-**Intraday Odd cannot update price.**
-
-`update_order` can only reduce the quantity of the order.
-
-Update Quantity
+In
 
 ```
 api.update_order(trade=trade, qty=2)
@@ -93,52 +167,110 @@ Out
 
 ```
 Trade(
-    contract=Stock(
-        exchange=<Exchange.TSE: 'TSE'>, 
-        code='0050', 
-        symbol='TSE0050', 
-        name='元大台灣50', 
-        category='00', 
-        limit_up=115.8, 
-        limit_down=94.8, 
-        reference=105.3, 
-        update_date='2020/09/21', 
-        margin_trading_balance=15390, 
-        short_selling_balance=2, 
-        day_trade=<DayTrade.Yes: 'Yes'>
-    ), 
+    contract=Contract(
+        security_type='STK',
+        exchange='TSE',
+        code='2890'
+    ),
     order=Order(
-        action=<Action.Buy: 'Buy'>, 
-        price=90.0, 
-        quantity=10, 
-        id='9b44c3b2', 
-        seqno='482293', 
-        ordno='WA328', 
-        account=Account(
-            account_type=<AccountType.Stock: 'S'>, 
-            person_id='YOUR_PERSON_ID', 
-            broker_id='9A95', 
-            account_id='0506112', 
-            signed=True
-        ), 
-    price_type=<StockPriceType.LMT: 'LMT'>, 
-    order_type=<OrderType.ROD: 'ROD'>, 
-    order_lot=<StockOrderLot.IntradayOdd: 'IntradayOdd'>), 
+        id='a647f23d',
+        action=<Action.Buy: 'Buy'>,
+        price=27.1,
+        quantity=10,
+        seqno='214115',
+        ordno='Y27FI',
+        order_type=<OrderType.ROD: 'ROD'>,
+        price_type=<PriceType.LMT: 'LMT'>,
+        account=StockAccount(
+            person_id='YOUR_PERSON_ID',
+            broker_id='YOUR_BROKER_ID',
+            account_id='YOUR_ACCOUNT_ID',
+            signed=true,
+            username=''
+        ),
+        order_cond=<StockOrderCond.Cash: 'Cash'>,
+        order_lot=<StockOrderLot.IntradayOdd: 'IntradayOdd'>
+    ),
     status=OrderStatus(
-        id='9b44c3b2', 
-        status=<Status.Submitted: 'Submitted'>, 
-        status_code='00', 
-        order_datetime=datetime.datetime(2020, 9, 21, 14, 54, 36), 
-        cancel_quantity=2, 
-        deals=[]
+        id='a647f23d',
+        status=<OrderStatus.Submitted: 'Submitted'>,
+        status_code='00',
+        order_datetime=datetime.datetime(2026, 5, 20, 11, 24, 30, tzinfo=datetime.timezone(datetime.timedelta(hours=8))),
+        web_id='137',
+        modified_time=datetime.datetime(2026, 5, 20, 11, 24, 35, tzinfo=datetime.timezone(datetime.timedelta(hours=8))),
+        order_quantity=2,
+        cancel_quantity=8
     )
 )
 
 ```
 
+In
+
+```
+curl -X POST http://localhost:8080/api/v1/order/update_qty \
+  -H 'Content-Type: application/json' \
+  -d '{
+    "trade_id": "YOUR_TRADE_ID",
+    "quantity": 2
+  }'
+
+```
+
+Out
+
+```
+{
+  "contract": {
+    "security_type": "STK",
+    "exchange": "TSE",
+    "code": "2890"
+  },
+  "order": {
+    "id": "90681873",
+    "seqno": "218626",
+    "ordno": "Y2CO1",
+    "action": "Buy",
+    "price": 27.1,
+    "quantity": 2,
+    "order_type": "ROD",
+    "price_type": "LMT",
+    "custom_field": "",
+    "account": {
+      "account_type": "S",
+      "person_id": "YOUR_PERSON_ID",
+      "broker_id": "YOUR_BROKER_ID",
+      "account_id": "YOUR_ACCOUNT_ID",
+      "signed": true,
+      "username": ""
+    },
+    "ca": "YOUR_CA_BASE64",
+    "order_cond": "Cash",
+    "order_lot": "IntradayOdd"
+  },
+  "status": {
+    "id": "90681873",
+    "status": "Submitted",
+    "status_code": "00",
+    "web_id": "137",
+    "order_ts": 1779248594.0,
+    "msg": "",
+    "modified_ts": 1779248627.0,
+    "modified_price": 0.0,
+    "order_quantity": 2,
+    "deal_quantity": 0,
+    "cancel_quantity": 8,
+    "deals": []
+  }
+}
+
+```
+
 ### Cancel Order
 
-Cancel Order
+See [stock orders](../Stock/) for details on cancelling an order.
+
+In
 
 ```
 api.cancel_order(trade)
@@ -151,46 +283,99 @@ Out
 
 ```
 Trade(
-    contract=Stock(
-        exchange=<Exchange.TSE: 'TSE'>, 
-        code='0050', 
-        symbol='TSE0050', 
-        name='元大台灣50', 
-        category='00', 
-        limit_up=115.8, 
-        limit_down=94.8, 
-        reference=105.3, 
-        update_date='2020/09/21', 
-        margin_trading_balance=15390, 
-        short_selling_balance=2, 
-        day_trade=<DayTrade.Yes: 'Yes'>
-    ), 
+    contract=Contract(
+        security_type='STK',
+        exchange='TSE',
+        code='2890'
+    ),
     order=Order(
-        action=<Action.Buy: 'Buy'>, 
-        price=90.0, 
-        quantity=10, 
-        id='9b44c3b2', 
-        seqno='482293', 
-        ordno='WA328', 
-        account=Account(
-            account_type=<AccountType.Stock: 'S'>, 
-            person_id='YOUR_PERSON_ID', 
-            broker_id='9A95', 
-            account_id='0506112', 
-            signed=True
-        ), 
-        price_type=<StockPriceType.LMT: 'LMT'>, 
-        order_type=<OrderType.ROD: 'ROD'>, 
+        id='a647f23d',
+        action=<Action.Buy: 'Buy'>,
+        price=27.1,
+        quantity=10,
+        seqno='214115',
+        ordno='Y27FI',
+        order_type=<OrderType.ROD: 'ROD'>,
+        price_type=<PriceType.LMT: 'LMT'>,
+        account=StockAccount(
+            person_id='YOUR_PERSON_ID',
+            broker_id='YOUR_BROKER_ID',
+            account_id='YOUR_ACCOUNT_ID',
+            signed=true,
+            username=''
+        ),
+        order_cond=<StockOrderCond.Cash: 'Cash'>,
         order_lot=<StockOrderLot.IntradayOdd: 'IntradayOdd'>
-    ), 
+    ),
     status=OrderStatus(
-        id='9b44c3b2', 
-        status=<Status.Cancelled: 'Cancelled'>, 
-        status_code='00', 
-        order_datetime=datetime.datetime(2020, 9, 21, 14, 54, 36), 
-        cancel_quantity=10,
-        deals=[]
+        id='a647f23d',
+        status=<OrderStatus.Cancelled: 'Cancelled'>,
+        status_code='00',
+        order_datetime=datetime.datetime(2026, 5, 20, 11, 24, 30, tzinfo=datetime.timezone(datetime.timedelta(hours=8))),
+        web_id='137',
+        modified_time=datetime.datetime(2026, 5, 20, 11, 24, 41, tzinfo=datetime.timezone(datetime.timedelta(hours=8))),
+        cancel_quantity=10
     )
 )
+
+```
+
+In
+
+```
+curl -X POST http://localhost:8080/api/v1/order/cancel_order \
+  -H 'Content-Type: application/json' \
+  -d '{
+    "trade_id": "YOUR_TRADE_ID"
+  }'
+
+```
+
+Out
+
+```
+{
+  "contract": {
+    "security_type": "STK",
+    "exchange": "TSE",
+    "code": "2890"
+  },
+  "order": {
+    "id": "90681873",
+    "seqno": "218626",
+    "ordno": "Y2CO1",
+    "action": "Buy",
+    "price": 27.1,
+    "quantity": 10,
+    "order_type": "ROD",
+    "price_type": "LMT",
+    "custom_field": "",
+    "account": {
+      "account_type": "S",
+      "person_id": "YOUR_PERSON_ID",
+      "broker_id": "YOUR_BROKER_ID",
+      "account_id": "YOUR_ACCOUNT_ID",
+      "signed": true,
+      "username": ""
+    },
+    "ca": "YOUR_CA_BASE64",
+    "order_cond": "Cash",
+    "order_lot": "IntradayOdd"
+  },
+  "status": {
+    "id": "90681873",
+    "status": "Cancelled",
+    "status_code": "00",
+    "web_id": "137",
+    "order_ts": 1779248594.0,
+    "msg": "",
+    "modified_ts": 1779248627.0,
+    "modified_price": 0.0,
+    "order_quantity": 0,
+    "deal_quantity": 0,
+    "cancel_quantity": 10,
+    "deals": []
+  }
+}
 
 ```

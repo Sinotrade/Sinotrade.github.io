@@ -1,4 +1,8 @@
-每次您使用 `place_order`、`update_order` 或者 `cancel_order` 時，預設皆會收到來自交易所的委託或成交回報。如果您不想收到任何回報通知，您可以參考[訂閱委託回報](../../login/#subscribe-trade)將其關閉。我們亦提供了處理委託及成交回報的介面。如果您正在建立自己的交易系統，這會非常有幫助。
+每次您使用 `place_order`、`update_order` 或者 `cancel_order` 時，皆會收到來自交易所的委託或成交回報。我們亦提供了處理委託及成交回報的介面。如果您正在建立自己的交易系統，這會非常有幫助。
+
+注意
+
+預約單時段（盤前）下單不會收到回報。預約單會在每個交易日 08:30 放單，屆時才會觸發委託回報。
 
 ## 處理委託及成交回報
 
@@ -7,10 +11,16 @@
 設定委託回報函式
 
 ```
+# 方式一：decorator
+@api.on_order
 def order_cb(stat, msg):
     print('my_order_callback')
     print(stat, msg)
 
+# 方式二：傳統寫法
+def order_cb(stat, msg):
+    print('my_order_callback')
+    print(stat, msg)
 api.set_order_callback(order_cb)
 
 ```
@@ -18,181 +28,324 @@ api.set_order_callback(order_cb)
 下單
 
 ```
+# 商品檔
 contract = api.Contracts.Stocks.TSE.TSE2890
-order = api.Order(
-    price=16, 
-    quantity=1, 
-    action=sj.constant.Action.Buy, 
-    price_type=sj.constant.StockPriceType.LMT, 
-    order_type=sj.constant.OrderType.ROD, 
-    order_lot=sj.constant.StockOrderLot.Common, 
-    custom_field="test",
-    account=api.stock_account
+# 委託內容
+order = sj.StockOrder(
+    action=sj.Action.Buy,
+    price=27.1,
+    quantity=2,
+    price_type=sj.StockPriceType.LMT,
+    order_type=sj.OrderType.ROD,
+    order_lot=sj.StockOrderLot.Common,
+    order_cond=sj.StockOrderCond.Cash,
+    account=api.stock_account,
 )
+# 下單
 trade = api.place_order(contract, order)
 
 ```
 
-```
-contract = api.Contracts.Stocks.TSE.TSE2890
-order = api.Order(
-    price=16, 
-    quantity=1, 
-    action=sj.constant.Action.Buy, 
-    price_type=sj.constant.TFTStockPriceType.LMT, 
-    order_type=sj.constant.TFTOrderType.ROD, 
-    order_lot=sj.constant.TFTStockOrderLot.Common, 
-    custom_field="test",
-    account=api.stock_account
-)
-trade = api.place_order(contract, order)
+#### 委託回報
 
-```
-
-### 委託回報
-
-委託回報
+Out
 
 ```
 my_order_callback
-OrderState.StockOrder {
+<OrderState.StockOrder: 'SORDER'> {
     'operation': {
-        'op_type': 'New', 
-        'op_code': '00', 
+        'op_type': 'New',
+        'op_code': '00',
         'op_msg': ''
-    }, 
+    },
     'order': {
-        'id': '97b63e2f', 
-        'seqno': '267677', 
-        'ordno': 'IM394', 
+        'id': '892f730b',
+        'seqno': '361840',
+        'ordno': 'Y23CL',
         'account': {
-            'account_type': 'S', 
-            'person_id': '', 
-            'broker_id': '9A95', 
-            'account_id': '1234567', 
-            'signed': True
-        }, 
-        'action': 'Buy', 
-        'price': 16.0, 
-        'quantity': 1, 
-        'order_type': 'ROD', 
-        'price_type': 'LMT', 
-        'order_cond': 'Cash', 
-        'order_lot': 'Common', 
-        'custom_field': 'test'
-    }, 
+            'account_type': 'S',
+            'person_id': '',
+            'broker_id': 'YOUR_BROKER_ID',
+            'account_id': 'YOUR_ACCOUNT_ID',
+            'signed': True,
+            'username': ''
+        },
+        'action': 'Buy',
+        'price': 26.85,
+        'quantity': 1,
+        'order_type': 'ROD',
+        'price_type': 'LMT',
+        'order_cond': 'Cash',
+        'order_lot': 'Common',
+        'custom_field': ''
+    },
     'status': {
-        'id': '97b63e2f', 
-        'exchange_ts': 1673576134.038, 
-        'modified_price': 0.0, 
-        'cancel_quantity': 0, 
-        'order_quantity': 1, 
+        'id': '892f730b',
+        'exchange_ts': 1779333919.92,
+        'modified_price': 0.0,
+        'cancel_quantity': 0,
+        'order_quantity': 1,
         'web_id': '137'
-    }, 
+    },
     'contract': {
-        'security_type': 'STK', 
-        'exchange': 'TSE', 
-        'code': '2890', 
-        'symbol': '', 
-        'name': '', 
+        'exchange': 'TSE',
+        'code': '2890',
+        'security_type': 'STK',
+        'symbol': '',
+        'name': '',
         'currency': 'TWD'
     }
 }
 
 ```
 
+#### 成交回報
+
+Out
+
 ```
 my_order_callback
-OrderState.TFTOrder {
-    'operation': {
-        'op_type': 'New', 
-        'op_code': '00', 
-        'op_msg': ''
-    }, 
-    'order': {
-        'id': '97b63e2f', 
-        'seqno': '267677', 
-        'ordno': 'IM394', 
-        'account': {
-            'account_type': 'S', 
-            'person_id': '', 
-            'broker_id': '9A95', 
-            'account_id': '1234567', 
-            'signed': True
-        }, 
-        'action': 'Buy', 
-        'price': 16.0, 
-        'quantity': 1, 
-        'order_type': 'ROD', 
-        'price_type': 'LMT', 
-        'order_cond': 'Cash', 
-        'order_lot': 'Common', 
-        'custom_field': 'test'
-    }, 
-    'status': {
-        'id': '97b63e2f', 
-        'exchange_ts': 1673576134.038, 
-        'modified_price': 0.0, 
-        'cancel_quantity': 0, 
-        'order_quantity': 1, 
-        'web_id': '137'
-    }, 
-    'contract': {
-        'security_type': 'STK', 
-        'exchange': 'TSE', 
-        'code': '2890', 
-        'symbol': '', 
-        'name': '', 
-        'currency': 'TWD'
+<OrderState.StockDeal: 'SDEAL'> {
+    'trade_id': '9c6ae2eb',
+    'seqno': '269866',
+    'ordno': 'IN497',
+    'exchange_seq': '669915',
+    'broker_id': 'YOUR_BROKER_ID',
+    'account_id': 'YOUR_ACCOUNT_ID',
+    'action': 'Buy',
+    'code': '2890',
+    'order_cond': 'Cash',
+    'order_lot': 'Common',
+    'price': 27.1,
+    'quantity': 2,
+    'web_id': '137',
+    'custom_field': '',
+    'ts': 1779333920.0
+}
+
+```
+
+接收委託成交回報
+
+```
+shioaji order events
+
+```
+
+此指令會持續輸出委託 / 成交回報，按 Ctrl+C 停止。
+
+下單（在另一個 terminal 執行）
+
+```
+shioaji order place \
+  --code 2890 \
+  --action buy \
+  --price 27.1 \
+  --quantity 2 \
+  --price-type lmt \
+  --order-type rod \
+  --order-lot common \
+  --account YOUR_BROKER_ID-YOUR_ACCOUNT_ID
+
+```
+
+**委託回報**
+
+Out
+
+```
+{
+  "state": "StockOrder",
+  "data": {
+    "StockOrder": {
+      "operation": {"op_type": "New", "op_code": "00", "op_msg": ""},
+      "order": {
+        "id": "892f730b",
+        "seqno": "361840",
+        "ordno": "Y23CL",
+        "account": {
+          "account_type": "S",
+          "person_id": "",
+          "broker_id": "YOUR_BROKER_ID",
+          "account_id": "YOUR_ACCOUNT_ID",
+          "signed": true,
+          "username": ""
+        },
+        "action": "Buy",
+        "price": 26.85,
+        "quantity": 1,
+        "order_type": "ROD",
+        "price_type": "LMT",
+        "order_cond": "Cash",
+        "order_lot": "Common",
+        "custom_field": ""
+      },
+      "status": {
+        "id": "892f730b",
+        "exchange_ts": 1779333919.92,
+        "modified_price": 0.0,
+        "cancel_quantity": 0,
+        "order_quantity": 1,
+        "web_id": "137"
+      },
+      "contract": {
+        "exchange": "TSE",
+        "code": "2890",
+        "security_type": "STK",
+        "symbol": "",
+        "name": "",
+        "currency": "TWD"
+      }
     }
+  }
 }
 
 ```
 
-### 成交回報
+**成交回報**
 
-成交回報
+Out
 
 ```
-my_order_callback
-OrderState.StockDeal {
-    'trade_id': '9c6ae2eb', 
-    'seqno': '269866', 
-    'ordno': 'IN497', 
-    'exchange_seq': '669915', 
-    'broker_id': '9A95', 
-    'account_id': '1234567', 
-    'action': 'Buy', 
-    'code': '2890', 
-    'order_cond': 'Cash', 
-    'order_lot': 'IntradayOdd', 
-    'price': 267.5, 
-    'quantity': 3, 
-    'web_id': '137', 
-    'custom_field': 'test', 
-    'ts': 1673577256.354
+{
+  "state": "StockDeal",
+  "data": {
+    "StockDeal": {
+      "trade_id": "9c6ae2eb",
+      "seqno": "269866",
+      "ordno": "IN497",
+      "exchange_seq": "669915",
+      "broker_id": "YOUR_BROKER_ID",
+      "account_id": "YOUR_ACCOUNT_ID",
+      "action": "Buy",
+      "code": "2890",
+      "order_cond": "Cash",
+      "order_lot": "Common",
+      "price": 27.1,
+      "quantity": 2,
+      "web_id": "137",
+      "custom_field": "",
+      "ts": 1779333920.0
+    }
+  }
 }
 
 ```
 
+接收委託成交回報
+
 ```
-my_order_callback
-OrderState.TFTDeal {
-    'trade_id': '9c6ae2eb', 
-    'seqno': '269866', 
-    'ordno': 'IN497', 
-    'exchange_seq': '669915', 
-    'broker_id': '9A95', 
-    'account_id': '1234567', 
-    'action': 'Buy', 
-    'code': '2890', 
-    'order_cond': 'Cash', 
-    'order_lot': 'IntradayOdd', 
-    'price': 267.5, 
-    'quantity': 3, 
-    'web_id': '137', 
-    'custom_field': 'test', 
-    'ts': 1673577256.354
+curl -N http://localhost:8080/api/v1/stream/data/order_event
+
+```
+
+此指令會持續輸出委託 / 成交回報，按 Ctrl+C 停止。
+
+下單（在另一個 terminal 執行）
+
+```
+curl -X POST http://localhost:8080/api/v1/order/place_order \
+  -H 'Content-Type: application/json' \
+  -d '{
+    "contract": {"security_type": "STK", "exchange": "TSE", "code": "2890"},
+    "stock_order": {
+      "action": "Buy",
+      "price": 27.1,
+      "quantity": 2,
+      "price_type": "LMT",
+      "order_type": "ROD",
+      "order_lot": "Common",
+      "order_cond": "Cash",
+      "account": {
+        "broker_id": "YOUR_BROKER_ID",
+        "account_id": "YOUR_ACCOUNT_ID"
+      }
+    }
+  }'
+
+```
+
+**委託回報**
+
+Out
+
+```
+event:order_event
+data:{
+  "state": "StockOrder",
+  "data": {
+    "StockOrder": {
+      "operation": {"op_type": "New", "op_code": "00", "op_msg": ""},
+      "order": {
+        "id": "892f730b",
+        "seqno": "361840",
+        "ordno": "Y23CL",
+        "account": {
+          "account_type": "S",
+          "person_id": "",
+          "broker_id": "YOUR_BROKER_ID",
+          "account_id": "YOUR_ACCOUNT_ID",
+          "signed": true,
+          "username": ""
+        },
+        "action": "Buy",
+        "price": 26.85,
+        "quantity": 1,
+        "order_type": "ROD",
+        "price_type": "LMT",
+        "order_cond": "Cash",
+        "order_lot": "Common",
+        "custom_field": ""
+      },
+      "status": {
+        "id": "892f730b",
+        "exchange_ts": 1779333919.92,
+        "modified_price": 0.0,
+        "cancel_quantity": 0,
+        "order_quantity": 1,
+        "web_id": "137"
+      },
+      "contract": {
+        "exchange": "TSE",
+        "code": "2890",
+        "security_type": "STK",
+        "symbol": "",
+        "name": "",
+        "currency": "TWD"
+      }
+    }
+  }
+}
+
+```
+
+**成交回報**
+
+Out
+
+```
+event:order_event
+data:{
+  "state": "StockDeal",
+  "data": {
+    "StockDeal": {
+      "trade_id": "9c6ae2eb",
+      "seqno": "269866",
+      "ordno": "IN497",
+      "exchange_seq": "669915",
+      "broker_id": "YOUR_BROKER_ID",
+      "account_id": "YOUR_ACCOUNT_ID",
+      "action": "Buy",
+      "code": "2890",
+      "order_cond": "Cash",
+      "order_lot": "Common",
+      "price": 27.1,
+      "quantity": 2,
+      "web_id": "137",
+      "custom_field": "",
+      "ts": 1779333920.0
+    }
+  }
 }
 
 ```

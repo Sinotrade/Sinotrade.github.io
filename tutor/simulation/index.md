@@ -1,16 +1,41 @@
-Users can first familiarize themselves with the API services in the simulation mode, which can avoid the loss of property caused by operational errors in the production environment.
+Practice with our services in the simulation environment first to avoid mistakes that could cause financial loss in production. This page explains how to enter simulation mode.
 
-Simulation
+## Enter Simulation Mode
 
 ```
-import shioaji as sj
-api = sj.Shioaji(simulation=True)
+api = sj.Shioaji(simulation=True)  # simulation mode
+accounts = api.login(
+    api_key="YOUR_API_KEY",     # change this
+    secret_key="YOUR_SECRET_KEY"  # change this
+)
+
+```
+
+```
+# .env (in the working directory) should contain:
+SJ_API_KEY=YOUR_API_KEY                # change this
+SJ_SEC_KEY=YOUR_SECRET_KEY             # change this
+SJ_PRODUCTION=false                    # simulation mode
+
+# Start the server (auto-reads .env and logs in)
+shioaji server start
+
+```
+
+```
+# .env (in the working directory) should contain:
+SJ_API_KEY=YOUR_API_KEY                # change this
+SJ_SEC_KEY=YOUR_SECRET_KEY             # change this
+SJ_PRODUCTION=false                    # simulation mode
+
+# Start the server in a terminal (auto-reads .env and logs in)
+shioaji server start
 
 ```
 
 ## Available APIs
 
-Data
+Market data
 
 ```
 1. quote.subscribe
@@ -24,7 +49,7 @@ Data
 
 ```
 
-Order
+Orders
 
 ```
 1. place_order
@@ -35,7 +60,7 @@ Order
 
 ```
 
-Account
+Accounting
 
 ```
 1. list_positions

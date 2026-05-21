@@ -1,16 +1,49 @@
+用於查詢公告的**處置股**與**注意股**名單。
+
 ## 處置股
 
-Disposition Stocks
+punish
 
 ```
->> api.punish?
+api.punish?
 
 Signature:
-api.punish(
-    timeout: int = 5000,
-    cb: Callable[[shioaji.data.Punish], NoneType] = None,
-) -> shioaji.data.Punish
-Docstring: get punish information
+    api.punish(
+        timeout: int = 5000,
+        cb: Callable[[shioaji.data.Punish], NoneType] = None,
+    ) -> shioaji.data.Punish
+
+```
+
+Parameters
+
+```
+timeout: 逾時毫秒
+cb:      callback 函式，timeout=0 時使用
+
+```
+
+punish
+
+```
+GET /api/v1/data/regulatory_punish
+
+```
+
+### 屬性
+
+Punish
+
+```
+code (list[str]):            商品代碼
+start_date (list[date]):     處置開始日期
+end_date (list[date]):       處置結束日期
+updated_at (list[datetime]): 更新時間
+interval (list[str]):        撮合間隔
+unit_limit (list[float]):    單筆委託上限
+total_limit (list[float]):   單日委託上限
+description (list[str]):     處置內容
+announced_date (list[date]): 公告日期
 
 ```
 
@@ -19,56 +52,64 @@ Docstring: get punish information
 In
 
 ```
-punish = api.punish()
-punish
+api.punish()
 
 ```
 
 Out
 
 ```
-Punish(
-    code=['2349', '2408', ...],
-    start_date=[datetime.date(2025, 12, 17), datetime.date(2025, 12, 8), ...],
-    end_date=[datetime.date(2025, 12, 31), datetime.date(2025, 12, 19), ...],
-    updated_at=[datetime.datetime(2025, 12, 16, 18, 18, 20), datetime.datetime(2025, 12, 16, 18, 18, 20), ...],
-    interval=['5分鐘', '5分鐘', ...],
-    unit_limit=[10.0, 10.0, ...],
-    total_limit=[30.0, 30.0, ...],
-    description=['...', '...', ...],
-    announced_date=[datetime.date(2025, 12, 16), datetime.date(2025, 12, 5), ...]
+Punish[86](
+    code=["1591", "1595", ...],
+    start_date=["2026-05-21", "2026-05-11", ...],
+    end_date=["2026-06-03", "2026-05-22", ...],
+    updated_at=["2026-05-20T18:18:31", "2026-05-08T18:18:39", ...],
+    interval=["25分鐘", "5分鐘", ...],
+    unit_limit=[None, 10, ...],
+    total_limit=[None, 30, ...],
+    description=["...", "...", ...],
+    announced_date=["2026-05-20", "2026-05-08", ...]
 )
 
 ```
 
-轉成DataFrame
+**轉成 DataFrame（以 polars 示範）**
 
 In
 
 ```
-df = pd.DataFrame(punish.__dict__)
-df
+import polars as pl
+punish = api.punish()
+df = pl.DataFrame(punish.dict())
+df.head()
 
 ```
 
 Out
 
-| code | start_date | end_date | updated_at | interval | unit_limit | total_limit | description | announced_date | | --- | --- | --- | --- | --- | --- | --- | --- | --- | | 2349 | 2025-12-17 | 2025-12-31 | 2025-12-16 18:18:20 | 5分鐘 | 10.0 | 30.0 | ... | 2025-12-16 | | 2408 | 2025-12-08 | 2025-12-19 | 2025-12-16 18:18:20 | 5分鐘 | 10.0 | 30.0 | ... | 2025-12-05 |
+| code | start_date | end_date | updated_at | interval | unit_limit | total_limit | description | announced_date | | --- | --- | --- | --- | --- | --- | --- | --- | --- | | 1591 | 2026-05-21 | 2026-06-03 | 2026-05-20T18:18:31 | 25分鐘 | null | null | ... | 2026-05-20 | | 1595 | 2026-05-11 | 2026-05-22 | 2026-05-08T18:18:39 | 5分鐘 | 10 | 30 | ... | 2026-05-08 |
 
-### 屬性
-
-Punish
+In
 
 ```
-code (list[str]): 商品代碼
-start_date (list[date]): 處置開始日期
-end_date (list[date]): 處置結束日期
-updated_at (list[datetime]): 更新時間
-interval (list[str]): 撮合間隔
-unit_limit (list[float]): 單筆委託上限
-total_limit (list[float]): 單日委託上限
-description (list[str]): 處置內容
-announced_date (list[date]): 公告日期
+curl http://localhost:8080/api/v1/data/regulatory_punish
+
+```
+
+Out
+
+```
+{
+  "code": ["1591", "1595", "..."],
+  "start_date": ["2026-05-21", "2026-05-11", "..."],
+  "end_date": ["2026-06-03", "2026-05-22", "..."],
+  "updated_at": ["2026-05-20T18:18:31", "2026-05-08T18:18:39", "..."],
+  "interval": ["25分鐘", "5分鐘", "..."],
+  "unit_limit": [null, 10, "..."],
+  "total_limit": [null, 30, "..."],
+  "description": ["...", "...", "..."],
+  "announced_date": ["2026-05-20", "2026-05-08", "..."]
+}
 
 ```
 
@@ -76,17 +117,44 @@ ______________________________________________________________________
 
 ## 注意股
 
-Attention Stocks
+notice
 
 ```
->> api.notice?
+api.notice?
 
 Signature:
-api.notice(
-    timeout: int = 5000,
-    cb: Callable[[shioaji.data.Notice], NoneType] = None,
-) -> shioaji.data.Notice
-Docstring: get notice information
+    api.notice(
+        timeout: int = 5000,
+        cb: Callable[[shioaji.data.Notice], NoneType] = None,
+    ) -> shioaji.data.Notice
+
+```
+
+Parameters
+
+```
+timeout: 逾時毫秒
+cb:      callback 函式，timeout=0 時使用
+
+```
+
+notice
+
+```
+GET /api/v1/data/regulatory_notice
+
+```
+
+### 屬性
+
+Notice
+
+```
+code (list[str]):            商品代碼
+updated_at (list[datetime]): 更新時間
+close (list[float]):         收盤價
+reason (list[str]):          注意交易資訊
+announced_date (list[date]): 公告日期
 
 ```
 
@@ -95,47 +163,55 @@ Docstring: get notice information
 In
 
 ```
-notice = api.notice()
-notice
+api.notice()
 
 ```
 
 Out
 
 ```
-Notice(
-    code=['089508', '2349', ...],
-    updated_at=[datetime.datetime(2025, 12, 16, 18, 18, 19), datetime.datetime(2025, 12, 16, 18, 18, 19), ...],
-    close=[9.85, 16.2, ...],
-    reason=['最近六個營業日累積收盤價漲幅達39.34%﹝第一款﹞。', '最近六個營業日累積收盤價漲幅達41.59%﹝第一款﹞...', ...],
-    announced_date=[datetime.date(2025, 12, 16), datetime.date(2025, 12, 16), ...]
+Notice[2](
+    code=["6775", "6990"],
+    updated_at=["2026-05-21T17:18:15", "2026-05-21T17:18:15"],
+    close=[51.16, 153.29],
+    reason=["...", "..."],
+    announced_date=["2026-05-21", "2026-05-21"]
 )
 
 ```
 
-轉成DataFrame
+**轉成 DataFrame（以 polars 示範）**
 
 In
 
 ```
-df = pd.DataFrame(notice.__dict__)
-df
+import polars as pl
+notice = api.notice()
+df = pl.DataFrame(notice.dict())
+df.head()
 
 ```
 
 Out
 
-| code | updated_at | close | reason | announced_date | | --- | --- | --- | --- | --- | | 089508 | 2025-12-16 18:18:19 | 9.85 | 最近六個營業日累積收盤價漲幅達39.34%﹝第一款﹞。 | 2025-12-16 | | 2349 | 2025-12-16 18:18:19 | 16.2 | 最近六個營業日累積收盤價漲幅達41.59%﹝第一款﹞... | 2025-12-16 |
+| code | updated_at | close | reason | announced_date | | --- | --- | --- | --- | --- | | 6775 | 2026-05-21T17:18:15 | 51.16 | ... | 2026-05-21 | | 6990 | 2026-05-21T17:18:15 | 153.29 | ... | 2026-05-21 |
 
-### 屬性
-
-Notice
+In
 
 ```
-code (list[str]): 商品代碼
-updated_at (list[datetime]): 更新時間
-close (list[float]): 收盤價
-reason (list[str]): 注意交易資訊
-announced_date (list[date]): 公告日期
+curl http://localhost:8080/api/v1/data/regulatory_notice
+
+```
+
+Out
+
+```
+{
+  "code": ["6775", "6990"],
+  "updated_at": ["2026-05-21T17:18:15", "2026-05-21T17:18:15"],
+  "close": [51.16, 153.29],
+  "reason": ["...", "..."],
+  "announced_date": ["2026-05-21", "2026-05-21"]
+}
 
 ```

@@ -1,46 +1,89 @@
-You need to [login](../../login) first.
+Query **stock / futures-options account** realized profit/loss. [Login](../../login) is required first.
 
-## Profit Loss
+## Realized Profit/Loss
 
-The feature of list_profit_loss is used to query realized profit loss of account.
-
-In
+list_profit_loss
 
 ```
 api.list_profit_loss?
 
-```
-
-Out
-
-```
 Signature:
     api.list_profit_loss(
         account: shioaji.account.Account = None,
         begin_date: str = '',
         end_date: str = '',
-        unit: shioaji.constant.Unit = <Unit.Common: 'Common'>,
+        unit: shioaji.Unit = <Unit.Common: 'Common'>,
         timeout: int = 5000,
-        cb: Callable[[List[shioaji.position.ProfitLoss]], NoneType] = None,
-    ) -> List[shioaji.position.ProfitLoss]
-Docstring:
-    query account of profit loss
-
-    Args:
-        account (:obj:Account): 
-            choice the account from listing account (Default: stock account)
-        begin_date (str): the start date of query profit loss (Default: today)
-        end_date (str): the end date of query profit loss (Default: today)
+        cb: Callable[[List[Union[shioaji.position.StockProfitLoss, shioaji.position.FutureProfitLoss]]], NoneType] = None,
+    ) -> List[Union[shioaji.position.StockProfitLoss, shioaji.position.FutureProfitLoss]]
 
 ```
 
-Enter the time interval you want to query. `begin_date` is the start time, and `end_date` is the end time. `unit` is the quantity unit, where `Common` represents whole shares and `Share` represents fractional shares.
+Parameters
+
+```
+account:    stock or futures-options account
+begin_date: query begin date, format YYYY-MM-DD
+end_date:   query end date, format YYYY-MM-DD
+unit:       Unit.Common (default) or Unit.Share (odd lot)
+timeout:    timeout in milliseconds
+cb:         callback function, used when timeout=0
+
+```
+
+list_profit_loss
+
+```
+POST /api/v1/portfolio/profit_loss
+Content-Type: application/json
+
+{
+  "account_type": "S",
+  "begin_date": "2026-05-01",
+  "end_date": "2026-05-31",
+  "unit": "Common",
+  "broker_id": <string>,
+  "account_id": <string>,
+  "person_id": <string>
+}
+
+```
+
+Parameters
+
+```
+account_type: "S" (stock / default) or "F" (futures and options)
+begin_date:   query begin date, format YYYY-MM-DD
+end_date:     query end date, format YYYY-MM-DD
+unit:         "Common" (default) or "Share" (odd lot)
+broker_id:    broker ID
+account_id:   account ID
+person_id:    personal ID
+
+```
+
+### Stock
+
+StockProfitLoss
+
+```
+id (int):              position ID (use to query detail)
+code (str):            symbol code
+quantity (int):        quantity
+pnl (float):           profit/loss
+date (str):            trade date
+dseq (str):            order sequence
+price (float):         trade price
+pr_ratio (float):      profit/loss ratio
+cond (StockOrderCond): {Cash, Netting, MarginTrading, ShortSelling, Emerging}
+seqno (str):           order serial number
+
+```
 
 In
 
 ```
-profitloss = api.list_profit_loss(api.stock_account,'2020-05-05','2020-05-30')
-profitloss
+api.list_profit_loss(api.stock_account, '2026-05-01', '2026-05-21')
 
 ```
 
@@ -49,104 +92,253 @@ Out
 ```
 [
     StockProfitLoss(
-        id=0, 
-        code='2890', 
-        seqno='14816', 
-        dseq='ID111', 
-        quantity=1, 
-        price=10.1, 
-        pnl=1234.0, 
-        pr_ratio=0.1237, 
-        cond='Cash', 
-        date='2020-05-22'
-    )
+        id=0,
+        code='2890',
+        quantity=1,
+        pnl=1000,
+        date='2026-05-05',
+        dseq='Y0TR2',
+        price=31,
+        pr_ratio=0.0333,
+        cond=<StockOrderCond.Cash: 'Cash'>,
+        seqno='113382',
+    ),
+    StockProfitLoss(
+        id=1,
+        code='2330',
+        quantity=1,
+        pnl=-20000,
+        date='2026-05-06',
+        dseq='Y20K2',
+        price=1980,
+        pr_ratio=-0.01,
+        cond=<StockOrderCond.Cash: 'Cash'>,
+        seqno='184354',
+    ),
 ]
 
 ```
 
-To DataFrame
+**Convert to DataFrame (polars example)**
 
 In
 
 ```
-df = pd.DataFrame(pnl.__dict__ for pnl in profitloss)
+import polars as pl
+profit_loss = api.list_profit_loss(api.stock_account, '2026-05-01', '2026-05-21')
+df = pl.DataFrame(p.dict() for p in profit_loss)
 df
 
 ```
 
 Out
 
-| id | code | cond | date | pnl | pr_ratio | price | quantity | seqno | dseq | | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | | 0 | 2890 | StockOrderCond.Cash | 2020-05-22 | 1000.0 | 0.1237 | 10.1 | 1 | 14816 | ID111 |
-
-StockProfitLoss
-
-```
-id (int): use to find detail
-code (str): contract id
-seqno (str): seqno no
-dseq (str): seqno no
-quantity (int): quantity
-price (float): price
-pnl (float): profit and loss
-pr_ratio (float): profit rate
-cond (StockOrderCond): {Cash, Netting, MarginTrading, ShortSelling}
-date (str): trade date
-
-```
-
-FutureProfitLoss
-
-```
-id (int): use to find detail
-code (str): contract id
-quantity (int): quantity
-pnl (float): profit and loss
-date (str): trade date
-direction (Action): {Buy, Sell}
-entry_price (int): entry price
-cover_price (int): cover price
-tax (int): tax
-fee (int): transaction fee
-
-```
-
-## Profit Loss Detail
-
-The feature of list_profit_loss_detail is used to query profit loss detail of account. `unit` is the quantity unit, where `Common` represents whole shares and `Share` represents fractional shares.
+| id | code | quantity | pnl | date | dseq | price | pr_ratio | cond | seqno | | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | | 0 | 2890 | 1 | 1000 | 2026-05-05 | Y0TR2 | 31 | 0.0333 | Cash | 113382 | | 1 | 2330 | 1 | -20000 | 2026-05-06 | Y20K2 | 1980 | -0.01 | Cash | 184354 |
 
 In
 
 ```
-api.list_profit_loss_detail?
+curl -X POST http://localhost:8080/api/v1/portfolio/profit_loss \
+  -H 'Content-Type: application/json' \
+  -d '{"account_type": "S", "begin_date": "2026-05-01", "end_date": "2026-05-21", "broker_id": "YOUR_BROKER_ID", "account_id": "YOUR_ACCOUNT_ID"}'
 
 ```
 
 Out
 
 ```
-Signature:
-api.list_profit_loss_detail(
-    account: shioaji.account.Account = None,
-    detail_id: int = 0,
-    unit: shioaji.constant.Unit = <Unit.Common: 'Common'>,
-    timeout: int = 5000,
-    cb: Callable[[List[Union[shioaji.position.StockProfitDetail, shioaji.position.FutureProfitDetail]]], NoneType] = None,
-) -> List[Union[shioaji.position.StockProfitDetail, shioaji.position.FutureProfitDetail]]
-Docstring:
-query account of profit loss detail
+[
+  {
+    "id": 0,
+    "code": "2890",
+    "quantity": 1,
+    "pnl": 1000.0,
+    "date": "2026-05-05",
+    "dseq": "Y0TR2",
+    "price": 31.0,
+    "pr_ratio": 0.0333,
+    "cond": "Cash",
+    "seqno": "113382"
+  },
+  {
+    "id": 1,
+    "code": "2330",
+    "quantity": 1,
+    "pnl": -20000.0,
+    "date": "2026-05-06",
+    "dseq": "Y20K2",
+    "price": 1980.0,
+    "pr_ratio": -0.01,
+    "cond": "Cash",
+    "seqno": "184354"
+  }
+]
 
-Args:
-    account (:obj:Account):
-        choice the account from listing account (Default: stock account)
-    detail_id (int): the id is from ProfitLoss object, ProfitLoss is from list_profit_loss
+```
+
+### Futures and Options
+
+FutureProfitLoss
+
+```
+id (int):           position ID (use to query detail)
+code (str):         symbol code
+quantity (int):     quantity
+pnl (float):        profit/loss
+date (str):         trade date
+entry_price (float): entry price
+cover_price (float): cover price
+tax (int):          transaction tax
+fee (int):          transaction fee
+direction (Action): buy/sell {Buy, Sell}
 
 ```
 
 In
 
 ```
-profitloss_detail = api.list_profit_loss_detail(api.stock_account, 2)
-profitloss_detail
+api.list_profit_loss(api.futopt_account, '2026-05-01', '2026-05-21')
+
+```
+
+Out
+
+```
+[
+    FutureProfitLoss(
+        id=0,
+        code='TXO20260620200C',
+        quantity=3,
+        pnl=-750.0,
+        date='2026-05-10',
+        entry_price=131.0,
+        cover_price=126.0,
+        tax=5,
+        fee=120,
+        direction=<Action.Buy: 'Buy'>,
+    ),
+]
+
+```
+
+In
+
+```
+curl -X POST http://localhost:8080/api/v1/portfolio/profit_loss \
+  -H 'Content-Type: application/json' \
+  -d '{"account_type": "F", "begin_date": "2026-05-01", "end_date": "2026-05-21", "broker_id": "YOUR_BROKER_ID", "account_id": "YOUR_ACCOUNT_ID"}'
+
+```
+
+Out
+
+```
+[
+  {
+    "id": 0,
+    "code": "TXO20260620200C",
+    "quantity": 3,
+    "pnl": -750.0,
+    "date": "2026-05-10",
+    "entry_price": 131.0,
+    "cover_price": 126.0,
+    "tax": 5,
+    "fee": 120,
+    "direction": "Buy"
+  }
+]
+
+```
+
+## Realized Profit/Loss — Detail
+
+`detail_id` is the `id` returned from [Realized Profit/Loss](#realized-profitloss); use it to query the detail of that position.
+
+list_profit_loss_detail
+
+```
+api.list_profit_loss_detail?
+
+Signature:
+    api.list_profit_loss_detail(
+        account: shioaji.account.Account = None,
+        detail_id: int = 0,
+        unit: shioaji.Unit = <Unit.Common: 'Common'>,
+        timeout: int = 5000,
+        cb: Callable[[List[Union[shioaji.position.StockProfitDetail, shioaji.position.FutureProfitDetail]]], NoneType] = None,
+    ) -> List[Union[shioaji.position.StockProfitDetail, shioaji.position.FutureProfitDetail]]
+
+```
+
+Parameters
+
+```
+account:   stock or futures-options account
+detail_id: position ID (from list_profit_loss result)
+unit:      Unit.Common (default) or Unit.Share (odd lot)
+timeout:   timeout in milliseconds
+cb:        callback function, used when timeout=0
+
+```
+
+list_profit_loss_detail
+
+```
+POST /api/v1/portfolio/profit_loss_detail
+Content-Type: application/json
+
+{
+  "account_type": "S",
+  "detail_id": <int>,
+  "unit": "Common",
+  "broker_id": <string>,
+  "account_id": <string>,
+  "person_id": <string>
+}
+
+```
+
+Parameters
+
+```
+account_type: "S" (stock / default) or "F" (futures and options)
+detail_id:    position ID (from list_profit_loss result)
+unit:         "Common" (default) or "Share" (odd lot)
+broker_id:    broker ID
+account_id:   account ID
+person_id:    personal ID
+
+```
+
+### Stock
+
+StockProfitDetail
+
+```
+date (str):                  trade date
+code (str):                  symbol code
+quantity (float):            quantity
+dseq (str):                  order sequence
+fee (int):                   transaction fee
+tax (int):                   transaction tax
+currency (str):              currency {TWD, USD, HKD, EUR, CAD, BAS}
+price (float):               trade price
+cost (int):                  cost
+rep_margintrading_amt (int): repaid margin amount
+rep_collateral (int):        repaid collateral
+rep_margin (int):            repaid margin
+shortselling_fee (int):      short selling fee
+ex_dividend_amt (int):       ex-dividends amount
+interest (int):              interest
+trade_type (TradeType):      {Common, DayTrade}
+cond (StockOrderCond):       {Cash, Netting, MarginTrading, ShortSelling, Emerging}
+
+```
+
+In
+
+```
+api.list_profit_loss_detail(api.stock_account, detail_id=0)
 
 ```
 
@@ -155,121 +347,247 @@ Out
 ```
 [
     StockProfitDetail(
-        date='2020-01-01', 
-        code='2890', 
-        quantity=1, 
-        dseq='IX000', 
-        fee=20, 
-        tax=0, 
-        currency='TWD', 
-        price=10.8, 
-        cost=10820, 
-        rep_margintrading_amt=0, 
-        rep_collateral=0, 
-        rep_margin=0, 
-        shortselling_fee=0, 
-        ex_dividend_amt=0, 
-        interest=0
-    )
+        date='2026-04-23',
+        code='2890',
+        quantity=1,
+        dseq='Y0O7E',
+        fee=119,
+        tax=0,
+        currency='TWD',
+        price=30.0,
+        cost=30119,
+        rep_margintrading_amt=0,
+        rep_collateral=0,
+        rep_margin=0,
+        shortselling_fee=0,
+        ex_dividend_amt=0,
+        interest=0,
+        trade_type=<TradeType.Common: 'Common'>,
+        cond=<StockOrderCond.Cash: 'Cash'>,
+    ),
 ]
 
 ```
 
-To DataFrame
-
 In
 
 ```
-df = pd.DataFrame(pnl.__dict__ for pnl in profitloss_detail)
-df
+curl -X POST http://localhost:8080/api/v1/portfolio/profit_loss_detail \
+  -H 'Content-Type: application/json' \
+  -d '{"account_type": "S", "detail_id": 0, "broker_id": "YOUR_BROKER_ID", "account_id": "YOUR_ACCOUNT_ID"}'
 
 ```
 
 Out
 
-| date | code | quantity | dseq | fee | tax | currency | price | cost | rep_margintrading_amt | rep_collateral | rep_margin | shortselling_fee | ex_dividend_amt | interest | trade_type | cond | | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | | 2020-01-01 | 2890 | 1 | IX000 | 20 | 0 | TWD | 10.8 | 10820 | 0 | 0 | 0 | 0 | 0 | 0 | Common | Cash |
-
-StockProfitDetail
+```
+[
+  {
+    "date": "2026-04-23",
+    "code": "2890",
+    "quantity": 1.0,
+    "dseq": "Y0O7E",
+    "fee": 119,
+    "tax": 0,
+    "currency": "TWD",
+    "price": 30.0,
+    "cost": 30119,
+    "rep_margintrading_amt": 0,
+    "rep_collateral": 0,
+    "rep_margin": 0,
+    "shortselling_fee": 0,
+    "ex_dividend_amt": 0,
+    "interest": 0,
+    "trade_type": "Common",
+    "cond": "Cash"
+  }
+]
 
 ```
-date (str): trade date
-code (str): contract id
-quantity (int): quantity
-dseq (str): detail seqno no
-fee (int): fee
-tax (int): trading tax
-currency (str): {NTD, USD, HKD, EUR, CAD, BAS}
-price (float): price
-cost (int): cost of price
-rep_margintrading_amt (int): repay amount of margin trading
-rep_collateral (int): repay collateral
-rep_margin (int): repay margin
-shortselling_fee (int): fee of short selling
-ex_dividend_amt: ex-dividend amount
-interest (int): interest
-trade_type (TradeType): {Common, DayTrade}
-cond (StockOrderCond): {Cash, Netting, MarginTrading, ShortSelling}
 
-```
+### Futures and Options
 
 FutureProfitDetail
 
 ```
-date (str): trade date
-code (str): contract id
-quantity (int): quantity
-dseq (str): detail seqno no
-fee (int): fee
-tax (int): trading tax
-currency (str): {NTD, USD, HKD, EUR, CAD, BAS}
-direction (Action): {Buy, Sell}
-entry_date (str): entry date
-entry_price (int): entry price
-cover_price (int): cover price
-pnl (int): profit and loss
+date (str):           trade date
+code (str):           symbol code
+quantity (int):       quantity
+dseq (str):           order sequence
+fee (float):          transaction fee
+tax (float):          transaction tax
+currency (str):       currency {TWD, USD, HKD, EUR, CAD, BAS}
+direction (Action):   buy/sell {Buy, Sell}
+entry_date (str):     entry date
+entry_quantity (int): entry quantity
+entry_seqno (str):    entry order serial number
+entry_price (float):  entry price
+cover_price (float):  cover price
+pnl (int):            profit/loss
 
 ```
-
-## Profit Loss Summary
-
-The feature of list_profit_loss_summary is used to query summary of profit loss for a period of time.
 
 In
 
 ```
-api.list_profit_loss_summary?
+api.list_profit_loss_detail(api.futopt_account, detail_id=0)
 
 ```
 
 Out
 
 ```
-Signature:
-api.list_profit_loss_summary(
-    account: shioaji.account.Account = None,
-    begin_date: str = '',
-    end_date: str = '',
-    timeout: int = 5000,
-    cb: Callable[[ProfitLossSummaryTotal], NoneType] = None,
-) -> ProfitLossSummaryTotal
-Docstring:
-query summary profit loss of a period time
-
-Args:
-    account (:obj:Account):
-        choice the account from listing account (Default: stock account)
-    begin_date (str): the start date of query profit loss (Default: today)
-    end_date (str): the end date of query profit loss (Default: today)
+[
+    FutureProfitDetail(
+        date='2026-05-10',
+        code='TXO20260620200C',
+        quantity=3,
+        dseq='tA0n8',
+        fee=120.0,
+        tax=5.0,
+        currency='TWD',
+        direction=<Action.Buy: 'Buy'>,
+        entry_date='2026-05-08',
+        entry_quantity=3,
+        entry_seqno='113382',
+        entry_price=131.0,
+        cover_price=126.0,
+        pnl=-750,
+    ),
+]
 
 ```
-
-Enter the time interval you want to query. `begin_date` is the start time, and `end_date` is the end time.
 
 In
 
 ```
-profitloss_summary = api.list_profit_loss_summary(api.stock_account,'2020-05-05','2020-05-30')
-profitloss_summary
+curl -X POST http://localhost:8080/api/v1/portfolio/profit_loss_detail \
+  -H 'Content-Type: application/json' \
+  -d '{"account_type": "F", "detail_id": 0, "broker_id": "YOUR_BROKER_ID", "account_id": "YOUR_ACCOUNT_ID"}'
+
+```
+
+Out
+
+```
+[
+  {
+    "date": "2026-05-10",
+    "code": "TXO20260620200C",
+    "quantity": 3,
+    "dseq": "tA0n8",
+    "fee": 120.0,
+    "tax": 5.0,
+    "currency": "TWD",
+    "direction": "Buy",
+    "entry_date": "2026-05-08",
+    "entry_quantity": 3,
+    "entry_seqno": "113382",
+    "entry_price": 131.0,
+    "cover_price": 126.0,
+    "pnl": -750
+  }
+]
+
+```
+
+## Realized Profit/Loss — Summary
+
+Query the realized profit/loss summary over a period. The returned `ProfitLossSummaryTotal` contains a per-symbol list `profitloss_summary` and a `total` aggregate.
+
+list_profit_loss_summary
+
+```
+api.list_profit_loss_summary?
+
+Signature:
+    api.list_profit_loss_summary(
+        account: shioaji.account.Account = None,
+        begin_date: str = '',
+        end_date: str = '',
+        timeout: int = 5000,
+        cb: Callable[[ProfitLossSummaryTotal], NoneType] = None,
+    ) -> ProfitLossSummaryTotal
+
+```
+
+Parameters
+
+```
+account:    stock or futures-options account
+begin_date: query begin date, format YYYY-MM-DD
+end_date:   query end date, format YYYY-MM-DD
+timeout:    timeout in milliseconds
+cb:         callback function, used when timeout=0
+
+```
+
+list_profit_loss_summary
+
+```
+POST /api/v1/portfolio/profitloss_sum
+Content-Type: application/json
+
+{
+  "account_type": "S",
+  "begin_date": "2026-05-01",
+  "end_date": "2026-05-31",
+  "broker_id": <string>,
+  "account_id": <string>,
+  "person_id": <string>
+}
+
+```
+
+Parameters
+
+```
+account_type: "S" (stock / default) or "F" (futures and options)
+begin_date:   query begin date, format YYYY-MM-DD
+end_date:     query end date, format YYYY-MM-DD
+broker_id:    broker ID
+account_id:   account ID
+person_id:    personal ID
+
+```
+
+### Stock
+
+StockProfitLossSummary
+
+```
+code (str):            symbol code
+quantity (int):        quantity
+entry_price (float):   entry price
+cover_price (float):   cover price
+pnl (float):           profit/loss
+currency (str):        currency
+entry_cost (int):      entry cost (excluding fees and taxes)
+cover_cost (int):      cover cost (excluding fees and taxes)
+buy_cost (int):        buy cost
+sell_cost (int):       sell proceeds
+pr_ratio (float):      profit/loss ratio
+cond (StockOrderCond): {Cash, Netting, MarginTrading, ShortSelling, Emerging}
+
+```
+
+ProfitLossTotal
+
+```
+entry_amount (float): total entry amount
+cover_amount (float): total cover amount
+quantity (int):       total quantity
+buy_cost (float):     total buy cost
+sell_cost (float):    total sell proceeds
+pnl (float):          total profit/loss
+pr_ratio (float):     total profit/loss ratio
+
+```
+
+In
+
+```
+api.list_profit_loss_summary(api.stock_account, '2026-05-01', '2026-05-21')
 
 ```
 
@@ -277,76 +595,207 @@ Out
 
 ```
 ProfitLossSummaryTotal(
-    status=<FetchStatus.Fetched: 'Fetched'>, 
     profitloss_summary=[
         StockProfitLossSummary(
-            code='2890', 
-            quantity=2000, 
-            entry_price=17, 
-            cover_price=10, 
-            pnl=-11585.0, 
-            currency='NTD', 
-            entry_cost=34550, 
-            cover_cost=21600, 
-            buy_cost=33112, 
-            sell_cost=21527, 
-            pr_ratio=-34.99
-        )
-    ], 
+            code='2890',
+            quantity=1000,
+            entry_price=30,
+            cover_price=31,
+            pnl=1000,
+            currency='NTD',
+            entry_cost=30000,
+            cover_cost=31000,
+            buy_cost=30119,
+            sell_cost=30881,
+            pr_ratio=3.33,
+            cond=<StockOrderCond.Cash: 'Cash'>,
+        ),
+        StockProfitLossSummary(
+            code='2330',
+            quantity=1000,
+            entry_price=2000,
+            cover_price=1980,
+            pnl=-20000,
+            currency='NTD',
+            entry_cost=2000000,
+            cover_cost=1980000,
+            buy_cost=2000119,
+            sell_cost=1979881,
+            pr_ratio=-1.00,
+            cond=<StockOrderCond.Cash: 'Cash'>,
+        ),
+    ],
     total=ProfitLossTotal(
-        quantity=2000, 
-        buy_cost=33112, 
-        sell_cost=21527, 
-        pnl=-11585.0, 
-        pr_ratio=-34.99
-    )
+        entry_amount=0,
+        cover_amount=0,
+        quantity=2000,
+        buy_cost=2030238,
+        sell_cost=2010762,
+        pnl=-19000,
+        pr_ratio=-0.94,
+    ),
 )
 
 ```
 
-To DataFrame
-
 In
 
 ```
-df = pd.DataFrame(pnl.__dict__ for pnl in profitloss_summary.profitloss_summary) 
-df
+curl -X POST http://localhost:8080/api/v1/portfolio/profitloss_sum \
+  -H 'Content-Type: application/json' \
+  -d '{"account_type": "S", "begin_date": "2026-05-01", "end_date": "2026-05-21", "broker_id": "YOUR_BROKER_ID", "account_id": "YOUR_ACCOUNT_ID"}'
 
 ```
 
 Out
 
-| code | quantity | entry_price | cover_price | pnl | currency | entry_cost | cover_cost | buy_cost | sell_cost | pr_ratio | cond | | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | | 2890 | 2000 | 17 | 10 | -11585 | NTD | 34550 | 21600 | 33112 | 21527 | -34.99 | Cash |
-
-StockProfitLossSummary
+```
+{
+  "profitloss_sum": [
+    {
+      "code": "2890",
+      "quantity": 1000,
+      "entry_price": 30.0,
+      "cover_price": 31.0,
+      "pnl": 1000.0,
+      "currency": "NTD",
+      "entry_cost": 30000,
+      "cover_cost": 31000,
+      "buy_cost": 30119,
+      "sell_cost": 30881,
+      "pr_ratio": 3.33,
+      "cond": "Cash"
+    },
+    {
+      "code": "2330",
+      "quantity": 1000,
+      "entry_price": 2000.0,
+      "cover_price": 1980.0,
+      "pnl": -20000.0,
+      "currency": "NTD",
+      "entry_cost": 2000000,
+      "cover_cost": 1980000,
+      "buy_cost": 2000119,
+      "sell_cost": 1979881,
+      "pr_ratio": -1.00,
+      "cond": "Cash"
+    }
+  ],
+  "total": {
+    "entry_amount": 0.0,
+    "cover_amount": 0.0,
+    "quantity": 2000,
+    "buy_cost": 2030238.0,
+    "sell_cost": 2010762.0,
+    "pnl": -19000.0,
+    "pr_ratio": -0.94
+  }
+}
 
 ```
-code (str): contract id
-quantity (int): quantity
-entry_price (int): price of entry
-cover_price (int): price of cover
-pnl (float): profit and loss
-currency (str): currency
-entry_cost (int): cost of entry
-cover_cost (int): cost of cover
-buy_cost (int): cost of buy
-sell_cost (int): cost of sell
-pr_ratio (float): profit rate
-cond (StockOrderCond): {Cash, Netting, MarginTrading, ShortSelling}
 
-```
+### Futures and Options
 
 FutureProfitLossSummary
 
 ```
-code (str): contract id
-quantity (int): quantity
-entry_price (int): price of entry
-cover_price (int): price of cover
-pnl (float): profit and loss
-currency (str): currency
-direction (Action): {Buy, Sell}
-tax (int): tax
-fee (int): fee
+code (str):          symbol code
+quantity (int):      quantity
+entry_price (float): entry price
+cover_price (float): cover price
+pnl (float):         profit/loss
+currency (str):      currency
+direction (Action):  buy/sell {Buy, Sell}
+tax (int):           transaction tax
+fee (int):           transaction fee
+
+```
+
+ProfitLossTotal
+
+```
+entry_amount (float): total entry amount
+cover_amount (float): total cover amount
+quantity (int):       total quantity
+buy_cost (float):     total buy cost
+sell_cost (float):    total sell proceeds
+pnl (float):          total profit/loss
+pr_ratio (float):     total profit/loss ratio
+
+```
+
+In
+
+```
+api.list_profit_loss_summary(api.futopt_account, '2026-05-01', '2026-05-21')
+
+```
+
+Out
+
+```
+ProfitLossSummaryTotal(
+    profitloss_summary=[
+        FutureProfitLossSummary(
+            code='TXO20260620200C',
+            quantity=3,
+            entry_price=131.0,
+            cover_price=126.0,
+            pnl=-750.0,
+            currency='NTD',
+            direction=<Action.Buy: 'Buy'>,
+            tax=5,
+            fee=120,
+        ),
+    ],
+    total=ProfitLossTotal(
+        entry_amount=19650,
+        cover_amount=18900,
+        quantity=3,
+        buy_cost=19775,
+        sell_cost=18775,
+        pnl=-750,
+        pr_ratio=-3.79,
+    ),
+)
+
+```
+
+In
+
+```
+curl -X POST http://localhost:8080/api/v1/portfolio/profitloss_sum \
+  -H 'Content-Type: application/json' \
+  -d '{"account_type": "F", "begin_date": "2026-05-01", "end_date": "2026-05-21", "broker_id": "YOUR_BROKER_ID", "account_id": "YOUR_ACCOUNT_ID"}'
+
+```
+
+Out
+
+```
+{
+  "profitloss_sum": [
+    {
+      "code": "TXO20260620200C",
+      "quantity": 3,
+      "entry_price": 131.0,
+      "cover_price": 126.0,
+      "pnl": -750.0,
+      "currency": "NTD",
+      "direction": "Buy",
+      "tax": 5,
+      "fee": 120
+    }
+  ],
+  "total": {
+    "entry_amount": 19650.0,
+    "cover_amount": 18900.0,
+    "quantity": 3,
+    "buy_cost": 19775.0,
+    "sell_cost": 18775.0,
+    "pnl": -750.0,
+    "pr_ratio": -3.79
+  }
+}
 
 ```

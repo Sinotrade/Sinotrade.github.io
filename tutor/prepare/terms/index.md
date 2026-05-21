@@ -1,110 +1,76 @@
 Restricted by Taiwan's financial regulations, new users need to sign relevant documents and complete a test report in the simulation mode before using it in a production environment.
 
-## Sign Documents
+Open Account
 
-Please refer to [sign center](https://www.sinotrade.com.tw/newweb/signCenter/signCenterIndex/) and **read the documents carefully** before you sign.
+You must have a [SinoPac account](https://www.sinotrade.com.tw/openact?utm_campaign=OP_inchannel&utm_source=newweb&utm_medium=button_top&strProd=0037&strWeb=0035) before starting.
 
-## Test Report
+## API Signing
 
-To ensure that you fully understand how to use Shioaji, you need to complete the test in the simulation mode, which includes the following functions:
+Please refer to the [Sign Center](https://www.sinotrade.com.tw/newweb/signCenter/signCenterIndex/) and **read the documents carefully** before you sign.
 
-- `login`
-- `place_order`
+Note
+
+Stock and futures must be signed separately. Please complete the ones you use.
+
+## API Test
+
+To ensure you fully understand how to use Shioaji, you need to complete the test in simulation mode, which includes:
+
+- Login test `login`
+- Order test `place_order`
 
 Attention
 
 Service Hour:
 
-- In response to the company's information security regulations, the test service is Monday to Friday 08:00 ~ 20:00
-- 18:00 ~ 20:00: Only allow Taiwan IP
-- 08:00 ~ 18:00: No limit
+- For company security policy, the test service runs Monday to Friday 08:00 ~ 20:00
+- 18:00 ~ 20:00: Taiwan IP only
+- 08:00 ~ 18:00: No restriction
 
 Version Restriction:
 
-- version >= 1.2:\
-  install command: `uv add shioaji` or `pip install -U shioaji`
+- version >= 1.2
 
 Others:
 
-- You should sign the API related document before you test!
-- Stock and Futures account should be test separately.
-- The time interval between stock place order test and futures place order test should be more than 1 second.
+- The API document signing must be earlier than the API test time for review to pass
+- Stock and Futures accounts must be tested separately
+- The interval between stock / futures order tests must be at least 1 second for the system to record
 
 ### Version Check
 
-version
-
 ```
 import shioaji as sj
-
 print(sj.__version__)
-# 1.0.0
-
-```
-
-- please note the **Version Restriction**.
-
-### Login Test
-
-Login
-
-```
-api = sj.Shioaji(simulation=True)   # Simulation Mode
-api.login(
-    api_key="YOUR_API_KEY",         # edit it
-    secret_key="YOUR_SECRET_KEY"    # edit it
-)
 
 ```
 
 ```
-api = sj.Shioaji(simulation=True)   # Simulation Mode
-api.login(
-    person_id="YOUR_PERSON_ID",     # edit it
-    passwd="YOUR_PASSWORD",         # edit it
-)
+shioaji server check
 
 ```
 
-- version >= 1.0: use `api_key` to login, if you haven't applied for the API Key, please refer to [Token](../token/) section.
-- version < 1.0: use `person_id` to login.
+```
+curl http://localhost:8080/api/v1/info
 
-### Place Order Test - Stock
+```
 
-Stock Order
+Stock
 
 ```
 # contract - edit it
-contract = api.Contracts.Stocks.TSE["2890"]
+contract = api.Contracts.Stocks.TSE.TSE2890
 
-# order - edit it
-order = api.Order(
-    price=18, 
-    quantity=1, 
-    action=sj.constant.Action.Buy, 
-    price_type=sj.constant.StockPriceType.LMT, 
-    order_type=sj.constant.OrderType.ROD, 
-    account=api.stock_account
-)
-
-# place order
-trade = api.place_order(contract, order)
-trade
-
-```
-
-```
-# contract - edit it
-contract = api.Contracts.Stocks.TSE["2890"]
-
-# order - edit it
-order = api.Order(
-    price=18, 
-    quantity=1, 
-    action=sj.constant.Action.Buy, 
-    price_type=sj.constant.TFTStockPriceType.LMT, 
-    order_type=sj.constant.TFTOrderType.ROD, 
-    account=api.stock_account
+# stock order - edit it
+order = sj.StockOrder(
+    action=sj.Action.Buy,                    # buy / sell
+    price=28,                                # price
+    quantity=1,                              # quantity
+    price_type=sj.StockPriceType.LMT,        # price type
+    order_type=sj.OrderType.ROD,             # order condition
+    order_lot=sj.StockOrderLot.Common,       # order lot
+    order_cond=sj.StockOrderCond.Cash,       # order condition
+    account=api.stock_account                # trading account
 )
 
 # place order
@@ -116,85 +82,120 @@ trade
 Out
 
 ```
-Response Code: 0 | Event Code: 0 | Info: host '218.32.76.102:80', IP 218.32.76.102:80 (host 1 of 1) (host connection attempt 1 of 1) (total connection attempt 1 of 1) | Event: Session up
+Response Code: 0 | Event Code: 0 | Info: host '210.59.255.161:80', hostname '210.59.255.161:80' IP 210.59.255.161:80 (host 1 of 1) (host connection attempt 1 of 1) (total connection attempt 1 of 2) | Event: Session up
 
 Trade(
-    contract=Stock(...), 
+    contract=Contract(...),
     order=Order(...),
     status=OrderStatus(
-        id='531e27af', 
-        status=<Status.Submitted: 'Submitted'>, 
-        status_code='00', 
-        order_datetime=datetime.datetime(2023, 1, 12, 11, 18, 3, 867490), 
-        order_quantity=1,
-        deals=[]
+        id='000019',
+        status=<OrderStatus.PendingSubmit: 'PendingSubmit'>,
+        status_code='00',
+        order_datetime=datetime.datetime(2026, 5, 15, 14, 44, 43, 371915, tzinfo=datetime.timezone(datetime.timedelta(hours=8)))
     )
 )
 
 ```
 
-- You should receive the message, `Response Code: 0 | Event Code: 0 | Info: host '218.32.76.102:80' ...`, which means that you have successfully connected to our testing server. The message will only appear on your first order. If you don't receive the connected message, please confirm that all the following conditions are met.
-
-  1. Doing test in the service hour
-  1. Version restriction
-  1. `signed` is not present in your account
-
-- order status should **NOT** be `Failed`. If you got `Failed` status, please modify your order correctly and then `place_order` again.
-
-- [Contract](../../contract/)
-
-- [Stock Order](../../order/Stock/)
-
-### Place Order Test - Futures
-
-Future Order
+Stock
 
 ```
-# near-month TXF - edit it
-contract = min(
-    [
-        x for x in api.Contracts.Futures.TXF 
-        if x.code[-2:] not in ["R1", "R2"]
-    ],
-    key=lambda x: x.delivery_date
-)
-
-# order - edit it
-order = api.Order(
-    action=sj.constant.Action.Buy,
-    price=15000,
-    quantity=1,
-    price_type=sj.constant.FuturesPriceType.LMT,
-    order_type=sj.constant.OrderType.ROD, 
-    octype=sj.constant.FuturesOCType.Auto,
-    account=api.futopt_account
-)
-
-# place order
-trade = api.place_order(contract, order)
-trade
+# contract, order, and account - edit it
+shioaji order place \
+    --code 2890 \
+    --action buy \
+    --price 28 \
+    --quantity 1 \
+    --price-type lmt \
+    --order-type rod \
+    --order-lot common \
+    --order-cond cash \
+    --account YOUR_BROKER_ID-YOUR_ACCOUNT_ID
 
 ```
 
-```
-# near-month TXF - edit it
-contract = min(
-    [
-        x for x in api.Contracts.Futures.TXF 
-        if x.code[-2:] not in ["R1", "R2"]
-    ],
-    key=lambda x: x.delivery_date
-)
+Out
 
-# order - edit it
-order = api.Order(
-    action=sj.constant.Action.Buy,
-    price=15000,
-    quantity=1,
-    price_type=sj.constant.FuturesPriceType.LMT,
-    order_type=sj.constant.FuturesOrderType.ROD, 
-    octype=sj.constant.FuturesOCType.Auto,
-    account=api.futopt_account
+```
+contract: ...
+order: ...
+status:
+  id: "00005C"
+  status: PendingSubmit
+  status_code: "00"
+  order_ts: 1778828991.03281
+  msg: ""
+  modified_ts: 0
+  modified_price: 0
+  order_quantity: 0
+  deal_quantity: 0
+  cancel_quantity: 0
+
+```
+
+Stock
+
+```
+# contract, order, and account - edit it
+curl -X POST http://localhost:8080/api/v1/order/place_order \
+  -H "Content-Type: application/json" \
+  -d '{
+    "contract": {"security_type": "STK", "exchange": "TSE", "code": "2890"},
+    "stock_order": {
+      "action": "Buy",
+      "price": 28,
+      "quantity": 1,
+      "price_type": "LMT",
+      "order_type": "ROD",
+      "order_lot": "Common",
+      "order_cond": "Cash",
+      "account": {
+        "broker_id": "YOUR_BROKER_ID",
+        "account_id": "YOUR_ACCOUNT_ID"
+      }
+    }
+  }'
+
+```
+
+Out
+
+```
+{
+  "contract": ...,
+  "order": ...,
+  "status": {
+    "id": "000066",
+    "status": "PendingSubmit",
+    "status_code": "00",
+    "order_ts": 1778829088.557384,
+    "msg": "",
+    "modified_ts": 0.0,
+    "modified_price": 0.0,
+    "order_quantity": 0,
+    "deal_quantity": 0,
+    "cancel_quantity": 0,
+    "deals": []
+  }
+}
+
+```
+
+Futures
+
+```
+# contract - edit it
+contract = api.Contracts.Futures.TXF.TXFE6
+
+# futures order - edit it
+order = sj.FuturesOrder(
+    action=sj.Action.Buy,                    # buy / sell
+    price=37000,                             # price
+    quantity=1,                              # quantity
+    price_type=sj.FuturesPriceType.LMT,      # price type
+    order_type=sj.OrderType.ROD,             # order condition
+    octype=sj.FuturesOCType.Auto,            # open/close type
+    account=api.futopt_account               # trading account
 )
 
 # place order
@@ -206,125 +207,101 @@ trade
 Out
 
 ```
-Response Code: 0 | Event Code: 0 | Info: host '218.32.76.102:80', IP 218.32.76.102:80 (host 1 of 1) (host connection attempt 1 of 1) (total connection attempt 1 of 1) | Event: Session up
+Response Code: 0 | Event Code: 0 | Info: host '210.59.255.161:80', hostname '210.59.255.161:80' IP 210.59.255.161:80 (host 1 of 1) (host connection attempt 1 of 1) (total connection attempt 1 of 2) | Event: Session up
 
 Trade(
-    contract=Future(...), 
+    contract=Contract(...),
     order=Order(...),
     status=OrderStatus(
-        id='531e27af', 
-        status=<Status.Submitted: 'Submitted'>, 
-        status_code='00', 
-        order_datetime=datetime.datetime(2023, 1, 12, 11, 18, 3, 867490), 
-        order_quantity=1,
-        deals=[]
+        id='000122',
+        status=<OrderStatus.PendingSubmit: 'PendingSubmit'>,
+        status_code='00',
+        order_datetime=datetime.datetime(2026, 5, 15, 15, 51, 27, 582363, tzinfo=datetime.timezone(datetime.timedelta(hours=8)))
     )
 )
 
 ```
 
-- You should receive the message, `Response Code: 0 | Event Code: 0 | Info: host '218.32.76.102:80' ...`, which means that you have successfully connected to our testing server. The message will only appear on your first order. If you don't receive the connected message, please confirm that all the following conditions are met.
-
-  1. Doing test in the service hour
-  1. Version restriction
-  1. `signed` is not present in your account
-
-- order status should **NOT** be `Failed`. If you got `Failed` status, please modify your order correctly and then `place_order` again.
-
-- [Contract](../../contract/)
-
-- [Future Order](../../order/FutureOption/)
-
-### Check if API tests has passed
-
-Attention
-
-Before you check, please confirm the following conditions are met.
-
-- Sign the API related document before you test, or you will not pass the test.
-- Doing test in service hour.
-- Stock accounts and Futures accounts should be tested separately.
-- Waiting for reviewing your tests at least 5 minutes.
-
-Sign Status
+Futures
 
 ```
-import shioaji as sj
-
-api = sj.Shioaji(simulation=False)   # Production Mode
-accounts = api.login(
-    api_key="YOUR_API_KEY",         # edit it
-    secret_key="YOUR_SECRET_KEY"    # edit it
-)
-accounts
-
-```
-
-```
-import shioaji as sj
-
-api = sj.Shioaji(simulation=False)   # Production Mode
-accounts = api.login(
-    person_id="YOUR_PERSON_ID",     # edit it
-    passwd="YOUR_PASSWORD",         # edit it
-)
-accounts
+# contract, order, and account - edit it
+shioaji order place \
+    --code TXFE6 \
+    --security-type FUT \
+    --action buy \
+    --price 37000 \
+    --quantity 1 \
+    --price-type lmt \
+    --order-type rod \
+    --octype auto \
+    --account YOUR_BROKER_ID-YOUR_ACCOUNT_ID
 
 ```
 
 Out
 
 ```
-Response Code: 0 | Event Code: 0 | Info: host '203.66.91.161:80', hostname '203.66.91.161:80' IP 203.66.91.161:80 (host 1 of 1) (host connection attempt 1 of 1) (total connection attempt 1 of 1) | Event: Session up
-
-[FutureAccount(person_id='QBCCAIGJBJ', broker_id='F002000', account_id='9100020', signed=True, username='PAPIUSER01'),
-StockAccount(person_id='QBCCAIGJBJ', broker_id='9A95', account_id='0504350', username='PAPIUSER01')]
-
-```
-
-- `signed=True`: Congrats, done! Ex: FutureAccount.
-- `signed=False` or `signed` not present: the account haven't passed the api tests or haven't been signed the api documents. Ex: StockAccount.
-
-## CA
-
-You must **apply** and **activate** the CA before `place_order`.
-
-### Apply CA
-
-1. Go to [SinoPac Securities](https://www.sinotrade.com.tw/CSCenter/CSCenter_13_3) to download eleader
-1. Login eleader
-1. Select (3303)帳號資料設定 from the 帳戶資料 above
-1. Click "步驟說明"
-1. CA Operation steps
-
-### Activate CA
-
-- If you use simulation account, you don't have to activate CA.
-- If you are a macOS user, you may subject to version-issue. We suggest you to use [docker](https://github.com/Sinotrade/Shioaji) and run shioaji service on docker.
-
-In
-
-```
-result = api.activate_ca(
-    ca_path="/c/your/ca/path/Sinopac.pfx",
-    ca_passwd="YOUR_CA_PASSWORD",
-    person_id="Person ID of this Ca",
-)
-
-print(result)
-# True
+contract: ...
+order: ...
+status:
+  id: "000137"
+  status: PendingSubmit
+  status_code: "00"
+  order_ts: 1778831763.269576
+  msg: ""
+  modified_ts: 0
+  modified_price: 0
+  order_quantity: 0
+  deal_quantity: 0
+  cancel_quantity: 0
 
 ```
 
-The Certification Path
-
-In Windows you copy the file path with `\` to separate the file, you need to replace it with `/`.
-
-#### Check CA expire time
-
-In
+Futures
 
 ```
-api.get_ca_expiretime("Person ID")
+# contract, order, and account - edit it
+curl -X POST http://localhost:8080/api/v1/order/place_order \
+  -H "Content-Type: application/json" \
+  -d '{
+    "contract": {"security_type": "FUT", "exchange": "TAIFEX", "code": "TXFE6"},
+    "futures_order": {
+      "action": "Buy",
+      "price": 37000,
+      "quantity": 1,
+      "price_type": "LMT",
+      "order_type": "ROD",
+      "octype": "Auto",
+      "account": {
+        "broker_id": "YOUR_BROKER_ID",
+        "account_id": "YOUR_ACCOUNT_ID"
+      }
+    }
+  }'
+
+```
+
+Out
+
+```
+{
+  "contract": ...,
+  "order": ...,
+  "status": {
+    "id": "000153",
+    "status": "PendingSubmit",
+    "status_code": "00",
+    "order_ts": 1778832017.53043,
+    "msg": "",
+    "modified_ts": 0.0,
+    "modified_price": 0.0,
+    "order_quantity": 0,
+    "deal_quantity": 0,
+    "cancel_quantity": 0,
+    "deals": [],
+    "web_id": ""
+  }
+}
 
 ```

@@ -1,16 +1,34 @@
-In order to avoid affecting other users' connections, please follow the following usage rules.
+To avoid affecting other users' connections, please follow the usage rules below.
+
+## Traffic Limit
 
 Traffic
 
-- Stock :
+- Stock (common-stock trades only; odd lot is excluded):
 
-  | Trading volume by API in the past 30 days | Daily Traffic Limit | | --- | --- | | 0 | 500MB | | 1 - 1E | 2GB | | > 1E | 10GB |
+  | 30-day API trading amount | Daily traffic limit | | --- | --- | | 0 | 500MB | | 1 - 100M | 2GB | | > 100M | 10GB |
 
-- Future :
+- Futures:
 
-  | Trading volume by API in the past 30 days | Daily Traffic Limit | | --- | --- | | 0 | 500MB | | 1 - TXF 1000 contracts / MXF 4000 contracts | 2GB | | > TXF 1000 contracts / MXF 4000 contracts | 10GB |
+  | 30-day API trading volume | Daily traffic limit | | --- | --- | | 0 | 500MB | | 1 - 1000 TXF / 4000 MXF | 2GB | | > 1000 TXF / 4000 MXF | 10GB |
 
-Traffic query
+Note
+
+Traffic resets at 8:00 AM on each trading day.
+
+## Usage and Connection Query
+
+UsageStatus
+
+```
+connections (int):     number of connections
+bytes (int):           bytes used
+limit_bytes (int):     daily traffic limit
+remaining_bytes (int): remaining bytes
+
+```
+
+In
 
 ```
 api.usage()
@@ -20,57 +38,106 @@ api.usage()
 Out
 
 ```
-UsageStatus(connections=1, bytes=41343260, limit_bytes=2147483648, remaining_bytes=2106140388)
+UsageOut(connections=2, bytes=43883999, limit_bytes=2147483648, remaining_bytes=2103599649)
 
 ```
 
-```
-connection: connection count.
-bytes: traffic.
-limit_bytes: limit bytes of daily.
-remaining_bytes: remaining bytes of daily.
+**Convert to MB**
+
+In
 
 ```
+usage = api.usage()
+print(f"Used {usage.bytes / 1024 / 1024:.2f} MB / "
+      f"Limit {usage.limit_bytes / 1024 / 1024:.0f} MB / "
+      f"Remaining {usage.remaining_bytes / 1024 / 1024:.2f} MB")
 
-Counts
+```
 
-- Data :
+Out
 
-  `credit_enquire`, `short_stock_sources`, `snapshots`, `ticks`, `kbars`
+```
+Used 41.85 MB / Limit 2048 MB / Remaining 2006.15 MB
 
-  - The total amount of inquiries above is limited to 50 times within 5 seconds.
-  - During trading hours, it is prohibited to query `ticks` more than 10 times.
-  - During trading hours, it is prohibited to query `kbars` more than 270 times.
+```
 
-- Portfolio :
+In
 
-  `list_profit_loss_detail`,`account_balance`, `list_settlements`, `list_profit_loss`, `list_positions`, `margin`
+```
+shioaji auth usage
 
-  The total amount of inquiries above is limited to 25 times within 5 seconds.
+```
 
-- Order :
+Out
+
+```
+API Usage
+  Connections:  2
+  Data Used:    41.9 MB / 2.00 GB  [░░░░░░░░░░░░░░░░░░░░]  2.0%
+  Remaining:    1.96 GB
+
+```
+
+In
+
+```
+curl http://localhost:8080/api/v1/auth/usage
+
+```
+
+Out
+
+```
+{
+  "connections": 2,
+  "bytes": 43885469,
+  "limit_bytes": 2147483648,
+  "remaining_bytes": 2103598179
+}
+
+```
+
+## Request Rate Limit
+
+Request rate
+
+- Market data:
+
+  `credit_enquires`, `short_stock_sources`, `snapshots`, `ticks`, `kbars`
+
+  - Total request rate: up to 50 calls per 5 seconds
+  - Intraday `ticks` queries: up to 10 calls
+  - Intraday `kbars` queries: up to 270 calls
+
+- Accounting:
+
+  `list_profit_loss_detail`, `account_balance`, `list_settlements`, `list_profit_loss`, `list_positions`, `margin`
+
+  - Total request rate: up to 25 calls per 5 seconds
+
+- Orders:
 
   `place_order`, `update_status`, `update_qty`, `update_price`, `cancel_order`
 
-  The total amount of inquiries above is limited to 250 times within 10 seconds.
+  - Total request rate: up to 250 calls per 10 seconds
 
-- Subscribe :
+- Subscriptions:
 
-  Number of `api.subscribe()` is 200.
+  - `api.subscribe()` up to 200 subscriptions
 
-- Connect :
+- Connections:
 
-  The same SinoPac Securities `person_id` can only use up to 5 connections.
+  - Each `person_id` may have at most 5 connections (`api.login()` opens a connection)
 
-  note. `api.login()`create a connection.
+- Login:
 
-- Login :
+  - `api.login()` up to 1000 calls per day
 
-  Up to 1000 times per day.
+## Violation Handling
 
 Warn
 
-- If the traffic exceeds the limit, query requests for market data such as ticks, snapshots, and kbars will return empty values, while other functionalities remain unaffected.
-- If the usage exceeds the limit, the service will be suspended for one minute.
-- If the limit is exceeded multiple times in a row on the same day, the company will suspend the right to use the IP and ID.
-- If the ID is suspended, please contact Shioaji management staff
+- If traffic exceeds the limit, market data queries (`ticks`, `snapshots`, `kbars`) return empty values; other features are not affected.
+- If usage exceeds the limit, service is suspended for one minute.
+- If the limit is exceeded multiple times in a day, the company will suspend the IP and ID.
+- If the ID is suspended, please contact the Shioaji administrator.

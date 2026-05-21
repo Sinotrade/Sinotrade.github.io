@@ -1,6 +1,6 @@
 the whole project code can be found in [sj-trading](https://github.com/Sinotrade/sj-trading-demo), the whole example jupyter notebook can be found in [quote_manager_usage](https://github.com/Sinotrade/sj-trading-demo/blob/main/quote_manager_usage.ipynb).
 
-this project is created by using `uv`, if you are not familiar with how to use `uv` to create a project and manage dependencies, it is recommended to learn from the [environment setup](../../../env_setup/) chapter.
+this project is created by using `uv`, if you are not familiar with how to use `uv` to create a project and manage dependencies, it is recommended to learn from the [environment setup](../../env_setup.md) chapter.
 
 before start writing the quote manager, we will use the Polars package to process the quote data, so we need to add it to the project dependencies, at the same time, this tutorial will have an example of how to use Polars to quickly calculate technical indicators for multiple commodities, so we also need to add the polars_talib package to the project dependencies.
 

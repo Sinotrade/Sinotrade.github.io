@@ -1,6 +1,6 @@
 本篇教學完整專案的程式碼可以參考 [sj-trading](https://github.com/Sinotrade/sj-trading-demo)， 完整使用範例 jupyter notebook 可以參考 [quote_manager_usage](https://github.com/Sinotrade/sj-trading-demo/blob/main/quote_manager_usage.ipynb)。
 
-本專案是使用 `uv` 建立的，如果還不熟悉如何使用 `uv` 建立專案並使用 `uv` 管理依賴，建議回到 [環境設定](../../../env_setup/) 章節從頭學習起。
+本專案是使用 `uv` 建立的，如果還不熟悉如何使用 `uv` 建立專案並使用 `uv` 管理依賴，建議回到 [環境設定](../../env_setup.md) 章節從頭學習起。
 
 在開始進行行情管理器的編寫前，我們會使用 Polars 這個套件來處理行情資料，所以需要將它加入專案的依賴中，同時本篇教學中會有如何用 Polars 快速對多商品計算技術指標的範例，所以也需要將 polars_talib 這個套件加入專案的依這個。
 

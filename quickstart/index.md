@@ -1,18 +1,23 @@
-Just import our API library like other popular python library and new the instance to start using our API. Login your account and activate the certification then you can start placing order.
+Just like using other popular packages, import and instantiate to start using Shioaji.
 
 Note
 
-\*\* Please complete the Prepare before starting, including [Open Account](../tutor/prepare/open_account/), [Terms of Service](../tutor/prepare/terms/) and [Token](../tutor/prepare/token/). \*\*
+**Please complete the prerequisites first, including [Open Account](../tutor/prepare/open_account/), [Terms of Service](../tutor/prepare/terms/), and [Token](../tutor/prepare/token/).**
 
-#### Login and Activate CA
+### Login and Activate CA
 
 ```
 import shioaji as sj
 
+# Create Shioaji instance.
 api = sj.Shioaji()
-accounts =  api.login("YOUR_API_KEY", "YOUR_SECRET_KEY")
+
+# Login
+accounts = api.login(api_key="YOUR_API_KEY", secret_key="YOUR_SECRET_KEY")
+
+# Activate CA (required before placing orders in production)
 api.activate_ca(
-    ca_path="/c/your/ca/path/Sinopac.pfx",
+    ca_path="your/ca/path/Sinopac.pfx",
     ca_passwd="YOUR_CA_PASSWORD",
     person_id="Person of this Ca",
 )
@@ -20,54 +25,101 @@ api.activate_ca(
 ```
 
 ```
-import shioaji as sj
+# .env (placed in the working directory) should contain:
+#   SJ_API_KEY=YOUR_API_KEY
+#   SJ_SEC_KEY=YOUR_SECRET_KEY
+#   SJ_CA_PATH=your/ca/path/Sinopac.pfx
+#   SJ_CA_PASSWD=YOUR_CA_PASSWORD
 
-api = sj.Shioaji()
-accounts = api.login("YOUR_PERSON_ID", "YOUR_PASSWORD")
-api.activate_ca(
-    ca_path="/c/your/ca/path/Sinopac.pfx",
-    ca_passwd="YOUR_CA_PASSWORD",
-    person_id="Person of this Ca",
-)
+# Start server (automatically reads .env, performs login and CA activation)
+shioaji server start
 
-```
-
-The Certification Path
-
-In Windows you copy the file path with `\` to separate the file, you need to replace it with `/`.
-
-## Streaming Market Data
-
-Subscribe the real time market data. Simplely pass contract into quote `subscribe` function and give the quote type will receive the streaming data.
-
-```
-api.quote.subscribe(api.Contracts.Stocks["2330"], quote_type="tick")
-api.quote.subscribe(api.Contracts.Stocks["2330"], quote_type="bidask")
-api.quote.subscribe(api.Contracts.Futures["TXFC0"], quote_type="tick")
+# Check status
+shioaji server check
 
 ```
 
-Quote Type
+```
+# .env (placed in the working directory) should contain:
+#   SJ_API_KEY=YOUR_API_KEY
+#   SJ_SEC_KEY=YOUR_SECRET_KEY
+#   SJ_CA_PATH=your/ca/path/Sinopac.pfx
+#   SJ_CA_PASSWD=YOUR_CA_PASSWORD
 
-Currently we support two quote type you can see in `shioaji.constent.QuoteType`. The best way to use that is directly pass this enum into `subscribe` function.
+# Start server
+shioaji server start
 
-## Place Order
+# Check accounts (verify login)
+curl http://localhost:8080/api/v1/auth/accounts
 
-Like the above subscribing market data using the contract, then need to define the order. Pass them into `place_order` function, then it will return the trade that describe the status of your order.
+```
+
+```
+api.subscribe(api.Contracts.Stocks["2330"], quote_type="tick")
+api.subscribe(api.Contracts.Stocks["2330"], quote_type="bid_ask")
+
+```
+
+```
+shioaji data stream --code 2330 --quote-type tick
+shioaji data stream --code 2330 --quote-type bid_ask
+
+```
+
+```
+# Subscribe
+curl -X POST http://localhost:8080/api/v1/stream/subscribe \
+  -H "Content-Type: application/json" \
+  -d '{"security_type":"STK","exchange":"TSE","code":"2330","quote_type":"Tick"}'
+
+curl -X POST http://localhost:8080/api/v1/stream/subscribe \
+  -H "Content-Type: application/json" \
+  -d '{"security_type":"STK","exchange":"TSE","code":"2330","quote_type":"BidAsk"}'
+
+# Connect to SSE to receive streaming data (Ctrl+C to stop)
+curl -N http://localhost:8080/api/v1/stream/data
+
+```
 
 ```
 contract = api.Contracts.Stocks["2890"]
-order = api.Order(
-    price=12,
-    quantity=5,
-    action=sj.constant.Action.Buy,
-    price_type=sj.constant.StockPriceType.LMT,
-    order_type=sj.constant.OrderType.ROD,
+order = sj.StockOrder(
+    action=sj.Action.Buy,
+    price=28,
+    quantity=1,
+    price_type=sj.StockPriceType.LMT,
+    order_type=sj.OrderType.ROD,
+    order_lot=sj.StockOrderLot.Common,
+    order_cond=sj.StockOrderCond.Cash,
 )
 trade = api.place_order(contract, order)
 
 ```
 
+```
+shioaji order place --code 2890 --action buy --price 28 --quantity 1 \
+    --price-type lmt --order-type rod --order-lot common --order-cond cash
+
+```
+
+```
+curl -X POST http://localhost:8080/api/v1/order/place_order \
+  -H "Content-Type: application/json" \
+  -d '{
+    "contract": {"security_type": "STK", "exchange": "TSE", "code": "2890"},
+    "stock_order": {
+      "price": 28,
+      "quantity": 1,
+      "action": "Buy",
+      "price_type": "LMT",
+      "order_type": "ROD",
+      "order_lot": "Common",
+      "order_cond": "Cash"
+    }
+  }'
+
+```
+
 ## Conclusion
 
-This quickstart demonstrates how easy to use our package for native Python users. Unlike many other trading API is hard for Python developer. We focus on making more pythonic trading API for our users.
+This quickstart demonstrates Shioaji's core operations. Whether using Python, CLI, or HTTP API (including JS, Go, C++, C#, etc.), you can complete login, subscribe, and place orders with the same logic.

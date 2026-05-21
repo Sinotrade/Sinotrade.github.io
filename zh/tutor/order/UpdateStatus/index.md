@@ -1,33 +1,99 @@
 提醒
 
-必須先[登入](../../login/)及啟用[憑證](../../prepare/terms/)。
+下單前必須先[登入](../../login/)及啟用[憑證](../../prepare/terms/)。
 
-在取得 `Trade` 狀態前，必須先利用`update_status`進行更新。如果無法成功刪單或改單，你可以對特定`trade`物件進行更新，並確認在`trade`中的`OrderStatus`，是否為可刪改狀態。`update_status` 預設查詢為名下所有帳號。若想查詢特定帳號，將帳號帶入`account`。
+在取得 `Trade` 狀態前，必須先呼叫 `update_status` 更新。預設會更新名下所有帳號的委託；若只想更新單一帳號，將該帳號傳入 `account`；若只想更新單一委託，將該 `Trade` 物件以關鍵字參數 `trade=` 傳入。更新完成後，可從 `api.list_trades()` 取得最新的 `Trade` 清單，或直接讀取傳入的 `trade` 物件中的 `status` 確認狀態。
 
-Update Status
+update_status
 
 ```
 api.update_status?
 
-```
-
-Out
-
-```
 Signature:
     api.update_status(
-        account: shioaji.account.Account = None,
-        trade: shioaji.order.Trade = None,
-        timeout: int = 5000,
-        cb: Callable[[List[shioaji.order.Trade]], NoneType] = None,
-    )
-Docstring: update status of all trades you have
+        account: Optional[sj.Account] = None,
+        *,
+        trade: Optional[sj.Trade] = None,
+        timeout: Optional[int] = 30000,
+        cb: Optional[Callable[[], None]] = None,
+    ) -> None
 
 ```
+
+Parameters
+
+```
+account: 證券或期貨帳號；省略則更新名下所有帳號
+trade:   指定要更新的 Trade 物件（關鍵字參數）
+timeout: 逾時毫秒
+cb:      選填，callback 函式
+
+```
+
+update_status
+
+```
+POST /api/v1/order/update_status
+Content-Type: application/json
+
+{
+  "account": { "broker_id": <string>, "account_id": <string> }
+}
+
+```
+
+Parameters
+
+```
+account: 證券或期貨帳號
+
+```
+
+## 屬性
+
+OrderStatus
+
+```
+id (str):                  關聯 Order 物件編碼
+status (OrderStatus):      委託狀態，{
+                              Cancelled:     已刪除,
+                              Filled:        完全成交,
+                              PartFilled:    部分成交,
+                              Inactive:      未啟用,
+                              Failed:        失敗,
+                              PendingSubmit: 傳送中,
+                              PreSubmitted:  預約單,
+                              Submitted:     傳送成功
+                           }
+status_code (str):         狀態碼
+web_id (str):              Web 端委託編號
+order_datetime (datetime): 委託時間
+msg (str):                 訊息
+modified_time (datetime):  最後改單時間
+modified_price (float):    改價金額
+order_quantity (int):      委託數量
+deal_quantity (int):       成交數量
+cancel_quantity (int):     取消委託數量
+deals (List[Deal]):        成交明細
+
+```
+
+Deal
+
+```
+seq (str):           成交序號
+price (float):       成交價
+quantity (int):      成交數量
+ts (float):          成交時間戳
+datetime (datetime): 成交時間（由 ts 計算，tz=Asia/Taipei +0800）
+
+```
+
+## 範例
 
 ### 取得證券委託狀態
 
-取得證券委託狀態
+In
 
 ```
 api.update_status(api.stock_account)
@@ -40,46 +106,47 @@ Out
 ```
 [
     Trade(
-        contract=Stock(
-            exchange=<Exchange.TSE: 'TSE'>, 
-            code='2890', 
-            symbol='TSE2890', 
-            name='永豐金', 
-            category='17', 
-            unit=1000, 
-            limit_up=19.05, 
-            limit_down=15.65, 
-            reference=17.35, 
-            update_date='2023/01/12',
-            day_trade=<DayTrade.Yes: 'Yes'>
-        ), 
+        contract=Contract(
+            security_type='STK',
+            exchange='TSE',
+            code='2890'
+        ),
         order=Order(
-            action=<Action.Buy: 'Buy'>, 
-            price=17, 
-            quantity=3, 
-            id='531e27af', 
-            seqno='000002', 
-            ordno='000001', 
-            account=Account(
-                account_type=<AccountType.Stock: 'S'>,
-                person_id='A123456789', 
-                broker_id='9A95', 
-                account_id='1234567', 
-                signed=True
-            ), 
-            custom_field='test', 
-            price_type=<StockPriceType.LMT: 'LMT'>, 
-            order_type=<OrderType.ROD: 'ROD'>, 
-            daytrade_short=True
-        ), 
+            id='a647f23d',
+            action=<Action.Buy: 'Buy'>,
+            price=27.1,
+            quantity=2,
+            seqno='214115',
+            ordno='Y27FI',
+            order_type=<OrderType.ROD: 'ROD'>,
+            price_type=<PriceType.LMT: 'LMT'>,
+            account=StockAccount(
+                person_id='YOUR_PERSON_ID',
+                broker_id='YOUR_BROKER_ID',
+                account_id='YOUR_ACCOUNT_ID',
+                signed=true,
+                username=''
+            ),
+            order_cond=<StockOrderCond.Cash: 'Cash'>,
+            order_lot=<StockOrderLot.Common: 'Common'>
+        ),
         status=OrderStatus(
-            id='531e27af', 
-            status=<Status.Filled: 'Filled'>,
-            status_code='00', 
-            order_datetime=datetime.datetime(2023, 1, 12, 11, 18, 3, 867490), 
-            order_quantity=3,
+            id='a647f23d',
+            status=<OrderStatus.Filled: 'Filled'>,
+            status_code='00',
+            order_datetime=datetime.datetime(2026, 5, 20, 11, 24, 30, tzinfo=datetime.timezone(datetime.timedelta(hours=8))),
+            web_id='137',
+            modified_time=datetime.datetime(2026, 5, 20, 11, 24, 30, tzinfo=datetime.timezone(datetime.timedelta(hours=8))),
+            order_quantity=2,
+            deal_quantity=2,
             deals=[
-                Deal(seq='000001', price=17, quantity=3, ts=1673501631.62918)
+                Deal(
+                    seq='000001',
+                    price=27.1,
+                    quantity=2,
+                    ts=1747714234.123456,
+                    datetime=datetime.datetime(2026, 5, 20, 11, 24, 30, tzinfo=datetime.timezone(datetime.timedelta(hours=8)))
+                )
             ]
         )
     )
@@ -87,9 +154,30 @@ Out
 
 ```
 
+In
+
+```
+curl -X POST http://localhost:8080/api/v1/order/update_status \
+  -H 'Content-Type: application/json' \
+  -d '{
+    "account": {
+      "broker_id": "YOUR_BROKER_ID",
+      "account_id": "YOUR_ACCOUNT_ID"
+    }
+  }'
+
+```
+
+Out
+
+```
+[{"contract":{"security_type":"STK","exchange":"TSE","code":"2890"},"order":{"id":"a647f23d","action":"Buy","price":27.1,"quantity":2,"seqno":"214115","ordno":"Y27FI","order_type":"ROD","price_type":"LMT","account":{"account_type":"S","person_id":"YOUR_PERSON_ID","broker_id":"YOUR_BROKER_ID","account_id":"YOUR_ACCOUNT_ID","signed":true,"username":""},"order_cond":"Cash","order_lot":"Common"},"status":{"id":"a647f23d","status":"Filled","status_code":"00","order_datetime":"2026-05-20T11:24:30+08:00","web_id":"137","modified_time":"2026-05-20T11:24:30+08:00","order_quantity":2,"deal_quantity":2,"deals":[{"seq":"000001","price":27.1,"quantity":2,"ts":1747714234.123456}]}}]
+
+```
+
 ### 取得期貨委託狀態
 
-取得期貨委託狀態
+In
 
 ```
 api.update_status(api.futopt_account)
@@ -102,45 +190,46 @@ Out
 ```
 [
     Trade(
-        contract=Future(
-            code='TXFA3', 
-            symbol='TXF202301', 
-            name='臺股期貨01', 
-            category='TXF', 
-            delivery_month='202301', 
-            delivery_date='2023/01/30', 
-            underlying_kind='I', 
-            unit=1, 
-            limit_up=16270.0, 
-            limit_down=13312.0, 
-            reference=14791.0, 
-            update_date='2023/01/12'
-        ), 
+        contract=Contract(
+            security_type='FUT',
+            exchange='TAIFEX',
+            code='TMFE6'
+        ),
         order=Order(
-            action=<Action.Buy: 'Buy'>, 
-            price=14400, 
-            quantity=3, 
-            id='5efffde1', 
-            seqno='000004', 
-            ordno='000003', 
-            account=Account(
-                account_type=<AccountType.Future: 'F'>,
-                person_id='A123456789', 
-                broker_id='F002000', 
-                account_id='1234567', 
-                signed=True
-            ), 
-            price_type=<StockPriceType.LMT: 'LMT'>, 
-            order_type=<OrderType.ROD: 'ROD'>
-        ), 
+            id='e0ae2459',
+            action=<Action.Buy: 'Buy'>,
+            price=36216,
+            quantity=2,
+            seqno='242472',
+            ordno='vE0Dr',
+            order_type=<OrderType.ROD: 'ROD'>,
+            price_type=<PriceType.LMT: 'LMT'>,
+            account=FutureAccount(
+                person_id='YOUR_PERSON_ID',
+                broker_id='YOUR_BROKER_ID',
+                account_id='YOUR_ACCOUNT_ID',
+                signed=true,
+                username=''
+            ),
+            octype=<FuturesOCType.NewPosition: 'NewPosition'>
+        ),
         status=OrderStatus(
-            id='5efffde1', 
-            status=<Status.Filled: 'Filled'>,
-            status_code='00', 
-            order_datetime=datetime.datetime(2023, 1, 12, 14, 56, 13, 995651), 
-            order_quantity=3,
+            id='e0ae2459',
+            status=<OrderStatus.Filled: 'Filled'>,
+            status_code='0000',
+            order_datetime=datetime.datetime(2026, 5, 19, 18, 3, 7, tzinfo=datetime.timezone(datetime.timedelta(hours=8))),
+            web_id='Z',
+            modified_time=datetime.datetime(2026, 5, 19, 18, 3, 7, tzinfo=datetime.timezone(datetime.timedelta(hours=8))),
+            order_quantity=2,
+            deal_quantity=2,
             deals=[
-                Deal(seq='000001', price=14400, quantity=3, ts=1673501631.62918)
+                Deal(
+                    seq='000001',
+                    price=36216,
+                    quantity=2,
+                    ts=1747647787.123456,
+                    datetime=datetime.datetime(2026, 5, 19, 18, 3, 7, tzinfo=datetime.timezone(datetime.timedelta(hours=8)))
+                )
             ]
         )
     )
@@ -148,51 +237,52 @@ Out
 
 ```
 
-### 更新特定交易狀態
-
-更新特定交易狀態
+In
 
 ```
-# you can get trade from place_order
-# trade = api.place_order(contract, order)
+curl -X POST http://localhost:8080/api/v1/order/update_status \
+  -H 'Content-Type: application/json' \
+  -d '{
+    "account": {
+      "broker_id": "YOUR_BROKER_ID",
+      "account_id": "YOUR_ACCOUNT_ID"
+    }
+  }'
 
-# or get from api.list_trades
+```
+
+Out
+
+```
+[{"contract":{"security_type":"FUT","exchange":"TAIFEX","code":"TMFE6"},"order":{"id":"e0ae2459","action":"Buy","price":36216,"quantity":2,"seqno":"242472","ordno":"vE0Dr","order_type":"ROD","price_type":"LMT","account":{"account_type":"F","person_id":"YOUR_PERSON_ID","broker_id":"YOUR_BROKER_ID","account_id":"YOUR_ACCOUNT_ID","signed":true,"username":""},"octype":"NewPosition"},"status":{"id":"e0ae2459","status":"Filled","status_code":"0000","order_datetime":"2026-05-19T18:03:07+08:00","web_id":"Z","modified_time":"2026-05-19T18:03:07+08:00","order_quantity":2,"deal_quantity":2,"deals":[{"seq":"000001","price":36216,"quantity":2,"ts":1747647787.123456}]}}]
+
+```
+
+### 更新特定交易狀態
+
+In
+
+```
+# trade 可從 place_order 或 list_trades 取得
+# trade = api.place_order(contract, order)
 # trade = api.list_trades()[0]
 
 api.update_status(trade=trade)
 
 ```
 
-### 委託及成交狀態屬性
+HTTP 介面僅能以 `account` 更新該帳號全部委託，不支援指定單一 trade。
 
-委託狀態屬性
-
-```
-id (str): 關聯Order物件編碼
-status (:obj:Status): {
-            Cancelled: 已刪除, 
-            Filled: 完全成交, 
-            PartFilled: 部分成交, 
-            Failed: 失敗, 
-            PendingSubmit: 傳送中, 
-            PreSubmitted: 預約單, 
-            Submitted: 傳送成功
-        }
-status_code (str): 狀態碼
-order_datetime (datetime): 委託時間
-order_quantity (int): 委託數量
-modified_price (float): 改價金額
-cancel_quantity (int): 取消委託數量
-deals (:List:Deal): 成交資訊
+In
 
 ```
-
-成交屬性
-
-```
-seq (str): 成交序號
-price (int or float): 成交價
-quantity (int): 成交數量
-ts (float): 成交時間戳
+curl -X POST http://localhost:8080/api/v1/order/update_status \
+  -H 'Content-Type: application/json' \
+  -d '{
+    "account": {
+      "broker_id": "YOUR_BROKER_ID",
+      "account_id": "YOUR_ACCOUNT_ID"
+    }
+  }'
 
 ```

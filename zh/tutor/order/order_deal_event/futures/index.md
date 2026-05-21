@@ -5,99 +5,50 @@
 委託回報
 
 ```
-OrderState.FuturesOrder {
+<OrderState.FuturesOrder: 'FORDER'> {
     'operation': {
-        'op_type': 'New', 
-        'op_code': '00', 
+        'op_type': 'New',
+        'op_code': '00',
         'op_msg': ''
-    }, 
+    },
     'order': {
-        'id': 'fcb42a6e', 
-        'seqno': '585886', 
-        'ordno': '00', 
+        'id': '0bbe4f6d',
+        'seqno': '354926',
+        'ordno': 'ta0fu',
         'account': {
-            'account_type': 'F', 
-            'person_id': '', 
-            'broker_id': 'F002000', 
-            'account_id': '1234567', 
-            'signed': True
-        }, 
-        'action': 'Buy', 
-        'price': 27000.0, 
-        'quantity': 1, 
-        'order_type': 'ROD', 
-        'price_type': 'LMT', 
-        'market_type': 'Night', 
-        'oc_type': 'New', 
-        'subaccount': '', 
+            'account_type': 'F',
+            'person_id': '',
+            'broker_id': 'YOUR_BROKER_ID',
+            'account_id': 'YOUR_ACCOUNT_ID',
+            'signed': True,
+            'username': ''
+        },
+        'action': 'Buy',
+        'price': 36112.0,
+        'quantity': 1,
+        'order_type': 'ROD',
+        'price_type': 'LMT',
+        'market_type': 'Day',
+        'oc_type': 'New',
+        'subaccount': '',
         'combo': False
-    }, 
+    },
     'status': {
-        'id': 'fcb42a6e', 
-        'exchange_ts': 1764731566.0, 
-        'modified_price': 0.0, 
-        'cancel_quantity': 0, 
-        'order_quantity': 1, 
+        'id': '0bbe4f6d',
+        'exchange_ts': 1779331888.0,
+        'modified_price': 0.0,
+        'cancel_quantity': 0,
+        'order_quantity': 1,
         'web_id': 'Z'
-    }, 
+    },
     'contract': {
-        'security_type': 'FUT', 
-        'code': 'TXF', 
-        'full_code': 'TXFL5', 
-        'exchange': 'TIM', 
-        'delivery_month': '202512', 
-        'delivery_date': '', 
-        'strike_price': 0.0, 
-        'option_right': 'Future'
-    }
-}
-
-```
-
-```
-OrderState.FOrder {
-    'operation': {
-        'op_type': 'New', 
-        'op_code': '00', 
-        'op_msg': ''
-    }, 
-    'order': {
-        'id': 'fcb42a6e', 
-        'seqno': '585886', 
-        'ordno': '00', 
-        'account': {
-            'account_type': 'F', 
-            'person_id': '', 
-            'broker_id': 'F002000', 
-            'account_id': '1234567', 
-            'signed': True
-        }, 
-        'action': 'Buy', 
-        'price': 27000.0, 
-        'quantity': 1, 
-        'order_type': 'ROD', 
-        'price_type': 'LMT', 
-        'market_type': 'Night', 
-        'oc_type': 'New', 
-        'subaccount': '', 
-        'combo': False
-    }, 
-    'status': {
-        'id': 'fcb42a6e', 
-        'exchange_ts': 1764731566.0, 
-        'modified_price': 0.0, 
-        'cancel_quantity': 0, 
-        'order_quantity': 1, 
-        'web_id': 'Z'
-    }, 
-    'contract': {
-        'security_type': 'FUT', 
-        'code': 'TXF', 
-        'full_code': 'TXFL5', 
-        'exchange': 'TIM', 
-        'delivery_month': '202301', 
-        'delivery_date': '', 
-        'strike_price': 0.0, 
+        'security_type': 'FUT',
+        'code': 'TMF',
+        'exchange': 'TIM',
+        'delivery_month': '202606',
+        'full_code': 'TMFF6',
+        'delivery_date': '',
+        'strike_price': 0.0,
         'option_right': 'Future'
     }
 }
@@ -138,7 +89,12 @@ order_cond (str): {
 order_type (str): 委託類別 {ROD, IOC, FOK}
 price_type (str): {LMT: 限價, MKT: 市價, MKP: 範圍市價}
 market_type (str): 市場別 {Day:日盤, Night:夜盤}
-oc_type(str): {New: 新倉, Cover: 平倉, Auto: 自動}
+oc_type (str): {
+            New: 新倉, 
+            Cover: 平倉, 
+            Auto: 自動, 
+            DayTrade: 當沖
+        }
 subaccount(str): 子帳號
 combo (bool): 是否為組合單
 
@@ -177,51 +133,26 @@ option_right (str): {Future, OptionCall, OptionPut}
 成交回報
 
 ```
-OrderState.FuturesDeal {
-    'trade_id': '4e6df0f6', 
-    'seqno': '458545', 
-    'ordno': 'tA0deX1O', 
-    'exchange_seq': 'j5006396', 
-    'broker_id': 'F002000', 
-    'account_id': '1234567', 
-    'action': 'Sell', 
-    'code': 'TX1', 
+<OrderState.FuturesDeal: 'FDEAL'> {
+    'trade_id': '4e6df0f6',
+    'seqno': '458545',
+    'ordno': 'tA0deX1O',
+    'exchange_seq': 'j5006396',
+    'action': 'Sell',
+    'code': 'TX1',
+    'price': 25.0,
+    'quantity': 1,
+    'subaccount': '',
+    'security_type': 'OPT',
+    'delivery_month': '202512',
+    'ts': 1764685425.0,
+    'broker_id': 'YOUR_BROKER_ID',
+    'account_id': 'YOUR_ACCOUNT_ID',
     'full_code': 'TX127900L5',
-    'price': 25.0, 
-    'quantity': 1, 
-    'subaccount': '', 
-    'security_type': 'OPT', 
-    'delivery_month': '202512', 
-    'strike_price': 27900.0, 
-    'option_right': 'OptionCall', 
-    'market_type': 'Day', 
-    'combo': False, 
-    'ts': 1764685425.0
-}
-
-```
-
-```
-OrderState.FDeal {
-    'trade_id': '4e6df0f6', 
-    'seqno': '458545', 
-    'ordno': 'tA0deX1O', 
-    'exchange_seq': 'j5006396', 
-    'broker_id': 'F002000', 
-    'account_id': '1234567', 
-    'action': 'Sell', 
-    'code': 'TX1', 
-    'full_code': 'TX127900L5',
-    'price': 25.0, 
-    'quantity': 1, 
-    'subaccount': '', 
-    'security_type': 'OPT', 
-    'delivery_month': '202512', 
-    'strike_price': 27900.0, 
-    'option_right': 'OptionCall', 
-    'market_type': 'Day', 
-    'combo': False, 
-    'ts': 1764685425.0
+    'strike_price': 27900.0,
+    'option_right': 'OptionCall',
+    'market_type': 'Day',
+    'combo': False
 }
 
 ```

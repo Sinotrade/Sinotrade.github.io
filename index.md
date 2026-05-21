@@ -2,66 +2,61 @@
 
 ______________________________________________________________________
 
-Shioaji is the most pythonic API for trading the Taiwan and global financial market. You can integrated your favorite Python packages such as NumPy, pandas, PyTorch or TensorFlow to build your trading model with the Shioaji API on cross-platform.
+Shioaji is the trading API provided by SinoPac Securities — a complete and beginner-friendly platform for accessing the Taiwan financial market.
+
+As a **cross-language, cross-platform** trading platform, you can use the Python native binding `import shioaji as sj`, or any HTTP-capable language (JavaScript/TypeScript, Go, C/C++, C#, Rust, Java/Kotlin) to build your own trading models and trade stocks, futures, options, and combos.
+
+Intuitive interface, exceptional performance — whether you're new to trading or a seasoned trader looking for a more powerful platform, Shioaji has you covered. [Sign up for free and start trading.](https://sinotrade.github.io/tutor/prepare/open_account)
 
 ______________________________________________________________________
 
-We are in early-release alpha. Expect some adventures and rough edges.
+Features:
 
-The key features are:
-
-- Fast: High performance with c++ implement core and FPGA event broker.
-- Easy: Designed to be easy to use and learn.
-- Fast to code: With native python to integrate with large python ecosystem.
-- Cross-Platform: The first one python trading API with Linux compatible in Taiwan.
-- ✨ AI-Ready: First Taiwan trading API with [AI Coding Agent Skills](ai_assistant/) support. Let AI assistants help you code with Shioaji.
+- Cross-language, cross-platform: three interfaces — Python, HTTP API, and CLI — any HTTP-capable language can trade.
+- Performance: Rust core delivers microsecond-level market data processing.
+- ✨ The first Taiwan trading API to support AI Coding Agent skills.
 
 ## Installation
 
-### Binaries
-
-simple using pip to install
+### Python Package
 
 ```
+# uv (recommended)
+uv add shioaji
+
+# pip
 pip install shioaji
 
 ```
 
-update shioaji with
+### CLI Tool
 
 ```
-pip install -U shioaji
-
-```
-
-### uv
-
-using uv to install
-
-```
-uv add shioaji 
+uv tool install shioaji
+shioaji --help
 
 ```
 
-install speed version
+### Standalone Installer
+
+**Linux / macOS:**
 
 ```
-uv add shioaji --extra speed
+# Stable
+curl -fsSL https://raw.githubusercontent.com/sinotrade/shioaji/main/install.sh | sh
 
-```
-
-### Docker Image
-
-simple run with interactive mode in docker
-
-```
-docker run -it sinotrade/shioaji:latest
+# Prerelease
+curl -fsSL https://raw.githubusercontent.com/sinotrade/shioaji/main/install.sh | CHANNEL=prerelease sh
 
 ```
 
-run with jupyter lab or notebook
+**Windows (PowerShell):**
 
 ```
-docker run -p 8888:8888 sinotrade/shioaji:jupyter
+# Stable
+irm https://raw.githubusercontent.com/sinotrade/shioaji/main/install.ps1 | iex
+
+# Prerelease
+$env:CHANNEL="prerelease"; irm https://raw.githubusercontent.com/sinotrade/shioaji/main/install.ps1 | iex
 
 ```

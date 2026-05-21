@@ -1,26 +1,73 @@
-Short Stock Sources
+ShortStockSources
 
 ```
->> api.short_stock_sources?
+api.short_stock_sources?
 
 Signature:
-api.short_stock_sources(
-    contracts: List[shioaji.contracts.Stock],
-    timeout: int = 5000,
-    cb: Callable[[shioaji.data.ShortStockSource], NoneType] = None,
-) -> List[shioaji.data.ShortStockSource]
+    api.short_stock_sources(
+        contracts: List[shioaji.contracts.Stock],
+        timeout: int = 5000,
+        cb: Callable[[shioaji.data.ShortStockSource], NoneType] = None,
+    ) -> List[shioaji.data.ShortStockSource]
 
 ```
 
-## Example
+Parameters
+
+```
+contracts: list of contracts (from api.Contracts.Stocks.*)
+timeout:   timeout in milliseconds
+cb:        optional, callback function, used when timeout=0
+
+```
+
+CLI does not support short stock sources queries; please use Python / HTTP instead.
+
+ShortStockSources
+
+```
+POST /api/v1/data/short_stock_sources
+Content-Type: application/json
+
+{
+  "contracts": [
+    { "security_type": "STK", "exchange": <Exchange>, "code": <string> }
+  ]
+}
+
+```
+
+Parameters
+
+```
+contracts:                 list of contracts
+contracts[].security_type: security type {'STK'}
+contracts[].exchange:      exchange {'TSE', 'OTC'}
+contracts[].code:          security code (e.g. 2330)
+
+```
+
+Reminder
+
+Short stock sources only supports stocks (`security_type` = `"STK"`).
+
+## Attributes
+
+ShortStockSource
+
+```
+code (str):               security code
+short_stock_source (int): short stock source
+ts / datetime:            time (integer Unix timestamp in Python, ISO string in other languages)
+
+```
+
+## Examples
 
 In
 
 ```
-contracts = [
-    api.Contracts.Stocks['2330'], 
-    api.Contracts.Stocks['2317']
-]
+contracts = [api.Contracts.Stocks['2330'], api.Contracts.Stocks['2317']]
 short_stock_sources = api.short_stock_sources(contracts)
 short_stock_sources
 
@@ -29,35 +76,45 @@ short_stock_sources
 Out
 
 ```
-[
-    ShortStockSource(code='2330', short_stock_source=58260, ts=1673943433000000000),
-    ShortStockSource(code='2317', short_stock_source=75049, ts=1673943433000000000)
-]
+[ShortStockSource(code='2330', short_stock_source=0, ts=1779099174000000000),
+ ShortStockSource(code='2317', short_stock_source=1225, ts=1779099174000000000)]
 
 ```
 
-To DataFrame
+**To DataFrame (using polars)**
 
 In
 
 ```
-df = pd.DataFrame(s.__dict__ for s in short_stock_sources)
-df.ts = pd.to_datetime(df.ts)
+import polars as pl
+df = pl.DataFrame(s.dict() for s in short_stock_sources).with_columns(
+    pl.col("ts").cast(pl.Datetime("ns"))
+)
 df
 
 ```
 
 Out
 
-| code | short_stock_source | ts | | --- | --- | --- | | 2330 | 58260 | 2023-01-17 08:17:13 | | 2317 | 75049 | 2023-01-17 08:17:13 |
+| code | short_stock_source | ts | | --- | --- | --- | | 2330 | 0 | 2026-05-18 10:12:54 | | 2317 | 1225 | 2026-05-18 10:12:54 |
 
-## Attributes
-
-ShortStockSource
+In
 
 ```
-code (str): contract id
-short_stock_source (float): short stock source
-ts (int): timeStamp
+curl -X POST http://localhost:8080/api/v1/data/short_stock_sources \
+  -H 'Content-Type: application/json' \
+  -d '{
+    "contracts": [
+      {"security_type": "STK", "exchange": "TSE", "code": "2330"},
+      {"security_type": "STK", "exchange": "TSE", "code": "2317"}
+    ]
+  }'
+
+```
+
+Out
+
+```
+[{"code":"2330","short_stock_source":0,"datetime":"2026-05-18T10:13:47"},{"code":"2317","short_stock_source":1225,"datetime":"2026-05-18T10:13:47"}]
 
 ```

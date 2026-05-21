@@ -1,74 +1,115 @@
+Query the published **disposition** and **attention** stock lists.
+
 ## Disposition Stocks
 
-Disposition Stocks
-
-```
->> api.punish?
-
-Signature:
-api.punish(
-    timeout: int = 5000,
-    cb: Callable[[shioaji.data.Punish], NoneType] = None,
-) -> shioaji.data.Punish
-Docstring: get punish information
-
-```
-
-### Example
-
-In
-
-```
-punish = api.punish()
 punish
 
 ```
+api.punish?
 
-Out
-
-```
-Punish(
-    code=['2349', '2408', ...],
-    start_date=[datetime.date(2025, 12, 17), datetime.date(2025, 12, 8), ...],
-    end_date=[datetime.date(2025, 12, 31), datetime.date(2025, 12, 19), ...],
-    updated_at=[datetime.datetime(2025, 12, 16, 18, 18, 20), datetime.datetime(2025, 12, 16, 18, 18, 20), ...],
-    interval=['5分鐘', '5分鐘', ...],
-    unit_limit=[10.0, 10.0, ...],
-    total_limit=[30.0, 30.0, ...],
-    description=['...', '...', ...],
-    announced_date=[datetime.date(2025, 12, 16), datetime.date(2025, 12, 5), ...]
-)
+Signature:
+    api.punish(
+        timeout: int = 5000,
+        cb: Callable[[shioaji.data.Punish], NoneType] = None,
+    ) -> shioaji.data.Punish
 
 ```
 
-To DataFrame
-
-In
+Parameters
 
 ```
-df = pd.DataFrame(punish.__dict__)
-df
+timeout: timeout in milliseconds
+cb:      callback function, used when timeout=0
 
 ```
 
-Out
+punish
 
-| code | start_date | end_date | updated_at | interval | unit_limit | total_limit | description | announced_date | | --- | --- | --- | --- | --- | --- | --- | --- | --- | | 2349 | 2025-12-17 | 2025-12-31 | 2025-12-16 18:18:20 | 5分鐘 | 10.0 | 30.0 | ... | 2025-12-16 | | 2408 | 2025-12-08 | 2025-12-19 | 2025-12-16 18:18:20 | 5分鐘 | 10.0 | 30.0 | ... | 2025-12-05 |
+```
+GET /api/v1/data/regulatory_punish
+
+```
 
 ### Attributes
 
 Punish
 
 ```
-code (list[str]): code
-start_date (list[date]): disposition start date
-end_date (list[date]): disposition end date
+code (list[str]):            symbol codes
+start_date (list[date]):     disposition start date
+end_date (list[date]):       disposition end date
 updated_at (list[datetime]): updated time
-interval (list[str]): matching interval
-unit_limit (list[float]): single order limit
-total_limit (list[float]): daily order limit
-description (list[str]): disposition description
+interval (list[str]):        matching interval
+unit_limit (list[float]):    single-order limit
+total_limit (list[float]):   daily-order limit
+description (list[str]):     description
 announced_date (list[date]): announced date
+
+```
+
+### Examples
+
+In
+
+```
+api.punish()
+
+```
+
+Out
+
+```
+Punish[86](
+    code=["1591", "1595", ...],
+    start_date=["2026-05-21", "2026-05-11", ...],
+    end_date=["2026-06-03", "2026-05-22", ...],
+    updated_at=["2026-05-20T18:18:31", "2026-05-08T18:18:39", ...],
+    interval=["25分鐘", "5分鐘", ...],
+    unit_limit=[None, 10, ...],
+    total_limit=[None, 30, ...],
+    description=["...", "...", ...],
+    announced_date=["2026-05-20", "2026-05-08", ...]
+)
+
+```
+
+**Convert to DataFrame (polars example)**
+
+In
+
+```
+import polars as pl
+punish = api.punish()
+df = pl.DataFrame(punish.dict())
+df.head()
+
+```
+
+Out
+
+| code | start_date | end_date | updated_at | interval | unit_limit | total_limit | description | announced_date | | --- | --- | --- | --- | --- | --- | --- | --- | --- | | 1591 | 2026-05-21 | 2026-06-03 | 2026-05-20T18:18:31 | 25分鐘 | null | null | ... | 2026-05-20 | | 1595 | 2026-05-11 | 2026-05-22 | 2026-05-08T18:18:39 | 5分鐘 | 10 | 30 | ... | 2026-05-08 |
+
+In
+
+```
+curl http://localhost:8080/api/v1/data/regulatory_punish
+
+```
+
+Out
+
+```
+{
+  "code": ["1591", "1595", "..."],
+  "start_date": ["2026-05-21", "2026-05-11", "..."],
+  "end_date": ["2026-06-03", "2026-05-22", "..."],
+  "updated_at": ["2026-05-20T18:18:31", "2026-05-08T18:18:39", "..."],
+  "interval": ["25分鐘", "5分鐘", "..."],
+  "unit_limit": [null, 10, "..."],
+  "total_limit": [null, 30, "..."],
+  "description": ["...", "...", "..."],
+  "announced_date": ["2026-05-20", "2026-05-08", "..."]
+}
 
 ```
 
@@ -76,66 +117,101 @@ ______________________________________________________________________
 
 ## Attention Stocks
 
-Attention Stocks
-
-```
->> api.notice?
-
-Signature:
-api.notice(
-    timeout: int = 5000,
-    cb: Callable[[shioaji.data.Notice], NoneType] = None,
-) -> shioaji.data.Notice
-Docstring: get notice information
-
-```
-
-### Example
-
-In
-
-```
-notice = api.notice()
 notice
 
 ```
+api.notice?
 
-Out
-
-```
-Notice(
-    code=['089508', '2349', ...],
-    updated_at=[datetime.datetime(2025, 12, 16, 18, 18, 19), datetime.datetime(2025, 12, 16, 18, 18, 19), ...],
-    close=[9.85, 16.2, ...],
-    reason=['最近六個營業日累積收盤價漲幅達39.34%﹝第一款﹞。', '最近六個營業日累積收盤價漲幅達41.59%﹝第一款﹞...', ...],
-    announced_date=[datetime.date(2025, 12, 16), datetime.date(2025, 12, 16), ...]
-)
+Signature:
+    api.notice(
+        timeout: int = 5000,
+        cb: Callable[[shioaji.data.Notice], NoneType] = None,
+    ) -> shioaji.data.Notice
 
 ```
 
-To DataFrame
-
-In
+Parameters
 
 ```
-df = pd.DataFrame(notice.__dict__)
-df
+timeout: timeout in milliseconds
+cb:      callback function, used when timeout=0
 
 ```
 
-Out
+notice
 
-| code | updated_at | close | reason | announced_date | | --- | --- | --- | --- | --- | | 089508 | 2025-12-16 18:18:19 | 9.85 | 最近六個營業日累積收盤價漲幅達39.34%﹝第一款﹞。 | 2025-12-16 | | 2349 | 2025-12-16 18:18:19 | 16.2 | 最近六個營業日累積收盤價漲幅達41.59%﹝第一款﹞... | 2025-12-16 |
+```
+GET /api/v1/data/regulatory_notice
+
+```
 
 ### Attributes
 
 Notice
 
 ```
-code (list[str]): code
+code (list[str]):            symbol codes
 updated_at (list[datetime]): updated time
-close (list[float]): close price
-reason (list[str]): attention reason
+close (list[float]):         closing price
+reason (list[str]):          attention reason
 announced_date (list[date]): announced date
+
+```
+
+### Examples
+
+In
+
+```
+api.notice()
+
+```
+
+Out
+
+```
+Notice[2](
+    code=["6775", "6990"],
+    updated_at=["2026-05-21T17:18:15", "2026-05-21T17:18:15"],
+    close=[51.16, 153.29],
+    reason=["...", "..."],
+    announced_date=["2026-05-21", "2026-05-21"]
+)
+
+```
+
+**Convert to DataFrame (polars example)**
+
+In
+
+```
+import polars as pl
+notice = api.notice()
+df = pl.DataFrame(notice.dict())
+df.head()
+
+```
+
+Out
+
+| code | updated_at | close | reason | announced_date | | --- | --- | --- | --- | --- | | 6775 | 2026-05-21T17:18:15 | 51.16 | ... | 2026-05-21 | | 6990 | 2026-05-21T17:18:15 | 153.29 | ... | 2026-05-21 |
+
+In
+
+```
+curl http://localhost:8080/api/v1/data/regulatory_notice
+
+```
+
+Out
+
+```
+{
+  "code": ["6775", "6990"],
+  "updated_at": ["2026-05-21T17:18:15", "2026-05-21T17:18:15"],
+  "close": [51.16, 153.29],
+  "reason": ["...", "..."],
+  "announced_date": ["2026-05-21", "2026-05-21"]
+}
 
 ```

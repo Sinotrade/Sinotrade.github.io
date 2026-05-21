@@ -1,14 +1,39 @@
-使用者能先在模擬環境熟悉我們所提供的服務，可避免在正式環境操作失誤造成財物的損失。以下會詳細說明在測試環境所提供的功能。
+使用者能先在模擬環境熟悉我們所提供的服務，可避免在正式環境操作失誤造成財物的損失。以下說明如何進入模擬環境。
 
-模擬環境
-
-```
-import shioaji as sj
-api = sj.Shioaji(simulation=True)
+## 進入模擬環境
 
 ```
+api = sj.Shioaji(simulation=True)  # 模擬模式
+accounts = api.login(
+    api_key="YOUR_API_KEY",     # 請修改此處
+    secret_key="YOUR_SECRET_KEY"  # 請修改此處
+)
 
-## 可使用的APIs
+```
+
+```
+# .env（放在執行目錄）應包含：
+SJ_API_KEY=YOUR_API_KEY                # 請修改此處
+SJ_SEC_KEY=YOUR_SECRET_KEY             # 請修改此處
+SJ_PRODUCTION=false                    # 模擬模式
+
+# 啟動 server（自動讀取 .env，完成登入）
+shioaji server start
+
+```
+
+```
+# .env（放在執行目錄）應包含：
+SJ_API_KEY=YOUR_API_KEY                # 請修改此處
+SJ_SEC_KEY=YOUR_SECRET_KEY             # 請修改此處
+SJ_PRODUCTION=false                    # 模擬模式
+
+# 啟動 server（在 terminal 執行，自動讀取 .env，完成登入）
+shioaji server start
+
+```
+
+## 可使用的 APIs
 
 行情資料
 

@@ -1,35 +1,99 @@
 Reminder
 
-First, you need to [login](../../login/) and [activate CA](../../prepare/terms/).
+Before placing orders, you must first [log in](../../login/) and [activate your CA](../../prepare/terms/).
 
-Before obtaining the `Trade` status, it must be updated with `update_status`. If you cannot successfully `update_order` or `cancel_order`, you can use `update_status` to update the specific `trade` status, and check the `OrderStatus` in `trade`, whether it is available to modify the order.
+Before reading a `Trade`'s status, you must first refresh it by calling `update_status`. By default the call refreshes every order under all accounts. To refresh a single account, pass it as `account`; to refresh a single order, pass the `Trade` object as the keyword argument `trade=`. After the call, you can read the latest `Trade` list from `api.list_trades()` or directly inspect the `status` field on the `trade` object you passed in.
 
-The update_status defaults to querying all accounts under the user's name. If you wish to inquire about a specific account, provide the account as a parameter to account.
-
-Update Status
+update_status
 
 ```
 api.update_status?
 
-```
-
-Out
-
-```
 Signature:
     api.update_status(
-        account: shioaji.account.Account = None,
-        trade: shioaji.order.Trade = None,
-        timeout: int = 5000,
-        cb: Callable[[List[shioaji.order.Trade]], NoneType] = None,
-    )
-Docstring: update status of all trades you have
+        account: Optional[sj.Account] = None,
+        *,
+        trade: Optional[sj.Trade] = None,
+        timeout: Optional[int] = 30000,
+        cb: Optional[Callable[[], None]] = None,
+    ) -> None
 
 ```
 
-### Get Stock Trades
+Parameters
 
-Get Stock Trades
+```
+account: Stock or futures account; omit to refresh all accounts under your name
+trade:   Specific Trade object to refresh (keyword-only)
+timeout: Timeout in milliseconds
+cb:      Optional callback function
+
+```
+
+update_status
+
+```
+POST /api/v1/order/update_status
+Content-Type: application/json
+
+{
+  "account": { "broker_id": <string>, "account_id": <string> }
+}
+
+```
+
+Parameters
+
+```
+account: Stock or futures account
+
+```
+
+## Attributes
+
+OrderStatus
+
+```
+id (str):                  Linked Order object ID
+status (OrderStatus):      Order status, {
+                              Cancelled:     Cancelled,
+                              Filled:        Fully filled,
+                              PartFilled:    Partially filled,
+                              Inactive:      Inactive,
+                              Failed:        Failed,
+                              PendingSubmit: Pending submit,
+                              PreSubmitted:  Pre-submitted,
+                              Submitted:     Submitted
+                           }
+status_code (str):         Status code
+web_id (str):              Web-side order ID
+order_datetime (datetime): Order timestamp
+msg (str):                 Message
+modified_time (datetime):  Last-modified timestamp
+modified_price (float):    Modified price
+order_quantity (int):      Order quantity
+deal_quantity (int):       Filled quantity
+cancel_quantity (int):     Cancelled quantity
+deals (List[Deal]):        Deal details
+
+```
+
+Deal
+
+```
+seq (str):           Deal sequence number
+price (float):       Deal price
+quantity (int):      Deal quantity
+ts (float):          Deal timestamp
+datetime (datetime): Deal datetime (computed from ts, tz=Asia/Taipei +0800)
+
+```
+
+## Examples
+
+### Get Stock Order Status
+
+In
 
 ```
 api.update_status(api.stock_account)
@@ -42,46 +106,47 @@ Out
 ```
 [
     Trade(
-        contract=Stock(
-            exchange=<Exchange.TSE: 'TSE'>, 
-            code='2890', 
-            symbol='TSE2890', 
-            name='永豐金', 
-            category='17', 
-            unit=1000, 
-            limit_up=19.05, 
-            limit_down=15.65, 
-            reference=17.35, 
-            update_date='2023/01/12',
-            day_trade=<DayTrade.Yes: 'Yes'>
-        ), 
+        contract=Contract(
+            security_type='STK',
+            exchange='TSE',
+            code='2890'
+        ),
         order=Order(
-            action=<Action.Buy: 'Buy'>, 
-            price=17, 
-            quantity=3, 
-            id='531e27af', 
-            seqno='000002', 
-            ordno='000001', 
-            account=Account(
-                account_type=<AccountType.Stock: 'S'>,
-                person_id='A123456789', 
-                broker_id='9A95', 
-                account_id='1234567', 
-                signed=True
-            ), 
-            custom_field='test', 
-            price_type=<StockPriceType.LMT: 'LMT'>, 
-            order_type=<OrderType.ROD: 'ROD'>, 
-            daytrade_short=True
-        ), 
+            id='a647f23d',
+            action=<Action.Buy: 'Buy'>,
+            price=27.1,
+            quantity=2,
+            seqno='214115',
+            ordno='Y27FI',
+            order_type=<OrderType.ROD: 'ROD'>,
+            price_type=<PriceType.LMT: 'LMT'>,
+            account=StockAccount(
+                person_id='YOUR_PERSON_ID',
+                broker_id='YOUR_BROKER_ID',
+                account_id='YOUR_ACCOUNT_ID',
+                signed=true,
+                username=''
+            ),
+            order_cond=<StockOrderCond.Cash: 'Cash'>,
+            order_lot=<StockOrderLot.Common: 'Common'>
+        ),
         status=OrderStatus(
-            id='531e27af', 
-            status=<Status.Filled: 'Filled'>,
-            status_code='00', 
-            order_datetime=datetime.datetime(2023, 1, 12, 11, 18, 3, 867490), 
-            order_quantity=3,
+            id='a647f23d',
+            status=<OrderStatus.Filled: 'Filled'>,
+            status_code='00',
+            order_datetime=datetime.datetime(2026, 5, 20, 11, 24, 30, tzinfo=datetime.timezone(datetime.timedelta(hours=8))),
+            web_id='137',
+            modified_time=datetime.datetime(2026, 5, 20, 11, 24, 30, tzinfo=datetime.timezone(datetime.timedelta(hours=8))),
+            order_quantity=2,
+            deal_quantity=2,
             deals=[
-                Deal(seq='000001', price=17, quantity=3, ts=1673501631.62918)
+                Deal(
+                    seq='000001',
+                    price=27.1,
+                    quantity=2,
+                    ts=1747714234.123456,
+                    datetime=datetime.datetime(2026, 5, 20, 11, 24, 30, tzinfo=datetime.timezone(datetime.timedelta(hours=8)))
+                )
             ]
         )
     )
@@ -89,9 +154,30 @@ Out
 
 ```
 
-### Get Futures Trades
+In
 
-Get Futures Trades
+```
+curl -X POST http://localhost:8080/api/v1/order/update_status \
+  -H 'Content-Type: application/json' \
+  -d '{
+    "account": {
+      "broker_id": "YOUR_BROKER_ID",
+      "account_id": "YOUR_ACCOUNT_ID"
+    }
+  }'
+
+```
+
+Out
+
+```
+[{"contract":{"security_type":"STK","exchange":"TSE","code":"2890"},"order":{"id":"a647f23d","action":"Buy","price":27.1,"quantity":2,"seqno":"214115","ordno":"Y27FI","order_type":"ROD","price_type":"LMT","account":{"account_type":"S","person_id":"YOUR_PERSON_ID","broker_id":"YOUR_BROKER_ID","account_id":"YOUR_ACCOUNT_ID","signed":true,"username":""},"order_cond":"Cash","order_lot":"Common"},"status":{"id":"a647f23d","status":"Filled","status_code":"00","order_datetime":"2026-05-20T11:24:30+08:00","web_id":"137","modified_time":"2026-05-20T11:24:30+08:00","order_quantity":2,"deal_quantity":2,"deals":[{"seq":"000001","price":27.1,"quantity":2,"ts":1747714234.123456}]}}]
+
+```
+
+### Get Futures Order Status
+
+In
 
 ```
 api.update_status(api.futopt_account)
@@ -104,45 +190,46 @@ Out
 ```
 [
     Trade(
-        contract=Future(
-            code='TXFA3', 
-            symbol='TXF202301', 
-            name='臺股期貨01', 
-            category='TXF', 
-            delivery_month='202301', 
-            delivery_date='2023/01/30', 
-            underlying_kind='I', 
-            unit=1, 
-            limit_up=16270.0, 
-            limit_down=13312.0, 
-            reference=14791.0, 
-            update_date='2023/01/12'
-        ), 
+        contract=Contract(
+            security_type='FUT',
+            exchange='TAIFEX',
+            code='TMFE6'
+        ),
         order=Order(
-            action=<Action.Buy: 'Buy'>, 
-            price=14400, 
-            quantity=3, 
-            id='5efffde1', 
-            seqno='000004', 
-            ordno='000003', 
-            account=Account(
-                account_type=<AccountType.Future: 'F'>,
-                person_id='A123456789', 
-                broker_id='F002000', 
-                account_id='1234567', 
-                signed=True
-            ), 
-            price_type=<StockPriceType.LMT: 'LMT'>, 
-            order_type=<OrderType.ROD: 'ROD'>
-        ), 
+            id='e0ae2459',
+            action=<Action.Buy: 'Buy'>,
+            price=36216,
+            quantity=2,
+            seqno='242472',
+            ordno='vE0Dr',
+            order_type=<OrderType.ROD: 'ROD'>,
+            price_type=<PriceType.LMT: 'LMT'>,
+            account=FutureAccount(
+                person_id='YOUR_PERSON_ID',
+                broker_id='YOUR_BROKER_ID',
+                account_id='YOUR_ACCOUNT_ID',
+                signed=true,
+                username=''
+            ),
+            octype=<FuturesOCType.NewPosition: 'NewPosition'>
+        ),
         status=OrderStatus(
-            id='5efffde1', 
-            status=<Status.Filled: 'Filled'>,
-            status_code='00', 
-            order_datetime=datetime.datetime(2023, 1, 12, 14, 56, 13, 995651), 
-            order_quantity=3,
+            id='e0ae2459',
+            status=<OrderStatus.Filled: 'Filled'>,
+            status_code='0000',
+            order_datetime=datetime.datetime(2026, 5, 19, 18, 3, 7, tzinfo=datetime.timezone(datetime.timedelta(hours=8))),
+            web_id='Z',
+            modified_time=datetime.datetime(2026, 5, 19, 18, 3, 7, tzinfo=datetime.timezone(datetime.timedelta(hours=8))),
+            order_quantity=2,
+            deal_quantity=2,
             deals=[
-                Deal(seq='000001', price=14400, quantity=3, ts=1673501631.62918)
+                Deal(
+                    seq='000001',
+                    price=36216,
+                    quantity=2,
+                    ts=1747647787.123456,
+                    datetime=datetime.datetime(2026, 5, 19, 18, 3, 7, tzinfo=datetime.timezone(datetime.timedelta(hours=8)))
+                )
             ]
         )
     )
@@ -150,43 +237,52 @@ Out
 
 ```
 
-### Update Specific Trade
-
-Update Trade
+In
 
 ```
-# you can get trade from place_order
-# trade = api.place_order(contract, order)
+curl -X POST http://localhost:8080/api/v1/order/update_status \
+  -H 'Content-Type: application/json' \
+  -d '{
+    "account": {
+      "broker_id": "YOUR_BROKER_ID",
+      "account_id": "YOUR_ACCOUNT_ID"
+    }
+  }'
 
-# or get from api.list_trades
+```
+
+Out
+
+```
+[{"contract":{"security_type":"FUT","exchange":"TAIFEX","code":"TMFE6"},"order":{"id":"e0ae2459","action":"Buy","price":36216,"quantity":2,"seqno":"242472","ordno":"vE0Dr","order_type":"ROD","price_type":"LMT","account":{"account_type":"F","person_id":"YOUR_PERSON_ID","broker_id":"YOUR_BROKER_ID","account_id":"YOUR_ACCOUNT_ID","signed":true,"username":""},"octype":"NewPosition"},"status":{"id":"e0ae2459","status":"Filled","status_code":"0000","order_datetime":"2026-05-19T18:03:07+08:00","web_id":"Z","modified_time":"2026-05-19T18:03:07+08:00","order_quantity":2,"deal_quantity":2,"deals":[{"seq":"000001","price":36216,"quantity":2,"ts":1747647787.123456}]}}]
+
+```
+
+### Update a Specific Trade
+
+In
+
+```
+# trade can be obtained from place_order or list_trades
+# trade = api.place_order(contract, order)
 # trade = api.list_trades()[0]
 
 api.update_status(trade=trade)
 
 ```
 
-### Trade Status
+The HTTP endpoint only refreshes all orders under the given `account`; it does not support targeting a single trade.
 
-OrderStatus
-
-```
-id (str): the id uses to correlate the order object
-status (:obj:Status): the status of order {Cancelled, Filled, PartFilled, Failed, PendingSubmit, PreSubmitted, Submitted}
-status_code (str): the code of status
-order_datetime (datetime): order time
-order_quantity (int): order quantity
-modified_price (float): the price of modification
-cancel_quantity (int): the quantity of cancel
-deals (:List:Deal): information of filled order
+In
 
 ```
-
-Deal
-
-```
-seq (str): deal sequence number
-price (int or float): deal price
-quantity (int): deal quantity
-ts (float): deal timestamp
+curl -X POST http://localhost:8080/api/v1/order/update_status \
+  -H 'Content-Type: application/json' \
+  -d '{
+    "account": {
+      "broker_id": "YOUR_BROKER_ID",
+      "account_id": "YOUR_ACCOUNT_ID"
+    }
+  }'
 
 ```

@@ -4,6 +4,8 @@
 
 ## Usage documentation
 
+- [其他語言使用者](https://sinotrade.github.io/zh/env_setup/other/index.md)
+- [Python 使用者](https://sinotrade.github.io/zh/env_setup/python/index.md)
 - [商品檔](https://sinotrade.github.io/zh/tutor/contract/index.md)
 - [使用限制](https://sinotrade.github.io/zh/tutor/limit/index.md)
 - [登入](https://sinotrade.github.io/zh/tutor/login/index.md)
@@ -13,7 +15,7 @@
 - [保證金](https://sinotrade.github.io/zh/tutor/accounting/margin/index.md)
 - [未實現損益](https://sinotrade.github.io/zh/tutor/accounting/position/index.md)
 - [已實現損益](https://sinotrade.github.io/zh/tutor/accounting/profit_loss/index.md)
-- [結算](https://sinotrade.github.io/zh/tutor/accounting/settlements/index.md)
+- [交割款](https://sinotrade.github.io/zh/tutor/accounting/settlements/index.md)
 - [交易額度](https://sinotrade.github.io/zh/tutor/accounting/trading_limits/index.md)
 - [非阻塞模式範例](https://sinotrade.github.io/zh/tutor/advanced/nonblock/index.md)
 - [綁訂報價模式](https://sinotrade.github.io/zh/tutor/advanced/quote_binding/index.md)
@@ -39,6 +41,6 @@
 - [證券](https://sinotrade.github.io/zh/tutor/order/order_deal_event/stocks/index.md)
 - [測試專案範例](https://sinotrade.github.io/zh/tutor/prepare/example_testing_flow/index.md)
 - [開戶](https://sinotrade.github.io/zh/tutor/prepare/open_account/index.md)
-- [服務條款簽署](https://sinotrade.github.io/zh/tutor/prepare/terms/index.md)
+- [條款簽署與測試](https://sinotrade.github.io/zh/tutor/prepare/terms/index.md)
 - [金鑰與憑證申請](https://sinotrade.github.io/zh/tutor/prepare/token/index.md)
 
