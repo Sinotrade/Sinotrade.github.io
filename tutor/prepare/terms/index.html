@@ -664,6 +664,42 @@
   
 </li>
         
+          <li class="md-nav__item">
+  <a href="#login-test" class="md-nav__link">
+    <span class="md-ellipsis">
+      Login Test
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#place-order-test-stock" class="md-nav__link">
+    <span class="md-ellipsis">
+      Place Order Test - Stock
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#place-order-test-futures" class="md-nav__link">
+    <span class="md-ellipsis">
+      Place Order Test - Futures
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#check-if-api-tests-has-passed" class="md-nav__link">
+    <span class="md-ellipsis">
+      Check if API tests has passed
+    </span>
+  </a>
+  
+</li>
+        
       </ul>
     </nav>
   
@@ -1960,6 +1996,42 @@
   
 </li>
         
+          <li class="md-nav__item">
+  <a href="#login-test" class="md-nav__link">
+    <span class="md-ellipsis">
+      Login Test
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#place-order-test-stock" class="md-nav__link">
+    <span class="md-ellipsis">
+      Place Order Test - Stock
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#place-order-test-futures" class="md-nav__link">
+    <span class="md-ellipsis">
+      Place Order Test - Futures
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#check-if-api-tests-has-passed" class="md-nav__link">
+    <span class="md-ellipsis">
+      Check if API tests has passed
+    </span>
+  </a>
+  
+</li>
+        
       </ul>
     </nav>
   
@@ -2109,11 +2181,15 @@
 <span class="p">}</span>
 </code></pre></div>
 
-### Login Test
+-->
 
-!!! info "Login"
-    === "Python"
-        <div class="highlight"><pre><span></span><code><span class="n">api</span> <span class="o">=</span> <span class="n">sj</span><span class="o">.</span><span class="n">Shioaji</span><span class="p">(</span><span class="n">simulation</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>  <span class="c1"># Simulation Mode</span>
+<h3 id="login-test">Login Test<a class="headerlink" href="#login-test" title="Permanent link">&para;</a></h3>
+<div class="admonition info">
+<p class="admonition-title">Login</p>
+<div class="tabbed-set tabbed-alternate" data-tabs="3:3"><input checked="checked" id="__tabbed_3_1" name="__tabbed_3" type="radio" /><input id="__tabbed_3_2" name="__tabbed_3" type="radio" /><input id="__tabbed_3_3" name="__tabbed_3" type="radio" /><div class="tabbed-labels"><label for="__tabbed_3_1">Python</label><label for="__tabbed_3_2">CLI</label><label for="__tabbed_3_3">HTTP</label></div>
+<div class="tabbed-content">
+<div class="tabbed-block">
+<div class="highlight"><pre><span></span><code><span class="n">api</span> <span class="o">=</span> <span class="n">sj</span><span class="o">.</span><span class="n">Shioaji</span><span class="p">(</span><span class="n">simulation</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>  <span class="c1"># Simulation Mode</span>
 <span class="n">accounts</span> <span class="o">=</span> <span class="n">api</span><span class="o">.</span><span class="n">login</span><span class="p">(</span>
 <span class="hll">    <span class="n">api_key</span><span class="o">=</span><span class="s2">&quot;YOUR_API_KEY&quot;</span><span class="p">,</span>         <span class="c1"># edit it</span>
 </span><span class="hll">    <span class="n">secret_key</span><span class="o">=</span><span class="s2">&quot;YOUR_SECRET_KEY&quot;</span>    <span class="c1"># edit it</span>
@@ -2122,9 +2198,9 @@
 <span class="c1"># Verify login by listing accounts</span>
 <span class="nb">print</span><span class="p">(</span><span class="n">accounts</span><span class="p">)</span>
 </code></pre></div>
-
-    === "CLI"
-        <div class="highlight"><pre><span></span><code><span class="c1"># .env (in the working directory) should contain:</span>
+</div>
+<div class="tabbed-block">
+<div class="highlight"><pre><span></span><code><span class="c1"># .env (in the working directory) should contain:</span>
 <span class="hll"><span class="nv">SJ_API_KEY</span><span class="o">=</span>YOUR_API_KEY<span class="w">                </span><span class="c1"># edit it</span>
 </span><span class="hll"><span class="nv">SJ_SEC_KEY</span><span class="o">=</span>YOUR_SECRET_KEY<span class="w">             </span><span class="c1"># edit it</span>
 </span><span class="nv">SJ_PRODUCTION</span><span class="o">=</span><span class="nb">false</span><span class="w">                    </span><span class="c1"># simulation mode</span>
@@ -2135,9 +2211,9 @@ shioaji<span class="w"> </span>server<span class="w"> </span>start
 <span class="c1"># Verify login by listing accounts</span>
 shioaji<span class="w"> </span>auth<span class="w"> </span>accounts
 </code></pre></div>
-
-    === "HTTP"
-        <div class="highlight"><pre><span></span><code><span class="c1"># .env (in the working directory) should contain:</span>
+</div>
+<div class="tabbed-block">
+<div class="highlight"><pre><span></span><code><span class="c1"># .env (in the working directory) should contain:</span>
 <span class="hll"><span class="nv">SJ_API_KEY</span><span class="o">=</span>YOUR_API_KEY<span class="w">                </span><span class="c1"># edit it</span>
 </span><span class="hll"><span class="nv">SJ_SEC_KEY</span><span class="o">=</span>YOUR_SECRET_KEY<span class="w">             </span><span class="c1"># edit it</span>
 </span><span class="nv">SJ_PRODUCTION</span><span class="o">=</span><span class="nb">false</span><span class="w">                    </span><span class="c1"># simulation mode</span>
@@ -2148,7 +2224,11 @@ shioaji<span class="w"> </span>server<span class="w"> </span>start
 <span class="c1"># Verify login by listing accounts</span>
 curl<span class="w"> </span>http://localhost:8080/api/v1/auth/accounts
 </code></pre></div>
-
+</div>
+</div>
+</div>
+</div>
+<!--
     === "JavaScript"
         <div class="highlight"><pre><span></span><code><span class="c1">// .env (in the working directory) should contain:</span>
 <span class="hll"><span class="c1">//   SJ_API_KEY=YOUR_API_KEY        // edit it</span>
@@ -2299,11 +2379,10 @@ curl<span class="w"> </span>http://localhost:8080/api/v1/auth/accounts
 <span class="p">}</span>
 </code></pre></div>
 
-### Place Order Test - Stock
-
-
 -->
-<div class="tabbed-set tabbed-alternate" data-tabs="3:3"><input checked="checked" id="__tabbed_3_1" name="__tabbed_3" type="radio" /><input id="__tabbed_3_2" name="__tabbed_3" type="radio" /><input id="__tabbed_3_3" name="__tabbed_3" type="radio" /><div class="tabbed-labels"><label for="__tabbed_3_1">Python</label><label for="__tabbed_3_2">CLI</label><label for="__tabbed_3_3">HTTP</label></div>
+
+<h3 id="place-order-test-stock">Place Order Test - Stock<a class="headerlink" href="#place-order-test-stock" title="Permanent link">&para;</a></h3>
+<div class="tabbed-set tabbed-alternate" data-tabs="4:3"><input checked="checked" id="__tabbed_4_1" name="__tabbed_4" type="radio" /><input id="__tabbed_4_2" name="__tabbed_4" type="radio" /><input id="__tabbed_4_3" name="__tabbed_4" type="radio" /><div class="tabbed-labels"><label for="__tabbed_4_1">Python</label><label for="__tabbed_4_2">CLI</label><label for="__tabbed_4_3">HTTP</label></div>
 <div class="tabbed-content">
 <div class="tabbed-block">
 <div class="admonition info">
@@ -2793,11 +2872,10 @@ curl<span class="w"> </span>http://localhost:8080/api/v1/auth/accounts
 * [Contract](../contract.md)
 * [Stock Order](../order/Stock.md)
 
-### Place Order Test - Futures
-
-
 -->
-<div class="tabbed-set tabbed-alternate" data-tabs="4:3"><input checked="checked" id="__tabbed_4_1" name="__tabbed_4" type="radio" /><input id="__tabbed_4_2" name="__tabbed_4" type="radio" /><input id="__tabbed_4_3" name="__tabbed_4" type="radio" /><div class="tabbed-labels"><label for="__tabbed_4_1">Python</label><label for="__tabbed_4_2">CLI</label><label for="__tabbed_4_3">HTTP</label></div>
+
+<h3 id="place-order-test-futures">Place Order Test - Futures<a class="headerlink" href="#place-order-test-futures" title="Permanent link">&para;</a></h3>
+<div class="tabbed-set tabbed-alternate" data-tabs="5:3"><input checked="checked" id="__tabbed_5_1" name="__tabbed_5" type="radio" /><input id="__tabbed_5_2" name="__tabbed_5" type="radio" /><input id="__tabbed_5_3" name="__tabbed_5" type="radio" /><div class="tabbed-labels"><label for="__tabbed_5_1">Python</label><label for="__tabbed_5_2">CLI</label><label for="__tabbed_5_3">HTTP</label></div>
 <div class="tabbed-content">
 <div class="tabbed-block">
 <div class="admonition info">
@@ -3270,41 +3348,51 @@ curl<span class="w"> </span>http://localhost:8080/api/v1/auth/accounts
 <span class="p">}</span>
 </code></pre></div>
 
-* An order status of `PendingSubmit` (in transit) or `Submitted` (sent) means the order was placed successfully; if it's `Failed`, correct the order and run `place_order` again.
-* [Contract](../contract.md)
-* [Futures Order](../order/FutureOption.md)
+-->
 
-### Check if API tests has passed
-
-!!! attention
-    Before you check, please confirm the following conditions are met.
-
-    - Sign the API related document before you test, or you will not pass the test.
-    - Doing test in service hour.
-    - Stock accounts and Futures accounts should be tested separately.
-    - Waiting for reviewing your tests at least 5 minutes.
-
-=== "Method 1: Check via Sign Center"
-    Go to the sign center to check your account's test status.
-
-    === "Stock"
-        [Stock API Sign Center](https://www.sinotrade.com.tw/newweb/signCenter/S_openAPI/)
-
-        ![signed_test_stock](/img/signed_test_stock.png)
-
-    === "Futures"
-        [Futures API Sign Center](https://www.sinotrade.com.tw/newweb/signCenter/F_openApi/)
-
-        ![signed_test_future](/img/signed_test_future.png)
-
-    !!! info "Note"
-        If you only need shioaji, completing the **signing** and **python test** is sufficient; the `T4 test` is not required.
-
-=== "Method 2: Check via API"
-    Log in with production mode and inspect the `signed` field on each account.
-
-    === "Python"
-        <div class="highlight"><pre><span></span><code><span class="hll"><span class="n">api</span> <span class="o">=</span> <span class="n">sj</span><span class="o">.</span><span class="n">Shioaji</span><span class="p">(</span><span class="n">simulation</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>  <span class="c1"># production mode</span>
+<ul>
+<li>An order status of <code>PendingSubmit</code> (in transit) or <code>Submitted</code> (sent) means the order was placed successfully; if it's <code>Failed</code>, correct the order and run <code>place_order</code> again.</li>
+<li><a href="../../contract/">Contract</a></li>
+<li><a href="../../order/FutureOption/">Futures Order</a></li>
+</ul>
+<h3 id="check-if-api-tests-has-passed">Check if API tests has passed<a class="headerlink" href="#check-if-api-tests-has-passed" title="Permanent link">&para;</a></h3>
+<div class="admonition attention">
+<p class="admonition-title">Attention</p>
+<p>Before you check, please confirm the following conditions are met.</p>
+<ul>
+<li>Sign the API related document before you test, or you will not pass the test.</li>
+<li>Doing test in service hour.</li>
+<li>Stock accounts and Futures accounts should be tested separately.</li>
+<li>Waiting for reviewing your tests at least 5 minutes.</li>
+</ul>
+</div>
+<div class="tabbed-set tabbed-alternate" data-tabs="6:2"><input checked="checked" id="__tabbed_6_1" name="__tabbed_6" type="radio" /><input id="__tabbed_6_2" name="__tabbed_6" type="radio" /><div class="tabbed-labels"><label for="__tabbed_6_1">Method 1: Check via Sign Center</label><label for="__tabbed_6_2">Method 2: Check via API</label></div>
+<div class="tabbed-content">
+<div class="tabbed-block">
+<p>Go to the sign center to check your account's test status.</p>
+<div class="tabbed-set tabbed-alternate" data-tabs="7:2"><input checked="checked" id="__tabbed_7_1" name="__tabbed_7" type="radio" /><input id="__tabbed_7_2" name="__tabbed_7" type="radio" /><div class="tabbed-labels"><label for="__tabbed_7_1">Stock</label><label for="__tabbed_7_2">Futures</label></div>
+<div class="tabbed-content">
+<div class="tabbed-block">
+<p><a href="https://www.sinotrade.com.tw/newweb/signCenter/S_openAPI/">Stock API Sign Center</a></p>
+<p><img alt="signed_test_stock" src="/img/signed_test_stock.png" /></p>
+</div>
+<div class="tabbed-block">
+<p><a href="https://www.sinotrade.com.tw/newweb/signCenter/F_openApi/">Futures API Sign Center</a></p>
+<p><img alt="signed_test_future" src="/img/signed_test_future.png" /></p>
+</div>
+</div>
+</div>
+<div class="admonition info">
+<p class="admonition-title">Note</p>
+<p>If you only need shioaji, completing the <strong>signing</strong> and <strong>python test</strong> is sufficient; the <code>T4 test</code> is not required.</p>
+</div>
+</div>
+<div class="tabbed-block">
+<p>Log in with production mode and inspect the <code>signed</code> field on each account.</p>
+<div class="tabbed-set tabbed-alternate" data-tabs="8:3"><input checked="checked" id="__tabbed_8_1" name="__tabbed_8" type="radio" /><input id="__tabbed_8_2" name="__tabbed_8" type="radio" /><input id="__tabbed_8_3" name="__tabbed_8" type="radio" /><div class="tabbed-labels"><label for="__tabbed_8_1">Python</label><label for="__tabbed_8_2">CLI</label><label for="__tabbed_8_3">HTTP</label></div>
+<div class="tabbed-content">
+<div class="tabbed-block">
+<div class="highlight"><pre><span></span><code><span class="hll"><span class="n">api</span> <span class="o">=</span> <span class="n">sj</span><span class="o">.</span><span class="n">Shioaji</span><span class="p">(</span><span class="n">simulation</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>  <span class="c1"># production mode</span>
 </span><span class="n">accounts</span> <span class="o">=</span> <span class="n">api</span><span class="o">.</span><span class="n">login</span><span class="p">(</span>
 <span class="hll">    <span class="n">api_key</span><span class="o">=</span><span class="s2">&quot;YOUR_API_KEY&quot;</span><span class="p">,</span>         <span class="c1"># edit it</span>
 </span><span class="hll">    <span class="n">secret_key</span><span class="o">=</span><span class="s2">&quot;YOUR_SECRET_KEY&quot;</span>    <span class="c1"># edit it</span>
@@ -3313,9 +3401,9 @@ curl<span class="w"> </span>http://localhost:8080/api/v1/auth/accounts
 <span class="c1"># check accounts (inspect signed status)</span>
 <span class="nb">print</span><span class="p">(</span><span class="n">accounts</span><span class="p">)</span>
 </code></pre></div>
-
-    === "CLI"
-        <div class="highlight"><pre><span></span><code><span class="c1"># .env (in working directory) should contain:</span>
+</div>
+<div class="tabbed-block">
+<div class="highlight"><pre><span></span><code><span class="c1"># .env (in working directory) should contain:</span>
 <span class="hll"><span class="nv">SJ_API_KEY</span><span class="o">=</span>YOUR_API_KEY<span class="w">                </span><span class="c1"># edit it</span>
 </span><span class="hll"><span class="nv">SJ_SEC_KEY</span><span class="o">=</span>YOUR_SECRET_KEY<span class="w">             </span><span class="c1"># edit it</span>
 </span><span class="hll"><span class="nv">SJ_PRODUCTION</span><span class="o">=</span><span class="nb">true</span><span class="w">                     </span><span class="c1"># production mode</span>
@@ -3326,9 +3414,9 @@ shioaji<span class="w"> </span>server<span class="w"> </span>start
 <span class="c1"># check accounts (inspect signed status)</span>
 shioaji<span class="w"> </span>auth<span class="w"> </span>accounts
 </code></pre></div>
-
-    === "HTTP"
-        <div class="highlight"><pre><span></span><code><span class="c1"># .env (in working directory) should contain:</span>
+</div>
+<div class="tabbed-block">
+<div class="highlight"><pre><span></span><code><span class="c1"># .env (in working directory) should contain:</span>
 <span class="hll"><span class="nv">SJ_API_KEY</span><span class="o">=</span>YOUR_API_KEY<span class="w">                </span><span class="c1"># edit it</span>
 </span><span class="hll"><span class="nv">SJ_SEC_KEY</span><span class="o">=</span>YOUR_SECRET_KEY<span class="w">             </span><span class="c1"># edit it</span>
 </span><span class="hll"><span class="nv">SJ_PRODUCTION</span><span class="o">=</span><span class="nb">true</span><span class="w">                     </span><span class="c1"># production mode</span>
@@ -3339,7 +3427,13 @@ shioaji<span class="w"> </span>server<span class="w"> </span>start
 <span class="c1"># check accounts (inspect signed status)</span>
 curl<span class="w"> </span>http://localhost:8080/api/v1/auth/accounts
 </code></pre></div>
-
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+<!--
     === "JavaScript"
         <div class="highlight"><pre><span></span><code><span class="c1">// .env (in working directory) should contain:</span>
 <span class="hll"><span class="c1">//   SJ_API_KEY=YOUR_API_KEY        // edit it</span>

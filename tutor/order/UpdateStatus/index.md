@@ -15,7 +15,7 @@ Signature:
         *,
         trade: Optional[sj.Trade] = None,
         timeout: Optional[int] = 30000,
-        cb: Optional[Callable[[], None]] = None,
+        cb: Optional[Callable[[List[sj.Trade]], None]] = None,
     ) -> None
 
 ```
@@ -26,7 +26,7 @@ Parameters
 account: Stock or futures account; omit to refresh all accounts under your name
 trade:   Specific Trade object to refresh (keyword-only)
 timeout: Timeout in milliseconds
-cb:      Optional callback function
+cb:      Optional callback function; when timeout=0, receives the updated Trade list
 
 ```
 

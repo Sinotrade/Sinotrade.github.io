@@ -317,7 +317,7 @@ StockProfitDetail
 ```
 date (str):                  trade date
 code (str):                  symbol code
-quantity (float):            quantity
+quantity (int):              quantity
 dseq (str):                  order sequence
 fee (int):                   transaction fee
 tax (int):                   transaction tax
@@ -587,54 +587,73 @@ pr_ratio (float):     total profit/loss ratio
 In
 
 ```
-api.list_profit_loss_summary(api.stock_account, '2026-05-01', '2026-05-21')
+resp = api.list_profit_loss_summary(api.stock_account, '2026-05-01', '2026-05-21')
+resp
 
 ```
 
 Out
 
 ```
-ProfitLossSummaryTotal(
-    profitloss_summary=[
+ProfitLossSummaryTotal(total=ProfitLossTotal(pnl=2781, pr_ratio=0.29))
+
+```
+
+**View per-symbol profit/loss details**
+
+In
+
+```
+dict(resp)
+
+```
+
+Out
+
+```
+{
+    'profitloss_summary': [
         StockProfitLossSummary(
-            code='2890',
+            code='3265',
             quantity=1000,
-            entry_price=30,
-            cover_price=31,
-            pnl=1000,
+            entry_price=181.5,
+            cover_price=172.5,
+            pnl=-9657,
             currency='NTD',
-            entry_cost=30000,
-            cover_cost=31000,
-            buy_cost=30119,
-            sell_cost=30881,
-            pr_ratio=3.33,
-            cond=<StockOrderCond.Cash: 'Cash'>,
+            entry_cost=181500,
+            cover_cost=172500,
+            buy_cost=181572,
+            sell_cost=171915,
+            pr_ratio=-5.32,
+            cond=<StockOrderCond.Cash: 'Cash'>
         ),
         StockProfitLossSummary(
-            code='2330',
+            code='8261',
             quantity=1000,
-            entry_price=2000,
-            cover_price=1980,
-            pnl=-20000,
+            entry_price=122,
+            cover_price=132,
+            pnl=9504,
             currency='NTD',
-            entry_cost=2000000,
-            cover_cost=1980000,
-            buy_cost=2000119,
-            sell_cost=1979881,
-            pr_ratio=-1.00,
-            cond=<StockOrderCond.Cash: 'Cash'>,
+            entry_cost=122000,
+            cover_cost=132000,
+            buy_cost=122048,
+            sell_cost=131552,
+            pr_ratio=7.79,
+            cond=<StockOrderCond.Cash: 'Cash'>
         ),
+        ...
     ],
-    total=ProfitLossTotal(
+    'total': ProfitLossTotal(
         entry_amount=0,
         cover_amount=0,
-        quantity=2000,
-        buy_cost=2030238,
-        sell_cost=2010762,
-        pnl=-19000,
-        pr_ratio=-0.94,
+        quantity=5000,
+        buy_cost=975387,
+        sell_cost=978168,
+        pnl=2781,
+        pr_ratio=0.29
     ),
-)
+    'status': <FetchStatus.Fetched: 'Fetched'>
+}
 
 ```
 
@@ -734,30 +753,7 @@ api.list_profit_loss_summary(api.futopt_account, '2026-05-01', '2026-05-21')
 Out
 
 ```
-ProfitLossSummaryTotal(
-    profitloss_summary=[
-        FutureProfitLossSummary(
-            code='TXO20260620200C',
-            quantity=3,
-            entry_price=131.0,
-            cover_price=126.0,
-            pnl=-750.0,
-            currency='NTD',
-            direction=<Action.Buy: 'Buy'>,
-            tax=5,
-            fee=120,
-        ),
-    ],
-    total=ProfitLossTotal(
-        entry_amount=19650,
-        cover_amount=18900,
-        quantity=3,
-        buy_cost=19775,
-        sell_cost=18775,
-        pnl=-750,
-        pr_ratio=-3.79,
-    ),
-)
+ProfitLossSummaryTotal(total=ProfitLossTotal(pnl=-750, pr_ratio=-3.79))
 
 ```
 

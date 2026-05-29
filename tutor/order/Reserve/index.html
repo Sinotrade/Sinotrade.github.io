@@ -2112,8 +2112,8 @@
         <span class="n">price</span><span class="p">:</span> <span class="nb">float</span><span class="p">,</span>
         <span class="n">account</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="n">sj</span><span class="o">.</span><span class="n">Account</span><span class="p">]</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
         <span class="n">timeout</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="nb">int</span><span class="p">]</span> <span class="o">=</span> <span class="mi">5000</span><span class="p">,</span>
-        <span class="n">cb</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="n">Callable</span><span class="p">[[</span><span class="n">sj</span><span class="o">.</span><span class="n">EarmarkingOrderResp</span><span class="p">],</span> <span class="kc">None</span><span class="p">]]</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
-    <span class="p">)</span> <span class="o">-&gt;</span> <span class="n">sj</span><span class="o">.</span><span class="n">EarmarkingOrderResp</span>
+        <span class="n">cb</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="n">Callable</span><span class="p">[[</span><span class="n">sj</span><span class="o">.</span><span class="n">ReserveEarmarkingResponse</span><span class="p">],</span> <span class="kc">None</span><span class="p">]]</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
+    <span class="p">)</span> <span class="o">-&gt;</span> <span class="n">sj</span><span class="o">.</span><span class="n">ReserveEarmarkingResponse</span>
 
 <span class="n">api</span><span class="o">.</span><span class="n">earmarking_detail</span><span class="err">?</span>
 
@@ -2121,8 +2121,8 @@
     <span class="n">api</span><span class="o">.</span><span class="n">earmarking_detail</span><span class="p">(</span>
         <span class="n">account</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="n">sj</span><span class="o">.</span><span class="n">Account</span><span class="p">]</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
         <span class="n">timeout</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="nb">int</span><span class="p">]</span> <span class="o">=</span> <span class="mi">5000</span><span class="p">,</span>
-        <span class="n">cb</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="n">Callable</span><span class="p">[[</span><span class="n">sj</span><span class="o">.</span><span class="n">EarmarkStocksDetail</span><span class="p">],</span> <span class="kc">None</span><span class="p">]]</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
-    <span class="p">)</span> <span class="o">-&gt;</span> <span class="n">sj</span><span class="o">.</span><span class="n">EarmarkStocksDetail</span>
+        <span class="n">cb</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="n">Callable</span><span class="p">[[</span><span class="n">sj</span><span class="o">.</span><span class="n">EarmarkStocksDetailResponse</span><span class="p">],</span> <span class="kc">None</span><span class="p">]]</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
+    <span class="p">)</span> <span class="o">-&gt;</span> <span class="n">sj</span><span class="o">.</span><span class="n">EarmarkStocksDetailResponse</span>
 </code></pre></div>
 </div>
 <div class="admonition done">
@@ -2201,24 +2201,27 @@ earmarking_detail
 </div>
 <div class="admonition done">
 <p class="admonition-title">Out</p>
-<div class="highlight"><pre><span></span><code><span class="n">EarmarkingOrderResp</span><span class="p">(</span>
-    <span class="n">contract</span><span class="o">=</span><span class="n">Contract</span><span class="p">(</span>
-        <span class="n">security_type</span><span class="o">=</span><span class="s1">&#39;STK&#39;</span><span class="p">,</span>
-        <span class="n">exchange</span><span class="o">=</span><span class="s1">&#39;TSE&#39;</span><span class="p">,</span>
-<span class="hll">        <span class="n">code</span><span class="o">=</span><span class="s1">&#39;1217&#39;</span><span class="p">,</span>
-</span>        <span class="n">target_code</span><span class="o">=</span><span class="s1">&#39;&#39;</span>
-    <span class="p">),</span>
-    <span class="n">account</span><span class="o">=</span><span class="n">StockAccount</span><span class="p">(</span>
-        <span class="n">person_id</span><span class="o">=</span><span class="s1">&#39;YOUR_PERSON_ID&#39;</span><span class="p">,</span>
-        <span class="n">broker_id</span><span class="o">=</span><span class="s1">&#39;YOUR_BROKER_ID&#39;</span><span class="p">,</span>
-        <span class="n">account_id</span><span class="o">=</span><span class="s1">&#39;YOUR_ACCOUNT_ID&#39;</span><span class="p">,</span>
-        <span class="n">signed</span><span class="o">=</span><span class="n">true</span><span class="p">,</span>
-        <span class="n">username</span><span class="o">=</span><span class="s1">&#39;&#39;</span>
-    <span class="p">),</span>
-    <span class="n">share</span><span class="o">=</span><span class="mi">1000</span><span class="p">,</span>
-<span class="hll">    <span class="n">price</span><span class="o">=</span><span class="mi">9</span><span class="p">,</span>
-</span><span class="hll">    <span class="n">status</span><span class="o">=</span><span class="n">true</span><span class="p">,</span>
-</span>    <span class="n">info</span><span class="o">=</span><span class="s1">&#39;OK&#39;</span>
+<div class="highlight"><pre><span></span><code><span class="n">ReserveEarmarkingResponse</span><span class="p">(</span>
+    <span class="n">response</span><span class="o">=</span><span class="n">EarmarkingOrderResp</span><span class="p">(</span>
+        <span class="n">contract</span><span class="o">=</span><span class="n">Contract</span><span class="p">(</span>
+            <span class="n">security_type</span><span class="o">=</span><span class="s1">&#39;STK&#39;</span><span class="p">,</span>
+            <span class="n">exchange</span><span class="o">=</span><span class="s1">&#39;TSE&#39;</span><span class="p">,</span>
+<span class="hll">            <span class="n">code</span><span class="o">=</span><span class="s1">&#39;1217&#39;</span><span class="p">,</span>
+</span>            <span class="n">target_code</span><span class="o">=</span><span class="s1">&#39;&#39;</span>
+        <span class="p">),</span>
+        <span class="n">account</span><span class="o">=</span><span class="n">StockAccount</span><span class="p">(</span>
+            <span class="n">person_id</span><span class="o">=</span><span class="s1">&#39;YOUR_PERSON_ID&#39;</span><span class="p">,</span>
+            <span class="n">broker_id</span><span class="o">=</span><span class="s1">&#39;YOUR_BROKER_ID&#39;</span><span class="p">,</span>
+            <span class="n">account_id</span><span class="o">=</span><span class="s1">&#39;YOUR_ACCOUNT_ID&#39;</span><span class="p">,</span>
+            <span class="n">signed</span><span class="o">=</span><span class="n">true</span><span class="p">,</span>
+            <span class="n">username</span><span class="o">=</span><span class="s1">&#39;&#39;</span>
+        <span class="p">),</span>
+        <span class="n">share</span><span class="o">=</span><span class="mi">1000</span><span class="p">,</span>
+        <span class="n">price</span><span class="o">=</span><span class="mi">9</span><span class="p">,</span>
+<span class="hll">        <span class="n">status</span><span class="o">=</span><span class="n">true</span><span class="p">,</span>
+</span><span class="hll">        <span class="n">info</span><span class="o">=</span><span class="s1">&#39;OK&#39;</span>
+</span>    <span class="p">),</span>
+    <span class="n">error</span><span class="o">=</span><span class="kc">None</span>
 <span class="p">)</span>
 </code></pre></div>
 </div>
@@ -2279,30 +2282,33 @@ earmarking_detail
 </div>
 <div class="admonition done">
 <p class="admonition-title">Out</p>
-<div class="highlight"><pre><span></span><code><span class="n">EarmarkStocksDetail</span><span class="p">(</span>
-    <span class="n">stocks</span><span class="o">=</span><span class="p">[</span>
-        <span class="n">EarmarkStockDetail</span><span class="p">(</span>
-            <span class="n">contract</span><span class="o">=</span><span class="n">Contract</span><span class="p">(</span>
-                <span class="n">security_type</span><span class="o">=</span><span class="s1">&#39;STK&#39;</span><span class="p">,</span>
-                <span class="n">exchange</span><span class="o">=</span><span class="s1">&#39;TSE&#39;</span><span class="p">,</span>
-<span class="hll">                <span class="n">code</span><span class="o">=</span><span class="s1">&#39;1217&#39;</span><span class="p">,</span>
-</span>                <span class="n">target_code</span><span class="o">=</span><span class="s1">&#39;&#39;</span>
-            <span class="p">),</span>
-<span class="hll">            <span class="n">share</span><span class="o">=</span><span class="mi">1000</span><span class="p">,</span>
-</span><span class="hll">            <span class="n">price</span><span class="o">=</span><span class="mi">9</span><span class="p">,</span>
-</span><span class="hll">            <span class="n">amount</span><span class="o">=</span><span class="mi">9020</span><span class="p">,</span>
-</span>            <span class="n">order_datetime</span><span class="o">=</span><span class="s1">&#39;2026-05-20T15:16:28+08:00&#39;</span><span class="p">,</span>
-<span class="hll">            <span class="n">status</span><span class="o">=</span><span class="n">true</span><span class="p">,</span>
-</span>            <span class="n">info</span><span class="o">=</span><span class="s1">&#39;Success&#39;</span>
+<div class="highlight"><pre><span></span><code><span class="n">EarmarkStocksDetailResponse</span><span class="p">(</span>
+    <span class="n">response</span><span class="o">=</span><span class="n">EarmarkStocksDetail</span><span class="p">(</span>
+        <span class="n">stocks</span><span class="o">=</span><span class="p">[</span>
+            <span class="n">EarmarkStockDetail</span><span class="p">(</span>
+                <span class="n">contract</span><span class="o">=</span><span class="n">Contract</span><span class="p">(</span>
+                    <span class="n">security_type</span><span class="o">=</span><span class="s1">&#39;STK&#39;</span><span class="p">,</span>
+                    <span class="n">exchange</span><span class="o">=</span><span class="s1">&#39;TSE&#39;</span><span class="p">,</span>
+<span class="hll">                    <span class="n">code</span><span class="o">=</span><span class="s1">&#39;1217&#39;</span><span class="p">,</span>
+</span>                    <span class="n">target_code</span><span class="o">=</span><span class="s1">&#39;&#39;</span>
+                <span class="p">),</span>
+<span class="hll">                <span class="n">share</span><span class="o">=</span><span class="mi">1000</span><span class="p">,</span>
+</span><span class="hll">                <span class="n">price</span><span class="o">=</span><span class="mi">9</span><span class="p">,</span>
+</span><span class="hll">                <span class="n">amount</span><span class="o">=</span><span class="mi">9020</span><span class="p">,</span>
+</span>                <span class="n">order_datetime</span><span class="o">=</span><span class="s1">&#39;2026-05-20T15:16:28+08:00&#39;</span><span class="p">,</span>
+<span class="hll">                <span class="n">status</span><span class="o">=</span><span class="n">true</span><span class="p">,</span>
+</span>                <span class="n">info</span><span class="o">=</span><span class="s1">&#39;Success&#39;</span>
+            <span class="p">)</span>
+        <span class="p">],</span>
+        <span class="n">account</span><span class="o">=</span><span class="n">StockAccount</span><span class="p">(</span>
+            <span class="n">person_id</span><span class="o">=</span><span class="s1">&#39;YOUR_PERSON_ID&#39;</span><span class="p">,</span>
+            <span class="n">broker_id</span><span class="o">=</span><span class="s1">&#39;YOUR_BROKER_ID&#39;</span><span class="p">,</span>
+            <span class="n">account_id</span><span class="o">=</span><span class="s1">&#39;YOUR_ACCOUNT_ID&#39;</span><span class="p">,</span>
+            <span class="n">signed</span><span class="o">=</span><span class="n">true</span><span class="p">,</span>
+            <span class="n">username</span><span class="o">=</span><span class="s1">&#39;&#39;</span>
         <span class="p">)</span>
-    <span class="p">],</span>
-    <span class="n">account</span><span class="o">=</span><span class="n">StockAccount</span><span class="p">(</span>
-        <span class="n">person_id</span><span class="o">=</span><span class="s1">&#39;YOUR_PERSON_ID&#39;</span><span class="p">,</span>
-        <span class="n">broker_id</span><span class="o">=</span><span class="s1">&#39;YOUR_BROKER_ID&#39;</span><span class="p">,</span>
-        <span class="n">account_id</span><span class="o">=</span><span class="s1">&#39;YOUR_ACCOUNT_ID&#39;</span><span class="p">,</span>
-        <span class="n">signed</span><span class="o">=</span><span class="n">true</span><span class="p">,</span>
-        <span class="n">username</span><span class="o">=</span><span class="s1">&#39;&#39;</span>
-    <span class="p">)</span>
+    <span class="p">),</span>
+    <span class="n">error</span><span class="o">=</span><span class="kc">None</span>
 <span class="p">)</span>
 </code></pre></div>
 </div>
@@ -2358,8 +2364,8 @@ earmarking_detail
         <span class="n">share</span><span class="p">:</span> <span class="nb">int</span><span class="p">,</span>
         <span class="n">account</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="n">sj</span><span class="o">.</span><span class="n">Account</span><span class="p">]</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
         <span class="n">timeout</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="nb">int</span><span class="p">]</span> <span class="o">=</span> <span class="mi">5000</span><span class="p">,</span>
-        <span class="n">cb</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="n">Callable</span><span class="p">[[</span><span class="n">sj</span><span class="o">.</span><span class="n">ReserveOrderResp</span><span class="p">],</span> <span class="kc">None</span><span class="p">]]</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
-    <span class="p">)</span> <span class="o">-&gt;</span> <span class="n">sj</span><span class="o">.</span><span class="n">ReserveOrderResp</span>
+        <span class="n">cb</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="n">Callable</span><span class="p">[[</span><span class="n">sj</span><span class="o">.</span><span class="n">ReserveStockResponse</span><span class="p">],</span> <span class="kc">None</span><span class="p">]]</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
+    <span class="p">)</span> <span class="o">-&gt;</span> <span class="n">sj</span><span class="o">.</span><span class="n">ReserveStockResponse</span>
 
 <span class="n">api</span><span class="o">.</span><span class="n">stock_reserve_summary</span><span class="err">?</span>
 
@@ -2367,8 +2373,8 @@ earmarking_detail
     <span class="n">api</span><span class="o">.</span><span class="n">stock_reserve_summary</span><span class="p">(</span>
         <span class="n">account</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="n">sj</span><span class="o">.</span><span class="n">Account</span><span class="p">]</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
         <span class="n">timeout</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="nb">int</span><span class="p">]</span> <span class="o">=</span> <span class="mi">5000</span><span class="p">,</span>
-        <span class="n">cb</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="n">Callable</span><span class="p">[[</span><span class="n">sj</span><span class="o">.</span><span class="n">ReserveStocksSummary</span><span class="p">],</span> <span class="kc">None</span><span class="p">]]</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
-    <span class="p">)</span> <span class="o">-&gt;</span> <span class="n">sj</span><span class="o">.</span><span class="n">ReserveStocksSummary</span>
+        <span class="n">cb</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="n">Callable</span><span class="p">[[</span><span class="n">sj</span><span class="o">.</span><span class="n">ReserveStocksSummaryResponse</span><span class="p">],</span> <span class="kc">None</span><span class="p">]]</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
+    <span class="p">)</span> <span class="o">-&gt;</span> <span class="n">sj</span><span class="o">.</span><span class="n">ReserveStocksSummaryResponse</span>
 
 <span class="n">api</span><span class="o">.</span><span class="n">stock_reserve_detail</span><span class="err">?</span>
 
@@ -2376,8 +2382,8 @@ earmarking_detail
     <span class="n">api</span><span class="o">.</span><span class="n">stock_reserve_detail</span><span class="p">(</span>
         <span class="n">account</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="n">sj</span><span class="o">.</span><span class="n">Account</span><span class="p">]</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
         <span class="n">timeout</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="nb">int</span><span class="p">]</span> <span class="o">=</span> <span class="mi">5000</span><span class="p">,</span>
-        <span class="n">cb</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="n">Callable</span><span class="p">[[</span><span class="n">sj</span><span class="o">.</span><span class="n">ReserveStocksDetail</span><span class="p">],</span> <span class="kc">None</span><span class="p">]]</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
-    <span class="p">)</span> <span class="o">-&gt;</span> <span class="n">sj</span><span class="o">.</span><span class="n">ReserveStocksDetail</span>
+        <span class="n">cb</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="n">Callable</span><span class="p">[[</span><span class="n">sj</span><span class="o">.</span><span class="n">ReserveStocksDetailResponse</span><span class="p">],</span> <span class="kc">None</span><span class="p">]]</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
+    <span class="p">)</span> <span class="o">-&gt;</span> <span class="n">sj</span><span class="o">.</span><span class="n">ReserveStocksDetailResponse</span>
 </code></pre></div>
 </div>
 <div class="admonition done">
@@ -2467,23 +2473,26 @@ stock_reserve_detail
 </div>
 <div class="admonition done">
 <p class="admonition-title">Out</p>
-<div class="highlight"><pre><span></span><code><span class="n">ReserveOrderResp</span><span class="p">(</span>
-    <span class="n">contract</span><span class="o">=</span><span class="n">Contract</span><span class="p">(</span>
-        <span class="n">security_type</span><span class="o">=</span><span class="s1">&#39;STK&#39;</span><span class="p">,</span>
-        <span class="n">exchange</span><span class="o">=</span><span class="s1">&#39;TSE&#39;</span><span class="p">,</span>
-<span class="hll">        <span class="n">code</span><span class="o">=</span><span class="s1">&#39;1217&#39;</span><span class="p">,</span>
-</span>        <span class="n">target_code</span><span class="o">=</span><span class="s1">&#39;&#39;</span>
-    <span class="p">),</span>
-    <span class="n">account</span><span class="o">=</span><span class="n">StockAccount</span><span class="p">(</span>
-        <span class="n">person_id</span><span class="o">=</span><span class="s1">&#39;YOUR_PERSON_ID&#39;</span><span class="p">,</span>
-        <span class="n">broker_id</span><span class="o">=</span><span class="s1">&#39;YOUR_BROKER_ID&#39;</span><span class="p">,</span>
-        <span class="n">account_id</span><span class="o">=</span><span class="s1">&#39;YOUR_ACCOUNT_ID&#39;</span><span class="p">,</span>
-        <span class="n">signed</span><span class="o">=</span><span class="n">true</span><span class="p">,</span>
-        <span class="n">username</span><span class="o">=</span><span class="s1">&#39;&#39;</span>
-    <span class="p">),</span>
-<span class="hll">    <span class="n">share</span><span class="o">=</span><span class="mi">1000</span><span class="p">,</span>
-</span><span class="hll">    <span class="n">status</span><span class="o">=</span><span class="n">true</span><span class="p">,</span>
-</span>    <span class="n">info</span><span class="o">=</span><span class="s1">&#39;&#39;</span>
+<div class="highlight"><pre><span></span><code><span class="n">ReserveStockResponse</span><span class="p">(</span>
+    <span class="n">response</span><span class="o">=</span><span class="n">ReserveOrderResp</span><span class="p">(</span>
+        <span class="n">contract</span><span class="o">=</span><span class="n">Contract</span><span class="p">(</span>
+            <span class="n">security_type</span><span class="o">=</span><span class="s1">&#39;STK&#39;</span><span class="p">,</span>
+            <span class="n">exchange</span><span class="o">=</span><span class="s1">&#39;TSE&#39;</span><span class="p">,</span>
+<span class="hll">            <span class="n">code</span><span class="o">=</span><span class="s1">&#39;1217&#39;</span><span class="p">,</span>
+</span>            <span class="n">target_code</span><span class="o">=</span><span class="s1">&#39;&#39;</span>
+        <span class="p">),</span>
+        <span class="n">account</span><span class="o">=</span><span class="n">StockAccount</span><span class="p">(</span>
+            <span class="n">person_id</span><span class="o">=</span><span class="s1">&#39;YOUR_PERSON_ID&#39;</span><span class="p">,</span>
+            <span class="n">broker_id</span><span class="o">=</span><span class="s1">&#39;YOUR_BROKER_ID&#39;</span><span class="p">,</span>
+            <span class="n">account_id</span><span class="o">=</span><span class="s1">&#39;YOUR_ACCOUNT_ID&#39;</span><span class="p">,</span>
+            <span class="n">signed</span><span class="o">=</span><span class="n">true</span><span class="p">,</span>
+            <span class="n">username</span><span class="o">=</span><span class="s1">&#39;&#39;</span>
+        <span class="p">),</span>
+        <span class="n">share</span><span class="o">=</span><span class="mi">1000</span><span class="p">,</span>
+<span class="hll">        <span class="n">status</span><span class="o">=</span><span class="n">true</span><span class="p">,</span>
+</span><span class="hll">        <span class="n">info</span><span class="o">=</span><span class="s1">&#39;&#39;</span>
+</span>    <span class="p">),</span>
+    <span class="n">error</span><span class="o">=</span><span class="kc">None</span>
 <span class="p">)</span>
 </code></pre></div>
 </div>
@@ -2543,26 +2552,29 @@ stock_reserve_detail
 </div>
 <div class="admonition done">
 <p class="admonition-title">Out</p>
-<div class="highlight"><pre><span></span><code><span class="n">ReserveStocksSummary</span><span class="p">(</span>
-    <span class="n">stocks</span><span class="o">=</span><span class="p">[</span>
-        <span class="n">ReserveStockSummary</span><span class="p">(</span>
-            <span class="n">contract</span><span class="o">=</span><span class="n">Contract</span><span class="p">(</span>
-                <span class="n">security_type</span><span class="o">=</span><span class="s1">&#39;STK&#39;</span><span class="p">,</span>
-                <span class="n">exchange</span><span class="o">=</span><span class="s1">&#39;TSE&#39;</span><span class="p">,</span>
-<span class="hll">                <span class="n">code</span><span class="o">=</span><span class="s1">&#39;2890&#39;</span><span class="p">,</span>
-</span>                <span class="n">target_code</span><span class="o">=</span><span class="s1">&#39;&#39;</span>
-            <span class="p">),</span>
-<span class="hll">            <span class="n">available_share</span><span class="o">=</span><span class="mi">5000</span><span class="p">,</span>
-</span><span class="hll">            <span class="n">reserved_share</span><span class="o">=</span><span class="mi">0</span>
-</span>        <span class="p">)</span>
-    <span class="p">],</span>
-    <span class="n">account</span><span class="o">=</span><span class="n">StockAccount</span><span class="p">(</span>
-        <span class="n">person_id</span><span class="o">=</span><span class="s1">&#39;YOUR_PERSON_ID&#39;</span><span class="p">,</span>
-        <span class="n">broker_id</span><span class="o">=</span><span class="s1">&#39;YOUR_BROKER_ID&#39;</span><span class="p">,</span>
-        <span class="n">account_id</span><span class="o">=</span><span class="s1">&#39;YOUR_ACCOUNT_ID&#39;</span><span class="p">,</span>
-        <span class="n">signed</span><span class="o">=</span><span class="n">true</span><span class="p">,</span>
-        <span class="n">username</span><span class="o">=</span><span class="s1">&#39;&#39;</span>
-    <span class="p">)</span>
+<div class="highlight"><pre><span></span><code><span class="n">ReserveStocksSummaryResponse</span><span class="p">(</span>
+    <span class="n">response</span><span class="o">=</span><span class="n">ReserveStocksSummary</span><span class="p">(</span>
+        <span class="n">stocks</span><span class="o">=</span><span class="p">[</span>
+            <span class="n">ReserveStockSummary</span><span class="p">(</span>
+                <span class="n">contract</span><span class="o">=</span><span class="n">Contract</span><span class="p">(</span>
+                    <span class="n">security_type</span><span class="o">=</span><span class="s1">&#39;STK&#39;</span><span class="p">,</span>
+                    <span class="n">exchange</span><span class="o">=</span><span class="s1">&#39;TSE&#39;</span><span class="p">,</span>
+<span class="hll">                    <span class="n">code</span><span class="o">=</span><span class="s1">&#39;2890&#39;</span><span class="p">,</span>
+</span>                    <span class="n">target_code</span><span class="o">=</span><span class="s1">&#39;&#39;</span>
+                <span class="p">),</span>
+<span class="hll">                <span class="n">available_share</span><span class="o">=</span><span class="mi">5000</span><span class="p">,</span>
+</span><span class="hll">                <span class="n">reserved_share</span><span class="o">=</span><span class="mi">0</span>
+</span>            <span class="p">)</span>
+        <span class="p">],</span>
+        <span class="n">account</span><span class="o">=</span><span class="n">StockAccount</span><span class="p">(</span>
+            <span class="n">person_id</span><span class="o">=</span><span class="s1">&#39;YOUR_PERSON_ID&#39;</span><span class="p">,</span>
+            <span class="n">broker_id</span><span class="o">=</span><span class="s1">&#39;YOUR_BROKER_ID&#39;</span><span class="p">,</span>
+            <span class="n">account_id</span><span class="o">=</span><span class="s1">&#39;YOUR_ACCOUNT_ID&#39;</span><span class="p">,</span>
+            <span class="n">signed</span><span class="o">=</span><span class="n">true</span><span class="p">,</span>
+            <span class="n">username</span><span class="o">=</span><span class="s1">&#39;&#39;</span>
+        <span class="p">)</span>
+    <span class="p">),</span>
+    <span class="n">error</span><span class="o">=</span><span class="kc">None</span>
 <span class="p">)</span>
 </code></pre></div>
 </div>
@@ -2616,28 +2628,31 @@ stock_reserve_detail
 </div>
 <div class="admonition done">
 <p class="admonition-title">Out</p>
-<div class="highlight"><pre><span></span><code><span class="n">ReserveStocksDetail</span><span class="p">(</span>
-    <span class="n">stocks</span><span class="o">=</span><span class="p">[</span>
-        <span class="n">ReserveStockDetail</span><span class="p">(</span>
-            <span class="n">contract</span><span class="o">=</span><span class="n">Contract</span><span class="p">(</span>
-                <span class="n">security_type</span><span class="o">=</span><span class="s1">&#39;STK&#39;</span><span class="p">,</span>
-                <span class="n">exchange</span><span class="o">=</span><span class="s1">&#39;TSE&#39;</span><span class="p">,</span>
-<span class="hll">                <span class="n">code</span><span class="o">=</span><span class="s1">&#39;6153&#39;</span><span class="p">,</span>
-</span>                <span class="n">target_code</span><span class="o">=</span><span class="s1">&#39;&#39;</span>
-            <span class="p">),</span>
-<span class="hll">            <span class="n">share</span><span class="o">=</span><span class="mi">1000</span><span class="p">,</span>
-</span><span class="hll">            <span class="n">order_datetime</span><span class="o">=</span><span class="s1">&#39;2026-05-20T15:16:28+08:00&#39;</span><span class="p">,</span>
-</span><span class="hll">            <span class="n">status</span><span class="o">=</span><span class="n">true</span><span class="p">,</span>
-</span><span class="hll">            <span class="n">info</span><span class="o">=</span><span class="s1">&#39;Completed&#39;</span>
-</span>        <span class="p">)</span>
-    <span class="p">],</span>
-    <span class="n">account</span><span class="o">=</span><span class="n">StockAccount</span><span class="p">(</span>
-        <span class="n">person_id</span><span class="o">=</span><span class="s1">&#39;YOUR_PERSON_ID&#39;</span><span class="p">,</span>
-        <span class="n">broker_id</span><span class="o">=</span><span class="s1">&#39;YOUR_BROKER_ID&#39;</span><span class="p">,</span>
-        <span class="n">account_id</span><span class="o">=</span><span class="s1">&#39;YOUR_ACCOUNT_ID&#39;</span><span class="p">,</span>
-        <span class="n">signed</span><span class="o">=</span><span class="n">true</span><span class="p">,</span>
-        <span class="n">username</span><span class="o">=</span><span class="s1">&#39;&#39;</span>
-    <span class="p">)</span>
+<div class="highlight"><pre><span></span><code><span class="n">ReserveStocksDetailResponse</span><span class="p">(</span>
+    <span class="n">response</span><span class="o">=</span><span class="n">ReserveStocksDetail</span><span class="p">(</span>
+        <span class="n">stocks</span><span class="o">=</span><span class="p">[</span>
+            <span class="n">ReserveStockDetail</span><span class="p">(</span>
+                <span class="n">contract</span><span class="o">=</span><span class="n">Contract</span><span class="p">(</span>
+                    <span class="n">security_type</span><span class="o">=</span><span class="s1">&#39;STK&#39;</span><span class="p">,</span>
+                    <span class="n">exchange</span><span class="o">=</span><span class="s1">&#39;TSE&#39;</span><span class="p">,</span>
+<span class="hll">                    <span class="n">code</span><span class="o">=</span><span class="s1">&#39;6153&#39;</span><span class="p">,</span>
+</span>                    <span class="n">target_code</span><span class="o">=</span><span class="s1">&#39;&#39;</span>
+                <span class="p">),</span>
+<span class="hll">                <span class="n">share</span><span class="o">=</span><span class="mi">1000</span><span class="p">,</span>
+</span><span class="hll">                <span class="n">order_datetime</span><span class="o">=</span><span class="s1">&#39;2026-05-20T15:16:28+08:00&#39;</span><span class="p">,</span>
+</span><span class="hll">                <span class="n">status</span><span class="o">=</span><span class="n">true</span><span class="p">,</span>
+</span><span class="hll">                <span class="n">info</span><span class="o">=</span><span class="s1">&#39;Completed&#39;</span>
+</span>            <span class="p">)</span>
+        <span class="p">],</span>
+        <span class="n">account</span><span class="o">=</span><span class="n">StockAccount</span><span class="p">(</span>
+            <span class="n">person_id</span><span class="o">=</span><span class="s1">&#39;YOUR_PERSON_ID&#39;</span><span class="p">,</span>
+            <span class="n">broker_id</span><span class="o">=</span><span class="s1">&#39;YOUR_BROKER_ID&#39;</span><span class="p">,</span>
+            <span class="n">account_id</span><span class="o">=</span><span class="s1">&#39;YOUR_ACCOUNT_ID&#39;</span><span class="p">,</span>
+            <span class="n">signed</span><span class="o">=</span><span class="n">true</span><span class="p">,</span>
+            <span class="n">username</span><span class="o">=</span><span class="s1">&#39;&#39;</span>
+        <span class="p">)</span>
+    <span class="p">),</span>
+    <span class="n">error</span><span class="o">=</span><span class="kc">None</span>
 <span class="p">)</span>
 </code></pre></div>
 </div>

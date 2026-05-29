@@ -55,6 +55,52 @@ curl http://localhost:8080/api/v1/info
 
 ```
 
+### Login Test
+
+Login
+
+```
+api = sj.Shioaji(simulation=True)  # Simulation Mode
+accounts = api.login(
+    api_key="YOUR_API_KEY",         # edit it
+    secret_key="YOUR_SECRET_KEY"    # edit it
+)
+
+# Verify login by listing accounts
+print(accounts)
+
+```
+
+```
+# .env (in the working directory) should contain:
+SJ_API_KEY=YOUR_API_KEY                # edit it
+SJ_SEC_KEY=YOUR_SECRET_KEY             # edit it
+SJ_PRODUCTION=false                    # simulation mode
+
+# Start server (auto-reads .env and logs in)
+shioaji server start
+
+# Verify login by listing accounts
+shioaji auth accounts
+
+```
+
+```
+# .env (in the working directory) should contain:
+SJ_API_KEY=YOUR_API_KEY                # edit it
+SJ_SEC_KEY=YOUR_SECRET_KEY             # edit it
+SJ_PRODUCTION=false                    # simulation mode
+
+# Start server (run in terminal, auto-reads .env and logs in)
+shioaji server start
+
+# Verify login by listing accounts
+curl http://localhost:8080/api/v1/auth/accounts
+
+```
+
+### Place Order Test - Stock
+
 Stock
 
 ```
@@ -181,6 +227,8 @@ Out
 
 ```
 
+### Place Order Test - Futures
+
 Futures
 
 ```
@@ -303,5 +351,72 @@ Out
     "web_id": ""
   }
 }
+
+```
+
+- An order status of `PendingSubmit` (in transit) or `Submitted` (sent) means the order was placed successfully; if it's `Failed`, correct the order and run `place_order` again.
+- [Contract](../../contract/)
+- [Futures Order](../../order/FutureOption/)
+
+### Check if API tests has passed
+
+Attention
+
+Before you check, please confirm the following conditions are met.
+
+- Sign the API related document before you test, or you will not pass the test.
+- Doing test in service hour.
+- Stock accounts and Futures accounts should be tested separately.
+- Waiting for reviewing your tests at least 5 minutes.
+
+Go to the sign center to check your account's test status.
+
+[Stock API Sign Center](https://www.sinotrade.com.tw/newweb/signCenter/S_openAPI/)
+
+[Futures API Sign Center](https://www.sinotrade.com.tw/newweb/signCenter/F_openApi/)
+
+Note
+
+If you only need shioaji, completing the **signing** and **python test** is sufficient; the `T4 test` is not required.
+
+Log in with production mode and inspect the `signed` field on each account.
+
+```
+api = sj.Shioaji(simulation=False)  # production mode
+accounts = api.login(
+    api_key="YOUR_API_KEY",         # edit it
+    secret_key="YOUR_SECRET_KEY"    # edit it
+)
+
+# check accounts (inspect signed status)
+print(accounts)
+
+```
+
+```
+# .env (in working directory) should contain:
+SJ_API_KEY=YOUR_API_KEY                # edit it
+SJ_SEC_KEY=YOUR_SECRET_KEY             # edit it
+SJ_PRODUCTION=true                     # production mode
+
+# start the server (reads .env, completes login)
+shioaji server start
+
+# check accounts (inspect signed status)
+shioaji auth accounts
+
+```
+
+```
+# .env (in working directory) should contain:
+SJ_API_KEY=YOUR_API_KEY                # edit it
+SJ_SEC_KEY=YOUR_SECRET_KEY             # edit it
+SJ_PRODUCTION=true                     # production mode
+
+# start the server in another terminal (reads .env, completes login)
+shioaji server start
+
+# check accounts (inspect signed status)
+curl http://localhost:8080/api/v1/auth/accounts
 
 ```

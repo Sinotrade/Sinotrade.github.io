@@ -2279,21 +2279,21 @@ quote_type:    Subscription type {Tick, BidAsk, Quote}
   &quot;date&quot;: &quot;2026-05-20&quot;,
   &quot;time&quot;: &quot;18:50:02.981000&quot;,
   &quot;open&quot;: &quot;40270&quot;,
-  &quot;target_kind_price&quot;: &quot;40020.82&quot;,
-  &quot;trade_bid_vol_sum&quot;: 7498,
-  &quot;trade_ask_vol_sum&quot;: 5817,
+  &quot;underlying_price&quot;: &quot;40020.82&quot;,
+  &quot;bid_side_total_vol&quot;: 7498,
+  &quot;ask_side_total_vol&quot;: 5817,
   &quot;avg_price&quot;: &quot;40460.163149&quot;,
   &quot;close&quot;: &quot;40619&quot;,
   &quot;high&quot;: &quot;40650&quot;,
   &quot;low&quot;: &quot;40221&quot;,
   &quot;amount&quot;: &quot;81238&quot;,
-  &quot;amount_sum&quot;: &quot;552038466&quot;,
+  &quot;total_amount&quot;: &quot;552038466&quot;,
   &quot;volume&quot;: 2,
-  &quot;vol_sum&quot;: 13644,
+  &quot;total_volume&quot;: 13644,
   &quot;tick_type&quot;: 1,
-  &quot;diff_type&quot;: 2,
-  &quot;diff_price&quot;: &quot;495&quot;,
-  &quot;diff_rate&quot;: &quot;1.233676&quot;,
+  &quot;chg_type&quot;: 2,
+  &quot;price_chg&quot;: &quot;495&quot;,
+  &quot;pct_chg&quot;: &quot;1.233676&quot;,
   &quot;simtrade&quot;: false
 }
 </code></pre></div>
@@ -2344,21 +2344,21 @@ data:{
   &quot;date&quot;: &quot;2026-05-20&quot;,
   &quot;time&quot;: &quot;18:54:43.871000&quot;,
   &quot;open&quot;: &quot;40270&quot;,
-  &quot;target_kind_price&quot;: &quot;40020.82&quot;,
-  &quot;trade_bid_vol_sum&quot;: 7540,
-  &quot;trade_ask_vol_sum&quot;: 5908,
+  &quot;underlying_price&quot;: &quot;40020.82&quot;,
+  &quot;bid_side_total_vol&quot;: 7540,
+  &quot;ask_side_total_vol&quot;: 5908,
   &quot;avg_price&quot;: &quot;40461.608055&quot;,
   &quot;close&quot;: &quot;40608&quot;,
   &quot;high&quot;: &quot;40650&quot;,
   &quot;low&quot;: &quot;40221&quot;,
   &quot;amount&quot;: &quot;40608&quot;,
-  &quot;amount_sum&quot;: &quot;557560959&quot;,
+  &quot;total_amount&quot;: &quot;557560959&quot;,
   &quot;volume&quot;: 1,
-  &quot;vol_sum&quot;: 13780,
+  &quot;total_volume&quot;: 13780,
   &quot;tick_type&quot;: 1,
-  &quot;diff_type&quot;: 2,
-  &quot;diff_price&quot;: &quot;484&quot;,
-  &quot;diff_rate&quot;: &quot;1.206261&quot;,
+  &quot;chg_type&quot;: 2,
+  &quot;price_chg&quot;: &quot;484&quot;,
+  &quot;pct_chg&quot;: &quot;1.206261&quot;,
   &quot;simtrade&quot;: false
 }
 </code></pre></div>
@@ -2391,21 +2391,21 @@ date (tuple)                             Date
 time (tuple)                             Trade time
 datetime (tuple)                         Date and time
 open (Decimal)                           Open price
-target_kind_price (Decimal)              Underlying index price
+underlying_price (Decimal)               Underlying index price
 avg_price (Decimal)                      Average price
 close (Decimal)                          Trade price
 high (Decimal)                           High (since open)
 low (Decimal)                            Low (since open)
 amount (Decimal)                         Trade amount (NTD)
-amount_sum (Decimal)                     Cumulative trade amount (NTD)
+total_amount (Decimal)                   Cumulative trade amount (NTD)
 volume (int)                             Trade volume (lot)
-vol_sum (int)                            Cumulative trade volume (lot)
+total_volume (int)                       Cumulative trade volume (lot)
 tick_type (int)                          Bid/ask side {1: ask, 2: bid, 0: undetermined}
-diff_type (int)                          Change type {1: limit up, 2: up, 3: unchanged, 4: down, 5: limit down}
-diff_price (Decimal)                     Price change
-diff_rate (Decimal)                      Price change rate (%)
-trade_bid_vol_sum (int)                  Cumulative bid-side trade volume (lot)
-trade_ask_vol_sum (int)                  Cumulative ask-side trade volume (lot)
+chg_type (int)                           Change type {1: limit up, 2: up, 3: unchanged, 4: down, 5: limit down}
+price_chg (Decimal)                      Price change
+pct_chg (Decimal)                        Price change rate (%)
+bid_side_total_vol (int)                 Cumulative bid-side trade volume (lot)
+ask_side_total_vol (int)                 Cumulative ask-side trade volume (lot)
 simtrade (bool)                          Trial match
 </code></pre></div>
 </div>
@@ -2453,8 +2453,8 @@ simtrade (bool)                          Trial match
   &quot;code&quot;: &quot;TXFF6&quot;,
   &quot;date&quot;: &quot;2026-05-20&quot;,
   &quot;time&quot;: &quot;19:24:03.012000&quot;,
-  &quot;bid_vol_sum&quot;: 8,
-  &quot;ask_vol_sum&quot;: 19,
+  &quot;bid_total_vol&quot;: 8,
+  &quot;ask_total_vol&quot;: 19,
   &quot;bid_price&quot;: [&quot;40615&quot;, &quot;40613&quot;, &quot;40612&quot;, &quot;40611&quot;, &quot;40610&quot;],
   &quot;bid_volume&quot;: [1, 2, 1, 2, 2],
   &quot;diff_bid_vol&quot;: [0, 0, 0, 0, 1],
@@ -2463,9 +2463,9 @@ simtrade (bool)                          Trial match
   &quot;diff_ask_vol&quot;: [0, -1, -1, 0, 0],
   &quot;first_derived_bid_price&quot;: &quot;0&quot;,
   &quot;first_derived_ask_price&quot;: &quot;40622&quot;,
-  &quot;first_derived_bid_volume&quot;: 0,
-  &quot;first_derived_ask_volume&quot;: 1,
-  &quot;target_kind_price&quot;: &quot;40020.82&quot;,
+  &quot;first_derived_bid_vol&quot;: 0,
+  &quot;first_derived_ask_vol&quot;: 1,
+  &quot;underlying_price&quot;: &quot;40020.82&quot;,
   &quot;simtrade&quot;: false
 }
 </code></pre></div>
@@ -2515,8 +2515,8 @@ data:{
   &quot;code&quot;: &quot;TXFF6&quot;,
   &quot;date&quot;: &quot;2026-05-20&quot;,
   &quot;time&quot;: &quot;19:24:38.512000&quot;,
-  &quot;bid_vol_sum&quot;: 19,
-  &quot;ask_vol_sum&quot;: 20,
+  &quot;bid_total_vol&quot;: 19,
+  &quot;ask_total_vol&quot;: 20,
   &quot;bid_price&quot;: [&quot;40613&quot;, &quot;40612&quot;, &quot;40611&quot;, &quot;40610&quot;, &quot;40609&quot;],
   &quot;bid_volume&quot;: [1, 3, 5, 3, 7],
   &quot;diff_bid_vol&quot;: [-1, 0, 0, 0, 2],
@@ -2525,9 +2525,9 @@ data:{
   &quot;diff_ask_vol&quot;: [0, 0, 0, 0, 0],
   &quot;first_derived_bid_price&quot;: &quot;0&quot;,
   &quot;first_derived_ask_price&quot;: &quot;40622&quot;,
-  &quot;first_derived_bid_volume&quot;: 0,
-  &quot;first_derived_ask_volume&quot;: 1,
-  &quot;target_kind_price&quot;: &quot;40020.82&quot;,
+  &quot;first_derived_bid_vol&quot;: 0,
+  &quot;first_derived_ask_vol&quot;: 1,
+  &quot;underlying_price&quot;: &quot;40020.82&quot;,
   &quot;simtrade&quot;: false
 }
 </code></pre></div>
@@ -2559,8 +2559,8 @@ exchange (Exchange)                      Exchange
 date (tuple)                             Date
 time (tuple)                             Time
 datetime (tuple)                         Date and time
-bid_vol_sum (int)                        Total bid volume (lot)
-ask_vol_sum (int)                        Total ask volume (lot)
+bid_total_vol (int)                      Total bid volume (lot)
+ask_total_vol (int)                      Total ask volume (lot)
 bid_price (list[Decimal])                Five-level bid prices
 bid_volume (list[int])                   Five-level bid volumes (lot)
 diff_bid_vol (list[int])                 Five-level bid volume change (lot)
@@ -2569,9 +2569,9 @@ ask_volume (list[int])                   Five-level ask volumes (lot)
 diff_ask_vol (list[int])                 Five-level ask volume change (lot)
 first_derived_bid_price (Decimal)        First-level derived bid price
 first_derived_ask_price (Decimal)        First-level derived ask price
-first_derived_bid_volume (int)           First-level derived bid volume (lot)
-first_derived_ask_volume (int)           First-level derived ask volume (lot)
-target_kind_price (Decimal)              Underlying index price
+first_derived_bid_vol (int)              First-level derived bid volume (lot)
+first_derived_ask_vol (int)              First-level derived ask volume (lot)
+underlying_price (Decimal)               Underlying index price
 simtrade (bool)                          Trial match
 </code></pre></div>
 </div>
@@ -2619,24 +2619,24 @@ simtrade (bool)                          Trial match
   &quot;code&quot;: &quot;TXFF6&quot;,
   &quot;date&quot;: &quot;2026-05-20&quot;,
   &quot;time&quot;: &quot;19:29:39.887000&quot;,
-  &quot;target_kind_price&quot;: &quot;40020.82&quot;,
+  &quot;underlying_price&quot;: &quot;40020.82&quot;,
   &quot;open&quot;: &quot;40270&quot;,
   &quot;avg_price&quot;: &quot;40466.730155&quot;,
   &quot;close&quot;: &quot;40616&quot;,
   &quot;high&quot;: &quot;40650&quot;,
   &quot;low&quot;: &quot;40221&quot;,
   &quot;amount&quot;: &quot;40616&quot;,
-  &quot;amount_sum&quot;: &quot;578107707&quot;,
+  &quot;total_amount&quot;: &quot;578107707&quot;,
   &quot;volume&quot;: 0,
-  &quot;vol_sum&quot;: 14286,
+  &quot;total_volume&quot;: 14286,
   &quot;tick_type&quot;: 1,
-  &quot;diff_type&quot;: 2,
-  &quot;diff_price&quot;: &quot;492&quot;,
-  &quot;diff_rate&quot;: &quot;1.226199&quot;,
-  &quot;trade_bid_vol_sum&quot;: 7773,
-  &quot;trade_ask_vol_sum&quot;: 6172,
-  &quot;trade_bid_cnt&quot;: 9924,
-  &quot;trade_ask_cnt&quot;: 10442,
+  &quot;chg_type&quot;: 2,
+  &quot;price_chg&quot;: &quot;492&quot;,
+  &quot;pct_chg&quot;: &quot;1.226199&quot;,
+  &quot;bid_side_total_vol&quot;: 7773,
+  &quot;ask_side_total_vol&quot;: 6172,
+  &quot;bid_side_total_cnt&quot;: 9924,
+  &quot;ask_side_total_cnt&quot;: 10442,
   &quot;bid_price&quot;: [&quot;40613&quot;, &quot;40612&quot;, &quot;40611&quot;, &quot;40610&quot;, &quot;40609&quot;],
   &quot;bid_volume&quot;: [2, 4, 6, 2, 4],
   &quot;diff_bid_vol&quot;: [0, 0, 0, 0, 0],
@@ -2645,8 +2645,8 @@ simtrade (bool)                          Trial match
   &quot;diff_ask_vol&quot;: [0, 0, 0, 0, 0],
   &quot;first_derived_bid_price&quot;: &quot;0&quot;,
   &quot;first_derived_ask_price&quot;: &quot;0&quot;,
-  &quot;first_derived_bid_volume&quot;: 0,
-  &quot;first_derived_ask_volume&quot;: 0,
+  &quot;first_derived_bid_vol&quot;: 0,
+  &quot;first_derived_ask_vol&quot;: 0,
   &quot;simtrade&quot;: false
 }
 </code></pre></div>
@@ -2696,24 +2696,24 @@ data:{
   &quot;code&quot;: &quot;TXFF6&quot;,
   &quot;date&quot;: &quot;2026-05-20&quot;,
   &quot;time&quot;: &quot;19:30:16.137000&quot;,
-  &quot;target_kind_price&quot;: &quot;40020.82&quot;,
+  &quot;underlying_price&quot;: &quot;40020.82&quot;,
   &quot;open&quot;: &quot;40270&quot;,
   &quot;avg_price&quot;: &quot;40467.061396&quot;,
   &quot;close&quot;: &quot;40624&quot;,
   &quot;high&quot;: &quot;40650&quot;,
   &quot;low&quot;: &quot;40221&quot;,
   &quot;amount&quot;: &quot;40624&quot;,
-  &quot;amount_sum&quot;: &quot;579366918&quot;,
+  &quot;total_amount&quot;: &quot;579366918&quot;,
   &quot;volume&quot;: 0,
-  &quot;vol_sum&quot;: 14317,
+  &quot;total_volume&quot;: 14317,
   &quot;tick_type&quot;: 1,
-  &quot;diff_type&quot;: 2,
-  &quot;diff_price&quot;: &quot;500&quot;,
-  &quot;diff_rate&quot;: &quot;1.246137&quot;,
-  &quot;trade_bid_vol_sum&quot;: 7804,
-  &quot;trade_ask_vol_sum&quot;: 6172,
-  &quot;trade_bid_cnt&quot;: 9947,
-  &quot;trade_ask_cnt&quot;: 10468,
+  &quot;chg_type&quot;: 2,
+  &quot;price_chg&quot;: &quot;500&quot;,
+  &quot;pct_chg&quot;: &quot;1.246137&quot;,
+  &quot;bid_side_total_vol&quot;: 7804,
+  &quot;ask_side_total_vol&quot;: 6172,
+  &quot;bid_side_total_cnt&quot;: 9947,
+  &quot;ask_side_total_cnt&quot;: 10468,
   &quot;bid_price&quot;: [&quot;40620&quot;, &quot;40618&quot;, &quot;40617&quot;, &quot;40616&quot;, &quot;40615&quot;],
   &quot;bid_volume&quot;: [1, 7, 3, 7, 8],
   &quot;diff_bid_vol&quot;: [0, 0, 0, 0, 2],
@@ -2722,8 +2722,8 @@ data:{
   &quot;diff_ask_vol&quot;: [1, 0, 0, 0, 0],
   &quot;first_derived_bid_price&quot;: &quot;0&quot;,
   &quot;first_derived_ask_price&quot;: &quot;0&quot;,
-  &quot;first_derived_bid_volume&quot;: 0,
-  &quot;first_derived_ask_volume&quot;: 0,
+  &quot;first_derived_bid_vol&quot;: 0,
+  &quot;first_derived_ask_vol&quot;: 0,
   &quot;simtrade&quot;: false
 }
 </code></pre></div>
@@ -2755,24 +2755,24 @@ exchange (Exchange)                      Exchange
 date (tuple)                             Date
 time (tuple)                             Trade time
 datetime (tuple)                         Date and time
-target_kind_price (Decimal)              Underlying index price
+underlying_price (Decimal)               Underlying index price
 open (Decimal)                           Open price
 avg_price (Decimal)                      Average price
 close (Decimal)                          Trade price
 high (Decimal)                           High (since open)
 low (Decimal)                            Low (since open)
 amount (Decimal)                         Trade amount (NTD)
-amount_sum (Decimal)                     Cumulative trade amount (NTD)
+total_amount (Decimal)                   Cumulative trade amount (NTD)
 volume (int)                             Trade volume (lot)
-vol_sum (int)                            Cumulative trade volume (lot)
+total_volume (int)                       Cumulative trade volume (lot)
 tick_type (int)                          Bid/ask side {1: ask, 2: bid, 0: undetermined}
-diff_type (int)                          Change type {1: limit up, 2: up, 3: unchanged, 4: down, 5: limit down}
-diff_price (Decimal)                     Price change
-diff_rate (Decimal)                      Price change rate (%)
-trade_bid_vol_sum (int)                  Cumulative bid-side trade volume (lot)
-trade_ask_vol_sum (int)                  Cumulative ask-side trade volume (lot)
-trade_bid_cnt (int)                      Bid-side trade count
-trade_ask_cnt (int)                      Ask-side trade count
+chg_type (int)                           Change type {1: limit up, 2: up, 3: unchanged, 4: down, 5: limit down}
+price_chg (Decimal)                      Price change
+pct_chg (Decimal)                        Price change rate (%)
+bid_side_total_vol (int)                 Cumulative bid-side trade volume (lot)
+ask_side_total_vol (int)                 Cumulative ask-side trade volume (lot)
+bid_side_total_cnt (int)                 Bid-side trade count
+ask_side_total_cnt (int)                 Ask-side trade count
 bid_price (list[Decimal])                Five-level bid prices
 bid_volume (list[int])                   Five-level bid volumes (lot)
 diff_bid_vol (list[int])                 Five-level bid volume change (lot)
@@ -2781,8 +2781,8 @@ ask_volume (list[int])                   Five-level ask volumes (lot)
 diff_ask_vol (list[int])                 Five-level ask volume change (lot)
 first_derived_bid_price (Decimal)        First-level derived bid price
 first_derived_ask_price (Decimal)        First-level derived ask price
-first_derived_bid_volume (int)           First-level derived bid volume (lot)
-first_derived_ask_volume (int)           First-level derived ask volume (lot)
+first_derived_bid_vol (int)              First-level derived bid volume (lot)
+first_derived_ask_vol (int)              First-level derived ask volume (lot)
 simtrade (bool)                          Trial match
 </code></pre></div>
 </div>
@@ -2801,21 +2801,21 @@ simtrade (bool)                          Trial match
     <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;time=</span><span class="si">{</span><span class="n">tick</span><span class="o">.</span><span class="n">time</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
     <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;datetime=</span><span class="si">{</span><span class="n">tick</span><span class="o">.</span><span class="n">datetime</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
     <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;open=</span><span class="si">{</span><span class="n">tick</span><span class="o">.</span><span class="n">open</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
-    <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;target_kind_price=</span><span class="si">{</span><span class="n">tick</span><span class="o">.</span><span class="n">target_kind_price</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
-    <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;trade_bid_vol_sum=</span><span class="si">{</span><span class="n">tick</span><span class="o">.</span><span class="n">trade_bid_vol_sum</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
-    <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;trade_ask_vol_sum=</span><span class="si">{</span><span class="n">tick</span><span class="o">.</span><span class="n">trade_ask_vol_sum</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+    <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;underlying_price=</span><span class="si">{</span><span class="n">tick</span><span class="o">.</span><span class="n">underlying_price</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+    <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;bid_side_total_vol=</span><span class="si">{</span><span class="n">tick</span><span class="o">.</span><span class="n">bid_side_total_vol</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+    <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;ask_side_total_vol=</span><span class="si">{</span><span class="n">tick</span><span class="o">.</span><span class="n">ask_side_total_vol</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
     <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;avg_price=</span><span class="si">{</span><span class="n">tick</span><span class="o">.</span><span class="n">avg_price</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
     <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;close=</span><span class="si">{</span><span class="n">tick</span><span class="o">.</span><span class="n">close</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
     <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;high=</span><span class="si">{</span><span class="n">tick</span><span class="o">.</span><span class="n">high</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
     <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;low=</span><span class="si">{</span><span class="n">tick</span><span class="o">.</span><span class="n">low</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
     <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;amount=</span><span class="si">{</span><span class="n">tick</span><span class="o">.</span><span class="n">amount</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
-    <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;amount_sum=</span><span class="si">{</span><span class="n">tick</span><span class="o">.</span><span class="n">amount_sum</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+    <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;total_amount=</span><span class="si">{</span><span class="n">tick</span><span class="o">.</span><span class="n">total_amount</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
     <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;volume=</span><span class="si">{</span><span class="n">tick</span><span class="o">.</span><span class="n">volume</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
-    <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;vol_sum=</span><span class="si">{</span><span class="n">tick</span><span class="o">.</span><span class="n">vol_sum</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+    <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;total_volume=</span><span class="si">{</span><span class="n">tick</span><span class="o">.</span><span class="n">total_volume</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
     <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;tick_type=</span><span class="si">{</span><span class="n">tick</span><span class="o">.</span><span class="n">tick_type</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
-    <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;diff_type=</span><span class="si">{</span><span class="n">tick</span><span class="o">.</span><span class="n">diff_type</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
-    <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;diff_price=</span><span class="si">{</span><span class="n">tick</span><span class="o">.</span><span class="n">diff_price</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
-    <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;diff_rate=</span><span class="si">{</span><span class="n">tick</span><span class="o">.</span><span class="n">diff_rate</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+    <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;chg_type=</span><span class="si">{</span><span class="n">tick</span><span class="o">.</span><span class="n">chg_type</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+    <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;price_chg=</span><span class="si">{</span><span class="n">tick</span><span class="o">.</span><span class="n">price_chg</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+    <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;pct_chg=</span><span class="si">{</span><span class="n">tick</span><span class="o">.</span><span class="n">pct_chg</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
     <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;simtrade=</span><span class="si">{</span><span class="n">tick</span><span class="o">.</span><span class="n">simtrade</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
 
 <span class="n">api</span><span class="o">.</span><span class="n">subscribe</span><span class="p">(</span>
@@ -2848,21 +2848,21 @@ date=(2026, 5, 20)
 time=(19, 15, 1, 284000)
 datetime=(2026, 5, 20, 19, 15, 1, 284000)
 open=40270
-target_kind_price=40020.82
-trade_bid_vol_sum=7711
-trade_ask_vol_sum=6109
+underlying_price=40020.82
+bid_side_total_vol=7711
+ask_side_total_vol=6109
 avg_price=40465.465254
 close=40598
 high=40650
 low=40221
 amount=40598
-amount_sum=572990988
+total_amount=572990988
 volume=1
-vol_sum=14160
+total_volume=14160
 tick_type=2
-diff_type=2
-diff_price=474
-diff_rate=1.181338
+chg_type=2
+price_chg=474
+pct_chg=1.181338
 simtrade=False
 </code></pre></div>
 </div>
@@ -2878,8 +2878,8 @@ simtrade=False
     <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;date=</span><span class="si">{</span><span class="n">bidask</span><span class="o">.</span><span class="n">date</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
     <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;time=</span><span class="si">{</span><span class="n">bidask</span><span class="o">.</span><span class="n">time</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
     <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;datetime=</span><span class="si">{</span><span class="n">bidask</span><span class="o">.</span><span class="n">datetime</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
-    <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;bid_vol_sum=</span><span class="si">{</span><span class="n">bidask</span><span class="o">.</span><span class="n">bid_vol_sum</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
-    <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;ask_vol_sum=</span><span class="si">{</span><span class="n">bidask</span><span class="o">.</span><span class="n">ask_vol_sum</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+    <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;bid_total_vol=</span><span class="si">{</span><span class="n">bidask</span><span class="o">.</span><span class="n">bid_total_vol</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+    <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;ask_total_vol=</span><span class="si">{</span><span class="n">bidask</span><span class="o">.</span><span class="n">ask_total_vol</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
     <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;bid_price=</span><span class="si">{</span><span class="n">bidask</span><span class="o">.</span><span class="n">bid_price</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
     <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;bid_volume=</span><span class="si">{</span><span class="n">bidask</span><span class="o">.</span><span class="n">bid_volume</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
     <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;diff_bid_vol=</span><span class="si">{</span><span class="n">bidask</span><span class="o">.</span><span class="n">diff_bid_vol</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
@@ -2888,9 +2888,9 @@ simtrade=False
     <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;diff_ask_vol=</span><span class="si">{</span><span class="n">bidask</span><span class="o">.</span><span class="n">diff_ask_vol</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
     <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;first_derived_bid_price=</span><span class="si">{</span><span class="n">bidask</span><span class="o">.</span><span class="n">first_derived_bid_price</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
     <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;first_derived_ask_price=</span><span class="si">{</span><span class="n">bidask</span><span class="o">.</span><span class="n">first_derived_ask_price</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
-    <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;first_derived_bid_volume=</span><span class="si">{</span><span class="n">bidask</span><span class="o">.</span><span class="n">first_derived_bid_volume</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
-    <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;first_derived_ask_volume=</span><span class="si">{</span><span class="n">bidask</span><span class="o">.</span><span class="n">first_derived_ask_volume</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
-    <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;target_kind_price=</span><span class="si">{</span><span class="n">bidask</span><span class="o">.</span><span class="n">target_kind_price</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+    <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;first_derived_bid_vol=</span><span class="si">{</span><span class="n">bidask</span><span class="o">.</span><span class="n">first_derived_bid_vol</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+    <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;first_derived_ask_vol=</span><span class="si">{</span><span class="n">bidask</span><span class="o">.</span><span class="n">first_derived_ask_vol</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+    <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;underlying_price=</span><span class="si">{</span><span class="n">bidask</span><span class="o">.</span><span class="n">underlying_price</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
     <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;simtrade=</span><span class="si">{</span><span class="n">bidask</span><span class="o">.</span><span class="n">simtrade</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
 
 <span class="n">api</span><span class="o">.</span><span class="n">subscribe</span><span class="p">(</span>
@@ -2922,8 +2922,8 @@ code=TXFF6
 date=(2026, 5, 20)
 time=(19, 25, 54, 637000)
 datetime=(2026, 5, 20, 19, 25, 54, 637000)
-bid_vol_sum=21
-ask_vol_sum=21
+bid_total_vol=21
+ask_total_vol=21
 bid_price=[Decimal(&#39;40613&#39;), Decimal(&#39;40612&#39;), Decimal(&#39;40611&#39;), Decimal(&#39;40610&#39;), Decimal(&#39;40609&#39;)]
 bid_volume=[1, 2, 6, 4, 8]
 diff_bid_vol=[-1, 1, 0, 0, 0]
@@ -2932,9 +2932,9 @@ ask_volume=[4, 7, 5, 3, 2]
 diff_ask_vol=[-1, 0, 0, 0, 0]
 first_derived_bid_price=0
 first_derived_ask_price=0
-first_derived_bid_volume=0
-first_derived_ask_volume=0
-target_kind_price=40020.82
+first_derived_bid_vol=0
+first_derived_ask_vol=0
+underlying_price=40020.82
 simtrade=False
 </code></pre></div>
 </div>
@@ -2950,24 +2950,24 @@ simtrade=False
     <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;date=</span><span class="si">{</span><span class="n">quote</span><span class="o">.</span><span class="n">date</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
     <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;time=</span><span class="si">{</span><span class="n">quote</span><span class="o">.</span><span class="n">time</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
     <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;datetime=</span><span class="si">{</span><span class="n">quote</span><span class="o">.</span><span class="n">datetime</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
-    <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;target_kind_price=</span><span class="si">{</span><span class="n">quote</span><span class="o">.</span><span class="n">target_kind_price</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+    <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;underlying_price=</span><span class="si">{</span><span class="n">quote</span><span class="o">.</span><span class="n">underlying_price</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
     <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;open=</span><span class="si">{</span><span class="n">quote</span><span class="o">.</span><span class="n">open</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
     <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;avg_price=</span><span class="si">{</span><span class="n">quote</span><span class="o">.</span><span class="n">avg_price</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
     <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;close=</span><span class="si">{</span><span class="n">quote</span><span class="o">.</span><span class="n">close</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
     <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;high=</span><span class="si">{</span><span class="n">quote</span><span class="o">.</span><span class="n">high</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
     <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;low=</span><span class="si">{</span><span class="n">quote</span><span class="o">.</span><span class="n">low</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
     <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;amount=</span><span class="si">{</span><span class="n">quote</span><span class="o">.</span><span class="n">amount</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
-    <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;amount_sum=</span><span class="si">{</span><span class="n">quote</span><span class="o">.</span><span class="n">amount_sum</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+    <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;total_amount=</span><span class="si">{</span><span class="n">quote</span><span class="o">.</span><span class="n">total_amount</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
     <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;volume=</span><span class="si">{</span><span class="n">quote</span><span class="o">.</span><span class="n">volume</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
-    <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;vol_sum=</span><span class="si">{</span><span class="n">quote</span><span class="o">.</span><span class="n">vol_sum</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+    <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;total_volume=</span><span class="si">{</span><span class="n">quote</span><span class="o">.</span><span class="n">total_volume</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
     <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;tick_type=</span><span class="si">{</span><span class="n">quote</span><span class="o">.</span><span class="n">tick_type</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
-    <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;diff_type=</span><span class="si">{</span><span class="n">quote</span><span class="o">.</span><span class="n">diff_type</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
-    <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;diff_price=</span><span class="si">{</span><span class="n">quote</span><span class="o">.</span><span class="n">diff_price</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
-    <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;diff_rate=</span><span class="si">{</span><span class="n">quote</span><span class="o">.</span><span class="n">diff_rate</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
-    <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;trade_bid_vol_sum=</span><span class="si">{</span><span class="n">quote</span><span class="o">.</span><span class="n">trade_bid_vol_sum</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
-    <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;trade_ask_vol_sum=</span><span class="si">{</span><span class="n">quote</span><span class="o">.</span><span class="n">trade_ask_vol_sum</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
-    <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;trade_bid_cnt=</span><span class="si">{</span><span class="n">quote</span><span class="o">.</span><span class="n">trade_bid_cnt</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
-    <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;trade_ask_cnt=</span><span class="si">{</span><span class="n">quote</span><span class="o">.</span><span class="n">trade_ask_cnt</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+    <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;chg_type=</span><span class="si">{</span><span class="n">quote</span><span class="o">.</span><span class="n">chg_type</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+    <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;price_chg=</span><span class="si">{</span><span class="n">quote</span><span class="o">.</span><span class="n">price_chg</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+    <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;pct_chg=</span><span class="si">{</span><span class="n">quote</span><span class="o">.</span><span class="n">pct_chg</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+    <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;bid_side_total_vol=</span><span class="si">{</span><span class="n">quote</span><span class="o">.</span><span class="n">bid_side_total_vol</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+    <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;ask_side_total_vol=</span><span class="si">{</span><span class="n">quote</span><span class="o">.</span><span class="n">ask_side_total_vol</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+    <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;bid_side_total_cnt=</span><span class="si">{</span><span class="n">quote</span><span class="o">.</span><span class="n">bid_side_total_cnt</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+    <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;ask_side_total_cnt=</span><span class="si">{</span><span class="n">quote</span><span class="o">.</span><span class="n">ask_side_total_cnt</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
     <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;bid_price=</span><span class="si">{</span><span class="n">quote</span><span class="o">.</span><span class="n">bid_price</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
     <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;bid_volume=</span><span class="si">{</span><span class="n">quote</span><span class="o">.</span><span class="n">bid_volume</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
     <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;diff_bid_vol=</span><span class="si">{</span><span class="n">quote</span><span class="o">.</span><span class="n">diff_bid_vol</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
@@ -2976,8 +2976,8 @@ simtrade=False
     <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;diff_ask_vol=</span><span class="si">{</span><span class="n">quote</span><span class="o">.</span><span class="n">diff_ask_vol</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
     <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;first_derived_bid_price=</span><span class="si">{</span><span class="n">quote</span><span class="o">.</span><span class="n">first_derived_bid_price</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
     <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;first_derived_ask_price=</span><span class="si">{</span><span class="n">quote</span><span class="o">.</span><span class="n">first_derived_ask_price</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
-    <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;first_derived_bid_volume=</span><span class="si">{</span><span class="n">quote</span><span class="o">.</span><span class="n">first_derived_bid_volume</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
-    <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;first_derived_ask_volume=</span><span class="si">{</span><span class="n">quote</span><span class="o">.</span><span class="n">first_derived_ask_volume</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+    <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;first_derived_bid_vol=</span><span class="si">{</span><span class="n">quote</span><span class="o">.</span><span class="n">first_derived_bid_vol</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+    <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;first_derived_ask_vol=</span><span class="si">{</span><span class="n">quote</span><span class="o">.</span><span class="n">first_derived_ask_vol</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
     <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;simtrade=</span><span class="si">{</span><span class="n">quote</span><span class="o">.</span><span class="n">simtrade</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
 
 <span class="n">api</span><span class="o">.</span><span class="n">subscribe</span><span class="p">(</span>
@@ -3009,24 +3009,24 @@ code=TXFF6
 date=(2026, 5, 20)
 time=(19, 31, 3, 387000)
 datetime=(2026, 5, 20, 19, 31, 3, 387000)
-target_kind_price=40020.82
+underlying_price=40020.82
 open=40270
 avg_price=40467.404028
 close=40629
 high=40650
 low=40221
 amount=121887
-amount_sum=580626313
+total_amount=580626313
 volume=0
-vol_sum=14348
+total_volume=14348
 tick_type=1
-diff_type=2
-diff_price=505
-diff_rate=1.258598
-trade_bid_vol_sum=7825
-trade_ask_vol_sum=6182
-trade_bid_cnt=9966
-trade_ask_cnt=10498
+chg_type=2
+price_chg=505
+pct_chg=1.258598
+bid_side_total_vol=7825
+ask_side_total_vol=6182
+bid_side_total_cnt=9966
+ask_side_total_cnt=10498
 bid_price=[Decimal(&#39;40625&#39;), Decimal(&#39;40624&#39;), Decimal(&#39;40623&#39;), Decimal(&#39;40622&#39;), Decimal(&#39;40621&#39;)]
 bid_volume=[1, 3, 11, 6, 1]
 diff_bid_vol=[0, 0, 0, 0, 0]
@@ -3035,8 +3035,8 @@ ask_volume=[1, 1, 3, 4, 2]
 diff_ask_vol=[0, 0, 0, 0, 0]
 first_derived_bid_price=0
 first_derived_ask_price=0
-first_derived_bid_volume=0
-first_derived_ask_volume=0
+first_derived_bid_vol=0
+first_derived_ask_vol=0
 simtrade=False
 </code></pre></div>
 </div>

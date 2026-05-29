@@ -88,17 +88,34 @@ target_code (str): Resolved target product code; only continuous-month aliases (
 
 **Query All Contracts**
 
-In
+`api.Contracts` loads all contracts and groups them by product type. Use `list(...)` to iterate categories and products level by level.
+
+Iterate Contracts
 
 ```
-api.Contracts
+list(api.Contracts)
+# [('Indexs', (OTC, TAIFEX, TSE)), ('Stocks', (OES, OTC, TSE)), ...]
+
+list(api.Contracts.Futures)
+# [BRF(...), BTF(...), ...]
+
+list(api.Contracts.Futures.TXF)
+# [Future(code='TXFF6', ...), Future(code='TXFG6', ...), ...]
 
 ```
 
-Out
+Find Options
 
 ```
-Contracts(Indexs=(OTC, TAIFEX, TSE), Stocks=(OES, OTC, TSE), Futures=(BRF, BTF, CAF, CBF, CCF, CDF, CEF, CFF, CGF, CHF, CJF, CKF, CLF, CMF, CNF, CQF, CRF, CSF, CUF, CWF, CXF, CYF, CZF, DAF, DBF, DCF, DE1, DEF, DFF, DGF, DHF, DIF, DJF, DKF, DLF, DNF, DOF, DPF, DQF, DSF, DVF, DWF, DXF, DYF, DZF, E4F, ECF, ECI, ECL, EEF, EGF, EHF, EKF, EMF, EOF, EPF, ESF, ESI, ESL, EXF, EYF, EZF, F1F, FBF, FCF, FEF, FFF, FGF, FKF, FNF, FQF, FRF, FSF, FTF, FVF, FWF, FXF, FYF, FZF, G2F, GAF, GCF, GDF, GHF, GIF, GJF, GKF, GLF, GMF, GNF, GOF, GRF, GTF, GUF, GVF, GWF, GXF, GYF, GZF, HA1, HAF, HBF, HCF, HH1, HHF, HIF, HL1, HLF, HOF, HQF, HSF, IAF, IHF, IIF, IJF, IMF, IOF, IPF, IQF, IR1, IRF, ITF, IX1, IXF, IYF, IZF, JBF, JFF, JMF, JNF, JPF, JSF, JW1, JWF, JXF, JZF, KAF, KBF, KCF, KDF, KEF, KFF, KGF, KIF, KKF, KLF, KOF, KPF, KSF, KUF, KWF, LBF, LCF, LEF, LIF, LMF, LOF, LQF, LRF, LTF, LUF, LVF, LWF, LXF, LYF, M1F, MBF, MJF, MKF, MQF, MVF, MX4, MXF, MYF, NAF, NBF, NCF, NDF, NEF, NGF, NIF, NJF, NKF, NKI, NKL, NLF, NMF, NOF, NQF, NSF, NUF, NVF, NWF, NYF, OAF, OBF, ODF, OEF, OHF, OJF, OKF, OLF, OMF, OOF, OPF, OQF, ORF, OSF, OTF, OUF, OVF, OWF, OXF, OYF, OZF, PAF, PBF, PCF, PDF, PEF, PFF, PGF, PHF, PIF, PJF, PKF, PL1, PLF, PMF, PNF, PPF, PQF, PRF, PSF, PTF, PUF, PVF, PWF, PXF, PYF, PZF, QAF, QBF, QCF, QDF, QEF, QFF, QGF, QHF, QIF, QJF, QKF, QLF, QMF, QNF, QOF, QPF, QQF, QRF, QSF, QTF, QUF, QV1, QVF, QWF, QXF, QYF, QZF, RAF, RBF, RCF, RDF, REF, RFF, RGF, RHF, RIF, RJF, RKF, RLF, RNF, ROF, RPF, RRF, RSF, RTF, RUF, RVF, RWF, RXF, RYF, RZF, SAF, SBF, SCF, SDF, SEF, SFF, SGF, SHF, SIF, SJF, SKF, SLF, SMF, SNF, SOF, SPF, SQF, SRF, SSF, SUF, SVF, SWF, SXF, SYF, SZF, TGF, TJF, TMF, TWN, TXF, UAF, UBF, UCF, UDF, UEF, UFF, UGF, UHF, UIF, UJF, UKF, ULF, UMF, UNF, UOF, UPF, UQF, URF, USF, UTF, UUF, UVF, UWF, UXF, UYF, UZF, VAF, VBF, VCF, VDF, VEF, VFF, VGF, VHF, VIF, VJF, VKF, XAF, XBF, XEF, XIF, XJF, YMF, YMI, YML, ZEF, ZFF), Options=(CAO, CBO, CCO, CDA, CDO, CEO, CFO, CGO, CHO, CKO, CMO, CNO, CSO, CZO, DFO, DGO, DHO, DJO, DKO, DQO, DSO, DVO, DXO, GIO, GXO, HCO, HSO, IJO, IRO, NYO, OAO, OBO, OJO, OKO, OOO, OZO, TEO, TFO, TGO, TX4, TXO, TXX, TXY), status=<FetchStatus.Fetched: 'Fetched'>)
+txo_options = list(api.Contracts.Options.TXO)
+txo_calls = [
+    contract
+    for contract in txo_options
+    if contract.delivery_month == "202606"
+    and contract.strike_price == 44000
+    and contract.option_right == sj.OptionRight.Call
+]
+# [Option(code='TXO44000F6', symbol='TXO20260644000C', ...)]
 
 ```
 

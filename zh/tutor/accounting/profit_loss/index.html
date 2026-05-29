@@ -2460,7 +2460,7 @@ person_id:    身分證字號
 <p class="admonition-title">StockProfitDetail</p>
 <div class="highlight"><pre><span></span><code><span class="n">date</span> <span class="p">(</span><span class="nb">str</span><span class="p">):</span>                  <span class="n">交易日期</span>
 <span class="n">code</span> <span class="p">(</span><span class="nb">str</span><span class="p">):</span>                  <span class="n">商品代碼</span>
-<span class="n">quantity</span> <span class="p">(</span><span class="nb">float</span><span class="p">):</span>            <span class="n">數量</span>
+<span class="n">quantity</span> <span class="p">(</span><span class="nb">int</span><span class="p">):</span>              <span class="n">數量</span>
 <span class="n">dseq</span> <span class="p">(</span><span class="nb">str</span><span class="p">):</span>                  <span class="n">委託書號</span>
 <span class="n">fee</span> <span class="p">(</span><span class="nb">int</span><span class="p">):</span>                   <span class="n">交易手續費</span>
 <span class="n">tax</span> <span class="p">(</span><span class="nb">int</span><span class="p">):</span>                   <span class="n">交易稅</span>
@@ -2721,52 +2721,66 @@ person_id:    身分證字號
 <div class="tabbed-block">
 <div class="admonition info">
 <p class="admonition-title">In</p>
-<div class="highlight"><pre><span></span><code><span class="n">api</span><span class="o">.</span><span class="n">list_profit_loss_summary</span><span class="p">(</span><span class="n">api</span><span class="o">.</span><span class="n">stock_account</span><span class="p">,</span> <span class="s1">&#39;2026-05-01&#39;</span><span class="p">,</span> <span class="s1">&#39;2026-05-21&#39;</span><span class="p">)</span>
+<div class="highlight"><pre><span></span><code><span class="n">resp</span> <span class="o">=</span> <span class="n">api</span><span class="o">.</span><span class="n">list_profit_loss_summary</span><span class="p">(</span><span class="n">api</span><span class="o">.</span><span class="n">stock_account</span><span class="p">,</span> <span class="s1">&#39;2026-05-01&#39;</span><span class="p">,</span> <span class="s1">&#39;2026-05-21&#39;</span><span class="p">)</span>
+<span class="n">resp</span>
 </code></pre></div>
 </div>
 <div class="admonition done">
 <p class="admonition-title">Out</p>
-<div class="highlight"><pre><span></span><code><span class="n">ProfitLossSummaryTotal</span><span class="p">(</span>
-    <span class="n">profitloss_summary</span><span class="o">=</span><span class="p">[</span>
+<div class="highlight"><pre><span></span><code><span class="n">ProfitLossSummaryTotal</span><span class="p">(</span><span class="n">total</span><span class="o">=</span><span class="n">ProfitLossTotal</span><span class="p">(</span><span class="n">pnl</span><span class="o">=</span><span class="mi">2781</span><span class="p">,</span> <span class="n">pr_ratio</span><span class="o">=</span><span class="mf">0.29</span><span class="p">))</span>
+</code></pre></div>
+</div>
+<p><strong>查看各商品損益明細</strong></p>
+<div class="admonition info">
+<p class="admonition-title">In</p>
+<div class="highlight"><pre><span></span><code><span class="nb">dict</span><span class="p">(</span><span class="n">resp</span><span class="p">)</span>
+</code></pre></div>
+</div>
+<div class="admonition done">
+<p class="admonition-title">Out</p>
+<div class="highlight"><pre><span></span><code><span class="p">{</span>
+    <span class="s1">&#39;profitloss_summary&#39;</span><span class="p">:</span> <span class="p">[</span>
         <span class="n">StockProfitLossSummary</span><span class="p">(</span>
-            <span class="n">code</span><span class="o">=</span><span class="s1">&#39;2890&#39;</span><span class="p">,</span>
+            <span class="n">code</span><span class="o">=</span><span class="s1">&#39;3265&#39;</span><span class="p">,</span>
             <span class="n">quantity</span><span class="o">=</span><span class="mi">1000</span><span class="p">,</span>
-            <span class="n">entry_price</span><span class="o">=</span><span class="mi">30</span><span class="p">,</span>
-            <span class="n">cover_price</span><span class="o">=</span><span class="mi">31</span><span class="p">,</span>
-            <span class="n">pnl</span><span class="o">=</span><span class="mi">1000</span><span class="p">,</span>
+            <span class="n">entry_price</span><span class="o">=</span><span class="mf">181.5</span><span class="p">,</span>
+            <span class="n">cover_price</span><span class="o">=</span><span class="mf">172.5</span><span class="p">,</span>
+            <span class="n">pnl</span><span class="o">=-</span><span class="mi">9657</span><span class="p">,</span>
             <span class="n">currency</span><span class="o">=</span><span class="s1">&#39;NTD&#39;</span><span class="p">,</span>
-            <span class="n">entry_cost</span><span class="o">=</span><span class="mi">30000</span><span class="p">,</span>
-            <span class="n">cover_cost</span><span class="o">=</span><span class="mi">31000</span><span class="p">,</span>
-            <span class="n">buy_cost</span><span class="o">=</span><span class="mi">30119</span><span class="p">,</span>
-            <span class="n">sell_cost</span><span class="o">=</span><span class="mi">30881</span><span class="p">,</span>
-            <span class="n">pr_ratio</span><span class="o">=</span><span class="mf">3.33</span><span class="p">,</span>
-            <span class="n">cond</span><span class="o">=&lt;</span><span class="n">StockOrderCond</span><span class="o">.</span><span class="n">Cash</span><span class="p">:</span> <span class="s1">&#39;Cash&#39;</span><span class="o">&gt;</span><span class="p">,</span>
+            <span class="n">entry_cost</span><span class="o">=</span><span class="mi">181500</span><span class="p">,</span>
+            <span class="n">cover_cost</span><span class="o">=</span><span class="mi">172500</span><span class="p">,</span>
+            <span class="n">buy_cost</span><span class="o">=</span><span class="mi">181572</span><span class="p">,</span>
+            <span class="n">sell_cost</span><span class="o">=</span><span class="mi">171915</span><span class="p">,</span>
+            <span class="n">pr_ratio</span><span class="o">=-</span><span class="mf">5.32</span><span class="p">,</span>
+            <span class="n">cond</span><span class="o">=&lt;</span><span class="n">StockOrderCond</span><span class="o">.</span><span class="n">Cash</span><span class="p">:</span> <span class="s1">&#39;Cash&#39;</span><span class="o">&gt;</span>
         <span class="p">),</span>
         <span class="n">StockProfitLossSummary</span><span class="p">(</span>
-            <span class="n">code</span><span class="o">=</span><span class="s1">&#39;2330&#39;</span><span class="p">,</span>
+            <span class="n">code</span><span class="o">=</span><span class="s1">&#39;8261&#39;</span><span class="p">,</span>
             <span class="n">quantity</span><span class="o">=</span><span class="mi">1000</span><span class="p">,</span>
-            <span class="n">entry_price</span><span class="o">=</span><span class="mi">2000</span><span class="p">,</span>
-            <span class="n">cover_price</span><span class="o">=</span><span class="mi">1980</span><span class="p">,</span>
-            <span class="n">pnl</span><span class="o">=-</span><span class="mi">20000</span><span class="p">,</span>
+            <span class="n">entry_price</span><span class="o">=</span><span class="mi">122</span><span class="p">,</span>
+            <span class="n">cover_price</span><span class="o">=</span><span class="mi">132</span><span class="p">,</span>
+            <span class="n">pnl</span><span class="o">=</span><span class="mi">9504</span><span class="p">,</span>
             <span class="n">currency</span><span class="o">=</span><span class="s1">&#39;NTD&#39;</span><span class="p">,</span>
-            <span class="n">entry_cost</span><span class="o">=</span><span class="mi">2000000</span><span class="p">,</span>
-            <span class="n">cover_cost</span><span class="o">=</span><span class="mi">1980000</span><span class="p">,</span>
-            <span class="n">buy_cost</span><span class="o">=</span><span class="mi">2000119</span><span class="p">,</span>
-            <span class="n">sell_cost</span><span class="o">=</span><span class="mi">1979881</span><span class="p">,</span>
-            <span class="n">pr_ratio</span><span class="o">=-</span><span class="mf">1.00</span><span class="p">,</span>
-            <span class="n">cond</span><span class="o">=&lt;</span><span class="n">StockOrderCond</span><span class="o">.</span><span class="n">Cash</span><span class="p">:</span> <span class="s1">&#39;Cash&#39;</span><span class="o">&gt;</span><span class="p">,</span>
+            <span class="n">entry_cost</span><span class="o">=</span><span class="mi">122000</span><span class="p">,</span>
+            <span class="n">cover_cost</span><span class="o">=</span><span class="mi">132000</span><span class="p">,</span>
+            <span class="n">buy_cost</span><span class="o">=</span><span class="mi">122048</span><span class="p">,</span>
+            <span class="n">sell_cost</span><span class="o">=</span><span class="mi">131552</span><span class="p">,</span>
+            <span class="n">pr_ratio</span><span class="o">=</span><span class="mf">7.79</span><span class="p">,</span>
+            <span class="n">cond</span><span class="o">=&lt;</span><span class="n">StockOrderCond</span><span class="o">.</span><span class="n">Cash</span><span class="p">:</span> <span class="s1">&#39;Cash&#39;</span><span class="o">&gt;</span>
         <span class="p">),</span>
+        <span class="o">...</span>
     <span class="p">],</span>
-    <span class="n">total</span><span class="o">=</span><span class="n">ProfitLossTotal</span><span class="p">(</span>
+    <span class="s1">&#39;total&#39;</span><span class="p">:</span> <span class="n">ProfitLossTotal</span><span class="p">(</span>
         <span class="n">entry_amount</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span>
         <span class="n">cover_amount</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span>
-        <span class="n">quantity</span><span class="o">=</span><span class="mi">2000</span><span class="p">,</span>
-        <span class="n">buy_cost</span><span class="o">=</span><span class="mi">2030238</span><span class="p">,</span>
-        <span class="n">sell_cost</span><span class="o">=</span><span class="mi">2010762</span><span class="p">,</span>
-        <span class="n">pnl</span><span class="o">=-</span><span class="mi">19000</span><span class="p">,</span>
-        <span class="n">pr_ratio</span><span class="o">=-</span><span class="mf">0.94</span><span class="p">,</span>
+        <span class="n">quantity</span><span class="o">=</span><span class="mi">5000</span><span class="p">,</span>
+        <span class="n">buy_cost</span><span class="o">=</span><span class="mi">975387</span><span class="p">,</span>
+        <span class="n">sell_cost</span><span class="o">=</span><span class="mi">978168</span><span class="p">,</span>
+        <span class="n">pnl</span><span class="o">=</span><span class="mi">2781</span><span class="p">,</span>
+        <span class="n">pr_ratio</span><span class="o">=</span><span class="mf">0.29</span>
     <span class="p">),</span>
-<span class="p">)</span>
+    <span class="s1">&#39;status&#39;</span><span class="p">:</span> <span class="o">&lt;</span><span class="n">FetchStatus</span><span class="o">.</span><span class="n">Fetched</span><span class="p">:</span> <span class="s1">&#39;Fetched&#39;</span><span class="o">&gt;</span>
+<span class="p">}</span>
 </code></pre></div>
 </div>
 </div>
@@ -2861,30 +2875,7 @@ person_id:    身分證字號
 </div>
 <div class="admonition done">
 <p class="admonition-title">Out</p>
-<div class="highlight"><pre><span></span><code><span class="n">ProfitLossSummaryTotal</span><span class="p">(</span>
-    <span class="n">profitloss_summary</span><span class="o">=</span><span class="p">[</span>
-        <span class="n">FutureProfitLossSummary</span><span class="p">(</span>
-            <span class="n">code</span><span class="o">=</span><span class="s1">&#39;TXO20260620200C&#39;</span><span class="p">,</span>
-            <span class="n">quantity</span><span class="o">=</span><span class="mi">3</span><span class="p">,</span>
-            <span class="n">entry_price</span><span class="o">=</span><span class="mf">131.0</span><span class="p">,</span>
-            <span class="n">cover_price</span><span class="o">=</span><span class="mf">126.0</span><span class="p">,</span>
-            <span class="n">pnl</span><span class="o">=-</span><span class="mf">750.0</span><span class="p">,</span>
-            <span class="n">currency</span><span class="o">=</span><span class="s1">&#39;NTD&#39;</span><span class="p">,</span>
-            <span class="n">direction</span><span class="o">=&lt;</span><span class="n">Action</span><span class="o">.</span><span class="n">Buy</span><span class="p">:</span> <span class="s1">&#39;Buy&#39;</span><span class="o">&gt;</span><span class="p">,</span>
-            <span class="n">tax</span><span class="o">=</span><span class="mi">5</span><span class="p">,</span>
-            <span class="n">fee</span><span class="o">=</span><span class="mi">120</span><span class="p">,</span>
-        <span class="p">),</span>
-    <span class="p">],</span>
-    <span class="n">total</span><span class="o">=</span><span class="n">ProfitLossTotal</span><span class="p">(</span>
-        <span class="n">entry_amount</span><span class="o">=</span><span class="mi">19650</span><span class="p">,</span>
-        <span class="n">cover_amount</span><span class="o">=</span><span class="mi">18900</span><span class="p">,</span>
-        <span class="n">quantity</span><span class="o">=</span><span class="mi">3</span><span class="p">,</span>
-        <span class="n">buy_cost</span><span class="o">=</span><span class="mi">19775</span><span class="p">,</span>
-        <span class="n">sell_cost</span><span class="o">=</span><span class="mi">18775</span><span class="p">,</span>
-        <span class="n">pnl</span><span class="o">=-</span><span class="mi">750</span><span class="p">,</span>
-        <span class="n">pr_ratio</span><span class="o">=-</span><span class="mf">3.79</span><span class="p">,</span>
-    <span class="p">),</span>
-<span class="p">)</span>
+<div class="highlight"><pre><span></span><code><span class="n">ProfitLossSummaryTotal</span><span class="p">(</span><span class="n">total</span><span class="o">=</span><span class="n">ProfitLossTotal</span><span class="p">(</span><span class="n">pnl</span><span class="o">=-</span><span class="mi">750</span><span class="p">,</span> <span class="n">pr_ratio</span><span class="o">=-</span><span class="mf">3.79</span><span class="p">))</span>
 </code></pre></div>
 </div>
 </div>

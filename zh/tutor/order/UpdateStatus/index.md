@@ -15,7 +15,7 @@ Signature:
         *,
         trade: Optional[sj.Trade] = None,
         timeout: Optional[int] = 30000,
-        cb: Optional[Callable[[], None]] = None,
+        cb: Optional[Callable[[List[sj.Trade]], None]] = None,
     ) -> None
 
 ```
@@ -26,7 +26,7 @@ Parameters
 account: 證券或期貨帳號；省略則更新名下所有帳號
 trade:   指定要更新的 Trade 物件（關鍵字參數）
 timeout: 逾時毫秒
-cb:      選填，callback 函式
+cb:      選填，callback 函式；timeout=0 時會收到更新後的 Trade 清單
 
 ```
 

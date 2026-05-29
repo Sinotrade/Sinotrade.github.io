@@ -310,17 +310,34 @@ target_code (str): 對應實際商品代碼，僅連續月（如 TXFR1/R2）才�
 
 **查詢所有商品檔**
 
-In
+`api.Contracts` 會載入所有商品檔，並依商品類型分組。可用 `list(...)` 逐層列舉分類與商品。
+
+列舉商品檔
 
 ```
-api.Contracts
+list(api.Contracts)
+# [('Indexs', (OTC, TAIFEX, TSE)), ('Stocks', (OES, OTC, TSE)), ...]
+
+list(api.Contracts.Futures)
+# [BRF(...), BTF(...), ...]
+
+list(api.Contracts.Futures.TXF)
+# [Future(code='TXFF6', ...), Future(code='TXFG6', ...), ...]
 
 ```
 
-Out
+查找選擇權
 
 ```
-Contracts(Indexs=(OTC, TAIFEX, TSE), Stocks=(OES, OTC, TSE), Futures=(BRF, BTF, CAF, CBF, CCF, CDF, CEF, CFF, CGF, CHF, CJF, CKF, CLF, CMF, CNF, CQF, CRF, CSF, CUF, CWF, CXF, CYF, CZF, DAF, DBF, DCF, DE1, DEF, DFF, DGF, DHF, DIF, DJF, DKF, DLF, DNF, DOF, DPF, DQF, DSF, DVF, DWF, DXF, DYF, DZF, E4F, ECF, ECI, ECL, EEF, EGF, EHF, EKF, EMF, EOF, EPF, ESF, ESI, ESL, EXF, EYF, EZF, F1F, FBF, FCF, FEF, FFF, FGF, FKF, FNF, FQF, FRF, FSF, FTF, FVF, FWF, FXF, FYF, FZF, G2F, GAF, GCF, GDF, GHF, GIF, GJF, GKF, GLF, GMF, GNF, GOF, GRF, GTF, GUF, GVF, GWF, GXF, GYF, GZF, HA1, HAF, HBF, HCF, HH1, HHF, HIF, HL1, HLF, HOF, HQF, HSF, IAF, IHF, IIF, IJF, IMF, IOF, IPF, IQF, IR1, IRF, ITF, IX1, IXF, IYF, IZF, JBF, JFF, JMF, JNF, JPF, JSF, JW1, JWF, JXF, JZF, KAF, KBF, KCF, KDF, KEF, KFF, KGF, KIF, KKF, KLF, KOF, KPF, KSF, KUF, KWF, LBF, LCF, LEF, LIF, LMF, LOF, LQF, LRF, LTF, LUF, LVF, LWF, LXF, LYF, M1F, MBF, MJF, MKF, MQF, MVF, MX4, MXF, MYF, NAF, NBF, NCF, NDF, NEF, NGF, NIF, NJF, NKF, NKI, NKL, NLF, NMF, NOF, NQF, NSF, NUF, NVF, NWF, NYF, OAF, OBF, ODF, OEF, OHF, OJF, OKF, OLF, OMF, OOF, OPF, OQF, ORF, OSF, OTF, OUF, OVF, OWF, OXF, OYF, OZF, PAF, PBF, PCF, PDF, PEF, PFF, PGF, PHF, PIF, PJF, PKF, PL1, PLF, PMF, PNF, PPF, PQF, PRF, PSF, PTF, PUF, PVF, PWF, PXF, PYF, PZF, QAF, QBF, QCF, QDF, QEF, QFF, QGF, QHF, QIF, QJF, QKF, QLF, QMF, QNF, QOF, QPF, QQF, QRF, QSF, QTF, QUF, QV1, QVF, QWF, QXF, QYF, QZF, RAF, RBF, RCF, RDF, REF, RFF, RGF, RHF, RIF, RJF, RKF, RLF, RNF, ROF, RPF, RRF, RSF, RTF, RUF, RVF, RWF, RXF, RYF, RZF, SAF, SBF, SCF, SDF, SEF, SFF, SGF, SHF, SIF, SJF, SKF, SLF, SMF, SNF, SOF, SPF, SQF, SRF, SSF, SUF, SVF, SWF, SXF, SYF, SZF, TGF, TJF, TMF, TWN, TXF, UAF, UBF, UCF, UDF, UEF, UFF, UGF, UHF, UIF, UJF, UKF, ULF, UMF, UNF, UOF, UPF, UQF, URF, USF, UTF, UUF, UVF, UWF, UXF, UYF, UZF, VAF, VBF, VCF, VDF, VEF, VFF, VGF, VHF, VIF, VJF, VKF, XAF, XBF, XEF, XIF, XJF, YMF, YMI, YML, ZEF, ZFF), Options=(CAO, CBO, CCO, CDA, CDO, CEO, CFO, CGO, CHO, CKO, CMO, CNO, CSO, CZO, DFO, DGO, DHO, DJO, DKO, DQO, DSO, DVO, DXO, GIO, GXO, HCO, HSO, IJO, IRO, NYO, OAO, OBO, OJO, OKO, OOO, OZO, TEO, TFO, TGO, TX4, TXO, TXX, TXY), status=<FetchStatus.Fetched: 'Fetched'>)
+txo_options = list(api.Contracts.Options.TXO)
+txo_calls = [
+    contract
+    for contract in txo_options
+    if contract.delivery_month == "202606"
+    and contract.strike_price == 44000
+    and contract.option_right == sj.OptionRight.Call
+]
+# [Option(code='TXO44000F6', symbol='TXO20260644000C', ...)]
 
 ```
 
@@ -2609,7 +2626,7 @@ StockProfitDetail
 ```
 date (str):                  交易日期
 code (str):                  商品代碼
-quantity (float):            數量
+quantity (int):              數量
 dseq (str):                  委託書號
 fee (int):                   交易手續費
 tax (int):                   交易稅
@@ -2879,54 +2896,73 @@ pr_ratio (float):     總損益比
 In
 
 ```
-api.list_profit_loss_summary(api.stock_account, '2026-05-01', '2026-05-21')
+resp = api.list_profit_loss_summary(api.stock_account, '2026-05-01', '2026-05-21')
+resp
 
 ```
 
 Out
 
 ```
-ProfitLossSummaryTotal(
-    profitloss_summary=[
+ProfitLossSummaryTotal(total=ProfitLossTotal(pnl=2781, pr_ratio=0.29))
+
+```
+
+**查看各商品損益明細**
+
+In
+
+```
+dict(resp)
+
+```
+
+Out
+
+```
+{
+    'profitloss_summary': [
         StockProfitLossSummary(
-            code='2890',
+            code='3265',
             quantity=1000,
-            entry_price=30,
-            cover_price=31,
-            pnl=1000,
+            entry_price=181.5,
+            cover_price=172.5,
+            pnl=-9657,
             currency='NTD',
-            entry_cost=30000,
-            cover_cost=31000,
-            buy_cost=30119,
-            sell_cost=30881,
-            pr_ratio=3.33,
-            cond=<StockOrderCond.Cash: 'Cash'>,
+            entry_cost=181500,
+            cover_cost=172500,
+            buy_cost=181572,
+            sell_cost=171915,
+            pr_ratio=-5.32,
+            cond=<StockOrderCond.Cash: 'Cash'>
         ),
         StockProfitLossSummary(
-            code='2330',
+            code='8261',
             quantity=1000,
-            entry_price=2000,
-            cover_price=1980,
-            pnl=-20000,
+            entry_price=122,
+            cover_price=132,
+            pnl=9504,
             currency='NTD',
-            entry_cost=2000000,
-            cover_cost=1980000,
-            buy_cost=2000119,
-            sell_cost=1979881,
-            pr_ratio=-1.00,
-            cond=<StockOrderCond.Cash: 'Cash'>,
+            entry_cost=122000,
+            cover_cost=132000,
+            buy_cost=122048,
+            sell_cost=131552,
+            pr_ratio=7.79,
+            cond=<StockOrderCond.Cash: 'Cash'>
         ),
+        ...
     ],
-    total=ProfitLossTotal(
+    'total': ProfitLossTotal(
         entry_amount=0,
         cover_amount=0,
-        quantity=2000,
-        buy_cost=2030238,
-        sell_cost=2010762,
-        pnl=-19000,
-        pr_ratio=-0.94,
+        quantity=5000,
+        buy_cost=975387,
+        sell_cost=978168,
+        pnl=2781,
+        pr_ratio=0.29
     ),
-)
+    'status': <FetchStatus.Fetched: 'Fetched'>
+}
 
 ```
 
@@ -3026,30 +3062,7 @@ api.list_profit_loss_summary(api.futopt_account, '2026-05-01', '2026-05-21')
 Out
 
 ```
-ProfitLossSummaryTotal(
-    profitloss_summary=[
-        FutureProfitLossSummary(
-            code='TXO20260620200C',
-            quantity=3,
-            entry_price=131.0,
-            cover_price=126.0,
-            pnl=-750.0,
-            currency='NTD',
-            direction=<Action.Buy: 'Buy'>,
-            tax=5,
-            fee=120,
-        ),
-    ],
-    total=ProfitLossTotal(
-        entry_amount=19650,
-        cover_amount=18900,
-        quantity=3,
-        buy_cost=19775,
-        sell_cost=18775,
-        pnl=-750,
-        pr_ratio=-3.79,
-    ),
-)
+ProfitLossSummaryTotal(total=ProfitLossTotal(pnl=-750, pr_ratio=-3.79))
 
 ```
 
@@ -6333,21 +6346,21 @@ Subscribed to TXFR1 tick (Ctrl+C to stop)
   "date": "2026-05-20",
   "time": "18:50:02.981000",
   "open": "40270",
-  "target_kind_price": "40020.82",
-  "trade_bid_vol_sum": 7498,
-  "trade_ask_vol_sum": 5817,
+  "underlying_price": "40020.82",
+  "bid_side_total_vol": 7498,
+  "ask_side_total_vol": 5817,
   "avg_price": "40460.163149",
   "close": "40619",
   "high": "40650",
   "low": "40221",
   "amount": "81238",
-  "amount_sum": "552038466",
+  "total_amount": "552038466",
   "volume": 2,
-  "vol_sum": 13644,
+  "total_volume": 13644,
   "tick_type": 1,
-  "diff_type": 2,
-  "diff_price": "495",
-  "diff_rate": "1.233676",
+  "chg_type": 2,
+  "price_chg": "495",
+  "pct_chg": "1.233676",
   "simtrade": false
 }
 
@@ -6402,21 +6415,21 @@ data:{
   "date": "2026-05-20",
   "time": "18:54:43.871000",
   "open": "40270",
-  "target_kind_price": "40020.82",
-  "trade_bid_vol_sum": 7540,
-  "trade_ask_vol_sum": 5908,
+  "underlying_price": "40020.82",
+  "bid_side_total_vol": 7540,
+  "ask_side_total_vol": 5908,
   "avg_price": "40461.608055",
   "close": "40608",
   "high": "40650",
   "low": "40221",
   "amount": "40608",
-  "amount_sum": "557560959",
+  "total_amount": "557560959",
   "volume": 1,
-  "vol_sum": 13780,
+  "total_volume": 13780,
   "tick_type": 1,
-  "diff_type": 2,
-  "diff_price": "484",
-  "diff_rate": "1.206261",
+  "chg_type": 2,
+  "price_chg": "484",
+  "pct_chg": "1.206261",
   "simtrade": false
 }
 
@@ -6433,21 +6446,21 @@ date (tuple)                             日期
 time (tuple)                             成交時間
 datetime (tuple)                         日期與時間
 open (Decimal)                           開盤價
-target_kind_price (Decimal)              標的指數現價
+underlying_price (Decimal)               標的指數現價
 avg_price (Decimal)                      均價
 close (Decimal)                          成交價
 high (Decimal)                           最高價（自開盤）
 low (Decimal)                            最低價（自開盤）
 amount (Decimal)                         單筆成交額 (NTD)
-amount_sum (Decimal)                     總成交額 (NTD)
+total_amount (Decimal)                   總成交額 (NTD)
 volume (int)                             單筆成交量 (lot)
-vol_sum (int)                            總成交量 (lot)
+total_volume (int)                       總成交量 (lot)
 tick_type (int)                          內外盤別{1: 外盤, 2: 內盤, 0: 無法判定}
-diff_type (int)                          漲跌註記{1: 漲停, 2: 漲, 3: 平盤, 4: 跌, 5: 跌停}
-diff_price (Decimal)                     漲跌
-diff_rate (Decimal)                      漲跌幅 (%)
-trade_bid_vol_sum (int)                  買盤成交總量 (lot)
-trade_ask_vol_sum (int)                  賣盤成交總量 (lot)
+chg_type (int)                           漲跌註記{1: 漲停, 2: 漲, 3: 平盤, 4: 跌, 5: 跌停}
+price_chg (Decimal)                      漲跌
+pct_chg (Decimal)                        漲跌幅 (%)
+bid_side_total_vol (int)                 買盤成交總量 (lot)
+ask_side_total_vol (int)                 賣盤成交總量 (lot)
 simtrade (bool)                          試撮
 
 ```
@@ -6507,8 +6520,8 @@ Subscribed to TXFR1 bid_ask (Ctrl+C to stop)
   "code": "TXFF6",
   "date": "2026-05-20",
   "time": "19:24:03.012000",
-  "bid_vol_sum": 8,
-  "ask_vol_sum": 19,
+  "bid_total_vol": 8,
+  "ask_total_vol": 19,
   "bid_price": ["40615", "40613", "40612", "40611", "40610"],
   "bid_volume": [1, 2, 1, 2, 2],
   "diff_bid_vol": [0, 0, 0, 0, 1],
@@ -6517,9 +6530,9 @@ Subscribed to TXFR1 bid_ask (Ctrl+C to stop)
   "diff_ask_vol": [0, -1, -1, 0, 0],
   "first_derived_bid_price": "0",
   "first_derived_ask_price": "40622",
-  "first_derived_bid_volume": 0,
-  "first_derived_ask_volume": 1,
-  "target_kind_price": "40020.82",
+  "first_derived_bid_vol": 0,
+  "first_derived_ask_vol": 1,
+  "underlying_price": "40020.82",
   "simtrade": false
 }
 
@@ -6573,8 +6586,8 @@ data:{
   "code": "TXFF6",
   "date": "2026-05-20",
   "time": "19:24:38.512000",
-  "bid_vol_sum": 19,
-  "ask_vol_sum": 20,
+  "bid_total_vol": 19,
+  "ask_total_vol": 20,
   "bid_price": ["40613", "40612", "40611", "40610", "40609"],
   "bid_volume": [1, 3, 5, 3, 7],
   "diff_bid_vol": [-1, 0, 0, 0, 2],
@@ -6583,9 +6596,9 @@ data:{
   "diff_ask_vol": [0, 0, 0, 0, 0],
   "first_derived_bid_price": "0",
   "first_derived_ask_price": "40622",
-  "first_derived_bid_volume": 0,
-  "first_derived_ask_volume": 1,
-  "target_kind_price": "40020.82",
+  "first_derived_bid_vol": 0,
+  "first_derived_ask_vol": 1,
+  "underlying_price": "40020.82",
   "simtrade": false
 }
 
@@ -6601,8 +6614,8 @@ exchange (Exchange)                      交易所
 date (tuple)                             日期
 time (tuple)                             時間
 datetime (tuple)                         日期與時間
-bid_vol_sum (int)                        委買量總計 (lot)
-ask_vol_sum (int)                        委賣量總計 (lot)
+bid_total_vol (int)                      委買量總計 (lot)
+ask_total_vol (int)                      委賣量總計 (lot)
 bid_price (list[Decimal])                五檔委買價
 bid_volume (list[int])                   五檔委買量 (lot)
 diff_bid_vol (list[int])                 五檔委買價增減量 (lot)
@@ -6611,9 +6624,9 @@ ask_volume (list[int])                   五檔委賣量 (lot)
 diff_ask_vol (list[int])                 五檔委賣價增減量 (lot)
 first_derived_bid_price (Decimal)        衍生一檔委買價
 first_derived_ask_price (Decimal)        衍生一檔委賣價
-first_derived_bid_volume (int)           衍生一檔委買量 (lot)
-first_derived_ask_volume (int)           衍生一檔委賣量 (lot)
-target_kind_price (Decimal)              標的指數現價
+first_derived_bid_vol (int)              衍生一檔委買量 (lot)
+first_derived_ask_vol (int)              衍生一檔委賣量 (lot)
+underlying_price (Decimal)               標的指數現價
 simtrade (bool)                          試撮
 
 ```
@@ -6671,24 +6684,24 @@ Subscribed to TXFR1 quote (Ctrl+C to stop)
   "code": "TXFF6",
   "date": "2026-05-20",
   "time": "19:29:39.887000",
-  "target_kind_price": "40020.82",
+  "underlying_price": "40020.82",
   "open": "40270",
   "avg_price": "40466.730155",
   "close": "40616",
   "high": "40650",
   "low": "40221",
   "amount": "40616",
-  "amount_sum": "578107707",
+  "total_amount": "578107707",
   "volume": 0,
-  "vol_sum": 14286,
+  "total_volume": 14286,
   "tick_type": 1,
-  "diff_type": 2,
-  "diff_price": "492",
-  "diff_rate": "1.226199",
-  "trade_bid_vol_sum": 7773,
-  "trade_ask_vol_sum": 6172,
-  "trade_bid_cnt": 9924,
-  "trade_ask_cnt": 10442,
+  "chg_type": 2,
+  "price_chg": "492",
+  "pct_chg": "1.226199",
+  "bid_side_total_vol": 7773,
+  "ask_side_total_vol": 6172,
+  "bid_side_total_cnt": 9924,
+  "ask_side_total_cnt": 10442,
   "bid_price": ["40613", "40612", "40611", "40610", "40609"],
   "bid_volume": [2, 4, 6, 2, 4],
   "diff_bid_vol": [0, 0, 0, 0, 0],
@@ -6697,8 +6710,8 @@ Subscribed to TXFR1 quote (Ctrl+C to stop)
   "diff_ask_vol": [0, 0, 0, 0, 0],
   "first_derived_bid_price": "0",
   "first_derived_ask_price": "0",
-  "first_derived_bid_volume": 0,
-  "first_derived_ask_volume": 0,
+  "first_derived_bid_vol": 0,
+  "first_derived_ask_vol": 0,
   "simtrade": false
 }
 
@@ -6752,24 +6765,24 @@ data:{
   "code": "TXFF6",
   "date": "2026-05-20",
   "time": "19:30:16.137000",
-  "target_kind_price": "40020.82",
+  "underlying_price": "40020.82",
   "open": "40270",
   "avg_price": "40467.061396",
   "close": "40624",
   "high": "40650",
   "low": "40221",
   "amount": "40624",
-  "amount_sum": "579366918",
+  "total_amount": "579366918",
   "volume": 0,
-  "vol_sum": 14317,
+  "total_volume": 14317,
   "tick_type": 1,
-  "diff_type": 2,
-  "diff_price": "500",
-  "diff_rate": "1.246137",
-  "trade_bid_vol_sum": 7804,
-  "trade_ask_vol_sum": 6172,
-  "trade_bid_cnt": 9947,
-  "trade_ask_cnt": 10468,
+  "chg_type": 2,
+  "price_chg": "500",
+  "pct_chg": "1.246137",
+  "bid_side_total_vol": 7804,
+  "ask_side_total_vol": 6172,
+  "bid_side_total_cnt": 9947,
+  "ask_side_total_cnt": 10468,
   "bid_price": ["40620", "40618", "40617", "40616", "40615"],
   "bid_volume": [1, 7, 3, 7, 8],
   "diff_bid_vol": [0, 0, 0, 0, 2],
@@ -6778,8 +6791,8 @@ data:{
   "diff_ask_vol": [1, 0, 0, 0, 0],
   "first_derived_bid_price": "0",
   "first_derived_ask_price": "0",
-  "first_derived_bid_volume": 0,
-  "first_derived_ask_volume": 0,
+  "first_derived_bid_vol": 0,
+  "first_derived_ask_vol": 0,
   "simtrade": false
 }
 
@@ -6795,24 +6808,24 @@ exchange (Exchange)                      交易所
 date (tuple)                             日期
 time (tuple)                             成交時間
 datetime (tuple)                         日期與時間
-target_kind_price (Decimal)              標的指數現價
+underlying_price (Decimal)               標的指數現價
 open (Decimal)                           開盤價
 avg_price (Decimal)                      均價
 close (Decimal)                          成交價
 high (Decimal)                           最高價（自開盤）
 low (Decimal)                            最低價（自開盤）
 amount (Decimal)                         單筆成交額 (NTD)
-amount_sum (Decimal)                     總成交額 (NTD)
+total_amount (Decimal)                   總成交額 (NTD)
 volume (int)                             單筆成交量 (lot)
-vol_sum (int)                            總成交量 (lot)
+total_volume (int)                       總成交量 (lot)
 tick_type (int)                          內外盤別{1: 外盤, 2: 內盤, 0: 無法判定}
-diff_type (int)                          漲跌註記{1: 漲停, 2: 漲, 3: 平盤, 4: 跌, 5: 跌停}
-diff_price (Decimal)                     漲跌
-diff_rate (Decimal)                      漲跌幅 (%)
-trade_bid_vol_sum (int)                  買盤成交總量 (lot)
-trade_ask_vol_sum (int)                  賣盤成交總量 (lot)
-trade_bid_cnt (int)                      買盤成交筆數
-trade_ask_cnt (int)                      賣盤成交筆數
+chg_type (int)                           漲跌註記{1: 漲停, 2: 漲, 3: 平盤, 4: 跌, 5: 跌停}
+price_chg (Decimal)                      漲跌
+pct_chg (Decimal)                        漲跌幅 (%)
+bid_side_total_vol (int)                 買盤成交總量 (lot)
+ask_side_total_vol (int)                 賣盤成交總量 (lot)
+bid_side_total_cnt (int)                 買盤成交筆數
+ask_side_total_cnt (int)                 賣盤成交筆數
 bid_price (list[Decimal])                五檔委買價
 bid_volume (list[int])                   五檔委買量 (lot)
 diff_bid_vol (list[int])                 五檔委買價增減量 (lot)
@@ -6821,8 +6834,8 @@ ask_volume (list[int])                   五檔委賣量 (lot)
 diff_ask_vol (list[int])                 五檔委賣價增減量 (lot)
 first_derived_bid_price (Decimal)        衍生一檔委買價
 first_derived_ask_price (Decimal)        衍生一檔委賣價
-first_derived_bid_volume (int)           衍生一檔委買量 (lot)
-first_derived_ask_volume (int)           衍生一檔委賣量 (lot)
+first_derived_bid_vol (int)              衍生一檔委買量 (lot)
+first_derived_ask_vol (int)              衍生一檔委賣量 (lot)
 simtrade (bool)                          試撮
 
 ```
@@ -6846,21 +6859,21 @@ def quote_callback(exchange: Exchange, tick: TickFOPv1):
     print(f"time={tick.time}")
     print(f"datetime={tick.datetime}")
     print(f"open={tick.open}")
-    print(f"target_kind_price={tick.target_kind_price}")
-    print(f"trade_bid_vol_sum={tick.trade_bid_vol_sum}")
-    print(f"trade_ask_vol_sum={tick.trade_ask_vol_sum}")
+    print(f"underlying_price={tick.underlying_price}")
+    print(f"bid_side_total_vol={tick.bid_side_total_vol}")
+    print(f"ask_side_total_vol={tick.ask_side_total_vol}")
     print(f"avg_price={tick.avg_price}")
     print(f"close={tick.close}")
     print(f"high={tick.high}")
     print(f"low={tick.low}")
     print(f"amount={tick.amount}")
-    print(f"amount_sum={tick.amount_sum}")
+    print(f"total_amount={tick.total_amount}")
     print(f"volume={tick.volume}")
-    print(f"vol_sum={tick.vol_sum}")
+    print(f"total_volume={tick.total_volume}")
     print(f"tick_type={tick.tick_type}")
-    print(f"diff_type={tick.diff_type}")
-    print(f"diff_price={tick.diff_price}")
-    print(f"diff_rate={tick.diff_rate}")
+    print(f"chg_type={tick.chg_type}")
+    print(f"price_chg={tick.price_chg}")
+    print(f"pct_chg={tick.pct_chg}")
     print(f"simtrade={tick.simtrade}")
 
 api.subscribe(
@@ -6897,21 +6910,21 @@ date=(2026, 5, 20)
 time=(19, 15, 1, 284000)
 datetime=(2026, 5, 20, 19, 15, 1, 284000)
 open=40270
-target_kind_price=40020.82
-trade_bid_vol_sum=7711
-trade_ask_vol_sum=6109
+underlying_price=40020.82
+bid_side_total_vol=7711
+ask_side_total_vol=6109
 avg_price=40465.465254
 close=40598
 high=40650
 low=40221
 amount=40598
-amount_sum=572990988
+total_amount=572990988
 volume=1
-vol_sum=14160
+total_volume=14160
 tick_type=2
-diff_type=2
-diff_price=474
-diff_rate=1.181338
+chg_type=2
+price_chg=474
+pct_chg=1.181338
 simtrade=False
 
 ```
@@ -6930,8 +6943,8 @@ def quote_callback(exchange: Exchange, bidask: BidAskFOPv1):
     print(f"date={bidask.date}")
     print(f"time={bidask.time}")
     print(f"datetime={bidask.datetime}")
-    print(f"bid_vol_sum={bidask.bid_vol_sum}")
-    print(f"ask_vol_sum={bidask.ask_vol_sum}")
+    print(f"bid_total_vol={bidask.bid_total_vol}")
+    print(f"ask_total_vol={bidask.ask_total_vol}")
     print(f"bid_price={bidask.bid_price}")
     print(f"bid_volume={bidask.bid_volume}")
     print(f"diff_bid_vol={bidask.diff_bid_vol}")
@@ -6940,9 +6953,9 @@ def quote_callback(exchange: Exchange, bidask: BidAskFOPv1):
     print(f"diff_ask_vol={bidask.diff_ask_vol}")
     print(f"first_derived_bid_price={bidask.first_derived_bid_price}")
     print(f"first_derived_ask_price={bidask.first_derived_ask_price}")
-    print(f"first_derived_bid_volume={bidask.first_derived_bid_volume}")
-    print(f"first_derived_ask_volume={bidask.first_derived_ask_volume}")
-    print(f"target_kind_price={bidask.target_kind_price}")
+    print(f"first_derived_bid_vol={bidask.first_derived_bid_vol}")
+    print(f"first_derived_ask_vol={bidask.first_derived_ask_vol}")
+    print(f"underlying_price={bidask.underlying_price}")
     print(f"simtrade={bidask.simtrade}")
 
 api.subscribe(
@@ -6978,8 +6991,8 @@ code=TXFF6
 date=(2026, 5, 20)
 time=(19, 25, 54, 637000)
 datetime=(2026, 5, 20, 19, 25, 54, 637000)
-bid_vol_sum=21
-ask_vol_sum=21
+bid_total_vol=21
+ask_total_vol=21
 bid_price=[Decimal('40613'), Decimal('40612'), Decimal('40611'), Decimal('40610'), Decimal('40609')]
 bid_volume=[1, 2, 6, 4, 8]
 diff_bid_vol=[-1, 1, 0, 0, 0]
@@ -6988,9 +7001,9 @@ ask_volume=[4, 7, 5, 3, 2]
 diff_ask_vol=[-1, 0, 0, 0, 0]
 first_derived_bid_price=0
 first_derived_ask_price=0
-first_derived_bid_volume=0
-first_derived_ask_volume=0
-target_kind_price=40020.82
+first_derived_bid_vol=0
+first_derived_ask_vol=0
+underlying_price=40020.82
 simtrade=False
 
 ```
@@ -7009,24 +7022,24 @@ def quote_callback(exchange: Exchange, quote: QuoteFOPv1):
     print(f"date={quote.date}")
     print(f"time={quote.time}")
     print(f"datetime={quote.datetime}")
-    print(f"target_kind_price={quote.target_kind_price}")
+    print(f"underlying_price={quote.underlying_price}")
     print(f"open={quote.open}")
     print(f"avg_price={quote.avg_price}")
     print(f"close={quote.close}")
     print(f"high={quote.high}")
     print(f"low={quote.low}")
     print(f"amount={quote.amount}")
-    print(f"amount_sum={quote.amount_sum}")
+    print(f"total_amount={quote.total_amount}")
     print(f"volume={quote.volume}")
-    print(f"vol_sum={quote.vol_sum}")
+    print(f"total_volume={quote.total_volume}")
     print(f"tick_type={quote.tick_type}")
-    print(f"diff_type={quote.diff_type}")
-    print(f"diff_price={quote.diff_price}")
-    print(f"diff_rate={quote.diff_rate}")
-    print(f"trade_bid_vol_sum={quote.trade_bid_vol_sum}")
-    print(f"trade_ask_vol_sum={quote.trade_ask_vol_sum}")
-    print(f"trade_bid_cnt={quote.trade_bid_cnt}")
-    print(f"trade_ask_cnt={quote.trade_ask_cnt}")
+    print(f"chg_type={quote.chg_type}")
+    print(f"price_chg={quote.price_chg}")
+    print(f"pct_chg={quote.pct_chg}")
+    print(f"bid_side_total_vol={quote.bid_side_total_vol}")
+    print(f"ask_side_total_vol={quote.ask_side_total_vol}")
+    print(f"bid_side_total_cnt={quote.bid_side_total_cnt}")
+    print(f"ask_side_total_cnt={quote.ask_side_total_cnt}")
     print(f"bid_price={quote.bid_price}")
     print(f"bid_volume={quote.bid_volume}")
     print(f"diff_bid_vol={quote.diff_bid_vol}")
@@ -7035,8 +7048,8 @@ def quote_callback(exchange: Exchange, quote: QuoteFOPv1):
     print(f"diff_ask_vol={quote.diff_ask_vol}")
     print(f"first_derived_bid_price={quote.first_derived_bid_price}")
     print(f"first_derived_ask_price={quote.first_derived_ask_price}")
-    print(f"first_derived_bid_volume={quote.first_derived_bid_volume}")
-    print(f"first_derived_ask_volume={quote.first_derived_ask_volume}")
+    print(f"first_derived_bid_vol={quote.first_derived_bid_vol}")
+    print(f"first_derived_ask_vol={quote.first_derived_ask_vol}")
     print(f"simtrade={quote.simtrade}")
 
 api.subscribe(
@@ -7072,24 +7085,24 @@ code=TXFF6
 date=(2026, 5, 20)
 time=(19, 31, 3, 387000)
 datetime=(2026, 5, 20, 19, 31, 3, 387000)
-target_kind_price=40020.82
+underlying_price=40020.82
 open=40270
 avg_price=40467.404028
 close=40629
 high=40650
 low=40221
 amount=121887
-amount_sum=580626313
+total_amount=580626313
 volume=0
-vol_sum=14348
+total_volume=14348
 tick_type=1
-diff_type=2
-diff_price=505
-diff_rate=1.258598
-trade_bid_vol_sum=7825
-trade_ask_vol_sum=6182
-trade_bid_cnt=9966
-trade_ask_cnt=10498
+chg_type=2
+price_chg=505
+pct_chg=1.258598
+bid_side_total_vol=7825
+ask_side_total_vol=6182
+bid_side_total_cnt=9966
+ask_side_total_cnt=10498
 bid_price=[Decimal('40625'), Decimal('40624'), Decimal('40623'), Decimal('40622'), Decimal('40621')]
 bid_volume=[1, 3, 11, 6, 1]
 diff_bid_vol=[0, 0, 0, 0, 0]
@@ -7098,8 +7111,8 @@ ask_volume=[1, 1, 3, 4, 2]
 diff_ask_vol=[0, 0, 0, 0, 0]
 first_derived_bid_price=0
 first_derived_ask_price=0
-first_derived_bid_volume=0
-first_derived_ask_volume=0
+first_derived_bid_vol=0
+first_derived_ask_vol=0
 simtrade=False
 
 ```
@@ -7291,23 +7304,23 @@ Subscribed to 2890 tick (Ctrl+C to stop)
   "high": "30",
   "low": "29.75",
   "amount": "149250",
-  "amount_sum": "108902650",
+  "total_amount": "108902650",
   "volume": 5,
-  "vol_sum": 3646,
+  "total_volume": 3646,
   "tick_type": 1,
-  "diff_type": 2,
-  "diff_price": "0.05",
-  "diff_rate": 16,
-  "trade_bid_vol_sum": 1760,
-  "trade_ask_vol_sum": 1321,
-  "trade_bid_cnt": 127,
-  "trade_ask_cnt": 61,
+  "chg_type": 2,
+  "price_chg": "0.05",
+  "pct_chg": 16,
+  "bid_side_total_vol": 1760,
+  "ask_side_total_vol": 1321,
+  "bid_side_total_cnt": 127,
+  "ask_side_total_cnt": 61,
   "closing_oddlot_shares": 0,
   "closing_oddlot_close": null,
   "closing_oddlot_amount": "0",
   "closing_oddlot_bid_price": null,
   "closing_oddlot_ask_price": null,
-  "fixed_trade_volume": 0,
+  "fixed_trade_vol": 0,
   "fixed_trade_amount": "0",
   "suspend": false,
   "simtrade": false,
@@ -7340,23 +7353,23 @@ Subscribed to 2890 tick (Ctrl+C to stop)
   "high": "30.05",
   "low": "29.9",
   "amount": "60",
-  "amount_sum": "640887.3",
+  "total_amount": "640887.3",
   "volume": 2,
-  "vol_sum": 21390,
+  "total_volume": 21390,
   "tick_type": 1,
-  "diff_type": 2,
-  "diff_price": "0.2",
-  "diff_rate": 67,
-  "trade_bid_vol_sum": 11006,
-  "trade_ask_vol_sum": 10384,
-  "trade_bid_cnt": 36,
-  "trade_ask_cnt": 20,
+  "chg_type": 2,
+  "price_chg": "0.2",
+  "pct_chg": 67,
+  "bid_side_total_vol": 11006,
+  "ask_side_total_vol": 10384,
+  "bid_side_total_cnt": 36,
+  "ask_side_total_cnt": 20,
   "closing_oddlot_shares": 0,
   "closing_oddlot_close": null,
   "closing_oddlot_amount": null,
   "closing_oddlot_bid_price": null,
   "closing_oddlot_ask_price": null,
-  "fixed_trade_volume": 0,
+  "fixed_trade_vol": 0,
   "fixed_trade_amount": null,
   "suspend": false,
   "simtrade": false,
@@ -7409,23 +7422,23 @@ data:{
   "high": "30",
   "low": "29.75",
   "amount": "29900",
-  "amount_sum": "109559950",
+  "total_amount": "109559950",
   "volume": 1,
-  "vol_sum": 3668,
+  "total_volume": 3668,
   "tick_type": 1,
-  "diff_type": 2,
-  "diff_price": "0.1",
-  "diff_rate": 33,
-  "trade_bid_vol_sum": 1781,
-  "trade_ask_vol_sum": 1322,
-  "trade_bid_cnt": 135,
-  "trade_ask_cnt": 62,
+  "chg_type": 2,
+  "price_chg": "0.1",
+  "pct_chg": 33,
+  "bid_side_total_vol": 1781,
+  "ask_side_total_vol": 1322,
+  "bid_side_total_cnt": 135,
+  "ask_side_total_cnt": 62,
   "closing_oddlot_shares": 0,
   "closing_oddlot_close": null,
   "closing_oddlot_amount": "0",
   "closing_oddlot_bid_price": null,
   "closing_oddlot_ask_price": null,
-  "fixed_trade_volume": 0,
+  "fixed_trade_vol": 0,
   "fixed_trade_amount": "0",
   "suspend": false,
   "simtrade": false,
@@ -7480,23 +7493,23 @@ data:{
   "high": "30.05",
   "low": "29.9",
   "amount": "1497.5",
-  "amount_sum": "683645.75",
+  "total_amount": "683645.75",
   "volume": 50,
-  "vol_sum": 22816,
+  "total_volume": 22816,
   "tick_type": 2,
-  "diff_type": 2,
-  "diff_price": "0.15",
-  "diff_rate": 50,
-  "trade_bid_vol_sum": 12001,
-  "trade_ask_vol_sum": 10815,
-  "trade_bid_cnt": 38,
-  "trade_ask_cnt": 24,
+  "chg_type": 2,
+  "price_chg": "0.15",
+  "pct_chg": 50,
+  "bid_side_total_vol": 12001,
+  "ask_side_total_vol": 10815,
+  "bid_side_total_cnt": 38,
+  "ask_side_total_cnt": 24,
   "closing_oddlot_shares": 0,
   "closing_oddlot_close": null,
   "closing_oddlot_amount": null,
   "closing_oddlot_bid_price": null,
   "closing_oddlot_ask_price": null,
-  "fixed_trade_volume": 0,
+  "fixed_trade_vol": 0,
   "fixed_trade_amount": null,
   "suspend": false,
   "simtrade": false,
@@ -7521,23 +7534,23 @@ close (Decimal)                          成交價
 high (Decimal)                           最高價（自開盤）
 low (Decimal)                            最低價（自開盤）
 amount (Decimal)                         單筆成交額 (NTD)
-amount_sum (Decimal)                     總成交額 (NTD)
+total_amount (Decimal)                   總成交額 (NTD)
 volume (int)                             單筆成交量（整股：張；盤中零股：股）
-vol_sum (int)                            總成交量（整股：張；盤中零股：股）
+total_volume (int)                       總成交量（整股：張；盤中零股：股）
 tick_type (int)                          內外盤別{1: 外盤, 2: 內盤, 0: 無法判定}
-diff_type (int)                          漲跌註記{1: 漲停, 2: 漲, 3: 平盤, 4: 跌, 5: 跌停}
-diff_price (Decimal)                     漲跌
-diff_rate (int)                          漲跌幅 (%)
-trade_bid_vol_sum (int)                  買盤成交總量（整股：張；盤中零股：股）
-trade_ask_vol_sum (int)                  賣盤成交總量（整股：張；盤中零股：股）
-trade_bid_cnt (int)                      買盤成交筆數
-trade_ask_cnt (int)                      賣盤成交筆數
+chg_type (int)                           漲跌註記{1: 漲停, 2: 漲, 3: 平盤, 4: 跌, 5: 跌停}
+price_chg (Decimal)                      漲跌
+pct_chg (int)                            漲跌幅 (%)
+bid_side_total_vol (int)                 買盤成交總量（整股：張；盤中零股：股）
+ask_side_total_vol (int)                 賣盤成交總量（整股：張；盤中零股：股）
+bid_side_total_cnt (int)                 買盤成交筆數
+ask_side_total_cnt (int)                 賣盤成交筆數
 closing_oddlot_shares (int)              盤後零股成交股數（股）
 closing_oddlot_close (Decimal)           盤後零股成交價
 closing_oddlot_amount (Decimal)          盤後零股成交額
 closing_oddlot_bid_price (Decimal)       盤後零股最高買價
 closing_oddlot_ask_price (Decimal)       盤後零股最低賣價
-fixed_trade_volume (int)                 定盤成交量（整股：張；盤中零股：股）
+fixed_trade_vol (int)                    定盤成交量（整股：張；盤中零股：股）
 fixed_trade_amount (Decimal)             定盤成交額
 suspend (bool)                           暫停交易
 simtrade (bool)                          試撮
@@ -7876,23 +7889,23 @@ Subscribed to 2890 quote (Ctrl+C to stop)
   "high": "30",
   "low": "29.7",
   "amount": "178800",
-  "amount_sum": "247076900",
+  "total_amount": "247076900",
   "volume": 0,
-  "vol_sum": 8284,
+  "total_volume": 8284,
   "tick_type": 1,
-  "diff_type": 3,
-  "diff_price": "0",
-  "diff_rate": 0,
-  "trade_bid_vol_sum": 3279,
-  "trade_ask_vol_sum": 4440,
-  "trade_bid_cnt": 625,
-  "trade_ask_cnt": 279,
+  "chg_type": 3,
+  "price_chg": "0",
+  "pct_chg": 0,
+  "bid_side_total_vol": 3279,
+  "ask_side_total_vol": 4440,
+  "bid_side_total_cnt": 625,
+  "ask_side_total_cnt": 279,
   "closing_oddlot_shares": 0,
   "closing_oddlot_close": null,
   "closing_oddlot_amount": "0",
   "closing_oddlot_bid_price": null,
   "closing_oddlot_ask_price": null,
-  "fixed_trade_volume": 0,
+  "fixed_trade_vol": 0,
   "fixed_trade_amount": "0",
   "bid_price": ["29.75", "29.7", "29.65", "29.6", "29.55"],
   "bid_volume": [501, 1235, 360, 673, 218],
@@ -7951,23 +7964,23 @@ data:{
   "high": "30",
   "low": "29.7",
   "amount": "149000",
-  "amount_sum": "247941050",
+  "total_amount": "247941050",
   "volume": 5,
-  "vol_sum": 8313,
+  "total_volume": 8313,
   "tick_type": 1,
-  "diff_type": 3,
-  "diff_price": "0",
-  "diff_rate": 0,
-  "trade_bid_vol_sum": 3303,
-  "trade_ask_vol_sum": 4445,
-  "trade_bid_cnt": 635,
-  "trade_ask_cnt": 284,
+  "chg_type": 3,
+  "price_chg": "0",
+  "pct_chg": 0,
+  "bid_side_total_vol": 3303,
+  "ask_side_total_vol": 4445,
+  "bid_side_total_cnt": 635,
+  "ask_side_total_cnt": 284,
   "closing_oddlot_shares": 0,
   "closing_oddlot_close": null,
   "closing_oddlot_amount": "0",
   "closing_oddlot_bid_price": null,
   "closing_oddlot_ask_price": null,
-  "fixed_trade_volume": 0,
+  "fixed_trade_vol": 0,
   "fixed_trade_amount": "0",
   "bid_price": ["29.75", "29.7", "29.65", "29.6", "29.55"],
   "bid_volume": [522, 1236, 373, 667, 218],
@@ -7998,23 +8011,23 @@ close (Decimal)                          成交價
 high (Decimal)                           最高價（自開盤）
 low (Decimal)                            最低價（自開盤）
 amount (Decimal)                         單筆成交額 (NTD)
-amount_sum (Decimal)                     總成交額 (NTD)
+total_amount (Decimal)                   總成交額 (NTD)
 volume (int)                             單筆成交量（張）
-vol_sum (int)                            總成交量（張）
+total_volume (int)                       總成交量（張）
 tick_type (int)                          內外盤別{1: 外盤, 2: 內盤, 0: 無法判定}
-diff_type (int)                          漲跌註記{1: 漲停, 2: 漲, 3: 平盤, 4: 跌, 5: 跌停}
-diff_price (Decimal)                     漲跌
-diff_rate (int)                          漲跌幅 (%)
-trade_bid_vol_sum (int)                  買盤成交總量（張）
-trade_ask_vol_sum (int)                  賣盤成交總量（張）
-trade_bid_cnt (int)                      買盤成交筆數
-trade_ask_cnt (int)                      賣盤成交筆數
+chg_type (int)                           漲跌註記{1: 漲停, 2: 漲, 3: 平盤, 4: 跌, 5: 跌停}
+price_chg (Decimal)                      漲跌
+pct_chg (int)                            漲跌幅 (%)
+bid_side_total_vol (int)                 買盤成交總量（張）
+ask_side_total_vol (int)                 賣盤成交總量（張）
+bid_side_total_cnt (int)                 買盤成交筆數
+ask_side_total_cnt (int)                 賣盤成交筆數
 closing_oddlot_shares (int)              盤後零股成交股數（股）
 closing_oddlot_close (Decimal)           盤後零股成交價
 closing_oddlot_amount (Decimal)          盤後零股成交額
 closing_oddlot_bid_price (Decimal)       盤後零股最高買價
 closing_oddlot_ask_price (Decimal)       盤後零股最低賣價
-fixed_trade_volume (int)                 定盤成交量（張）
+fixed_trade_vol (int)                    定盤成交量（張）
 fixed_trade_amount (Decimal)             定盤成交額
 bid_price (list[Decimal])                五檔委買價
 bid_volume (list[int])                   五檔委買量（張）
@@ -8055,23 +8068,23 @@ def quote_callback(exchange: Exchange, tick: TickSTKv1):
     print(f"high={tick.high}")
     print(f"low={tick.low}")
     print(f"amount={tick.amount}")
-    print(f"amount_sum={tick.amount_sum}")
+    print(f"total_amount={tick.total_amount}")
     print(f"volume={tick.volume}")
-    print(f"vol_sum={tick.vol_sum}")
+    print(f"total_volume={tick.total_volume}")
     print(f"tick_type={tick.tick_type}")
-    print(f"diff_type={tick.diff_type}")
-    print(f"diff_price={tick.diff_price}")
-    print(f"diff_rate={tick.diff_rate}")
-    print(f"trade_bid_vol_sum={tick.trade_bid_vol_sum}")
-    print(f"trade_ask_vol_sum={tick.trade_ask_vol_sum}")
-    print(f"trade_bid_cnt={tick.trade_bid_cnt}")
-    print(f"trade_ask_cnt={tick.trade_ask_cnt}")
+    print(f"chg_type={tick.chg_type}")
+    print(f"price_chg={tick.price_chg}")
+    print(f"pct_chg={tick.pct_chg}")
+    print(f"bid_side_total_vol={tick.bid_side_total_vol}")
+    print(f"ask_side_total_vol={tick.ask_side_total_vol}")
+    print(f"bid_side_total_cnt={tick.bid_side_total_cnt}")
+    print(f"ask_side_total_cnt={tick.ask_side_total_cnt}")
     print(f"closing_oddlot_shares={tick.closing_oddlot_shares}")
     print(f"closing_oddlot_close={tick.closing_oddlot_close}")
     print(f"closing_oddlot_amount={tick.closing_oddlot_amount}")
     print(f"closing_oddlot_bid_price={tick.closing_oddlot_bid_price}")
     print(f"closing_oddlot_ask_price={tick.closing_oddlot_ask_price}")
-    print(f"fixed_trade_volume={tick.fixed_trade_volume}")
+    print(f"fixed_trade_vol={tick.fixed_trade_vol}")
     print(f"fixed_trade_amount={tick.fixed_trade_amount}")
     print(f"suspend={tick.suspend}")
     print(f"simtrade={tick.simtrade}")
@@ -8116,23 +8129,23 @@ close=29.9
 high=30
 low=29.75
 amount=29900
-amount_sum=110307300
+total_amount=110307300
 volume=1
-vol_sum=3693
+total_volume=3693
 tick_type=1
-diff_type=2
-diff_price=0.1
-diff_rate=33
-trade_bid_vol_sum=1803
-trade_ask_vol_sum=1325
-trade_bid_cnt=144
-trade_ask_cnt=64
+chg_type=2
+price_chg=0.1
+pct_chg=33
+bid_side_total_vol=1803
+ask_side_total_vol=1325
+bid_side_total_cnt=144
+ask_side_total_cnt=64
 closing_oddlot_shares=0
 closing_oddlot_close=None
 closing_oddlot_amount=0
 closing_oddlot_bid_price=None
 closing_oddlot_ask_price=None
-fixed_trade_volume=0
+fixed_trade_vol=0
 fixed_trade_amount=0
 suspend=False
 simtrade=False
@@ -8229,23 +8242,23 @@ def quote_callback(exchange: Exchange, quote: QuoteSTKv1):
     print(f"high={quote.high}")
     print(f"low={quote.low}")
     print(f"amount={quote.amount}")
-    print(f"amount_sum={quote.amount_sum}")
+    print(f"total_amount={quote.total_amount}")
     print(f"volume={quote.volume}")
-    print(f"vol_sum={quote.vol_sum}")
+    print(f"total_volume={quote.total_volume}")
     print(f"tick_type={quote.tick_type}")
-    print(f"diff_type={quote.diff_type}")
-    print(f"diff_price={quote.diff_price}")
-    print(f"diff_rate={quote.diff_rate}")
-    print(f"trade_bid_vol_sum={quote.trade_bid_vol_sum}")
-    print(f"trade_ask_vol_sum={quote.trade_ask_vol_sum}")
-    print(f"trade_bid_cnt={quote.trade_bid_cnt}")
-    print(f"trade_ask_cnt={quote.trade_ask_cnt}")
+    print(f"chg_type={quote.chg_type}")
+    print(f"price_chg={quote.price_chg}")
+    print(f"pct_chg={quote.pct_chg}")
+    print(f"bid_side_total_vol={quote.bid_side_total_vol}")
+    print(f"ask_side_total_vol={quote.ask_side_total_vol}")
+    print(f"bid_side_total_cnt={quote.bid_side_total_cnt}")
+    print(f"ask_side_total_cnt={quote.ask_side_total_cnt}")
     print(f"closing_oddlot_shares={quote.closing_oddlot_shares}")
     print(f"closing_oddlot_close={quote.closing_oddlot_close}")
     print(f"closing_oddlot_amount={quote.closing_oddlot_amount}")
     print(f"closing_oddlot_bid_price={quote.closing_oddlot_bid_price}")
     print(f"closing_oddlot_ask_price={quote.closing_oddlot_ask_price}")
-    print(f"fixed_trade_volume={quote.fixed_trade_volume}")
+    print(f"fixed_trade_vol={quote.fixed_trade_vol}")
     print(f"fixed_trade_amount={quote.fixed_trade_amount}")
     print(f"bid_price={quote.bid_price}")
     print(f"bid_volume={quote.bid_volume}")
@@ -8296,23 +8309,23 @@ close=29.8
 high=30
 low=29.7
 amount=29800
-amount_sum=249103250
+total_amount=249103250
 volume=0
-vol_sum=8352
+total_volume=8352
 tick_type=1
-diff_type=3
-diff_price=0
-diff_rate=0
-trade_bid_vol_sum=3342
-trade_ask_vol_sum=4445
-trade_bid_cnt=653
-trade_ask_cnt=284
+chg_type=3
+price_chg=0
+pct_chg=0
+bid_side_total_vol=3342
+ask_side_total_vol=4445
+bid_side_total_cnt=653
+ask_side_total_cnt=284
 closing_oddlot_shares=0
 closing_oddlot_close=None
 closing_oddlot_amount=0
 closing_oddlot_bid_price=None
 closing_oddlot_ask_price=None
-fixed_trade_volume=0
+fixed_trade_vol=0
 fixed_trade_amount=0
 bid_price=[Decimal('29.75'), Decimal('29.7'), Decimal('29.65'), Decimal('29.6'), Decimal('29.55')]
 bid_volume=[570, 1242, 677, 691, 222]
@@ -10130,8 +10143,8 @@ Signature:
         price: float,
         account: Optional[sj.Account] = None,
         timeout: Optional[int] = 5000,
-        cb: Optional[Callable[[sj.EarmarkingOrderResp], None]] = None,
-    ) -> sj.EarmarkingOrderResp
+        cb: Optional[Callable[[sj.ReserveEarmarkingResponse], None]] = None,
+    ) -> sj.ReserveEarmarkingResponse
 
 api.earmarking_detail?
 
@@ -10139,8 +10152,8 @@ Signature:
     api.earmarking_detail(
         account: Optional[sj.Account] = None,
         timeout: Optional[int] = 5000,
-        cb: Optional[Callable[[sj.EarmarkStocksDetail], None]] = None,
-    ) -> sj.EarmarkStocksDetail
+        cb: Optional[Callable[[sj.EarmarkStocksDetailResponse], None]] = None,
+    ) -> sj.EarmarkStocksDetailResponse
 
 ```
 
@@ -10224,24 +10237,27 @@ resp
 Out
 
 ```
-EarmarkingOrderResp(
-    contract=Contract(
-        security_type='STK',
-        exchange='TSE',
-        code='1217',
-        target_code=''
+ReserveEarmarkingResponse(
+    response=EarmarkingOrderResp(
+        contract=Contract(
+            security_type='STK',
+            exchange='TSE',
+            code='1217',
+            target_code=''
+        ),
+        account=StockAccount(
+            person_id='YOUR_PERSON_ID',
+            broker_id='YOUR_BROKER_ID',
+            account_id='YOUR_ACCOUNT_ID',
+            signed=true,
+            username=''
+        ),
+        share=1000,
+        price=9,
+        status=true,
+        info='OK'
     ),
-    account=StockAccount(
-        person_id='YOUR_PERSON_ID',
-        broker_id='YOUR_BROKER_ID',
-        account_id='YOUR_ACCOUNT_ID',
-        signed=true,
-        username=''
-    ),
-    share=1000,
-    price=9,
-    status=true,
-    info='OK'
+    error=None
 )
 
 ```
@@ -10287,30 +10303,33 @@ resp
 Out
 
 ```
-EarmarkStocksDetail(
-    stocks=[
-        EarmarkStockDetail(
-            contract=Contract(
-                security_type='STK',
-                exchange='TSE',
-                code='1217',
-                target_code=''
-            ),
-            share=1000,
-            price=9,
-            amount=9020,
-            order_datetime='2026-05-20T15:16:28+08:00',
-            status=true,
-            info='成功'
+EarmarkStocksDetailResponse(
+    response=EarmarkStocksDetail(
+        stocks=[
+            EarmarkStockDetail(
+                contract=Contract(
+                    security_type='STK',
+                    exchange='TSE',
+                    code='1217',
+                    target_code=''
+                ),
+                share=1000,
+                price=9,
+                amount=9020,
+                order_datetime='2026-05-20T15:16:28+08:00',
+                status=true,
+                info='成功'
+            )
+        ],
+        account=StockAccount(
+            person_id='YOUR_PERSON_ID',
+            broker_id='YOUR_BROKER_ID',
+            account_id='YOUR_ACCOUNT_ID',
+            signed=true,
+            username=''
         )
-    ],
-    account=StockAccount(
-        person_id='YOUR_PERSON_ID',
-        broker_id='YOUR_BROKER_ID',
-        account_id='YOUR_ACCOUNT_ID',
-        signed=true,
-        username=''
-    )
+    ),
+    error=None
 )
 
 ```
@@ -10349,8 +10368,8 @@ Signature:
         share: int,
         account: Optional[sj.Account] = None,
         timeout: Optional[int] = 5000,
-        cb: Optional[Callable[[sj.ReserveOrderResp], None]] = None,
-    ) -> sj.ReserveOrderResp
+        cb: Optional[Callable[[sj.ReserveStockResponse], None]] = None,
+    ) -> sj.ReserveStockResponse
 
 api.stock_reserve_summary?
 
@@ -10358,8 +10377,8 @@ Signature:
     api.stock_reserve_summary(
         account: Optional[sj.Account] = None,
         timeout: Optional[int] = 5000,
-        cb: Optional[Callable[[sj.ReserveStocksSummary], None]] = None,
-    ) -> sj.ReserveStocksSummary
+        cb: Optional[Callable[[sj.ReserveStocksSummaryResponse], None]] = None,
+    ) -> sj.ReserveStocksSummaryResponse
 
 api.stock_reserve_detail?
 
@@ -10367,8 +10386,8 @@ Signature:
     api.stock_reserve_detail(
         account: Optional[sj.Account] = None,
         timeout: Optional[int] = 5000,
-        cb: Optional[Callable[[sj.ReserveStocksDetail], None]] = None,
-    ) -> sj.ReserveStocksDetail
+        cb: Optional[Callable[[sj.ReserveStocksDetailResponse], None]] = None,
+    ) -> sj.ReserveStocksDetailResponse
 
 ```
 
@@ -10463,23 +10482,26 @@ resp
 Out
 
 ```
-ReserveOrderResp(
-    contract=Contract(
-        security_type='STK',
-        exchange='TSE',
-        code='1217',
-        target_code=''
+ReserveStockResponse(
+    response=ReserveOrderResp(
+        contract=Contract(
+            security_type='STK',
+            exchange='TSE',
+            code='1217',
+            target_code=''
+        ),
+        account=StockAccount(
+            person_id='YOUR_PERSON_ID',
+            broker_id='YOUR_BROKER_ID',
+            account_id='YOUR_ACCOUNT_ID',
+            signed=true,
+            username=''
+        ),
+        share=1000,
+        status=true,
+        info=''
     ),
-    account=StockAccount(
-        person_id='YOUR_PERSON_ID',
-        broker_id='YOUR_BROKER_ID',
-        account_id='YOUR_ACCOUNT_ID',
-        signed=true,
-        username=''
-    ),
-    share=1000,
-    status=true,
-    info=''
+    error=None
 )
 
 ```
@@ -10524,26 +10546,29 @@ resp
 Out
 
 ```
-ReserveStocksSummary(
-    stocks=[
-        ReserveStockSummary(
-            contract=Contract(
-                security_type='STK',
-                exchange='TSE',
-                code='2890',
-                target_code=''
-            ),
-            available_share=5000,
-            reserved_share=0
+ReserveStocksSummaryResponse(
+    response=ReserveStocksSummary(
+        stocks=[
+            ReserveStockSummary(
+                contract=Contract(
+                    security_type='STK',
+                    exchange='TSE',
+                    code='2890',
+                    target_code=''
+                ),
+                available_share=5000,
+                reserved_share=0
+            )
+        ],
+        account=StockAccount(
+            person_id='YOUR_PERSON_ID',
+            broker_id='YOUR_BROKER_ID',
+            account_id='YOUR_ACCOUNT_ID',
+            signed=true,
+            username=''
         )
-    ],
-    account=StockAccount(
-        person_id='YOUR_PERSON_ID',
-        broker_id='YOUR_BROKER_ID',
-        account_id='YOUR_ACCOUNT_ID',
-        signed=true,
-        username=''
-    )
+    ),
+    error=None
 )
 
 ```
@@ -10582,28 +10607,31 @@ resp
 Out
 
 ```
-ReserveStocksDetail(
-    stocks=[
-        ReserveStockDetail(
-            contract=Contract(
-                security_type='STK',
-                exchange='TSE',
-                code='6153',
-                target_code=''
-            ),
-            share=1000,
-            order_datetime='2026-05-20T15:16:28+08:00',
-            status=true,
-            info='已完成'
+ReserveStocksDetailResponse(
+    response=ReserveStocksDetail(
+        stocks=[
+            ReserveStockDetail(
+                contract=Contract(
+                    security_type='STK',
+                    exchange='TSE',
+                    code='6153',
+                    target_code=''
+                ),
+                share=1000,
+                order_datetime='2026-05-20T15:16:28+08:00',
+                status=true,
+                info='已完成'
+            )
+        ],
+        account=StockAccount(
+            person_id='YOUR_PERSON_ID',
+            broker_id='YOUR_BROKER_ID',
+            account_id='YOUR_ACCOUNT_ID',
+            signed=true,
+            username=''
         )
-    ],
-    account=StockAccount(
-        person_id='YOUR_PERSON_ID',
-        broker_id='YOUR_BROKER_ID',
-        account_id='YOUR_ACCOUNT_ID',
-        signed=true,
-        username=''
-    )
+    ),
+    error=None
 )
 
 ```
@@ -11894,7 +11922,7 @@ Signature:
         *,
         trade: Optional[sj.Trade] = None,
         timeout: Optional[int] = 30000,
-        cb: Optional[Callable[[], None]] = None,
+        cb: Optional[Callable[[List[sj.Trade]], None]] = None,
     ) -> None
 
 ```
@@ -11905,7 +11933,7 @@ Parameters
 account: 證券或期貨帳號；省略則更新名下所有帳號
 trade:   指定要更新的 Trade 物件（關鍵字參數）
 timeout: 逾時毫秒
-cb:      選填，callback 函式
+cb:      選填，callback 函式；timeout=0 時會收到更新後的 Trade 清單
 
 ```
 
@@ -12786,6 +12814,52 @@ curl http://localhost:8080/api/v1/info
 
 ```
 
+### 登入測試
+
+登入
+
+```
+api = sj.Shioaji(simulation=True)  # 模擬模式
+accounts = api.login(
+    api_key="金鑰",     # 請修改此處
+    secret_key="密鑰"   # 請修改此處
+)
+
+# 確認帳戶（驗證已登入）
+print(accounts)
+
+```
+
+```
+# .env（放在執行目錄）應包含：
+SJ_API_KEY=YOUR_API_KEY                # 請修改此處
+SJ_SEC_KEY=YOUR_SECRET_KEY             # 請修改此處
+SJ_PRODUCTION=false                    # 模擬模式
+
+# 啟動 server（自動讀取 .env，完成登入）
+shioaji server start
+
+# 確認帳戶（驗證已登入）
+shioaji auth accounts
+
+```
+
+```
+# .env（放在執行目錄）應包含：
+SJ_API_KEY=YOUR_API_KEY                # 請修改此處
+SJ_SEC_KEY=YOUR_SECRET_KEY             # 請修改此處
+SJ_PRODUCTION=false                    # 模擬模式
+
+# 啟動 server（在 terminal 執行，自動讀取 .env，完成登入）
+shioaji server start
+
+# 確認帳戶（驗證已登入）
+curl http://localhost:8080/api/v1/auth/accounts
+
+```
+
+### 證券下單測試
+
 證券
 
 ```
@@ -12912,6 +12986,8 @@ Out
 
 ```
 
+### 期貨下單測試
+
 期貨
 
 ```
@@ -13034,6 +13110,73 @@ Out
     "web_id": ""
   }
 }
+
+```
+
+- 委託單狀態為 `PendingSubmit`（傳送中）或 `Submitted`（已送出）均表示委託成功；若為 `Failed`，請修正委託單內容後重新執行 `place_order`。
+- [商品檔](../../contract/)
+- [期貨委託下單](../../order/FutureOption/)
+
+### 查詢是否通過API測試
+
+Attention
+
+在查詢前，請確認以下狀況均符合
+
+- API下單簽署時間須早於API測試的時間，以利審核通過
+- 在可測試時間進行測試
+- 證券、期貨戶須各別測試
+- 等待API測試審核(約5分鐘)
+
+至簽署中心查看帳號的測試狀態。
+
+[證券 API 簽署中心](https://www.sinotrade.com.tw/newweb/signCenter/S_openAPI/)
+
+[期貨 API 簽署中心](https://www.sinotrade.com.tw/newweb/signCenter/F_openApi/)
+
+說明
+
+若您僅需使用 shioaji，完成 **簽署** 與 **python 測試** 即可，`T4 測試` 不需要完成。
+
+以正式模式登入後查看 `accounts`，確認 `signed` 欄位。
+
+```
+api = sj.Shioaji(simulation=False)  # 正式模式
+accounts = api.login(
+    api_key="金鑰",     # 請修改此處
+    secret_key="密鑰"   # 請修改此處
+)
+
+# 確認帳戶（檢視 signed 狀態）
+print(accounts)
+
+```
+
+```
+# .env（放在執行目錄）應包含：
+SJ_API_KEY=YOUR_API_KEY                # 請修改此處
+SJ_SEC_KEY=YOUR_SECRET_KEY             # 請修改此處
+SJ_PRODUCTION=true                     # 正式模式
+
+# 啟動 server（自動讀取 .env，完成登入）
+shioaji server start
+
+# 確認帳戶（檢視 signed 狀態）
+shioaji auth accounts
+
+```
+
+```
+# .env（放在執行目錄）應包含：
+SJ_API_KEY=YOUR_API_KEY                # 請修改此處
+SJ_SEC_KEY=YOUR_SECRET_KEY             # 請修改此處
+SJ_PRODUCTION=true                     # 正式模式
+
+# 啟動 server（在 terminal 執行，自動讀取 .env，完成登入）
+shioaji server start
+
+# 確認帳戶（檢視 signed 狀態）
+curl http://localhost:8080/api/v1/auth/accounts
 
 ```
 

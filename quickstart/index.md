@@ -54,6 +54,18 @@ curl http://localhost:8080/api/v1/auth/accounts
 
 ```
 
+Certificate Path
+
+On Windows, file paths are copied with `\` as the separator; replace them with `/`.
+
+### Subscribe to Market Data
+
+Subscribing to market data requires passing a contract to `subscribe` with a quote type to receive streaming data.
+
+Quote Types
+
+Currently three quote types are supported: tick / bid_ask / quote.
+
 ```
 api.subscribe(api.Contracts.Stocks["2330"], quote_type="tick")
 api.subscribe(api.Contracts.Stocks["2330"], quote_type="bid_ask")
@@ -80,6 +92,14 @@ curl -X POST http://localhost:8080/api/v1/stream/subscribe \
 curl -N http://localhost:8080/api/v1/stream/data
 
 ```
+
+Note for Non-Python Users
+
+Python / CLI users can subscribe with a contract object or symbol directly. Other languages must fill in security_type / exchange / code manually; call `GET /api/v1/data/contracts/{code}?security_type=...` to look them up.
+
+### Place Order
+
+Placing an order requires specifying a contract and the order details (action, price, quantity, etc.); the response contains the trade status.
 
 ```
 contract = api.Contracts.Stocks["2890"]

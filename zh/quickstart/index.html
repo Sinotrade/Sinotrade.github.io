@@ -409,6 +409,24 @@
         <li class="md-nav__item">
   <a href="#_2" class="md-nav__link">
     <span class="md-ellipsis">
+      訂閱行情
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_3" class="md-nav__link">
+    <span class="md-ellipsis">
+      下單
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_4" class="md-nav__link">
+    <span class="md-ellipsis">
       總結
     </span>
   </a>
@@ -1925,6 +1943,24 @@
         <li class="md-nav__item">
   <a href="#_2" class="md-nav__link">
     <span class="md-ellipsis">
+      訂閱行情
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_3" class="md-nav__link">
+    <span class="md-ellipsis">
+      下單
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_4" class="md-nav__link">
+    <span class="md-ellipsis">
       總結
     </span>
   </a>
@@ -2161,18 +2197,18 @@ curl<span class="w"> </span>http://localhost:8080/api/v1/auth/accounts
 <span class="p">}</span>
 </code></pre></div>
 
-!!! attention "認證路徑"
-    Windows環境下複製文件路徑時用`\`分隔文件，需要用`/`替換。
-
-### 訂閱行情
-
-訂閱行情需將合約帶入 `subscribe` 功能，並指定行情類型，就可以接收資料。
-
-!!! tip "行情類型"
-    目前支援 tick / bid_ask / quote 三種行情類型。
-
-
 -->
+
+<div class="admonition attention">
+<p class="admonition-title">認證路徑</p>
+<p>Windows環境下複製文件路徑時用<code>\</code>分隔文件，需要用<code>/</code>替換。</p>
+</div>
+<h3 id="_2">訂閱行情<a class="headerlink" href="#_2" title="Permanent link">&para;</a></h3>
+<p>訂閱行情需將合約帶入 <code>subscribe</code> 功能，並指定行情類型，就可以接收資料。</p>
+<div class="admonition tip">
+<p class="admonition-title">行情類型</p>
+<p>目前支援 tick / bid_ask / quote 三種行情類型。</p>
+</div>
 <div class="tabbed-set tabbed-alternate" data-tabs="2:3"><input checked="checked" id="__tabbed_2_1" name="__tabbed_2" type="radio" /><input id="__tabbed_2_2" name="__tabbed_2" type="radio" /><input id="__tabbed_2_3" name="__tabbed_2" type="radio" /><div class="tabbed-labels"><label for="__tabbed_2_1">Python</label><label for="__tabbed_2_2">CLI</label><label for="__tabbed_2_3">HTTP</label></div>
 <div class="tabbed-content">
 <div class="tabbed-block">
@@ -2356,17 +2392,16 @@ curl<span class="w"> </span>-N<span class="w"> </span>http://localhost:8080/api/
 <span class="p">}</span>
 </code></pre></div>
 
-!!! warning "跨語言用戶注意"
-    Python / CLI 使用 contract 物件或代號即可訂閱。其他語言需自行填寫
-    security_type / exchange / code 等欄位，可呼叫
-    `GET /api/v1/data/contracts/{code}?security_type=...` 查詢。
-
-### 下單
-
-下單需指定合約與委託內容（買賣方向、價格、數量等），送出後會回傳該筆交易的狀態。
-
-
 -->
+
+<div class="admonition warning">
+<p class="admonition-title">跨語言用戶注意</p>
+<p>Python / CLI 使用 contract 物件或代號即可訂閱。其他語言需自行填寫
+security_type / exchange / code 等欄位，可呼叫
+<code>GET /api/v1/data/contracts/{code}?security_type=...</code> 查詢。</p>
+</div>
+<h3 id="_3">下單<a class="headerlink" href="#_3" title="Permanent link">&para;</a></h3>
+<p>下單需指定合約與委託內容（買賣方向、價格、數量等），送出後會回傳該筆交易的狀態。</p>
 <div class="tabbed-set tabbed-alternate" data-tabs="3:3"><input checked="checked" id="__tabbed_3_1" name="__tabbed_3" type="radio" /><input id="__tabbed_3_2" name="__tabbed_3" type="radio" /><input id="__tabbed_3_3" name="__tabbed_3" type="radio" /><div class="tabbed-labels"><label for="__tabbed_3_1">Python</label><label for="__tabbed_3_2">CLI</label><label for="__tabbed_3_3">HTTP</label></div>
 <div class="tabbed-content">
 <div class="tabbed-block">
@@ -2589,7 +2624,7 @@ curl<span class="w"> </span>-N<span class="w"> </span>http://localhost:8080/api/
 
 
 -->
-<h2 id="_2">總結<a class="headerlink" href="#_2" title="Permanent link">&para;</a></h2>
+<h2 id="_4">總結<a class="headerlink" href="#_4" title="Permanent link">&para;</a></h2>
 <p>這份快速入門展示了 Shioaji 的核心操作。無論是 Python、CLI 或 HTTP API（含 JS、Go、C++、C# 等），皆能以相同邏輯完成登入、訂閱與下單。</p>
 
 

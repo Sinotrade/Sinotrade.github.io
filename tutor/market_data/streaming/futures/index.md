@@ -134,21 +134,21 @@ Subscribed to TXFR1 tick (Ctrl+C to stop)
   "date": "2026-05-20",
   "time": "18:50:02.981000",
   "open": "40270",
-  "target_kind_price": "40020.82",
-  "trade_bid_vol_sum": 7498,
-  "trade_ask_vol_sum": 5817,
+  "underlying_price": "40020.82",
+  "bid_side_total_vol": 7498,
+  "ask_side_total_vol": 5817,
   "avg_price": "40460.163149",
   "close": "40619",
   "high": "40650",
   "low": "40221",
   "amount": "81238",
-  "amount_sum": "552038466",
+  "total_amount": "552038466",
   "volume": 2,
-  "vol_sum": 13644,
+  "total_volume": 13644,
   "tick_type": 1,
-  "diff_type": 2,
-  "diff_price": "495",
-  "diff_rate": "1.233676",
+  "chg_type": 2,
+  "price_chg": "495",
+  "pct_chg": "1.233676",
   "simtrade": false
 }
 
@@ -203,21 +203,21 @@ data:{
   "date": "2026-05-20",
   "time": "18:54:43.871000",
   "open": "40270",
-  "target_kind_price": "40020.82",
-  "trade_bid_vol_sum": 7540,
-  "trade_ask_vol_sum": 5908,
+  "underlying_price": "40020.82",
+  "bid_side_total_vol": 7540,
+  "ask_side_total_vol": 5908,
   "avg_price": "40461.608055",
   "close": "40608",
   "high": "40650",
   "low": "40221",
   "amount": "40608",
-  "amount_sum": "557560959",
+  "total_amount": "557560959",
   "volume": 1,
-  "vol_sum": 13780,
+  "total_volume": 13780,
   "tick_type": 1,
-  "diff_type": 2,
-  "diff_price": "484",
-  "diff_rate": "1.206261",
+  "chg_type": 2,
+  "price_chg": "484",
+  "pct_chg": "1.206261",
   "simtrade": false
 }
 
@@ -234,21 +234,21 @@ date (tuple)                             Date
 time (tuple)                             Trade time
 datetime (tuple)                         Date and time
 open (Decimal)                           Open price
-target_kind_price (Decimal)              Underlying index price
+underlying_price (Decimal)               Underlying index price
 avg_price (Decimal)                      Average price
 close (Decimal)                          Trade price
 high (Decimal)                           High (since open)
 low (Decimal)                            Low (since open)
 amount (Decimal)                         Trade amount (NTD)
-amount_sum (Decimal)                     Cumulative trade amount (NTD)
+total_amount (Decimal)                   Cumulative trade amount (NTD)
 volume (int)                             Trade volume (lot)
-vol_sum (int)                            Cumulative trade volume (lot)
+total_volume (int)                       Cumulative trade volume (lot)
 tick_type (int)                          Bid/ask side {1: ask, 2: bid, 0: undetermined}
-diff_type (int)                          Change type {1: limit up, 2: up, 3: unchanged, 4: down, 5: limit down}
-diff_price (Decimal)                     Price change
-diff_rate (Decimal)                      Price change rate (%)
-trade_bid_vol_sum (int)                  Cumulative bid-side trade volume (lot)
-trade_ask_vol_sum (int)                  Cumulative ask-side trade volume (lot)
+chg_type (int)                           Change type {1: limit up, 2: up, 3: unchanged, 4: down, 5: limit down}
+price_chg (Decimal)                      Price change
+pct_chg (Decimal)                        Price change rate (%)
+bid_side_total_vol (int)                 Cumulative bid-side trade volume (lot)
+ask_side_total_vol (int)                 Cumulative ask-side trade volume (lot)
 simtrade (bool)                          Trial match
 
 ```
@@ -300,8 +300,8 @@ Subscribed to TXFR1 bid_ask (Ctrl+C to stop)
   "code": "TXFF6",
   "date": "2026-05-20",
   "time": "19:24:03.012000",
-  "bid_vol_sum": 8,
-  "ask_vol_sum": 19,
+  "bid_total_vol": 8,
+  "ask_total_vol": 19,
   "bid_price": ["40615", "40613", "40612", "40611", "40610"],
   "bid_volume": [1, 2, 1, 2, 2],
   "diff_bid_vol": [0, 0, 0, 0, 1],
@@ -310,9 +310,9 @@ Subscribed to TXFR1 bid_ask (Ctrl+C to stop)
   "diff_ask_vol": [0, -1, -1, 0, 0],
   "first_derived_bid_price": "0",
   "first_derived_ask_price": "40622",
-  "first_derived_bid_volume": 0,
-  "first_derived_ask_volume": 1,
-  "target_kind_price": "40020.82",
+  "first_derived_bid_vol": 0,
+  "first_derived_ask_vol": 1,
+  "underlying_price": "40020.82",
   "simtrade": false
 }
 
@@ -366,8 +366,8 @@ data:{
   "code": "TXFF6",
   "date": "2026-05-20",
   "time": "19:24:38.512000",
-  "bid_vol_sum": 19,
-  "ask_vol_sum": 20,
+  "bid_total_vol": 19,
+  "ask_total_vol": 20,
   "bid_price": ["40613", "40612", "40611", "40610", "40609"],
   "bid_volume": [1, 3, 5, 3, 7],
   "diff_bid_vol": [-1, 0, 0, 0, 2],
@@ -376,9 +376,9 @@ data:{
   "diff_ask_vol": [0, 0, 0, 0, 0],
   "first_derived_bid_price": "0",
   "first_derived_ask_price": "40622",
-  "first_derived_bid_volume": 0,
-  "first_derived_ask_volume": 1,
-  "target_kind_price": "40020.82",
+  "first_derived_bid_vol": 0,
+  "first_derived_ask_vol": 1,
+  "underlying_price": "40020.82",
   "simtrade": false
 }
 
@@ -394,8 +394,8 @@ exchange (Exchange)                      Exchange
 date (tuple)                             Date
 time (tuple)                             Time
 datetime (tuple)                         Date and time
-bid_vol_sum (int)                        Total bid volume (lot)
-ask_vol_sum (int)                        Total ask volume (lot)
+bid_total_vol (int)                      Total bid volume (lot)
+ask_total_vol (int)                      Total ask volume (lot)
 bid_price (list[Decimal])                Five-level bid prices
 bid_volume (list[int])                   Five-level bid volumes (lot)
 diff_bid_vol (list[int])                 Five-level bid volume change (lot)
@@ -404,9 +404,9 @@ ask_volume (list[int])                   Five-level ask volumes (lot)
 diff_ask_vol (list[int])                 Five-level ask volume change (lot)
 first_derived_bid_price (Decimal)        First-level derived bid price
 first_derived_ask_price (Decimal)        First-level derived ask price
-first_derived_bid_volume (int)           First-level derived bid volume (lot)
-first_derived_ask_volume (int)           First-level derived ask volume (lot)
-target_kind_price (Decimal)              Underlying index price
+first_derived_bid_vol (int)              First-level derived bid volume (lot)
+first_derived_ask_vol (int)              First-level derived ask volume (lot)
+underlying_price (Decimal)               Underlying index price
 simtrade (bool)                          Trial match
 
 ```
@@ -458,24 +458,24 @@ Subscribed to TXFR1 quote (Ctrl+C to stop)
   "code": "TXFF6",
   "date": "2026-05-20",
   "time": "19:29:39.887000",
-  "target_kind_price": "40020.82",
+  "underlying_price": "40020.82",
   "open": "40270",
   "avg_price": "40466.730155",
   "close": "40616",
   "high": "40650",
   "low": "40221",
   "amount": "40616",
-  "amount_sum": "578107707",
+  "total_amount": "578107707",
   "volume": 0,
-  "vol_sum": 14286,
+  "total_volume": 14286,
   "tick_type": 1,
-  "diff_type": 2,
-  "diff_price": "492",
-  "diff_rate": "1.226199",
-  "trade_bid_vol_sum": 7773,
-  "trade_ask_vol_sum": 6172,
-  "trade_bid_cnt": 9924,
-  "trade_ask_cnt": 10442,
+  "chg_type": 2,
+  "price_chg": "492",
+  "pct_chg": "1.226199",
+  "bid_side_total_vol": 7773,
+  "ask_side_total_vol": 6172,
+  "bid_side_total_cnt": 9924,
+  "ask_side_total_cnt": 10442,
   "bid_price": ["40613", "40612", "40611", "40610", "40609"],
   "bid_volume": [2, 4, 6, 2, 4],
   "diff_bid_vol": [0, 0, 0, 0, 0],
@@ -484,8 +484,8 @@ Subscribed to TXFR1 quote (Ctrl+C to stop)
   "diff_ask_vol": [0, 0, 0, 0, 0],
   "first_derived_bid_price": "0",
   "first_derived_ask_price": "0",
-  "first_derived_bid_volume": 0,
-  "first_derived_ask_volume": 0,
+  "first_derived_bid_vol": 0,
+  "first_derived_ask_vol": 0,
   "simtrade": false
 }
 
@@ -539,24 +539,24 @@ data:{
   "code": "TXFF6",
   "date": "2026-05-20",
   "time": "19:30:16.137000",
-  "target_kind_price": "40020.82",
+  "underlying_price": "40020.82",
   "open": "40270",
   "avg_price": "40467.061396",
   "close": "40624",
   "high": "40650",
   "low": "40221",
   "amount": "40624",
-  "amount_sum": "579366918",
+  "total_amount": "579366918",
   "volume": 0,
-  "vol_sum": 14317,
+  "total_volume": 14317,
   "tick_type": 1,
-  "diff_type": 2,
-  "diff_price": "500",
-  "diff_rate": "1.246137",
-  "trade_bid_vol_sum": 7804,
-  "trade_ask_vol_sum": 6172,
-  "trade_bid_cnt": 9947,
-  "trade_ask_cnt": 10468,
+  "chg_type": 2,
+  "price_chg": "500",
+  "pct_chg": "1.246137",
+  "bid_side_total_vol": 7804,
+  "ask_side_total_vol": 6172,
+  "bid_side_total_cnt": 9947,
+  "ask_side_total_cnt": 10468,
   "bid_price": ["40620", "40618", "40617", "40616", "40615"],
   "bid_volume": [1, 7, 3, 7, 8],
   "diff_bid_vol": [0, 0, 0, 0, 2],
@@ -565,8 +565,8 @@ data:{
   "diff_ask_vol": [1, 0, 0, 0, 0],
   "first_derived_bid_price": "0",
   "first_derived_ask_price": "0",
-  "first_derived_bid_volume": 0,
-  "first_derived_ask_volume": 0,
+  "first_derived_bid_vol": 0,
+  "first_derived_ask_vol": 0,
   "simtrade": false
 }
 
@@ -582,24 +582,24 @@ exchange (Exchange)                      Exchange
 date (tuple)                             Date
 time (tuple)                             Trade time
 datetime (tuple)                         Date and time
-target_kind_price (Decimal)              Underlying index price
+underlying_price (Decimal)               Underlying index price
 open (Decimal)                           Open price
 avg_price (Decimal)                      Average price
 close (Decimal)                          Trade price
 high (Decimal)                           High (since open)
 low (Decimal)                            Low (since open)
 amount (Decimal)                         Trade amount (NTD)
-amount_sum (Decimal)                     Cumulative trade amount (NTD)
+total_amount (Decimal)                   Cumulative trade amount (NTD)
 volume (int)                             Trade volume (lot)
-vol_sum (int)                            Cumulative trade volume (lot)
+total_volume (int)                       Cumulative trade volume (lot)
 tick_type (int)                          Bid/ask side {1: ask, 2: bid, 0: undetermined}
-diff_type (int)                          Change type {1: limit up, 2: up, 3: unchanged, 4: down, 5: limit down}
-diff_price (Decimal)                     Price change
-diff_rate (Decimal)                      Price change rate (%)
-trade_bid_vol_sum (int)                  Cumulative bid-side trade volume (lot)
-trade_ask_vol_sum (int)                  Cumulative ask-side trade volume (lot)
-trade_bid_cnt (int)                      Bid-side trade count
-trade_ask_cnt (int)                      Ask-side trade count
+chg_type (int)                           Change type {1: limit up, 2: up, 3: unchanged, 4: down, 5: limit down}
+price_chg (Decimal)                      Price change
+pct_chg (Decimal)                        Price change rate (%)
+bid_side_total_vol (int)                 Cumulative bid-side trade volume (lot)
+ask_side_total_vol (int)                 Cumulative ask-side trade volume (lot)
+bid_side_total_cnt (int)                 Bid-side trade count
+ask_side_total_cnt (int)                 Ask-side trade count
 bid_price (list[Decimal])                Five-level bid prices
 bid_volume (list[int])                   Five-level bid volumes (lot)
 diff_bid_vol (list[int])                 Five-level bid volume change (lot)
@@ -608,8 +608,8 @@ ask_volume (list[int])                   Five-level ask volumes (lot)
 diff_ask_vol (list[int])                 Five-level ask volume change (lot)
 first_derived_bid_price (Decimal)        First-level derived bid price
 first_derived_ask_price (Decimal)        First-level derived ask price
-first_derived_bid_volume (int)           First-level derived bid volume (lot)
-first_derived_ask_volume (int)           First-level derived ask volume (lot)
+first_derived_bid_vol (int)              First-level derived bid volume (lot)
+first_derived_ask_vol (int)              First-level derived ask volume (lot)
 simtrade (bool)                          Trial match
 
 ```
@@ -633,21 +633,21 @@ def quote_callback(exchange: Exchange, tick: TickFOPv1):
     print(f"time={tick.time}")
     print(f"datetime={tick.datetime}")
     print(f"open={tick.open}")
-    print(f"target_kind_price={tick.target_kind_price}")
-    print(f"trade_bid_vol_sum={tick.trade_bid_vol_sum}")
-    print(f"trade_ask_vol_sum={tick.trade_ask_vol_sum}")
+    print(f"underlying_price={tick.underlying_price}")
+    print(f"bid_side_total_vol={tick.bid_side_total_vol}")
+    print(f"ask_side_total_vol={tick.ask_side_total_vol}")
     print(f"avg_price={tick.avg_price}")
     print(f"close={tick.close}")
     print(f"high={tick.high}")
     print(f"low={tick.low}")
     print(f"amount={tick.amount}")
-    print(f"amount_sum={tick.amount_sum}")
+    print(f"total_amount={tick.total_amount}")
     print(f"volume={tick.volume}")
-    print(f"vol_sum={tick.vol_sum}")
+    print(f"total_volume={tick.total_volume}")
     print(f"tick_type={tick.tick_type}")
-    print(f"diff_type={tick.diff_type}")
-    print(f"diff_price={tick.diff_price}")
-    print(f"diff_rate={tick.diff_rate}")
+    print(f"chg_type={tick.chg_type}")
+    print(f"price_chg={tick.price_chg}")
+    print(f"pct_chg={tick.pct_chg}")
     print(f"simtrade={tick.simtrade}")
 
 api.subscribe(
@@ -684,21 +684,21 @@ date=(2026, 5, 20)
 time=(19, 15, 1, 284000)
 datetime=(2026, 5, 20, 19, 15, 1, 284000)
 open=40270
-target_kind_price=40020.82
-trade_bid_vol_sum=7711
-trade_ask_vol_sum=6109
+underlying_price=40020.82
+bid_side_total_vol=7711
+ask_side_total_vol=6109
 avg_price=40465.465254
 close=40598
 high=40650
 low=40221
 amount=40598
-amount_sum=572990988
+total_amount=572990988
 volume=1
-vol_sum=14160
+total_volume=14160
 tick_type=2
-diff_type=2
-diff_price=474
-diff_rate=1.181338
+chg_type=2
+price_chg=474
+pct_chg=1.181338
 simtrade=False
 
 ```
@@ -717,8 +717,8 @@ def quote_callback(exchange: Exchange, bidask: BidAskFOPv1):
     print(f"date={bidask.date}")
     print(f"time={bidask.time}")
     print(f"datetime={bidask.datetime}")
-    print(f"bid_vol_sum={bidask.bid_vol_sum}")
-    print(f"ask_vol_sum={bidask.ask_vol_sum}")
+    print(f"bid_total_vol={bidask.bid_total_vol}")
+    print(f"ask_total_vol={bidask.ask_total_vol}")
     print(f"bid_price={bidask.bid_price}")
     print(f"bid_volume={bidask.bid_volume}")
     print(f"diff_bid_vol={bidask.diff_bid_vol}")
@@ -727,9 +727,9 @@ def quote_callback(exchange: Exchange, bidask: BidAskFOPv1):
     print(f"diff_ask_vol={bidask.diff_ask_vol}")
     print(f"first_derived_bid_price={bidask.first_derived_bid_price}")
     print(f"first_derived_ask_price={bidask.first_derived_ask_price}")
-    print(f"first_derived_bid_volume={bidask.first_derived_bid_volume}")
-    print(f"first_derived_ask_volume={bidask.first_derived_ask_volume}")
-    print(f"target_kind_price={bidask.target_kind_price}")
+    print(f"first_derived_bid_vol={bidask.first_derived_bid_vol}")
+    print(f"first_derived_ask_vol={bidask.first_derived_ask_vol}")
+    print(f"underlying_price={bidask.underlying_price}")
     print(f"simtrade={bidask.simtrade}")
 
 api.subscribe(
@@ -765,8 +765,8 @@ code=TXFF6
 date=(2026, 5, 20)
 time=(19, 25, 54, 637000)
 datetime=(2026, 5, 20, 19, 25, 54, 637000)
-bid_vol_sum=21
-ask_vol_sum=21
+bid_total_vol=21
+ask_total_vol=21
 bid_price=[Decimal('40613'), Decimal('40612'), Decimal('40611'), Decimal('40610'), Decimal('40609')]
 bid_volume=[1, 2, 6, 4, 8]
 diff_bid_vol=[-1, 1, 0, 0, 0]
@@ -775,9 +775,9 @@ ask_volume=[4, 7, 5, 3, 2]
 diff_ask_vol=[-1, 0, 0, 0, 0]
 first_derived_bid_price=0
 first_derived_ask_price=0
-first_derived_bid_volume=0
-first_derived_ask_volume=0
-target_kind_price=40020.82
+first_derived_bid_vol=0
+first_derived_ask_vol=0
+underlying_price=40020.82
 simtrade=False
 
 ```
@@ -796,24 +796,24 @@ def quote_callback(exchange: Exchange, quote: QuoteFOPv1):
     print(f"date={quote.date}")
     print(f"time={quote.time}")
     print(f"datetime={quote.datetime}")
-    print(f"target_kind_price={quote.target_kind_price}")
+    print(f"underlying_price={quote.underlying_price}")
     print(f"open={quote.open}")
     print(f"avg_price={quote.avg_price}")
     print(f"close={quote.close}")
     print(f"high={quote.high}")
     print(f"low={quote.low}")
     print(f"amount={quote.amount}")
-    print(f"amount_sum={quote.amount_sum}")
+    print(f"total_amount={quote.total_amount}")
     print(f"volume={quote.volume}")
-    print(f"vol_sum={quote.vol_sum}")
+    print(f"total_volume={quote.total_volume}")
     print(f"tick_type={quote.tick_type}")
-    print(f"diff_type={quote.diff_type}")
-    print(f"diff_price={quote.diff_price}")
-    print(f"diff_rate={quote.diff_rate}")
-    print(f"trade_bid_vol_sum={quote.trade_bid_vol_sum}")
-    print(f"trade_ask_vol_sum={quote.trade_ask_vol_sum}")
-    print(f"trade_bid_cnt={quote.trade_bid_cnt}")
-    print(f"trade_ask_cnt={quote.trade_ask_cnt}")
+    print(f"chg_type={quote.chg_type}")
+    print(f"price_chg={quote.price_chg}")
+    print(f"pct_chg={quote.pct_chg}")
+    print(f"bid_side_total_vol={quote.bid_side_total_vol}")
+    print(f"ask_side_total_vol={quote.ask_side_total_vol}")
+    print(f"bid_side_total_cnt={quote.bid_side_total_cnt}")
+    print(f"ask_side_total_cnt={quote.ask_side_total_cnt}")
     print(f"bid_price={quote.bid_price}")
     print(f"bid_volume={quote.bid_volume}")
     print(f"diff_bid_vol={quote.diff_bid_vol}")
@@ -822,8 +822,8 @@ def quote_callback(exchange: Exchange, quote: QuoteFOPv1):
     print(f"diff_ask_vol={quote.diff_ask_vol}")
     print(f"first_derived_bid_price={quote.first_derived_bid_price}")
     print(f"first_derived_ask_price={quote.first_derived_ask_price}")
-    print(f"first_derived_bid_volume={quote.first_derived_bid_volume}")
-    print(f"first_derived_ask_volume={quote.first_derived_ask_volume}")
+    print(f"first_derived_bid_vol={quote.first_derived_bid_vol}")
+    print(f"first_derived_ask_vol={quote.first_derived_ask_vol}")
     print(f"simtrade={quote.simtrade}")
 
 api.subscribe(
@@ -859,24 +859,24 @@ code=TXFF6
 date=(2026, 5, 20)
 time=(19, 31, 3, 387000)
 datetime=(2026, 5, 20, 19, 31, 3, 387000)
-target_kind_price=40020.82
+underlying_price=40020.82
 open=40270
 avg_price=40467.404028
 close=40629
 high=40650
 low=40221
 amount=121887
-amount_sum=580626313
+total_amount=580626313
 volume=0
-vol_sum=14348
+total_volume=14348
 tick_type=1
-diff_type=2
-diff_price=505
-diff_rate=1.258598
-trade_bid_vol_sum=7825
-trade_ask_vol_sum=6182
-trade_bid_cnt=9966
-trade_ask_cnt=10498
+chg_type=2
+price_chg=505
+pct_chg=1.258598
+bid_side_total_vol=7825
+ask_side_total_vol=6182
+bid_side_total_cnt=9966
+ask_side_total_cnt=10498
 bid_price=[Decimal('40625'), Decimal('40624'), Decimal('40623'), Decimal('40622'), Decimal('40621')]
 bid_volume=[1, 3, 11, 6, 1]
 diff_bid_vol=[0, 0, 0, 0, 0]
@@ -885,8 +885,8 @@ ask_volume=[1, 1, 3, 4, 2]
 diff_ask_vol=[0, 0, 0, 0, 0]
 first_derived_bid_price=0
 first_derived_ask_price=0
-first_derived_bid_volume=0
-first_derived_ask_volume=0
+first_derived_bid_vol=0
+first_derived_ask_vol=0
 simtrade=False
 
 ```

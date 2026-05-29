@@ -407,6 +407,24 @@
 </li>
       
         <li class="md-nav__item">
+  <a href="#subscribe-to-market-data" class="md-nav__link">
+    <span class="md-ellipsis">
+      Subscribe to Market Data
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#place-order" class="md-nav__link">
+    <span class="md-ellipsis">
+      Place Order
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
   <a href="#conclusion" class="md-nav__link">
     <span class="md-ellipsis">
       Conclusion
@@ -1923,6 +1941,24 @@
 </li>
       
         <li class="md-nav__item">
+  <a href="#subscribe-to-market-data" class="md-nav__link">
+    <span class="md-ellipsis">
+      Subscribe to Market Data
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#place-order" class="md-nav__link">
+    <span class="md-ellipsis">
+      Place Order
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
   <a href="#conclusion" class="md-nav__link">
     <span class="md-ellipsis">
       Conclusion
@@ -2161,18 +2197,18 @@ curl<span class="w"> </span>http://localhost:8080/api/v1/auth/accounts
 <span class="p">}</span>
 </code></pre></div>
 
-!!! attention "Certificate Path"
-    On Windows, file paths are copied with `\` as the separator; replace them with `/`.
-
-### Subscribe to Market Data
-
-Subscribing to market data requires passing a contract to `subscribe` with a quote type to receive streaming data.
-
-!!! tip "Quote Types"
-    Currently three quote types are supported: tick / bid_ask / quote.
-
-
 -->
+
+<div class="admonition attention">
+<p class="admonition-title">Certificate Path</p>
+<p>On Windows, file paths are copied with <code>\</code> as the separator; replace them with <code>/</code>.</p>
+</div>
+<h3 id="subscribe-to-market-data">Subscribe to Market Data<a class="headerlink" href="#subscribe-to-market-data" title="Permanent link">&para;</a></h3>
+<p>Subscribing to market data requires passing a contract to <code>subscribe</code> with a quote type to receive streaming data.</p>
+<div class="admonition tip">
+<p class="admonition-title">Quote Types</p>
+<p>Currently three quote types are supported: tick / bid_ask / quote.</p>
+</div>
 <div class="tabbed-set tabbed-alternate" data-tabs="2:3"><input checked="checked" id="__tabbed_2_1" name="__tabbed_2" type="radio" /><input id="__tabbed_2_2" name="__tabbed_2" type="radio" /><input id="__tabbed_2_3" name="__tabbed_2" type="radio" /><div class="tabbed-labels"><label for="__tabbed_2_1">Python</label><label for="__tabbed_2_2">CLI</label><label for="__tabbed_2_3">HTTP</label></div>
 <div class="tabbed-content">
 <div class="tabbed-block">
@@ -2356,17 +2392,16 @@ curl<span class="w"> </span>-N<span class="w"> </span>http://localhost:8080/api/
 <span class="p">}</span>
 </code></pre></div>
 
-!!! warning "Note for Non-Python Users"
-    Python / CLI users can subscribe with a contract object or symbol directly. Other languages must fill in
-    security_type / exchange / code manually; call
-    `GET /api/v1/data/contracts/{code}?security_type=...` to look them up.
-
-### Place Order
-
-Placing an order requires specifying a contract and the order details (action, price, quantity, etc.); the response contains the trade status.
-
-
 -->
+
+<div class="admonition warning">
+<p class="admonition-title">Note for Non-Python Users</p>
+<p>Python / CLI users can subscribe with a contract object or symbol directly. Other languages must fill in
+security_type / exchange / code manually; call
+<code>GET /api/v1/data/contracts/{code}?security_type=...</code> to look them up.</p>
+</div>
+<h3 id="place-order">Place Order<a class="headerlink" href="#place-order" title="Permanent link">&para;</a></h3>
+<p>Placing an order requires specifying a contract and the order details (action, price, quantity, etc.); the response contains the trade status.</p>
 <div class="tabbed-set tabbed-alternate" data-tabs="3:3"><input checked="checked" id="__tabbed_3_1" name="__tabbed_3" type="radio" /><input id="__tabbed_3_2" name="__tabbed_3" type="radio" /><input id="__tabbed_3_3" name="__tabbed_3" type="radio" /><div class="tabbed-labels"><label for="__tabbed_3_1">Python</label><label for="__tabbed_3_2">CLI</label><label for="__tabbed_3_3">HTTP</label></div>
 <div class="tabbed-content">
 <div class="tabbed-block">

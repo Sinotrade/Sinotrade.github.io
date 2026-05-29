@@ -185,23 +185,23 @@ Subscribed to 2890 tick (Ctrl+C to stop)
   "high": "30",
   "low": "29.75",
   "amount": "149250",
-  "amount_sum": "108902650",
+  "total_amount": "108902650",
   "volume": 5,
-  "vol_sum": 3646,
+  "total_volume": 3646,
   "tick_type": 1,
-  "diff_type": 2,
-  "diff_price": "0.05",
-  "diff_rate": 16,
-  "trade_bid_vol_sum": 1760,
-  "trade_ask_vol_sum": 1321,
-  "trade_bid_cnt": 127,
-  "trade_ask_cnt": 61,
+  "chg_type": 2,
+  "price_chg": "0.05",
+  "pct_chg": 16,
+  "bid_side_total_vol": 1760,
+  "ask_side_total_vol": 1321,
+  "bid_side_total_cnt": 127,
+  "ask_side_total_cnt": 61,
   "closing_oddlot_shares": 0,
   "closing_oddlot_close": null,
   "closing_oddlot_amount": "0",
   "closing_oddlot_bid_price": null,
   "closing_oddlot_ask_price": null,
-  "fixed_trade_volume": 0,
+  "fixed_trade_vol": 0,
   "fixed_trade_amount": "0",
   "suspend": false,
   "simtrade": false,
@@ -234,23 +234,23 @@ Subscribed to 2890 tick (Ctrl+C to stop)
   "high": "30.05",
   "low": "29.9",
   "amount": "60",
-  "amount_sum": "640887.3",
+  "total_amount": "640887.3",
   "volume": 2,
-  "vol_sum": 21390,
+  "total_volume": 21390,
   "tick_type": 1,
-  "diff_type": 2,
-  "diff_price": "0.2",
-  "diff_rate": 67,
-  "trade_bid_vol_sum": 11006,
-  "trade_ask_vol_sum": 10384,
-  "trade_bid_cnt": 36,
-  "trade_ask_cnt": 20,
+  "chg_type": 2,
+  "price_chg": "0.2",
+  "pct_chg": 67,
+  "bid_side_total_vol": 11006,
+  "ask_side_total_vol": 10384,
+  "bid_side_total_cnt": 36,
+  "ask_side_total_cnt": 20,
   "closing_oddlot_shares": 0,
   "closing_oddlot_close": null,
   "closing_oddlot_amount": null,
   "closing_oddlot_bid_price": null,
   "closing_oddlot_ask_price": null,
-  "fixed_trade_volume": 0,
+  "fixed_trade_vol": 0,
   "fixed_trade_amount": null,
   "suspend": false,
   "simtrade": false,
@@ -303,23 +303,23 @@ data:{
   "high": "30",
   "low": "29.75",
   "amount": "29900",
-  "amount_sum": "109559950",
+  "total_amount": "109559950",
   "volume": 1,
-  "vol_sum": 3668,
+  "total_volume": 3668,
   "tick_type": 1,
-  "diff_type": 2,
-  "diff_price": "0.1",
-  "diff_rate": 33,
-  "trade_bid_vol_sum": 1781,
-  "trade_ask_vol_sum": 1322,
-  "trade_bid_cnt": 135,
-  "trade_ask_cnt": 62,
+  "chg_type": 2,
+  "price_chg": "0.1",
+  "pct_chg": 33,
+  "bid_side_total_vol": 1781,
+  "ask_side_total_vol": 1322,
+  "bid_side_total_cnt": 135,
+  "ask_side_total_cnt": 62,
   "closing_oddlot_shares": 0,
   "closing_oddlot_close": null,
   "closing_oddlot_amount": "0",
   "closing_oddlot_bid_price": null,
   "closing_oddlot_ask_price": null,
-  "fixed_trade_volume": 0,
+  "fixed_trade_vol": 0,
   "fixed_trade_amount": "0",
   "suspend": false,
   "simtrade": false,
@@ -374,23 +374,23 @@ data:{
   "high": "30.05",
   "low": "29.9",
   "amount": "1497.5",
-  "amount_sum": "683645.75",
+  "total_amount": "683645.75",
   "volume": 50,
-  "vol_sum": 22816,
+  "total_volume": 22816,
   "tick_type": 2,
-  "diff_type": 2,
-  "diff_price": "0.15",
-  "diff_rate": 50,
-  "trade_bid_vol_sum": 12001,
-  "trade_ask_vol_sum": 10815,
-  "trade_bid_cnt": 38,
-  "trade_ask_cnt": 24,
+  "chg_type": 2,
+  "price_chg": "0.15",
+  "pct_chg": 50,
+  "bid_side_total_vol": 12001,
+  "ask_side_total_vol": 10815,
+  "bid_side_total_cnt": 38,
+  "ask_side_total_cnt": 24,
   "closing_oddlot_shares": 0,
   "closing_oddlot_close": null,
   "closing_oddlot_amount": null,
   "closing_oddlot_bid_price": null,
   "closing_oddlot_ask_price": null,
-  "fixed_trade_volume": 0,
+  "fixed_trade_vol": 0,
   "fixed_trade_amount": null,
   "suspend": false,
   "simtrade": false,
@@ -415,23 +415,23 @@ close (Decimal)                          成交價
 high (Decimal)                           最高價（自開盤）
 low (Decimal)                            最低價（自開盤）
 amount (Decimal)                         單筆成交額 (NTD)
-amount_sum (Decimal)                     總成交額 (NTD)
+total_amount (Decimal)                   總成交額 (NTD)
 volume (int)                             單筆成交量（整股：張；盤中零股：股）
-vol_sum (int)                            總成交量（整股：張；盤中零股：股）
+total_volume (int)                       總成交量（整股：張；盤中零股：股）
 tick_type (int)                          內外盤別{1: 外盤, 2: 內盤, 0: 無法判定}
-diff_type (int)                          漲跌註記{1: 漲停, 2: 漲, 3: 平盤, 4: 跌, 5: 跌停}
-diff_price (Decimal)                     漲跌
-diff_rate (int)                          漲跌幅 (%)
-trade_bid_vol_sum (int)                  買盤成交總量（整股：張；盤中零股：股）
-trade_ask_vol_sum (int)                  賣盤成交總量（整股：張；盤中零股：股）
-trade_bid_cnt (int)                      買盤成交筆數
-trade_ask_cnt (int)                      賣盤成交筆數
+chg_type (int)                           漲跌註記{1: 漲停, 2: 漲, 3: 平盤, 4: 跌, 5: 跌停}
+price_chg (Decimal)                      漲跌
+pct_chg (int)                            漲跌幅 (%)
+bid_side_total_vol (int)                 買盤成交總量（整股：張；盤中零股：股）
+ask_side_total_vol (int)                 賣盤成交總量（整股：張；盤中零股：股）
+bid_side_total_cnt (int)                 買盤成交筆數
+ask_side_total_cnt (int)                 賣盤成交筆數
 closing_oddlot_shares (int)              盤後零股成交股數（股）
 closing_oddlot_close (Decimal)           盤後零股成交價
 closing_oddlot_amount (Decimal)          盤後零股成交額
 closing_oddlot_bid_price (Decimal)       盤後零股最高買價
 closing_oddlot_ask_price (Decimal)       盤後零股最低賣價
-fixed_trade_volume (int)                 定盤成交量（整股：張；盤中零股：股）
+fixed_trade_vol (int)                    定盤成交量（整股：張；盤中零股：股）
 fixed_trade_amount (Decimal)             定盤成交額
 suspend (bool)                           暫停交易
 simtrade (bool)                          試撮
@@ -770,23 +770,23 @@ Subscribed to 2890 quote (Ctrl+C to stop)
   "high": "30",
   "low": "29.7",
   "amount": "178800",
-  "amount_sum": "247076900",
+  "total_amount": "247076900",
   "volume": 0,
-  "vol_sum": 8284,
+  "total_volume": 8284,
   "tick_type": 1,
-  "diff_type": 3,
-  "diff_price": "0",
-  "diff_rate": 0,
-  "trade_bid_vol_sum": 3279,
-  "trade_ask_vol_sum": 4440,
-  "trade_bid_cnt": 625,
-  "trade_ask_cnt": 279,
+  "chg_type": 3,
+  "price_chg": "0",
+  "pct_chg": 0,
+  "bid_side_total_vol": 3279,
+  "ask_side_total_vol": 4440,
+  "bid_side_total_cnt": 625,
+  "ask_side_total_cnt": 279,
   "closing_oddlot_shares": 0,
   "closing_oddlot_close": null,
   "closing_oddlot_amount": "0",
   "closing_oddlot_bid_price": null,
   "closing_oddlot_ask_price": null,
-  "fixed_trade_volume": 0,
+  "fixed_trade_vol": 0,
   "fixed_trade_amount": "0",
   "bid_price": ["29.75", "29.7", "29.65", "29.6", "29.55"],
   "bid_volume": [501, 1235, 360, 673, 218],
@@ -845,23 +845,23 @@ data:{
   "high": "30",
   "low": "29.7",
   "amount": "149000",
-  "amount_sum": "247941050",
+  "total_amount": "247941050",
   "volume": 5,
-  "vol_sum": 8313,
+  "total_volume": 8313,
   "tick_type": 1,
-  "diff_type": 3,
-  "diff_price": "0",
-  "diff_rate": 0,
-  "trade_bid_vol_sum": 3303,
-  "trade_ask_vol_sum": 4445,
-  "trade_bid_cnt": 635,
-  "trade_ask_cnt": 284,
+  "chg_type": 3,
+  "price_chg": "0",
+  "pct_chg": 0,
+  "bid_side_total_vol": 3303,
+  "ask_side_total_vol": 4445,
+  "bid_side_total_cnt": 635,
+  "ask_side_total_cnt": 284,
   "closing_oddlot_shares": 0,
   "closing_oddlot_close": null,
   "closing_oddlot_amount": "0",
   "closing_oddlot_bid_price": null,
   "closing_oddlot_ask_price": null,
-  "fixed_trade_volume": 0,
+  "fixed_trade_vol": 0,
   "fixed_trade_amount": "0",
   "bid_price": ["29.75", "29.7", "29.65", "29.6", "29.55"],
   "bid_volume": [522, 1236, 373, 667, 218],
@@ -892,23 +892,23 @@ close (Decimal)                          成交價
 high (Decimal)                           最高價（自開盤）
 low (Decimal)                            最低價（自開盤）
 amount (Decimal)                         單筆成交額 (NTD)
-amount_sum (Decimal)                     總成交額 (NTD)
+total_amount (Decimal)                   總成交額 (NTD)
 volume (int)                             單筆成交量（張）
-vol_sum (int)                            總成交量（張）
+total_volume (int)                       總成交量（張）
 tick_type (int)                          內外盤別{1: 外盤, 2: 內盤, 0: 無法判定}
-diff_type (int)                          漲跌註記{1: 漲停, 2: 漲, 3: 平盤, 4: 跌, 5: 跌停}
-diff_price (Decimal)                     漲跌
-diff_rate (int)                          漲跌幅 (%)
-trade_bid_vol_sum (int)                  買盤成交總量（張）
-trade_ask_vol_sum (int)                  賣盤成交總量（張）
-trade_bid_cnt (int)                      買盤成交筆數
-trade_ask_cnt (int)                      賣盤成交筆數
+chg_type (int)                           漲跌註記{1: 漲停, 2: 漲, 3: 平盤, 4: 跌, 5: 跌停}
+price_chg (Decimal)                      漲跌
+pct_chg (int)                            漲跌幅 (%)
+bid_side_total_vol (int)                 買盤成交總量（張）
+ask_side_total_vol (int)                 賣盤成交總量（張）
+bid_side_total_cnt (int)                 買盤成交筆數
+ask_side_total_cnt (int)                 賣盤成交筆數
 closing_oddlot_shares (int)              盤後零股成交股數（股）
 closing_oddlot_close (Decimal)           盤後零股成交價
 closing_oddlot_amount (Decimal)          盤後零股成交額
 closing_oddlot_bid_price (Decimal)       盤後零股最高買價
 closing_oddlot_ask_price (Decimal)       盤後零股最低賣價
-fixed_trade_volume (int)                 定盤成交量（張）
+fixed_trade_vol (int)                    定盤成交量（張）
 fixed_trade_amount (Decimal)             定盤成交額
 bid_price (list[Decimal])                五檔委買價
 bid_volume (list[int])                   五檔委買量（張）
@@ -949,23 +949,23 @@ def quote_callback(exchange: Exchange, tick: TickSTKv1):
     print(f"high={tick.high}")
     print(f"low={tick.low}")
     print(f"amount={tick.amount}")
-    print(f"amount_sum={tick.amount_sum}")
+    print(f"total_amount={tick.total_amount}")
     print(f"volume={tick.volume}")
-    print(f"vol_sum={tick.vol_sum}")
+    print(f"total_volume={tick.total_volume}")
     print(f"tick_type={tick.tick_type}")
-    print(f"diff_type={tick.diff_type}")
-    print(f"diff_price={tick.diff_price}")
-    print(f"diff_rate={tick.diff_rate}")
-    print(f"trade_bid_vol_sum={tick.trade_bid_vol_sum}")
-    print(f"trade_ask_vol_sum={tick.trade_ask_vol_sum}")
-    print(f"trade_bid_cnt={tick.trade_bid_cnt}")
-    print(f"trade_ask_cnt={tick.trade_ask_cnt}")
+    print(f"chg_type={tick.chg_type}")
+    print(f"price_chg={tick.price_chg}")
+    print(f"pct_chg={tick.pct_chg}")
+    print(f"bid_side_total_vol={tick.bid_side_total_vol}")
+    print(f"ask_side_total_vol={tick.ask_side_total_vol}")
+    print(f"bid_side_total_cnt={tick.bid_side_total_cnt}")
+    print(f"ask_side_total_cnt={tick.ask_side_total_cnt}")
     print(f"closing_oddlot_shares={tick.closing_oddlot_shares}")
     print(f"closing_oddlot_close={tick.closing_oddlot_close}")
     print(f"closing_oddlot_amount={tick.closing_oddlot_amount}")
     print(f"closing_oddlot_bid_price={tick.closing_oddlot_bid_price}")
     print(f"closing_oddlot_ask_price={tick.closing_oddlot_ask_price}")
-    print(f"fixed_trade_volume={tick.fixed_trade_volume}")
+    print(f"fixed_trade_vol={tick.fixed_trade_vol}")
     print(f"fixed_trade_amount={tick.fixed_trade_amount}")
     print(f"suspend={tick.suspend}")
     print(f"simtrade={tick.simtrade}")
@@ -1010,23 +1010,23 @@ close=29.9
 high=30
 low=29.75
 amount=29900
-amount_sum=110307300
+total_amount=110307300
 volume=1
-vol_sum=3693
+total_volume=3693
 tick_type=1
-diff_type=2
-diff_price=0.1
-diff_rate=33
-trade_bid_vol_sum=1803
-trade_ask_vol_sum=1325
-trade_bid_cnt=144
-trade_ask_cnt=64
+chg_type=2
+price_chg=0.1
+pct_chg=33
+bid_side_total_vol=1803
+ask_side_total_vol=1325
+bid_side_total_cnt=144
+ask_side_total_cnt=64
 closing_oddlot_shares=0
 closing_oddlot_close=None
 closing_oddlot_amount=0
 closing_oddlot_bid_price=None
 closing_oddlot_ask_price=None
-fixed_trade_volume=0
+fixed_trade_vol=0
 fixed_trade_amount=0
 suspend=False
 simtrade=False
@@ -1123,23 +1123,23 @@ def quote_callback(exchange: Exchange, quote: QuoteSTKv1):
     print(f"high={quote.high}")
     print(f"low={quote.low}")
     print(f"amount={quote.amount}")
-    print(f"amount_sum={quote.amount_sum}")
+    print(f"total_amount={quote.total_amount}")
     print(f"volume={quote.volume}")
-    print(f"vol_sum={quote.vol_sum}")
+    print(f"total_volume={quote.total_volume}")
     print(f"tick_type={quote.tick_type}")
-    print(f"diff_type={quote.diff_type}")
-    print(f"diff_price={quote.diff_price}")
-    print(f"diff_rate={quote.diff_rate}")
-    print(f"trade_bid_vol_sum={quote.trade_bid_vol_sum}")
-    print(f"trade_ask_vol_sum={quote.trade_ask_vol_sum}")
-    print(f"trade_bid_cnt={quote.trade_bid_cnt}")
-    print(f"trade_ask_cnt={quote.trade_ask_cnt}")
+    print(f"chg_type={quote.chg_type}")
+    print(f"price_chg={quote.price_chg}")
+    print(f"pct_chg={quote.pct_chg}")
+    print(f"bid_side_total_vol={quote.bid_side_total_vol}")
+    print(f"ask_side_total_vol={quote.ask_side_total_vol}")
+    print(f"bid_side_total_cnt={quote.bid_side_total_cnt}")
+    print(f"ask_side_total_cnt={quote.ask_side_total_cnt}")
     print(f"closing_oddlot_shares={quote.closing_oddlot_shares}")
     print(f"closing_oddlot_close={quote.closing_oddlot_close}")
     print(f"closing_oddlot_amount={quote.closing_oddlot_amount}")
     print(f"closing_oddlot_bid_price={quote.closing_oddlot_bid_price}")
     print(f"closing_oddlot_ask_price={quote.closing_oddlot_ask_price}")
-    print(f"fixed_trade_volume={quote.fixed_trade_volume}")
+    print(f"fixed_trade_vol={quote.fixed_trade_vol}")
     print(f"fixed_trade_amount={quote.fixed_trade_amount}")
     print(f"bid_price={quote.bid_price}")
     print(f"bid_volume={quote.bid_volume}")
@@ -1190,23 +1190,23 @@ close=29.8
 high=30
 low=29.7
 amount=29800
-amount_sum=249103250
+total_amount=249103250
 volume=0
-vol_sum=8352
+total_volume=8352
 tick_type=1
-diff_type=3
-diff_price=0
-diff_rate=0
-trade_bid_vol_sum=3342
-trade_ask_vol_sum=4445
-trade_bid_cnt=653
-trade_ask_cnt=284
+chg_type=3
+price_chg=0
+pct_chg=0
+bid_side_total_vol=3342
+ask_side_total_vol=4445
+bid_side_total_cnt=653
+ask_side_total_cnt=284
 closing_oddlot_shares=0
 closing_oddlot_close=None
 closing_oddlot_amount=0
 closing_oddlot_bid_price=None
 closing_oddlot_ask_price=None
-fixed_trade_volume=0
+fixed_trade_vol=0
 fixed_trade_amount=0
 bid_price=[Decimal('29.75'), Decimal('29.7'), Decimal('29.65'), Decimal('29.6'), Decimal('29.55')]
 bid_volume=[570, 1242, 677, 691, 222]

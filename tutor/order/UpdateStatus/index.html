@@ -2037,7 +2037,7 @@
         <span class="o">*</span><span class="p">,</span>
         <span class="n">trade</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="n">sj</span><span class="o">.</span><span class="n">Trade</span><span class="p">]</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
         <span class="n">timeout</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="nb">int</span><span class="p">]</span> <span class="o">=</span> <span class="mi">30000</span><span class="p">,</span>
-        <span class="n">cb</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="n">Callable</span><span class="p">[[],</span> <span class="kc">None</span><span class="p">]]</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
+        <span class="n">cb</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="n">Callable</span><span class="p">[[</span><span class="n">List</span><span class="p">[</span><span class="n">sj</span><span class="o">.</span><span class="n">Trade</span><span class="p">]],</span> <span class="kc">None</span><span class="p">]]</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
     <span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span>
 </code></pre></div>
 </div>
@@ -2046,7 +2046,7 @@
 <div class="highlight"><pre><span></span><code>account: Stock or futures account; omit to refresh all accounts under your name
 trade:   Specific Trade object to refresh (keyword-only)
 timeout: Timeout in milliseconds
-cb:      Optional callback function
+cb:      Optional callback function; when timeout=0, receives the updated Trade list
 </code></pre></div>
 </div>
 </div>

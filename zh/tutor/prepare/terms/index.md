@@ -55,6 +55,52 @@ curl http://localhost:8080/api/v1/info
 
 ```
 
+### 登入測試
+
+登入
+
+```
+api = sj.Shioaji(simulation=True)  # 模擬模式
+accounts = api.login(
+    api_key="金鑰",     # 請修改此處
+    secret_key="密鑰"   # 請修改此處
+)
+
+# 確認帳戶（驗證已登入）
+print(accounts)
+
+```
+
+```
+# .env（放在執行目錄）應包含：
+SJ_API_KEY=YOUR_API_KEY                # 請修改此處
+SJ_SEC_KEY=YOUR_SECRET_KEY             # 請修改此處
+SJ_PRODUCTION=false                    # 模擬模式
+
+# 啟動 server（自動讀取 .env，完成登入）
+shioaji server start
+
+# 確認帳戶（驗證已登入）
+shioaji auth accounts
+
+```
+
+```
+# .env（放在執行目錄）應包含：
+SJ_API_KEY=YOUR_API_KEY                # 請修改此處
+SJ_SEC_KEY=YOUR_SECRET_KEY             # 請修改此處
+SJ_PRODUCTION=false                    # 模擬模式
+
+# 啟動 server（在 terminal 執行，自動讀取 .env，完成登入）
+shioaji server start
+
+# 確認帳戶（驗證已登入）
+curl http://localhost:8080/api/v1/auth/accounts
+
+```
+
+### 證券下單測試
+
 證券
 
 ```
@@ -181,6 +227,8 @@ Out
 
 ```
 
+### 期貨下單測試
+
 期貨
 
 ```
@@ -303,5 +351,72 @@ Out
     "web_id": ""
   }
 }
+
+```
+
+- 委託單狀態為 `PendingSubmit`（傳送中）或 `Submitted`（已送出）均表示委託成功；若為 `Failed`，請修正委託單內容後重新執行 `place_order`。
+- [商品檔](../../contract/)
+- [期貨委託下單](../../order/FutureOption/)
+
+### 查詢是否通過API測試
+
+Attention
+
+在查詢前，請確認以下狀況均符合
+
+- API下單簽署時間須早於API測試的時間，以利審核通過
+- 在可測試時間進行測試
+- 證券、期貨戶須各別測試
+- 等待API測試審核(約5分鐘)
+
+至簽署中心查看帳號的測試狀態。
+
+[證券 API 簽署中心](https://www.sinotrade.com.tw/newweb/signCenter/S_openAPI/)
+
+[期貨 API 簽署中心](https://www.sinotrade.com.tw/newweb/signCenter/F_openApi/)
+
+說明
+
+若您僅需使用 shioaji，完成 **簽署** 與 **python 測試** 即可，`T4 測試` 不需要完成。
+
+以正式模式登入後查看 `accounts`，確認 `signed` 欄位。
+
+```
+api = sj.Shioaji(simulation=False)  # 正式模式
+accounts = api.login(
+    api_key="金鑰",     # 請修改此處
+    secret_key="密鑰"   # 請修改此處
+)
+
+# 確認帳戶（檢視 signed 狀態）
+print(accounts)
+
+```
+
+```
+# .env（放在執行目錄）應包含：
+SJ_API_KEY=YOUR_API_KEY                # 請修改此處
+SJ_SEC_KEY=YOUR_SECRET_KEY             # 請修改此處
+SJ_PRODUCTION=true                     # 正式模式
+
+# 啟動 server（自動讀取 .env，完成登入）
+shioaji server start
+
+# 確認帳戶（檢視 signed 狀態）
+shioaji auth accounts
+
+```
+
+```
+# .env（放在執行目錄）應包含：
+SJ_API_KEY=YOUR_API_KEY                # 請修改此處
+SJ_SEC_KEY=YOUR_SECRET_KEY             # 請修改此處
+SJ_PRODUCTION=true                     # 正式模式
+
+# 啟動 server（在 terminal 執行，自動讀取 .env，完成登入）
+shioaji server start
+
+# 確認帳戶（檢視 signed 狀態）
+curl http://localhost:8080/api/v1/auth/accounts
 
 ```

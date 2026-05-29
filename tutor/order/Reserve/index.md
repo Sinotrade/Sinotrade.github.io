@@ -19,8 +19,8 @@ Signature:
         price: float,
         account: Optional[sj.Account] = None,
         timeout: Optional[int] = 5000,
-        cb: Optional[Callable[[sj.EarmarkingOrderResp], None]] = None,
-    ) -> sj.EarmarkingOrderResp
+        cb: Optional[Callable[[sj.ReserveEarmarkingResponse], None]] = None,
+    ) -> sj.ReserveEarmarkingResponse
 
 api.earmarking_detail?
 
@@ -28,8 +28,8 @@ Signature:
     api.earmarking_detail(
         account: Optional[sj.Account] = None,
         timeout: Optional[int] = 5000,
-        cb: Optional[Callable[[sj.EarmarkStocksDetail], None]] = None,
-    ) -> sj.EarmarkStocksDetail
+        cb: Optional[Callable[[sj.EarmarkStocksDetailResponse], None]] = None,
+    ) -> sj.EarmarkStocksDetailResponse
 
 ```
 
@@ -113,24 +113,27 @@ resp
 Out
 
 ```
-EarmarkingOrderResp(
-    contract=Contract(
-        security_type='STK',
-        exchange='TSE',
-        code='1217',
-        target_code=''
+ReserveEarmarkingResponse(
+    response=EarmarkingOrderResp(
+        contract=Contract(
+            security_type='STK',
+            exchange='TSE',
+            code='1217',
+            target_code=''
+        ),
+        account=StockAccount(
+            person_id='YOUR_PERSON_ID',
+            broker_id='YOUR_BROKER_ID',
+            account_id='YOUR_ACCOUNT_ID',
+            signed=true,
+            username=''
+        ),
+        share=1000,
+        price=9,
+        status=true,
+        info='OK'
     ),
-    account=StockAccount(
-        person_id='YOUR_PERSON_ID',
-        broker_id='YOUR_BROKER_ID',
-        account_id='YOUR_ACCOUNT_ID',
-        signed=true,
-        username=''
-    ),
-    share=1000,
-    price=9,
-    status=true,
-    info='OK'
+    error=None
 )
 
 ```
@@ -176,30 +179,33 @@ resp
 Out
 
 ```
-EarmarkStocksDetail(
-    stocks=[
-        EarmarkStockDetail(
-            contract=Contract(
-                security_type='STK',
-                exchange='TSE',
-                code='1217',
-                target_code=''
-            ),
-            share=1000,
-            price=9,
-            amount=9020,
-            order_datetime='2026-05-20T15:16:28+08:00',
-            status=true,
-            info='Success'
+EarmarkStocksDetailResponse(
+    response=EarmarkStocksDetail(
+        stocks=[
+            EarmarkStockDetail(
+                contract=Contract(
+                    security_type='STK',
+                    exchange='TSE',
+                    code='1217',
+                    target_code=''
+                ),
+                share=1000,
+                price=9,
+                amount=9020,
+                order_datetime='2026-05-20T15:16:28+08:00',
+                status=true,
+                info='Success'
+            )
+        ],
+        account=StockAccount(
+            person_id='YOUR_PERSON_ID',
+            broker_id='YOUR_BROKER_ID',
+            account_id='YOUR_ACCOUNT_ID',
+            signed=true,
+            username=''
         )
-    ],
-    account=StockAccount(
-        person_id='YOUR_PERSON_ID',
-        broker_id='YOUR_BROKER_ID',
-        account_id='YOUR_ACCOUNT_ID',
-        signed=true,
-        username=''
-    )
+    ),
+    error=None
 )
 
 ```
@@ -238,8 +244,8 @@ Signature:
         share: int,
         account: Optional[sj.Account] = None,
         timeout: Optional[int] = 5000,
-        cb: Optional[Callable[[sj.ReserveOrderResp], None]] = None,
-    ) -> sj.ReserveOrderResp
+        cb: Optional[Callable[[sj.ReserveStockResponse], None]] = None,
+    ) -> sj.ReserveStockResponse
 
 api.stock_reserve_summary?
 
@@ -247,8 +253,8 @@ Signature:
     api.stock_reserve_summary(
         account: Optional[sj.Account] = None,
         timeout: Optional[int] = 5000,
-        cb: Optional[Callable[[sj.ReserveStocksSummary], None]] = None,
-    ) -> sj.ReserveStocksSummary
+        cb: Optional[Callable[[sj.ReserveStocksSummaryResponse], None]] = None,
+    ) -> sj.ReserveStocksSummaryResponse
 
 api.stock_reserve_detail?
 
@@ -256,8 +262,8 @@ Signature:
     api.stock_reserve_detail(
         account: Optional[sj.Account] = None,
         timeout: Optional[int] = 5000,
-        cb: Optional[Callable[[sj.ReserveStocksDetail], None]] = None,
-    ) -> sj.ReserveStocksDetail
+        cb: Optional[Callable[[sj.ReserveStocksDetailResponse], None]] = None,
+    ) -> sj.ReserveStocksDetailResponse
 
 ```
 
@@ -352,23 +358,26 @@ resp
 Out
 
 ```
-ReserveOrderResp(
-    contract=Contract(
-        security_type='STK',
-        exchange='TSE',
-        code='1217',
-        target_code=''
+ReserveStockResponse(
+    response=ReserveOrderResp(
+        contract=Contract(
+            security_type='STK',
+            exchange='TSE',
+            code='1217',
+            target_code=''
+        ),
+        account=StockAccount(
+            person_id='YOUR_PERSON_ID',
+            broker_id='YOUR_BROKER_ID',
+            account_id='YOUR_ACCOUNT_ID',
+            signed=true,
+            username=''
+        ),
+        share=1000,
+        status=true,
+        info=''
     ),
-    account=StockAccount(
-        person_id='YOUR_PERSON_ID',
-        broker_id='YOUR_BROKER_ID',
-        account_id='YOUR_ACCOUNT_ID',
-        signed=true,
-        username=''
-    ),
-    share=1000,
-    status=true,
-    info=''
+    error=None
 )
 
 ```
@@ -413,26 +422,29 @@ resp
 Out
 
 ```
-ReserveStocksSummary(
-    stocks=[
-        ReserveStockSummary(
-            contract=Contract(
-                security_type='STK',
-                exchange='TSE',
-                code='2890',
-                target_code=''
-            ),
-            available_share=5000,
-            reserved_share=0
+ReserveStocksSummaryResponse(
+    response=ReserveStocksSummary(
+        stocks=[
+            ReserveStockSummary(
+                contract=Contract(
+                    security_type='STK',
+                    exchange='TSE',
+                    code='2890',
+                    target_code=''
+                ),
+                available_share=5000,
+                reserved_share=0
+            )
+        ],
+        account=StockAccount(
+            person_id='YOUR_PERSON_ID',
+            broker_id='YOUR_BROKER_ID',
+            account_id='YOUR_ACCOUNT_ID',
+            signed=true,
+            username=''
         )
-    ],
-    account=StockAccount(
-        person_id='YOUR_PERSON_ID',
-        broker_id='YOUR_BROKER_ID',
-        account_id='YOUR_ACCOUNT_ID',
-        signed=true,
-        username=''
-    )
+    ),
+    error=None
 )
 
 ```
@@ -471,28 +483,31 @@ resp
 Out
 
 ```
-ReserveStocksDetail(
-    stocks=[
-        ReserveStockDetail(
-            contract=Contract(
-                security_type='STK',
-                exchange='TSE',
-                code='6153',
-                target_code=''
-            ),
-            share=1000,
-            order_datetime='2026-05-20T15:16:28+08:00',
-            status=true,
-            info='Completed'
+ReserveStocksDetailResponse(
+    response=ReserveStocksDetail(
+        stocks=[
+            ReserveStockDetail(
+                contract=Contract(
+                    security_type='STK',
+                    exchange='TSE',
+                    code='6153',
+                    target_code=''
+                ),
+                share=1000,
+                order_datetime='2026-05-20T15:16:28+08:00',
+                status=true,
+                info='Completed'
+            )
+        ],
+        account=StockAccount(
+            person_id='YOUR_PERSON_ID',
+            broker_id='YOUR_BROKER_ID',
+            account_id='YOUR_ACCOUNT_ID',
+            signed=true,
+            username=''
         )
-    ],
-    account=StockAccount(
-        person_id='YOUR_PERSON_ID',
-        broker_id='YOUR_BROKER_ID',
-        account_id='YOUR_ACCOUNT_ID',
-        signed=true,
-        username=''
-    )
+    ),
+    error=None
 )
 
 ```
