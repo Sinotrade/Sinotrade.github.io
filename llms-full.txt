@@ -12750,7 +12750,7 @@ futures_testing = "sj_trading.testing_flow:testing_futures_ordering"
 
 使用Shioaji必須擁有永豐金帳戶。若你還沒有擁有永豐金帳戶，請依據下列步驟開戶:
 
-1. 至[開戶](https://www.sinotrade.com.tw/openact?utm_campaign=OP_inchannel&utm_source=newweb&utm_medium=button_top&strProd=0037&strWeb=0035)頁面
+1. 至[開戶](https://www.sinotrade.com.tw/openact?utm_campaign=OP_inchannel&utm_source=newweb&utm_medium=button_top&strProd=0254&strWeb=0683)頁面
 1. 若你沒有永豐銀行帳戶，請先開銀行帳戶當你的交割戶
 1. 請選取**我要開DAWHO+大戶投**，為開銀行戶以及證券戶
 1. 完成銀行及證券開戶
@@ -12778,7 +12778,7 @@ futures_testing = "sj_trading.testing_flow:testing_futures_ordering"
 - 登入測試 `login`
 - 下單測試 `place_order`
 
-Attention
+提醒
 
 可測試時間:
 
@@ -12795,6 +12795,10 @@ Attention
 - API下單簽署時間須早於API測試的時間，以利審核通過
 - 證券、期貨戶須各別測試
 - 證券/期貨下單測試，需間隔1秒以上，以利系統留存測試紀錄
+
+注意
+
+進行下單測試前，請確認所使用的 API key 已開通「交易」權限。
 
 ### 查詢使用版本
 

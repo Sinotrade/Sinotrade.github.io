@@ -19,7 +19,7 @@ To ensure you fully understand how to use Shioaji, you need to complete the test
 - Login test `login`
 - Order test `place_order`
 
-Attention
+Reminder
 
 Service Hour:
 
@@ -36,6 +36,10 @@ Others:
 - The API document signing must be earlier than the API test time for review to pass
 - Stock and Futures accounts must be tested separately
 - The interval between stock / futures order tests must be at least 1 second for the system to record
+
+Note
+
+Before running an order test, make sure the API key you use has the "Trading" permission enabled.
 
 ### Version Check
 
