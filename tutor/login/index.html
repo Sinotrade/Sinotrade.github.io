@@ -1652,6 +1652,29 @@
   
   
   
+    <li class="md-nav__item">
+      <a href="../shioaji_apps/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Shioaji Apps
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
     
     
     
@@ -1661,10 +1684,10 @@
       
         
         
-        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_5_9" >
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_5_10" >
         
           
-          <label class="md-nav__link" for="__nav_5_9" id="__nav_5_9_label" tabindex="0">
+          <label class="md-nav__link" for="__nav_5_10" id="__nav_5_10_label" tabindex="0">
             
   
   
@@ -1677,8 +1700,8 @@
             <span class="md-nav__icon md-icon"></span>
           </label>
         
-        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_5_9_label" aria-expanded="false">
-          <label class="md-nav__title" for="__nav_5_9">
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_5_10_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_5_10">
             <span class="md-nav__icon md-icon"></span>
             Advanced Guide
           </label>
@@ -2213,19 +2236,49 @@ SJ_PRODUCTION<span class="w">   </span>whether<span class="w"> </span>to<span cl
 <p>The second option is to call <code>subscribe_trade</code> / <code>unsubscribe_trade</code> on a specific account to subscribe or unsubscribe.</p>
 <div class="admonition info">
 <p class="admonition-title">subscribe trade</p>
-<div class="highlight"><pre><span></span><code><span class="hll"><span class="n">api</span><span class="o">.</span><span class="n">subscribe_trade</span><span class="p">(</span><span class="n">account</span><span class="p">)</span>
-</span></code></pre></div>
+<div class="highlight"><pre><span></span><code><span class="n">api</span><span class="o">.</span><span class="n">subscribe_trade</span><span class="p">(</span><span class="n">account</span><span class="p">)</span>
+</code></pre></div>
 </div>
 <div class="admonition info">
 <p class="admonition-title">unsubscribe trade</p>
-<div class="highlight"><pre><span></span><code><span class="hll"><span class="n">api</span><span class="o">.</span><span class="n">unsubscribe_trade</span><span class="p">(</span><span class="n">account</span><span class="p">)</span>
-</span></code></pre></div>
+<div class="highlight"><pre><span></span><code><span class="n">api</span><span class="o">.</span><span class="n">unsubscribe_trade</span><span class="p">(</span><span class="n">account</span><span class="p">)</span>
+</code></pre></div>
 </div>
 </div>
 <div class="tabbed-block">
-<div class="admonition warning">
-<p class="admonition-title">Use HTTP</p>
-<p>Shioaji 1.5.x CLI doesn't provide a <code>subscribe-trade</code> subcommand. Use HTTP instead.</p>
+<p>The server doesn't auto-subscribe on startup; subscribe per account.</p>
+<div class="admonition info">
+<p class="admonition-title">subscribe trade</p>
+<div class="highlight"><pre><span></span><code>shioaji<span class="w"> </span>auth<span class="w"> </span>subscribe-trade<span class="w"> </span>--account-type<span class="w"> </span>F
+</code></pre></div>
+</div>
+<div class="admonition info">
+<p class="admonition-title">unsubscribe trade</p>
+<div class="highlight"><pre><span></span><code>shioaji<span class="w"> </span>auth<span class="w"> </span>unsubscribe-trade<span class="w"> </span>--account-type<span class="w"> </span>F
+</code></pre></div>
+</div>
+<div class="admonition done">
+<p class="admonition-title">Parameters</p>
+<div class="highlight"><pre><span></span><code>--account-type: optional, S (stock / default) or F (futures and options)
+--account:      optional, BROKER_ID-ACCOUNT_ID format; defaults to the default account of that type
+</code></pre></div>
+</div>
+<div class="admonition done">
+<p class="admonition-title">Out</p>
+<div class="highlight"><pre><span></span><code>account:
+  account_type: F
+  person_id: YOUR_PERSON_ID
+  broker_id: F002000
+  account_id: &quot;YOUR_ACCOUNT_ID&quot;
+  signed: true
+  username: &quot;&quot;
+subscribe_trade: true
+ts: 20260612021106
+</code></pre></div>
+</div>
+<div class="admonition attention">
+<p class="admonition-title">Note</p>
+<p><code>subscribe-trade</code> only registers the subscription with the server and exits immediately. To actually receive order/deal events, use <code>shioaji order events</code> (SSE stream, Ctrl+C to stop); see <a href="../callback/orderdeal_event/">Order Event</a>.</p>
 </div>
 </div>
 <div class="tabbed-block">

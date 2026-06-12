@@ -177,7 +177,22 @@ api.get_ca_expiretime("YOUR_PERSON_ID")
 
 `shioaji server start` automatically reads `SJ_CA_PATH` and `SJ_CA_PASSWD` from `.env` to activate the CA; no extra call is needed.
 
-Check CA expiry time:
+Check CA expiry time with the CLI:
+
+```
+shioaji auth ca-expiretime --person-id YOUR_PERSON_ID
+
+```
+
+Response:
+
+```
+person_id: YOUR_PERSON_ID
+expire_time: 2026-09-13T15:59:59
+
+```
+
+Or via HTTP:
 
 ```
 curl "http://localhost:8080/api/v1/auth/ca_expiretime?person_id=YOUR_PERSON_ID"

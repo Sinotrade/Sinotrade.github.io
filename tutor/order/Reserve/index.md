@@ -51,6 +51,46 @@ earmarking_detail
 
 ```
 
+reserve earmarking / earmarking-detail
+
+```
+$ shioaji reserve earmarking --help
+
+Place an earmarking request (預收款項)
+
+Usage: shioaji reserve earmarking [OPTIONS] --code <CODE> --share <SHARE> --price <PRICE>
+
+Options:
+      --code <CODE>        Stock code (e.g. 2890)
+      --share <SHARE>      Number of shares
+      --price <PRICE>      Price per share
+      --account <ACCOUNT>  Account in BROKER_ID-ACCOUNT_ID format (e.g. 9A00-1234567)
+
+$ shioaji reserve earmarking-detail --help
+
+Get earmarking detail (預收款項明細)
+
+Usage: shioaji reserve earmarking-detail [OPTIONS]
+
+Options:
+      --account <ACCOUNT>  Account in BROKER_ID-ACCOUNT_ID format (e.g. 9A00-1234567)
+
+```
+
+Parameters
+
+```
+reserve earmarking
+    --code:    security code
+    --share:   earmark share count
+    --price:   earmark price
+    --account: optional, BROKER_ID-ACCOUNT_ID format; defaults to the default stock account
+
+reserve earmarking-detail
+    --account: optional, BROKER_ID-ACCOUNT_ID format; defaults to the default stock account
+
+```
+
 reserve_earmarking / earmarking_detail
 
 ```
@@ -141,6 +181,35 @@ ReserveEarmarkingResponse(
 In
 
 ```
+shioaji reserve earmarking --code 1217 --share 1000 --price 9 --account YOUR_BROKER_ID-YOUR_ACCOUNT_ID
+
+```
+
+Out
+
+```
+contract:
+  security_type: STK
+  exchange: TSE
+  code: "1217"
+  target_code: ""
+account:
+  account_type: S
+  person_id: YOUR_PERSON_ID
+  broker_id: YOUR_BROKER_ID
+  account_id: "YOUR_ACCOUNT_ID"
+  signed: true
+  username: ""
+share: 1000
+price: 9
+status: true
+info: OK
+
+```
+
+In
+
+```
 curl -X POST http://localhost:8080/api/v1/order/reserve_earmarking \
   -H 'Content-Type: application/json' \
   -d '{
@@ -207,6 +276,38 @@ EarmarkStocksDetailResponse(
     ),
     error=None
 )
+
+```
+
+In
+
+```
+shioaji reserve earmarking-detail --account YOUR_BROKER_ID-YOUR_ACCOUNT_ID
+
+```
+
+Out
+
+```
+stocks[1]:
+  - contract:
+      security_type: STK
+      exchange: TSE
+      code: "1217"
+      target_code: ""
+    share: 1000
+    price: 9
+    amount: 9020
+    order_datetime: 2026-05-20T15:16:28+08:00
+    status: true
+    info: 成功
+account:
+  account_type: S
+  person_id: YOUR_PERSON_ID
+  broker_id: YOUR_BROKER_ID
+  account_id: "YOUR_ACCOUNT_ID"
+  signed: true
+  username: ""
 
 ```
 
@@ -286,6 +387,56 @@ stock_reserve_detail
     account:  Stock account
     timeout:  Timeout in milliseconds
     cb:       Optional callback function
+
+```
+
+reserve stock / summary / detail
+
+```
+$ shioaji reserve stock --help
+
+Place a stock reserve request (預收股票)
+
+Usage: shioaji reserve stock [OPTIONS] --code <CODE> --share <SHARE>
+
+Options:
+      --code <CODE>        Stock code (e.g. 2890)
+      --share <SHARE>      Number of shares to reserve
+      --account <ACCOUNT>  Account in BROKER_ID-ACCOUNT_ID format (e.g. 9A00-1234567)
+
+$ shioaji reserve summary --help
+
+Get stock reserve summary (預收券款摘要)
+
+Usage: shioaji reserve summary [OPTIONS]
+
+Options:
+      --account <ACCOUNT>  Account in BROKER_ID-ACCOUNT_ID format (e.g. 9A00-1234567)
+
+$ shioaji reserve detail --help
+
+Get stock reserve detail (預收券款明細)
+
+Usage: shioaji reserve detail [OPTIONS]
+
+Options:
+      --account <ACCOUNT>  Account in BROKER_ID-ACCOUNT_ID format (e.g. 9A00-1234567)
+
+```
+
+Parameters
+
+```
+reserve stock
+    --code:    security code
+    --share:   reserve share count
+    --account: optional, BROKER_ID-ACCOUNT_ID format; defaults to the default stock account
+
+reserve summary
+    --account: optional, BROKER_ID-ACCOUNT_ID format; defaults to the default stock account
+
+reserve detail
+    --account: optional, BROKER_ID-ACCOUNT_ID format; defaults to the default stock account
 
 ```
 
@@ -385,6 +536,34 @@ ReserveStockResponse(
 In
 
 ```
+shioaji reserve stock --code 1217 --share 1000 --account YOUR_BROKER_ID-YOUR_ACCOUNT_ID
+
+```
+
+Out
+
+```
+contract:
+  security_type: STK
+  exchange: TSE
+  code: "1217"
+  target_code: ""
+account:
+  account_type: S
+  person_id: YOUR_PERSON_ID
+  broker_id: YOUR_BROKER_ID
+  account_id: "YOUR_ACCOUNT_ID"
+  signed: true
+  username: ""
+share: 1000
+status: true
+info: ""
+
+```
+
+In
+
+```
 curl -X POST http://localhost:8080/api/v1/order/reserve_stock \
   -H 'Content-Type: application/json' \
   -d '{
@@ -452,6 +631,34 @@ ReserveStocksSummaryResponse(
 In
 
 ```
+shioaji reserve summary --account YOUR_BROKER_ID-YOUR_ACCOUNT_ID
+
+```
+
+Out
+
+```
+stocks[1]:
+  - contract:
+      security_type: STK
+      exchange: TSE
+      code: "2890"
+      target_code: ""
+    available_share: 5000
+    reserved_share: 0
+account:
+  account_type: S
+  person_id: YOUR_PERSON_ID
+  broker_id: YOUR_BROKER_ID
+  account_id: "YOUR_ACCOUNT_ID"
+  signed: true
+  username: ""
+
+```
+
+In
+
+```
 curl -X POST http://localhost:8080/api/v1/order/stock_reserve_summary \
   -H 'Content-Type: application/json' \
   -d '{
@@ -509,6 +716,36 @@ ReserveStocksDetailResponse(
     ),
     error=None
 )
+
+```
+
+In
+
+```
+shioaji reserve detail --account YOUR_BROKER_ID-YOUR_ACCOUNT_ID
+
+```
+
+Out
+
+```
+stocks[1]:
+  - contract:
+      security_type: STK
+      exchange: TSE
+      code: "6153"
+      target_code: ""
+    share: 1000
+    order_datetime: 2026-05-20T15:16:28+08:00
+    status: true
+    info: 已完成
+account:
+  account_type: S
+  person_id: YOUR_PERSON_ID
+  broker_id: YOUR_BROKER_ID
+  account_id: "YOUR_ACCOUNT_ID"
+  signed: true
+  username: ""
 
 ```
 

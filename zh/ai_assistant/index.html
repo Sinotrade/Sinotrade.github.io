@@ -409,18 +409,27 @@
 </li>
         
           <li class="md-nav__item">
-  <a href="#openai-codex-cli" class="md-nav__link">
+  <a href="#openai-codex" class="md-nav__link">
     <span class="md-ellipsis">
-      OpenAI Codex CLI
+      OpenAI Codex
     </span>
   </a>
   
 </li>
         
           <li class="md-nav__item">
-  <a href="#cursorwindsurfcopilotcodex" class="md-nav__link">
+  <a href="#cursor" class="md-nav__link">
     <span class="md-ellipsis">
-      多平台安裝器（Cursor、Windsurf、Copilot、Codex 等）
+      Cursor
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#windsurfcopilot" class="md-nav__link">
+    <span class="md-ellipsis">
+      多平台安裝器（Windsurf、Copilot 等）
     </span>
   </a>
   
@@ -1678,6 +1687,29 @@
   
   
   
+    <li class="md-nav__item">
+      <a href="../tutor/shioaji_apps/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    自訂應用
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
     
     
     
@@ -1687,10 +1719,10 @@
       
         
         
-        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_5_9" >
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_5_10" >
         
           
-          <label class="md-nav__link" for="__nav_5_9" id="__nav_5_9_label" tabindex="0">
+          <label class="md-nav__link" for="__nav_5_10" id="__nav_5_10_label" tabindex="0">
             
   
   
@@ -1703,8 +1735,8 @@
             <span class="md-nav__icon md-icon"></span>
           </label>
         
-        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_5_9_label" aria-expanded="false">
-          <label class="md-nav__title" for="__nav_5_9">
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_5_10_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_5_10">
             <span class="md-nav__icon md-icon"></span>
             進階指南
           </label>
@@ -2030,18 +2062,27 @@
 </li>
         
           <li class="md-nav__item">
-  <a href="#openai-codex-cli" class="md-nav__link">
+  <a href="#openai-codex" class="md-nav__link">
     <span class="md-ellipsis">
-      OpenAI Codex CLI
+      OpenAI Codex
     </span>
   </a>
   
 </li>
         
           <li class="md-nav__item">
-  <a href="#cursorwindsurfcopilotcodex" class="md-nav__link">
+  <a href="#cursor" class="md-nav__link">
     <span class="md-ellipsis">
-      多平台安裝器（Cursor、Windsurf、Copilot、Codex 等）
+      Cursor
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#windsurfcopilot" class="md-nav__link">
+    <span class="md-ellipsis">
+      多平台安裝器（Windsurf、Copilot 等）
     </span>
   </a>
   
@@ -2127,12 +2168,14 @@
 <div class="highlight"><pre><span></span><code>claude<span class="w"> </span>plugin<span class="w"> </span>marketplace<span class="w"> </span>add<span class="w"> </span>Sinotrade/Shioaji
 claude<span class="w"> </span>plugin<span class="w"> </span>install<span class="w"> </span>shioaji
 </code></pre></div></p>
-<h4 id="openai-codex-cli">OpenAI Codex CLI<a class="headerlink" href="#openai-codex-cli" title="Permanent link">&para;</a></h4>
-<p>在 Codex 工作階段中，呼叫 skill-installer：
-<div class="highlight"><pre><span></span><code>$skill-installer install the Shioaji skill from GitHub repo Sinotrade/Shioaji at path skills/shioaji
-</code></pre></div></p>
-<p>如果安裝後 skill 沒有自動出現，請重新啟動 Codex。</p>
-<h4 id="cursorwindsurfcopilotcodex">多平台安裝器（Cursor、Windsurf、Copilot、Codex 等）<a class="headerlink" href="#cursorwindsurfcopilotcodex" title="Permanent link">&para;</a></h4>
+<h4 id="openai-codex">OpenAI Codex<a class="headerlink" href="#openai-codex" title="Permanent link">&para;</a></h4>
+<p>在 Codex 的 Marketplace 中搜尋 <strong>Shioaji</strong> 即可安裝，或使用指令：</p>
+<div class="highlight"><pre><span></span><code>codex<span class="w"> </span>plugin<span class="w"> </span>marketplace<span class="w"> </span>add<span class="w"> </span>Sinotrade/Shioaji
+codex<span class="w"> </span>plugin<span class="w"> </span>add<span class="w"> </span>shioaji@sinotrade
+</code></pre></div>
+<h4 id="cursor">Cursor<a class="headerlink" href="#cursor" title="Permanent link">&para;</a></h4>
+<p>在 Cursor 的 Marketplace 中搜尋 <strong>Shioaji</strong>，點選 <strong>Get</strong> 即可安裝。</p>
+<h4 id="windsurfcopilot">多平台安裝器（Windsurf、Copilot 等）<a class="headerlink" href="#windsurfcopilot" title="Permanent link">&para;</a></h4>
 <div class="highlight"><pre><span></span><code>npx<span class="w"> </span>skills<span class="w"> </span>add<span class="w"> </span>Sinotrade/Shioaji<span class="w">                </span><span class="c1"># skills.sh - 18+ agents</span>
 npx<span class="w"> </span>skillkit<span class="w"> </span>install<span class="w"> </span>Sinotrade/Shioaji<span class="w">          </span><span class="c1"># skillkit - 32+ agents</span>
 npx<span class="w"> </span>openskills<span class="w"> </span>install<span class="w"> </span>Sinotrade/Shioaji<span class="w">        </span><span class="c1"># openskills - universal</span>

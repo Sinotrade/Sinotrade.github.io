@@ -171,9 +171,48 @@ api.unsubscribe_trade(account)
 
 ```
 
-Use HTTP
+The server doesn't auto-subscribe on startup; subscribe per account.
 
-Shioaji 1.5.x CLI doesn't provide a `subscribe-trade` subcommand. Use HTTP instead.
+subscribe trade
+
+```
+shioaji auth subscribe-trade --account-type F
+
+```
+
+unsubscribe trade
+
+```
+shioaji auth unsubscribe-trade --account-type F
+
+```
+
+Parameters
+
+```
+--account-type: optional, S (stock / default) or F (futures and options)
+--account:      optional, BROKER_ID-ACCOUNT_ID format; defaults to the default account of that type
+
+```
+
+Out
+
+```
+account:
+  account_type: F
+  person_id: YOUR_PERSON_ID
+  broker_id: F002000
+  account_id: "YOUR_ACCOUNT_ID"
+  signed: true
+  username: ""
+subscribe_trade: true
+ts: 20260612021106
+
+```
+
+Note
+
+`subscribe-trade` only registers the subscription with the server and exits immediately. To actually receive order/deal events, use `shioaji order events` (SSE stream, Ctrl+C to stop); see [Order Event](../callback/orderdeal_event/).
 
 The server doesn't auto-subscribe on startup; subscribe per account.
 

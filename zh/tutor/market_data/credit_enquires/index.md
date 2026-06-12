@@ -21,7 +21,29 @@ cb:        選填，callback 函式，timeout=0 時使用
 
 ```
 
-CLI 目前不支援資券餘額查詢，請改用 Python / HTTP。
+CreditEnquires
+
+```
+$ shioaji data credit-enquire --help
+
+Get credit enquire (margin/short remaining) for contracts
+
+Usage: shioaji data credit-enquire [OPTIONS] --codes <CODES>
+
+Options:
+      --codes <CODES>                  Comma-separated security codes (e.g. 2330,2317,2454)
+      --security-type <SECURITY_TYPE>  Security type: STK, FUT, OPT, IND [default: STK]
+      --exchange <EXCHANGE>            Exchange: TSE, OTC, TAIFEX [default: TSE]
+
+```
+
+Parameters
+
+```
+--codes:    逗號分隔的商品代碼（例如 2330,2890）
+--exchange: 選填，TSE 或 OTC，預設 TSE
+
+```
 
 CreditEnquires
 
@@ -99,6 +121,22 @@ df
 Out
 
 | update_time | system | stock_id | margin_unit | short_unit | margin_loan_ratio | short_margin_ratio | | --- | --- | --- | --- | --- | --- | --- | | 2026-05-18 10:46:56.019666 | ALL | 2330 | 776 | 0 | 60 | 90 | | 2026-05-18 10:46:56.026375 | ALL | 2890 | 0 | 0 | 0 | 0 |
+
+In
+
+```
+shioaji data credit-enquire --codes 2330,2890
+
+```
+
+Out
+
+```
+[2]{update_time,system,stock_id,margin_unit,short_unit,margin_loan_ratio,short_margin_ratio}:
+  2026-06-12 01:12:16.329373,ALL,"2330",774,0,60,90
+  2026-06-12 01:12:16.336417,ALL,"2890",0,0,0,0
+
+```
 
 In
 

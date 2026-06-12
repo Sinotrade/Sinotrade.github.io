@@ -177,7 +177,22 @@ api.get_ca_expiretime("YOUR_PERSON_ID")
 
 `shioaji server start` 會自動讀取 `.env` 中的 `SJ_CA_PATH` 與 `SJ_CA_PASSWD` 完成啟用，無需另外呼叫。
 
-確認憑證效期：
+使用 CLI 確認憑證效期：
+
+```
+shioaji auth ca-expiretime --person-id YOUR_PERSON_ID
+
+```
+
+回應：
+
+```
+person_id: YOUR_PERSON_ID
+expire_time: 2026-09-13T15:59:59
+
+```
+
+或透過 HTTP：
 
 ```
 curl "http://localhost:8080/api/v1/auth/ca_expiretime?person_id=YOUR_PERSON_ID"

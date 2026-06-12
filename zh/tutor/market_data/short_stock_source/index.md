@@ -21,7 +21,29 @@ cb:        選填，callback 函式，timeout=0 時使用
 
 ```
 
-CLI 目前不支援或有券源查詢，請改用 Python / HTTP。
+ShortStockSources
+
+```
+$ shioaji data short-stock-sources --help
+
+Get short stock sources (borrowable shares) for contracts
+
+Usage: shioaji data short-stock-sources [OPTIONS] --codes <CODES>
+
+Options:
+      --codes <CODES>                  Comma-separated security codes (e.g. 2330,2317,2454)
+      --security-type <SECURITY_TYPE>  Security type: STK, FUT, OPT, IND [default: STK]
+      --exchange <EXCHANGE>            Exchange: TSE, OTC, TAIFEX [default: TSE]
+
+```
+
+Parameters
+
+```
+--codes:    逗號分隔的商品代碼（例如 2330,2317）
+--exchange: 選填，TSE 或 OTC，預設 TSE
+
+```
 
 ShortStockSources
 
@@ -97,6 +119,22 @@ df
 Out
 
 | code | short_stock_source | ts | | --- | --- | --- | | 2330 | 0 | 2026-05-18 10:12:54 | | 2317 | 1225 | 2026-05-18 10:12:54 |
+
+In
+
+```
+shioaji data short-stock-sources --codes 2330,2317
+
+```
+
+Out
+
+```
+[2]{code,short_stock_source,datetime}:
+  "2330",0,2026-06-12T01:27:03
+  "2317",1086,2026-06-12T01:27:03
+
+```
 
 In
 

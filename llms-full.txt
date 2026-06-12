@@ -56,6 +56,104 @@ SJ_PRODUCTION=false
 
 shioaji server 啟動時會自動讀取此檔，完成登入與憑證載入。
 
+## 檢查伺服器狀態
+
+伺服器啟動後，可隨時檢查 daemon 與串流的健康狀態。
+
+In
+
+```
+shioaji server status --streams
+
+```
+
+Out
+
+```
+running: true
+pid: 38082
+port: 8080
+socket_path: "/Users/your_name/.shioaji/server-8080.sock"
+healthy: true
+simulation: false
+stream_receivers: "Market data receivers are available for tick, bidask, quote, and order event data"
+stream_status:
+  active_connections: 0
+  timestamp: 2026-06-12T05:48:05.561238+00:00
+  status: healthy
+
+```
+
+加上 `--streams` 會額外查詢串流診斷資訊（`stream_receivers` 與 `stream_status`），可用來確認推播接收狀況。
+
+屬性
+
+```
+running (bool):           daemon 是否在執行中
+pid (int):                daemon 的 process ID
+port (int):               HTTP 服務埠
+socket_path (str):        daemon 控制 socket 路徑
+healthy (bool):           daemon 是否健康
+simulation (bool):        是否為模擬模式（對應 .env 的 SJ_PRODUCTION）
+stream_receivers (str):   串流接收器說明
+active_connections (int): 目前掛在 SSE 串流上的 client 連線數（行情與委託回報串流皆計入）；
+                          訂閱了卻收不到推播時，先檢查這裡是否為 0
+
+```
+
+**版本與模式**
+
+In
+
+```
+curl http://localhost:8080/api/v1/info
+
+```
+
+Out
+
+```
+{"name":"Shioaji API Server","version":"1.5.3","description":"SinoPac Shioaji Cross-Platform Trading API HTTP Adaptor","protocols":["HTTP"],"simulation":false}
+
+```
+
+屬性
+
+```
+name (str):        服務名稱
+version (str):     伺服器版本
+description (str): 服務說明
+protocols (list):  支援的協定
+simulation (bool): 是否為模擬模式（對應 .env 的 SJ_PRODUCTION）
+
+```
+
+**串流連線狀態**
+
+In
+
+```
+curl http://localhost:8080/api/v1/stream/status
+
+```
+
+Out
+
+```
+{"active_connections":0,"timestamp":"2026-06-12T05:53:13.517649+00:00","status":"healthy"}
+
+```
+
+屬性
+
+```
+active_connections (int): 目前掛在 SSE 串流上的 client 連線數（行情與委託回報串流皆計入）；
+                          訂閱了卻收不到推播時，先檢查這裡是否為 0
+timestamp (str):          查詢當下時間
+status (str):             串流服務狀態
+
+```
+
 如果已經開好戶可以跳過下一章直接前往 [金鑰與憑證申請](../../tutor/prepare/token/) 取得 API Key 與憑證。
 
 # 環境設定
@@ -850,9 +948,48 @@ api.unsubscribe_trade(account)
 
 ```
 
-請使用 HTTP
+server 啟動時不自動訂閱，需逐帳號動態訂閱。
 
-Shioaji 1.5.x CLI 未提供 `subscribe-trade` subcommand，請使用 HTTP。
+subscribe trade
+
+```
+shioaji auth subscribe-trade --account-type F
+
+```
+
+unsubscribe trade
+
+```
+shioaji auth unsubscribe-trade --account-type F
+
+```
+
+Parameters
+
+```
+--account-type: 選填，S（證券，預設）或 F（期貨/選擇權）
+--account:      選填，BROKER_ID-ACCOUNT_ID 格式；未填時使用該類型的預設帳號
+
+```
+
+Out
+
+```
+account:
+  account_type: F
+  person_id: YOUR_PERSON_ID
+  broker_id: F002000
+  account_id: "YOUR_ACCOUNT_ID"
+  signed: true
+  username: ""
+subscribe_trade: true
+ts: 20260612021106
+
+```
+
+注意
+
+`subscribe-trade` 只負責向 server 登記訂閱，執行完即結束。實際接收委託/成交回報請使用 `shioaji order events`（SSE 串流，Ctrl+C 停止），詳見[委託回報](../callback/orderdeal_event/)。
 
 server 啟動時不自動訂閱，需逐帳號動態訂閱。
 
@@ -1012,6 +1149,244 @@ True
 shioaji server stop
 
 ```
+
+# 自訂應用
+
+自訂應用（Custom Apps）讓你用任何前端框架（React、Vue、Svelte⋯）打造自己的交易介面——行情看板、下單面板或內部工作台——透過本機 `shioaji server` 的 HTTP API 與 SSE 串流取得資料與交易能力。開發完成後 build 上傳，server 會直接在 `/apps/<name>/` 提供服務，不需要另外架設網頁伺服器。
+
+**開發階段**——前端跑在自己的 dev server，API 請求由 proxy 轉給 shioaji server：
+
+```
+瀏覽器 ──▶ 前端 dev server (:5173) ── proxy /api ──▶ shioaji server (:8080)
+
+```
+
+**部署階段**——build 上傳後，前端頁面和 API 都由 shioaji server 提供：
+
+```
+瀏覽器 ──▶ shioaji server (:8080)
+            ├─ /apps/my-app/    你的前端頁面
+            ├─ /api/v1          行情、下單、帳務 API
+            └─ /api/v1/stream   SSE 即時串流
+
+```
+
+## 建立專案
+
+使用 [`@sinotrade/create-shioaji-app`](https://www.npmjs.com/package/@sinotrade/create-shioaji-app) 模板建立新專案（需要 Node.js 18+）：
+
+```
+npm create @sinotrade/shioaji-app@latest
+
+```
+
+依提示輸入專案名稱即可建立。也可以直接指定名稱、接受預設選項：
+
+```
+npm create @sinotrade/shioaji-app@latest my-app -- -y
+
+```
+
+### 模板內容
+
+建立出來的專案可以直接運作：dev server 已將 `/api` proxy 到 `http://localhost:8080`，並內建三個串接範例——server 健康狀態徽章、商品檔查詢、歷史 tick 查詢。
+
+```
+my-app/
+├── public/            靜態資源
+├── src/
+│   ├── components/    UI 元件（健康徽章、商品卡片、tick 表格、主題切換）
+│   ├── hooks/         React hooks
+│   ├── lib/           API 呼叫、型別定義、工具函式
+│   ├── App.tsx        頁面組合——從這裡開始改
+│   ├── main.tsx       React 進入點
+│   └── theme.css.ts   主題 tokens（深淺色）
+├── index.html
+├── vite.config.ts     dev proxy 與 base path 設定
+└── package.json
+
+```
+
+技術棧為 React 19 + TypeScript + Vite 8，樣式使用 Vanilla Extract（零執行期 CSS-in-JS），含深淺色主題切換。
+
+## 開發
+
+先啟動 shioaji server（開發與測試建議使用[模擬模式](../simulation/)）：
+
+```
+shioaji server start
+
+```
+
+再啟動前端 dev server（模板已將 `/api` proxy 到 `http://localhost:8080`，不需額外設定）：
+
+```
+pnpm dev
+
+```
+
+開發時常用的入口：
+
+| 入口 | 說明 | | --- | --- | | `http://127.0.0.1:8080/docs` | OpenAPI 文件，所有 HTTP 端點的請求與回應格式 | | `http://127.0.0.1:8080/api/v1` | HTTP API（行情、下單、帳務） | | `http://127.0.0.1:8080/api/v1/stream/*` | SSE 即時串流（行情、委託回報） |
+
+各功能的請求格式與範例請見對應章節：[行情訂閱](../market_data/streaming/stocks/)、[下單](../order/Stock/)、[帳務](../accounting/account_balance/)。
+
+## 部署到 shioaji server
+
+App 開發完成後，分三步部署。
+
+### Step 1：以 `/apps/<name>/` 為 base path 打包
+
+上傳後 App 會掛在 `/apps/<name>/` 底下，build 時需要把資源路徑指過去（模板的 `vite.config.ts` 已支援 `VITE_BASE` 環境變數）：
+
+In
+
+```
+VITE_BASE=/apps/my-app/ pnpm build
+
+```
+
+Out
+
+```
+vite v8.0.16 building client environment for production...
+✓ 40 modules transformed.
+dist/index.html                   0.52 kB │ gzip:  0.30 kB
+dist/assets/index-D5gZ3quM.css    4.57 kB │ gzip:  1.14 kB
+dist/assets/index-CSAkhLhy.js   197.57 kB │ gzip: 62.29 kB
+✓ built in 504ms
+
+```
+
+### Step 2：上傳
+
+In
+
+```
+shioaji apps upload --name my-app --dir dist
+
+```
+
+Out
+
+```
+name: "my-app"
+files[4]: "my-app/index.html","my-app/shioaji-logo.png","my-app/assets/index-CSAkhLhy.js","my-app/assets/index-D5gZ3quM.css"
+
+```
+
+`--dir` 會遞迴上傳整個目錄並保留子目錄結構（如上方的 `assets/`）。也可以改用 `--file` 上傳個別檔案（可重複指定，與 `--dir` 互斥）。
+
+In
+
+```
+curl -X POST http://127.0.0.1:8080/api/v1/apps/my-app \
+  -F "files=@dist/index.html" \
+  -F "files=@dist/assets/index-CSAkhLhy.js;filename=assets/index-CSAkhLhy.js" \
+  -F "files=@dist/assets/index-D5gZ3quM.css;filename=assets/index-D5gZ3quM.css"
+
+```
+
+Out
+
+```
+{"name":"my-app","files":["my-app/index.html","my-app/assets/index-CSAkhLhy.js","my-app/assets/index-D5gZ3quM.css"]}
+
+```
+
+1. 開啟 `http://127.0.0.1:8080/`
+1. 找到 **Custom Apps** 卡片
+1. 以 **Folder** 模式選擇 build 出來的 `dist` 資料夾（或切換 **File** 模式選個別檔案）
+1. 輸入 App 名稱後按 **Upload**
+
+限制與行為
+
+- 單一 App 上傳總大小上限 **50MB**（multipart 上傳）
+- 上傳檔案的相對路徑會被保留，App 以 `index.html` 為進入點
+- `/apps/` 為公開路徑，瀏覽器存取不需認證
+
+### Step 3：開啟
+
+```
+http://127.0.0.1:8080/apps/my-app/
+
+```
+
+## 管理已上傳的 Apps
+
+In - 列出
+
+```
+shioaji apps list
+
+```
+
+Out
+
+```
+apps[1]: "my-app"
+
+```
+
+In - 刪除
+
+```
+shioaji apps delete --name my-app
+
+```
+
+Out
+
+```
+deleted: "my-app"
+
+```
+
+In - 列出
+
+```
+curl http://127.0.0.1:8080/api/v1/apps
+
+```
+
+Out
+
+```
+{"apps":["my-app"]}
+
+```
+
+In - 刪除
+
+```
+curl -X DELETE http://127.0.0.1:8080/api/v1/apps/my-app
+
+```
+
+Out
+
+```
+{"deleted":"my-app"}
+
+```
+
+## 安全提醒
+
+正式環境會送出真實委託
+
+前端 App 透過 HTTP API 可以直接下單。開發與測試請使用[模擬模式](../simulation/)，並在 UI 中明確顯示目前環境（可由 `GET /api/v1/info` 的 `simulation` 欄位判斷）。
+
+- 不要把 API Key、Secret Key 或憑證放進前端程式碼或 repo——登入由 shioaji server 的 `.env` 處理，前端不需要碰金鑰
+- 下單操作要有確認步驟或鎖定機制，避免誤觸
+- SSE 斷線重連後，記得重新訂閱需要的行情
+
+## 完整範例：Shioaji Pro
+
+想看完整實作，可以參考我們開源的交易終端 [shioaji-pro-app](https://github.com/Sinotrade/shioaji-pro-app)，它的行情、下單、回報全部使用本頁介紹的 HTTP API 與 SSE：
+
+- 即時 K 線：`data/kbars` 取歷史，`stream/data` SSE 即時更新
+- 委託回報：`auth/subscribe_trade` 訂閱後接 `stream/data/order_event`
+- 點圖下單／拖曳改價：`order/place_order`、`order/update_price`
 
 使用者能先在模擬環境熟悉我們所提供的服務，可避免在正式環境操作失誤造成財物的損失。以下說明如何進入模擬環境。
 
@@ -2117,6 +2492,31 @@ cb:        選填，callback 函式，timeout=0 時使用
 list_position_detail
 
 ```
+$ shioaji portfolio position-detail --help
+
+Get position detail by detail id
+
+Usage: shioaji portfolio position-detail [OPTIONS] --detail-id <DETAIL_ID>
+
+Options:
+      --account-type <ACCOUNT_TYPE>  Account type: S (stock) or F (futures) [default: S]
+      --account <ACCOUNT>            Account in BROKER_ID-ACCOUNT_ID format (e.g. 9A00-1234567)
+      --detail-id <DETAIL_ID>        Detail ID (the `id` field from `portfolio positions`)
+
+```
+
+Parameters
+
+```
+--account-type: 選填，S（證券，預設）或 F（期貨選擇權）
+--account:      選填，BROKER_ID-ACCOUNT_ID 格式；未填時使用該類型的預設帳號
+--detail-id:    部位 ID（從 portfolio positions 結果取得）
+
+```
+
+list_position_detail
+
+```
 POST /api/v1/portfolio/position_detail
 Content-Type: application/json
 
@@ -2193,6 +2593,21 @@ Out
         collateral=0,
     ),
 ]
+
+```
+
+In
+
+```
+shioaji portfolio position-detail --account-type S --detail-id 0
+
+```
+
+Out
+
+```
+[1]{date,code,quantity,price,last_price,dseq,direction,pnl,currency,fee,cond,ex_dividends,interest,margintrading_amt,collateral}:
+  "2026-05-18","2890",1,30000,31000,Y1QDH,Buy,1000,TWD,100,Cash,0,0,0,0
 
 ```
 
@@ -2280,6 +2695,21 @@ Out
 In
 
 ```
+shioaji portfolio position-detail --account-type F --detail-id 0
+
+```
+
+Out
+
+```
+[1]{date,code,quantity,price,last_price,dseq,direction,pnl,currency,fee,entry_quantity}:
+  "2026-05-21","TXO20260620200C",3,131,126,tA0n8,Buy,-750,TWD,120,3
+
+```
+
+In
+
+```
 curl -X POST http://localhost:8080/api/v1/portfolio/position_detail \
   -H 'Content-Type: application/json' \
   -d '{"account_type": "F", "detail_id": 0, "broker_id": "YOUR_BROKER_ID", "account_id": "YOUR_ACCOUNT_ID"}'
@@ -2337,6 +2767,35 @@ end_date:   查詢結束日期，格式 YYYY-MM-DD
 unit:       Unit.Common（整股／預設）或 Unit.Share（零股）
 timeout:    逾時毫秒
 cb:         callback 函式，timeout=0 時使用
+
+```
+
+list_profit_loss
+
+```
+$ shioaji portfolio profit-loss --help
+
+Get realized profit and loss
+
+Usage: shioaji portfolio profit-loss [OPTIONS]
+
+Options:
+      --account-type <ACCOUNT_TYPE>  Account type: S (stock) or F (futures) [default: S]
+      --account <ACCOUNT>            Account in BROKER_ID-ACCOUNT_ID format (e.g. 9A00-1234567)
+      --begin-date <BEGIN_DATE>      Begin date (YYYY-MM-DD, default: today) [default: 2026-06-12]
+      --end-date <END_DATE>          End date (YYYY-MM-DD, default: today) [default: 2026-06-12]
+      --unit <UNIT>                  Unit: common (default) or share [default: common] [possible values: common, share]
+
+```
+
+Parameters
+
+```
+--account-type: 選填，S（證券，預設）或 F（期貨選擇權）
+--account:      選填，BROKER_ID-ACCOUNT_ID 格式；未填時使用該類型的預設帳號
+--begin-date:   查詢起始日期，格式 YYYY-MM-DD，預設今日
+--end-date:     查詢結束日期，格式 YYYY-MM-DD，預設今日
+--unit:         選填，common（整股，預設）或 share（零股）
 
 ```
 
@@ -2447,6 +2906,22 @@ Out
 In
 
 ```
+shioaji portfolio profit-loss --account-type S --begin-date 2026-05-01 --end-date 2026-05-21
+
+```
+
+Out
+
+```
+[2]{id,code,quantity,pnl,date,dseq,price,pr_ratio,cond,seqno}:
+  0,"2890",1,1000,"2026-05-05",Y0TR2,31,0.0333,Cash,"113382"
+  1,"2330",1,-20000,"2026-05-06",Y20K2,1980,-0.01,Cash,"184354"
+
+```
+
+In
+
+```
 curl -X POST http://localhost:8080/api/v1/portfolio/profit_loss \
   -H 'Content-Type: application/json' \
   -d '{"account_type": "S", "begin_date": "2026-05-01", "end_date": "2026-05-21", "broker_id": "YOUR_BROKER_ID", "account_id": "YOUR_ACCOUNT_ID"}'
@@ -2533,6 +3008,21 @@ Out
 In
 
 ```
+shioaji portfolio profit-loss --account-type F --begin-date 2026-05-01 --end-date 2026-05-21
+
+```
+
+Out
+
+```
+[1]{id,code,quantity,pnl,date,entry_price,cover_price,tax,fee,direction}:
+  0,"TXO20260620200C",3,-750,"2026-05-10",131,126,5,120,Buy
+
+```
+
+In
+
+```
 curl -X POST http://localhost:8080/api/v1/portfolio/profit_loss \
   -H 'Content-Type: application/json' \
   -d '{"account_type": "F", "begin_date": "2026-05-01", "end_date": "2026-05-21", "broker_id": "YOUR_BROKER_ID", "account_id": "YOUR_ACCOUNT_ID"}'
@@ -2587,6 +3077,33 @@ detail_id: 部位 ID（從 list_profit_loss 結果取得）
 unit:      Unit.Common（整股／預設）或 Unit.Share（零股）
 timeout:   逾時毫秒
 cb:        callback 函式，timeout=0 時使用
+
+```
+
+list_profit_loss_detail
+
+```
+$ shioaji portfolio profit-loss-detail --help
+
+Get realized profit and loss detail by detail id
+
+Usage: shioaji portfolio profit-loss-detail [OPTIONS] --detail-id <DETAIL_ID>
+
+Options:
+      --account-type <ACCOUNT_TYPE>  Account type: S (stock) or F (futures) [default: S]
+      --account <ACCOUNT>            Account in BROKER_ID-ACCOUNT_ID format (e.g. 9A00-1234567)
+      --detail-id <DETAIL_ID>        Detail ID (the `id` field from `portfolio profit-loss`)
+      --unit <UNIT>                  Unit: common (default) or share [default: common] [possible values: common, share]
+
+```
+
+Parameters
+
+```
+--account-type: 選填，S（證券，預設）或 F（期貨選擇權）
+--account:      選填，BROKER_ID-ACCOUNT_ID 格式；未填時使用該類型的預設帳號
+--detail-id:    部位 ID（從 portfolio profit-loss 結果取得）
+--unit:         選填，common（整股，預設）或 share（零股）
 
 ```
 
@@ -2675,6 +3192,21 @@ Out
         cond=<StockOrderCond.Cash: 'Cash'>,
     ),
 ]
+
+```
+
+In
+
+```
+shioaji portfolio profit-loss-detail --account-type S --detail-id 0
+
+```
+
+Out
+
+```
+[1]{date,code,quantity,dseq,fee,tax,currency,price,cost,rep_margintrading_amt,rep_collateral,rep_margin,shortselling_fee,ex_dividend_amt,interest,trade_type,cond}:
+  "2026-04-23","2890",1,Y0O7E,119,0,TWD,30,30119,0,0,0,0,0,0,Common,Cash
 
 ```
 
@@ -2770,6 +3302,21 @@ Out
 In
 
 ```
+shioaji portfolio profit-loss-detail --account-type F --detail-id 0
+
+```
+
+Out
+
+```
+[1]{date,code,quantity,dseq,fee,tax,currency,direction,entry_date,entry_quantity,entry_seqno,entry_price,cover_price,pnl}:
+  "2026-05-10","TXO20260620200C",3,tA0n8,120,5,TWD,Buy,"2026-05-08",3,"113382",131,126,-750
+
+```
+
+In
+
+```
 curl -X POST http://localhost:8080/api/v1/portfolio/profit_loss_detail \
   -H 'Content-Type: application/json' \
   -d '{"account_type": "F", "detail_id": 0, "broker_id": "YOUR_BROKER_ID", "account_id": "YOUR_ACCOUNT_ID"}'
@@ -2828,6 +3375,33 @@ begin_date: 查詢起始日期，格式 YYYY-MM-DD
 end_date:   查詢結束日期，格式 YYYY-MM-DD
 timeout:    逾時毫秒
 cb:         callback 函式，timeout=0 時使用
+
+```
+
+list_profit_loss_summary
+
+```
+$ shioaji portfolio profit-loss-summary --help
+
+Get profit and loss summary
+
+Usage: shioaji portfolio profit-loss-summary [OPTIONS]
+
+Options:
+      --account-type <ACCOUNT_TYPE>  Account type: S (stock) or F (futures) [default: S]
+      --account <ACCOUNT>            Account in BROKER_ID-ACCOUNT_ID format (e.g. 9A00-1234567)
+      --begin-date <BEGIN_DATE>      Begin date (YYYY-MM-DD, default: today) [default: 2026-06-12]
+      --end-date <END_DATE>          End date (YYYY-MM-DD, default: today) [default: 2026-06-12]
+
+```
+
+Parameters
+
+```
+--account-type: 選填，S（證券，預設）或 F（期貨選擇權）
+--account:      選填，BROKER_ID-ACCOUNT_ID 格式；未填時使用該類型的預設帳號
+--begin-date:   查詢起始日期，格式 YYYY-MM-DD，預設今日
+--end-date:     查詢結束日期，格式 YYYY-MM-DD，預設今日
 
 ```
 
@@ -2969,6 +3543,30 @@ Out
 In
 
 ```
+shioaji portfolio profit-loss-summary --account-type S --begin-date 2026-05-01 --end-date 2026-05-21
+
+```
+
+Out
+
+```
+profitloss_sum[2]{code,quantity,entry_price,cover_price,pnl,currency,entry_cost,cover_cost,buy_cost,sell_cost,pr_ratio,cond}:
+  "2890",1000,30,31,1000,NTD,30000,31000,30119,30881,3.33,Cash
+  "2330",1000,2000,1980,-20000,NTD,2000000,1980000,2000119,1979881,-1,Cash
+total:
+  entry_amount: 0
+  cover_amount: 0
+  quantity: 2000
+  buy_cost: 2030238
+  sell_cost: 2010762
+  pnl: -19000
+  pr_ratio: -0.94
+
+```
+
+In
+
+```
 curl -X POST http://localhost:8080/api/v1/portfolio/profitloss_sum \
   -H 'Content-Type: application/json' \
   -d '{"account_type": "S", "begin_date": "2026-05-01", "end_date": "2026-05-21", "broker_id": "YOUR_BROKER_ID", "account_id": "YOUR_ACCOUNT_ID"}'
@@ -3069,6 +3667,29 @@ ProfitLossSummaryTotal(total=ProfitLossTotal(pnl=-750, pr_ratio=-3.79))
 In
 
 ```
+shioaji portfolio profit-loss-summary --account-type F --begin-date 2026-05-01 --end-date 2026-05-21
+
+```
+
+Out
+
+```
+profitloss_sum[1]{code,quantity,entry_price,cover_price,pnl,currency,direction,tax,fee}:
+  "TXO20260620200C",3,131,126,-750,NTD,Buy,5,120
+total:
+  entry_amount: 19650
+  cover_amount: 18900
+  quantity: 3
+  buy_cost: 19775
+  sell_cost: 18775
+  pnl: -750
+  pr_ratio: -3.79
+
+```
+
+In
+
+```
 curl -X POST http://localhost:8080/api/v1/portfolio/profitloss_sum \
   -H 'Content-Type: application/json' \
   -d '{"account_type": "F", "begin_date": "2026-05-01", "end_date": "2026-05-21", "broker_id": "YOUR_BROKER_ID", "account_id": "YOUR_ACCOUNT_ID"}'
@@ -3127,6 +3748,27 @@ Parameters
 account: 選填，證券帳戶（省略則使用 api.stock_account）
 timeout: 逾時毫秒
 cb:      選填，callback 函式，timeout=0 時使用
+
+```
+
+settlements
+
+```
+$ shioaji portfolio settlements --help
+
+Get settlement list (date/amount/T, stock account)
+
+Usage: shioaji portfolio settlements [OPTIONS]
+
+Options:
+      --account <ACCOUNT>  Account in BROKER_ID-ACCOUNT_ID format (e.g. 9A00-1234567)
+
+```
+
+Parameters
+
+```
+--account: 選填，BROKER_ID-ACCOUNT_ID 格式；未填時使用預設證券帳號
 
 ```
 
@@ -3214,6 +3856,32 @@ api.settlements(account=api.stock_account)
 In
 
 ```
+shioaji portfolio settlements
+
+```
+
+Out
+
+```
+[3]{date,amount,T}:
+  "2026-05-21",100000,0
+  "2026-05-22",0,1
+  "2026-05-25",0,2
+
+```
+
+**指定帳戶**
+
+In
+
+```
+shioaji portfolio settlements --account YOUR_BROKER_ID-YOUR_ACCOUNT_ID
+
+```
+
+In
+
+```
 curl -X POST http://localhost:8080/api/v1/portfolio/settlements \
   -H 'Content-Type: application/json' \
   -d '{}'
@@ -3268,6 +3936,27 @@ Parameters
 account: 選填，證券帳戶（省略則使用 api.stock_account）
 timeout: 逾時毫秒
 cb:      選填，callback 函式，timeout=0 時使用
+
+```
+
+TradingLimits
+
+```
+$ shioaji portfolio trading-limits --help
+
+Get trading limits (stock account)
+
+Usage: shioaji portfolio trading-limits [OPTIONS]
+
+Options:
+      --account <ACCOUNT>  Account in BROKER_ID-ACCOUNT_ID format (e.g. 9A00-1234567)
+
+```
+
+Parameters
+
+```
+--account: 選填，BROKER_ID-ACCOUNT_ID 格式；未填時使用預設證券帳號
 
 ```
 
@@ -3336,6 +4025,28 @@ TradingLimits(
     short_used=0,
     short_available=0
 )
+
+```
+
+In
+
+```
+shioaji portfolio trading-limits --account YOUR_BROKER_ID-YOUR_ACCOUNT_ID
+
+```
+
+Out
+
+```
+trading_limit: 1000000
+trading_used: 0
+trading_available: 1000000
+margin_limit: 0
+margin_used: 0
+margin_available: 0
+short_limit: 0
+short_used: 0
+short_available: 0
 
 ```
 
@@ -4605,7 +5316,29 @@ cb:        選填，callback 函式，timeout=0 時使用
 
 ```
 
-CLI 目前不支援資券餘額查詢，請改用 Python / HTTP。
+CreditEnquires
+
+```
+$ shioaji data credit-enquire --help
+
+Get credit enquire (margin/short remaining) for contracts
+
+Usage: shioaji data credit-enquire [OPTIONS] --codes <CODES>
+
+Options:
+      --codes <CODES>                  Comma-separated security codes (e.g. 2330,2317,2454)
+      --security-type <SECURITY_TYPE>  Security type: STK, FUT, OPT, IND [default: STK]
+      --exchange <EXCHANGE>            Exchange: TSE, OTC, TAIFEX [default: TSE]
+
+```
+
+Parameters
+
+```
+--codes:    逗號分隔的商品代碼（例如 2330,2890）
+--exchange: 選填，TSE 或 OTC，預設 TSE
+
+```
 
 CreditEnquires
 
@@ -4687,6 +5420,22 @@ Out
 In
 
 ```
+shioaji data credit-enquire --codes 2330,2890
+
+```
+
+Out
+
+```
+[2]{update_time,system,stock_id,margin_unit,short_unit,margin_loan_ratio,short_margin_ratio}:
+  2026-06-12 01:12:16.329373,ALL,"2330",774,0,60,90
+  2026-06-12 01:12:16.336417,ALL,"2890",0,0,0,0
+
+```
+
+In
+
+```
 curl -X POST http://localhost:8080/api/v1/data/credit_enquire \
   -H 'Content-Type: application/json' \
   -d '{
@@ -4727,6 +5476,34 @@ Parameters
 ```
 timeout: 逾時毫秒
 cb:      callback 函式，timeout=0 時使用
+
+```
+
+punish
+
+```
+$ shioaji data regulatory --help
+
+Get regulatory disposition/attention stock data
+
+Usage: shioaji data regulatory [OPTIONS]
+
+Options:
+      --type <REGULATORY_TYPE>
+          Regulatory data type: punish (處置股) or notice (注意股)
+
+          Possible values:
+          - punish: Disposition stocks (處置股)
+          - notice: Attention stocks (注意股)
+
+          [default: punish]
+
+```
+
+Parameters
+
+```
+--type: 選填，punish（處置股，預設）或 notice（注意股）
 
 ```
 
@@ -4799,6 +5576,23 @@ Out
 In
 
 ```
+shioaji data regulatory --type punish
+
+```
+
+Out
+
+```
+[94]{code,start_date,end_date,updated_at,interval,unit_limit,total_limit,description,announced_date}:
+  "050503","2026-06-02","2026-06-15",2026-06-01T18:18:33,5分鐘,10,30,"...","2026-06-01"
+  "058462","2026-06-03","2026-06-16",2026-06-02T18:18:37,20分鐘,null,null,"...","2026-06-02"
+  ...
+
+```
+
+In
+
+```
 curl http://localhost:8080/api/v1/data/regulatory_punish
 
 ```
@@ -4842,6 +5636,20 @@ Parameters
 ```
 timeout: 逾時毫秒
 cb:      callback 函式，timeout=0 時使用
+
+```
+
+notice
+
+```
+shioaji data regulatory --type notice
+
+```
+
+Parameters
+
+```
+--type: 選填，punish（處置股，預設）或 notice（注意股）
 
 ```
 
@@ -4902,6 +5710,23 @@ df.head()
 Out
 
 | code | updated_at | close | reason | announced_date | | --- | --- | --- | --- | --- | | 6775 | 2026-05-21T17:18:15 | 51.16 | ... | 2026-05-21 | | 6990 | 2026-05-21T17:18:15 | 153.29 | ... | 2026-05-21 |
+
+In
+
+```
+shioaji data regulatory --type notice
+
+```
+
+Out
+
+```
+[68]{code,updated_at,close,reason,announced_date}:
+  "051359",2026-06-11T18:18:40,8.85,最近六個營業日累積收盤價漲幅達39.68%﹝第一款﹞。,"2026-06-11"
+  "058191",2026-06-11T18:18:41,10.9,最近六個營業日累積收盤價漲幅達32.69%﹝第一款﹞。,"2026-06-11"
+  ...
+
+```
 
 In
 
@@ -5871,7 +6696,29 @@ cb:        選填，callback 函式，timeout=0 時使用
 
 ```
 
-CLI 目前不支援或有券源查詢，請改用 Python / HTTP。
+ShortStockSources
+
+```
+$ shioaji data short-stock-sources --help
+
+Get short stock sources (borrowable shares) for contracts
+
+Usage: shioaji data short-stock-sources [OPTIONS] --codes <CODES>
+
+Options:
+      --codes <CODES>                  Comma-separated security codes (e.g. 2330,2317,2454)
+      --security-type <SECURITY_TYPE>  Security type: STK, FUT, OPT, IND [default: STK]
+      --exchange <EXCHANGE>            Exchange: TSE, OTC, TAIFEX [default: TSE]
+
+```
+
+Parameters
+
+```
+--codes:    逗號分隔的商品代碼（例如 2330,2317）
+--exchange: 選填，TSE 或 OTC，預設 TSE
+
+```
 
 ShortStockSources
 
@@ -5947,6 +6794,22 @@ df
 Out
 
 | code | short_stock_source | ts | | --- | --- | --- | | 2330 | 0 | 2026-05-18 10:12:54 | | 2317 | 1225 | 2026-05-18 10:12:54 |
+
+In
+
+```
+shioaji data short-stock-sources --codes 2330,2317
+
+```
+
+Out
+
+```
+[2]{code,short_stock_source,datetime}:
+  "2330",0,2026-06-12T01:27:03
+  "2317",1086,2026-06-12T01:27:03
+
+```
 
 In
 
@@ -10175,6 +11038,46 @@ earmarking_detail
 
 ```
 
+reserve earmarking / earmarking-detail
+
+```
+$ shioaji reserve earmarking --help
+
+Place an earmarking request (預收款項)
+
+Usage: shioaji reserve earmarking [OPTIONS] --code <CODE> --share <SHARE> --price <PRICE>
+
+Options:
+      --code <CODE>        Stock code (e.g. 2890)
+      --share <SHARE>      Number of shares
+      --price <PRICE>      Price per share
+      --account <ACCOUNT>  Account in BROKER_ID-ACCOUNT_ID format (e.g. 9A00-1234567)
+
+$ shioaji reserve earmarking-detail --help
+
+Get earmarking detail (預收款項明細)
+
+Usage: shioaji reserve earmarking-detail [OPTIONS]
+
+Options:
+      --account <ACCOUNT>  Account in BROKER_ID-ACCOUNT_ID format (e.g. 9A00-1234567)
+
+```
+
+Parameters
+
+```
+reserve earmarking
+    --code:    商品代碼
+    --share:   預收股數
+    --price:   預收價格
+    --account: 選填，BROKER_ID-ACCOUNT_ID 格式；未填時使用預設證券帳號
+
+reserve earmarking-detail
+    --account: 選填，BROKER_ID-ACCOUNT_ID 格式；未填時使用預設證券帳號
+
+```
+
 reserve_earmarking / earmarking_detail
 
 ```
@@ -10265,6 +11168,35 @@ ReserveEarmarkingResponse(
 In
 
 ```
+shioaji reserve earmarking --code 1217 --share 1000 --price 9 --account YOUR_BROKER_ID-YOUR_ACCOUNT_ID
+
+```
+
+Out
+
+```
+contract:
+  security_type: STK
+  exchange: TSE
+  code: "1217"
+  target_code: ""
+account:
+  account_type: S
+  person_id: YOUR_PERSON_ID
+  broker_id: YOUR_BROKER_ID
+  account_id: "YOUR_ACCOUNT_ID"
+  signed: true
+  username: ""
+share: 1000
+price: 9
+status: true
+info: OK
+
+```
+
+In
+
+```
 curl -X POST http://localhost:8080/api/v1/order/reserve_earmarking \
   -H 'Content-Type: application/json' \
   -d '{
@@ -10331,6 +11263,38 @@ EarmarkStocksDetailResponse(
     ),
     error=None
 )
+
+```
+
+In
+
+```
+shioaji reserve earmarking-detail --account YOUR_BROKER_ID-YOUR_ACCOUNT_ID
+
+```
+
+Out
+
+```
+stocks[1]:
+  - contract:
+      security_type: STK
+      exchange: TSE
+      code: "1217"
+      target_code: ""
+    share: 1000
+    price: 9
+    amount: 9020
+    order_datetime: 2026-05-20T15:16:28+08:00
+    status: true
+    info: 成功
+account:
+  account_type: S
+  person_id: YOUR_PERSON_ID
+  broker_id: YOUR_BROKER_ID
+  account_id: "YOUR_ACCOUNT_ID"
+  signed: true
+  username: ""
 
 ```
 
@@ -10410,6 +11374,56 @@ stock_reserve_detail
     account:  證券帳號
     timeout:  逾時毫秒
     cb:       選填，callback 函式
+
+```
+
+reserve stock / summary / detail
+
+```
+$ shioaji reserve stock --help
+
+Place a stock reserve request (預收股票)
+
+Usage: shioaji reserve stock [OPTIONS] --code <CODE> --share <SHARE>
+
+Options:
+      --code <CODE>        Stock code (e.g. 2890)
+      --share <SHARE>      Number of shares to reserve
+      --account <ACCOUNT>  Account in BROKER_ID-ACCOUNT_ID format (e.g. 9A00-1234567)
+
+$ shioaji reserve summary --help
+
+Get stock reserve summary (預收券款摘要)
+
+Usage: shioaji reserve summary [OPTIONS]
+
+Options:
+      --account <ACCOUNT>  Account in BROKER_ID-ACCOUNT_ID format (e.g. 9A00-1234567)
+
+$ shioaji reserve detail --help
+
+Get stock reserve detail (預收券款明細)
+
+Usage: shioaji reserve detail [OPTIONS]
+
+Options:
+      --account <ACCOUNT>  Account in BROKER_ID-ACCOUNT_ID format (e.g. 9A00-1234567)
+
+```
+
+Parameters
+
+```
+reserve stock
+    --code:    商品代碼
+    --share:   預收股數
+    --account: 選填，BROKER_ID-ACCOUNT_ID 格式；未填時使用預設證券帳號
+
+reserve summary
+    --account: 選填，BROKER_ID-ACCOUNT_ID 格式；未填時使用預設證券帳號
+
+reserve detail
+    --account: 選填，BROKER_ID-ACCOUNT_ID 格式；未填時使用預設證券帳號
 
 ```
 
@@ -10509,6 +11523,34 @@ ReserveStockResponse(
 In
 
 ```
+shioaji reserve stock --code 1217 --share 1000 --account YOUR_BROKER_ID-YOUR_ACCOUNT_ID
+
+```
+
+Out
+
+```
+contract:
+  security_type: STK
+  exchange: TSE
+  code: "1217"
+  target_code: ""
+account:
+  account_type: S
+  person_id: YOUR_PERSON_ID
+  broker_id: YOUR_BROKER_ID
+  account_id: "YOUR_ACCOUNT_ID"
+  signed: true
+  username: ""
+share: 1000
+status: true
+info: ""
+
+```
+
+In
+
+```
 curl -X POST http://localhost:8080/api/v1/order/reserve_stock \
   -H 'Content-Type: application/json' \
   -d '{
@@ -10576,6 +11618,34 @@ ReserveStocksSummaryResponse(
 In
 
 ```
+shioaji reserve summary --account YOUR_BROKER_ID-YOUR_ACCOUNT_ID
+
+```
+
+Out
+
+```
+stocks[1]:
+  - contract:
+      security_type: STK
+      exchange: TSE
+      code: "2890"
+      target_code: ""
+    available_share: 5000
+    reserved_share: 0
+account:
+  account_type: S
+  person_id: YOUR_PERSON_ID
+  broker_id: YOUR_BROKER_ID
+  account_id: "YOUR_ACCOUNT_ID"
+  signed: true
+  username: ""
+
+```
+
+In
+
+```
 curl -X POST http://localhost:8080/api/v1/order/stock_reserve_summary \
   -H 'Content-Type: application/json' \
   -d '{
@@ -10633,6 +11703,36 @@ ReserveStocksDetailResponse(
     ),
     error=None
 )
+
+```
+
+In
+
+```
+shioaji reserve detail --account YOUR_BROKER_ID-YOUR_ACCOUNT_ID
+
+```
+
+Out
+
+```
+stocks[1]:
+  - contract:
+      security_type: STK
+      exchange: TSE
+      code: "6153"
+      target_code: ""
+    share: 1000
+    order_datetime: 2026-05-20T15:16:28+08:00
+    status: true
+    info: 已完成
+account:
+  account_type: S
+  person_id: YOUR_PERSON_ID
+  broker_id: YOUR_BROKER_ID
+  account_id: "YOUR_ACCOUNT_ID"
+  signed: true
+  username: ""
 
 ```
 
@@ -13363,7 +14463,22 @@ api.get_ca_expiretime("YOUR_PERSON_ID")
 
 `shioaji server start` 會自動讀取 `.env` 中的 `SJ_CA_PATH` 與 `SJ_CA_PASSWD` 完成啟用，無需另外呼叫。
 
-確認憑證效期：
+使用 CLI 確認憑證效期：
+
+```
+shioaji auth ca-expiretime --person-id YOUR_PERSON_ID
+
+```
+
+回應：
+
+```
+person_id: YOUR_PERSON_ID
+expire_time: 2026-09-13T15:59:59
+
+```
+
+或透過 HTTP：
 
 ```
 curl "http://localhost:8080/api/v1/auth/ca_expiretime?person_id=YOUR_PERSON_ID"

@@ -513,6 +513,15 @@
   
 </li>
       
+        <li class="md-nav__item">
+  <a href="#_3" class="md-nav__link">
+    <span class="md-ellipsis">
+      檢查伺服器狀態
+    </span>
+  </a>
+  
+</li>
+      
     </ul>
   
 </nav>
@@ -1608,6 +1617,29 @@
   
   
   
+    <li class="md-nav__item">
+      <a href="../../tutor/shioaji_apps/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    自訂應用
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
     
     
     
@@ -1617,10 +1649,10 @@
       
         
         
-        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_5_9" >
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_5_10" >
         
           
-          <label class="md-nav__link" for="__nav_5_9" id="__nav_5_9_label" tabindex="0">
+          <label class="md-nav__link" for="__nav_5_10" id="__nav_5_10_label" tabindex="0">
             
   
   
@@ -1633,8 +1665,8 @@
             <span class="md-nav__icon md-icon"></span>
           </label>
         
-        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_5_9_label" aria-expanded="false">
-          <label class="md-nav__title" for="__nav_5_9">
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_5_10_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_5_10">
             <span class="md-nav__icon md-icon"></span>
             進階指南
           </label>
@@ -1957,6 +1989,15 @@
   
 </li>
       
+        <li class="md-nav__item">
+  <a href="#_3" class="md-nav__link">
+    <span class="md-ellipsis">
+      檢查伺服器狀態
+    </span>
+  </a>
+  
+</li>
+      
     </ul>
   
 </nav>
@@ -2013,6 +2054,89 @@ SJ_CA_PASSWD=YOUR_CA_PASSWORD
 SJ_PRODUCTION=false
 </code></pre></div>
 <p>shioaji server 啟動時會自動讀取此檔，完成登入與憑證載入。</p>
+<h2 id="_3">檢查伺服器狀態<a class="headerlink" href="#_3" title="Permanent link">&para;</a></h2>
+<p>伺服器啟動後，可隨時檢查 daemon 與串流的健康狀態。</p>
+<div class="tabbed-set tabbed-alternate" data-tabs="2:2"><input checked="checked" id="__tabbed_2_1" name="__tabbed_2" type="radio" /><input id="__tabbed_2_2" name="__tabbed_2" type="radio" /><div class="tabbed-labels"><label for="__tabbed_2_1">CLI</label><label for="__tabbed_2_2">HTTP</label></div>
+<div class="tabbed-content">
+<div class="tabbed-block">
+<div class="admonition info">
+<p class="admonition-title">In</p>
+<div class="highlight"><pre><span></span><code>shioaji<span class="w"> </span>server<span class="w"> </span>status<span class="w"> </span>--streams
+</code></pre></div>
+</div>
+<div class="admonition done">
+<p class="admonition-title">Out</p>
+<div class="highlight"><pre><span></span><code>running: true
+pid: 38082
+port: 8080
+socket_path: &quot;/Users/your_name/.shioaji/server-8080.sock&quot;
+healthy: true
+simulation: false
+stream_receivers: &quot;Market data receivers are available for tick, bidask, quote, and order event data&quot;
+stream_status:
+  active_connections: 0
+  timestamp: 2026-06-12T05:48:05.561238+00:00
+  status: healthy
+</code></pre></div>
+</div>
+<p>加上 <code>--streams</code> 會額外查詢串流診斷資訊（<code>stream_receivers</code> 與 <code>stream_status</code>），可用來確認推播接收狀況。</p>
+<div class="admonition example">
+<p class="admonition-title">屬性</p>
+<div class="highlight"><pre><span></span><code>running (bool):           daemon 是否在執行中
+pid (int):                daemon 的 process ID
+port (int):               HTTP 服務埠
+socket_path (str):        daemon 控制 socket 路徑
+healthy (bool):           daemon 是否健康
+simulation (bool):        是否為模擬模式（對應 .env 的 SJ_PRODUCTION）
+stream_receivers (str):   串流接收器說明
+active_connections (int): 目前掛在 SSE 串流上的 client 連線數（行情與委託回報串流皆計入）；
+                          訂閱了卻收不到推播時，先檢查這裡是否為 0
+</code></pre></div>
+</div>
+</div>
+<div class="tabbed-block">
+<p><strong>版本與模式</strong></p>
+<div class="admonition info">
+<p class="admonition-title">In</p>
+<div class="highlight"><pre><span></span><code>curl<span class="w"> </span>http://localhost:8080/api/v1/info
+</code></pre></div>
+</div>
+<div class="admonition done">
+<p class="admonition-title">Out</p>
+<div class="highlight"><pre><span></span><code><span class="p">{</span><span class="nt">&quot;name&quot;</span><span class="p">:</span><span class="s2">&quot;Shioaji API Server&quot;</span><span class="p">,</span><span class="nt">&quot;version&quot;</span><span class="p">:</span><span class="s2">&quot;1.5.3&quot;</span><span class="p">,</span><span class="nt">&quot;description&quot;</span><span class="p">:</span><span class="s2">&quot;SinoPac Shioaji Cross-Platform Trading API HTTP Adaptor&quot;</span><span class="p">,</span><span class="nt">&quot;protocols&quot;</span><span class="p">:[</span><span class="s2">&quot;HTTP&quot;</span><span class="p">],</span><span class="nt">&quot;simulation&quot;</span><span class="p">:</span><span class="kc">false</span><span class="p">}</span>
+</code></pre></div>
+</div>
+<div class="admonition example">
+<p class="admonition-title">屬性</p>
+<div class="highlight"><pre><span></span><code>name (str):        服務名稱
+version (str):     伺服器版本
+description (str): 服務說明
+protocols (list):  支援的協定
+simulation (bool): 是否為模擬模式（對應 .env 的 SJ_PRODUCTION）
+</code></pre></div>
+</div>
+<p><strong>串流連線狀態</strong></p>
+<div class="admonition info">
+<p class="admonition-title">In</p>
+<div class="highlight"><pre><span></span><code>curl<span class="w"> </span>http://localhost:8080/api/v1/stream/status
+</code></pre></div>
+</div>
+<div class="admonition done">
+<p class="admonition-title">Out</p>
+<div class="highlight"><pre><span></span><code><span class="p">{</span><span class="nt">&quot;active_connections&quot;</span><span class="p">:</span><span class="mi">0</span><span class="p">,</span><span class="nt">&quot;timestamp&quot;</span><span class="p">:</span><span class="s2">&quot;2026-06-12T05:53:13.517649+00:00&quot;</span><span class="p">,</span><span class="nt">&quot;status&quot;</span><span class="p">:</span><span class="s2">&quot;healthy&quot;</span><span class="p">}</span>
+</code></pre></div>
+</div>
+<div class="admonition example">
+<p class="admonition-title">屬性</p>
+<div class="highlight"><pre><span></span><code>active_connections (int): 目前掛在 SSE 串流上的 client 連線數（行情與委託回報串流皆計入）；
+                          訂閱了卻收不到推播時，先檢查這裡是否為 0
+timestamp (str):          查詢當下時間
+status (str):             串流服務狀態
+</code></pre></div>
+</div>
+</div>
+</div>
+</div>
 <p>如果已經開好戶可以跳過下一章直接前往 <a href="../../tutor/prepare/token/">金鑰與憑證申請</a> 取得 API Key 與憑證。</p>
 
 

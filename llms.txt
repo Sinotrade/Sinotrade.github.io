@@ -9,6 +9,7 @@
 - [商品檔](https://sinotrade.github.io/zh/tutor/contract/index.md)
 - [使用限制](https://sinotrade.github.io/zh/tutor/limit/index.md)
 - [登入](https://sinotrade.github.io/zh/tutor/login/index.md)
+- [自訂應用](https://sinotrade.github.io/zh/tutor/shioaji_apps/index.md)
 - [模擬模式](https://sinotrade.github.io/zh/tutor/simulation/index.md)
 - [銀行餘額](https://sinotrade.github.io/zh/tutor/accounting/account_balance/index.md)
 - [Account portfolio](https://sinotrade.github.io/zh/tutor/accounting/account_portfolio/index.md)

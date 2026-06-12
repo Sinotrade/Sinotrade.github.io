@@ -21,7 +21,29 @@ cb:        optional, callback function, used when timeout=0
 
 ```
 
-CLI does not support credit enquires queries; please use Python / HTTP instead.
+CreditEnquires
+
+```
+$ shioaji data credit-enquire --help
+
+Get credit enquire (margin/short remaining) for contracts
+
+Usage: shioaji data credit-enquire [OPTIONS] --codes <CODES>
+
+Options:
+      --codes <CODES>                  Comma-separated security codes (e.g. 2330,2317,2454)
+      --security-type <SECURITY_TYPE>  Security type: STK, FUT, OPT, IND [default: STK]
+      --exchange <EXCHANGE>            Exchange: TSE, OTC, TAIFEX [default: TSE]
+
+```
+
+Parameters
+
+```
+--codes:    comma-separated security codes (e.g. 2330,2890)
+--exchange: optional, TSE or OTC, default TSE
+
+```
 
 CreditEnquires
 
@@ -99,6 +121,22 @@ df
 Out
 
 | update_time | system | stock_id | margin_unit | short_unit | margin_loan_ratio | short_margin_ratio | | --- | --- | --- | --- | --- | --- | --- | | 2026-05-18 10:46:56.019666 | ALL | 2330 | 776 | 0 | 60 | 90 | | 2026-05-18 10:46:56.026375 | ALL | 2890 | 0 | 0 | 0 | 0 |
+
+In
+
+```
+shioaji data credit-enquire --codes 2330,2890
+
+```
+
+Out
+
+```
+[2]{update_time,system,stock_id,margin_unit,short_unit,margin_loan_ratio,short_margin_ratio}:
+  2026-06-12 01:12:16.329373,ALL,"2330",774,0,60,90
+  2026-06-12 01:12:16.336417,ALL,"2890",0,0,0,0
+
+```
 
 In
 

@@ -34,6 +34,35 @@ cb:         callback 函式，timeout=0 時使用
 list_profit_loss
 
 ```
+$ shioaji portfolio profit-loss --help
+
+Get realized profit and loss
+
+Usage: shioaji portfolio profit-loss [OPTIONS]
+
+Options:
+      --account-type <ACCOUNT_TYPE>  Account type: S (stock) or F (futures) [default: S]
+      --account <ACCOUNT>            Account in BROKER_ID-ACCOUNT_ID format (e.g. 9A00-1234567)
+      --begin-date <BEGIN_DATE>      Begin date (YYYY-MM-DD, default: today) [default: 2026-06-12]
+      --end-date <END_DATE>          End date (YYYY-MM-DD, default: today) [default: 2026-06-12]
+      --unit <UNIT>                  Unit: common (default) or share [default: common] [possible values: common, share]
+
+```
+
+Parameters
+
+```
+--account-type: 選填，S（證券，預設）或 F（期貨選擇權）
+--account:      選填，BROKER_ID-ACCOUNT_ID 格式；未填時使用該類型的預設帳號
+--begin-date:   查詢起始日期，格式 YYYY-MM-DD，預設今日
+--end-date:     查詢結束日期，格式 YYYY-MM-DD，預設今日
+--unit:         選填，common（整股，預設）或 share（零股）
+
+```
+
+list_profit_loss
+
+```
 POST /api/v1/portfolio/profit_loss
 Content-Type: application/json
 
@@ -138,6 +167,22 @@ Out
 In
 
 ```
+shioaji portfolio profit-loss --account-type S --begin-date 2026-05-01 --end-date 2026-05-21
+
+```
+
+Out
+
+```
+[2]{id,code,quantity,pnl,date,dseq,price,pr_ratio,cond,seqno}:
+  0,"2890",1,1000,"2026-05-05",Y0TR2,31,0.0333,Cash,"113382"
+  1,"2330",1,-20000,"2026-05-06",Y20K2,1980,-0.01,Cash,"184354"
+
+```
+
+In
+
+```
 curl -X POST http://localhost:8080/api/v1/portfolio/profit_loss \
   -H 'Content-Type: application/json' \
   -d '{"account_type": "S", "begin_date": "2026-05-01", "end_date": "2026-05-21", "broker_id": "YOUR_BROKER_ID", "account_id": "YOUR_ACCOUNT_ID"}'
@@ -224,6 +269,21 @@ Out
 In
 
 ```
+shioaji portfolio profit-loss --account-type F --begin-date 2026-05-01 --end-date 2026-05-21
+
+```
+
+Out
+
+```
+[1]{id,code,quantity,pnl,date,entry_price,cover_price,tax,fee,direction}:
+  0,"TXO20260620200C",3,-750,"2026-05-10",131,126,5,120,Buy
+
+```
+
+In
+
+```
 curl -X POST http://localhost:8080/api/v1/portfolio/profit_loss \
   -H 'Content-Type: application/json' \
   -d '{"account_type": "F", "begin_date": "2026-05-01", "end_date": "2026-05-21", "broker_id": "YOUR_BROKER_ID", "account_id": "YOUR_ACCOUNT_ID"}'
@@ -278,6 +338,33 @@ detail_id: 部位 ID（從 list_profit_loss 結果取得）
 unit:      Unit.Common（整股／預設）或 Unit.Share（零股）
 timeout:   逾時毫秒
 cb:        callback 函式，timeout=0 時使用
+
+```
+
+list_profit_loss_detail
+
+```
+$ shioaji portfolio profit-loss-detail --help
+
+Get realized profit and loss detail by detail id
+
+Usage: shioaji portfolio profit-loss-detail [OPTIONS] --detail-id <DETAIL_ID>
+
+Options:
+      --account-type <ACCOUNT_TYPE>  Account type: S (stock) or F (futures) [default: S]
+      --account <ACCOUNT>            Account in BROKER_ID-ACCOUNT_ID format (e.g. 9A00-1234567)
+      --detail-id <DETAIL_ID>        Detail ID (the `id` field from `portfolio profit-loss`)
+      --unit <UNIT>                  Unit: common (default) or share [default: common] [possible values: common, share]
+
+```
+
+Parameters
+
+```
+--account-type: 選填，S（證券，預設）或 F（期貨選擇權）
+--account:      選填，BROKER_ID-ACCOUNT_ID 格式；未填時使用該類型的預設帳號
+--detail-id:    部位 ID（從 portfolio profit-loss 結果取得）
+--unit:         選填，common（整股，預設）或 share（零股）
 
 ```
 
@@ -366,6 +453,21 @@ Out
         cond=<StockOrderCond.Cash: 'Cash'>,
     ),
 ]
+
+```
+
+In
+
+```
+shioaji portfolio profit-loss-detail --account-type S --detail-id 0
+
+```
+
+Out
+
+```
+[1]{date,code,quantity,dseq,fee,tax,currency,price,cost,rep_margintrading_amt,rep_collateral,rep_margin,shortselling_fee,ex_dividend_amt,interest,trade_type,cond}:
+  "2026-04-23","2890",1,Y0O7E,119,0,TWD,30,30119,0,0,0,0,0,0,Common,Cash
 
 ```
 
@@ -461,6 +563,21 @@ Out
 In
 
 ```
+shioaji portfolio profit-loss-detail --account-type F --detail-id 0
+
+```
+
+Out
+
+```
+[1]{date,code,quantity,dseq,fee,tax,currency,direction,entry_date,entry_quantity,entry_seqno,entry_price,cover_price,pnl}:
+  "2026-05-10","TXO20260620200C",3,tA0n8,120,5,TWD,Buy,"2026-05-08",3,"113382",131,126,-750
+
+```
+
+In
+
+```
 curl -X POST http://localhost:8080/api/v1/portfolio/profit_loss_detail \
   -H 'Content-Type: application/json' \
   -d '{"account_type": "F", "detail_id": 0, "broker_id": "YOUR_BROKER_ID", "account_id": "YOUR_ACCOUNT_ID"}'
@@ -519,6 +636,33 @@ begin_date: 查詢起始日期，格式 YYYY-MM-DD
 end_date:   查詢結束日期，格式 YYYY-MM-DD
 timeout:    逾時毫秒
 cb:         callback 函式，timeout=0 時使用
+
+```
+
+list_profit_loss_summary
+
+```
+$ shioaji portfolio profit-loss-summary --help
+
+Get profit and loss summary
+
+Usage: shioaji portfolio profit-loss-summary [OPTIONS]
+
+Options:
+      --account-type <ACCOUNT_TYPE>  Account type: S (stock) or F (futures) [default: S]
+      --account <ACCOUNT>            Account in BROKER_ID-ACCOUNT_ID format (e.g. 9A00-1234567)
+      --begin-date <BEGIN_DATE>      Begin date (YYYY-MM-DD, default: today) [default: 2026-06-12]
+      --end-date <END_DATE>          End date (YYYY-MM-DD, default: today) [default: 2026-06-12]
+
+```
+
+Parameters
+
+```
+--account-type: 選填，S（證券，預設）或 F（期貨選擇權）
+--account:      選填，BROKER_ID-ACCOUNT_ID 格式；未填時使用該類型的預設帳號
+--begin-date:   查詢起始日期，格式 YYYY-MM-DD，預設今日
+--end-date:     查詢結束日期，格式 YYYY-MM-DD，預設今日
 
 ```
 
@@ -660,6 +804,30 @@ Out
 In
 
 ```
+shioaji portfolio profit-loss-summary --account-type S --begin-date 2026-05-01 --end-date 2026-05-21
+
+```
+
+Out
+
+```
+profitloss_sum[2]{code,quantity,entry_price,cover_price,pnl,currency,entry_cost,cover_cost,buy_cost,sell_cost,pr_ratio,cond}:
+  "2890",1000,30,31,1000,NTD,30000,31000,30119,30881,3.33,Cash
+  "2330",1000,2000,1980,-20000,NTD,2000000,1980000,2000119,1979881,-1,Cash
+total:
+  entry_amount: 0
+  cover_amount: 0
+  quantity: 2000
+  buy_cost: 2030238
+  sell_cost: 2010762
+  pnl: -19000
+  pr_ratio: -0.94
+
+```
+
+In
+
+```
 curl -X POST http://localhost:8080/api/v1/portfolio/profitloss_sum \
   -H 'Content-Type: application/json' \
   -d '{"account_type": "S", "begin_date": "2026-05-01", "end_date": "2026-05-21", "broker_id": "YOUR_BROKER_ID", "account_id": "YOUR_ACCOUNT_ID"}'
@@ -754,6 +922,29 @@ Out
 
 ```
 ProfitLossSummaryTotal(total=ProfitLossTotal(pnl=-750, pr_ratio=-3.79))
+
+```
+
+In
+
+```
+shioaji portfolio profit-loss-summary --account-type F --begin-date 2026-05-01 --end-date 2026-05-21
+
+```
+
+Out
+
+```
+profitloss_sum[1]{code,quantity,entry_price,cover_price,pnl,currency,direction,tax,fee}:
+  "TXO20260620200C",3,131,126,-750,NTD,Buy,5,120
+total:
+  entry_amount: 19650
+  cover_amount: 18900
+  quantity: 3
+  buy_cost: 19775
+  sell_cost: 18775
+  pnl: -750
+  pr_ratio: -3.79
 
 ```
 

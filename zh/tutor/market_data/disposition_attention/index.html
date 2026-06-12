@@ -1645,6 +1645,29 @@
   
   
   
+    <li class="md-nav__item">
+      <a href="../../shioaji_apps/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    自訂應用
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
     
     
     
@@ -1654,10 +1677,10 @@
       
         
         
-        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_5_9" >
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_5_10" >
         
           
-          <label class="md-nav__link" for="__nav_5_9" id="__nav_5_9_label" tabindex="0">
+          <label class="md-nav__link" for="__nav_5_10" id="__nav_5_10_label" tabindex="0">
             
   
   
@@ -1670,8 +1693,8 @@
             <span class="md-nav__icon md-icon"></span>
           </label>
         
-        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_5_9_label" aria-expanded="false">
-          <label class="md-nav__title" for="__nav_5_9">
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_5_10_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_5_10">
             <span class="md-nav__icon md-icon"></span>
             進階指南
           </label>
@@ -2051,7 +2074,7 @@
 
 <p>用於查詢公告的<strong>處置股</strong>與<strong>注意股</strong>名單。</p>
 <h2 id="_1">處置股<a class="headerlink" href="#_1" title="Permanent link">&para;</a></h2>
-<div class="tabbed-set tabbed-alternate" data-tabs="1:2"><input checked="checked" id="__tabbed_1_1" name="__tabbed_1" type="radio" /><input id="__tabbed_1_2" name="__tabbed_1" type="radio" /><div class="tabbed-labels"><label for="__tabbed_1_1">Python</label><label for="__tabbed_1_2">其他語言</label></div>
+<div class="tabbed-set tabbed-alternate" data-tabs="1:3"><input checked="checked" id="__tabbed_1_1" name="__tabbed_1" type="radio" /><input id="__tabbed_1_2" name="__tabbed_1" type="radio" /><input id="__tabbed_1_3" name="__tabbed_1" type="radio" /><div class="tabbed-labels"><label for="__tabbed_1_1">Python</label><label for="__tabbed_1_2">CLI</label><label for="__tabbed_1_3">其他語言</label></div>
 <div class="tabbed-content">
 <div class="tabbed-block">
 <div class="admonition example">
@@ -2069,6 +2092,32 @@
 <p class="admonition-title">Parameters</p>
 <div class="highlight"><pre><span></span><code>timeout: 逾時毫秒
 cb:      callback 函式，timeout=0 時使用
+</code></pre></div>
+</div>
+</div>
+<div class="tabbed-block">
+<div class="admonition example">
+<p class="admonition-title">punish</p>
+<div class="highlight"><pre><span></span><code>$<span class="w"> </span>shioaji<span class="w"> </span>data<span class="w"> </span>regulatory<span class="w"> </span>--help
+
+Get<span class="w"> </span>regulatory<span class="w"> </span>disposition/attention<span class="w"> </span>stock<span class="w"> </span>data
+
+Usage:<span class="w"> </span>shioaji<span class="w"> </span>data<span class="w"> </span>regulatory<span class="w"> </span><span class="o">[</span>OPTIONS<span class="o">]</span>
+
+Options:
+<span class="w">      </span>--type<span class="w"> </span>&lt;REGULATORY_TYPE&gt;
+<span class="w">          </span>Regulatory<span class="w"> </span>data<span class="w"> </span>type:<span class="w"> </span>punish<span class="w"> </span><span class="o">(</span>處置股<span class="o">)</span><span class="w"> </span>or<span class="w"> </span>notice<span class="w"> </span><span class="o">(</span>注意股<span class="o">)</span>
+
+<span class="w">          </span>Possible<span class="w"> </span>values:
+<span class="w">          </span>-<span class="w"> </span>punish:<span class="w"> </span>Disposition<span class="w"> </span>stocks<span class="w"> </span><span class="o">(</span>處置股<span class="o">)</span>
+<span class="w">          </span>-<span class="w"> </span>notice:<span class="w"> </span>Attention<span class="w"> </span>stocks<span class="w"> </span><span class="o">(</span>注意股<span class="o">)</span>
+
+<span class="w">          </span><span class="o">[</span>default:<span class="w"> </span>punish<span class="o">]</span>
+</code></pre></div>
+</div>
+<div class="admonition done">
+<p class="admonition-title">Parameters</p>
+<div class="highlight"><pre><span></span><code>--type: 選填，punish（處置股，預設）或 notice（注意股）
 </code></pre></div>
 </div>
 </div>
@@ -2096,7 +2145,7 @@ cb:      callback 函式，timeout=0 時使用
 </code></pre></div>
 </div>
 <h3 id="_3">範例<a class="headerlink" href="#_3" title="Permanent link">&para;</a></h3>
-<div class="tabbed-set tabbed-alternate" data-tabs="2:2"><input checked="checked" id="__tabbed_2_1" name="__tabbed_2" type="radio" /><input id="__tabbed_2_2" name="__tabbed_2" type="radio" /><div class="tabbed-labels"><label for="__tabbed_2_1">Python</label><label for="__tabbed_2_2">HTTP</label></div>
+<div class="tabbed-set tabbed-alternate" data-tabs="2:3"><input checked="checked" id="__tabbed_2_1" name="__tabbed_2" type="radio" /><input id="__tabbed_2_2" name="__tabbed_2" type="radio" /><input id="__tabbed_2_3" name="__tabbed_2" type="radio" /><div class="tabbed-labels"><label for="__tabbed_2_1">Python</label><label for="__tabbed_2_2">CLI</label><label for="__tabbed_2_3">HTTP</label></div>
 <div class="tabbed-content">
 <div class="tabbed-block">
 <div class="admonition info">
@@ -2174,6 +2223,21 @@ cb:      callback 函式，timeout=0 時使用
 <div class="tabbed-block">
 <div class="admonition info">
 <p class="admonition-title">In</p>
+<div class="highlight"><pre><span></span><code>shioaji<span class="w"> </span>data<span class="w"> </span>regulatory<span class="w"> </span>--type<span class="w"> </span>punish
+</code></pre></div>
+</div>
+<div class="admonition done">
+<p class="admonition-title">Out</p>
+<div class="highlight"><pre><span></span><code>[94]{code,start_date,end_date,updated_at,interval,unit_limit,total_limit,description,announced_date}:
+  &quot;050503&quot;,&quot;2026-06-02&quot;,&quot;2026-06-15&quot;,2026-06-01T18:18:33,5分鐘,10,30,&quot;...&quot;,&quot;2026-06-01&quot;
+  &quot;058462&quot;,&quot;2026-06-03&quot;,&quot;2026-06-16&quot;,2026-06-02T18:18:37,20分鐘,null,null,&quot;...&quot;,&quot;2026-06-02&quot;
+  ...
+</code></pre></div>
+</div>
+</div>
+<div class="tabbed-block">
+<div class="admonition info">
+<p class="admonition-title">In</p>
 <div class="highlight"><pre><span></span><code>curl<span class="w"> </span>http://localhost:8080/api/v1/data/regulatory_punish
 </code></pre></div>
 </div>
@@ -2197,7 +2261,7 @@ cb:      callback 函式，timeout=0 時使用
 </div>
 <hr />
 <h2 id="_4">注意股<a class="headerlink" href="#_4" title="Permanent link">&para;</a></h2>
-<div class="tabbed-set tabbed-alternate" data-tabs="3:2"><input checked="checked" id="__tabbed_3_1" name="__tabbed_3" type="radio" /><input id="__tabbed_3_2" name="__tabbed_3" type="radio" /><div class="tabbed-labels"><label for="__tabbed_3_1">Python</label><label for="__tabbed_3_2">其他語言</label></div>
+<div class="tabbed-set tabbed-alternate" data-tabs="3:3"><input checked="checked" id="__tabbed_3_1" name="__tabbed_3" type="radio" /><input id="__tabbed_3_2" name="__tabbed_3" type="radio" /><input id="__tabbed_3_3" name="__tabbed_3" type="radio" /><div class="tabbed-labels"><label for="__tabbed_3_1">Python</label><label for="__tabbed_3_2">CLI</label><label for="__tabbed_3_3">其他語言</label></div>
 <div class="tabbed-content">
 <div class="tabbed-block">
 <div class="admonition example">
@@ -2221,6 +2285,18 @@ cb:      callback 函式，timeout=0 時使用
 <div class="tabbed-block">
 <div class="admonition example">
 <p class="admonition-title">notice</p>
+<div class="highlight"><pre><span></span><code>shioaji<span class="w"> </span>data<span class="w"> </span>regulatory<span class="w"> </span>--type<span class="w"> </span>notice
+</code></pre></div>
+</div>
+<div class="admonition done">
+<p class="admonition-title">Parameters</p>
+<div class="highlight"><pre><span></span><code>--type: 選填，punish（處置股，預設）或 notice（注意股）
+</code></pre></div>
+</div>
+</div>
+<div class="tabbed-block">
+<div class="admonition example">
+<p class="admonition-title">notice</p>
 <div class="highlight"><pre><span></span><code><span class="err">GET /api/v1/data/regulatory_notice</span>
 </code></pre></div>
 </div>
@@ -2238,7 +2314,7 @@ cb:      callback 函式，timeout=0 時使用
 </code></pre></div>
 </div>
 <h3 id="_6">範例<a class="headerlink" href="#_6" title="Permanent link">&para;</a></h3>
-<div class="tabbed-set tabbed-alternate" data-tabs="4:2"><input checked="checked" id="__tabbed_4_1" name="__tabbed_4" type="radio" /><input id="__tabbed_4_2" name="__tabbed_4" type="radio" /><div class="tabbed-labels"><label for="__tabbed_4_1">Python</label><label for="__tabbed_4_2">HTTP</label></div>
+<div class="tabbed-set tabbed-alternate" data-tabs="4:3"><input checked="checked" id="__tabbed_4_1" name="__tabbed_4" type="radio" /><input id="__tabbed_4_2" name="__tabbed_4" type="radio" /><input id="__tabbed_4_3" name="__tabbed_4" type="radio" /><div class="tabbed-labels"><label for="__tabbed_4_1">Python</label><label for="__tabbed_4_2">CLI</label><label for="__tabbed_4_3">HTTP</label></div>
 <div class="tabbed-content">
 <div class="tabbed-block">
 <div class="admonition info">
@@ -2295,6 +2371,21 @@ cb:      callback 函式，timeout=0 時使用
 </tr>
 </tbody>
 </table>
+</div>
+</div>
+<div class="tabbed-block">
+<div class="admonition info">
+<p class="admonition-title">In</p>
+<div class="highlight"><pre><span></span><code>shioaji<span class="w"> </span>data<span class="w"> </span>regulatory<span class="w"> </span>--type<span class="w"> </span>notice
+</code></pre></div>
+</div>
+<div class="admonition done">
+<p class="admonition-title">Out</p>
+<div class="highlight"><pre><span></span><code>[68]{code,updated_at,close,reason,announced_date}:
+  &quot;051359&quot;,2026-06-11T18:18:40,8.85,最近六個營業日累積收盤價漲幅達39.68%﹝第一款﹞。,&quot;2026-06-11&quot;
+  &quot;058191&quot;,2026-06-11T18:18:41,10.9,最近六個營業日累積收盤價漲幅達32.69%﹝第一款﹞。,&quot;2026-06-11&quot;
+  ...
+</code></pre></div>
 </div>
 </div>
 <div class="tabbed-block">

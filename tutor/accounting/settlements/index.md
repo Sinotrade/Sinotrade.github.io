@@ -26,6 +26,27 @@ cb:      optional, callback function, used when timeout=0
 settlements
 
 ```
+$ shioaji portfolio settlements --help
+
+Get settlement list (date/amount/T, stock account)
+
+Usage: shioaji portfolio settlements [OPTIONS]
+
+Options:
+      --account <ACCOUNT>  Account in BROKER_ID-ACCOUNT_ID format (e.g. 9A00-1234567)
+
+```
+
+Parameters
+
+```
+--account: optional, BROKER_ID-ACCOUNT_ID format; defaults to the default stock account
+
+```
+
+settlements
+
+```
 POST /api/v1/portfolio/settlements
 Content-Type: application/json
 
@@ -101,6 +122,32 @@ In
 
 ```
 api.settlements(account=api.stock_account)
+
+```
+
+In
+
+```
+shioaji portfolio settlements
+
+```
+
+Out
+
+```
+[3]{date,amount,T}:
+  "2026-05-21",100000,0
+  "2026-05-22",0,1
+  "2026-05-25",0,2
+
+```
+
+**With specific account**
+
+In
+
+```
+shioaji portfolio settlements --account YOUR_BROKER_ID-YOUR_ACCOUNT_ID
 
 ```
 

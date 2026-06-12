@@ -1663,6 +1663,29 @@
   
   
   
+    <li class="md-nav__item">
+      <a href="../../shioaji_apps/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Shioaji Apps
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
     
     
     
@@ -1672,10 +1695,10 @@
       
         
         
-        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_5_9" >
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_5_10" >
         
           
-          <label class="md-nav__link" for="__nav_5_9" id="__nav_5_9_label" tabindex="0">
+          <label class="md-nav__link" for="__nav_5_10" id="__nav_5_10_label" tabindex="0">
             
   
   
@@ -1688,8 +1711,8 @@
             <span class="md-nav__icon md-icon"></span>
           </label>
         
-        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_5_9_label" aria-expanded="false">
-          <label class="md-nav__title" for="__nav_5_9">
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_5_10_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_5_10">
             <span class="md-nav__icon md-icon"></span>
             Advanced Guide
           </label>
@@ -2098,7 +2121,7 @@
 </ul>
 </div>
 <h2 id="earmarking">Earmarking<a class="headerlink" href="#earmarking" title="Permanent link">&para;</a></h2>
-<div class="tabbed-set tabbed-alternate" data-tabs="1:2"><input checked="checked" id="__tabbed_1_1" name="__tabbed_1" type="radio" /><input id="__tabbed_1_2" name="__tabbed_1" type="radio" /><div class="tabbed-labels"><label for="__tabbed_1_1">Python</label><label for="__tabbed_1_2">Other Languages</label></div>
+<div class="tabbed-set tabbed-alternate" data-tabs="1:3"><input checked="checked" id="__tabbed_1_1" name="__tabbed_1" type="radio" /><input id="__tabbed_1_2" name="__tabbed_1" type="radio" /><input id="__tabbed_1_3" name="__tabbed_1" type="radio" /><div class="tabbed-labels"><label for="__tabbed_1_1">Python</label><label for="__tabbed_1_2">CLI</label><label for="__tabbed_1_3">Other (HTTP)</label></div>
 <div class="tabbed-content">
 <div class="tabbed-block">
 <div class="admonition example">
@@ -2144,6 +2167,44 @@ earmarking_detail
 </div>
 <div class="tabbed-block">
 <div class="admonition example">
+<p class="admonition-title">reserve earmarking / earmarking-detail</p>
+<div class="highlight"><pre><span></span><code>$<span class="w"> </span>shioaji<span class="w"> </span>reserve<span class="w"> </span>earmarking<span class="w"> </span>--help
+
+Place<span class="w"> </span>an<span class="w"> </span>earmarking<span class="w"> </span>request<span class="w"> </span><span class="o">(</span>預收款項<span class="o">)</span>
+
+Usage:<span class="w"> </span>shioaji<span class="w"> </span>reserve<span class="w"> </span>earmarking<span class="w"> </span><span class="o">[</span>OPTIONS<span class="o">]</span><span class="w"> </span>--code<span class="w"> </span>&lt;CODE&gt;<span class="w"> </span>--share<span class="w"> </span>&lt;SHARE&gt;<span class="w"> </span>--price<span class="w"> </span>&lt;PRICE&gt;
+
+Options:
+<span class="w">      </span>--code<span class="w"> </span>&lt;CODE&gt;<span class="w">        </span>Stock<span class="w"> </span>code<span class="w"> </span><span class="o">(</span>e.g.<span class="w"> </span><span class="m">2890</span><span class="o">)</span>
+<span class="w">      </span>--share<span class="w"> </span>&lt;SHARE&gt;<span class="w">      </span>Number<span class="w"> </span>of<span class="w"> </span>shares
+<span class="w">      </span>--price<span class="w"> </span>&lt;PRICE&gt;<span class="w">      </span>Price<span class="w"> </span>per<span class="w"> </span>share
+<span class="w">      </span>--account<span class="w"> </span>&lt;ACCOUNT&gt;<span class="w">  </span>Account<span class="w"> </span><span class="k">in</span><span class="w"> </span>BROKER_ID-ACCOUNT_ID<span class="w"> </span>format<span class="w"> </span><span class="o">(</span>e.g.<span class="w"> </span>9A00-1234567<span class="o">)</span>
+
+$<span class="w"> </span>shioaji<span class="w"> </span>reserve<span class="w"> </span>earmarking-detail<span class="w"> </span>--help
+
+Get<span class="w"> </span>earmarking<span class="w"> </span>detail<span class="w"> </span><span class="o">(</span>預收款項明細<span class="o">)</span>
+
+Usage:<span class="w"> </span>shioaji<span class="w"> </span>reserve<span class="w"> </span>earmarking-detail<span class="w"> </span><span class="o">[</span>OPTIONS<span class="o">]</span>
+
+Options:
+<span class="w">      </span>--account<span class="w"> </span>&lt;ACCOUNT&gt;<span class="w">  </span>Account<span class="w"> </span><span class="k">in</span><span class="w"> </span>BROKER_ID-ACCOUNT_ID<span class="w"> </span>format<span class="w"> </span><span class="o">(</span>e.g.<span class="w"> </span>9A00-1234567<span class="o">)</span>
+</code></pre></div>
+</div>
+<div class="admonition done">
+<p class="admonition-title">Parameters</p>
+<div class="highlight"><pre><span></span><code>reserve earmarking
+    --code:    security code
+    --share:   earmark share count
+    --price:   earmark price
+    --account: optional, BROKER_ID-ACCOUNT_ID format; defaults to the default stock account
+
+reserve earmarking-detail
+    --account: optional, BROKER_ID-ACCOUNT_ID format; defaults to the default stock account
+</code></pre></div>
+</div>
+</div>
+<div class="tabbed-block">
+<div class="admonition example">
 <p class="admonition-title">reserve_earmarking / earmarking_detail</p>
 <div class="highlight"><pre><span></span><code><span class="err">POST /api/v1/order/reserve_earmarking</span>
 <span class="err">Content-Type: application/json</span>
@@ -2180,7 +2241,7 @@ earmarking_detail
 </div>
 </div>
 <h3 id="apply-earmarking">Apply Earmarking<a class="headerlink" href="#apply-earmarking" title="Permanent link">&para;</a></h3>
-<div class="tabbed-set tabbed-alternate" data-tabs="2:2"><input checked="checked" id="__tabbed_2_1" name="__tabbed_2" type="radio" /><input id="__tabbed_2_2" name="__tabbed_2" type="radio" /><div class="tabbed-labels"><label for="__tabbed_2_1">Python</label><label for="__tabbed_2_2">HTTP</label></div>
+<div class="tabbed-set tabbed-alternate" data-tabs="2:3"><input checked="checked" id="__tabbed_2_1" name="__tabbed_2" type="radio" /><input id="__tabbed_2_2" name="__tabbed_2" type="radio" /><input id="__tabbed_2_3" name="__tabbed_2" type="radio" /><div class="tabbed-labels"><label for="__tabbed_2_1">Python</label><label for="__tabbed_2_2">CLI</label><label for="__tabbed_2_3">HTTP</label></div>
 <div class="tabbed-content">
 <div class="tabbed-block">
 <div class="admonition info">
@@ -2229,6 +2290,33 @@ earmarking_detail
 <div class="tabbed-block">
 <div class="admonition info">
 <p class="admonition-title">In</p>
+<div class="highlight"><pre><span></span><code>shioaji<span class="w"> </span>reserve<span class="w"> </span>earmarking<span class="w"> </span>--code<span class="w"> </span><span class="m">1217</span><span class="w"> </span>--share<span class="w"> </span><span class="m">1000</span><span class="w"> </span>--price<span class="w"> </span><span class="m">9</span><span class="w"> </span>--account<span class="w"> </span>YOUR_BROKER_ID-YOUR_ACCOUNT_ID
+</code></pre></div>
+</div>
+<div class="admonition done">
+<p class="admonition-title">Out</p>
+<div class="highlight"><pre><span></span><code>contract:
+  security_type: STK
+  exchange: TSE
+  code: &quot;1217&quot;
+  target_code: &quot;&quot;
+account:
+  account_type: S
+  person_id: YOUR_PERSON_ID
+  broker_id: YOUR_BROKER_ID
+  account_id: &quot;YOUR_ACCOUNT_ID&quot;
+  signed: true
+  username: &quot;&quot;
+share: 1000
+price: 9
+status: true
+info: OK
+</code></pre></div>
+</div>
+</div>
+<div class="tabbed-block">
+<div class="admonition info">
+<p class="admonition-title">In</p>
 <div class="highlight"><pre><span></span><code>curl<span class="w"> </span>-X<span class="w"> </span>POST<span class="w"> </span>http://localhost:8080/api/v1/order/reserve_earmarking<span class="w"> </span><span class="se">\</span>
 <span class="w">  </span>-H<span class="w"> </span><span class="s1">&#39;Content-Type: application/json&#39;</span><span class="w"> </span><span class="se">\</span>
 <span class="w">  </span>-d<span class="w"> </span><span class="s1">&#39;{</span>
@@ -2271,7 +2359,7 @@ earmarking_detail
 -->
 
 <h3 id="get-earmarking-detail">Get Earmarking Detail<a class="headerlink" href="#get-earmarking-detail" title="Permanent link">&para;</a></h3>
-<div class="tabbed-set tabbed-alternate" data-tabs="3:2"><input checked="checked" id="__tabbed_3_1" name="__tabbed_3" type="radio" /><input id="__tabbed_3_2" name="__tabbed_3" type="radio" /><div class="tabbed-labels"><label for="__tabbed_3_1">Python</label><label for="__tabbed_3_2">HTTP</label></div>
+<div class="tabbed-set tabbed-alternate" data-tabs="3:3"><input checked="checked" id="__tabbed_3_1" name="__tabbed_3" type="radio" /><input id="__tabbed_3_2" name="__tabbed_3" type="radio" /><input id="__tabbed_3_3" name="__tabbed_3" type="radio" /><div class="tabbed-labels"><label for="__tabbed_3_1">Python</label><label for="__tabbed_3_2">CLI</label><label for="__tabbed_3_3">HTTP</label></div>
 <div class="tabbed-content">
 <div class="tabbed-block">
 <div class="admonition info">
@@ -2316,6 +2404,36 @@ earmarking_detail
 <div class="tabbed-block">
 <div class="admonition info">
 <p class="admonition-title">In</p>
+<div class="highlight"><pre><span></span><code>shioaji<span class="w"> </span>reserve<span class="w"> </span>earmarking-detail<span class="w"> </span>--account<span class="w"> </span>YOUR_BROKER_ID-YOUR_ACCOUNT_ID
+</code></pre></div>
+</div>
+<div class="admonition done">
+<p class="admonition-title">Out</p>
+<div class="highlight"><pre><span></span><code>stocks[1]:
+  - contract:
+      security_type: STK
+      exchange: TSE
+      code: &quot;1217&quot;
+      target_code: &quot;&quot;
+    share: 1000
+    price: 9
+    amount: 9020
+    order_datetime: 2026-05-20T15:16:28+08:00
+    status: true
+    info: 成功
+account:
+  account_type: S
+  person_id: YOUR_PERSON_ID
+  broker_id: YOUR_BROKER_ID
+  account_id: &quot;YOUR_ACCOUNT_ID&quot;
+  signed: true
+  username: &quot;&quot;
+</code></pre></div>
+</div>
+</div>
+<div class="tabbed-block">
+<div class="admonition info">
+<p class="admonition-title">In</p>
 <div class="highlight"><pre><span></span><code>curl<span class="w"> </span>-X<span class="w"> </span>POST<span class="w"> </span>http://localhost:8080/api/v1/order/earmarking_detail<span class="w"> </span><span class="se">\</span>
 <span class="w">  </span>-H<span class="w"> </span><span class="s1">&#39;Content-Type: application/json&#39;</span><span class="w"> </span><span class="se">\</span>
 <span class="w">  </span>-d<span class="w"> </span><span class="s1">&#39;{</span>
@@ -2351,7 +2469,7 @@ earmarking_detail
 -->
 
 <h2 id="reserve-stock">Reserve Stock<a class="headerlink" href="#reserve-stock" title="Permanent link">&para;</a></h2>
-<div class="tabbed-set tabbed-alternate" data-tabs="4:2"><input checked="checked" id="__tabbed_4_1" name="__tabbed_4" type="radio" /><input id="__tabbed_4_2" name="__tabbed_4" type="radio" /><div class="tabbed-labels"><label for="__tabbed_4_1">Python</label><label for="__tabbed_4_2">Other Languages</label></div>
+<div class="tabbed-set tabbed-alternate" data-tabs="4:3"><input checked="checked" id="__tabbed_4_1" name="__tabbed_4" type="radio" /><input id="__tabbed_4_2" name="__tabbed_4" type="radio" /><input id="__tabbed_4_3" name="__tabbed_4" type="radio" /><div class="tabbed-labels"><label for="__tabbed_4_1">Python</label><label for="__tabbed_4_2">CLI</label><label for="__tabbed_4_3">Other (HTTP)</label></div>
 <div class="tabbed-content">
 <div class="tabbed-block">
 <div class="admonition example">
@@ -2409,6 +2527,54 @@ stock_reserve_detail
 </div>
 <div class="tabbed-block">
 <div class="admonition example">
+<p class="admonition-title">reserve stock / summary / detail</p>
+<div class="highlight"><pre><span></span><code>$<span class="w"> </span>shioaji<span class="w"> </span>reserve<span class="w"> </span>stock<span class="w"> </span>--help
+
+Place<span class="w"> </span>a<span class="w"> </span>stock<span class="w"> </span>reserve<span class="w"> </span>request<span class="w"> </span><span class="o">(</span>預收股票<span class="o">)</span>
+
+Usage:<span class="w"> </span>shioaji<span class="w"> </span>reserve<span class="w"> </span>stock<span class="w"> </span><span class="o">[</span>OPTIONS<span class="o">]</span><span class="w"> </span>--code<span class="w"> </span>&lt;CODE&gt;<span class="w"> </span>--share<span class="w"> </span>&lt;SHARE&gt;
+
+Options:
+<span class="w">      </span>--code<span class="w"> </span>&lt;CODE&gt;<span class="w">        </span>Stock<span class="w"> </span>code<span class="w"> </span><span class="o">(</span>e.g.<span class="w"> </span><span class="m">2890</span><span class="o">)</span>
+<span class="w">      </span>--share<span class="w"> </span>&lt;SHARE&gt;<span class="w">      </span>Number<span class="w"> </span>of<span class="w"> </span>shares<span class="w"> </span>to<span class="w"> </span>reserve
+<span class="w">      </span>--account<span class="w"> </span>&lt;ACCOUNT&gt;<span class="w">  </span>Account<span class="w"> </span><span class="k">in</span><span class="w"> </span>BROKER_ID-ACCOUNT_ID<span class="w"> </span>format<span class="w"> </span><span class="o">(</span>e.g.<span class="w"> </span>9A00-1234567<span class="o">)</span>
+
+$<span class="w"> </span>shioaji<span class="w"> </span>reserve<span class="w"> </span>summary<span class="w"> </span>--help
+
+Get<span class="w"> </span>stock<span class="w"> </span>reserve<span class="w"> </span>summary<span class="w"> </span><span class="o">(</span>預收券款摘要<span class="o">)</span>
+
+Usage:<span class="w"> </span>shioaji<span class="w"> </span>reserve<span class="w"> </span>summary<span class="w"> </span><span class="o">[</span>OPTIONS<span class="o">]</span>
+
+Options:
+<span class="w">      </span>--account<span class="w"> </span>&lt;ACCOUNT&gt;<span class="w">  </span>Account<span class="w"> </span><span class="k">in</span><span class="w"> </span>BROKER_ID-ACCOUNT_ID<span class="w"> </span>format<span class="w"> </span><span class="o">(</span>e.g.<span class="w"> </span>9A00-1234567<span class="o">)</span>
+
+$<span class="w"> </span>shioaji<span class="w"> </span>reserve<span class="w"> </span>detail<span class="w"> </span>--help
+
+Get<span class="w"> </span>stock<span class="w"> </span>reserve<span class="w"> </span>detail<span class="w"> </span><span class="o">(</span>預收券款明細<span class="o">)</span>
+
+Usage:<span class="w"> </span>shioaji<span class="w"> </span>reserve<span class="w"> </span>detail<span class="w"> </span><span class="o">[</span>OPTIONS<span class="o">]</span>
+
+Options:
+<span class="w">      </span>--account<span class="w"> </span>&lt;ACCOUNT&gt;<span class="w">  </span>Account<span class="w"> </span><span class="k">in</span><span class="w"> </span>BROKER_ID-ACCOUNT_ID<span class="w"> </span>format<span class="w"> </span><span class="o">(</span>e.g.<span class="w"> </span>9A00-1234567<span class="o">)</span>
+</code></pre></div>
+</div>
+<div class="admonition done">
+<p class="admonition-title">Parameters</p>
+<div class="highlight"><pre><span></span><code>reserve stock
+    --code:    security code
+    --share:   reserve share count
+    --account: optional, BROKER_ID-ACCOUNT_ID format; defaults to the default stock account
+
+reserve summary
+    --account: optional, BROKER_ID-ACCOUNT_ID format; defaults to the default stock account
+
+reserve detail
+    --account: optional, BROKER_ID-ACCOUNT_ID format; defaults to the default stock account
+</code></pre></div>
+</div>
+</div>
+<div class="tabbed-block">
+<div class="admonition example">
 <p class="admonition-title">reserve_stock / stock_reserve_summary / stock_reserve_detail</p>
 <div class="highlight"><pre><span></span><code><span class="err">POST /api/v1/order/reserve_stock</span>
 <span class="err">Content-Type: application/json</span>
@@ -2453,7 +2619,7 @@ stock_reserve_detail
 </div>
 </div>
 <h3 id="apply-reserve-stock">Apply Reserve Stock<a class="headerlink" href="#apply-reserve-stock" title="Permanent link">&para;</a></h3>
-<div class="tabbed-set tabbed-alternate" data-tabs="5:2"><input checked="checked" id="__tabbed_5_1" name="__tabbed_5" type="radio" /><input id="__tabbed_5_2" name="__tabbed_5" type="radio" /><div class="tabbed-labels"><label for="__tabbed_5_1">Python</label><label for="__tabbed_5_2">HTTP</label></div>
+<div class="tabbed-set tabbed-alternate" data-tabs="5:3"><input checked="checked" id="__tabbed_5_1" name="__tabbed_5" type="radio" /><input id="__tabbed_5_2" name="__tabbed_5" type="radio" /><input id="__tabbed_5_3" name="__tabbed_5" type="radio" /><div class="tabbed-labels"><label for="__tabbed_5_1">Python</label><label for="__tabbed_5_2">CLI</label><label for="__tabbed_5_3">HTTP</label></div>
 <div class="tabbed-content">
 <div class="tabbed-block">
 <div class="admonition info">
@@ -2494,6 +2660,32 @@ stock_reserve_detail
 </span>    <span class="p">),</span>
     <span class="n">error</span><span class="o">=</span><span class="kc">None</span>
 <span class="p">)</span>
+</code></pre></div>
+</div>
+</div>
+<div class="tabbed-block">
+<div class="admonition info">
+<p class="admonition-title">In</p>
+<div class="highlight"><pre><span></span><code>shioaji<span class="w"> </span>reserve<span class="w"> </span>stock<span class="w"> </span>--code<span class="w"> </span><span class="m">1217</span><span class="w"> </span>--share<span class="w"> </span><span class="m">1000</span><span class="w"> </span>--account<span class="w"> </span>YOUR_BROKER_ID-YOUR_ACCOUNT_ID
+</code></pre></div>
+</div>
+<div class="admonition done">
+<p class="admonition-title">Out</p>
+<div class="highlight"><pre><span></span><code>contract:
+  security_type: STK
+  exchange: TSE
+  code: &quot;1217&quot;
+  target_code: &quot;&quot;
+account:
+  account_type: S
+  person_id: YOUR_PERSON_ID
+  broker_id: YOUR_BROKER_ID
+  account_id: &quot;YOUR_ACCOUNT_ID&quot;
+  signed: true
+  username: &quot;&quot;
+share: 1000
+status: true
+info: &quot;&quot;
 </code></pre></div>
 </div>
 </div>
@@ -2541,7 +2733,7 @@ stock_reserve_detail
 -->
 
 <h3 id="get-reserve-stock-summary">Get Reserve Stock Summary<a class="headerlink" href="#get-reserve-stock-summary" title="Permanent link">&para;</a></h3>
-<div class="tabbed-set tabbed-alternate" data-tabs="6:2"><input checked="checked" id="__tabbed_6_1" name="__tabbed_6" type="radio" /><input id="__tabbed_6_2" name="__tabbed_6" type="radio" /><div class="tabbed-labels"><label for="__tabbed_6_1">Python</label><label for="__tabbed_6_2">HTTP</label></div>
+<div class="tabbed-set tabbed-alternate" data-tabs="6:3"><input checked="checked" id="__tabbed_6_1" name="__tabbed_6" type="radio" /><input id="__tabbed_6_2" name="__tabbed_6" type="radio" /><input id="__tabbed_6_3" name="__tabbed_6" type="radio" /><div class="tabbed-labels"><label for="__tabbed_6_1">Python</label><label for="__tabbed_6_2">CLI</label><label for="__tabbed_6_3">HTTP</label></div>
 <div class="tabbed-content">
 <div class="tabbed-block">
 <div class="admonition info">
@@ -2576,6 +2768,32 @@ stock_reserve_detail
     <span class="p">),</span>
     <span class="n">error</span><span class="o">=</span><span class="kc">None</span>
 <span class="p">)</span>
+</code></pre></div>
+</div>
+</div>
+<div class="tabbed-block">
+<div class="admonition info">
+<p class="admonition-title">In</p>
+<div class="highlight"><pre><span></span><code>shioaji<span class="w"> </span>reserve<span class="w"> </span>summary<span class="w"> </span>--account<span class="w"> </span>YOUR_BROKER_ID-YOUR_ACCOUNT_ID
+</code></pre></div>
+</div>
+<div class="admonition done">
+<p class="admonition-title">Out</p>
+<div class="highlight"><pre><span></span><code>stocks[1]:
+  - contract:
+      security_type: STK
+      exchange: TSE
+      code: &quot;2890&quot;
+      target_code: &quot;&quot;
+    available_share: 5000
+    reserved_share: 0
+account:
+  account_type: S
+  person_id: YOUR_PERSON_ID
+  broker_id: YOUR_BROKER_ID
+  account_id: &quot;YOUR_ACCOUNT_ID&quot;
+  signed: true
+  username: &quot;&quot;
 </code></pre></div>
 </div>
 </div>
@@ -2617,7 +2835,7 @@ stock_reserve_detail
 -->
 
 <h3 id="get-reserve-stock-detail">Get Reserve Stock Detail<a class="headerlink" href="#get-reserve-stock-detail" title="Permanent link">&para;</a></h3>
-<div class="tabbed-set tabbed-alternate" data-tabs="7:2"><input checked="checked" id="__tabbed_7_1" name="__tabbed_7" type="radio" /><input id="__tabbed_7_2" name="__tabbed_7" type="radio" /><div class="tabbed-labels"><label for="__tabbed_7_1">Python</label><label for="__tabbed_7_2">HTTP</label></div>
+<div class="tabbed-set tabbed-alternate" data-tabs="7:3"><input checked="checked" id="__tabbed_7_1" name="__tabbed_7" type="radio" /><input id="__tabbed_7_2" name="__tabbed_7" type="radio" /><input id="__tabbed_7_3" name="__tabbed_7" type="radio" /><div class="tabbed-labels"><label for="__tabbed_7_1">Python</label><label for="__tabbed_7_2">CLI</label><label for="__tabbed_7_3">HTTP</label></div>
 <div class="tabbed-content">
 <div class="tabbed-block">
 <div class="admonition info">
@@ -2654,6 +2872,34 @@ stock_reserve_detail
     <span class="p">),</span>
     <span class="n">error</span><span class="o">=</span><span class="kc">None</span>
 <span class="p">)</span>
+</code></pre></div>
+</div>
+</div>
+<div class="tabbed-block">
+<div class="admonition info">
+<p class="admonition-title">In</p>
+<div class="highlight"><pre><span></span><code>shioaji<span class="w"> </span>reserve<span class="w"> </span>detail<span class="w"> </span>--account<span class="w"> </span>YOUR_BROKER_ID-YOUR_ACCOUNT_ID
+</code></pre></div>
+</div>
+<div class="admonition done">
+<p class="admonition-title">Out</p>
+<div class="highlight"><pre><span></span><code>stocks[1]:
+  - contract:
+      security_type: STK
+      exchange: TSE
+      code: &quot;6153&quot;
+      target_code: &quot;&quot;
+    share: 1000
+    order_datetime: 2026-05-20T15:16:28+08:00
+    status: true
+    info: 已完成
+account:
+  account_type: S
+  person_id: YOUR_PERSON_ID
+  broker_id: YOUR_BROKER_ID
+  account_id: &quot;YOUR_ACCOUNT_ID&quot;
+  signed: true
+  username: &quot;&quot;
 </code></pre></div>
 </div>
 </div>

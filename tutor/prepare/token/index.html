@@ -1645,6 +1645,29 @@
   
   
   
+    <li class="md-nav__item">
+      <a href="../../shioaji_apps/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Shioaji Apps
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
     
     
     
@@ -1654,10 +1677,10 @@
       
         
         
-        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_5_9" >
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_5_10" >
         
           
-          <label class="md-nav__link" for="__nav_5_9" id="__nav_5_9_label" tabindex="0">
+          <label class="md-nav__link" for="__nav_5_10" id="__nav_5_10_label" tabindex="0">
             
   
   
@@ -1670,8 +1693,8 @@
             <span class="md-nav__icon md-icon"></span>
           </label>
         
-        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_5_9_label" aria-expanded="false">
-          <label class="md-nav__title" for="__nav_5_9">
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_5_10_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_5_10">
             <span class="md-nav__icon md-icon"></span>
             Advanced Guide
           </label>
@@ -2218,7 +2241,14 @@ SJ_CA_PASSWD=&lt;CA Certificate Password&gt;
 </div>
 <div class="tabbed-block">
 <p><code>shioaji server start</code> automatically reads <code>SJ_CA_PATH</code> and <code>SJ_CA_PASSWD</code> from <code>.env</code> to activate the CA; no extra call is needed.</p>
-<p>Check CA expiry time:</p>
+<p>Check CA expiry time with the CLI:</p>
+<div class="highlight"><pre><span></span><code>shioaji<span class="w"> </span>auth<span class="w"> </span>ca-expiretime<span class="w"> </span>--person-id<span class="w"> </span>YOUR_PERSON_ID
+</code></pre></div>
+<p>Response:</p>
+<div class="highlight"><pre><span></span><code>person_id: YOUR_PERSON_ID
+expire_time: 2026-09-13T15:59:59
+</code></pre></div>
+<p>Or via HTTP:</p>
 <div class="highlight"><pre><span></span><code>curl<span class="w"> </span><span class="s2">&quot;http://localhost:8080/api/v1/auth/ca_expiretime?person_id=YOUR_PERSON_ID&quot;</span>
 </code></pre></div>
 <p>Response:</p>

@@ -171,9 +171,48 @@ api.unsubscribe_trade(account)
 
 ```
 
-請使用 HTTP
+server 啟動時不自動訂閱，需逐帳號動態訂閱。
 
-Shioaji 1.5.x CLI 未提供 `subscribe-trade` subcommand，請使用 HTTP。
+subscribe trade
+
+```
+shioaji auth subscribe-trade --account-type F
+
+```
+
+unsubscribe trade
+
+```
+shioaji auth unsubscribe-trade --account-type F
+
+```
+
+Parameters
+
+```
+--account-type: 選填，S（證券，預設）或 F（期貨/選擇權）
+--account:      選填，BROKER_ID-ACCOUNT_ID 格式；未填時使用該類型的預設帳號
+
+```
+
+Out
+
+```
+account:
+  account_type: F
+  person_id: YOUR_PERSON_ID
+  broker_id: F002000
+  account_id: "YOUR_ACCOUNT_ID"
+  signed: true
+  username: ""
+subscribe_trade: true
+ts: 20260612021106
+
+```
+
+注意
+
+`subscribe-trade` 只負責向 server 登記訂閱，執行完即結束。實際接收委託/成交回報請使用 `shioaji order events`（SSE 串流，Ctrl+C 停止），詳見[委託回報](../callback/orderdeal_event/)。
 
 server 啟動時不自動訂閱，需逐帳號動態訂閱。
 

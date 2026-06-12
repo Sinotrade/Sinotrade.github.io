@@ -448,6 +448,31 @@ cb:        optional, callback function, used when timeout=0
 list_position_detail
 
 ```
+$ shioaji portfolio position-detail --help
+
+Get position detail by detail id
+
+Usage: shioaji portfolio position-detail [OPTIONS] --detail-id <DETAIL_ID>
+
+Options:
+      --account-type <ACCOUNT_TYPE>  Account type: S (stock) or F (futures) [default: S]
+      --account <ACCOUNT>            Account in BROKER_ID-ACCOUNT_ID format (e.g. 9A00-1234567)
+      --detail-id <DETAIL_ID>        Detail ID (the `id` field from `portfolio positions`)
+
+```
+
+Parameters
+
+```
+--account-type: optional, S (stock / default) or F (futures and options)
+--account:      optional, BROKER_ID-ACCOUNT_ID format; defaults to the default account of that type
+--detail-id:    position ID (from the portfolio positions result)
+
+```
+
+list_position_detail
+
+```
 POST /api/v1/portfolio/position_detail
 Content-Type: application/json
 
@@ -530,6 +555,21 @@ Out
 In
 
 ```
+shioaji portfolio position-detail --account-type S --detail-id 0
+
+```
+
+Out
+
+```
+[1]{date,code,quantity,price,last_price,dseq,direction,pnl,currency,fee,cond,ex_dividends,interest,margintrading_amt,collateral}:
+  "2026-05-18","2890",1,30000,31000,Y1QDH,Buy,1000,TWD,100,Cash,0,0,0,0
+
+```
+
+In
+
+```
 curl -X POST http://localhost:8080/api/v1/portfolio/position_detail \
   -H 'Content-Type: application/json' \
   -d '{"account_type": "S", "detail_id": 0, "broker_id": "YOUR_BROKER_ID", "account_id": "YOUR_ACCOUNT_ID"}'
@@ -605,6 +645,21 @@ Out
         entry_quantity=3,
     ),
 ]
+
+```
+
+In
+
+```
+shioaji portfolio position-detail --account-type F --detail-id 0
+
+```
+
+Out
+
+```
+[1]{date,code,quantity,price,last_price,dseq,direction,pnl,currency,fee,entry_quantity}:
+  "2026-05-21","TXO20260620200C",3,131,126,tA0n8,Buy,-750,TWD,120,3
 
 ```
 

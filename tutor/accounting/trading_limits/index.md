@@ -30,6 +30,27 @@ cb:      optional, callback function, used when timeout=0
 TradingLimits
 
 ```
+$ shioaji portfolio trading-limits --help
+
+Get trading limits (stock account)
+
+Usage: shioaji portfolio trading-limits [OPTIONS]
+
+Options:
+      --account <ACCOUNT>  Account in BROKER_ID-ACCOUNT_ID format (e.g. 9A00-1234567)
+
+```
+
+Parameters
+
+```
+--account: optional, BROKER_ID-ACCOUNT_ID format; defaults to the default stock account
+
+```
+
+TradingLimits
+
+```
 POST /api/v1/portfolio/trading_limits
 Content-Type: application/json
 
@@ -92,6 +113,28 @@ TradingLimits(
     short_used=0,
     short_available=0
 )
+
+```
+
+In
+
+```
+shioaji portfolio trading-limits --account YOUR_BROKER_ID-YOUR_ACCOUNT_ID
+
+```
+
+Out
+
+```
+trading_limit: 1000000
+trading_used: 0
+trading_available: 1000000
+margin_limit: 0
+margin_used: 0
+margin_available: 0
+short_limit: 0
+short_used: 0
+short_available: 0
 
 ```
 

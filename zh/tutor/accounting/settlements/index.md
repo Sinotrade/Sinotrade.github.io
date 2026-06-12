@@ -26,6 +26,27 @@ cb:      選填，callback 函式，timeout=0 時使用
 settlements
 
 ```
+$ shioaji portfolio settlements --help
+
+Get settlement list (date/amount/T, stock account)
+
+Usage: shioaji portfolio settlements [OPTIONS]
+
+Options:
+      --account <ACCOUNT>  Account in BROKER_ID-ACCOUNT_ID format (e.g. 9A00-1234567)
+
+```
+
+Parameters
+
+```
+--account: 選填，BROKER_ID-ACCOUNT_ID 格式；未填時使用預設證券帳號
+
+```
+
+settlements
+
+```
 POST /api/v1/portfolio/settlements
 Content-Type: application/json
 
@@ -101,6 +122,32 @@ In
 
 ```
 api.settlements(account=api.stock_account)
+
+```
+
+In
+
+```
+shioaji portfolio settlements
+
+```
+
+Out
+
+```
+[3]{date,amount,T}:
+  "2026-05-21",100000,0
+  "2026-05-22",0,1
+  "2026-05-25",0,2
+
+```
+
+**指定帳戶**
+
+In
+
+```
+shioaji portfolio settlements --account YOUR_BROKER_ID-YOUR_ACCOUNT_ID
 
 ```
 

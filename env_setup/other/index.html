@@ -513,6 +513,15 @@
   
 </li>
       
+        <li class="md-nav__item">
+  <a href="#check-server-status" class="md-nav__link">
+    <span class="md-ellipsis">
+      Check Server Status
+    </span>
+  </a>
+  
+</li>
+      
     </ul>
   
 </nav>
@@ -1608,6 +1617,29 @@
   
   
   
+    <li class="md-nav__item">
+      <a href="../../tutor/shioaji_apps/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Shioaji Apps
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
     
     
     
@@ -1617,10 +1649,10 @@
       
         
         
-        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_5_9" >
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_5_10" >
         
           
-          <label class="md-nav__link" for="__nav_5_9" id="__nav_5_9_label" tabindex="0">
+          <label class="md-nav__link" for="__nav_5_10" id="__nav_5_10_label" tabindex="0">
             
   
   
@@ -1633,8 +1665,8 @@
             <span class="md-nav__icon md-icon"></span>
           </label>
         
-        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_5_9_label" aria-expanded="false">
-          <label class="md-nav__title" for="__nav_5_9">
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_5_10_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_5_10">
             <span class="md-nav__icon md-icon"></span>
             Advanced Guide
           </label>
@@ -1957,6 +1989,15 @@
   
 </li>
       
+        <li class="md-nav__item">
+  <a href="#check-server-status" class="md-nav__link">
+    <span class="md-ellipsis">
+      Check Server Status
+    </span>
+  </a>
+  
+</li>
+      
     </ul>
   
 </nav>
@@ -2013,6 +2054,91 @@ SJ_CA_PASSWD=YOUR_CA_PASSWORD
 SJ_PRODUCTION=false
 </code></pre></div>
 <p>When the shioaji server starts, it will automatically read this file to complete login and CA activation.</p>
+<h2 id="check-server-status">Check Server Status<a class="headerlink" href="#check-server-status" title="Permanent link">&para;</a></h2>
+<p>After the server is up, you can check the daemon and stream health at any time.</p>
+<div class="tabbed-set tabbed-alternate" data-tabs="2:2"><input checked="checked" id="__tabbed_2_1" name="__tabbed_2" type="radio" /><input id="__tabbed_2_2" name="__tabbed_2" type="radio" /><div class="tabbed-labels"><label for="__tabbed_2_1">CLI</label><label for="__tabbed_2_2">HTTP</label></div>
+<div class="tabbed-content">
+<div class="tabbed-block">
+<div class="admonition info">
+<p class="admonition-title">In</p>
+<div class="highlight"><pre><span></span><code>shioaji<span class="w"> </span>server<span class="w"> </span>status<span class="w"> </span>--streams
+</code></pre></div>
+</div>
+<div class="admonition done">
+<p class="admonition-title">Out</p>
+<div class="highlight"><pre><span></span><code>running: true
+pid: 38082
+port: 8080
+socket_path: &quot;/Users/your_name/.shioaji/server-8080.sock&quot;
+healthy: true
+simulation: false
+stream_receivers: &quot;Market data receivers are available for tick, bidask, quote, and order event data&quot;
+stream_status:
+  active_connections: 0
+  timestamp: 2026-06-12T05:48:05.561238+00:00
+  status: healthy
+</code></pre></div>
+</div>
+<p>Adding <code>--streams</code> additionally queries the stream diagnostics (<code>stream_receivers</code> and <code>stream_status</code>), which helps verify whether pushed data is being received.</p>
+<div class="admonition example">
+<p class="admonition-title">Attributes</p>
+<div class="highlight"><pre><span></span><code>running (bool):           whether the daemon is running
+pid (int):                process ID of the daemon
+port (int):               HTTP service port
+socket_path (str):        daemon control socket path
+healthy (bool):           whether the daemon is healthy
+simulation (bool):        whether the server is in simulation mode (corresponds to SJ_PRODUCTION in .env)
+stream_receivers (str):   stream receiver description
+active_connections (int): number of client connections currently attached to the SSE streams
+                          (market data and order event streams both count); if you subscribed
+                          but receive no data, first check whether this is 0
+</code></pre></div>
+</div>
+</div>
+<div class="tabbed-block">
+<p><strong>Version and mode</strong></p>
+<div class="admonition info">
+<p class="admonition-title">In</p>
+<div class="highlight"><pre><span></span><code>curl<span class="w"> </span>http://localhost:8080/api/v1/info
+</code></pre></div>
+</div>
+<div class="admonition done">
+<p class="admonition-title">Out</p>
+<div class="highlight"><pre><span></span><code><span class="p">{</span><span class="nt">&quot;name&quot;</span><span class="p">:</span><span class="s2">&quot;Shioaji API Server&quot;</span><span class="p">,</span><span class="nt">&quot;version&quot;</span><span class="p">:</span><span class="s2">&quot;1.5.3&quot;</span><span class="p">,</span><span class="nt">&quot;description&quot;</span><span class="p">:</span><span class="s2">&quot;SinoPac Shioaji Cross-Platform Trading API HTTP Adaptor&quot;</span><span class="p">,</span><span class="nt">&quot;protocols&quot;</span><span class="p">:[</span><span class="s2">&quot;HTTP&quot;</span><span class="p">],</span><span class="nt">&quot;simulation&quot;</span><span class="p">:</span><span class="kc">false</span><span class="p">}</span>
+</code></pre></div>
+</div>
+<div class="admonition example">
+<p class="admonition-title">Attributes</p>
+<div class="highlight"><pre><span></span><code>name (str):        service name
+version (str):     server version
+description (str): service description
+protocols (list):  supported protocols
+simulation (bool): whether the server is in simulation mode (corresponds to SJ_PRODUCTION in .env)
+</code></pre></div>
+</div>
+<p><strong>Stream connection status</strong></p>
+<div class="admonition info">
+<p class="admonition-title">In</p>
+<div class="highlight"><pre><span></span><code>curl<span class="w"> </span>http://localhost:8080/api/v1/stream/status
+</code></pre></div>
+</div>
+<div class="admonition done">
+<p class="admonition-title">Out</p>
+<div class="highlight"><pre><span></span><code><span class="p">{</span><span class="nt">&quot;active_connections&quot;</span><span class="p">:</span><span class="mi">0</span><span class="p">,</span><span class="nt">&quot;timestamp&quot;</span><span class="p">:</span><span class="s2">&quot;2026-06-12T05:53:13.517649+00:00&quot;</span><span class="p">,</span><span class="nt">&quot;status&quot;</span><span class="p">:</span><span class="s2">&quot;healthy&quot;</span><span class="p">}</span>
+</code></pre></div>
+</div>
+<div class="admonition example">
+<p class="admonition-title">Attributes</p>
+<div class="highlight"><pre><span></span><code>active_connections (int): number of client connections currently attached to the SSE streams
+                          (market data and order event streams both count); if you subscribed
+                          but receive no data, first check whether this is 0
+timestamp (str):          query time
+status (str):             stream service status
+</code></pre></div>
+</div>
+</div>
+</div>
+</div>
 <p>If you have already opened an account, you can skip the next chapter and go to <a href="../../tutor/prepare/token/">Token &amp; Certificate</a> to get the API Key and certificate.</p>
 
 

@@ -1597,6 +1597,29 @@
   
   
   
+    <li class="md-nav__item">
+      <a href="../../shioaji_apps/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    自訂應用
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
     
     
     
@@ -1606,10 +1629,10 @@
       
         
         
-        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_5_9" >
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_5_10" >
         
           
-          <label class="md-nav__link" for="__nav_5_9" id="__nav_5_9_label" tabindex="0">
+          <label class="md-nav__link" for="__nav_5_10" id="__nav_5_10_label" tabindex="0">
             
   
   
@@ -1622,8 +1645,8 @@
             <span class="md-nav__icon md-icon"></span>
           </label>
         
-        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_5_9_label" aria-expanded="false">
-          <label class="md-nav__title" for="__nav_5_9">
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_5_10_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_5_10">
             <span class="md-nav__icon md-icon"></span>
             進階指南
           </label>
@@ -1977,7 +2000,26 @@ cb:        選填，callback 函式，timeout=0 時使用
 </div>
 </div>
 <div class="tabbed-block">
-<p>CLI 目前不支援資券餘額查詢，請改用 Python / HTTP。</p>
+<div class="admonition example">
+<p class="admonition-title">CreditEnquires</p>
+<div class="highlight"><pre><span></span><code>$<span class="w"> </span>shioaji<span class="w"> </span>data<span class="w"> </span>credit-enquire<span class="w"> </span>--help
+
+Get<span class="w"> </span>credit<span class="w"> </span>enquire<span class="w"> </span><span class="o">(</span>margin/short<span class="w"> </span>remaining<span class="o">)</span><span class="w"> </span><span class="k">for</span><span class="w"> </span>contracts
+
+Usage:<span class="w"> </span>shioaji<span class="w"> </span>data<span class="w"> </span>credit-enquire<span class="w"> </span><span class="o">[</span>OPTIONS<span class="o">]</span><span class="w"> </span>--codes<span class="w"> </span>&lt;CODES&gt;
+
+Options:
+<span class="w">      </span>--codes<span class="w"> </span>&lt;CODES&gt;<span class="w">                  </span>Comma-separated<span class="w"> </span>security<span class="w"> </span>codes<span class="w"> </span><span class="o">(</span>e.g.<span class="w"> </span><span class="m">2330</span>,2317,2454<span class="o">)</span>
+<span class="w">      </span>--security-type<span class="w"> </span>&lt;SECURITY_TYPE&gt;<span class="w">  </span>Security<span class="w"> </span>type:<span class="w"> </span>STK,<span class="w"> </span>FUT,<span class="w"> </span>OPT,<span class="w"> </span>IND<span class="w"> </span><span class="o">[</span>default:<span class="w"> </span>STK<span class="o">]</span>
+<span class="w">      </span>--exchange<span class="w"> </span>&lt;EXCHANGE&gt;<span class="w">            </span>Exchange:<span class="w"> </span>TSE,<span class="w"> </span>OTC,<span class="w"> </span>TAIFEX<span class="w"> </span><span class="o">[</span>default:<span class="w"> </span>TSE<span class="o">]</span>
+</code></pre></div>
+</div>
+<div class="admonition done">
+<p class="admonition-title">Parameters</p>
+<div class="highlight"><pre><span></span><code>--codes:    逗號分隔的商品代碼（例如 2330,2890）
+--exchange: 選填，TSE 或 OTC，預設 TSE
+</code></pre></div>
+</div>
 </div>
 <div class="tabbed-block">
 <div class="admonition example">
@@ -2020,7 +2062,7 @@ contracts[].code:          商品代碼（例如 2330）
 </code></pre></div>
 </div>
 <h2 id="_2">範例<a class="headerlink" href="#_2" title="Permanent link">&para;</a></h2>
-<div class="tabbed-set tabbed-alternate" data-tabs="2:2"><input checked="checked" id="__tabbed_2_1" name="__tabbed_2" type="radio" /><input id="__tabbed_2_2" name="__tabbed_2" type="radio" /><div class="tabbed-labels"><label for="__tabbed_2_1">Python</label><label for="__tabbed_2_2">HTTP</label></div>
+<div class="tabbed-set tabbed-alternate" data-tabs="2:3"><input checked="checked" id="__tabbed_2_1" name="__tabbed_2" type="radio" /><input id="__tabbed_2_2" name="__tabbed_2" type="radio" /><input id="__tabbed_2_3" name="__tabbed_2" type="radio" /><div class="tabbed-labels"><label for="__tabbed_2_1">Python</label><label for="__tabbed_2_2">CLI</label><label for="__tabbed_2_3">HTTP</label></div>
 <div class="tabbed-content">
 <div class="tabbed-block">
 <div class="admonition info">
@@ -2079,6 +2121,20 @@ contracts[].code:          商品代碼（例如 2330）
 </tr>
 </tbody>
 </table>
+</div>
+</div>
+<div class="tabbed-block">
+<div class="admonition info">
+<p class="admonition-title">In</p>
+<div class="highlight"><pre><span></span><code>shioaji<span class="w"> </span>data<span class="w"> </span>credit-enquire<span class="w"> </span>--codes<span class="w"> </span><span class="m">2330</span>,2890
+</code></pre></div>
+</div>
+<div class="admonition done">
+<p class="admonition-title">Out</p>
+<div class="highlight"><pre><span></span><code>[2]{update_time,system,stock_id,margin_unit,short_unit,margin_loan_ratio,short_margin_ratio}:
+  2026-06-12 01:12:16.329373,ALL,&quot;2330&quot;,774,0,60,90
+  2026-06-12 01:12:16.336417,ALL,&quot;2890&quot;,0,0,0,0
+</code></pre></div>
 </div>
 </div>
 <div class="tabbed-block">

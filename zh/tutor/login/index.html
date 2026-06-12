@@ -1652,6 +1652,29 @@
   
   
   
+    <li class="md-nav__item">
+      <a href="../shioaji_apps/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    自訂應用
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
     
     
     
@@ -1661,10 +1684,10 @@
       
         
         
-        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_5_9" >
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_5_10" >
         
           
-          <label class="md-nav__link" for="__nav_5_9" id="__nav_5_9_label" tabindex="0">
+          <label class="md-nav__link" for="__nav_5_10" id="__nav_5_10_label" tabindex="0">
             
   
   
@@ -1677,8 +1700,8 @@
             <span class="md-nav__icon md-icon"></span>
           </label>
         
-        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_5_9_label" aria-expanded="false">
-          <label class="md-nav__title" for="__nav_5_9">
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_5_10_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_5_10">
             <span class="md-nav__icon md-icon"></span>
             進階指南
           </label>
@@ -2213,19 +2236,49 @@ SJ_PRODUCTION<span class="w">   </span>是否進入正式模式<span class="w"> 
 <p>另一個方式是，對特定帳號使用 API <code>subscribe_trade</code> 及 <code>unsubscribe_trade</code>，即可訂閱或取消訂閱委託/成交回報。</p>
 <div class="admonition info">
 <p class="admonition-title">subscribe trade</p>
-<div class="highlight"><pre><span></span><code><span class="hll"><span class="n">api</span><span class="o">.</span><span class="n">subscribe_trade</span><span class="p">(</span><span class="n">account</span><span class="p">)</span>
-</span></code></pre></div>
+<div class="highlight"><pre><span></span><code><span class="n">api</span><span class="o">.</span><span class="n">subscribe_trade</span><span class="p">(</span><span class="n">account</span><span class="p">)</span>
+</code></pre></div>
 </div>
 <div class="admonition info">
 <p class="admonition-title">unsubscribe trade</p>
-<div class="highlight"><pre><span></span><code><span class="hll"><span class="n">api</span><span class="o">.</span><span class="n">unsubscribe_trade</span><span class="p">(</span><span class="n">account</span><span class="p">)</span>
-</span></code></pre></div>
+<div class="highlight"><pre><span></span><code><span class="n">api</span><span class="o">.</span><span class="n">unsubscribe_trade</span><span class="p">(</span><span class="n">account</span><span class="p">)</span>
+</code></pre></div>
 </div>
 </div>
 <div class="tabbed-block">
-<div class="admonition warning">
-<p class="admonition-title">請使用 HTTP</p>
-<p>Shioaji 1.5.x CLI 未提供 <code>subscribe-trade</code> subcommand，請使用 HTTP。</p>
+<p>server 啟動時不自動訂閱，需逐帳號動態訂閱。</p>
+<div class="admonition info">
+<p class="admonition-title">subscribe trade</p>
+<div class="highlight"><pre><span></span><code>shioaji<span class="w"> </span>auth<span class="w"> </span>subscribe-trade<span class="w"> </span>--account-type<span class="w"> </span>F
+</code></pre></div>
+</div>
+<div class="admonition info">
+<p class="admonition-title">unsubscribe trade</p>
+<div class="highlight"><pre><span></span><code>shioaji<span class="w"> </span>auth<span class="w"> </span>unsubscribe-trade<span class="w"> </span>--account-type<span class="w"> </span>F
+</code></pre></div>
+</div>
+<div class="admonition done">
+<p class="admonition-title">Parameters</p>
+<div class="highlight"><pre><span></span><code>--account-type: 選填，S（證券，預設）或 F（期貨/選擇權）
+--account:      選填，BROKER_ID-ACCOUNT_ID 格式；未填時使用該類型的預設帳號
+</code></pre></div>
+</div>
+<div class="admonition done">
+<p class="admonition-title">Out</p>
+<div class="highlight"><pre><span></span><code>account:
+  account_type: F
+  person_id: YOUR_PERSON_ID
+  broker_id: F002000
+  account_id: &quot;YOUR_ACCOUNT_ID&quot;
+  signed: true
+  username: &quot;&quot;
+subscribe_trade: true
+ts: 20260612021106
+</code></pre></div>
+</div>
+<div class="admonition attention">
+<p class="admonition-title">注意</p>
+<p><code>subscribe-trade</code> 只負責向 server 登記訂閱，執行完即結束。實際接收委託/成交回報請使用 <code>shioaji order events</code>（SSE 串流，Ctrl+C 停止），詳見<a href="../callback/orderdeal_event/">委託回報</a>。</p>
 </div>
 </div>
 <div class="tabbed-block">

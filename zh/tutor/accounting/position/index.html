@@ -1669,6 +1669,29 @@
   
   
   
+    <li class="md-nav__item">
+      <a href="../../shioaji_apps/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    自訂應用
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
     
     
     
@@ -1678,10 +1701,10 @@
       
         
         
-        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_5_9" >
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_5_10" >
         
           
-          <label class="md-nav__link" for="__nav_5_9" id="__nav_5_9_label" tabindex="0">
+          <label class="md-nav__link" for="__nav_5_10" id="__nav_5_10_label" tabindex="0">
             
   
   
@@ -1694,8 +1717,8 @@
             <span class="md-nav__icon md-icon"></span>
           </label>
         
-        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_5_9_label" aria-expanded="false">
-          <label class="md-nav__title" for="__nav_5_9">
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_5_10_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_5_10">
             <span class="md-nav__icon md-icon"></span>
             進階指南
           </label>
@@ -2352,8 +2375,8 @@ person_id:    選填，身分證字號
 <p><strong>零股</strong></p>
 <div class="admonition info">
 <p class="admonition-title">In</p>
-<div class="highlight"><pre><span></span><code><span class="hll">shioaji<span class="w"> </span>portfolio<span class="w"> </span>positions<span class="w"> </span>--unit<span class="w"> </span>share<span class="w"> </span>--account<span class="w"> </span>YOUR_BROKER_ID-YOUR_ACCOUNT_ID
-</span></code></pre></div>
+<div class="highlight"><pre><span></span><code>shioaji<span class="w"> </span>portfolio<span class="w"> </span>positions<span class="w"> </span>--unit<span class="w"> </span>share<span class="w"> </span>--account<span class="w"> </span>YOUR_BROKER_ID-YOUR_ACCOUNT_ID
+</code></pre></div>
 </div>
 <div class="admonition done">
 <p class="admonition-title">Out</p>
@@ -2532,7 +2555,7 @@ person_id:    選填，身分證字號
 </div>
 <h2 id="-">未實現損益 - 明細<a class="headerlink" href="#-" title="Permanent link">&para;</a></h2>
 <p><code>detail_id</code> 為<a href="#未實現損益">未實現損益</a>回傳結果中的 <code>id</code>，用於查詢該筆部位的明細。</p>
-<div class="tabbed-set tabbed-alternate" data-tabs="4:2"><input checked="checked" id="__tabbed_4_1" name="__tabbed_4" type="radio" /><input id="__tabbed_4_2" name="__tabbed_4" type="radio" /><div class="tabbed-labels"><label for="__tabbed_4_1">Python</label><label for="__tabbed_4_2">其他語言</label></div>
+<div class="tabbed-set tabbed-alternate" data-tabs="4:3"><input checked="checked" id="__tabbed_4_1" name="__tabbed_4" type="radio" /><input id="__tabbed_4_2" name="__tabbed_4" type="radio" /><input id="__tabbed_4_3" name="__tabbed_4" type="radio" /><div class="tabbed-labels"><label for="__tabbed_4_1">Python</label><label for="__tabbed_4_2">CLI</label><label for="__tabbed_4_3">其他語言</label></div>
 <div class="tabbed-content">
 <div class="tabbed-block">
 <div class="admonition example">
@@ -2554,6 +2577,29 @@ person_id:    選填，身分證字號
 detail_id: 選填，部位 ID（從 list_positions 結果取得）
 timeout:   逾時毫秒
 cb:        選填，callback 函式，timeout=0 時使用
+</code></pre></div>
+</div>
+</div>
+<div class="tabbed-block">
+<div class="admonition example">
+<p class="admonition-title">list_position_detail</p>
+<div class="highlight"><pre><span></span><code>$<span class="w"> </span>shioaji<span class="w"> </span>portfolio<span class="w"> </span>position-detail<span class="w"> </span>--help
+
+Get<span class="w"> </span>position<span class="w"> </span>detail<span class="w"> </span>by<span class="w"> </span>detail<span class="w"> </span>id
+
+Usage:<span class="w"> </span>shioaji<span class="w"> </span>portfolio<span class="w"> </span>position-detail<span class="w"> </span><span class="o">[</span>OPTIONS<span class="o">]</span><span class="w"> </span>--detail-id<span class="w"> </span>&lt;DETAIL_ID&gt;
+
+Options:
+<span class="w">      </span>--account-type<span class="w"> </span>&lt;ACCOUNT_TYPE&gt;<span class="w">  </span>Account<span class="w"> </span>type:<span class="w"> </span>S<span class="w"> </span><span class="o">(</span>stock<span class="o">)</span><span class="w"> </span>or<span class="w"> </span>F<span class="w"> </span><span class="o">(</span>futures<span class="o">)</span><span class="w"> </span><span class="o">[</span>default:<span class="w"> </span>S<span class="o">]</span>
+<span class="w">      </span>--account<span class="w"> </span>&lt;ACCOUNT&gt;<span class="w">            </span>Account<span class="w"> </span><span class="k">in</span><span class="w"> </span>BROKER_ID-ACCOUNT_ID<span class="w"> </span>format<span class="w"> </span><span class="o">(</span>e.g.<span class="w"> </span>9A00-1234567<span class="o">)</span>
+<span class="w">      </span>--detail-id<span class="w"> </span>&lt;DETAIL_ID&gt;<span class="w">        </span>Detail<span class="w"> </span>ID<span class="w"> </span><span class="o">(</span>the<span class="w"> </span><span class="sb">`</span>id<span class="sb">`</span><span class="w"> </span>field<span class="w"> </span>from<span class="w"> </span><span class="sb">`</span>portfolio<span class="w"> </span>positions<span class="sb">`</span><span class="o">)</span>
+</code></pre></div>
+</div>
+<div class="admonition done">
+<p class="admonition-title">Parameters</p>
+<div class="highlight"><pre><span></span><code>--account-type: 選填，S（證券，預設）或 F（期貨選擇權）
+--account:      選填，BROKER_ID-ACCOUNT_ID 格式；未填時使用該類型的預設帳號
+--detail-id:    部位 ID（從 portfolio positions 結果取得）
 </code></pre></div>
 </div>
 </div>
@@ -2604,7 +2650,7 @@ person_id:    選填，身分證字號
 <span class="n">collateral</span> <span class="p">(</span><span class="nb">int</span><span class="p">):</span>        <span class="n">擔保品</span>
 </code></pre></div>
 </div>
-<div class="tabbed-set tabbed-alternate" data-tabs="5:2"><input checked="checked" id="__tabbed_5_1" name="__tabbed_5" type="radio" /><input id="__tabbed_5_2" name="__tabbed_5" type="radio" /><div class="tabbed-labels"><label for="__tabbed_5_1">Python</label><label for="__tabbed_5_2">HTTP</label></div>
+<div class="tabbed-set tabbed-alternate" data-tabs="5:3"><input checked="checked" id="__tabbed_5_1" name="__tabbed_5" type="radio" /><input id="__tabbed_5_2" name="__tabbed_5" type="radio" /><input id="__tabbed_5_3" name="__tabbed_5" type="radio" /><div class="tabbed-labels"><label for="__tabbed_5_1">Python</label><label for="__tabbed_5_2">CLI</label><label for="__tabbed_5_3">HTTP</label></div>
 <div class="tabbed-content">
 <div class="tabbed-block">
 <div class="admonition info">
@@ -2633,6 +2679,19 @@ person_id:    選填，身分證字號
         <span class="n">collateral</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span>
     <span class="p">),</span>
 <span class="p">]</span>
+</code></pre></div>
+</div>
+</div>
+<div class="tabbed-block">
+<div class="admonition info">
+<p class="admonition-title">In</p>
+<div class="highlight"><pre><span></span><code>shioaji<span class="w"> </span>portfolio<span class="w"> </span>position-detail<span class="w"> </span>--account-type<span class="w"> </span>S<span class="w"> </span>--detail-id<span class="w"> </span><span class="m">0</span>
+</code></pre></div>
+</div>
+<div class="admonition done">
+<p class="admonition-title">Out</p>
+<div class="highlight"><pre><span></span><code>[1]{date,code,quantity,price,last_price,dseq,direction,pnl,currency,fee,cond,ex_dividends,interest,margintrading_amt,collateral}:
+  &quot;2026-05-18&quot;,&quot;2890&quot;,1,30000,31000,Y1QDH,Buy,1000,TWD,100,Cash,0,0,0,0
 </code></pre></div>
 </div>
 </div>
@@ -2686,7 +2745,7 @@ person_id:    選填，身分證字號
 <span class="n">entry_quantity</span> <span class="p">(</span><span class="nb">int</span><span class="p">):</span> <span class="n">新倉數量</span>
 </code></pre></div>
 </div>
-<div class="tabbed-set tabbed-alternate" data-tabs="6:2"><input checked="checked" id="__tabbed_6_1" name="__tabbed_6" type="radio" /><input id="__tabbed_6_2" name="__tabbed_6" type="radio" /><div class="tabbed-labels"><label for="__tabbed_6_1">Python</label><label for="__tabbed_6_2">HTTP</label></div>
+<div class="tabbed-set tabbed-alternate" data-tabs="6:3"><input checked="checked" id="__tabbed_6_1" name="__tabbed_6" type="radio" /><input id="__tabbed_6_2" name="__tabbed_6" type="radio" /><input id="__tabbed_6_3" name="__tabbed_6" type="radio" /><div class="tabbed-labels"><label for="__tabbed_6_1">Python</label><label for="__tabbed_6_2">CLI</label><label for="__tabbed_6_3">HTTP</label></div>
 <div class="tabbed-content">
 <div class="tabbed-block">
 <div class="admonition info">
@@ -2711,6 +2770,19 @@ person_id:    選填，身分證字號
         <span class="n">entry_quantity</span><span class="o">=</span><span class="mi">3</span><span class="p">,</span>
     <span class="p">),</span>
 <span class="p">]</span>
+</code></pre></div>
+</div>
+</div>
+<div class="tabbed-block">
+<div class="admonition info">
+<p class="admonition-title">In</p>
+<div class="highlight"><pre><span></span><code>shioaji<span class="w"> </span>portfolio<span class="w"> </span>position-detail<span class="w"> </span>--account-type<span class="w"> </span>F<span class="w"> </span>--detail-id<span class="w"> </span><span class="m">0</span>
+</code></pre></div>
+</div>
+<div class="admonition done">
+<p class="admonition-title">Out</p>
+<div class="highlight"><pre><span></span><code>[1]{date,code,quantity,price,last_price,dseq,direction,pnl,currency,fee,entry_quantity}:
+  &quot;2026-05-21&quot;,&quot;TXO20260620200C&quot;,3,131,126,tA0n8,Buy,-750,TWD,120,3
 </code></pre></div>
 </div>
 </div>

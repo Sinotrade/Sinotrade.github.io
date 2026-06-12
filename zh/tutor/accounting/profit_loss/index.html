@@ -1678,6 +1678,29 @@
   
   
   
+    <li class="md-nav__item">
+      <a href="../../shioaji_apps/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    自訂應用
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
     
     
     
@@ -1687,10 +1710,10 @@
       
         
         
-        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_5_9" >
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_5_10" >
         
           
-          <label class="md-nav__link" for="__nav_5_9" id="__nav_5_9_label" tabindex="0">
+          <label class="md-nav__link" for="__nav_5_10" id="__nav_5_10_label" tabindex="0">
             
   
   
@@ -1703,8 +1726,8 @@
             <span class="md-nav__icon md-icon"></span>
           </label>
         
-        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_5_9_label" aria-expanded="false">
-          <label class="md-nav__title" for="__nav_5_9">
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_5_10_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_5_10">
             <span class="md-nav__icon md-icon"></span>
             進階指南
           </label>
@@ -2117,7 +2140,7 @@
 
 <p>用於查詢<strong>證券／期貨選擇權帳戶</strong>已實現損益，需要先<a href="../../login">登入</a>。</p>
 <h2 id="_1">已實現損益<a class="headerlink" href="#_1" title="Permanent link">&para;</a></h2>
-<div class="tabbed-set tabbed-alternate" data-tabs="1:2"><input checked="checked" id="__tabbed_1_1" name="__tabbed_1" type="radio" /><input id="__tabbed_1_2" name="__tabbed_1" type="radio" /><div class="tabbed-labels"><label for="__tabbed_1_1">Python</label><label for="__tabbed_1_2">其他語言</label></div>
+<div class="tabbed-set tabbed-alternate" data-tabs="1:3"><input checked="checked" id="__tabbed_1_1" name="__tabbed_1" type="radio" /><input id="__tabbed_1_2" name="__tabbed_1" type="radio" /><input id="__tabbed_1_3" name="__tabbed_1" type="radio" /><div class="tabbed-labels"><label for="__tabbed_1_1">Python</label><label for="__tabbed_1_2">CLI</label><label for="__tabbed_1_3">其他語言</label></div>
 <div class="tabbed-content">
 <div class="tabbed-block">
 <div class="admonition example">
@@ -2143,6 +2166,33 @@ end_date:   查詢結束日期，格式 YYYY-MM-DD
 unit:       Unit.Common（整股／預設）或 Unit.Share（零股）
 timeout:    逾時毫秒
 cb:         callback 函式，timeout=0 時使用
+</code></pre></div>
+</div>
+</div>
+<div class="tabbed-block">
+<div class="admonition example">
+<p class="admonition-title">list_profit_loss</p>
+<div class="highlight"><pre><span></span><code>$<span class="w"> </span>shioaji<span class="w"> </span>portfolio<span class="w"> </span>profit-loss<span class="w"> </span>--help
+
+Get<span class="w"> </span>realized<span class="w"> </span>profit<span class="w"> </span>and<span class="w"> </span>loss
+
+Usage:<span class="w"> </span>shioaji<span class="w"> </span>portfolio<span class="w"> </span>profit-loss<span class="w"> </span><span class="o">[</span>OPTIONS<span class="o">]</span>
+
+Options:
+<span class="w">      </span>--account-type<span class="w"> </span>&lt;ACCOUNT_TYPE&gt;<span class="w">  </span>Account<span class="w"> </span>type:<span class="w"> </span>S<span class="w"> </span><span class="o">(</span>stock<span class="o">)</span><span class="w"> </span>or<span class="w"> </span>F<span class="w"> </span><span class="o">(</span>futures<span class="o">)</span><span class="w"> </span><span class="o">[</span>default:<span class="w"> </span>S<span class="o">]</span>
+<span class="w">      </span>--account<span class="w"> </span>&lt;ACCOUNT&gt;<span class="w">            </span>Account<span class="w"> </span><span class="k">in</span><span class="w"> </span>BROKER_ID-ACCOUNT_ID<span class="w"> </span>format<span class="w"> </span><span class="o">(</span>e.g.<span class="w"> </span>9A00-1234567<span class="o">)</span>
+<span class="w">      </span>--begin-date<span class="w"> </span>&lt;BEGIN_DATE&gt;<span class="w">      </span>Begin<span class="w"> </span>date<span class="w"> </span><span class="o">(</span>YYYY-MM-DD,<span class="w"> </span>default:<span class="w"> </span>today<span class="o">)</span><span class="w"> </span><span class="o">[</span>default:<span class="w"> </span><span class="m">2026</span>-06-12<span class="o">]</span>
+<span class="w">      </span>--end-date<span class="w"> </span>&lt;END_DATE&gt;<span class="w">          </span>End<span class="w"> </span>date<span class="w"> </span><span class="o">(</span>YYYY-MM-DD,<span class="w"> </span>default:<span class="w"> </span>today<span class="o">)</span><span class="w"> </span><span class="o">[</span>default:<span class="w"> </span><span class="m">2026</span>-06-12<span class="o">]</span>
+<span class="w">      </span>--unit<span class="w"> </span>&lt;UNIT&gt;<span class="w">                  </span>Unit:<span class="w"> </span>common<span class="w"> </span><span class="o">(</span>default<span class="o">)</span><span class="w"> </span>or<span class="w"> </span>share<span class="w"> </span><span class="o">[</span>default:<span class="w"> </span>common<span class="o">]</span><span class="w"> </span><span class="o">[</span>possible<span class="w"> </span>values:<span class="w"> </span>common,<span class="w"> </span>share<span class="o">]</span>
+</code></pre></div>
+</div>
+<div class="admonition done">
+<p class="admonition-title">Parameters</p>
+<div class="highlight"><pre><span></span><code>--account-type: 選填，S（證券，預設）或 F（期貨選擇權）
+--account:      選填，BROKER_ID-ACCOUNT_ID 格式；未填時使用該類型的預設帳號
+--begin-date:   查詢起始日期，格式 YYYY-MM-DD，預設今日
+--end-date:     查詢結束日期，格式 YYYY-MM-DD，預設今日
+--unit:         選填，common（整股，預設）或 share（零股）
 </code></pre></div>
 </div>
 </div>
@@ -2192,7 +2242,7 @@ person_id:    身分證字號
 <span class="n">seqno</span> <span class="p">(</span><span class="nb">str</span><span class="p">):</span>           <span class="n">委託序號</span>
 </code></pre></div>
 </div>
-<div class="tabbed-set tabbed-alternate" data-tabs="2:2"><input checked="checked" id="__tabbed_2_1" name="__tabbed_2" type="radio" /><input id="__tabbed_2_2" name="__tabbed_2" type="radio" /><div class="tabbed-labels"><label for="__tabbed_2_1">Python</label><label for="__tabbed_2_2">HTTP</label></div>
+<div class="tabbed-set tabbed-alternate" data-tabs="2:3"><input checked="checked" id="__tabbed_2_1" name="__tabbed_2" type="radio" /><input id="__tabbed_2_2" name="__tabbed_2" type="radio" /><input id="__tabbed_2_3" name="__tabbed_2" type="radio" /><div class="tabbed-labels"><label for="__tabbed_2_1">Python</label><label for="__tabbed_2_2">CLI</label><label for="__tabbed_2_3">HTTP</label></div>
 <div class="tabbed-content">
 <div class="tabbed-block">
 <div class="admonition info">
@@ -2288,6 +2338,20 @@ person_id:    身分證字號
 <div class="tabbed-block">
 <div class="admonition info">
 <p class="admonition-title">In</p>
+<div class="highlight"><pre><span></span><code>shioaji<span class="w"> </span>portfolio<span class="w"> </span>profit-loss<span class="w"> </span>--account-type<span class="w"> </span>S<span class="w"> </span>--begin-date<span class="w"> </span><span class="m">2026</span>-05-01<span class="w"> </span>--end-date<span class="w"> </span><span class="m">2026</span>-05-21
+</code></pre></div>
+</div>
+<div class="admonition done">
+<p class="admonition-title">Out</p>
+<div class="highlight"><pre><span></span><code>[2]{id,code,quantity,pnl,date,dseq,price,pr_ratio,cond,seqno}:
+  0,&quot;2890&quot;,1,1000,&quot;2026-05-05&quot;,Y0TR2,31,0.0333,Cash,&quot;113382&quot;
+  1,&quot;2330&quot;,1,-20000,&quot;2026-05-06&quot;,Y20K2,1980,-0.01,Cash,&quot;184354&quot;
+</code></pre></div>
+</div>
+</div>
+<div class="tabbed-block">
+<div class="admonition info">
+<p class="admonition-title">In</p>
 <div class="highlight"><pre><span></span><code>curl<span class="w"> </span>-X<span class="w"> </span>POST<span class="w"> </span>http://localhost:8080/api/v1/portfolio/profit_loss<span class="w"> </span><span class="se">\</span>
 <span class="w">  </span>-H<span class="w"> </span><span class="s1">&#39;Content-Type: application/json&#39;</span><span class="w"> </span><span class="se">\</span>
 <span class="hll"><span class="w">  </span>-d<span class="w"> </span><span class="s1">&#39;{&quot;account_type&quot;: &quot;S&quot;, &quot;begin_date&quot;: &quot;2026-05-01&quot;, &quot;end_date&quot;: &quot;2026-05-21&quot;, &quot;broker_id&quot;: &quot;YOUR_BROKER_ID&quot;, &quot;account_id&quot;: &quot;YOUR_ACCOUNT_ID&quot;}&#39;</span>
@@ -2341,7 +2405,7 @@ person_id:    身分證字號
 <span class="n">direction</span> <span class="p">(</span><span class="n">Action</span><span class="p">):</span> <span class="n">買賣別</span> <span class="p">{</span><span class="n">Buy</span><span class="p">:</span> <span class="n">買</span><span class="p">,</span> <span class="n">Sell</span><span class="p">:</span> <span class="n">賣</span><span class="p">}</span>
 </code></pre></div>
 </div>
-<div class="tabbed-set tabbed-alternate" data-tabs="3:2"><input checked="checked" id="__tabbed_3_1" name="__tabbed_3" type="radio" /><input id="__tabbed_3_2" name="__tabbed_3" type="radio" /><div class="tabbed-labels"><label for="__tabbed_3_1">Python</label><label for="__tabbed_3_2">HTTP</label></div>
+<div class="tabbed-set tabbed-alternate" data-tabs="3:3"><input checked="checked" id="__tabbed_3_1" name="__tabbed_3" type="radio" /><input id="__tabbed_3_2" name="__tabbed_3" type="radio" /><input id="__tabbed_3_3" name="__tabbed_3" type="radio" /><div class="tabbed-labels"><label for="__tabbed_3_1">Python</label><label for="__tabbed_3_2">CLI</label><label for="__tabbed_3_3">HTTP</label></div>
 <div class="tabbed-content">
 <div class="tabbed-block">
 <div class="admonition info">
@@ -2365,6 +2429,19 @@ person_id:    身分證字號
         <span class="n">direction</span><span class="o">=&lt;</span><span class="n">Action</span><span class="o">.</span><span class="n">Buy</span><span class="p">:</span> <span class="s1">&#39;Buy&#39;</span><span class="o">&gt;</span><span class="p">,</span>
     <span class="p">),</span>
 <span class="p">]</span>
+</code></pre></div>
+</div>
+</div>
+<div class="tabbed-block">
+<div class="admonition info">
+<p class="admonition-title">In</p>
+<div class="highlight"><pre><span></span><code>shioaji<span class="w"> </span>portfolio<span class="w"> </span>profit-loss<span class="w"> </span>--account-type<span class="w"> </span>F<span class="w"> </span>--begin-date<span class="w"> </span><span class="m">2026</span>-05-01<span class="w"> </span>--end-date<span class="w"> </span><span class="m">2026</span>-05-21
+</code></pre></div>
+</div>
+<div class="admonition done">
+<p class="admonition-title">Out</p>
+<div class="highlight"><pre><span></span><code>[1]{id,code,quantity,pnl,date,entry_price,cover_price,tax,fee,direction}:
+  0,&quot;TXO20260620200C&quot;,3,-750,&quot;2026-05-10&quot;,131,126,5,120,Buy
 </code></pre></div>
 </div>
 </div>
@@ -2399,7 +2476,7 @@ person_id:    身分證字號
 </div>
 <h2 id="-">已實現損益 - 明細<a class="headerlink" href="#-" title="Permanent link">&para;</a></h2>
 <p><code>detail_id</code> 為<a href="#已實現損益">已實現損益</a>回傳結果中的 <code>id</code>，用於查詢該筆損益的明細。</p>
-<div class="tabbed-set tabbed-alternate" data-tabs="4:2"><input checked="checked" id="__tabbed_4_1" name="__tabbed_4" type="radio" /><input id="__tabbed_4_2" name="__tabbed_4" type="radio" /><div class="tabbed-labels"><label for="__tabbed_4_1">Python</label><label for="__tabbed_4_2">其他語言</label></div>
+<div class="tabbed-set tabbed-alternate" data-tabs="4:3"><input checked="checked" id="__tabbed_4_1" name="__tabbed_4" type="radio" /><input id="__tabbed_4_2" name="__tabbed_4" type="radio" /><input id="__tabbed_4_3" name="__tabbed_4" type="radio" /><div class="tabbed-labels"><label for="__tabbed_4_1">Python</label><label for="__tabbed_4_2">CLI</label><label for="__tabbed_4_3">其他語言</label></div>
 <div class="tabbed-content">
 <div class="tabbed-block">
 <div class="admonition example">
@@ -2423,6 +2500,31 @@ detail_id: 部位 ID（從 list_profit_loss 結果取得）
 unit:      Unit.Common（整股／預設）或 Unit.Share（零股）
 timeout:   逾時毫秒
 cb:        callback 函式，timeout=0 時使用
+</code></pre></div>
+</div>
+</div>
+<div class="tabbed-block">
+<div class="admonition example">
+<p class="admonition-title">list_profit_loss_detail</p>
+<div class="highlight"><pre><span></span><code>$<span class="w"> </span>shioaji<span class="w"> </span>portfolio<span class="w"> </span>profit-loss-detail<span class="w"> </span>--help
+
+Get<span class="w"> </span>realized<span class="w"> </span>profit<span class="w"> </span>and<span class="w"> </span>loss<span class="w"> </span>detail<span class="w"> </span>by<span class="w"> </span>detail<span class="w"> </span>id
+
+Usage:<span class="w"> </span>shioaji<span class="w"> </span>portfolio<span class="w"> </span>profit-loss-detail<span class="w"> </span><span class="o">[</span>OPTIONS<span class="o">]</span><span class="w"> </span>--detail-id<span class="w"> </span>&lt;DETAIL_ID&gt;
+
+Options:
+<span class="w">      </span>--account-type<span class="w"> </span>&lt;ACCOUNT_TYPE&gt;<span class="w">  </span>Account<span class="w"> </span>type:<span class="w"> </span>S<span class="w"> </span><span class="o">(</span>stock<span class="o">)</span><span class="w"> </span>or<span class="w"> </span>F<span class="w"> </span><span class="o">(</span>futures<span class="o">)</span><span class="w"> </span><span class="o">[</span>default:<span class="w"> </span>S<span class="o">]</span>
+<span class="w">      </span>--account<span class="w"> </span>&lt;ACCOUNT&gt;<span class="w">            </span>Account<span class="w"> </span><span class="k">in</span><span class="w"> </span>BROKER_ID-ACCOUNT_ID<span class="w"> </span>format<span class="w"> </span><span class="o">(</span>e.g.<span class="w"> </span>9A00-1234567<span class="o">)</span>
+<span class="w">      </span>--detail-id<span class="w"> </span>&lt;DETAIL_ID&gt;<span class="w">        </span>Detail<span class="w"> </span>ID<span class="w"> </span><span class="o">(</span>the<span class="w"> </span><span class="sb">`</span>id<span class="sb">`</span><span class="w"> </span>field<span class="w"> </span>from<span class="w"> </span><span class="sb">`</span>portfolio<span class="w"> </span>profit-loss<span class="sb">`</span><span class="o">)</span>
+<span class="w">      </span>--unit<span class="w"> </span>&lt;UNIT&gt;<span class="w">                  </span>Unit:<span class="w"> </span>common<span class="w"> </span><span class="o">(</span>default<span class="o">)</span><span class="w"> </span>or<span class="w"> </span>share<span class="w"> </span><span class="o">[</span>default:<span class="w"> </span>common<span class="o">]</span><span class="w"> </span><span class="o">[</span>possible<span class="w"> </span>values:<span class="w"> </span>common,<span class="w"> </span>share<span class="o">]</span>
+</code></pre></div>
+</div>
+<div class="admonition done">
+<p class="admonition-title">Parameters</p>
+<div class="highlight"><pre><span></span><code>--account-type: 選填，S（證券，預設）或 F（期貨選擇權）
+--account:      選填，BROKER_ID-ACCOUNT_ID 格式；未填時使用該類型的預設帳號
+--detail-id:    部位 ID（從 portfolio profit-loss 結果取得）
+--unit:         選填，common（整股，預設）或 share（零股）
 </code></pre></div>
 </div>
 </div>
@@ -2477,7 +2579,7 @@ person_id:    身分證字號
 <span class="n">cond</span> <span class="p">(</span><span class="n">StockOrderCond</span><span class="p">):</span>       <span class="p">{</span><span class="n">Cash</span><span class="p">:</span> <span class="n">現股</span><span class="p">,</span> <span class="n">Netting</span><span class="p">:</span> <span class="n">餘額交割</span><span class="p">,</span> <span class="n">MarginTrading</span><span class="p">:</span> <span class="n">融資</span><span class="p">,</span> <span class="n">ShortSelling</span><span class="p">:</span> <span class="n">融券</span><span class="p">,</span> <span class="n">Emerging</span><span class="p">:</span> <span class="n">興櫃</span><span class="p">}</span>
 </code></pre></div>
 </div>
-<div class="tabbed-set tabbed-alternate" data-tabs="5:2"><input checked="checked" id="__tabbed_5_1" name="__tabbed_5" type="radio" /><input id="__tabbed_5_2" name="__tabbed_5" type="radio" /><div class="tabbed-labels"><label for="__tabbed_5_1">Python</label><label for="__tabbed_5_2">HTTP</label></div>
+<div class="tabbed-set tabbed-alternate" data-tabs="5:3"><input checked="checked" id="__tabbed_5_1" name="__tabbed_5" type="radio" /><input id="__tabbed_5_2" name="__tabbed_5" type="radio" /><input id="__tabbed_5_3" name="__tabbed_5" type="radio" /><div class="tabbed-labels"><label for="__tabbed_5_1">Python</label><label for="__tabbed_5_2">CLI</label><label for="__tabbed_5_3">HTTP</label></div>
 <div class="tabbed-content">
 <div class="tabbed-block">
 <div class="admonition info">
@@ -2508,6 +2610,19 @@ person_id:    身分證字號
         <span class="n">cond</span><span class="o">=&lt;</span><span class="n">StockOrderCond</span><span class="o">.</span><span class="n">Cash</span><span class="p">:</span> <span class="s1">&#39;Cash&#39;</span><span class="o">&gt;</span><span class="p">,</span>
     <span class="p">),</span>
 <span class="p">]</span>
+</code></pre></div>
+</div>
+</div>
+<div class="tabbed-block">
+<div class="admonition info">
+<p class="admonition-title">In</p>
+<div class="highlight"><pre><span></span><code>shioaji<span class="w"> </span>portfolio<span class="w"> </span>profit-loss-detail<span class="w"> </span>--account-type<span class="w"> </span>S<span class="w"> </span>--detail-id<span class="w"> </span><span class="m">0</span>
+</code></pre></div>
+</div>
+<div class="admonition done">
+<p class="admonition-title">Out</p>
+<div class="highlight"><pre><span></span><code>[1]{date,code,quantity,dseq,fee,tax,currency,price,cost,rep_margintrading_amt,rep_collateral,rep_margin,shortselling_fee,ex_dividend_amt,interest,trade_type,cond}:
+  &quot;2026-04-23&quot;,&quot;2890&quot;,1,Y0O7E,119,0,TWD,30,30119,0,0,0,0,0,0,Common,Cash
 </code></pre></div>
 </div>
 </div>
@@ -2566,7 +2681,7 @@ person_id:    身分證字號
 <span class="n">pnl</span> <span class="p">(</span><span class="nb">int</span><span class="p">):</span>            <span class="n">損益</span>
 </code></pre></div>
 </div>
-<div class="tabbed-set tabbed-alternate" data-tabs="6:2"><input checked="checked" id="__tabbed_6_1" name="__tabbed_6" type="radio" /><input id="__tabbed_6_2" name="__tabbed_6" type="radio" /><div class="tabbed-labels"><label for="__tabbed_6_1">Python</label><label for="__tabbed_6_2">HTTP</label></div>
+<div class="tabbed-set tabbed-alternate" data-tabs="6:3"><input checked="checked" id="__tabbed_6_1" name="__tabbed_6" type="radio" /><input id="__tabbed_6_2" name="__tabbed_6" type="radio" /><input id="__tabbed_6_3" name="__tabbed_6" type="radio" /><div class="tabbed-labels"><label for="__tabbed_6_1">Python</label><label for="__tabbed_6_2">CLI</label><label for="__tabbed_6_3">HTTP</label></div>
 <div class="tabbed-content">
 <div class="tabbed-block">
 <div class="admonition info">
@@ -2594,6 +2709,19 @@ person_id:    身分證字號
         <span class="n">pnl</span><span class="o">=-</span><span class="mi">750</span><span class="p">,</span>
     <span class="p">),</span>
 <span class="p">]</span>
+</code></pre></div>
+</div>
+</div>
+<div class="tabbed-block">
+<div class="admonition info">
+<p class="admonition-title">In</p>
+<div class="highlight"><pre><span></span><code>shioaji<span class="w"> </span>portfolio<span class="w"> </span>profit-loss-detail<span class="w"> </span>--account-type<span class="w"> </span>F<span class="w"> </span>--detail-id<span class="w"> </span><span class="m">0</span>
+</code></pre></div>
+</div>
+<div class="admonition done">
+<p class="admonition-title">Out</p>
+<div class="highlight"><pre><span></span><code>[1]{date,code,quantity,dseq,fee,tax,currency,direction,entry_date,entry_quantity,entry_seqno,entry_price,cover_price,pnl}:
+  &quot;2026-05-10&quot;,&quot;TXO20260620200C&quot;,3,tA0n8,120,5,TWD,Buy,&quot;2026-05-08&quot;,3,&quot;113382&quot;,131,126,-750
 </code></pre></div>
 </div>
 </div>
@@ -2632,7 +2760,7 @@ person_id:    身分證字號
 </div>
 <h2 id="-_1">已實現損益 - 彙總<a class="headerlink" href="#-_1" title="Permanent link">&para;</a></h2>
 <p>用於查詢一段時間內的已實現損益彙總；回傳物件 <code>ProfitLossSummaryTotal</code> 包含每檔商品的明細列表 <code>profitloss_summary</code> 與總計 <code>total</code>。</p>
-<div class="tabbed-set tabbed-alternate" data-tabs="7:2"><input checked="checked" id="__tabbed_7_1" name="__tabbed_7" type="radio" /><input id="__tabbed_7_2" name="__tabbed_7" type="radio" /><div class="tabbed-labels"><label for="__tabbed_7_1">Python</label><label for="__tabbed_7_2">其他語言</label></div>
+<div class="tabbed-set tabbed-alternate" data-tabs="7:3"><input checked="checked" id="__tabbed_7_1" name="__tabbed_7" type="radio" /><input id="__tabbed_7_2" name="__tabbed_7" type="radio" /><input id="__tabbed_7_3" name="__tabbed_7" type="radio" /><div class="tabbed-labels"><label for="__tabbed_7_1">Python</label><label for="__tabbed_7_2">CLI</label><label for="__tabbed_7_3">其他語言</label></div>
 <div class="tabbed-content">
 <div class="tabbed-block">
 <div class="admonition example">
@@ -2656,6 +2784,31 @@ begin_date: 查詢起始日期，格式 YYYY-MM-DD
 end_date:   查詢結束日期，格式 YYYY-MM-DD
 timeout:    逾時毫秒
 cb:         callback 函式，timeout=0 時使用
+</code></pre></div>
+</div>
+</div>
+<div class="tabbed-block">
+<div class="admonition example">
+<p class="admonition-title">list_profit_loss_summary</p>
+<div class="highlight"><pre><span></span><code>$<span class="w"> </span>shioaji<span class="w"> </span>portfolio<span class="w"> </span>profit-loss-summary<span class="w"> </span>--help
+
+Get<span class="w"> </span>profit<span class="w"> </span>and<span class="w"> </span>loss<span class="w"> </span>summary
+
+Usage:<span class="w"> </span>shioaji<span class="w"> </span>portfolio<span class="w"> </span>profit-loss-summary<span class="w"> </span><span class="o">[</span>OPTIONS<span class="o">]</span>
+
+Options:
+<span class="w">      </span>--account-type<span class="w"> </span>&lt;ACCOUNT_TYPE&gt;<span class="w">  </span>Account<span class="w"> </span>type:<span class="w"> </span>S<span class="w"> </span><span class="o">(</span>stock<span class="o">)</span><span class="w"> </span>or<span class="w"> </span>F<span class="w"> </span><span class="o">(</span>futures<span class="o">)</span><span class="w"> </span><span class="o">[</span>default:<span class="w"> </span>S<span class="o">]</span>
+<span class="w">      </span>--account<span class="w"> </span>&lt;ACCOUNT&gt;<span class="w">            </span>Account<span class="w"> </span><span class="k">in</span><span class="w"> </span>BROKER_ID-ACCOUNT_ID<span class="w"> </span>format<span class="w"> </span><span class="o">(</span>e.g.<span class="w"> </span>9A00-1234567<span class="o">)</span>
+<span class="w">      </span>--begin-date<span class="w"> </span>&lt;BEGIN_DATE&gt;<span class="w">      </span>Begin<span class="w"> </span>date<span class="w"> </span><span class="o">(</span>YYYY-MM-DD,<span class="w"> </span>default:<span class="w"> </span>today<span class="o">)</span><span class="w"> </span><span class="o">[</span>default:<span class="w"> </span><span class="m">2026</span>-06-12<span class="o">]</span>
+<span class="w">      </span>--end-date<span class="w"> </span>&lt;END_DATE&gt;<span class="w">          </span>End<span class="w"> </span>date<span class="w"> </span><span class="o">(</span>YYYY-MM-DD,<span class="w"> </span>default:<span class="w"> </span>today<span class="o">)</span><span class="w"> </span><span class="o">[</span>default:<span class="w"> </span><span class="m">2026</span>-06-12<span class="o">]</span>
+</code></pre></div>
+</div>
+<div class="admonition done">
+<p class="admonition-title">Parameters</p>
+<div class="highlight"><pre><span></span><code>--account-type: 選填，S（證券，預設）或 F（期貨選擇權）
+--account:      選填，BROKER_ID-ACCOUNT_ID 格式；未填時使用該類型的預設帳號
+--begin-date:   查詢起始日期，格式 YYYY-MM-DD，預設今日
+--end-date:     查詢結束日期，格式 YYYY-MM-DD，預設今日
 </code></pre></div>
 </div>
 </div>
@@ -2716,7 +2869,7 @@ person_id:    身分證字號
 <span class="n">pr_ratio</span> <span class="p">(</span><span class="nb">float</span><span class="p">):</span>     <span class="n">總損益比</span>
 </code></pre></div>
 </div>
-<div class="tabbed-set tabbed-alternate" data-tabs="8:2"><input checked="checked" id="__tabbed_8_1" name="__tabbed_8" type="radio" /><input id="__tabbed_8_2" name="__tabbed_8" type="radio" /><div class="tabbed-labels"><label for="__tabbed_8_1">Python</label><label for="__tabbed_8_2">HTTP</label></div>
+<div class="tabbed-set tabbed-alternate" data-tabs="8:3"><input checked="checked" id="__tabbed_8_1" name="__tabbed_8" type="radio" /><input id="__tabbed_8_2" name="__tabbed_8" type="radio" /><input id="__tabbed_8_3" name="__tabbed_8" type="radio" /><div class="tabbed-labels"><label for="__tabbed_8_1">Python</label><label for="__tabbed_8_2">CLI</label><label for="__tabbed_8_3">HTTP</label></div>
 <div class="tabbed-content">
 <div class="tabbed-block">
 <div class="admonition info">
@@ -2781,6 +2934,28 @@ person_id:    身分證字號
     <span class="p">),</span>
     <span class="s1">&#39;status&#39;</span><span class="p">:</span> <span class="o">&lt;</span><span class="n">FetchStatus</span><span class="o">.</span><span class="n">Fetched</span><span class="p">:</span> <span class="s1">&#39;Fetched&#39;</span><span class="o">&gt;</span>
 <span class="p">}</span>
+</code></pre></div>
+</div>
+</div>
+<div class="tabbed-block">
+<div class="admonition info">
+<p class="admonition-title">In</p>
+<div class="highlight"><pre><span></span><code>shioaji<span class="w"> </span>portfolio<span class="w"> </span>profit-loss-summary<span class="w"> </span>--account-type<span class="w"> </span>S<span class="w"> </span>--begin-date<span class="w"> </span><span class="m">2026</span>-05-01<span class="w"> </span>--end-date<span class="w"> </span><span class="m">2026</span>-05-21
+</code></pre></div>
+</div>
+<div class="admonition done">
+<p class="admonition-title">Out</p>
+<div class="highlight"><pre><span></span><code>profitloss_sum[2]{code,quantity,entry_price,cover_price,pnl,currency,entry_cost,cover_cost,buy_cost,sell_cost,pr_ratio,cond}:
+  &quot;2890&quot;,1000,30,31,1000,NTD,30000,31000,30119,30881,3.33,Cash
+  &quot;2330&quot;,1000,2000,1980,-20000,NTD,2000000,1980000,2000119,1979881,-1,Cash
+total:
+  entry_amount: 0
+  cover_amount: 0
+  quantity: 2000
+  buy_cost: 2030238
+  sell_cost: 2010762
+  pnl: -19000
+  pr_ratio: -0.94
 </code></pre></div>
 </div>
 </div>
@@ -2865,7 +3040,7 @@ person_id:    身分證字號
 <span class="n">pr_ratio</span> <span class="p">(</span><span class="nb">float</span><span class="p">):</span>     <span class="n">總損益比</span>
 </code></pre></div>
 </div>
-<div class="tabbed-set tabbed-alternate" data-tabs="9:2"><input checked="checked" id="__tabbed_9_1" name="__tabbed_9" type="radio" /><input id="__tabbed_9_2" name="__tabbed_9" type="radio" /><div class="tabbed-labels"><label for="__tabbed_9_1">Python</label><label for="__tabbed_9_2">HTTP</label></div>
+<div class="tabbed-set tabbed-alternate" data-tabs="9:3"><input checked="checked" id="__tabbed_9_1" name="__tabbed_9" type="radio" /><input id="__tabbed_9_2" name="__tabbed_9" type="radio" /><input id="__tabbed_9_3" name="__tabbed_9" type="radio" /><div class="tabbed-labels"><label for="__tabbed_9_1">Python</label><label for="__tabbed_9_2">CLI</label><label for="__tabbed_9_3">HTTP</label></div>
 <div class="tabbed-content">
 <div class="tabbed-block">
 <div class="admonition info">
@@ -2876,6 +3051,27 @@ person_id:    身分證字號
 <div class="admonition done">
 <p class="admonition-title">Out</p>
 <div class="highlight"><pre><span></span><code><span class="n">ProfitLossSummaryTotal</span><span class="p">(</span><span class="n">total</span><span class="o">=</span><span class="n">ProfitLossTotal</span><span class="p">(</span><span class="n">pnl</span><span class="o">=-</span><span class="mi">750</span><span class="p">,</span> <span class="n">pr_ratio</span><span class="o">=-</span><span class="mf">3.79</span><span class="p">))</span>
+</code></pre></div>
+</div>
+</div>
+<div class="tabbed-block">
+<div class="admonition info">
+<p class="admonition-title">In</p>
+<div class="highlight"><pre><span></span><code>shioaji<span class="w"> </span>portfolio<span class="w"> </span>profit-loss-summary<span class="w"> </span>--account-type<span class="w"> </span>F<span class="w"> </span>--begin-date<span class="w"> </span><span class="m">2026</span>-05-01<span class="w"> </span>--end-date<span class="w"> </span><span class="m">2026</span>-05-21
+</code></pre></div>
+</div>
+<div class="admonition done">
+<p class="admonition-title">Out</p>
+<div class="highlight"><pre><span></span><code>profitloss_sum[1]{code,quantity,entry_price,cover_price,pnl,currency,direction,tax,fee}:
+  &quot;TXO20260620200C&quot;,3,131,126,-750,NTD,Buy,5,120
+total:
+  entry_amount: 19650
+  cover_amount: 18900
+  quantity: 3
+  buy_cost: 19775
+  sell_cost: 18775
+  pnl: -750
+  pr_ratio: -3.79
 </code></pre></div>
 </div>
 </div>

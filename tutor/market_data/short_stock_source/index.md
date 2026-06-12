@@ -21,7 +21,29 @@ cb:        optional, callback function, used when timeout=0
 
 ```
 
-CLI does not support short stock sources queries; please use Python / HTTP instead.
+ShortStockSources
+
+```
+$ shioaji data short-stock-sources --help
+
+Get short stock sources (borrowable shares) for contracts
+
+Usage: shioaji data short-stock-sources [OPTIONS] --codes <CODES>
+
+Options:
+      --codes <CODES>                  Comma-separated security codes (e.g. 2330,2317,2454)
+      --security-type <SECURITY_TYPE>  Security type: STK, FUT, OPT, IND [default: STK]
+      --exchange <EXCHANGE>            Exchange: TSE, OTC, TAIFEX [default: TSE]
+
+```
+
+Parameters
+
+```
+--codes:    comma-separated security codes (e.g. 2330,2317)
+--exchange: optional, TSE or OTC, default TSE
+
+```
 
 ShortStockSources
 
@@ -97,6 +119,22 @@ df
 Out
 
 | code | short_stock_source | ts | | --- | --- | --- | | 2330 | 0 | 2026-05-18 10:12:54 | | 2317 | 1225 | 2026-05-18 10:12:54 |
+
+In
+
+```
+shioaji data short-stock-sources --codes 2330,2317
+
+```
+
+Out
+
+```
+[2]{code,short_stock_source,datetime}:
+  "2330",0,2026-06-12T01:27:03
+  "2317",1086,2026-06-12T01:27:03
+
+```
 
 In
 
