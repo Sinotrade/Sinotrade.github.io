@@ -1683,9 +1683,9 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#full-example-shioaji-pro" class="md-nav__link">
+  <a href="#example-project-shioaji-pro-app" class="md-nav__link">
     <span class="md-ellipsis">
-      Full Example: Shioaji Pro
+      Example Project: shioaji-pro-app
     </span>
   </a>
   
@@ -2122,9 +2122,9 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#full-example-shioaji-pro" class="md-nav__link">
+  <a href="#example-project-shioaji-pro-app" class="md-nav__link">
     <span class="md-ellipsis">
-      Full Example: Shioaji Pro
+      Example Project: shioaji-pro-app
     </span>
   </a>
   
@@ -2343,14 +2343,22 @@ files[4]: &quot;my-app/index.html&quot;,&quot;my-app/shioaji-logo.png&quot;,&quo
 <li>Order actions should require a confirmation step or a safety lock to prevent accidental clicks</li>
 <li>After an SSE reconnect, re-subscribe to the market data you need</li>
 </ul>
-<h2 id="full-example-shioaji-pro">Full Example: Shioaji Pro<a class="headerlink" href="#full-example-shioaji-pro" title="Permanent link">&para;</a></h2>
-<p><img alt="Shioaji Pro" src="../../img/shioaji_pro_app.png" /></p>
-<p>For a complete implementation, see our open-source trading terminal <a href="https://github.com/Sinotrade/shioaji-pro-app">shioaji-pro-app</a> — its market data, orders, and event reporting all use the HTTP API and SSE introduced on this page:</p>
+<h2 id="example-project-shioaji-pro-app">Example Project: shioaji-pro-app<a class="headerlink" href="#example-project-shioaji-pro-app" title="Permanent link">&para;</a></h2>
+<p><img alt="shioaji-pro-app example screenshot" src="../../img/shioaji_pro_app.png" /></p>
+<p>The <a href="https://github.com/Sinotrade/shioaji-pro-app">shioaji-pro-app</a> example demonstrates what kind of trading interface can be built with the HTTP API and SSE introduced on this page:</p>
 <ul>
 <li>Real-time K-line: <code>data/kbars</code> for history, <code>stream/data</code> SSE for live updates</li>
 <li>Order events: subscribe via <code>auth/subscribe_trade</code>, then consume <code>stream/data/order_event</code></li>
 <li>Click-to-trade / drag-to-reprice: <code>order/place_order</code>, <code>order/update_price</code></li>
 </ul>
+<div class="admonition attention">
+<p class="admonition-title">Disclaimer</p>
+<ul>
+<li>This project is an open-source example, <strong>not an official Shioaji product</strong>.</li>
+<li>The software is provided "AS IS" without warranty of any kind, express or implied; it may contain bugs, delays, or unexpected behavior, and ordering or automation features may fail due to defects, network interruptions, or market data delays — test thoroughly in simulation mode before use.</li>
+<li>It does not constitute investment advice; all trading decisions and losses are the user's own responsibility, and the project authors, contributors, and SinoPac Securities accept no liability for any damages. Markets carry risk — trade carefully.</li>
+</ul>
+</div>
 
 
 

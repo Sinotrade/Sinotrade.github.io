@@ -1380,13 +1380,19 @@ Out
 - 下單操作要有確認步驟或鎖定機制，避免誤觸
 - SSE 斷線重連後，記得重新訂閱需要的行情
 
-## 完整範例：Shioaji Pro
+## 範例專案：shioaji-pro-app
 
-想看完整實作，可以參考我們開源的交易終端 [shioaji-pro-app](https://github.com/Sinotrade/shioaji-pro-app)，它的行情、下單、回報全部使用本頁介紹的 HTTP API 與 SSE：
+[shioaji-pro-app](https://github.com/Sinotrade/shioaji-pro-app) 這個範例示範了用本頁介紹的 HTTP API 與 SSE，能完成一個怎樣的交易介面：
 
 - 即時 K 線：`data/kbars` 取歷史，`stream/data` SSE 即時更新
 - 委託回報：`auth/subscribe_trade` 訂閱後接 `stream/data/order_event`
 - 點圖下單／拖曳改價：`order/place_order`、`order/update_price`
+
+免責聲明
+
+- 本專案為開源範例，**並非 Shioaji 官方產品**。
+- 軟體依「現狀」（AS IS）提供，不附任何明示或默示之保證；可能存在錯誤、延遲或非預期行為，下單與自動化功能可能因程式缺陷、網路中斷或行情延遲而失效，使用前請先於模擬環境充分測試。
+- 本軟體不構成任何投資建議，所有交易決策與損失由使用者自行承擔；專案作者、貢獻者與永豐金證券對任何損害概不負責。市場有風險，交易請謹慎。
 
 使用者能先在模擬環境熟悉我們所提供的服務，可避免在正式環境操作失誤造成財物的損失。以下說明如何進入模擬環境。
 

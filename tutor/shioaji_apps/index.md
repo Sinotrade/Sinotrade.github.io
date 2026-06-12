@@ -228,10 +228,16 @@ A frontend app can place orders directly through the HTTP API. Use [simulation m
 - Order actions should require a confirmation step or a safety lock to prevent accidental clicks
 - After an SSE reconnect, re-subscribe to the market data you need
 
-## Full Example: Shioaji Pro
+## Example Project: shioaji-pro-app
 
-For a complete implementation, see our open-source trading terminal [shioaji-pro-app](https://github.com/Sinotrade/shioaji-pro-app) — its market data, orders, and event reporting all use the HTTP API and SSE introduced on this page:
+The [shioaji-pro-app](https://github.com/Sinotrade/shioaji-pro-app) example demonstrates what kind of trading interface can be built with the HTTP API and SSE introduced on this page:
 
 - Real-time K-line: `data/kbars` for history, `stream/data` SSE for live updates
 - Order events: subscribe via `auth/subscribe_trade`, then consume `stream/data/order_event`
 - Click-to-trade / drag-to-reprice: `order/place_order`, `order/update_price`
+
+Disclaimer
+
+- This project is an open-source example, **not an official Shioaji product**.
+- The software is provided "AS IS" without warranty of any kind, express or implied; it may contain bugs, delays, or unexpected behavior, and ordering or automation features may fail due to defects, network interruptions, or market data delays — test thoroughly in simulation mode before use.
+- It does not constitute investment advice; all trading decisions and losses are the user's own responsibility, and the project authors, contributors, and SinoPac Securities accept no liability for any damages. Markets carry risk — trade carefully.
