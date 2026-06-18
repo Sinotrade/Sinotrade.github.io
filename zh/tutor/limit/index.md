@@ -105,7 +105,7 @@ Out
 
   `credit_enquires`、`short_stock_sources`、`snapshots`、`ticks`、`kbars`
 
-  - 以上查詢總次數 5 秒上限 50 次
+  - 以上查詢總次數 10 秒上限 50 次
   - 盤中查詢 `ticks` 次數不得超過 10 次
   - 盤中查詢 `kbars` 次數不得超過 270 次
 

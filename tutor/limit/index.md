@@ -105,7 +105,7 @@ Request rate
 
   `credit_enquires`, `short_stock_sources`, `snapshots`, `ticks`, `kbars`
 
-  - Total request rate: up to 50 calls per 5 seconds
+  - Total request rate: up to 50 calls per 10 seconds
   - Intraday `ticks` queries: up to 10 calls
   - Intraday `kbars` queries: up to 270 calls
 
