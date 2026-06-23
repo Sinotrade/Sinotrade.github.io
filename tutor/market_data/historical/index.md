@@ -345,6 +345,10 @@ Out
 
 You can fetch `Kbars` by specifying a start/end date range. The default is the most recent trade day.
 
+Date range limit
+
+The `Kbars` start/end date range must not exceed 30 days.
+
 Kbars
 
 ```

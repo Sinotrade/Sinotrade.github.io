@@ -3174,6 +3174,10 @@ last_cnt:               optional, last N ticks, used when query_type=&#39;LastCo
 -->
 <h2 id="kbars">Kbars<a class="headerlink" href="#kbars" title="Permanent link">&para;</a></h2>
 <p>You can fetch <code>Kbars</code> by specifying a start/end date range. The default is the most recent trade day.</p>
+<div class="admonition warning">
+<p class="admonition-title">Date range limit</p>
+<p>The <code>Kbars</code> start/end date range must not exceed 30 days.</p>
+</div>
 <div class="tabbed-set tabbed-alternate" data-tabs="3:3"><input checked="checked" id="__tabbed_3_1" name="__tabbed_3" type="radio" /><input id="__tabbed_3_2" name="__tabbed_3" type="radio" /><input id="__tabbed_3_3" name="__tabbed_3" type="radio" /><div class="tabbed-labels"><label for="__tabbed_3_1">Python</label><label for="__tabbed_3_2">CLI</label><label for="__tabbed_3_3">Other (HTTP)</label></div>
 <div class="tabbed-content">
 <div class="tabbed-block">
