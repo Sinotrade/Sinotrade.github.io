@@ -60,6 +60,10 @@ Orders
 
 ```
 
+Note
+
+Order placement in the simulation environment does not support emerging stocks or odd-lot trading.
+
 Accounting
 
 ```
