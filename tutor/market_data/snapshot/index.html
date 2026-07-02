@@ -1979,7 +1979,10 @@
 <p>Snapshot is the current information of a stock, future, or option. It contains open, high, low, close, change price, average price, volume, total volume, buy price, buy volume, sell price, sell volume and yesterday volume.</p>
 <div class="admonition warning">
 <p class="admonition-title">Note</p>
-<p>Snapshot queries consume bandwidth. See <a href="../../limit/">Use Restrictions</a> for the daily bandwidth cap.</p>
+<ul>
+<li>Snapshot queries consume bandwidth. See <a href="../../limit/">Use Restrictions</a> for the daily bandwidth cap.</li>
+<li><code>snapshots</code> is a request-type quote query, not a source of real-time quotes. Do not poll it repeatedly during trading hours as a real-time feed; exceeding the request rate limits or causing excessive system load will suspend your access under the violation handling rules. For real-time intraday data, use <a href="../streaming/stocks/">quote subscriptions</a> instead.</li>
+</ul>
 </div>
 <div class="admonition tip">
 <p class="admonition-title">Reminder</p>

@@ -1,4 +1,14 @@
-To avoid affecting other users' connections, please follow the usage rules below.
+## Fair Use Policy
+
+Shioaji's usage limits are anti-abuse guardrails that protect connection quality for all users; they are not a starting point for program design. Correct usage should stay far away from these limits. If your program keeps hitting them, it usually means a loop, reconnection, polling, or error-retry path is wrong — fix the usage pattern instead of running close to the limits.
+
+Correct usage
+
+- For real-time intraday data, use quote subscriptions (`api.subscribe()` or SSE streaming); subscription pushes do not count toward traffic. Do not poll `snapshots`, `ticks`, or `kbars` as a substitute for real-time quotes.
+- Historical data queries are recommended after market close; during trading hours, query only when necessary and keep it minimal. Cache the results after querying to avoid repeated queries.
+- Use order/deal callbacks (or SSE order events) for order status instead of polling `update_status()`.
+- Keep one logged-in connection per process; avoid repeated `login()` calls.
+- When you receive an error or an empty response, check its meaning first (e.g. check traffic with `api.usage()`) before retrying.
 
 ## Traffic Limit
 
@@ -133,11 +143,16 @@ Request rate
 
   - `api.login()` up to 1000 calls per day
 
+Do not poll historical data queries during trading hours
+
+`snapshots`, `ticks`, and `kbars` are **request-type quote queries** designed for after-market analysis and backtesting — they are not a source of real-time quotes. The most common misuse is polling `snapshots` repeatedly during trading hours as a real-time feed, which puts heavy load on the system; exceeding the request rate limits or causing excessive system load will suspend your access under the violation handling rules. For real-time intraday data, use quote subscriptions (`api.subscribe()` or SSE streaming) instead.
+
 ## Violation Handling
 
 Warn
 
-- If traffic exceeds the limit, market data queries (`ticks`, `snapshots`, `kbars`) return empty values; other features are not affected.
-- If usage exceeds the limit, service is suspended for one minute.
-- If the limit is exceeded multiple times in a day, the company will suspend the IP and ID.
-- If the ID is suspended, please contact the Shioaji administrator.
+- If **traffic** exceeds the limit: market data queries (`ticks`, `snapshots`, `kbars`) return empty values; other features are not affected.
+- If the **request rate** exceeds the limit: service is suspended for one minute.
+- If the limits are exceeded multiple times in a day (including polling `snapshots` or other historical data queries during trading hours): the company will suspend the IP and ID.
+- The company continuously monitors system load. When excessive load affects overall service quality, the IP and ID of overusing clients may be suspended, even if the limits above have not been reached.
+- Retrying `login()` repeatedly during a suspension will not lift it and may extend it. Fix the usage pattern first, then contact the Shioaji administrators via [Telegram](https://t.me/joinchat/973EyAQlrfthZTk1) or [Discord](https://discord.gg/5nzmWCTnG7).

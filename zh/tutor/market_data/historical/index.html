@@ -2225,7 +2225,10 @@
 <p>歷史資料提供查詢逐筆成交（<code>Ticks</code>）與分 K 線（<code>Kbars</code>）。</p>
 <div class="admonition warning">
 <p class="admonition-title">注意</p>
-<p>歷史資料查詢會佔用流量，請參考<a href="../../limit/">使用限制</a>了解每日流量上限。</p>
+<ul>
+<li>歷史資料查詢會佔用流量，請參考<a href="../../limit/">使用限制</a>了解每日流量上限。</li>
+<li><code>ticks</code>、<code>kbars</code> 設計用途為盤後分析與回測，並非即時行情來源，盤中請勿反覆輪詢；超過次數限制或造成系統負載過高，將依違規處置暫停使用權。盤中需要即時資料，請改用<a href="../streaming/stocks/">行情訂閱</a>。</li>
+</ul>
 </div>
 <h2 id="ticks">Ticks<a class="headerlink" href="#ticks" title="Permanent link">&para;</a></h2>
 <p>取得方式可以以一整天、某時間區段或是某天的最後幾筆。預設為商品最近交易日的 <code>Ticks</code>。</p>

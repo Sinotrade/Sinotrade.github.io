@@ -2,7 +2,8 @@ Snapshot is the current information of a stock, future, or option. It contains o
 
 Note
 
-Snapshot queries consume bandwidth. See [Use Restrictions](../../limit/) for the daily bandwidth cap.
+- Snapshot queries consume bandwidth. See [Use Restrictions](../../limit/) for the daily bandwidth cap.
+- `snapshots` is a request-type quote query, not a source of real-time quotes. Do not poll it repeatedly during trading hours as a real-time feed; exceeding the request rate limits or causing excessive system load will suspend your access under the violation handling rules. For real-time intraday data, use [quote subscriptions](../streaming/stocks/) instead.
 
 Reminder
 

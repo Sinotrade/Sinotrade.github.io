@@ -100,7 +100,7 @@
     <div data-md-component="skip">
       
         
-        <a href="#traffic-limit" class="md-skip">
+        <a href="#fair-use-policy" class="md-skip">
           Skip to content
         </a>
       
@@ -1885,6 +1885,15 @@
     <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
       
         <li class="md-nav__item">
+  <a href="#fair-use-policy" class="md-nav__link">
+    <span class="md-ellipsis">
+      Fair Use Policy
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
   <a href="#traffic-limit" class="md-nav__link">
     <span class="md-ellipsis">
       Traffic Limit
@@ -1953,6 +1962,15 @@
     <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
       
         <li class="md-nav__item">
+  <a href="#fair-use-policy" class="md-nav__link">
+    <span class="md-ellipsis">
+      Fair Use Policy
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
   <a href="#traffic-limit" class="md-nav__link">
     <span class="md-ellipsis">
       Traffic Limit
@@ -2006,7 +2024,18 @@
 
   <h1>Use Restrictions</h1>
 
-<p>To avoid affecting other users' connections, please follow the usage rules below.</p>
+<h2 id="fair-use-policy">Fair Use Policy<a class="headerlink" href="#fair-use-policy" title="Permanent link">&para;</a></h2>
+<p>Shioaji's usage limits are anti-abuse guardrails that protect connection quality for all users; they are not a starting point for program design. Correct usage should stay far away from these limits. If your program keeps hitting them, it usually means a loop, reconnection, polling, or error-retry path is wrong — fix the usage pattern instead of running close to the limits.</p>
+<div class="admonition tip">
+<p class="admonition-title">Correct usage</p>
+<ul>
+<li>For real-time intraday data, use quote subscriptions (<code>api.subscribe()</code> or SSE streaming); subscription pushes do not count toward traffic. Do not poll <code>snapshots</code>, <code>ticks</code>, or <code>kbars</code> as a substitute for real-time quotes.</li>
+<li>Historical data queries are recommended after market close; during trading hours, query only when necessary and keep it minimal. Cache the results after querying to avoid repeated queries.</li>
+<li>Use order/deal callbacks (or SSE order events) for order status instead of polling <code>update_status()</code>.</li>
+<li>Keep one logged-in connection per process; avoid repeated <code>login()</code> calls.</li>
+<li>When you receive an error or an empty response, check its meaning first (e.g. check traffic with <code>api.usage()</code>) before retrying.</li>
+</ul>
+</div>
 <h2 id="traffic-limit">Traffic Limit<a class="headerlink" href="#traffic-limit" title="Permanent link">&para;</a></h2>
 <div class="admonition info">
 <p class="admonition-title">Traffic</p>
@@ -2185,14 +2214,19 @@
 </li>
 </ul>
 </div>
+<div class="admonition warning">
+<p class="admonition-title">Do not poll historical data queries during trading hours</p>
+<p><code>snapshots</code>, <code>ticks</code>, and <code>kbars</code> are <strong>request-type quote queries</strong> designed for after-market analysis and backtesting — they are not a source of real-time quotes. The most common misuse is polling <code>snapshots</code> repeatedly during trading hours as a real-time feed, which puts heavy load on the system; exceeding the request rate limits or causing excessive system load will suspend your access under the violation handling rules. For real-time intraday data, use quote subscriptions (<code>api.subscribe()</code> or SSE streaming) instead.</p>
+</div>
 <h2 id="violation-handling">Violation Handling<a class="headerlink" href="#violation-handling" title="Permanent link">&para;</a></h2>
 <div class="admonition attention">
 <p class="admonition-title">Warn</p>
 <ul>
-<li>If traffic exceeds the limit, market data queries (<code>ticks</code>, <code>snapshots</code>, <code>kbars</code>) return empty values; other features are not affected.</li>
-<li>If usage exceeds the limit, service is suspended for one minute.</li>
-<li>If the limit is exceeded multiple times in a day, the company will suspend the IP and ID.</li>
-<li>If the ID is suspended, please contact the Shioaji administrator.</li>
+<li>If <strong>traffic</strong> exceeds the limit: market data queries (<code>ticks</code>, <code>snapshots</code>, <code>kbars</code>) return empty values; other features are not affected.</li>
+<li>If the <strong>request rate</strong> exceeds the limit: service is suspended for one minute.</li>
+<li>If the limits are exceeded multiple times in a day (including polling <code>snapshots</code> or other historical data queries during trading hours): the company will suspend the IP and ID.</li>
+<li>The company continuously monitors system load. When excessive load affects overall service quality, the IP and ID of overusing clients may be suspended, even if the limits above have not been reached.</li>
+<li>Retrying <code>login()</code> repeatedly during a suspension will not lift it and may extend it. Fix the usage pattern first, then contact the Shioaji administrators via <a href="https://t.me/joinchat/973EyAQlrfthZTk1">Telegram</a> or <a href="https://discord.gg/5nzmWCTnG7">Discord</a>.</li>
 </ul>
 </div>
 

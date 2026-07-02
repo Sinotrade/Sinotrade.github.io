@@ -1979,7 +1979,10 @@
 <p>市場快照為證券、期貨及選擇權當下資訊。內容包含開盤價、最高價、最低價、收盤價、變動價、均價、成交量、總成交量、委買價、委買量、委賣價、委賣量和昨量。</p>
 <div class="admonition warning">
 <p class="admonition-title">注意</p>
-<p>市場快照查詢會佔用流量，請參考<a href="../../limit/">使用限制</a>了解每日流量上限。</p>
+<ul>
+<li>市場快照查詢會佔用流量，請參考<a href="../../limit/">使用限制</a>了解每日流量上限。</li>
+<li><code>snapshots</code> 屬於查詢型行情，並非即時行情來源，盤中請勿反覆輪詢作為即時報價；超過次數限制或造成系統負載過高，將依違規處置暫停使用權。盤中需要即時資料，請改用<a href="../streaming/stocks/">行情訂閱</a>。</li>
+</ul>
 </div>
 <div class="admonition tip">
 <p class="admonition-title">提醒</p>

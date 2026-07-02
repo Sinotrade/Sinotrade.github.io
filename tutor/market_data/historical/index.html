@@ -2225,7 +2225,10 @@
 <p>Historical data lets you query tick-by-tick trades (<code>Ticks</code>) and minute K-line (<code>Kbars</code>).</p>
 <div class="admonition warning">
 <p class="admonition-title">Note</p>
-<p>Historical data queries consume bandwidth. See <a href="../../limit/">Use Restrictions</a> for the daily bandwidth cap.</p>
+<ul>
+<li>Historical data queries consume bandwidth. See <a href="../../limit/">Use Restrictions</a> for the daily bandwidth cap.</li>
+<li><code>ticks</code> and <code>kbars</code> are designed for after-market analysis and backtesting — they are not a source of real-time quotes. Do not poll them repeatedly during trading hours; exceeding the request rate limits or causing excessive system load will suspend your access under the violation handling rules. For real-time intraday data, use <a href="../streaming/stocks/">quote subscriptions</a> instead.</li>
+</ul>
 </div>
 <h2 id="ticks">Ticks<a class="headerlink" href="#ticks" title="Permanent link">&para;</a></h2>
 <p>You can fetch <code>Ticks</code> for an entire day, a specific time range, or the last N ticks of the day. The default is the most recent trade day.</p>
