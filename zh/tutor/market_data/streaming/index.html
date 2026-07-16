@@ -1,6 +1,6 @@
 
 <!doctype html>
-<html lang="en" class="no-js">
+<html lang="zh" class="no-js">
   <head>
     
       <meta charset="utf-8">
@@ -12,13 +12,13 @@
         <meta name="author" content="SinoPac Securities, Sinotrade">
       
       
-        <link rel="canonical" href="https://sinotrade.github.io/tutor/market_data/disposition_attention/">
+        <link rel="canonical" href="https://sinotrade.github.io/zh/tutor/market_data/streaming/">
       
       
-        <link rel="prev" href="../scanners/">
+        <link rel="prev" href="futures/">
       
       
-        <link rel="next" href="../../order/Stock/">
+        <link rel="next" href="../historical/">
       
       
       <link rel="icon" href="https://sinotrade.github.io/images/shioaji-logo-01.png">
@@ -26,14 +26,14 @@
     
     
       
-        <title>Disposition and Attention Stocks - Shioaji - Taiwan's Leading Cross Platform Trading API</title>
+        <title>指數 - Shioaji - Taiwan's Leading Cross Platform Trading API</title>
       
     
     
-      <link rel="stylesheet" href="../../../assets/stylesheets/main.2afb09e1.min.css">
+      <link rel="stylesheet" href="../../../../assets/stylesheets/main.2afb09e1.min.css">
       
         
-        <link rel="stylesheet" href="../../../assets/stylesheets/palette.06af60db.min.css">
+        <link rel="stylesheet" href="../../../../assets/stylesheets/palette.06af60db.min.css">
       
       
 
@@ -52,9 +52,9 @@
       
     
     
-      <link rel="stylesheet" href="../../../stylesheets/extra.css">
+      <link rel="stylesheet" href="../../../../stylesheets/extra.css">
     
-    <script>__md_scope=new URL("../../..",location),__md_hash=e=>[...e].reduce(((e,_)=>(e<<5)-e+_.charCodeAt(0)),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    <script>__md_scope=new URL("../../../..",location),__md_hash=e=>[...e].reduce(((e,_)=>(e<<5)-e+_.charCodeAt(0)),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
     
       
   
@@ -102,8 +102,8 @@
     <div data-md-component="skip">
       
         
-        <a href="#disposition-stocks" class="md-skip">
-          Skip to content
+        <a href="#quote" class="md-skip">
+          跳转至
         </a>
       
     </div>
@@ -117,10 +117,10 @@
   
 
 <header class="md-header md-header--shadow" data-md-component="header">
-  <nav class="md-header__inner md-grid" aria-label="Header">
-    <a href="../../.." title="Shioaji - Taiwan&#39;s Leading Cross Platform Trading API" class="md-header__button md-logo" aria-label="Shioaji - Taiwan's Leading Cross Platform Trading API" data-md-component="logo">
+  <nav class="md-header__inner md-grid" aria-label="页眉">
+    <a href="../../../" title="Shioaji - Taiwan&#39;s Leading Cross Platform Trading API" class="md-header__button md-logo" aria-label="Shioaji - Taiwan's Leading Cross Platform Trading API" data-md-component="logo">
       
-  <img src="../../../img/shioaji-logo.svg" alt="logo">
+  <img src="../../../../img/shioaji-logo.svg" alt="logo">
 
     </a>
     <label class="md-header__button md-icon" for="__drawer">
@@ -137,7 +137,7 @@
         <div class="md-header__topic" data-md-component="header-topic">
           <span class="md-ellipsis">
             
-              Disposition and Attention Stocks
+              指數
             
           </span>
         </div>
@@ -177,20 +177,20 @@
       <div class="md-header__option">
   <div class="md-select">
     
-    <button class="md-header__button md-icon" aria-label="Select language">
+    <button class="md-header__button md-icon" aria-label="选择当前语言">
       <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="m12.87 15.07-2.54-2.51.03-.03A17.5 17.5 0 0 0 14.07 6H17V4h-7V2H8v2H1v2h11.17C11.5 7.92 10.44 9.75 9 11.35 8.07 10.32 7.3 9.19 6.69 8h-2c.73 1.63 1.73 3.17 2.98 4.56l-5.09 5.02L4 19l5-5 3.11 3.11zM18.5 10h-2L12 22h2l1.12-3h4.75L21 22h2zm-2.62 7 1.62-4.33L19.12 17z"/></svg>
     </button>
     <div class="md-select__inner">
       <ul class="md-select__list">
         
           <li class="md-select__item">
-            <a href="./" hreflang="en" class="md-select__link">
+            <a href="../../../../tutor/market_data/streaming/" hreflang="en" class="md-select__link">
               English
             </a>
           </li>
         
           <li class="md-select__item">
-            <a href="../../../zh/tutor/market_data/disposition_attention/" hreflang="zh" class="md-select__link">
+            <a href="./" hreflang="zh" class="md-select__link">
               中文
             </a>
           </li>
@@ -211,16 +211,16 @@
   <label class="md-search__overlay" for="__search"></label>
   <div class="md-search__inner" role="search">
     <form class="md-search__form" name="search">
-      <input type="text" class="md-search__input" name="query" aria-label="Search" placeholder="Search" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" required>
+      <input type="text" class="md-search__input" name="query" aria-label="搜索" placeholder="搜索" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" required>
       <label class="md-search__icon md-icon" for="__search">
         
         <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
         
         <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11z"/></svg>
       </label>
-      <nav class="md-search__options" aria-label="Search">
+      <nav class="md-search__options" aria-label="查找">
         
-        <button type="reset" class="md-search__icon md-icon" title="Clear" aria-label="Clear" tabindex="-1">
+        <button type="reset" class="md-search__icon md-icon" title="清空当前内容" aria-label="清空当前内容" tabindex="-1">
           
           <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"/></svg>
         </button>
@@ -231,7 +231,7 @@
       <div class="md-search__scrollwrap" tabindex="0" data-md-scrollfix>
         <div class="md-search-result" data-md-component="search-result">
           <div class="md-search-result__meta">
-            Initializing search
+            正在初始化搜索引擎
           </div>
           <ol class="md-search-result__list" role="presentation"></ol>
         </div>
@@ -243,7 +243,7 @@
     
     
       <div class="md-header__source">
-        <a href="https://github.com/Sinotrade/Shioaji" title="Go to repository" class="md-source" data-md-component="source">
+        <a href="https://github.com/Sinotrade/Shioaji" title="前往仓库" class="md-source" data-md-component="source">
   <div class="md-source__icon md-icon">
     
     <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><!--! Font Awesome Free 6.7.2 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2024 Fonticons, Inc.--><path d="M439.55 236.05 244 40.45a28.87 28.87 0 0 0-40.81 0l-40.66 40.63 51.52 51.52c27.06-9.14 52.68 16.77 43.39 43.68l49.66 49.66c34.23-11.8 61.18 31 35.47 56.69-26.49 26.49-70.21-2.87-56-37.34L240.22 199v121.85c25.3 12.54 22.26 41.85 9.08 55a34.34 34.34 0 0 1-48.55 0c-17.57-17.6-11.07-46.91 11.25-56v-123c-20.8-8.51-24.6-30.74-18.64-45L142.57 101 8.45 235.14a28.86 28.86 0 0 0 0 40.81l195.61 195.6a28.86 28.86 0 0 0 40.8 0l194.69-194.69a28.86 28.86 0 0 0 0-40.81"/></svg>
@@ -277,18 +277,18 @@
 
 
 
-<nav class="md-nav md-nav--primary" aria-label="Navigation" data-md-level="0">
+<nav class="md-nav md-nav--primary" aria-label="导航栏" data-md-level="0">
   <label class="md-nav__title" for="__drawer">
-    <a href="../../.." title="Shioaji - Taiwan&#39;s Leading Cross Platform Trading API" class="md-nav__button md-logo" aria-label="Shioaji - Taiwan's Leading Cross Platform Trading API" data-md-component="logo">
+    <a href="../../../" title="Shioaji - Taiwan&#39;s Leading Cross Platform Trading API" class="md-nav__button md-logo" aria-label="Shioaji - Taiwan's Leading Cross Platform Trading API" data-md-component="logo">
       
-  <img src="../../../img/shioaji-logo.svg" alt="logo">
+  <img src="../../../../img/shioaji-logo.svg" alt="logo">
 
     </a>
     Shioaji - Taiwan's Leading Cross Platform Trading API
   </label>
   
     <div class="md-nav__source">
-      <a href="https://github.com/Sinotrade/Shioaji" title="Go to repository" class="md-source" data-md-component="source">
+      <a href="https://github.com/Sinotrade/Shioaji" title="前往仓库" class="md-source" data-md-component="source">
   <div class="md-source__icon md-icon">
     
     <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><!--! Font Awesome Free 6.7.2 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2024 Fonticons, Inc.--><path d="M439.55 236.05 244 40.45a28.87 28.87 0 0 0-40.81 0l-40.66 40.63 51.52 51.52c27.06-9.14 52.68 16.77 43.39 43.68l49.66 49.66c34.23-11.8 61.18 31 35.47 56.69-26.49 26.49-70.21-2.87-56-37.34L240.22 199v121.85c25.3 12.54 22.26 41.85 9.08 55a34.34 34.34 0 0 1-48.55 0c-17.57-17.6-11.07-46.91 11.25-56v-123c-20.8-8.51-24.6-30.74-18.64-45L142.57 101 8.45 235.14a28.86 28.86 0 0 0 0 40.81l195.61 195.6a28.86 28.86 0 0 0 40.8 0l194.69-194.69a28.86 28.86 0 0 0 0-40.81"/></svg>
@@ -308,12 +308,12 @@
   
   
     <li class="md-nav__item">
-      <a href="../../.." class="md-nav__link">
+      <a href="../../../" class="md-nav__link">
         
   
   
   <span class="md-ellipsis">
-    Overview
+    總覽
     
   </span>
   
@@ -335,7 +335,7 @@
   
   
   <span class="md-ellipsis">
-    AI Coding Assistant
+    AI 輔助開發
     
   </span>
   
@@ -357,7 +357,7 @@
   
   
   <span class="md-ellipsis">
-    Quick Start
+    快速入門
     
   </span>
   
@@ -390,7 +390,7 @@
   
   
   <span class="md-ellipsis">
-    Environment Setup
+    環境設定
     
   </span>
   
@@ -401,7 +401,7 @@
         <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_4_label" aria-expanded="false">
           <label class="md-nav__title" for="__nav_4">
             <span class="md-nav__icon md-icon"></span>
-            Environment Setup
+            環境設定
           </label>
           <ul class="md-nav__list" data-md-scrollfix>
             
@@ -417,7 +417,7 @@
   
   
   <span class="md-ellipsis">
-    Python User
+    Python 使用者
     
   </span>
   
@@ -440,7 +440,7 @@
   
   
   <span class="md-ellipsis">
-    Other Language User
+    其他語言使用者
     
   </span>
   
@@ -483,7 +483,7 @@
   
   
   <span class="md-ellipsis">
-    Tutorial - User Guide
+    教程 - 使用者指南
     
   </span>
   
@@ -494,7 +494,7 @@
         <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_5_label" aria-expanded="true">
           <label class="md-nav__title" for="__nav_5">
             <span class="md-nav__icon md-icon"></span>
-            Tutorial - User Guide
+            教程 - 使用者指南
           </label>
           <ul class="md-nav__list" data-md-scrollfix>
             
@@ -521,7 +521,7 @@
   
   
   <span class="md-ellipsis">
-    Prepare
+    前置作業
     
   </span>
   
@@ -532,7 +532,7 @@
         <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_5_1_label" aria-expanded="false">
           <label class="md-nav__title" for="__nav_5_1">
             <span class="md-nav__icon md-icon"></span>
-            Prepare
+            前置作業
           </label>
           <ul class="md-nav__list" data-md-scrollfix>
             
@@ -548,7 +548,7 @@
   
   
   <span class="md-ellipsis">
-    Open Account
+    開戶
     
   </span>
   
@@ -571,7 +571,7 @@
   
   
   <span class="md-ellipsis">
-    Token & Certificate
+    金鑰與憑證申請
     
   </span>
   
@@ -594,7 +594,7 @@
   
   
   <span class="md-ellipsis">
-    API Signing and Test
+    條款簽署與測試
     
   </span>
   
@@ -617,7 +617,7 @@
   
   
   <span class="md-ellipsis">
-    Example Project For Testing Flow
+    測試專案範例
     
   </span>
   
@@ -648,7 +648,7 @@
   
   
   <span class="md-ellipsis">
-    Login
+    登入
     
   </span>
   
@@ -671,7 +671,7 @@
   
   
   <span class="md-ellipsis">
-    Contract
+    商品合約
     
   </span>
   
@@ -707,7 +707,7 @@
   
   
   <span class="md-ellipsis">
-    Market Data
+    行情資料
     
   </span>
   
@@ -718,7 +718,7 @@
         <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_5_4_label" aria-expanded="true">
           <label class="md-nav__title" for="__nav_5_4">
             <span class="md-nav__icon md-icon"></span>
-            Market Data
+            行情資料
           </label>
           <ul class="md-nav__list" data-md-scrollfix>
             
@@ -726,18 +726,20 @@
                 
   
   
+    
   
   
+  
     
     
     
     
     
-    <li class="md-nav__item md-nav__item--nested">
+    <li class="md-nav__item md-nav__item--active md-nav__item--nested">
       
         
         
-        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_5_4_1" >
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_5_4_1" checked>
         
           
           <label class="md-nav__link" for="__nav_5_4_1" id="__nav_5_4_1_label" tabindex="0">
@@ -745,7 +747,7 @@
   
   
   <span class="md-ellipsis">
-    Streaming Market Data
+    即時行情
     
   </span>
   
@@ -753,10 +755,10 @@
             <span class="md-nav__icon md-icon"></span>
           </label>
         
-        <nav class="md-nav" data-md-level="3" aria-labelledby="__nav_5_4_1_label" aria-expanded="false">
+        <nav class="md-nav" data-md-level="3" aria-labelledby="__nav_5_4_1_label" aria-expanded="true">
           <label class="md-nav__title" for="__nav_5_4_1">
             <span class="md-nav__icon md-icon"></span>
-            Streaming Market Data
+            即時行情
           </label>
           <ul class="md-nav__list" data-md-scrollfix>
             
@@ -767,12 +769,12 @@
   
   
     <li class="md-nav__item">
-      <a href="../streaming/stocks/" class="md-nav__link">
+      <a href="stocks/" class="md-nav__link">
         
   
   
   <span class="md-ellipsis">
-    Stocks
+    證券
     
   </span>
   
@@ -790,158 +792,12 @@
   
   
     <li class="md-nav__item">
-      <a href="../streaming/futures/" class="md-nav__link">
+      <a href="futures/" class="md-nav__link">
         
   
   
   <span class="md-ellipsis">
-    Futures
-    
-  </span>
-  
-
-      </a>
-    </li>
-  
-
-              
-            
-              
-                
-  
-  
-  
-  
-    <li class="md-nav__item">
-      <a href="../streaming/" class="md-nav__link">
-        
-  
-  
-  <span class="md-ellipsis">
-    Index
-    
-  </span>
-  
-
-      </a>
-    </li>
-  
-
-              
-            
-          </ul>
-        </nav>
-      
-    </li>
-  
-
-              
-            
-              
-                
-  
-  
-  
-  
-    <li class="md-nav__item">
-      <a href="../historical/" class="md-nav__link">
-        
-  
-  
-  <span class="md-ellipsis">
-    Historical Market Data
-    
-  </span>
-  
-
-      </a>
-    </li>
-  
-
-              
-            
-              
-                
-  
-  
-  
-  
-    <li class="md-nav__item">
-      <a href="../snapshot/" class="md-nav__link">
-        
-  
-  
-  <span class="md-ellipsis">
-    Snapshot
-    
-  </span>
-  
-
-      </a>
-    </li>
-  
-
-              
-            
-              
-                
-  
-  
-  
-  
-    <li class="md-nav__item">
-      <a href="../short_stock_source/" class="md-nav__link">
-        
-  
-  
-  <span class="md-ellipsis">
-    Short Stock Source
-    
-  </span>
-  
-
-      </a>
-    </li>
-  
-
-              
-            
-              
-                
-  
-  
-  
-  
-    <li class="md-nav__item">
-      <a href="../credit_enquires/" class="md-nav__link">
-        
-  
-  
-  <span class="md-ellipsis">
-    Credit Enquires
-    
-  </span>
-  
-
-      </a>
-    </li>
-  
-
-              
-            
-              
-                
-  
-  
-  
-  
-    <li class="md-nav__item">
-      <a href="../scanners/" class="md-nav__link">
-        
-  
-  
-  <span class="md-ellipsis">
-    Scanners
+    期貨
     
   </span>
   
@@ -971,7 +827,7 @@
   
   
   <span class="md-ellipsis">
-    Disposition and Attention Stocks
+    指數
     
   </span>
   
@@ -984,7 +840,7 @@
   
   
   <span class="md-ellipsis">
-    Disposition and Attention Stocks
+    指數
     
   </span>
   
@@ -993,40 +849,31 @@
       
         
 
-<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+<nav class="md-nav md-nav--secondary" aria-label="目录">
   
   
   
   
     <label class="md-nav__title" for="__toc">
       <span class="md-nav__icon md-icon"></span>
-      Table of contents
+      目录
     </label>
     <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
       
         <li class="md-nav__item">
-  <a href="#disposition-stocks" class="md-nav__link">
+  <a href="#quote" class="md-nav__link">
     <span class="md-ellipsis">
-      Disposition Stocks
+      Quote
     </span>
   </a>
   
-    <nav class="md-nav" aria-label="Disposition Stocks">
+    <nav class="md-nav" aria-label="Quote">
       <ul class="md-nav__list">
         
           <li class="md-nav__item">
-  <a href="#attributes" class="md-nav__link">
+  <a href="#_1" class="md-nav__link">
     <span class="md-ellipsis">
-      Attributes
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#examples" class="md-nav__link">
-    <span class="md-ellipsis">
-      Examples
+      屬性
     </span>
   </a>
   
@@ -1038,28 +885,19 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#attention-stocks" class="md-nav__link">
+  <a href="#callback" class="md-nav__link">
     <span class="md-ellipsis">
-      Attention Stocks
+      Callback（僅 Python）
     </span>
   </a>
   
-    <nav class="md-nav" aria-label="Attention Stocks">
+    <nav class="md-nav" aria-label="Callback（僅 Python）">
       <ul class="md-nav__list">
         
           <li class="md-nav__item">
-  <a href="#attributes_1" class="md-nav__link">
+  <a href="#quote_1" class="md-nav__link">
     <span class="md-ellipsis">
-      Attributes
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#examples_1" class="md-nav__link">
-    <span class="md-ellipsis">
-      Examples
+      Quote
     </span>
   </a>
   
@@ -1074,6 +912,152 @@
   
 </nav>
       
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../historical/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    歷史行情
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../snapshot/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    市場快照
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../short_stock_source/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    或有券源
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../credit_enquires/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    資券餘額
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../scanners/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    排行
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../disposition_attention/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    處置及注意股
+    
+  </span>
+  
+
+      </a>
     </li>
   
 
@@ -1110,7 +1094,7 @@
   
   
   <span class="md-ellipsis">
-    Order
+    下單
     
   </span>
   
@@ -1121,7 +1105,7 @@
         <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_5_5_label" aria-expanded="false">
           <label class="md-nav__title" for="__nav_5_5">
             <span class="md-nav__icon md-icon"></span>
-            Order
+            下單
           </label>
           <ul class="md-nav__list" data-md-scrollfix>
             
@@ -1137,7 +1121,7 @@
   
   
   <span class="md-ellipsis">
-    Stock
+    證券
     
   </span>
   
@@ -1160,7 +1144,7 @@
   
   
   <span class="md-ellipsis">
-    Futures and Option
+    期貨選擇權
     
   </span>
   
@@ -1183,7 +1167,7 @@
   
   
   <span class="md-ellipsis">
-    Intraday Odd
+    零股
     
   </span>
   
@@ -1206,7 +1190,7 @@
   
   
   <span class="md-ellipsis">
-    Combo
+    組合單
     
   </span>
   
@@ -1229,7 +1213,7 @@
   
   
   <span class="md-ellipsis">
-    Reserve Order
+    預收券款
     
   </span>
   
@@ -1252,7 +1236,7 @@
   
   
   <span class="md-ellipsis">
-    Update Status
+    查詢狀態
     
   </span>
   
@@ -1286,7 +1270,7 @@
   
   
   <span class="md-ellipsis">
-    CallBack Info.
+    主動回報
     
   </span>
   
@@ -1297,7 +1281,7 @@
         <nav class="md-nav" data-md-level="3" aria-labelledby="__nav_5_5_7_label" aria-expanded="false">
           <label class="md-nav__title" for="__nav_5_5_7">
             <span class="md-nav__icon md-icon"></span>
-            CallBack Info.
+            主動回報
           </label>
           <ul class="md-nav__list" data-md-scrollfix>
             
@@ -1313,7 +1297,7 @@
   
   
   <span class="md-ellipsis">
-    Stock
+    證券
     
   </span>
   
@@ -1336,7 +1320,7 @@
   
   
   <span class="md-ellipsis">
-    Futures
+    期貨
     
   </span>
   
@@ -1413,7 +1397,7 @@
   
   
   <span class="md-ellipsis">
-    Order Event
+    委託回報
     
   </span>
   
@@ -1436,7 +1420,7 @@
   
   
   <span class="md-ellipsis">
-    Event Callback
+    事件
     
   </span>
   
@@ -1478,7 +1462,7 @@
   
   
   <span class="md-ellipsis">
-    Account Data
+    帳務
     
   </span>
   
@@ -1489,7 +1473,7 @@
         <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_5_7_label" aria-expanded="false">
           <label class="md-nav__title" for="__nav_5_7">
             <span class="md-nav__icon md-icon"></span>
-            Account Data
+            帳務
           </label>
           <ul class="md-nav__list" data-md-scrollfix>
             
@@ -1505,7 +1489,7 @@
   
   
   <span class="md-ellipsis">
-    Account Balance
+    銀行餘額
     
   </span>
   
@@ -1528,7 +1512,7 @@
   
   
   <span class="md-ellipsis">
-    Trading Limits
+    交易額度
     
   </span>
   
@@ -1551,7 +1535,7 @@
   
   
   <span class="md-ellipsis">
-    Margin
+    保證金
     
   </span>
   
@@ -1574,7 +1558,7 @@
   
   
   <span class="md-ellipsis">
-    Position
+    未實現損益
     
   </span>
   
@@ -1597,7 +1581,7 @@
   
   
   <span class="md-ellipsis">
-    Profit Loss
+    已實現損益
     
   </span>
   
@@ -1620,7 +1604,7 @@
   
   
   <span class="md-ellipsis">
-    Settlements
+    交割款
     
   </span>
   
@@ -1651,7 +1635,7 @@
   
   
   <span class="md-ellipsis">
-    Simulation Mode
+    模擬模式
     
   </span>
   
@@ -1674,7 +1658,7 @@
   
   
   <span class="md-ellipsis">
-    Shioaji Apps
+    自訂應用
     
   </span>
   
@@ -1708,7 +1692,7 @@
   
   
   <span class="md-ellipsis">
-    Advanced Guide
+    進階指南
     
   </span>
   
@@ -1719,7 +1703,7 @@
         <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_5_10_label" aria-expanded="false">
           <label class="md-nav__title" for="__nav_5_10">
             <span class="md-nav__icon md-icon"></span>
-            Advanced Guide
+            進階指南
           </label>
           <ul class="md-nav__list" data-md-scrollfix>
             
@@ -1735,7 +1719,7 @@
   
   
   <span class="md-ellipsis">
-    Quote-Binding Mode
+    綁訂報價模式
     
   </span>
   
@@ -1758,7 +1742,7 @@
   
   
   <span class="md-ellipsis">
-    Non-blocking Mode
+    非阻塞模式範例
     
   </span>
   
@@ -1781,7 +1765,7 @@
   
   
   <span class="md-ellipsis">
-    Touch Price Order
+    觸價委託範例
     
   </span>
   
@@ -1804,7 +1788,7 @@
   
   
   <span class="md-ellipsis">
-    Quote Manager Basic
+    行情管理
     
   </span>
   
@@ -1853,7 +1837,7 @@
   
   
   <span class="md-ellipsis">
-    Upgrading
+    升版指南
     
   </span>
   
@@ -1864,7 +1848,7 @@
         <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_6_label" aria-expanded="false">
           <label class="md-nav__title" for="__nav_6">
             <span class="md-nav__icon md-icon"></span>
-            Upgrading
+            升版指南
           </label>
           <ul class="md-nav__list" data-md-scrollfix>
             
@@ -1880,7 +1864,7 @@
   
   
   <span class="md-ellipsis">
-    Upgrading to 1.0
+    升版至 1.0
     
   </span>
   
@@ -1903,7 +1887,7 @@
   
   
   <span class="md-ellipsis">
-    Upgrading to 1.5
+    升版至 1.5
     
   </span>
   
@@ -1926,7 +1910,7 @@
   
   
   <span class="md-ellipsis">
-    Upgrading to 1.7
+    升版至 1.7
     
   </span>
   
@@ -1956,7 +1940,7 @@
   
   
   <span class="md-ellipsis">
-    QA
+    問與答
     
   </span>
   
@@ -1978,7 +1962,7 @@
   
   
   <span class="md-ellipsis">
-    Release Note
+    發佈版本
     
   </span>
   
@@ -2000,7 +1984,7 @@
   
   
   <span class="md-ellipsis">
-    Use Restrictions
+    使用限制
     
   </span>
   
@@ -2023,40 +2007,31 @@
                   <div class="md-sidebar__inner">
                     
 
-<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+<nav class="md-nav md-nav--secondary" aria-label="目录">
   
   
   
   
     <label class="md-nav__title" for="__toc">
       <span class="md-nav__icon md-icon"></span>
-      Table of contents
+      目录
     </label>
     <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
       
         <li class="md-nav__item">
-  <a href="#disposition-stocks" class="md-nav__link">
+  <a href="#quote" class="md-nav__link">
     <span class="md-ellipsis">
-      Disposition Stocks
+      Quote
     </span>
   </a>
   
-    <nav class="md-nav" aria-label="Disposition Stocks">
+    <nav class="md-nav" aria-label="Quote">
       <ul class="md-nav__list">
         
           <li class="md-nav__item">
-  <a href="#attributes" class="md-nav__link">
+  <a href="#_1" class="md-nav__link">
     <span class="md-ellipsis">
-      Attributes
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#examples" class="md-nav__link">
-    <span class="md-ellipsis">
-      Examples
+      屬性
     </span>
   </a>
   
@@ -2068,28 +2043,19 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#attention-stocks" class="md-nav__link">
+  <a href="#callback" class="md-nav__link">
     <span class="md-ellipsis">
-      Attention Stocks
+      Callback（僅 Python）
     </span>
   </a>
   
-    <nav class="md-nav" aria-label="Attention Stocks">
+    <nav class="md-nav" aria-label="Callback（僅 Python）">
       <ul class="md-nav__list">
         
           <li class="md-nav__item">
-  <a href="#attributes_1" class="md-nav__link">
+  <a href="#quote_1" class="md-nav__link">
     <span class="md-ellipsis">
-      Attributes
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#examples_1" class="md-nav__link">
-    <span class="md-ellipsis">
-      Examples
+      Quote
     </span>
   </a>
   
@@ -2116,343 +2082,366 @@
 
 
 
-  <h1>Disposition and Attention Stocks</h1>
+  <h1>指數</h1>
 
-<p>Query the published <strong>disposition</strong> and <strong>attention</strong> stock lists.</p>
-<h2 id="disposition-stocks">Disposition Stocks<a class="headerlink" href="#disposition-stocks" title="Permanent link">&para;</a></h2>
-<div class="tabbed-set tabbed-alternate" data-tabs="1:3"><input checked="checked" id="__tabbed_1_1" name="__tabbed_1" type="radio" /><input id="__tabbed_1_2" name="__tabbed_1" type="radio" /><input id="__tabbed_1_3" name="__tabbed_1" type="radio" /><div class="tabbed-labels"><label for="__tabbed_1_1">Python</label><label for="__tabbed_1_2">CLI</label><label for="__tabbed_1_3">Other languages</label></div>
+<p>指數即時行情是交易所即時轉送的市場資料，僅在開盤時段才會推送。利用訂閱<a href="../../contract/">商品合約</a>的方式即可開始接收即時行情。</p>
+<div class="admonition tip">
+<p class="admonition-title">提醒</p>
+<p>即時行情訂閱不會佔用流量。</p>
+</div>
+<div class="admonition info">
+<p class="admonition-title">指數只有一種行情</p>
+<p>指數僅提供指數報價（Quote）一種行情，沒有逐筆（Tick）與五檔（BidAsk）。訂閱時 <code>quote_type</code> 固定為 <code>Quote</code>。</p>
+</div>
+<div class="tabbed-set tabbed-alternate" data-tabs="1:3"><input checked="checked" id="__tabbed_1_1" name="__tabbed_1" type="radio" /><input id="__tabbed_1_2" name="__tabbed_1" type="radio" /><input id="__tabbed_1_3" name="__tabbed_1" type="radio" /><div class="tabbed-labels"><label for="__tabbed_1_1">Python</label><label for="__tabbed_1_2">CLI</label><label for="__tabbed_1_3">其他語言</label></div>
 <div class="tabbed-content">
 <div class="tabbed-block">
 <div class="admonition example">
-<p class="admonition-title">punish</p>
-<div class="highlight"><pre><span></span><code><span class="n">api</span><span class="o">.</span><span class="n">punish</span><span class="err">?</span>
+<p class="admonition-title">Subscribe</p>
+<div class="highlight"><pre><span></span><code><span class="o">&gt;&gt;</span> <span class="n">api</span><span class="o">.</span><span class="n">subscribe</span><span class="err">?</span>
 
 <span class="n">Signature</span><span class="p">:</span>
-    <span class="n">api</span><span class="o">.</span><span class="n">punish</span><span class="p">(</span>
-        <span class="n">timeout</span><span class="p">:</span> <span class="nb">int</span> <span class="o">=</span> <span class="mi">5000</span><span class="p">,</span>
-        <span class="n">cb</span><span class="p">:</span> <span class="n">Callable</span><span class="p">[[</span><span class="n">shioaji</span><span class="o">.</span><span class="n">data</span><span class="o">.</span><span class="n">Punish</span><span class="p">],</span> <span class="n">NoneType</span><span class="p">]</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
-    <span class="p">)</span> <span class="o">-&gt;</span> <span class="n">shioaji</span><span class="o">.</span><span class="n">data</span><span class="o">.</span><span class="n">Punish</span>
+    <span class="n">api</span><span class="o">.</span><span class="n">subscribe</span><span class="p">(</span>
+        <span class="n">contract</span><span class="p">:</span> <span class="n">shioaji</span><span class="o">.</span><span class="n">Contract</span><span class="p">,</span>
+        <span class="n">quote_type</span><span class="p">:</span> <span class="n">shioaji</span><span class="o">.</span><span class="n">QuoteType</span> <span class="o">=</span> <span class="o">&lt;</span><span class="n">QuoteType</span><span class="o">.</span><span class="n">Tick</span><span class="p">:</span> <span class="s1">&#39;tick&#39;</span><span class="o">&gt;</span><span class="p">,</span>
+        <span class="n">intraday_odd</span><span class="p">:</span> <span class="nb">bool</span> <span class="o">=</span> <span class="kc">False</span><span class="p">,</span>
+    <span class="p">)</span>
 </code></pre></div>
 </div>
 <div class="admonition done">
-<p class="admonition-title">Parameters</p>
-<div class="highlight"><pre><span></span><code>timeout: timeout in milliseconds
-cb:      callback function, used when timeout=0
+<p class="admonition-title">Quote Parameters:</p>
+<div class="highlight"><pre><span></span><code>contract:     要訂閱的指數商品合約（由 api.contracts.get 或 api.Contracts.Indexs 取得）
+quote_type:   指數僅支援 Quote，省略即可
+intraday_odd: 指數不支援，固定為 False
 </code></pre></div>
 </div>
 </div>
 <div class="tabbed-block">
 <div class="admonition example">
-<p class="admonition-title">punish</p>
-<div class="highlight"><pre><span></span><code>$<span class="w"> </span>shioaji<span class="w"> </span>data<span class="w"> </span>regulatory<span class="w"> </span>--help
+<p class="admonition-title">Subscribe</p>
+<div class="highlight"><pre><span></span><code>$<span class="w"> </span>shioaji<span class="w"> </span>data<span class="w"> </span>stream<span class="w"> </span>--help
 
-Get<span class="w"> </span>regulatory<span class="w"> </span>disposition/attention<span class="w"> </span>stock<span class="w"> </span>data
+Stream<span class="w"> </span>real-time<span class="w"> </span>market<span class="w"> </span>data<span class="w"> </span><span class="o">(</span>SSE,<span class="w"> </span>Ctrl+C<span class="w"> </span>to<span class="w"> </span>stop<span class="o">)</span>
 
-Usage:<span class="w"> </span>shioaji<span class="w"> </span>data<span class="w"> </span>regulatory<span class="w"> </span><span class="o">[</span>OPTIONS<span class="o">]</span>
+Usage:<span class="w"> </span>shioaji<span class="w"> </span>data<span class="w"> </span>stream<span class="w"> </span><span class="o">[</span>OPTIONS<span class="o">]</span><span class="w"> </span>--code<span class="w"> </span>&lt;CODE&gt;
 
 Options:
-<span class="w">      </span>--type<span class="w"> </span>&lt;REGULATORY_TYPE&gt;
-<span class="w">          </span>Regulatory<span class="w"> </span>data<span class="w"> </span>type:<span class="w"> </span>punish<span class="w"> </span><span class="o">(</span>處置股<span class="o">)</span><span class="w"> </span>or<span class="w"> </span>notice<span class="w"> </span><span class="o">(</span>注意股<span class="o">)</span>
-
-<span class="w">          </span>Possible<span class="w"> </span>values:
-<span class="w">          </span>-<span class="w"> </span>punish:<span class="w"> </span>Disposition<span class="w"> </span>stocks<span class="w"> </span><span class="o">(</span>處置股<span class="o">)</span>
-<span class="w">          </span>-<span class="w"> </span>notice:<span class="w"> </span>Attention<span class="w"> </span>stocks<span class="w"> </span><span class="o">(</span>注意股<span class="o">)</span>
-
-<span class="w">          </span><span class="o">[</span>default:<span class="w"> </span>punish<span class="o">]</span>
+<span class="w">      </span>--code<span class="w"> </span>&lt;CODE&gt;<span class="w">                   </span>Security<span class="w"> </span>code<span class="w"> </span><span class="o">(</span>e.g.<span class="w"> </span><span class="m">2330</span>,<span class="w"> </span>TXFR1<span class="o">)</span>
+<span class="w">      </span>--quote-type<span class="w"> </span>&lt;QUOTE_TYPE&gt;<span class="w">       </span>Quote<span class="w"> </span>type:<span class="w"> </span>tick,<span class="w"> </span>bid_ask,<span class="w"> </span>quote<span class="w"> </span><span class="o">[</span>default:<span class="w"> </span>tick<span class="o">]</span>
+<span class="w">      </span>--security-type<span class="w"> </span>&lt;SECURITY_TYPE&gt;<span class="w"> </span>Security<span class="w"> </span>type:<span class="w"> </span>STK,<span class="w"> </span>FUT,<span class="w"> </span>OPT,<span class="w"> </span>IND<span class="w"> </span><span class="o">[</span>default:<span class="w"> </span>STK<span class="o">]</span>
+<span class="w">      </span>--intraday-odd<span class="w">                  </span>Include<span class="w"> </span>intraday<span class="w"> </span>odd<span class="w"> </span>lot<span class="w"> </span>trades
 </code></pre></div>
 </div>
 <div class="admonition done">
-<p class="admonition-title">Parameters</p>
-<div class="highlight"><pre><span></span><code>--type: optional, punish (disposition stocks / default) or notice (attention stocks)
+<p class="admonition-title">Quote Parameters:</p>
+<div class="highlight"><pre><span></span><code>--code:          要訂閱的指數代碼（例如 IX0001）
+--quote-type:    指數必須帶 quote（預設 tick 會被拒絕）
+--security-type: 商品類型，指數填 IND
+--intraday-odd:  指數不支援
 </code></pre></div>
 </div>
 </div>
 <div class="tabbed-block">
 <div class="admonition example">
-<p class="admonition-title">punish</p>
-<div class="highlight"><pre><span></span><code><span class="err">GET /api/v1/data/regulatory_punish</span>
+<p class="admonition-title">Subscribe</p>
+<div class="highlight"><pre><span></span><code><span class="err">POST /api/v1/stream/subscribe</span>
+<span class="err">Content-Type: application/json</span>
+
+<span class="err">{</span>
+<span class="err">  &quot;security_type&quot;: &lt;SecurityType&gt;,</span>
+<span class="err">  &quot;exchange&quot;:      &lt;Exchange&gt;,</span>
+<span class="err">  &quot;code&quot;:          &lt;string&gt;,</span>
+<span class="err">  &quot;quote_type&quot;:    &lt;QuoteType&gt;</span>
+<span class="err">}</span>
+</code></pre></div>
+</div>
+<div class="admonition done">
+<p class="admonition-title">Quote Parameters:</p>
+<div class="highlight"><pre><span></span><code>security_type: 商品類型 {IND}
+exchange:      交易所 {TSE, OTC}
+code:          指數代碼（例如 IX0001）
+quote_type:    指數僅支援 Quote
 </code></pre></div>
 </div>
 </div>
 </div>
 </div>
-<h3 id="attributes">Attributes<a class="headerlink" href="#attributes" title="Permanent link">&para;</a></h3>
-<div class="admonition example">
-<p class="admonition-title">Punish</p>
-<div class="highlight"><pre><span></span><code><span class="n">code</span> <span class="p">(</span><span class="nb">list</span><span class="p">[</span><span class="nb">str</span><span class="p">]):</span>            <span class="n">symbol</span> <span class="n">codes</span>
-<span class="n">start_date</span> <span class="p">(</span><span class="nb">list</span><span class="p">[</span><span class="n">date</span><span class="p">]):</span>     <span class="n">disposition</span> <span class="n">start</span> <span class="n">date</span>
-<span class="n">end_date</span> <span class="p">(</span><span class="nb">list</span><span class="p">[</span><span class="n">date</span><span class="p">]):</span>       <span class="n">disposition</span> <span class="n">end</span> <span class="n">date</span>
-<span class="n">updated_at</span> <span class="p">(</span><span class="nb">list</span><span class="p">[</span><span class="n">datetime</span><span class="p">]):</span> <span class="n">updated</span> <span class="n">time</span>
-<span class="n">interval</span> <span class="p">(</span><span class="nb">list</span><span class="p">[</span><span class="nb">str</span><span class="p">]):</span>        <span class="n">matching</span> <span class="n">interval</span>
-<span class="n">unit_limit</span> <span class="p">(</span><span class="nb">list</span><span class="p">[</span><span class="nb">float</span><span class="p">]):</span>    <span class="n">single</span><span class="o">-</span><span class="n">order</span> <span class="n">limit</span>
-<span class="n">total_limit</span> <span class="p">(</span><span class="nb">list</span><span class="p">[</span><span class="nb">float</span><span class="p">]):</span>   <span class="n">daily</span><span class="o">-</span><span class="n">order</span> <span class="n">limit</span>
-<span class="n">description</span> <span class="p">(</span><span class="nb">list</span><span class="p">[</span><span class="nb">str</span><span class="p">]):</span>     <span class="n">description</span>
-<span class="n">announced_date</span> <span class="p">(</span><span class="nb">list</span><span class="p">[</span><span class="n">date</span><span class="p">]):</span> <span class="n">announced</span> <span class="n">date</span>
-</code></pre></div>
-</div>
-<h3 id="examples">Examples<a class="headerlink" href="#examples" title="Permanent link">&para;</a></h3>
+<h2 id="quote">Quote<a class="headerlink" href="#quote" title="Permanent link">&para;</a></h2>
 <div class="tabbed-set tabbed-alternate" data-tabs="2:3"><input checked="checked" id="__tabbed_2_1" name="__tabbed_2" type="radio" /><input id="__tabbed_2_2" name="__tabbed_2" type="radio" /><input id="__tabbed_2_3" name="__tabbed_2" type="radio" /><div class="tabbed-labels"><label for="__tabbed_2_1">Python</label><label for="__tabbed_2_2">CLI</label><label for="__tabbed_2_3">HTTP</label></div>
 <div class="tabbed-content">
 <div class="tabbed-block">
 <div class="admonition info">
 <p class="admonition-title">In</p>
-<div class="highlight"><pre><span></span><code><span class="n">api</span><span class="o">.</span><span class="n">punish</span><span class="p">()</span>
+<div class="highlight"><pre><span></span><code><span class="n">contract</span> <span class="o">=</span> <span class="n">api</span><span class="o">.</span><span class="n">contracts</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s2">&quot;IX0001&quot;</span><span class="p">)</span>
+<span class="hll"><span class="n">api</span><span class="o">.</span><span class="n">subscribe</span><span class="p">(</span><span class="n">contract</span><span class="p">,</span> <span class="n">quote_type</span><span class="o">=</span><span class="n">sj</span><span class="o">.</span><span class="n">QuoteType</span><span class="o">.</span><span class="n">Quote</span><span class="p">)</span>
+</span>
+<span class="c1"># 取消訂閱</span>
+<span class="c1"># api.unsubscribe(contract, quote_type=sj.QuoteType.Quote)</span>
 </code></pre></div>
 </div>
 <div class="admonition done">
 <p class="admonition-title">Out</p>
-<div class="highlight"><pre><span></span><code><span class="n">Punish</span><span class="p">[</span><span class="mi">86</span><span class="p">](</span>
-    <span class="n">code</span><span class="o">=</span><span class="p">[</span><span class="s2">&quot;1591&quot;</span><span class="p">,</span> <span class="s2">&quot;1595&quot;</span><span class="p">,</span> <span class="o">...</span><span class="p">],</span>
-    <span class="n">start_date</span><span class="o">=</span><span class="p">[</span><span class="s2">&quot;2026-05-21&quot;</span><span class="p">,</span> <span class="s2">&quot;2026-05-11&quot;</span><span class="p">,</span> <span class="o">...</span><span class="p">],</span>
-    <span class="n">end_date</span><span class="o">=</span><span class="p">[</span><span class="s2">&quot;2026-06-03&quot;</span><span class="p">,</span> <span class="s2">&quot;2026-05-22&quot;</span><span class="p">,</span> <span class="o">...</span><span class="p">],</span>
-    <span class="n">updated_at</span><span class="o">=</span><span class="p">[</span><span class="s2">&quot;2026-05-20T18:18:31&quot;</span><span class="p">,</span> <span class="s2">&quot;2026-05-08T18:18:39&quot;</span><span class="p">,</span> <span class="o">...</span><span class="p">],</span>
-    <span class="n">interval</span><span class="o">=</span><span class="p">[</span><span class="s2">&quot;25分鐘&quot;</span><span class="p">,</span> <span class="s2">&quot;5分鐘&quot;</span><span class="p">,</span> <span class="o">...</span><span class="p">],</span>
-    <span class="n">unit_limit</span><span class="o">=</span><span class="p">[</span><span class="kc">None</span><span class="p">,</span> <span class="mi">10</span><span class="p">,</span> <span class="o">...</span><span class="p">],</span>
-    <span class="n">total_limit</span><span class="o">=</span><span class="p">[</span><span class="kc">None</span><span class="p">,</span> <span class="mi">30</span><span class="p">,</span> <span class="o">...</span><span class="p">],</span>
-    <span class="n">description</span><span class="o">=</span><span class="p">[</span><span class="s2">&quot;...&quot;</span><span class="p">,</span> <span class="s2">&quot;...&quot;</span><span class="p">,</span> <span class="o">...</span><span class="p">],</span>
-    <span class="n">announced_date</span><span class="o">=</span><span class="p">[</span><span class="s2">&quot;2026-05-20&quot;</span><span class="p">,</span> <span class="s2">&quot;2026-05-08&quot;</span><span class="p">,</span> <span class="o">...</span><span class="p">]</span>
-<span class="p">)</span>
-</code></pre></div>
-</div>
-<p><strong>Convert to DataFrame (polars example)</strong></p>
-<div class="admonition info">
-<p class="admonition-title">In</p>
-<div class="highlight"><pre><span></span><code><span class="kn">import</span><span class="w"> </span><span class="nn">polars</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">pl</span>
-<span class="n">punish</span> <span class="o">=</span> <span class="n">api</span><span class="o">.</span><span class="n">punish</span><span class="p">()</span>
-<span class="n">df</span> <span class="o">=</span> <span class="n">pl</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">(</span><span class="n">punish</span><span class="o">.</span><span class="n">dict</span><span class="p">())</span>
-<span class="n">df</span><span class="o">.</span><span class="n">head</span><span class="p">()</span>
-</code></pre></div>
-</div>
-<div class="admonition done">
-<p class="admonition-title">Out</p>
-<table>
-<thead>
-<tr>
-<th style="text-align: left;">code</th>
-<th style="text-align: left;">start_date</th>
-<th style="text-align: left;">end_date</th>
-<th style="text-align: left;">updated_at</th>
-<th style="text-align: left;">interval</th>
-<th style="text-align: right;">unit_limit</th>
-<th style="text-align: right;">total_limit</th>
-<th style="text-align: left;">description</th>
-<th style="text-align: left;">announced_date</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td style="text-align: left;">1591</td>
-<td style="text-align: left;">2026-05-21</td>
-<td style="text-align: left;">2026-06-03</td>
-<td style="text-align: left;">2026-05-20T18:18:31</td>
-<td style="text-align: left;">25分鐘</td>
-<td style="text-align: right;">null</td>
-<td style="text-align: right;">null</td>
-<td style="text-align: left;">...</td>
-<td style="text-align: left;">2026-05-20</td>
-</tr>
-<tr>
-<td style="text-align: left;">1595</td>
-<td style="text-align: left;">2026-05-11</td>
-<td style="text-align: left;">2026-05-22</td>
-<td style="text-align: left;">2026-05-08T18:18:39</td>
-<td style="text-align: left;">5分鐘</td>
-<td style="text-align: right;">10</td>
-<td style="text-align: right;">30</td>
-<td style="text-align: left;">...</td>
-<td style="text-align: left;">2026-05-08</td>
-</tr>
-</tbody>
-</table>
-</div>
-</div>
-<div class="tabbed-block">
-<div class="admonition info">
-<p class="admonition-title">In</p>
-<div class="highlight"><pre><span></span><code>shioaji<span class="w"> </span>data<span class="w"> </span>regulatory<span class="w"> </span>--type<span class="w"> </span>punish
-</code></pre></div>
-</div>
-<div class="admonition done">
-<p class="admonition-title">Out</p>
-<div class="highlight"><pre><span></span><code>[94]{code,start_date,end_date,updated_at,interval,unit_limit,total_limit,description,announced_date}:
-  &quot;050503&quot;,&quot;2026-06-02&quot;,&quot;2026-06-15&quot;,2026-06-01T18:18:33,5分鐘,10,30,&quot;...&quot;,&quot;2026-06-01&quot;
-  &quot;058462&quot;,&quot;2026-06-03&quot;,&quot;2026-06-16&quot;,2026-06-02T18:18:37,20分鐘,null,null,&quot;...&quot;,&quot;2026-06-02&quot;
-  ...
-</code></pre></div>
-</div>
-</div>
-<div class="tabbed-block">
-<div class="admonition info">
-<p class="admonition-title">In</p>
-<div class="highlight"><pre><span></span><code>curl<span class="w"> </span>http://localhost:8080/api/v1/data/regulatory_punish
-</code></pre></div>
-</div>
-<div class="admonition done">
-<p class="admonition-title">Out</p>
-<div class="highlight"><pre><span></span><code><span class="p">{</span>
-<span class="w">  </span><span class="nt">&quot;code&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="s2">&quot;1591&quot;</span><span class="p">,</span><span class="w"> </span><span class="s2">&quot;1595&quot;</span><span class="p">,</span><span class="w"> </span><span class="s2">&quot;...&quot;</span><span class="p">],</span>
-<span class="w">  </span><span class="nt">&quot;start_date&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="s2">&quot;2026-05-21&quot;</span><span class="p">,</span><span class="w"> </span><span class="s2">&quot;2026-05-11&quot;</span><span class="p">,</span><span class="w"> </span><span class="s2">&quot;...&quot;</span><span class="p">],</span>
-<span class="w">  </span><span class="nt">&quot;end_date&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="s2">&quot;2026-06-03&quot;</span><span class="p">,</span><span class="w"> </span><span class="s2">&quot;2026-05-22&quot;</span><span class="p">,</span><span class="w"> </span><span class="s2">&quot;...&quot;</span><span class="p">],</span>
-<span class="w">  </span><span class="nt">&quot;updated_at&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="s2">&quot;2026-05-20T18:18:31&quot;</span><span class="p">,</span><span class="w"> </span><span class="s2">&quot;2026-05-08T18:18:39&quot;</span><span class="p">,</span><span class="w"> </span><span class="s2">&quot;...&quot;</span><span class="p">],</span>
-<span class="w">  </span><span class="nt">&quot;interval&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="s2">&quot;25分鐘&quot;</span><span class="p">,</span><span class="w"> </span><span class="s2">&quot;5分鐘&quot;</span><span class="p">,</span><span class="w"> </span><span class="s2">&quot;...&quot;</span><span class="p">],</span>
-<span class="w">  </span><span class="nt">&quot;unit_limit&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="kc">null</span><span class="p">,</span><span class="w"> </span><span class="mi">10</span><span class="p">,</span><span class="w"> </span><span class="s2">&quot;...&quot;</span><span class="p">],</span>
-<span class="w">  </span><span class="nt">&quot;total_limit&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="kc">null</span><span class="p">,</span><span class="w"> </span><span class="mi">30</span><span class="p">,</span><span class="w"> </span><span class="s2">&quot;...&quot;</span><span class="p">],</span>
-<span class="w">  </span><span class="nt">&quot;description&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="s2">&quot;...&quot;</span><span class="p">,</span><span class="w"> </span><span class="s2">&quot;...&quot;</span><span class="p">,</span><span class="w"> </span><span class="s2">&quot;...&quot;</span><span class="p">],</span>
-<span class="w">  </span><span class="nt">&quot;announced_date&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="s2">&quot;2026-05-20&quot;</span><span class="p">,</span><span class="w"> </span><span class="s2">&quot;2026-05-08&quot;</span><span class="p">,</span><span class="w"> </span><span class="s2">&quot;...&quot;</span><span class="p">]</span>
-<span class="p">}</span>
-</code></pre></div>
-</div>
-</div>
-</div>
-</div>
-<hr />
-<h2 id="attention-stocks">Attention Stocks<a class="headerlink" href="#attention-stocks" title="Permanent link">&para;</a></h2>
-<div class="tabbed-set tabbed-alternate" data-tabs="3:3"><input checked="checked" id="__tabbed_3_1" name="__tabbed_3" type="radio" /><input id="__tabbed_3_2" name="__tabbed_3" type="radio" /><input id="__tabbed_3_3" name="__tabbed_3" type="radio" /><div class="tabbed-labels"><label for="__tabbed_3_1">Python</label><label for="__tabbed_3_2">CLI</label><label for="__tabbed_3_3">Other languages</label></div>
-<div class="tabbed-content">
-<div class="tabbed-block">
-<div class="admonition example">
-<p class="admonition-title">notice</p>
-<div class="highlight"><pre><span></span><code><span class="n">api</span><span class="o">.</span><span class="n">notice</span><span class="err">?</span>
+<div class="highlight"><pre><span></span><code><span class="n">Response</span> <span class="n">Code</span><span class="p">:</span> <span class="mi">200</span> <span class="o">|</span> <span class="n">Event</span> <span class="n">Code</span><span class="p">:</span> <span class="mi">16</span> <span class="o">|</span> <span class="n">Info</span><span class="p">:</span> <span class="n">QUO</span><span class="o">/</span><span class="n">v1</span><span class="o">/</span><span class="n">IND</span><span class="o">/*/</span><span class="n">TSE</span><span class="o">/</span><span class="n">IX0001</span> <span class="o">|</span> <span class="n">Event</span><span class="p">:</span> <span class="n">Subscribe</span> <span class="ow">or</span> <span class="n">Unsubscribe</span> <span class="n">ok</span>
 
-<span class="n">Signature</span><span class="p">:</span>
-    <span class="n">api</span><span class="o">.</span><span class="n">notice</span><span class="p">(</span>
-        <span class="n">timeout</span><span class="p">:</span> <span class="nb">int</span> <span class="o">=</span> <span class="mi">5000</span><span class="p">,</span>
-        <span class="n">cb</span><span class="p">:</span> <span class="n">Callable</span><span class="p">[[</span><span class="n">shioaji</span><span class="o">.</span><span class="n">data</span><span class="o">.</span><span class="n">Notice</span><span class="p">],</span> <span class="n">NoneType</span><span class="p">]</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
-    <span class="p">)</span> <span class="o">-&gt;</span> <span class="n">shioaji</span><span class="o">.</span><span class="n">data</span><span class="o">.</span><span class="n">Notice</span>
-</code></pre></div>
-</div>
-<div class="admonition done">
-<p class="admonition-title">Parameters</p>
-<div class="highlight"><pre><span></span><code>timeout: timeout in milliseconds
-cb:      callback function, used when timeout=0
-</code></pre></div>
-</div>
-</div>
-<div class="tabbed-block">
-<div class="admonition example">
-<p class="admonition-title">notice</p>
-<div class="highlight"><pre><span></span><code>shioaji<span class="w"> </span>data<span class="w"> </span>regulatory<span class="w"> </span>--type<span class="w"> </span>notice
-</code></pre></div>
-</div>
-<div class="admonition done">
-<p class="admonition-title">Parameters</p>
-<div class="highlight"><pre><span></span><code>--type: optional, punish (disposition stocks / default) or notice (attention stocks)
-</code></pre></div>
-</div>
-</div>
-<div class="tabbed-block">
-<div class="admonition example">
-<p class="admonition-title">notice</p>
-<div class="highlight"><pre><span></span><code><span class="err">GET /api/v1/data/regulatory_notice</span>
-</code></pre></div>
-</div>
-</div>
-</div>
-</div>
-<h3 id="attributes_1">Attributes<a class="headerlink" href="#attributes_1" title="Permanent link">&para;</a></h3>
-<div class="admonition example">
-<p class="admonition-title">Notice</p>
-<div class="highlight"><pre><span></span><code><span class="n">code</span> <span class="p">(</span><span class="nb">list</span><span class="p">[</span><span class="nb">str</span><span class="p">]):</span>            <span class="n">symbol</span> <span class="n">codes</span>
-<span class="n">updated_at</span> <span class="p">(</span><span class="nb">list</span><span class="p">[</span><span class="n">datetime</span><span class="p">]):</span> <span class="n">updated</span> <span class="n">time</span>
-<span class="n">close</span> <span class="p">(</span><span class="nb">list</span><span class="p">[</span><span class="nb">float</span><span class="p">]):</span>         <span class="n">closing</span> <span class="n">price</span>
-<span class="n">reason</span> <span class="p">(</span><span class="nb">list</span><span class="p">[</span><span class="nb">str</span><span class="p">]):</span>          <span class="n">attention</span> <span class="n">reason</span>
-<span class="n">announced_date</span> <span class="p">(</span><span class="nb">list</span><span class="p">[</span><span class="n">date</span><span class="p">]):</span> <span class="n">announced</span> <span class="n">date</span>
-</code></pre></div>
-</div>
-<h3 id="examples_1">Examples<a class="headerlink" href="#examples_1" title="Permanent link">&para;</a></h3>
-<div class="tabbed-set tabbed-alternate" data-tabs="4:3"><input checked="checked" id="__tabbed_4_1" name="__tabbed_4" type="radio" /><input id="__tabbed_4_2" name="__tabbed_4" type="radio" /><input id="__tabbed_4_3" name="__tabbed_4" type="radio" /><div class="tabbed-labels"><label for="__tabbed_4_1">Python</label><label for="__tabbed_4_2">CLI</label><label for="__tabbed_4_3">HTTP</label></div>
-<div class="tabbed-content">
-<div class="tabbed-block">
-<div class="admonition info">
-<p class="admonition-title">In</p>
-<div class="highlight"><pre><span></span><code><span class="n">api</span><span class="o">.</span><span class="n">notice</span><span class="p">()</span>
-</code></pre></div>
-</div>
-<div class="admonition done">
-<p class="admonition-title">Out</p>
-<div class="highlight"><pre><span></span><code><span class="n">Notice</span><span class="p">[</span><span class="mi">2</span><span class="p">](</span>
-    <span class="n">code</span><span class="o">=</span><span class="p">[</span><span class="s2">&quot;6775&quot;</span><span class="p">,</span> <span class="s2">&quot;6990&quot;</span><span class="p">],</span>
-    <span class="n">updated_at</span><span class="o">=</span><span class="p">[</span><span class="s2">&quot;2026-05-21T17:18:15&quot;</span><span class="p">,</span> <span class="s2">&quot;2026-05-21T17:18:15&quot;</span><span class="p">],</span>
-    <span class="n">close</span><span class="o">=</span><span class="p">[</span><span class="mf">51.16</span><span class="p">,</span> <span class="mf">153.29</span><span class="p">],</span>
-    <span class="n">reason</span><span class="o">=</span><span class="p">[</span><span class="s2">&quot;...&quot;</span><span class="p">,</span> <span class="s2">&quot;...&quot;</span><span class="p">],</span>
-    <span class="n">announced_date</span><span class="o">=</span><span class="p">[</span><span class="s2">&quot;2026-05-21&quot;</span><span class="p">,</span> <span class="s2">&quot;2026-05-21&quot;</span><span class="p">]</span>
+<span class="n">QuoteIdxV1</span><span class="p">(</span>
+    <span class="n">code</span><span class="o">=</span><span class="s1">&#39;IX0001&#39;</span><span class="p">,</span>
+    <span class="n">date</span><span class="o">=</span><span class="mi">2026</span><span class="o">-</span><span class="mi">07</span><span class="o">-</span><span class="mi">16</span><span class="p">,</span>
+    <span class="n">time</span><span class="o">=</span><span class="mi">11</span><span class="p">:</span><span class="mi">52</span><span class="p">:</span><span class="mi">45</span><span class="p">,</span>
+    <span class="n">close</span><span class="o">=</span><span class="mf">45625.32</span><span class="p">,</span>
+    <span class="n">high</span><span class="o">=</span><span class="mf">45713.2</span><span class="p">,</span>
+    <span class="n">low</span><span class="o">=</span><span class="mf">44970.64</span><span class="p">,</span>
 <span class="p">)</span>
 </code></pre></div>
 </div>
-<p><strong>Convert to DataFrame (polars example)</strong></p>
-<div class="admonition info">
-<p class="admonition-title">In</p>
-<div class="highlight"><pre><span></span><code><span class="kn">import</span><span class="w"> </span><span class="nn">polars</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">pl</span>
-<span class="n">notice</span> <span class="o">=</span> <span class="n">api</span><span class="o">.</span><span class="n">notice</span><span class="p">()</span>
-<span class="n">df</span> <span class="o">=</span> <span class="n">pl</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">(</span><span class="n">notice</span><span class="o">.</span><span class="n">dict</span><span class="p">())</span>
-<span class="n">df</span><span class="o">.</span><span class="n">head</span><span class="p">()</span>
-</code></pre></div>
-</div>
-<div class="admonition done">
-<p class="admonition-title">Out</p>
-<table>
-<thead>
-<tr>
-<th style="text-align: left;">code</th>
-<th style="text-align: left;">updated_at</th>
-<th style="text-align: right;">close</th>
-<th style="text-align: left;">reason</th>
-<th style="text-align: left;">announced_date</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td style="text-align: left;">6775</td>
-<td style="text-align: left;">2026-05-21T17:18:15</td>
-<td style="text-align: right;">51.16</td>
-<td style="text-align: left;">...</td>
-<td style="text-align: left;">2026-05-21</td>
-</tr>
-<tr>
-<td style="text-align: left;">6990</td>
-<td style="text-align: left;">2026-05-21T17:18:15</td>
-<td style="text-align: right;">153.29</td>
-<td style="text-align: left;">...</td>
-<td style="text-align: left;">2026-05-21</td>
-</tr>
-</tbody>
-</table>
+<div class="admonition tip">
+<p class="admonition-title">顯示完整欄位</p>
+<p>預設不會展示所有欄位，僅顯示摘要。如需取得完整內容，請參考下方 <a href="#callback">Callback</a> 章節自訂 callback 函式。</p>
 </div>
 </div>
 <div class="tabbed-block">
 <div class="admonition info">
 <p class="admonition-title">In</p>
-<div class="highlight"><pre><span></span><code>shioaji<span class="w"> </span>data<span class="w"> </span>regulatory<span class="w"> </span>--type<span class="w"> </span>notice
+<div class="highlight"><pre><span></span><code>shioaji<span class="w"> </span>data<span class="w"> </span>stream<span class="w"> </span>--code<span class="w"> </span>IX0001<span class="w"> </span>--security-type<span class="w"> </span>IND<span class="w"> </span>--quote-type<span class="w"> </span>quote
+<span class="c1"># 按 Ctrl+C 即可停止訂閱，CLI 會自動取消</span>
 </code></pre></div>
 </div>
 <div class="admonition done">
 <p class="admonition-title">Out</p>
-<div class="highlight"><pre><span></span><code>[68]{code,updated_at,close,reason,announced_date}:
-  &quot;051359&quot;,2026-06-11T18:18:40,8.85,最近六個營業日累積收盤價漲幅達39.68%﹝第一款﹞。,&quot;2026-06-11&quot;
-  &quot;058191&quot;,2026-06-11T18:18:41,10.9,最近六個營業日累積收盤價漲幅達32.69%﹝第一款﹞。,&quot;2026-06-11&quot;
-  ...
+<div class="highlight"><pre><span></span><code>Subscribed to IX0001 quote (Ctrl+C to stop)
+{
+  &quot;exchange&quot;: &quot;TSE&quot;,
+  &quot;code&quot;: &quot;IX0001&quot;,
+  &quot;Date&quot;: &quot;2026-07-16&quot;,
+  &quot;Time&quot;: &quot;11:52:15&quot;,
+  &quot;Reference&quot;: &quot;45631.59&quot;,
+  &quot;Open&quot;: &quot;45511.98&quot;,
+  &quot;High&quot;: &quot;45713.2&quot;,
+  &quot;Low&quot;: &quot;44970.64&quot;,
+  &quot;Close&quot;: &quot;45622.63&quot;,
+  &quot;AmountSum&quot;: &quot;618160656740&quot;,
+  &quot;Amount&quot;: &quot;91988580&quot;,
+  &quot;Volume&quot;: 1129,
+  &quot;VolSum&quot;: 7424400,
+  &quot;Count&quot;: 2115431,
+  &quot;CountSum&quot;: 2115431,
+  &quot;PrevDate&quot;: &quot;2026-07-15&quot;,
+  &quot;PrevAmountSum&quot;: &quot;984081222880&quot;,
+  &quot;NoTrade&quot;: 7,
+  &quot;RaiseStop&quot;: 16,
+  &quot;Raise&quot;: 454,
+  &quot;Flat&quot;: 107,
+  &quot;Fall&quot;: 523,
+  &quot;FallStop&quot;: 0,
+  &quot;FundAmount&quot;: &quot;40717826190&quot;,
+  &quot;FundVolume&quot;: 1732436,
+  &quot;FundCount&quot;: 345835,
+  &quot;StockAmount&quot;: &quot;572675483130&quot;,
+  &quot;StockVolume&quot;: 3659291,
+  &quot;StockCount&quot;: 1691180,
+  &quot;BullAmount&quot;: &quot;2326921150&quot;,
+  &quot;BullVolume&quot;: 1905951,
+  &quot;BullCount&quot;: 68360,
+  &quot;BearAmount&quot;: &quot;77652940&quot;,
+  &quot;BearVolume&quot;: 107649,
+  &quot;BearCount&quot;: 4298,
+  &quot;TIBAmount&quot;: &quot;2180957550&quot;,
+  &quot;TIBVolume&quot;: 2673,
+  &quot;TIBCount&quot;: 2052,
+  &quot;FixedAmount&quot;: &quot;0&quot;,
+  &quot;FixedVolume&quot;: 0,
+  &quot;FixedCount&quot;: 0,
+  &quot;EstimateAmountSum&quot;: &quot;857722570750&quot;
+}
 </code></pre></div>
 </div>
 </div>
 <div class="tabbed-block">
 <div class="admonition info">
 <p class="admonition-title">In</p>
-<div class="highlight"><pre><span></span><code>curl<span class="w"> </span>http://localhost:8080/api/v1/data/regulatory_notice
+<div class="highlight"><pre><span></span><code><span class="c1"># 訂閱</span>
+curl<span class="w"> </span>-X<span class="w"> </span>POST<span class="w"> </span>http://localhost:8080/api/v1/stream/subscribe<span class="w"> </span><span class="se">\</span>
+<span class="w">  </span>-H<span class="w"> </span><span class="s1">&#39;Content-Type: application/json&#39;</span><span class="w"> </span><span class="se">\</span>
+<span class="w">  </span>-d<span class="w"> </span><span class="s1">&#39;{</span>
+<span class="s1">    &quot;security_type&quot;: &quot;IND&quot;,</span>
+<span class="s1">    &quot;exchange&quot;: &quot;TSE&quot;,</span>
+<span class="s1">    &quot;code&quot;: &quot;IX0001&quot;,</span>
+<span class="s1">    &quot;quote_type&quot;: &quot;Quote&quot;</span>
+<span class="s1">  }&#39;</span>
+
+<span class="c1"># 開 SSE 收指數行情（Ctrl+C 結束）</span>
+curl<span class="w"> </span>-N<span class="w"> </span>http://localhost:8080/api/v1/stream/data/quote_idx
+
+<span class="c1"># 取消訂閱</span>
+<span class="c1"># curl -X POST http://localhost:8080/api/v1/stream/unsubscribe \</span>
+<span class="c1">#   -H &#39;Content-Type: application/json&#39; \</span>
+<span class="c1">#   -d &#39;{</span>
+<span class="c1">#     &quot;security_type&quot;: &quot;IND&quot;,</span>
+<span class="c1">#     &quot;exchange&quot;: &quot;TSE&quot;,</span>
+<span class="c1">#     &quot;code&quot;: &quot;IX0001&quot;,</span>
+<span class="c1">#     &quot;quote_type&quot;: &quot;Quote&quot;</span>
+<span class="c1">#   }&#39;</span>
 </code></pre></div>
 </div>
 <div class="admonition done">
 <p class="admonition-title">Out</p>
-<div class="highlight"><pre><span></span><code><span class="p">{</span>
-<span class="w">  </span><span class="nt">&quot;code&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="s2">&quot;6775&quot;</span><span class="p">,</span><span class="w"> </span><span class="s2">&quot;6990&quot;</span><span class="p">],</span>
-<span class="w">  </span><span class="nt">&quot;updated_at&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="s2">&quot;2026-05-21T17:18:15&quot;</span><span class="p">,</span><span class="w"> </span><span class="s2">&quot;2026-05-21T17:18:15&quot;</span><span class="p">],</span>
-<span class="w">  </span><span class="nt">&quot;close&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="mf">51.16</span><span class="p">,</span><span class="w"> </span><span class="mf">153.29</span><span class="p">],</span>
-<span class="w">  </span><span class="nt">&quot;reason&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="s2">&quot;...&quot;</span><span class="p">,</span><span class="w"> </span><span class="s2">&quot;...&quot;</span><span class="p">],</span>
-<span class="w">  </span><span class="nt">&quot;announced_date&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="s2">&quot;2026-05-21&quot;</span><span class="p">,</span><span class="w"> </span><span class="s2">&quot;2026-05-21&quot;</span><span class="p">]</span>
-<span class="p">}</span>
+<div class="highlight"><pre><span></span><code>event:quote_idx
+data:{
+  &quot;exchange&quot;: &quot;TSE&quot;,
+  &quot;code&quot;: &quot;IX0001&quot;,
+  &quot;Date&quot;: &quot;2026-07-16&quot;,
+  &quot;Time&quot;: &quot;11:52:45&quot;,
+  &quot;Reference&quot;: &quot;45631.59&quot;,
+  &quot;Open&quot;: &quot;45511.98&quot;,
+  &quot;High&quot;: &quot;45713.2&quot;,
+  &quot;Low&quot;: &quot;44970.64&quot;,
+  &quot;Close&quot;: &quot;45625.32&quot;,
+  &quot;AmountSum&quot;: &quot;618594787860&quot;,
+  &quot;Amount&quot;: &quot;95080930&quot;,
+  &quot;Volume&quot;: 918,
+  &quot;VolSum&quot;: 7430030,
+  &quot;Count&quot;: 2117449,
+  &quot;CountSum&quot;: 2117449,
+  &quot;PrevDate&quot;: &quot;2026-07-15&quot;,
+  &quot;PrevAmountSum&quot;: &quot;984081222880&quot;,
+  &quot;NoTrade&quot;: 7,
+  &quot;RaiseStop&quot;: 16,
+  &quot;Raise&quot;: 453,
+  &quot;Flat&quot;: 111,
+  &quot;Fall&quot;: 520,
+  &quot;FallStop&quot;: 0,
+  &quot;FundAmount&quot;: &quot;40749825690&quot;,
+  &quot;FundVolume&quot;: 1733956,
+  &quot;FundCount&quot;: 346107,
+  &quot;StockAmount&quot;: &quot;573076651430&quot;,
+  &quot;StockVolume&quot;: 3662426,
+  &quot;StockCount&quot;: 1692858,
+  &quot;BullAmount&quot;: &quot;2327811230&quot;,
+  &quot;BullVolume&quot;: 1906903,
+  &quot;BullCount&quot;: 68423,
+  &quot;BearAmount&quot;: &quot;77668600&quot;,
+  &quot;BearVolume&quot;: 107670,
+  &quot;BearCount&quot;: 4301,
+  &quot;TIBAmount&quot;: &quot;2180957550&quot;,
+  &quot;TIBVolume&quot;: 2673,
+  &quot;TIBCount&quot;: 2052,
+  &quot;FixedAmount&quot;: &quot;0&quot;,
+  &quot;FixedVolume&quot;: 0,
+  &quot;FixedCount&quot;: 0,
+  &quot;EstimateAmountSum&quot;: &quot;857373233347&quot;
+}
 </code></pre></div>
 </div>
 </div>
 </div>
+</div>
+<h3 id="_1">屬性<a class="headerlink" href="#_1" title="Permanent link">&para;</a></h3>
+<div class="admonition example">
+<p class="admonition-title">QuoteIdxV1</p>
+<div class="highlight"><pre><span></span><code><span class="n">code</span> <span class="p">(</span><span class="nb">str</span><span class="p">)</span>                               <span class="n">指數代碼</span>
+<span class="n">exchange</span> <span class="p">(</span><span class="n">Exchange</span><span class="p">)</span>                      <span class="n">交易所</span>
+<span class="n">date</span> <span class="p">(</span><span class="n">date</span><span class="p">)</span>                              <span class="n">日期</span>
+<span class="n">time</span> <span class="p">(</span><span class="n">time</span><span class="p">)</span>                              <span class="n">時間</span>
+<span class="n">datetime</span> <span class="p">(</span><span class="n">datetime</span><span class="p">)</span>                      <span class="n">日期與時間</span>
+<span class="n">reference</span> <span class="p">(</span><span class="n">Decimal</span><span class="p">)</span>                      <span class="n">昨收</span>
+<span class="nb">open</span> <span class="p">(</span><span class="n">Decimal</span><span class="p">)</span>                           <span class="n">今開</span>
+<span class="n">high</span> <span class="p">(</span><span class="n">Decimal</span><span class="p">)</span>                           <span class="n">今高</span>
+<span class="n">low</span> <span class="p">(</span><span class="n">Decimal</span><span class="p">)</span>                            <span class="n">今低</span>
+<span class="n">close</span> <span class="p">(</span><span class="n">Decimal</span><span class="p">)</span>                          <span class="n">最新指數</span>
+<span class="n">amount_sum</span> <span class="p">(</span><span class="n">Decimal</span><span class="p">)</span>                     <span class="n">累計成交金額</span> <span class="p">(</span><span class="n">NTD</span><span class="p">)</span>
+<span class="n">amount</span> <span class="p">(</span><span class="n">Decimal</span><span class="p">)</span>                         <span class="n">成交金額</span> <span class="p">(</span><span class="n">NTD</span><span class="p">)</span>
+<span class="n">volume</span> <span class="p">(</span><span class="nb">int</span><span class="p">)</span>                             <span class="n">成交股數</span> <span class="p">(</span><span class="n">張</span><span class="p">)</span>
+<span class="n">vol_sum</span> <span class="p">(</span><span class="nb">int</span><span class="p">)</span>                            <span class="n">累計成交股數</span> <span class="p">(</span><span class="n">張</span><span class="p">)</span>
+<span class="n">count</span> <span class="p">(</span><span class="nb">int</span><span class="p">)</span>                              <span class="n">累計成交筆數</span>
+<span class="n">count_sum</span> <span class="p">(</span><span class="nb">int</span><span class="p">)</span>                          <span class="n">累計成交筆數</span>
+<span class="n">prev_date</span> <span class="p">(</span><span class="n">date</span><span class="p">)</span>                         <span class="n">前一個交易日</span>
+<span class="n">prev_amount_sum</span> <span class="p">(</span><span class="n">Decimal</span><span class="p">)</span>                <span class="n">前交易日總額</span> <span class="p">(</span><span class="n">NTD</span><span class="p">)</span>
+<span class="n">no_trade</span> <span class="p">(</span><span class="nb">int</span><span class="p">)</span>                           <span class="n">未成交</span><span class="err">（</span><span class="n">商品數</span><span class="err">）</span>
+<span class="n">limit_up_count</span> <span class="p">(</span><span class="nb">int</span><span class="p">)</span>                     <span class="n">漲停</span><span class="err">（</span><span class="n">商品數</span><span class="err">）</span>
+<span class="n">raise_count</span> <span class="p">(</span><span class="nb">int</span><span class="p">)</span>                        <span class="n">漲</span><span class="err">（</span><span class="n">商品數</span><span class="err">）</span>
+<span class="n">flat_count</span> <span class="p">(</span><span class="nb">int</span><span class="p">)</span>                         <span class="n">平</span><span class="err">（</span><span class="n">商品數</span><span class="err">）</span>
+<span class="n">fall_count</span> <span class="p">(</span><span class="nb">int</span><span class="p">)</span>                         <span class="n">跌</span><span class="err">（</span><span class="n">商品數</span><span class="err">）</span>
+<span class="n">limit_down_count</span> <span class="p">(</span><span class="nb">int</span><span class="p">)</span>                   <span class="n">跌停</span><span class="err">（</span><span class="n">商品數</span><span class="err">）</span>
+<span class="n">fund_amount</span> <span class="p">(</span><span class="n">Decimal</span><span class="p">)</span>                    <span class="n">基金成交總額</span> <span class="p">(</span><span class="n">NTD</span><span class="p">)</span><span class="err">｜</span><span class="n">僅大盤</span>
+<span class="n">fund_volume</span> <span class="p">(</span><span class="nb">int</span><span class="p">)</span>                        <span class="n">基金成交總張數</span><span class="err">｜</span><span class="n">僅大盤</span>
+<span class="n">fund_count</span> <span class="p">(</span><span class="nb">int</span><span class="p">)</span>                         <span class="n">基金成交總筆數</span><span class="err">｜</span><span class="n">僅大盤</span>
+<span class="n">stock_amount</span> <span class="p">(</span><span class="n">Decimal</span><span class="p">)</span>                   <span class="n">股票成交總額</span> <span class="p">(</span><span class="n">NTD</span><span class="p">)</span><span class="err">｜</span><span class="n">僅大盤</span>
+<span class="n">stock_volume</span> <span class="p">(</span><span class="nb">int</span><span class="p">)</span>                       <span class="n">股票成交總張數</span><span class="err">｜</span><span class="n">僅大盤</span>
+<span class="n">stock_count</span> <span class="p">(</span><span class="nb">int</span><span class="p">)</span>                        <span class="n">股票成交總筆數</span><span class="err">｜</span><span class="n">僅大盤</span>
+<span class="n">bull_amount</span> <span class="p">(</span><span class="n">Decimal</span><span class="p">)</span>                    <span class="n">認購權證成交總額</span> <span class="p">(</span><span class="n">NTD</span><span class="p">)</span><span class="err">｜</span><span class="n">僅大盤</span>
+<span class="n">bull_volume</span> <span class="p">(</span><span class="nb">int</span><span class="p">)</span>                        <span class="n">認購權證成交總張數</span><span class="err">｜</span><span class="n">僅大盤</span>
+<span class="n">bull_count</span> <span class="p">(</span><span class="nb">int</span><span class="p">)</span>                         <span class="n">認購權證成交總筆數</span><span class="err">｜</span><span class="n">僅大盤</span>
+<span class="n">bear_amount</span> <span class="p">(</span><span class="n">Decimal</span><span class="p">)</span>                    <span class="n">認售權證成交總額</span> <span class="p">(</span><span class="n">NTD</span><span class="p">)</span><span class="err">｜</span><span class="n">僅大盤</span>
+<span class="n">bear_volume</span> <span class="p">(</span><span class="nb">int</span><span class="p">)</span>                        <span class="n">認售權證成交總張數</span><span class="err">｜</span><span class="n">僅大盤</span>
+<span class="n">bear_count</span> <span class="p">(</span><span class="nb">int</span><span class="p">)</span>                         <span class="n">認售權證成交總筆數</span><span class="err">｜</span><span class="n">僅大盤</span>
+<span class="n">tib_amount</span> <span class="p">(</span><span class="n">Decimal</span><span class="p">)</span>                     <span class="n">創新板成交總額</span> <span class="p">(</span><span class="n">NTD</span><span class="p">)</span><span class="err">｜</span><span class="n">僅大盤</span>
+<span class="n">tib_volume</span> <span class="p">(</span><span class="nb">int</span><span class="p">)</span>                         <span class="n">創新板成交總張數</span><span class="err">｜</span><span class="n">僅大盤</span>
+<span class="n">tib_count</span> <span class="p">(</span><span class="nb">int</span><span class="p">)</span>                          <span class="n">創新板成交總筆數</span><span class="err">｜</span><span class="n">僅大盤</span>
+<span class="n">fixed_amount</span> <span class="p">(</span><span class="n">Decimal</span><span class="p">)</span>                   <span class="n">盤後定價成交總額</span> <span class="p">(</span><span class="n">NTD</span><span class="p">)</span><span class="err">｜</span><span class="n">僅大盤</span>
+<span class="n">fixed_volume</span> <span class="p">(</span><span class="nb">int</span><span class="p">)</span>                       <span class="n">盤後定價成交總張數</span><span class="err">｜</span><span class="n">僅大盤</span>
+<span class="n">fixed_count</span> <span class="p">(</span><span class="nb">int</span><span class="p">)</span>                        <span class="n">盤後定價成交筆數</span><span class="err">｜</span><span class="n">僅大盤</span>
+<span class="n">estimate_amount_sum</span> <span class="p">(</span><span class="n">Decimal</span><span class="p">)</span>            <span class="n">預估收盤總額</span> <span class="p">(</span><span class="n">NTD</span><span class="p">)</span><span class="err">｜</span><span class="n">僅大盤</span>
+</code></pre></div>
+<ul>
+<li>標記「僅大盤」的欄位僅發行量加權股價指數等大盤指數才有；一般指數（如 <code>EMP88</code>）僅有前段標準欄位，其餘為 <code>None</code>。</li>
+</ul>
+</div>
+<h2 id="callback">Callback（僅 Python）<a class="headerlink" href="#callback" title="Permanent link">&para;</a></h2>
+<p>預設狀況下我們將即時行情使用 <code>print</code> 的方式呈現，僅顯示部分摘要欄位。可根據個人需求修改 callback 函式以取得完整欄位內容，並串接其他應用（行情管理、觸價單等）。請避免在函式內進行運算。</p>
+<h3 id="quote_1">Quote<a class="headerlink" href="#quote_1" title="Permanent link">&para;</a></h3>
+<div class="admonition info">
+<p class="admonition-title">decorator 方式</p>
+<div class="highlight"><pre><span></span><code><span class="kn">from</span><span class="w"> </span><span class="nn">shioaji</span><span class="w"> </span><span class="kn">import</span> <span class="n">QuoteIdxV1</span>
+
+<span class="nd">@api</span><span class="o">.</span><span class="n">on_quote_idx_v1</span><span class="p">()</span>
+<span class="k">def</span><span class="w"> </span><span class="nf">quote_callback</span><span class="p">(</span><span class="n">quote</span><span class="p">:</span> <span class="n">QuoteIdxV1</span><span class="p">):</span>
+    <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;code=</span><span class="si">{</span><span class="n">quote</span><span class="o">.</span><span class="n">code</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+    <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;exchange=</span><span class="si">{</span><span class="n">quote</span><span class="o">.</span><span class="n">exchange</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+    <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;date=</span><span class="si">{</span><span class="n">quote</span><span class="o">.</span><span class="n">date</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+    <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;time=</span><span class="si">{</span><span class="n">quote</span><span class="o">.</span><span class="n">time</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+    <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;datetime=</span><span class="si">{</span><span class="n">quote</span><span class="o">.</span><span class="n">datetime</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+    <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;reference=</span><span class="si">{</span><span class="n">quote</span><span class="o">.</span><span class="n">reference</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+    <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;open=</span><span class="si">{</span><span class="n">quote</span><span class="o">.</span><span class="n">open</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+    <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;high=</span><span class="si">{</span><span class="n">quote</span><span class="o">.</span><span class="n">high</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+    <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;low=</span><span class="si">{</span><span class="n">quote</span><span class="o">.</span><span class="n">low</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+    <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;close=</span><span class="si">{</span><span class="n">quote</span><span class="o">.</span><span class="n">close</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+    <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;amount_sum=</span><span class="si">{</span><span class="n">quote</span><span class="o">.</span><span class="n">amount_sum</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+    <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;volume=</span><span class="si">{</span><span class="n">quote</span><span class="o">.</span><span class="n">volume</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+    <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;vol_sum=</span><span class="si">{</span><span class="n">quote</span><span class="o">.</span><span class="n">vol_sum</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+
+<span class="n">contract</span> <span class="o">=</span> <span class="n">api</span><span class="o">.</span><span class="n">contracts</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s2">&quot;IX0001&quot;</span><span class="p">)</span>
+<span class="n">api</span><span class="o">.</span><span class="n">subscribe</span><span class="p">(</span><span class="n">contract</span><span class="p">,</span> <span class="n">quote_type</span><span class="o">=</span><span class="n">sj</span><span class="o">.</span><span class="n">QuoteType</span><span class="o">.</span><span class="n">Quote</span><span class="p">)</span>
+</code></pre></div>
+</div>
+<div class="admonition info">
+<p class="admonition-title">傳統方式</p>
+<div class="highlight"><pre><span></span><code><span class="kn">from</span><span class="w"> </span><span class="nn">shioaji</span><span class="w"> </span><span class="kn">import</span> <span class="n">QuoteIdxV1</span>
+
+<span class="k">def</span><span class="w"> </span><span class="nf">quote_callback</span><span class="p">(</span><span class="n">quote</span><span class="p">:</span> <span class="n">QuoteIdxV1</span><span class="p">):</span>
+    <span class="nb">print</span><span class="p">(</span><span class="n">quote</span><span class="p">)</span>
+
+<span class="n">api</span><span class="o">.</span><span class="n">set_on_quote_idx_v1_callback</span><span class="p">(</span><span class="n">quote_callback</span><span class="p">)</span>
+
+<span class="n">contract</span> <span class="o">=</span> <span class="n">api</span><span class="o">.</span><span class="n">contracts</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s2">&quot;IX0001&quot;</span><span class="p">)</span>
+<span class="n">api</span><span class="o">.</span><span class="n">subscribe</span><span class="p">(</span><span class="n">contract</span><span class="p">,</span> <span class="n">quote_type</span><span class="o">=</span><span class="n">sj</span><span class="o">.</span><span class="n">QuoteType</span><span class="o">.</span><span class="n">Quote</span><span class="p">)</span>
+</code></pre></div>
+</div>
+<div class="admonition done">
+<p class="admonition-title">Out</p>
+<div class="highlight"><pre><span></span><code>Response Code: 200 | Event Code: 16 | Info: QUO/v1/IND/*/TSE/IX0001 | Event: Subscribe or Unsubscribe ok
+code=IX0001
+exchange=Exchange.TSE
+date=2026-07-16
+time=11:52:45
+datetime=2026-07-16 11:52:45
+reference=45631.59
+open=45511.98
+high=45713.2
+low=44970.64
+close=45625.32
+amount_sum=618594787860
+volume=918
+vol_sum=7430030
+</code></pre></div>
 </div>
 
 
@@ -2531,10 +2520,10 @@ cb:      callback function, used when timeout=0
     
     
       
-      <script id="__config" type="application/json">{"base": "../../..", "features": [], "search": "../../../assets/javascripts/workers/search.f8cc74c7.min.js", "tags": null, "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}, "version": null}</script>
+      <script id="__config" type="application/json">{"base": "../../../..", "features": [], "search": "../../../../assets/javascripts/workers/search.f8cc74c7.min.js", "tags": null, "translations": {"clipboard.copied": "\u5df2\u590d\u5236", "clipboard.copy": "\u590d\u5236", "search.result.more.one": "\u5728\u8be5\u9875\u4e0a\u8fd8\u6709 1 \u4e2a\u7b26\u5408\u6761\u4ef6\u7684\u7ed3\u679c", "search.result.more.other": "\u5728\u8be5\u9875\u4e0a\u8fd8\u6709 # \u4e2a\u7b26\u5408\u6761\u4ef6\u7684\u7ed3\u679c", "search.result.none": "\u6ca1\u6709\u627e\u5230\u7b26\u5408\u6761\u4ef6\u7684\u7ed3\u679c", "search.result.one": "\u627e\u5230 1 \u4e2a\u7b26\u5408\u6761\u4ef6\u7684\u7ed3\u679c", "search.result.other": "# \u4e2a\u7b26\u5408\u6761\u4ef6\u7684\u7ed3\u679c", "search.result.placeholder": "\u952e\u5165\u4ee5\u5f00\u59cb\u641c\u7d22", "search.result.term.missing": "\u7f3a\u5c11", "select.version": "\u9009\u62e9\u5f53\u524d\u7248\u672c"}, "version": null}</script>
     
     
-      <script src="../../../assets/javascripts/bundle.c8b220af.min.js"></script>
+      <script src="../../../../assets/javascripts/bundle.c8b220af.min.js"></script>
       
     
   </body>

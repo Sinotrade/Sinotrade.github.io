@@ -6,7 +6,7 @@
 
 - [其他語言使用者](https://sinotrade.github.io/zh/env_setup/other/index.md)
 - [Python 使用者](https://sinotrade.github.io/zh/env_setup/python/index.md)
-- [商品檔](https://sinotrade.github.io/zh/tutor/contract/index.md)
+- [商品合約](https://sinotrade.github.io/zh/tutor/contract/index.md)
 - [使用限制](https://sinotrade.github.io/zh/tutor/limit/index.md)
 - [登入](https://sinotrade.github.io/zh/tutor/login/index.md)
 - [自訂應用](https://sinotrade.github.io/zh/tutor/shioaji_apps/index.md)
@@ -30,6 +30,7 @@
 - [排行](https://sinotrade.github.io/zh/tutor/market_data/scanners/index.md)
 - [或有券源](https://sinotrade.github.io/zh/tutor/market_data/short_stock_source/index.md)
 - [市場快照](https://sinotrade.github.io/zh/tutor/market_data/snapshot/index.md)
+- [指數](https://sinotrade.github.io/zh/tutor/market_data/streaming/index.md)
 - [期貨](https://sinotrade.github.io/zh/tutor/market_data/streaming/futures/index.md)
 - [證券](https://sinotrade.github.io/zh/tutor/market_data/streaming/stocks/index.md)
 - [組合單](https://sinotrade.github.io/zh/tutor/order/Combo/index.md)

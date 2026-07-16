@@ -12,13 +12,13 @@
         <meta name="author" content="SinoPac Securities, Sinotrade">
       
       
-        <link rel="canonical" href="https://sinotrade.github.io/upgrade_to_1_5/">
+        <link rel="canonical" href="https://sinotrade.github.io/upgrade_to_1_7/">
       
       
-        <link rel="prev" href="../upgrade/">
+        <link rel="prev" href="../upgrade_to_1_5/">
       
       
-        <link rel="next" href="../upgrade_to_1_7/">
+        <link rel="next" href="../qa/">
       
       
       <link rel="icon" href="https://sinotrade.github.io/images/shioaji-logo-01.png">
@@ -26,7 +26,7 @@
     
     
       
-        <title>Upgrading to 1.5 - Shioaji - Taiwan's Leading Cross Platform Trading API</title>
+        <title>Upgrading to 1.7 - Shioaji - Taiwan's Leading Cross Platform Trading API</title>
       
     
     
@@ -102,7 +102,7 @@
     <div data-md-component="skip">
       
         
-        <a href="#upgrading-to-15" class="md-skip">
+        <a href="#upgrading-to-170" class="md-skip">
           Skip to content
         </a>
       
@@ -137,7 +137,7 @@
         <div class="md-header__topic" data-md-component="header-topic">
           <span class="md-ellipsis">
             
-              Upgrading to 1.5
+              Upgrading to 1.7
             
           </span>
         </div>
@@ -190,7 +190,7 @@
           </li>
         
           <li class="md-select__item">
-            <a href="../zh/upgrade_to_1_5/" hreflang="zh" class="md-select__link">
+            <a href="../zh/upgrade_to_1_7/" hreflang="zh" class="md-select__link">
               中文
             </a>
           </li>
@@ -1789,6 +1789,29 @@
                 
   
   
+  
+  
+    <li class="md-nav__item">
+      <a href="../upgrade_to_1_5/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Upgrading to 1.5
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
     
   
   
@@ -1806,7 +1829,7 @@
   
   
   <span class="md-ellipsis">
-    Upgrading to 1.5
+    Upgrading to 1.7
     
   </span>
   
@@ -1819,7 +1842,7 @@
   
   
   <span class="md-ellipsis">
-    Upgrading to 1.5
+    Upgrading to 1.7
     
   </span>
   
@@ -1848,16 +1871,49 @@
     </span>
   </a>
   
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#how-to-migrate-to-15" class="md-nav__link">
+    <nav class="md-nav" aria-label="What&#39;s new?">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#1-a-smoother-experience" class="md-nav__link">
     <span class="md-ellipsis">
-      How to migrate to 1.5?
+      1. A smoother experience
     </span>
   </a>
   
-    <nav class="md-nav" aria-label="How to migrate to 1.5?">
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#2-new-apicontracts-query-api" class="md-nav__link">
+    <span class="md-ellipsis">
+      2. New api.contracts query API
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#3-stronger-index-support" class="md-nav__link">
+    <span class="md-ellipsis">
+      3. Stronger index support
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#how-to-migrate-to-17" class="md-nav__link">
+    <span class="md-ellipsis">
+      How to migrate to 1.7?
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="How to migrate to 1.7?">
       <ul class="md-nav__list">
         
           <li class="md-nav__item">
@@ -1870,36 +1926,45 @@
 </li>
         
           <li class="md-nav__item">
-  <a href="#2-import-from-the-top-level" class="md-nav__link">
+  <a href="#2-login-arguments-removed" class="md-nav__link">
     <span class="md-ellipsis">
-      2. Import from the top level
+      2. Login arguments removed
     </span>
   </a>
   
 </li>
         
           <li class="md-nav__item">
-  <a href="#3-__dict__-dict" class="md-nav__link">
+  <a href="#3-indices-now-use-exchange-codes" class="md-nav__link">
     <span class="md-ellipsis">
-      3. __dict__ → .dict()
+      3. Indices now use exchange codes
     </span>
   </a>
   
 </li>
         
           <li class="md-nav__item">
-  <a href="#4-apiquotesubscribe-apisubscribe" class="md-nav__link">
+  <a href="#4-securitytypefuture-renamed-to-futures" class="md-nav__link">
     <span class="md-ellipsis">
-      4. api.quote.subscribe → api.subscribe
+      4. SecurityType.Future renamed to Futures
     </span>
   </a>
   
 </li>
         
           <li class="md-nav__item">
-  <a href="#5-apiorder-stockorder-futuresorder" class="md-nav__link">
+  <a href="#5-queried-contract-objects-renamed" class="md-nav__link">
     <span class="md-ellipsis">
-      5. api.Order → StockOrder / FuturesOrder
+      5. Queried contract objects renamed
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#6-listing-contracts-over-http-is-now-a-get" class="md-nav__link">
+    <span class="md-ellipsis">
+      6. Listing contracts over HTTP is now a GET
     </span>
   </a>
   
@@ -1911,9 +1976,9 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#how-to-use-the-new-platform" class="md-nav__link">
+  <a href="#ready-to-go" class="md-nav__link">
     <span class="md-ellipsis">
-      How to use the new platform?
+      Ready to go?
     </span>
   </a>
   
@@ -1923,29 +1988,6 @@
   
 </nav>
       
-    </li>
-  
-
-              
-            
-              
-                
-  
-  
-  
-  
-    <li class="md-nav__item">
-      <a href="../upgrade_to_1_7/" class="md-nav__link">
-        
-  
-  
-  <span class="md-ellipsis">
-    Upgrading to 1.7
-    
-  </span>
-  
-
-      </a>
     </li>
   
 
@@ -2057,16 +2099,49 @@
     </span>
   </a>
   
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#how-to-migrate-to-15" class="md-nav__link">
+    <nav class="md-nav" aria-label="What&#39;s new?">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#1-a-smoother-experience" class="md-nav__link">
     <span class="md-ellipsis">
-      How to migrate to 1.5?
+      1. A smoother experience
     </span>
   </a>
   
-    <nav class="md-nav" aria-label="How to migrate to 1.5?">
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#2-new-apicontracts-query-api" class="md-nav__link">
+    <span class="md-ellipsis">
+      2. New api.contracts query API
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#3-stronger-index-support" class="md-nav__link">
+    <span class="md-ellipsis">
+      3. Stronger index support
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#how-to-migrate-to-17" class="md-nav__link">
+    <span class="md-ellipsis">
+      How to migrate to 1.7?
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="How to migrate to 1.7?">
       <ul class="md-nav__list">
         
           <li class="md-nav__item">
@@ -2079,36 +2154,45 @@
 </li>
         
           <li class="md-nav__item">
-  <a href="#2-import-from-the-top-level" class="md-nav__link">
+  <a href="#2-login-arguments-removed" class="md-nav__link">
     <span class="md-ellipsis">
-      2. Import from the top level
+      2. Login arguments removed
     </span>
   </a>
   
 </li>
         
           <li class="md-nav__item">
-  <a href="#3-__dict__-dict" class="md-nav__link">
+  <a href="#3-indices-now-use-exchange-codes" class="md-nav__link">
     <span class="md-ellipsis">
-      3. __dict__ → .dict()
+      3. Indices now use exchange codes
     </span>
   </a>
   
 </li>
         
           <li class="md-nav__item">
-  <a href="#4-apiquotesubscribe-apisubscribe" class="md-nav__link">
+  <a href="#4-securitytypefuture-renamed-to-futures" class="md-nav__link">
     <span class="md-ellipsis">
-      4. api.quote.subscribe → api.subscribe
+      4. SecurityType.Future renamed to Futures
     </span>
   </a>
   
 </li>
         
           <li class="md-nav__item">
-  <a href="#5-apiorder-stockorder-futuresorder" class="md-nav__link">
+  <a href="#5-queried-contract-objects-renamed" class="md-nav__link">
     <span class="md-ellipsis">
-      5. api.Order → StockOrder / FuturesOrder
+      5. Queried contract objects renamed
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#6-listing-contracts-over-http-is-now-a-get" class="md-nav__link">
+    <span class="md-ellipsis">
+      6. Listing contracts over HTTP is now a GET
     </span>
   </a>
   
@@ -2120,9 +2204,9 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#how-to-use-the-new-platform" class="md-nav__link">
+  <a href="#ready-to-go" class="md-nav__link">
     <span class="md-ellipsis">
-      How to use the new platform?
+      Ready to go?
     </span>
   </a>
   
@@ -2144,90 +2228,107 @@
 
 
 
-<h1 id="upgrading-to-15">Upgrading to 1.5<a class="headerlink" href="#upgrading-to-15" title="Permanent link">&para;</a></h1>
-<p>1.5 transforms Shioaji from a Python-only library into a cross-language trading platform. 1.3 code mostly still runs in 1.5 (with <code>DeprecationWarning</code>s), but we recommend updating to 1.5 idioms.</p>
+<h1 id="upgrading-to-170">Upgrading to 1.7.0<a class="headerlink" href="#upgrading-to-170" title="Permanent link">&para;</a></h1>
+<p>1.7.0 rewrites how contracts work, bringing a new <code>api.contracts</code> query API and keeping contracts up to date automatically. <strong>Your existing code runs without changes</strong>, and you can move to the new API at your own pace.</p>
 <h2 id="whats-new">What's new?<a class="headerlink" href="#whats-new" title="Permanent link">&para;</a></h2>
+<h3 id="1-a-smoother-experience">1. A smoother experience<a class="headerlink" href="#1-a-smoother-experience" title="Permanent link">&para;</a></h3>
 <ul>
-<li><code>shioaji</code> <strong>CLI</strong> and <strong>HTTP API + SSE</strong> at <code>localhost:8080</code>, callable from any language</li>
-<li><strong>Dashboard</strong> at <code>localhost:8080/dashboard</code> for live monitoring</li>
+<li><strong>No more managing contract updates yourself</strong>: previously you had to remember when contracts were refreshed and log in only after the update to get the latest ones — a particular hassle for futures night-session traders. From 1.7.0, contracts stay up to date automatically, so you no longer need to worry about update timing.</li>
+<li><strong>Faster login</strong>: login no longer downloads the full contract set; each security type is loaded automatically the first time you query it, so you can start right away.</li>
 </ul>
-<h2 id="how-to-migrate-to-15">How to migrate to 1.5?<a class="headerlink" href="#how-to-migrate-to-15" title="Permanent link">&para;</a></h2>
+<h3 id="2-new-apicontracts-query-api">2. New <code>api.contracts</code> query API<a class="headerlink" href="#2-new-apicontracts-query-api" title="Permanent link">&para;</a></h3>
+<p>Query every product through a single <code>api.contracts</code> entry point, with query capabilities the legacy access doesn't have:</p>
+<ul>
+<li><strong>Unified lookup</strong>: use <code>get()</code> to look up any product (stocks, futures, indices…) without distinguishing security types.</li>
+<li><strong>Look up derivatives by underlying</strong>: find which futures or warrants exist for a given stock.</li>
+<li><strong>Filter by criteria</strong>: options and warrants can be filtered by strike price, expiry date, and more.</li>
+<li><strong>Richer contract details</strong>: the new info objects carry more complete fields — for example a stock's margin/short-selling balances, day-trade eligibility, and disposition/attention status — see <a href="../tutor/contract/">Contract</a>.</li>
+</ul>
+<h3 id="3-stronger-index-support">3. Stronger index support<a class="headerlink" href="#3-stronger-index-support" title="Permanent link">&para;</a></h3>
+<ul>
+<li><strong>Standardized index codes</strong>: indices now use their exchange codes (e.g. the TAIEX is <code>IX0001</code>), consistent with the exchange.</li>
+<li><strong>Real-time index quotes</strong>: subscribe to real-time quotes for indices (e.g. the TAIEX <code>IX0001</code>) — see <a href="../tutor/market_data/streaming/">Index Streaming</a>.</li>
+</ul>
+<h2 id="how-to-migrate-to-17">How to migrate to 1.7?<a class="headerlink" href="#how-to-migrate-to-17" title="Permanent link">&para;</a></h2>
 <h3 id="1-what-does-not-change">1. What does not change<a class="headerlink" href="#1-what-does-not-change" title="Permanent link">&para;</a></h3>
-<p>Core business APIs keep the same call style: login, market data queries, order flow, accounting queries, contract access, callback registration, and default accounts.</p>
-<h3 id="2-import-from-the-top-level">2. Import from the top level<a class="headerlink" href="#2-import-from-the-top-level" title="Permanent link">&para;</a></h3>
-<p>Submodules (<code>shioaji.constant</code> / <code>shioaji.position</code> / <code>shioaji.order</code> / ...) re-export everything to the top level.</p>
-<div class="tabbed-set tabbed-alternate" data-tabs="1:2"><input checked="checked" id="__tabbed_1_1" name="__tabbed_1" type="radio" /><input id="__tabbed_1_2" name="__tabbed_1" type="radio" /><div class="tabbed-labels"><label for="__tabbed_1_1">1.3</label><label for="__tabbed_1_2">1.5</label></div>
+<p>Most usage stays the same, including:</p>
+<ul>
+<li>Legacy access such as <code>api.Contracts.Stocks["2330"]</code> and <code>api.Contracts.Futures.TXF.TXFR1</code> still works.</li>
+<li>Placing orders, subscribing to quotes, and querying historical data are unchanged.</li>
+<li>Passing a queried contract to <code>api.subscribe</code>, <code>api.kbars</code>, order placement, etc. works the same as before.</li>
+</ul>
+<h3 id="2-login-arguments-removed">2. Login arguments removed<a class="headerlink" href="#2-login-arguments-removed" title="Permanent link">&para;</a></h3>
+<p><code>login()</code> no longer downloads contracts at login, so the <code>fetch_contract</code>, <code>contracts_timeout</code>, and <code>contracts_cb</code> arguments have been removed. Remove them from your login call.</p>
+<div class="tabbed-set tabbed-alternate" data-tabs="1:2"><input checked="checked" id="__tabbed_1_1" name="__tabbed_1" type="radio" /><input id="__tabbed_1_2" name="__tabbed_1" type="radio" /><div class="tabbed-labels"><label for="__tabbed_1_1">1.5</label><label for="__tabbed_1_2">1.7</label></div>
 <div class="tabbed-content">
 <div class="tabbed-block">
-<div class="highlight"><pre><span></span><code><span class="kn">from</span><span class="w"> </span><span class="nn">shioaji.constant</span><span class="w"> </span><span class="kn">import</span> <span class="n">Action</span><span class="p">,</span> <span class="n">StockOrderCond</span><span class="p">,</span> <span class="n">FuturesOCType</span><span class="p">,</span> <span class="n">Unit</span>
-<span class="kn">from</span><span class="w"> </span><span class="nn">shioaji.position</span><span class="w"> </span><span class="kn">import</span> <span class="n">StockPosition</span><span class="p">,</span> <span class="n">AccountBalance</span>
-<span class="kn">from</span><span class="w"> </span><span class="nn">shioaji.order</span><span class="w"> </span><span class="kn">import</span> <span class="n">Trade</span><span class="p">,</span> <span class="n">OrderStatus</span>
+<div class="highlight"><pre><span></span><code><span class="n">api</span><span class="o">.</span><span class="n">login</span><span class="p">(</span>
+    <span class="n">api_key</span><span class="o">=</span><span class="s2">&quot;YOUR_API_KEY&quot;</span><span class="p">,</span>
+    <span class="n">secret_key</span><span class="o">=</span><span class="s2">&quot;YOUR_SECRET_KEY&quot;</span><span class="p">,</span>
+    <span class="n">contracts_timeout</span><span class="o">=</span><span class="mi">10000</span><span class="p">,</span>
+    <span class="n">contracts_cb</span><span class="o">=</span><span class="k">lambda</span> <span class="n">st</span><span class="p">:</span> <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="n">st</span><span class="si">}</span><span class="s2"> fetch done.&quot;</span><span class="p">),</span>
+<span class="p">)</span>
 </code></pre></div>
 </div>
 <div class="tabbed-block">
-<div class="highlight"><pre><span></span><code><span class="kn">from</span><span class="w"> </span><span class="nn">shioaji</span><span class="w"> </span><span class="kn">import</span> <span class="p">(</span>
-    <span class="n">Action</span><span class="p">,</span> <span class="n">StockOrderCond</span><span class="p">,</span> <span class="n">FuturesOCType</span><span class="p">,</span> <span class="n">Unit</span><span class="p">,</span>
-    <span class="n">StockPosition</span><span class="p">,</span> <span class="n">AccountBalance</span><span class="p">,</span>
-    <span class="n">Trade</span><span class="p">,</span> <span class="n">OrderStatus</span><span class="p">,</span>
+<div class="highlight"><pre><span></span><code><span class="n">api</span><span class="o">.</span><span class="n">login</span><span class="p">(</span>
+    <span class="n">api_key</span><span class="o">=</span><span class="s2">&quot;YOUR_API_KEY&quot;</span><span class="p">,</span>
+    <span class="n">secret_key</span><span class="o">=</span><span class="s2">&quot;YOUR_SECRET_KEY&quot;</span><span class="p">,</span>
 <span class="p">)</span>
 </code></pre></div>
 </div>
 </div>
 </div>
-<h3 id="3-__dict__-dict">3. <code>__dict__</code> → <code>.dict()</code><a class="headerlink" href="#3-__dict__-dict" title="Permanent link">&para;</a></h3>
-<div class="tabbed-set tabbed-alternate" data-tabs="2:2"><input checked="checked" id="__tabbed_2_1" name="__tabbed_2" type="radio" /><input id="__tabbed_2_2" name="__tabbed_2" type="radio" /><div class="tabbed-labels"><label for="__tabbed_2_1">1.3</label><label for="__tabbed_2_2">1.5</label></div>
+<h3 id="3-indices-now-use-exchange-codes">3. Indices now use exchange codes<a class="headerlink" href="#3-indices-now-use-exchange-codes" title="Permanent link">&para;</a></h3>
+<p>Indices now use their exchange codes (e.g. the TAIEX is <code>IX0001</code>); the pre-1.7.0 index codes (such as <code>001</code>) no longer apply. If your code uses the old index codes, switch to the exchange codes.</p>
+<div class="tabbed-set tabbed-alternate" data-tabs="2:2"><input checked="checked" id="__tabbed_2_1" name="__tabbed_2" type="radio" /><input id="__tabbed_2_2" name="__tabbed_2" type="radio" /><div class="tabbed-labels"><label for="__tabbed_2_1">1.5</label><label for="__tabbed_2_2">1.7</label></div>
 <div class="tabbed-content">
 <div class="tabbed-block">
-<div class="highlight"><pre><span></span><code><span class="n">df</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">(</span><span class="n">s</span><span class="o">.</span><span class="vm">__dict__</span> <span class="k">for</span> <span class="n">s</span> <span class="ow">in</span> <span class="n">positions</span><span class="p">)</span>
+<div class="highlight"><pre><span></span><code><span class="n">api</span><span class="o">.</span><span class="n">Contracts</span><span class="o">.</span><span class="n">Indexs</span><span class="o">.</span><span class="n">TSE</span><span class="p">[</span><span class="s2">&quot;001&quot;</span><span class="p">]</span>
 </code></pre></div>
 </div>
 <div class="tabbed-block">
-<div class="highlight"><pre><span></span><code><span class="n">df</span> <span class="o">=</span> <span class="n">pl</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">(</span><span class="n">s</span><span class="o">.</span><span class="n">dict</span><span class="p">()</span> <span class="k">for</span> <span class="n">s</span> <span class="ow">in</span> <span class="n">positions</span><span class="p">)</span>
+<div class="highlight"><pre><span></span><code><span class="n">api</span><span class="o">.</span><span class="n">Contracts</span><span class="o">.</span><span class="n">Indexs</span><span class="o">.</span><span class="n">TSE</span><span class="p">[</span><span class="s2">&quot;IX0001&quot;</span><span class="p">]</span>
 </code></pre></div>
 </div>
 </div>
 </div>
-<h3 id="4-apiquotesubscribe-apisubscribe">4. <code>api.quote.subscribe</code> → <code>api.subscribe</code><a class="headerlink" href="#4-apiquotesubscribe-apisubscribe" title="Permanent link">&para;</a></h3>
-<div class="tabbed-set tabbed-alternate" data-tabs="3:2"><input checked="checked" id="__tabbed_3_1" name="__tabbed_3" type="radio" /><input id="__tabbed_3_2" name="__tabbed_3" type="radio" /><div class="tabbed-labels"><label for="__tabbed_3_1">1.3</label><label for="__tabbed_3_2">1.5</label></div>
+<h3 id="4-securitytypefuture-renamed-to-futures">4. <code>SecurityType.Future</code> renamed to <code>Futures</code><a class="headerlink" href="#4-securitytypefuture-renamed-to-futures" title="Permanent link">&para;</a></h3>
+<p><code>SecurityType.Future</code> (singular) has been renamed to <code>SecurityType.Futures</code> (plural). Use the new name.</p>
+<div class="tabbed-set tabbed-alternate" data-tabs="3:2"><input checked="checked" id="__tabbed_3_1" name="__tabbed_3" type="radio" /><input id="__tabbed_3_2" name="__tabbed_3" type="radio" /><div class="tabbed-labels"><label for="__tabbed_3_1">1.5</label><label for="__tabbed_3_2">1.7</label></div>
 <div class="tabbed-content">
 <div class="tabbed-block">
-<div class="highlight"><pre><span></span><code><span class="n">api</span><span class="o">.</span><span class="n">quote</span><span class="o">.</span><span class="n">subscribe</span><span class="p">(</span><span class="n">api</span><span class="o">.</span><span class="n">Contracts</span><span class="o">.</span><span class="n">Stocks</span><span class="p">[</span><span class="s2">&quot;2330&quot;</span><span class="p">],</span> <span class="n">quote_type</span><span class="o">=...</span><span class="p">)</span>
-<span class="n">api</span><span class="o">.</span><span class="n">quote</span><span class="o">.</span><span class="n">unsubscribe</span><span class="p">(</span><span class="n">api</span><span class="o">.</span><span class="n">Contracts</span><span class="o">.</span><span class="n">Stocks</span><span class="p">[</span><span class="s2">&quot;2330&quot;</span><span class="p">])</span>
+<div class="highlight"><pre><span></span><code><span class="n">sj</span><span class="o">.</span><span class="n">SecurityType</span><span class="o">.</span><span class="n">Future</span>
 </code></pre></div>
 </div>
 <div class="tabbed-block">
-<div class="highlight"><pre><span></span><code><span class="n">api</span><span class="o">.</span><span class="n">subscribe</span><span class="p">(</span><span class="n">api</span><span class="o">.</span><span class="n">Contracts</span><span class="o">.</span><span class="n">Stocks</span><span class="p">[</span><span class="s2">&quot;2330&quot;</span><span class="p">],</span> <span class="n">quote_type</span><span class="o">=...</span><span class="p">)</span>
-<span class="n">api</span><span class="o">.</span><span class="n">unsubscribe</span><span class="p">(</span><span class="n">api</span><span class="o">.</span><span class="n">Contracts</span><span class="o">.</span><span class="n">Stocks</span><span class="p">[</span><span class="s2">&quot;2330&quot;</span><span class="p">])</span>
+<div class="highlight"><pre><span></span><code><span class="n">sj</span><span class="o">.</span><span class="n">SecurityType</span><span class="o">.</span><span class="n">Futures</span>
 </code></pre></div>
 </div>
 </div>
 </div>
-<h3 id="5-apiorder-stockorder-futuresorder">5. <code>api.Order</code> → <code>StockOrder</code> / <code>FuturesOrder</code><a class="headerlink" href="#5-apiorder-stockorder-futuresorder" title="Permanent link">&para;</a></h3>
-<p>1.3 used one <code>api.Order(...)</code> for both stock and futures, mixing fields. 1.5 splits it into two dedicated classes.</p>
-<div class="tabbed-set tabbed-alternate" data-tabs="4:2"><input checked="checked" id="__tabbed_4_1" name="__tabbed_4" type="radio" /><input id="__tabbed_4_2" name="__tabbed_4" type="radio" /><div class="tabbed-labels"><label for="__tabbed_4_1">1.3</label><label for="__tabbed_4_2">1.5</label></div>
+<h3 id="5-queried-contract-objects-renamed">5. Queried contract objects renamed<a class="headerlink" href="#5-queried-contract-objects-renamed" title="Permanent link">&para;</a></h3>
+<p>The objects returned when querying contracts have changed from <code>Stock</code>, <code>Future</code>, <code>Option</code>, <code>Index</code> to <code>StockInfo</code>, <code>FuturesInfo</code>, <code>OptionInfo</code>, <code>IndexInfo</code> (with a new <code>WarrantInfo</code>). Whether you query via <code>api.Contracts</code> (legacy) or <code>api.contracts</code> (new), you now get these info objects.</p>
+<p>Some fields differ between the old and new objects; if your code references a field that only exists on the old objects (such as <code>symbol</code>), adjust it accordingly.</p>
+<h3 id="6-listing-contracts-over-http-is-now-a-get">6. Listing contracts over HTTP is now a GET<a class="headerlink" href="#6-listing-contracts-over-http-is-now-a-get" title="Permanent link">&para;</a></h3>
+<p>This change only affects users who query contracts over HTTP (Python users are unaffected). In 1.5, listing contracts of a security type used <code>POST /api/v1/data/contracts</code> with a JSON body; 1.7.0 changes it to <code>GET</code> + query parameters:</p>
+<div class="tabbed-set tabbed-alternate" data-tabs="4:2"><input checked="checked" id="__tabbed_4_1" name="__tabbed_4" type="radio" /><input id="__tabbed_4_2" name="__tabbed_4" type="radio" /><div class="tabbed-labels"><label for="__tabbed_4_1">1.5</label><label for="__tabbed_4_2">1.7</label></div>
 <div class="tabbed-content">
 <div class="tabbed-block">
-<div class="highlight"><pre><span></span><code><span class="n">order</span> <span class="o">=</span> <span class="n">api</span><span class="o">.</span><span class="n">Order</span><span class="p">(</span><span class="n">action</span><span class="o">=</span><span class="s2">&quot;Buy&quot;</span><span class="p">,</span> <span class="n">price</span><span class="o">=</span><span class="mi">30</span><span class="p">,</span> <span class="n">quantity</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span> <span class="n">price_type</span><span class="o">=</span><span class="s2">&quot;LMT&quot;</span><span class="p">,</span> <span class="o">...</span><span class="p">)</span>
+<div class="highlight"><pre><span></span><code>curl<span class="w"> </span>-X<span class="w"> </span>POST<span class="w"> </span>http://localhost:8080/api/v1/data/contracts<span class="w"> </span><span class="se">\</span>
+<span class="w">  </span>-H<span class="w"> </span><span class="s2">&quot;Content-Type: application/json&quot;</span><span class="w"> </span><span class="se">\</span>
+<span class="w">  </span>-d<span class="w"> </span><span class="s1">&#39;{&quot;security_type&quot;:&quot;STK&quot;,&quot;page&quot;:1,&quot;page_size&quot;:3}&#39;</span>
 </code></pre></div>
 </div>
 <div class="tabbed-block">
-<div class="highlight"><pre><span></span><code><span class="n">order</span> <span class="o">=</span> <span class="n">sj</span><span class="o">.</span><span class="n">StockOrder</span><span class="p">(</span><span class="n">action</span><span class="o">=</span><span class="n">sj</span><span class="o">.</span><span class="n">Action</span><span class="o">.</span><span class="n">Buy</span><span class="p">,</span> <span class="n">price</span><span class="o">=</span><span class="mi">30</span><span class="p">,</span> <span class="n">quantity</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span>
-                      <span class="n">price_type</span><span class="o">=</span><span class="n">sj</span><span class="o">.</span><span class="n">StockPriceType</span><span class="o">.</span><span class="n">LMT</span><span class="p">,</span> <span class="o">...</span><span class="p">)</span>
-<span class="c1"># For futures, use sj.FuturesOrder(...)</span>
+<div class="highlight"><pre><span></span><code>curl<span class="w"> </span><span class="s2">&quot;http://localhost:8080/api/v1/data/contracts?security_type=STK&amp;page=1&amp;page_size=3&quot;</span>
 </code></pre></div>
 </div>
 </div>
 </div>
-<h2 id="how-to-use-the-new-platform">How to use the new platform?<a class="headerlink" href="#how-to-use-the-new-platform" title="Permanent link">&para;</a></h2>
-<p>The CLI and HTTP server read credentials and mode from environment variables — no Python changes required:</p>
-<div class="highlight"><pre><span></span><code><span class="c1"># .env (in the working directory)</span>
-<span class="nv">SJ_API_KEY</span><span class="o">=</span>YOUR_API_KEY
-<span class="nv">SJ_SEC_KEY</span><span class="o">=</span>YOUR_SECRET_KEY
-<span class="nv">SJ_PRODUCTION</span><span class="o">=</span><span class="nb">false</span><span class="w">                 </span><span class="c1"># simulation; set to true for production</span>
-
-shioaji<span class="w"> </span>server<span class="w"> </span>start
-</code></pre></div>
-<p>Once started, Python, JS, Go, and other languages can all operate via <code>localhost:8080</code>.</p>
+<p>Looking up a single contract with <code>GET /api/v1/data/contracts/{code}</code> is unchanged. In addition, 1.7.0 adds several new query endpoints for futures, options, warrants, and more — see <a href="../tutor/contract/">Contract</a> for their usage.</p>
+<h2 id="ready-to-go">Ready to go?<a class="headerlink" href="#ready-to-go" title="Permanent link">&para;</a></h2>
+<p>The legacy access still works, so you can move to <code>api.contracts</code> at your own pace. Start with <a href="../tutor/contract/">Contract</a> to learn the new query API.</p>
 
 
 

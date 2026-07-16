@@ -23,11 +23,12 @@ Out
 ```
 # Connection to Solace market data server established
 Response Code: 0 | Event Code: 0 | Info: host '<IP>:80', hostname '<IP>:80' IP <IP>:80 (host 1 of 1) (host connection attempt 1 of 1) (total connection attempt 1 of 2) | Event: Session up
+Response Code: 200 | Event Code: 18 | Info: #P2P/v:<...> | Event: Session Property modification ok
 
 # Account list returned after login
-[FutureAccount(person_id='', broker_id='', account_id='', signed=true, username=''),
- IntlAccount(person_id='', broker_id='', account_id='', signed=false, username=''),
- StockAccount(person_id='', broker_id='', account_id='', signed=true, username='')]
+[FutureAccount(person_id='PERSON_ID', broker_id='BROKER_ID', account_id='ACCOUNT_ID', signed=true, username='USERNAME'),
+ StockAccount(person_id='PERSON_ID', broker_id='BROKER_ID', account_id='ACCOUNT_ID', signed=true, username='USERNAME'),
+ IntlAccount(person_id='PERSON_ID', broker_id='BROKER_ID', account_id='ACCOUNT_ID', signed=false, username='USERNAME')]
 
 ```
 
@@ -36,9 +37,6 @@ Login Arguments
 ```
 api_key (str): API Key
 secret_key (str): Secret Key
-fetch_contract (bool): whether to load contracts from cache or server (Default: True)
-contracts_timeout (int): fetch contract timeout (Default: 0 ms)
-contracts_cb (typing.Callable): fetch contract callback (Default: None)
 subscribe_trade (bool): whether to subscribe Order/Deal event callback (Default: True)
 receive_window (int): valid duration for login execution. (Default: 30,000 ms)
 
@@ -50,37 +48,6 @@ If you receive **Sign data is timeout**, login exceeded the effective execution 
 
 - System time differs too much from server time → calibrate system time
 - Login execution exceeds `receive_window` → increase `receive_window` (Default: 30,000 ms)
-
-**Fetch Contracts Callback**
-
-Use `contracts_cb` to monitor contract fetch progress:
-
-In
-
-```
-import shioaji as sj
-api = sj.Shioaji()
-api.login(
-    api_key="YOUR_API_KEY",
-    secret_key="YOUR_SECRET_KEY",
-    contracts_cb=lambda security_type: print(f"{repr(security_type)} fetch done.")
-)
-
-```
-
-Out
-
-```
-[
-    FutureAccount(person_id='', broker_id='', account_id='', signed=True, username=''),
-    StockAccount(person_id='', broker_id='', account_id='', signed=True, username='')
-]
-<SecurityType.Index: 'IND'> fetch done.
-<SecurityType.Future: 'FUT'> fetch done.
-<SecurityType.Option: 'OPT'> fetch done.
-<SecurityType.Stock: 'STK'> fetch done.
-
-```
 
 In
 
@@ -108,10 +75,10 @@ INFO shioaji::api::api_v1::auth::token_login: Stored new token in slot 1
 
 # Contract fetch progress
 INFO shioaji::api::api_v1::contracts::api: Fetched 127 IND contracts (1 pages)
-INFO shioaji::api::api_v1::contracts::api: Fetched 42787 STK contracts (9 pages)
-INFO shioaji::api::api_v1::contracts::api: Fetched 2489 FUT contracts (1 pages)
-INFO shioaji::api::api_v1::contracts::api: Fetched 8653 OPT contracts (2 pages)
-INFO shioaji::server: Loaded 54056 contracts
+INFO shioaji::api::api_v1::contracts::api: Fetched 41809 STK contracts (9 pages)
+INFO shioaji::api::api_v1::contracts::api: Fetched 2503 FUT contracts (1 pages)
+INFO shioaji::api::api_v1::contracts::api: Fetched 9031 OPT contracts (2 pages)
+INFO shioaji::server: Loaded 53470 contracts
 
 # CA certificate loaded
 INFO shioaji::server: CA certificate activated successfully

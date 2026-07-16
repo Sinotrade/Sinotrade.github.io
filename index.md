@@ -43,10 +43,10 @@ shioaji --help
 
 ```
 # Stable
-curl -fsSL https://raw.githubusercontent.com/sinotrade/shioaji/main/install.sh | sh
+curl -fsSL https://github.com/Sinotrade/Shioaji/releases/latest/download/install.sh | sh
 
 # Prerelease
-curl -fsSL https://raw.githubusercontent.com/sinotrade/shioaji/main/install.sh | CHANNEL=prerelease sh
+curl -fsSL https://github.com/Sinotrade/Shioaji/releases/latest/download/install.sh | CHANNEL=prerelease sh
 
 ```
 
@@ -54,9 +54,9 @@ curl -fsSL https://raw.githubusercontent.com/sinotrade/shioaji/main/install.sh |
 
 ```
 # Stable
-irm https://raw.githubusercontent.com/sinotrade/shioaji/main/install.ps1 | iex
+irm https://github.com/Sinotrade/Shioaji/releases/latest/download/install.ps1 | iex
 
 # Prerelease
-$env:CHANNEL="prerelease"; irm https://raw.githubusercontent.com/sinotrade/shioaji/main/install.ps1 | iex
+$env:CHANNEL="prerelease"; irm https://github.com/Sinotrade/Shioaji/releases/latest/download/install.ps1 | iex
 
 ```

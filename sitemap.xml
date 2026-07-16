@@ -43,6 +43,13 @@
         <xhtml:link rel="alternate" hreflang="zh" href="https://sinotrade.github.io/zh/upgrade_to_1_5/"/>
     </url>
     <url>
+        <loc>https://sinotrade.github.io/upgrade_to_1_7/</loc>
+        <lastmod>2026-07-16</lastmod>
+        <changefreq>daily</changefreq>
+        <xhtml:link rel="alternate" hreflang="en" href="https://sinotrade.github.io/upgrade_to_1_7/"/>
+        <xhtml:link rel="alternate" hreflang="zh" href="https://sinotrade.github.io/zh/upgrade_to_1_7/"/>
+    </url>
+    <url>
         <loc>https://sinotrade.github.io/ai_assistant/</loc>
         <lastmod>2026-07-16</lastmod>
         <changefreq>daily</changefreq>
@@ -232,6 +239,13 @@
         <xhtml:link rel="alternate" hreflang="zh" href="https://sinotrade.github.io/zh/tutor/market_data/snapshot/"/>
     </url>
     <url>
+        <loc>https://sinotrade.github.io/tutor/market_data/streaming/</loc>
+        <lastmod>2026-07-16</lastmod>
+        <changefreq>daily</changefreq>
+        <xhtml:link rel="alternate" hreflang="en" href="https://sinotrade.github.io/tutor/market_data/streaming/"/>
+        <xhtml:link rel="alternate" hreflang="zh" href="https://sinotrade.github.io/zh/tutor/market_data/streaming/"/>
+    </url>
+    <url>
         <loc>https://sinotrade.github.io/tutor/market_data/streaming/futures/</loc>
         <lastmod>2026-07-16</lastmod>
         <changefreq>daily</changefreq>
@@ -370,6 +384,13 @@
         <changefreq>daily</changefreq>
         <xhtml:link rel="alternate" hreflang="zh" href="https://sinotrade.github.io/zh/upgrade_to_1_5/"/>
         <xhtml:link rel="alternate" hreflang="en" href="https://sinotrade.github.io/upgrade_to_1_5/"/>
+    </url>
+    <url>
+        <loc>https://sinotrade.github.io/zh/upgrade_to_1_7/</loc>
+        <lastmod>2026-07-16</lastmod>
+        <changefreq>daily</changefreq>
+        <xhtml:link rel="alternate" hreflang="zh" href="https://sinotrade.github.io/zh/upgrade_to_1_7/"/>
+        <xhtml:link rel="alternate" hreflang="en" href="https://sinotrade.github.io/upgrade_to_1_7/"/>
     </url>
     <url>
         <loc>https://sinotrade.github.io/zh/ai_assistant/</loc>
@@ -559,6 +580,13 @@
         <changefreq>daily</changefreq>
         <xhtml:link rel="alternate" hreflang="zh" href="https://sinotrade.github.io/zh/tutor/market_data/snapshot/"/>
         <xhtml:link rel="alternate" hreflang="en" href="https://sinotrade.github.io/tutor/market_data/snapshot/"/>
+    </url>
+    <url>
+        <loc>https://sinotrade.github.io/zh/tutor/market_data/streaming/</loc>
+        <lastmod>2026-07-16</lastmod>
+        <changefreq>daily</changefreq>
+        <xhtml:link rel="alternate" hreflang="zh" href="https://sinotrade.github.io/zh/tutor/market_data/streaming/"/>
+        <xhtml:link rel="alternate" hreflang="en" href="https://sinotrade.github.io/tutor/market_data/streaming/"/>
     </url>
     <url>
         <loc>https://sinotrade.github.io/zh/tutor/market_data/streaming/futures/</loc>

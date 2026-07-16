@@ -19,14 +19,14 @@ uv tool install shioaji
 Linux / MacOS:
 
 ```
-curl -fsSL https://raw.githubusercontent.com/sinotrade/shioaji/main/install.sh | sh
+curl -fsSL https://github.com/Sinotrade/Shioaji/releases/latest/download/install.sh | sh
 
 ```
 
 Windows (PowerShell):
 
 ```
-irm https://raw.githubusercontent.com/sinotrade/shioaji/main/install.ps1 | iex
+irm https://github.com/Sinotrade/Shioaji/releases/latest/download/install.ps1 | iex
 
 ```
 

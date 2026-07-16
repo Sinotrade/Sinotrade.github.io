@@ -23,11 +23,12 @@ Out
 ```
 # 與 Solace 行情伺服器連線建立成功
 Response Code: 0 | Event Code: 0 | Info: host '<IP>:80', hostname '<IP>:80' IP <IP>:80 (host 1 of 1) (host connection attempt 1 of 1) (total connection attempt 1 of 2) | Event: Session up
+Response Code: 200 | Event Code: 18 | Info: #P2P/v:<...> | Event: Session Property modification ok
 
 # 登入後取得的帳戶列表
-[FutureAccount(person_id='', broker_id='', account_id='', signed=true, username=''),
- IntlAccount(person_id='', broker_id='', account_id='', signed=false, username=''),
- StockAccount(person_id='', broker_id='', account_id='', signed=true, username='')]
+[FutureAccount(person_id='PERSON_ID', broker_id='BROKER_ID', account_id='ACCOUNT_ID', signed=true, username='USERNAME'),
+ StockAccount(person_id='PERSON_ID', broker_id='BROKER_ID', account_id='ACCOUNT_ID', signed=true, username='USERNAME'),
+ IntlAccount(person_id='PERSON_ID', broker_id='BROKER_ID', account_id='ACCOUNT_ID', signed=false, username='USERNAME')]
 
 ```
 
@@ -36,9 +37,6 @@ Login Arguments
 ```
 api_key (str): API 金鑰
 secret_key (str): 密鑰
-fetch_contract (bool): 是否從快取中讀取商品檔或從伺服器下載商品檔 (預設值: True)
-contracts_timeout (int): 獲取商品檔 timeout (預設值: 0 ms)
-contracts_cb (typing.Callable): 獲取商品檔 callback (預設值: None)
 subscribe_trade (bool): 是否訂閱委託/成交回報 (預設值: True)
 receive_window (int): 登入動作有效執行時間 (預設值: 30,000 毫秒)
 
@@ -50,37 +48,6 @@ receive_window (int): 登入動作有效執行時間 (預設值: 30,000 毫秒)
 
 - 系統時間與伺服器時間相差過大 → 校準系統時間
 - 登入執行時間超過 `receive_window` → 將 `receive_window` 調高（預設 30,000 ms)
-
-**獲取商品檔 Callback**
-
-可使用 `contracts_cb` 監看商品檔載入進度：
-
-In
-
-```
-import shioaji as sj
-api = sj.Shioaji()
-api.login(
-    api_key="YOUR_API_KEY",
-    secret_key="YOUR_SECRET_KEY",
-    contracts_cb=lambda security_type: print(f"{repr(security_type)} fetch done.")
-)
-
-```
-
-Out
-
-```
-[
-    FutureAccount(person_id='', broker_id='', account_id='', signed=True, username=''),
-    StockAccount(person_id='', broker_id='', account_id='', signed=True, username='')
-]
-<SecurityType.Index: 'IND'> fetch done.
-<SecurityType.Future: 'FUT'> fetch done.
-<SecurityType.Option: 'OPT'> fetch done.
-<SecurityType.Stock: 'STK'> fetch done.
-
-```
 
 In
 
@@ -108,10 +75,10 @@ INFO shioaji::api::api_v1::auth::token_login: Stored new token in slot 1
 
 # 載入商品檔進度
 INFO shioaji::api::api_v1::contracts::api: Fetched 127 IND contracts (1 pages)
-INFO shioaji::api::api_v1::contracts::api: Fetched 42787 STK contracts (9 pages)
-INFO shioaji::api::api_v1::contracts::api: Fetched 2489 FUT contracts (1 pages)
-INFO shioaji::api::api_v1::contracts::api: Fetched 8653 OPT contracts (2 pages)
-INFO shioaji::server: Loaded 54056 contracts
+INFO shioaji::api::api_v1::contracts::api: Fetched 41809 STK contracts (9 pages)
+INFO shioaji::api::api_v1::contracts::api: Fetched 2503 FUT contracts (1 pages)
+INFO shioaji::api::api_v1::contracts::api: Fetched 9031 OPT contracts (2 pages)
+INFO shioaji::server: Loaded 53470 contracts
 
 # CA 憑證載入
 INFO shioaji::server: CA certificate activated successfully
