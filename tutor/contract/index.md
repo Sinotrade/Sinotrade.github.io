@@ -24,6 +24,8 @@ Contracts are loaded automatically by the server when `shioaji server start` is 
 
 ## Get Contracts
 
+When you query a product, `get()` returns a **contract object (`Contract`)**, which contains the fields needed to identify a product (security type, exchange, code) — enough for placing orders and subscribing to quotes. If you need the product name, limit-up/down prices, and other full details, see [Get Contract Details](#contract-details).
+
 ### Query a Single Contract
 
 When you already know the product code (for example, TSMC `2330`), query a single contract directly via `get`. Stocks, futures, and indices all use the same method — you do not need to know the security type in advance.
@@ -147,9 +149,9 @@ Stocks, futures, options, indices, and warrants are offered for the Taiwan marke
 
 ### Get Contract Details
 
-The `Contract` returned by `get()` contains only the basic information needed to identify a product (security type, exchange, code), which is already enough for placing orders and subscribing to quotes. If you also need the product name, limit-up/limit-down prices, trading unit, and other full details, get the full info via `info`:
+If you need the product name, limit-up/limit-down prices, trading unit, and other full details, get the product's **contract info object** via `info()`:
 
-Pass the `Contract` to `api.contracts.info()`:
+Pass the contract object (`Contract`) to `api.contracts.info()`:
 
 In
 
@@ -166,11 +168,11 @@ StockInfo(Contract(security_type='STK', region='TW', exchange='TSE', code='2330'
 
 ```
 
-Depending on the security type, `info()` returns the corresponding info object (`StockInfo`, `FuturesInfo`, `OptionInfo`, `IndexInfo`, `WarrantInfo`); the fields of each are described in the sections below.
+Depending on the security type, `info()` returns the corresponding contract info object (`StockInfo`, `FuturesInfo`, `OptionInfo`, `IndexInfo`, `WarrantInfo`); the fields of each are described in the sections below.
 
 Reminder
 
-Placing orders and subscribing to quotes only need the `Contract` returned by `get()`; calling `info()` is not required.
+Placing orders and subscribing to quotes only need the contract object (`Contract`) returned by `get()`; calling `info()` is not required.
 
 Get the full info with `GET /api/v1/data/contracts/{code}/info`:
 
@@ -998,7 +1000,7 @@ Out
 
 Reminder
 
-The returned `Contract` can be passed straight to `api.contracts.warrants()` above.
+The returned contract object (`Contract`) can be passed straight to `api.contracts.warrants()` above.
 
 Query with `GET /api/v1/data/contracts/warrants/underlyings`. With `include_name=true`, a compact underlying list is returned (with names and warrant counts):
 
@@ -1116,7 +1118,7 @@ Reminder
 
 ## Compatibility
 
-The pre-1.7.0 `api.Contracts` (capital C) access style still works in 1.7.0; your existing code runs without changes. Unlike the new `api.contracts`, the legacy style returns the full info object directly (equivalent to the new `get()` + `info()`):
+The pre-1.7.0 `api.Contracts` (capital C) access style still works in 1.7.0; your existing code runs without changes. Unlike the new `api.contracts`, the legacy style returns the full contract info object directly (equivalent to the new `get()` + `info()`):
 
 In
 
@@ -1136,7 +1138,7 @@ FuturesInfo(Contract(security_type='FUT', region='TW', exchange='TAIFEX', code='
 
 Note
 
-- The objects returned by the legacy style are now the 1.7.0 info objects (`StockInfo`, `FuturesInfo`, etc.), no longer the pre-1.7.0 `Stock` / `Future`.
+- The objects returned by the legacy style are now the 1.7.0 contract info objects (`StockInfo`, `FuturesInfo`, etc.), no longer the pre-1.7.0 `Stock` / `Future`.
 - Since 1.7.0, indices use their exchange codes (for example, the TAIEX is `IX0001`); the pre-1.7.0 index codes (such as `001`) no longer apply. If your code uses the old index codes, switch to the exchange codes.
 
 The endpoint for listing contracts of a security type was `POST /api/v1/data/contracts` with a JSON body in 1.5; 1.7.0 changes it to `GET` + query parameters. Looking up a single contract with `GET /api/v1/data/contracts/{code}` is unchanged. In addition, 1.7.0 adds several new query endpoints for futures, options, warrants, and more. See the sections earlier on this page for how to use each endpoint.

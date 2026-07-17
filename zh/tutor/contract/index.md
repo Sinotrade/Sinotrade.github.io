@@ -24,6 +24,8 @@
 
 ## 取得商品合約
 
+查詢商品時，`get()` 會回傳**合約物件（`Contract`）**，它包含識別商品所需的欄位（商品類型、交易所、代碼），足以用於下單與訂閱行情。若需要商品名稱、漲跌停價等完整資料，請見[取得商品詳細資訊](#contract-details)。
+
 ### 查詢單一商品
 
 當您已經知道商品代碼（例如台積電 `2330`），可透過 `get` 直接查詢單一商品。股票、期貨、指數皆適用同一個方法，不需先區分商品類型。
@@ -149,9 +151,9 @@ page_size:     每頁筆數，預設 1000
 
 ### 取得商品詳細資訊
 
-`get()` 回傳的 `Contract` 只包含識別商品所需的基本資訊（商品類型、交易所、代碼），這對於下單與訂閱行情已經足夠。若您還需要商品名稱、漲跌停價、交易單位等完整資料，可透過 `info` 取得該商品的完整資料：
+若您需要商品名稱、漲跌停價、交易單位等完整資料，可透過 `info()` 取得該商品的**合約資訊物件**：
 
-將 `Contract` 傳入 `api.contracts.info()`：
+將合約物件（`Contract`）傳入 `api.contracts.info()`：
 
 In
 
@@ -168,7 +170,7 @@ StockInfo(Contract(security_type='STK', region='TW', exchange='TSE', code='2330'
 
 ```
 
-依商品類型不同，`info()` 會回傳對應的資訊物件（`StockInfo`、`FuturesInfo`、`OptionInfo`、`IndexInfo`、`WarrantInfo`），各自的欄位說明見以下各類。
+依商品類型不同，`info()` 會回傳對應的合約資訊物件（`StockInfo`、`FuturesInfo`、`OptionInfo`、`IndexInfo`、`WarrantInfo`），各自的欄位說明見以下各類。
 
 提醒
 
@@ -1000,7 +1002,7 @@ Out
 
 提醒
 
-回傳的 `Contract` 可以直接傳入上方的 `api.contracts.warrants()`。
+回傳的合約物件（`Contract`）可以直接傳入上方的 `api.contracts.warrants()`。
 
 以 `GET /api/v1/data/contracts/warrants/underlyings` 查詢。帶 `include_name=true` 時，回傳精簡的標的清單（含名稱與發行檔數）：
 
@@ -1118,7 +1120,7 @@ region:        市場別，預設 TW
 
 ## 相容性
 
-1.7.0 之前的 `api.Contracts`（大寫 C）寫法在 1.7.0 仍可使用，您現有的程式碼不需修改即可運作。與新版 `api.contracts` 不同的是，舊寫法會直接回傳完整的資訊物件（相當於新版 `get()` + `info()` 的結果）：
+1.7.0 之前的 `api.Contracts`（大寫 C）寫法在 1.7.0 仍可使用，您現有的程式碼不需修改即可運作。與新版 `api.contracts` 不同的是，舊寫法會直接回傳完整的合約資訊物件（相當於新版 `get()` + `info()` 的結果）：
 
 In
 
@@ -1138,7 +1140,7 @@ FuturesInfo(Contract(security_type='FUT', region='TW', exchange='TAIFEX', code='
 
 注意
 
-- 舊寫法回傳的物件已改為 1.7.0 的資訊物件（`StockInfo`、`FuturesInfo` 等），不再是先前版本的 `Stock`、`Future`。
+- 舊寫法回傳的物件已改為 1.7.0 的合約資訊物件（`StockInfo`、`FuturesInfo` 等），不再是先前版本的 `Stock`、`Future`。
 - 1.7.0 起指數改用交易所代碼（如加權指數為 `IX0001`），先前版本的指數代碼（如 `001`）已不適用。若您的程式使用舊的指數代碼，請改用交易所代碼。
 
 列出某一類商品的端點，1.5 以 `POST /api/v1/data/contracts` + JSON body 查詢，1.7.0 改為 `GET` + query 參數。查詢單一商品的 `GET /api/v1/data/contracts/{code}` 維持不變。此外，1.7.0 新增了期貨、選擇權、權證等多個查詢端點。以上各端點的用法，見本頁上方各節。
