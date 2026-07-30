@@ -246,11 +246,25 @@
         <xhtml:link rel="alternate" hreflang="zh" href="https://sinotrade.github.io/zh/tutor/market_data/streaming/"/>
     </url>
     <url>
+        <loc>https://sinotrade.github.io/tutor/market_data/streaming/enriched/</loc>
+        <lastmod>2026-07-30</lastmod>
+        <changefreq>daily</changefreq>
+        <xhtml:link rel="alternate" hreflang="en" href="https://sinotrade.github.io/tutor/market_data/streaming/enriched/"/>
+        <xhtml:link rel="alternate" hreflang="zh" href="https://sinotrade.github.io/zh/tutor/market_data/streaming/enriched/"/>
+    </url>
+    <url>
         <loc>https://sinotrade.github.io/tutor/market_data/streaming/futures/</loc>
         <lastmod>2026-07-30</lastmod>
         <changefreq>daily</changefreq>
         <xhtml:link rel="alternate" hreflang="en" href="https://sinotrade.github.io/tutor/market_data/streaming/futures/"/>
         <xhtml:link rel="alternate" hreflang="zh" href="https://sinotrade.github.io/zh/tutor/market_data/streaming/futures/"/>
+    </url>
+    <url>
+        <loc>https://sinotrade.github.io/tutor/market_data/streaming/signals/</loc>
+        <lastmod>2026-07-30</lastmod>
+        <changefreq>daily</changefreq>
+        <xhtml:link rel="alternate" hreflang="en" href="https://sinotrade.github.io/tutor/market_data/streaming/signals/"/>
+        <xhtml:link rel="alternate" hreflang="zh" href="https://sinotrade.github.io/zh/tutor/market_data/streaming/signals/"/>
     </url>
     <url>
         <loc>https://sinotrade.github.io/tutor/market_data/streaming/stocks/</loc>
@@ -589,11 +603,25 @@
         <xhtml:link rel="alternate" hreflang="en" href="https://sinotrade.github.io/tutor/market_data/streaming/"/>
     </url>
     <url>
+        <loc>https://sinotrade.github.io/zh/tutor/market_data/streaming/enriched/</loc>
+        <lastmod>2026-07-30</lastmod>
+        <changefreq>daily</changefreq>
+        <xhtml:link rel="alternate" hreflang="zh" href="https://sinotrade.github.io/zh/tutor/market_data/streaming/enriched/"/>
+        <xhtml:link rel="alternate" hreflang="en" href="https://sinotrade.github.io/tutor/market_data/streaming/enriched/"/>
+    </url>
+    <url>
         <loc>https://sinotrade.github.io/zh/tutor/market_data/streaming/futures/</loc>
         <lastmod>2026-07-30</lastmod>
         <changefreq>daily</changefreq>
         <xhtml:link rel="alternate" hreflang="zh" href="https://sinotrade.github.io/zh/tutor/market_data/streaming/futures/"/>
         <xhtml:link rel="alternate" hreflang="en" href="https://sinotrade.github.io/tutor/market_data/streaming/futures/"/>
+    </url>
+    <url>
+        <loc>https://sinotrade.github.io/zh/tutor/market_data/streaming/signals/</loc>
+        <lastmod>2026-07-30</lastmod>
+        <changefreq>daily</changefreq>
+        <xhtml:link rel="alternate" hreflang="zh" href="https://sinotrade.github.io/zh/tutor/market_data/streaming/signals/"/>
+        <xhtml:link rel="alternate" hreflang="en" href="https://sinotrade.github.io/tutor/market_data/streaming/signals/"/>
     </url>
     <url>
         <loc>https://sinotrade.github.io/zh/tutor/market_data/streaming/stocks/</loc>

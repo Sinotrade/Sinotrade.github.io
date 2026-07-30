@@ -8275,6 +8275,495 @@ vol_sum=7430030
 
 ```
 
+即時加值資料（Enriched Data）是行情引擎在交易所原始行情之上即時運算產生的加值資料，僅在開盤時段推送。與一般即時行情相同，透過訂閱[商品合約](../../../contract/)的方式接收，只需指定對應的 `quote_type`。
+
+提醒
+
+即時加值資料訂閱不會佔用流量。
+
+Subscribe
+
+```
+>> api.subscribe?
+
+Signature:
+api.subscribe(
+    contract,
+    quote_type=None,
+    intraday_odd=False,
+    version=None,
+    *,
+    ranking=None,
+)
+
+```
+
+Quote Parameters:
+
+```
+contract:     要訂閱的指數合約（由 api.contracts.get 取得）
+quote_type:   加值資料類型 {CalculatedIndex, IndexContribution, IndustryContribution}
+intraday_odd: 即時加值資料不支援，固定為 False
+version:      即時加值資料不支援，省略即可
+ranking:      排行方式，僅 QuoteType.IndexContribution 使用（keyword-only）
+
+```
+
+Subscribe
+
+```
+POST /api/v1/stream/subscribe/calculated_index
+POST /api/v1/stream/subscribe/index_contribution
+POST /api/v1/stream/subscribe/industry_contribution
+
+```
+
+每種即時加值資料各有獨立端點；取消訂閱以相同 body 呼叫對應的 `/api/v1/stream/unsubscribe/...`。
+
+Quote Parameters:
+
+```
+calculated_index:      {"index": <StreamContract>}
+index_contribution:    {"index": <StreamContract>, "ranking": <ContributionRanking>}
+industry_contribution: {"index": <StreamContract>}
+
+```
+
+## 類型總覽
+
+| QuoteType | 說明 | 推送頻率 | | --- | --- | --- | | `CalculatedIndex` | [自算指數](#calculatedindex) | 一秒可多筆 | | `IndexContribution` | [指數貢獻](#indexcontribution)（個股對指數的貢獻點數） | 每秒一次 | | `IndustryContribution` | [產業貢獻](#industrycontribution)（類股對指數的貢獻點數） | 每秒一次 |
+
+商品限制
+
+加值資料皆以**指數合約**訂閱，目前僅支援 `IX0001`（加權指數）與 `IX0043`（櫃買指數）。
+
+注意
+
+- 即時加值資料不支援 `intraday_odd` 與 `version` 參數，帶入會直接報錯。
+- CLI 的 `shioaji data stream` 指令不支援即時加值資料，請使用 Python 或 HTTP 介面。
+
+## 自算指數
+
+行情引擎依該指數的成分股成交即時試算指數值，更新頻率高於官方指數，同一秒內可能推送多筆。
+
+In
+
+```
+contract = api.contracts.get("IX0001")
+api.subscribe(
+    contract,
+    quote_type=sj.QuoteType.CalculatedIndex,
+)
+
+# 取消訂閱
+# api.unsubscribe(
+#     contract,
+#     quote_type=sj.QuoteType.CalculatedIndex,
+# )
+
+```
+
+Out
+
+```
+CalculatedIndex(
+    code='IX0001',
+    date='2026/07/29',
+    time='10:27:16.000000',
+    open=41603.37,
+    high=41711.37,
+    low=40211.28,
+    close=40385.25,
+    total_amount=505597362400,
+    price_chg=-1218.11,
+    pct_chg=-2.93,
+    simtrade=False,
+)
+
+```
+
+Callback（decorator 方式）
+
+未設定 callback 時預設直接印出。如需自行處理資料，可用 decorator 註冊 callback 函式：
+
+```
+from shioaji import CalculatedIndex
+
+@api.on_calculated_index()
+def calculated_index_callback(idx: CalculatedIndex):
+    print(idx)
+
+```
+
+Callback（傳統方式）
+
+```
+from shioaji import CalculatedIndex
+
+def calculated_index_callback(idx: CalculatedIndex):
+    print(idx)
+
+api.set_on_calculated_index_callback(calculated_index_callback)
+
+```
+
+In
+
+```
+# 訂閱
+curl -X POST http://localhost:8080/api/v1/stream/subscribe/calculated_index \
+  -H 'Content-Type: application/json' \
+  -d '{"index": {"security_type": "IND", "exchange": "TSE", "code": "IX0001", "target_code": null}}'
+
+# 開 SSE 收自算指數（Ctrl+C 結束）
+curl -N http://localhost:8080/api/v1/stream/data/calculated_index
+
+# 取消訂閱
+# curl -X POST http://localhost:8080/api/v1/stream/unsubscribe/calculated_index \
+#   -H 'Content-Type: application/json' \
+#   -d '{"index": {"security_type": "IND", "exchange": "TSE", "code": "IX0001", "target_code": null}}'
+
+```
+
+Out
+
+```
+event:calculated_index
+data:{
+  "code": "IX0001",
+  "date": "2026/07/28",
+  "time": "12:25:46.000000",
+  "open": 43634.19,
+  "high": 43634.19,
+  "low": 41568.96,
+  "close": 41936.96,
+  "total_amount": 527835364040,
+  "price_chg": -1697.23,
+  "pct_chg": -3.89,
+  "simtrade": false
+}
+
+```
+
+### 屬性
+
+CalculatedIndex
+
+```
+code (str)                               指數代碼
+date (str)                               日期
+time (str)                               時間
+open (float)                             開盤指數
+high (float)                             最高指數
+low (float)                              最低指數
+close (float)                            最新指數
+total_amount (int)                       累計成交金額 (NTD)
+price_chg (float)                        漲跌
+pct_chg (float)                          漲跌幅 (%)
+simtrade (bool)                          試撮
+
+```
+
+## 指數貢獻
+
+每秒推送一次個股貢獻排行，列出對該指數漲跌貢獻最大的成分股，排行方式以 keyword 參數 `ranking` 指定：
+
+ContributionRanking
+
+```
+# Python                                 HTTP (ranking)
+ContributionRanking.Top10                top10            貢獻點數前 10 名
+ContributionRanking.Abs10                abs10            貢獻點數絕對值前 10 名
+ContributionRanking.Positive25           positive25       正貢獻前 25 名
+ContributionRanking.Negative25           negative25       負貢獻前 25 名
+
+```
+
+提醒
+
+`ranking` 為必填參數，未帶會直接報錯；`ranking` 也僅適用於 `QuoteType.IndexContribution`，與其他 `quote_type` 併用同樣會報錯。
+
+In
+
+```
+contract = api.contracts.get("IX0001")
+api.subscribe(
+    contract,
+    quote_type=sj.QuoteType.IndexContribution,
+    ranking=sj.ContributionRanking.Top10,
+)
+
+# 取消訂閱
+# api.unsubscribe(
+#     contract,
+#     quote_type=sj.QuoteType.IndexContribution,
+#     ranking=sj.ContributionRanking.Top10,
+# )
+
+```
+
+Out
+
+```
+IndexContribution(
+    ranking=<ContributionRanking.top10: 'top10'>,
+    code='IX0001',
+    date='2026/07/29',
+    time='10:28:25.000000',
+    entries=[
+        {'code': '2317', 'price': 239.0, 'reference': 238.0, 'price_chg': 1.0, 'pct_chg': 0.42016806722689076, 'points': 4.3},
+        {'code': '2357', 'price': 753.0, 'reference': 735.0, 'price_chg': 18.0, 'pct_chg': 2.4489795918367347, 'points': 4.1},
+        {'code': '2880', 'price': 42.35, 'reference': 41.4, 'price_chg': 0.95, 'pct_chg': 2.2946859903381642, 'points': 4.06},
+        {'code': '2207', 'price': 520.0, 'reference': 500.0, 'price_chg': 20.0, 'pct_chg': 4.0, 'points': 3.42},
+        {'code': '2603', 'price': 203.0, 'reference': 200.0, 'price_chg': 3.0, 'pct_chg': 1.5, 'points': 1.99},
+        {'code': '2615', 'price': 85.9, 'reference': 83.6, 'price_chg': 2.3, 'pct_chg': 2.751196172248804, 'points': 1.98},
+        {'code': '3034', 'price': 502.0, 'reference': 492.5, 'price_chg': 9.5, 'pct_chg': 1.9289340101522845, 'points': 1.77},
+        {'code': '4904', 'price': 107.5, 'reference': 106.0, 'price_chg': 1.5, 'pct_chg': 1.4150943396226416, 'points': 1.66},
+        {'code': '3231', 'price': 171.5, 'reference': 170.0, 'price_chg': 1.5, 'pct_chg': 0.8823529411764706, 'points': 1.46},
+        {'code': '2923', 'price': 40.2, 'reference': 37.65, 'price_chg': 2.55, 'pct_chg': 6.772908366533864, 'points': 1.36},
+    ],
+    simtrade=False,
+)
+
+```
+
+Callback（decorator 方式）
+
+未設定 callback 時預設直接印出。如需自行處理資料，可用 decorator 註冊 callback 函式：
+
+```
+from shioaji import IndexContribution
+
+@api.on_index_contribution()
+def index_contribution_callback(ic: IndexContribution):
+    print(ic)
+
+```
+
+Callback（傳統方式）
+
+```
+from shioaji import IndexContribution
+
+def index_contribution_callback(ic: IndexContribution):
+    print(ic)
+
+api.set_on_index_contribution_callback(index_contribution_callback)
+
+```
+
+In
+
+```
+# 訂閱（ranking：top10 / abs10 / positive25 / negative25）
+curl -X POST http://localhost:8080/api/v1/stream/subscribe/index_contribution \
+  -H 'Content-Type: application/json' \
+  -d '{"index": {"security_type": "IND", "exchange": "TSE", "code": "IX0001", "target_code": null}, "ranking": "top10"}'
+
+# 開 SSE 收指數貢獻（Ctrl+C 結束）
+curl -N http://localhost:8080/api/v1/stream/data/index_contribution
+
+# 取消訂閱
+# curl -X POST http://localhost:8080/api/v1/stream/unsubscribe/index_contribution \
+#   -H 'Content-Type: application/json' \
+#   -d '{"index": {"security_type": "IND", "exchange": "TSE", "code": "IX0001", "target_code": null}, "ranking": "top10"}'
+
+```
+
+Out
+
+```
+event:index_contribution
+data:{
+  "ranking": "top10",
+  "code": "IX0001",
+  "date": "2026/07/28",
+  "time": "12:32:07.000000",
+  "entries": [
+    {"code": "3665", "price": 2205.0, "reference": 2150.0, "price_chg": 55.0, "pct_chg": 2.558139534883721, "points": 3.29},
+    {"code": "2886", "price": 49.8, "reference": 49.4, "price_chg": 0.4, "pct_chg": 0.8097165991902834, "points": 1.82},
+    {"code": "5269", "price": 1465.0, "reference": 1385.0, "price_chg": 80.0, "pct_chg": 5.776173285198556, "points": 1.82},
+    {"code": "2207", "price": 505.0, "reference": 498.0, "price_chg": 7.0, "pct_chg": 1.4056224899598393, "points": 1.2},
+    {"code": "2618", "price": 42.65, "reference": 41.95, "price_chg": 0.7, "pct_chg": 1.66865315852205, "points": 1.16},
+    {"code": "2610", "price": 21.85, "reference": 21.25, "price_chg": 0.6, "pct_chg": 2.823529411764706, "points": 1.13},
+    {"code": "2923", "price": 36.0, "reference": 34.45, "price_chg": 1.55, "pct_chg": 4.499274310595065, "points": 0.83},
+    {"code": "1101", "price": 24.7, "reference": 24.4, "price_chg": 0.3, "pct_chg": 1.2295081967213115, "points": 0.69},
+    {"code": "3045", "price": 114.0, "reference": 113.5, "price_chg": 0.5, "pct_chg": 0.4405286343612335, "points": 0.57},
+    {"code": "5871", "price": 121.0, "reference": 120.0, "price_chg": 1.0, "pct_chg": 0.8333333333333334, "points": 0.53}
+  ],
+  "simtrade": false
+}
+
+```
+
+### 屬性
+
+IndexContribution
+
+```
+ranking (ContributionRanking)            排行方式
+code (str)                               指數代碼
+date (str)                               日期
+time (str)                               時間
+entries (List[IndexContributionEntry])   貢獻排行清單
+simtrade (bool)                          試撮
+
+```
+
+IndexContributionEntry
+
+```
+code (str)                               股票代碼
+price (float)                            成交價
+reference (float)                        參考價
+price_chg (float)                        漲跌
+pct_chg (float)                          漲跌幅 (%)
+points (float)                           貢獻點數
+
+```
+
+## 產業貢獻
+
+每秒推送一次產業貢獻排行，列出各產業類股對該指數漲跌的貢獻點數，依貢獻由高至低排列。
+
+In
+
+```
+contract = api.contracts.get("IX0001")
+api.subscribe(
+    contract,
+    quote_type=sj.QuoteType.IndustryContribution,
+)
+
+# 取消訂閱
+# api.unsubscribe(
+#     contract,
+#     quote_type=sj.QuoteType.IndustryContribution,
+# )
+
+```
+
+Out
+
+```
+IndustryContribution(
+    code='IX0001',
+    date='2026/07/30',
+    time='09:03:47.000000',
+    entries=[
+        {'category': '2', 'points': 1.69},
+        {'category': '1', 'points': 0.01},
+        {'category': '16', 'points': 0.01},
+        {'category': '14', 'points': -0.02},
+        {'category': '9', 'points': -0.07},
+        {'category': '30', 'points': -0.11},
+        {'category': '11', 'points': -0.13},
+        {'category': '38', 'points': -0.21},
+        {'category': '36', 'points': -0.27},
+        {'category': '18', 'points': -0.29},
+        ...
+    ],
+    simtrade=False,
+    index_close=39600.94,
+    index_price_chg=-438.24,
+)
+
+```
+
+Callback（decorator 方式）
+
+未設定 callback 時預設直接印出。如需自行處理資料，可用 decorator 註冊 callback 函式：
+
+```
+from shioaji import IndustryContribution
+
+@api.on_industry_contribution()
+def industry_contribution_callback(ind: IndustryContribution):
+    print(ind)
+
+```
+
+Callback（傳統方式）
+
+```
+from shioaji import IndustryContribution
+
+def industry_contribution_callback(ind: IndustryContribution):
+    print(ind)
+
+api.set_on_industry_contribution_callback(industry_contribution_callback)
+
+```
+
+In
+
+```
+# 訂閱
+curl -X POST http://localhost:8080/api/v1/stream/subscribe/industry_contribution \
+  -H 'Content-Type: application/json' \
+  -d '{"index": {"security_type": "IND", "exchange": "TSE", "code": "IX0001", "target_code": null}}'
+
+# 開 SSE 收產業貢獻（Ctrl+C 結束）
+curl -N http://localhost:8080/api/v1/stream/data/industry_contribution
+
+# 取消訂閱
+# curl -X POST http://localhost:8080/api/v1/stream/unsubscribe/industry_contribution \
+#   -H 'Content-Type: application/json' \
+#   -d '{"index": {"security_type": "IND", "exchange": "TSE", "code": "IX0001", "target_code": null}}'
+
+```
+
+Out
+
+```
+event:industry_contribution
+data:{
+  "code": "IX0001",
+  "date": "2026/07/30",
+  "time": "09:29:25.000000",
+  "entries": [
+    {"category": "24", "points": 251.05},
+    {"category": "28", "points": 64.66},
+    {"category": "17", "points": 20.81},
+    {"category": "26", "points": 7.74},
+    {"category": "3", "points": 4.81},
+    {"category": "12", "points": 2.09},
+    {"category": "21", "points": 0.94},
+    {"category": "10", "points": 0.79},
+    {"category": "18", "points": 0.52},
+    {"category": "1", "points": 0.36},
+    ...
+  ],
+  "simtrade": false,
+  "index_close": 40310.28,
+  "index_price_chg": 271.1
+}
+
+```
+
+### 屬性
+
+IndustryContribution
+
+```
+code (str)                                指數代碼
+date (str)                                日期
+time (str)                                時間
+entries (List[IndustryContributionEntry]) 產業貢獻清單
+simtrade (bool)                           試撮
+index_close (float)                       最新指數
+index_price_chg (float)                   指數漲跌（entries 貢獻點數加總等於此值）
+
+```
+
+IndustryContributionEntry
+
+```
+category (str)                           產業類別代碼
+points (float)                           貢獻點數
+
+```
+
 期貨 / 選擇權即時行情是交易所即時轉送的市場資料，僅在開盤時段才會推送。利用訂閱[商品檔](../../../contract/)的方式即可開始接收即時行情。
 
 提醒
@@ -9187,6 +9676,598 @@ first_derived_ask_vol=0
 simtrade=False
 
 ```
+
+市場訊號（Scanner）是行情引擎即時掃描全市場行情後推送的訊號資料，個股一觸發指定條件（漲跌停、價格急變、爆量等）就主動推送事件，監測全市場行情，不需要再逐檔訂閱。透過 `subscribe_scanner()` 訂閱：以 `scanner` 參數指定掃描規則，並以 `region`、`security_type`、`exchange` 指定掃描的市場範圍。
+
+Subscribe
+
+```
+>> api.subscribe_scanner?
+
+Signature: api.subscribe_scanner(scanner, *, region, security_type, exchange)
+
+```
+
+Scanner Parameters:
+
+```
+scanner:       掃描規則物件（LimitScanner / PriceMoveScanner / VolumeScanner / StreamScanner）
+region:        市場，目前僅支援 Region.TW
+security_type: 商品類型，目前僅支援 SecurityType.Stock
+exchange:      交易所 {Exchange.TSE, Exchange.OTC}
+
+```
+
+Subscribe
+
+```
+POST /api/v1/stream/subscribe/scanner
+Content-Type: application/json
+
+{
+  "scanner":       {"kind": "preset_rule", "id": <string>} | <StreamScanner>,
+  "region":        <Region>,
+  "security_type": <SecurityType>,
+  "exchange":      <Exchange>
+}
+
+```
+
+取消訂閱使用相同的 body 呼叫 `POST /api/v1/stream/unsubscribe/scanner`。
+
+Scanner Parameters:
+
+```
+scanner:       掃描規則。預設規則用 {"kind": "preset_rule", "id": "..."}（id 見各規則表）；
+               狀態過濾直接給字串 {"simtrade", "suspend"}
+region:        市場 {TW}
+security_type: 商品類型 {STK}
+exchange:      交易所 {TSE, OTC}
+
+```
+
+## 類型總覽
+
+| Scanner | 說明 | 規則 | | --- | --- | --- | | `LimitScanner` | [漲跌停](#limitscanner) | `bid_near_limit_up` `bid_touch_limit_up` `limit_up_unlocked` `ask_near_limit_down` `ask_touch_limit_down` `limit_down_unlocked` | | `PriceMoveScanner` | [價格急變](#pricemovescanner) | `trade_surge` `trade_drop` `bid_surge` `ask_drop` | | `VolumeScanner` | [爆量](#volumescanner) | `burst` | | `StreamScanner` | [狀態過濾](#streamscanner) | `Simtrade` `Suspend` |
+
+商品限制
+
+- 目前支援台股（`Region.TW`）股票（`SecurityType.Stock`），交易所可選 `Exchange.TSE` 或 `Exchange.OTC`。
+- `region`、`security_type`、`exchange` 為 keyword-only 必填參數。
+
+## 漲跌停
+
+監測個股逼近漲跌停的過程：從報價**接近**漲跌停價、**觸及**漲跌停價，到漲跌停**打開**，各階段都會推送訊號。
+
+規則
+
+```
+# Python                                 HTTP (id)
+LimitScanner.bid_near_limit_up()         bid_near_limit_up        買方報價接近漲停
+LimitScanner.bid_touch_limit_up()        bid_touch_limit_up       買方報價觸及漲停
+LimitScanner.limit_up_unlocked()         limit_up_unlocked        漲停打開
+LimitScanner.ask_near_limit_down()       ask_near_limit_down      賣方報價接近跌停
+LimitScanner.ask_touch_limit_down()      ask_touch_limit_down     賣方報價觸及跌停
+LimitScanner.limit_down_unlocked()       limit_down_unlocked      跌停打開
+
+```
+
+In
+
+```
+api.subscribe_scanner(
+    scanner=sj.LimitScanner.ask_near_limit_down(),
+    region=sj.Region.TW,
+    security_type=sj.SecurityType.Stock,
+    exchange=sj.Exchange.TSE,
+)
+
+# 取消訂閱
+# api.unsubscribe_scanner(
+#     scanner=sj.LimitScanner.ask_near_limit_down(),
+#     region=sj.Region.TW,
+#     security_type=sj.SecurityType.Stock,
+#     exchange=sj.Exchange.TSE,
+# )
+
+```
+
+Out
+
+```
+ScannerSignalEvent(
+    scanner=LimitScanner.ask_near_limit_down(),
+    region=<Region.TW: 'TW'>,
+    security_type=<SecurityType.Stock: 'STK'>,
+    exchange=<Exchange.TSE: 'TSE'>,
+    quote={
+        'code': '4977',
+        'datetime': (2026, 7, 29, 10, 42, 36, 701220),
+        'open': Decimal('123'),
+        'close': Decimal('112.5'),
+        'high': Decimal('125'),
+        'low': Decimal('112'),
+        ...
+    },
+    extra={
+        'previous_best_price': Decimal('112.5'),
+        'trigger_price': Decimal('112.5'),
+        'limit_price': Decimal('112'),
+    },
+)
+
+```
+
+In
+
+```
+# 訂閱
+curl -X POST http://localhost:8080/api/v1/stream/subscribe/scanner \
+  -H 'Content-Type: application/json' \
+  -d '{"scanner": {"kind": "preset_rule", "id": "ask_near_limit_down"}, "region": "TW", "security_type": "STK", "exchange": "TSE"}'
+
+# 開 SSE 收市場訊號（Ctrl+C 結束）
+curl -N http://localhost:8080/api/v1/stream/data/scanner
+
+# 取消訂閱
+# curl -X POST http://localhost:8080/api/v1/stream/unsubscribe/scanner \
+#   -H 'Content-Type: application/json' \
+#   -d '{"scanner": {"kind": "preset_rule", "id": "ask_near_limit_down"}, "region": "TW", "security_type": "STK", "exchange": "TSE"}'
+
+```
+
+Out
+
+```
+event:scanner
+data:{
+  "scanner": "ask_near_limit_down",
+  "region": "TW",
+  "security_type": "STK",
+  "exchange": "TSE",
+  "quote": {
+    "code": "6672",
+    "date": "2026-07-29",
+    "time": "11:00:33.983434",
+    "open": "204",
+    "close": "180.5",
+    "high": "204",
+    "low": "180",
+    ...
+  },
+  "extra": {
+    "previous_best_price": "181",
+    "trigger_price": "180.5",
+    "limit_price": "180"
+  }
+}
+
+```
+
+### 屬性
+
+LimitScannerExtra
+
+```
+previous_best_price (Optional[Decimal])  前一次最佳報價（首次觸發為 None）
+trigger_price (Decimal)                  觸發訊號的最佳報價
+limit_price (Decimal)                    漲跌停價
+
+```
+
+## 價格急變
+
+個股價格在 1 秒內漲跌超過 1% 且變動達 3 個 tick 時推送訊號，同一檔觸發後冷卻 1 秒。
+
+規則
+
+```
+# Python                                 HTTP (id)
+PriceMoveScanner.trade_surge()           trade_price_surge        成交價急漲
+PriceMoveScanner.trade_drop()            trade_price_drop         成交價急跌
+PriceMoveScanner.bid_surge()             bid_price_surge          買方報價急漲
+PriceMoveScanner.ask_drop()              ask_price_drop           賣方報價急跌
+
+```
+
+In
+
+```
+api.subscribe_scanner(
+    scanner=sj.PriceMoveScanner.trade_drop(),
+    region=sj.Region.TW,
+    security_type=sj.SecurityType.Stock,
+    exchange=sj.Exchange.TSE,
+)
+
+# 取消訂閱
+# api.unsubscribe_scanner(
+#     scanner=sj.PriceMoveScanner.trade_drop(),
+#     region=sj.Region.TW,
+#     security_type=sj.SecurityType.Stock,
+#     exchange=sj.Exchange.TSE,
+# )
+
+```
+
+Out
+
+```
+ScannerSignalEvent(
+    scanner=PriceMoveScanner.trade_price_drop(),
+    region=<Region.TW: 'TW'>,
+    security_type=<SecurityType.Stock: 'STK'>,
+    exchange=<Exchange.TSE: 'TSE'>,
+    quote={
+        'code': '4956',
+        'datetime': (2026, 7, 29, 10, 38, 54, 975780),
+        'open': Decimal('26.8'),
+        'close': Decimal('24.6'),
+        'high': Decimal('27.2'),
+        'low': Decimal('24.6'),
+        ...
+    },
+    extra={
+        'reference_time': '10:38:54.975780',
+        'reference_price': Decimal('24.85'),
+        'change_price': Decimal('-0.25'),
+        'change_percent': Decimal('-1.006'),
+        'tick_change': 5,
+        'elapsed_ms': 0,
+    },
+)
+
+```
+
+In
+
+```
+# 訂閱
+curl -X POST http://localhost:8080/api/v1/stream/subscribe/scanner \
+  -H 'Content-Type: application/json' \
+  -d '{"scanner": {"kind": "preset_rule", "id": "trade_price_drop"}, "region": "TW", "security_type": "STK", "exchange": "TSE"}'
+
+# 開 SSE 收市場訊號（Ctrl+C 結束）
+curl -N http://localhost:8080/api/v1/stream/data/scanner
+
+# 取消訂閱
+# curl -X POST http://localhost:8080/api/v1/stream/unsubscribe/scanner \
+#   -H 'Content-Type: application/json' \
+#   -d '{"scanner": {"kind": "preset_rule", "id": "trade_price_drop"}, "region": "TW", "security_type": "STK", "exchange": "TSE"}'
+
+```
+
+Out
+
+```
+event:scanner
+data:{
+  "scanner": "trade_price_drop",
+  "region": "TW",
+  "security_type": "STK",
+  "exchange": "TSE",
+  "quote": {
+    "code": "8045",
+    "date": "2026-07-29",
+    "time": "10:58:56.269181",
+    "open": "55.8",
+    "close": "50.6",
+    "high": "56.2",
+    "low": "50.6",
+    ...
+  },
+  "extra": {
+    "reference_time": "10:58:56.269181",
+    "reference_price": "51.2",
+    "change_price": "-0.6",
+    "change_percent": "-1.1719",
+    "tick_change": 6,
+    "elapsed_ms": 0
+  }
+}
+
+```
+
+### 屬性
+
+PriceMoveExtra
+
+```
+reference_time (str)                     比較基準時間
+reference_price (Decimal)                比較基準價格
+change_price (Decimal)                   期間價格變動
+change_percent (Decimal)                 期間漲跌幅 (%)
+tick_change (int)                        期間 tick 變動數
+elapsed_ms (int)                         距基準時間經過毫秒數
+
+```
+
+## 爆量
+
+個股出現單筆成交金額超過當日門檻的成交時推送訊號，同一檔觸發後冷卻 5 秒。門檻由伺服器每日依前一交易日的成交金額分布重新計算，每筆事件會在 `threshold` 欄位帶出當日門檻。
+
+規則
+
+```
+# Python                                 HTTP (id)
+VolumeScanner.burst()                    volume_burst             爆量
+
+```
+
+In
+
+```
+api.subscribe_scanner(
+    scanner=sj.VolumeScanner.burst(),
+    region=sj.Region.TW,
+    security_type=sj.SecurityType.Stock,
+    exchange=sj.Exchange.TSE,
+)
+
+# 取消訂閱
+# api.unsubscribe_scanner(
+#     scanner=sj.VolumeScanner.burst(),
+#     region=sj.Region.TW,
+#     security_type=sj.SecurityType.Stock,
+#     exchange=sj.Exchange.TSE,
+# )
+
+```
+
+Out
+
+```
+ScannerSignalEvent(
+    scanner=VolumeScanner.volume_burst(),
+    region=<Region.TW: 'TW'>,
+    security_type=<SecurityType.Stock: 'STK'>,
+    exchange=<Exchange.TSE: 'TSE'>,
+    quote={
+        'code': '2454',
+        'datetime': (2026, 7, 29, 10, 39, 22, 260204),
+        'open': Decimal('3315'),
+        'close': Decimal('3050'),
+        'high': Decimal('3335'),
+        'low': Decimal('3035'),
+        ...
+    },
+    extra={
+        'amount': 27450000,
+        'volume': 9,
+        'price': Decimal('3050'),
+        'threshold': 25000000,
+    },
+)
+
+```
+
+In
+
+```
+# 訂閱
+curl -X POST http://localhost:8080/api/v1/stream/subscribe/scanner \
+  -H 'Content-Type: application/json' \
+  -d '{"scanner": {"kind": "preset_rule", "id": "volume_burst"}, "region": "TW", "security_type": "STK", "exchange": "TSE"}'
+
+# 開 SSE 收市場訊號（Ctrl+C 結束）
+curl -N http://localhost:8080/api/v1/stream/data/scanner
+
+# 取消訂閱
+# curl -X POST http://localhost:8080/api/v1/stream/unsubscribe/scanner \
+#   -H 'Content-Type: application/json' \
+#   -d '{"scanner": {"kind": "preset_rule", "id": "volume_burst"}, "region": "TW", "security_type": "STK", "exchange": "TSE"}'
+
+```
+
+Out
+
+```
+event:scanner
+data:{
+  "scanner": "volume_burst",
+  "region": "TW",
+  "security_type": "STK",
+  "exchange": "TSE",
+  "quote": {
+    "code": "6669",
+    "date": "2026-07-29",
+    "time": "10:57:35.360442",
+    "open": "5430",
+    "close": "5100",
+    "high": "5475",
+    "low": "5095",
+    ...
+  },
+  "extra": {
+    "amount": 25500000,
+    "volume": 5,
+    "price": "5100",
+    "threshold": 25000000
+  }
+}
+
+```
+
+### 屬性
+
+VolumeBurstExtra
+
+```
+amount (int)                             單筆成交金額 (TWD)
+volume (int)                             單筆成交量 (張)
+price (Decimal)                          成交價
+threshold (int)                          當日門檻 (TWD)
+
+```
+
+## 狀態過濾
+
+訂閱後推送符合特定狀態的個股報價：`Simtrade` 為試撮行情、`Suspend` 為暫停交易。試撮不限開收盤時段，盤中進入分盤集合競價的個股（處置股、觸發瞬間價格穩定措施）也會推送。
+
+規則
+
+```
+# Python                                 HTTP (scanner)
+StreamScanner.Simtrade                   simtrade                 試撮行情
+StreamScanner.Suspend                    suspend                  暫停交易
+
+```
+
+In
+
+```
+api.subscribe_scanner(
+    scanner=sj.StreamScanner.Simtrade,
+    region=sj.Region.TW,
+    security_type=sj.SecurityType.Stock,
+    exchange=sj.Exchange.TSE,
+)
+
+# 取消訂閱
+# api.unsubscribe_scanner(
+#     scanner=sj.StreamScanner.Simtrade,
+#     region=sj.Region.TW,
+#     security_type=sj.SecurityType.Stock,
+#     exchange=sj.Exchange.TSE,
+# )
+
+```
+
+Out
+
+```
+ScannerQuoteEvent(
+    scanners=(<StreamScanner.simtrade: 'simtrade'>,),
+    region=<Region.TW: 'TW'>,
+    security_type=<SecurityType.Stock: 'STK'>,
+    exchange=<Exchange.TSE: 'TSE'>,
+    quote={
+        'code': '3090',
+        'datetime': (2026, 7, 29, 10, 43, 21, 25653),
+        'open': Decimal('138'),
+        'close': Decimal('126.5'),
+        'high': Decimal('138'),
+        'low': Decimal('126.5'),
+        'simtrade': True,
+        ...
+    },
+)
+
+```
+
+In
+
+```
+# 訂閱
+curl -X POST http://localhost:8080/api/v1/stream/subscribe/scanner \
+  -H 'Content-Type: application/json' \
+  -d '{"scanner": "simtrade", "region": "TW", "security_type": "STK", "exchange": "TSE"}'
+
+# 開 SSE 收市場訊號（Ctrl+C 結束）
+curl -N http://localhost:8080/api/v1/stream/data/scanner
+
+# 取消訂閱
+# curl -X POST http://localhost:8080/api/v1/stream/unsubscribe/scanner \
+#   -H 'Content-Type: application/json' \
+#   -d '{"scanner": "simtrade", "region": "TW", "security_type": "STK", "exchange": "TSE"}'
+
+```
+
+Out
+
+```
+event:scanner
+data:{
+  "scanners": ["simtrade"],
+  "region": "TW",
+  "security_type": "STK",
+  "exchange": "TSE",
+  "quote": {
+    "code": "2492",
+    "date": "2026-07-29",
+    "time": "11:02:09.266137",
+    "open": "234.5",
+    "close": "220.5",
+    "high": "234.5",
+    "low": "220.5",
+    "simtrade": true,
+    ...
+  }
+}
+
+```
+
+### 屬性
+
+ScannerQuoteEvent
+
+```
+scanners (Tuple[StreamScanner, ...])     符合的串流過濾（可能同時符合多個）
+region (Region)                          市場
+security_type (SecurityType)             商品類型
+exchange (Exchange)                      交易所
+quote (QuoteSTKv1Core)                   個股報價
+
+```
+
+- `quote` 欄位內容與[證券即時行情](../stocks/)的 Quote 相同。
+
+## Callback（僅 Python）
+
+所有市場訊號共用同一個 callback。未設定時，事件以預設格式直接印出；設定後改由 callback 處理。依訂閱類型不同，callback 會收到不同的事件型別：規則類訂閱（漲跌停、價格急變、爆量）推送 `ScannerSignalEvent`，狀態過濾推送 `ScannerQuoteEvent`；斷線重連時會收到 `ScannerGapEvent`，告知漏收的事件數量。請避免在函式內進行運算。
+
+decorator 方式
+
+```
+from shioaji import (
+    ScannerSignalEvent, ScannerQuoteEvent, ScannerGapEvent,
+    LimitScanner, PriceMoveScanner, VolumeScanner,
+)
+
+@api.on_scanner()
+def scanner_callback(event):
+    if isinstance(event, ScannerSignalEvent):
+        if isinstance(event.scanner, LimitScanner):
+            print("漲跌停:", event.quote.code, event.extra)
+        elif isinstance(event.scanner, PriceMoveScanner):
+            print("價格急變:", event.quote.code, event.extra)
+        elif isinstance(event.scanner, VolumeScanner):
+            print("爆量:", event.quote.code, event.extra)
+    elif isinstance(event, ScannerQuoteEvent):
+        print("狀態過濾:", event.scanners, event.quote.code)
+    elif isinstance(event, ScannerGapEvent):
+        print(f"dropped_count={event.dropped_count}")
+
+```
+
+傳統方式
+
+```
+from shioaji import (
+    ScannerSignalEvent, ScannerQuoteEvent, ScannerGapEvent,
+    LimitScanner, PriceMoveScanner, VolumeScanner,
+)
+
+def scanner_callback(event):
+    if isinstance(event, ScannerSignalEvent):
+        if isinstance(event.scanner, LimitScanner):
+            print("漲跌停:", event.quote.code, event.extra)
+        elif isinstance(event.scanner, PriceMoveScanner):
+            print("價格急變:", event.quote.code, event.extra)
+        elif isinstance(event.scanner, VolumeScanner):
+            print("爆量:", event.quote.code, event.extra)
+    elif isinstance(event, ScannerQuoteEvent):
+        print("狀態過濾:", event.scanners, event.quote.code)
+    elif isinstance(event, ScannerGapEvent):
+        print(f"dropped_count={event.dropped_count}")
+
+api.set_on_scanner_callback(scanner_callback)
+
+```
+
+比對單一規則
+
+要精準到特定規則時，可直接以相等判斷，例如 `event.scanner == LimitScanner.ask_near_limit_down()`。
 
 即時行情是交易所即時轉送的市場資料，僅在開盤時段才會推送。利用訂閱[商品檔](../../../contract/)的方式即可開始接收即時行情。
 
@@ -10112,6 +11193,123 @@ simtrade (bool)                          試撮
 
 ```
 
+## KBar
+
+行情引擎會在每分鐘結束時推送該檔證券前一分鐘的完整 K 棒，`time` 欄位為該根 K 棒的起始時間。
+
+商品限制
+
+KBar 目前僅支援證券，指數、期貨、選擇權尚未支援。
+
+#### 整股
+
+In
+
+```
+contract = api.contracts.get("2330")
+api.subscribe(
+    contract,
+    quote_type=sj.QuoteType.KBar,
+)
+
+# 取消訂閱
+# api.unsubscribe(
+#     contract,
+#     quote_type=sj.QuoteType.KBar,
+# )
+
+```
+
+Out
+
+```
+Response Code: 200 | Event Code: 16 | Info: APISUB/v1/k/1m/tw/23 | Event: Subscribe or Unsubscribe ok
+
+KBar(
+    code='2330',
+    date='2026/07/29',
+    time='10:12:00.000000',
+    open=2245.0,
+    high=2250.0,
+    low=2245.0,
+    close=2250.0,
+    volume=72,
+    amount=161880000,
+    tick_count=34,
+)
+
+```
+
+自訂處理
+
+預設會直接印出收到的 K 棒。如需自行處理資料，請參考下方 [Callback](#callback-%E5%83%85-python) 章節。
+
+**整股**
+
+In
+
+```
+# 訂閱（stocks 陣列可一次帶多檔）
+curl -X POST http://localhost:8080/api/v1/stream/subscribe/kbars \
+  -H 'Content-Type: application/json' \
+  -d '{
+    "stocks": [
+      {
+        "security_type": "STK",
+        "exchange": "TSE",
+        "code": "2330",
+        "target_code": null
+      }
+    ]
+  }'
+
+# 開 SSE 收即時 K 棒（Ctrl+C 結束）
+curl -N http://localhost:8080/api/v1/stream/data/kbar
+
+# 取消訂閱
+# curl -X POST http://localhost:8080/api/v1/stream/unsubscribe/kbars \
+#   -H 'Content-Type: application/json' \
+#   -d '{"stocks": [{"security_type": "STK", "exchange": "TSE", "code": "2330", "target_code": null}]}'
+
+```
+
+Out
+
+```
+event:kbar
+data:{
+  "code": "2330",
+  "date": "2026/07/28",
+  "time": "11:18:00.000000",
+  "open": 2280.0,
+  "high": 2285.0,
+  "low": 2280.0,
+  "close": 2285.0,
+  "volume": 34,
+  "amount": 77600000,
+  "tick_count": 20
+}
+
+```
+
+### 屬性
+
+KBar
+
+```
+code (str)                               商品代碼
+date (str)                               日期 (2026/07/29)
+time (str)                               時間 (10:12:00.000000)
+open (float)                             開盤價
+high (float)                             最高價
+low (float)                              最低價
+close (float)                            收盤價
+volume (int)                             成交量 (張)
+amount (int)                             成交金額 (NTD)
+tick_count (int)                         成交筆數
+
+```
+
 ## Callback（僅 Python）
 
 預設狀況下我們將即時行情使用 `print` 的方式呈現，僅顯示部分摘要欄位。可根據個人需求修改 callback 函式以取得完整欄位內容，並串接其他應用（行情管理、觸價單等）。請避免在函式內進行運算。
@@ -10407,6 +11605,38 @@ diff_ask_vol=[0, 0, 0, 0, 0]
 avail_borrowing=8894631
 suspend=False
 simtrade=False
+
+```
+
+### KBar
+
+decorator 方式
+
+```
+from shioaji import KBar
+
+@api.on_kbar()
+def kbar_callback(kbar: KBar):
+    print(kbar)
+
+```
+
+傳統方式
+
+```
+from shioaji import KBar
+
+def kbar_callback(kbar: KBar):
+    print(kbar)
+
+api.set_on_kbar_callback(kbar_callback)
+
+```
+
+Out
+
+```
+KBar(code='2330', date='2026/07/29', time='10:12:00.000000', open=2245.0, high=2250.0, low=2245.0, close=2250.0, volume=72, amount=161880000, tick_count=34)
 
 ```
 

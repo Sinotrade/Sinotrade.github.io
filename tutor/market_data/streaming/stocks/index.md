@@ -922,6 +922,123 @@ simtrade (bool)                          Simulated trade
 
 ```
 
+## KBar
+
+The quote engine pushes the security's complete 1-minute KBar of the previous minute at the end of every minute; the `time` field is the start time of the bar.
+
+Product restrictions
+
+KBar currently supports securities only; indexes, futures, and options are not available yet.
+
+#### Regular
+
+In
+
+```
+contract = api.contracts.get("2330")
+api.subscribe(
+    contract,
+    quote_type=sj.QuoteType.KBar,
+)
+
+# unsubscribe
+# api.unsubscribe(
+#     contract,
+#     quote_type=sj.QuoteType.KBar,
+# )
+
+```
+
+Out
+
+```
+Response Code: 200 | Event Code: 16 | Info: APISUB/v1/k/1m/tw/23 | Event: Subscribe or Unsubscribe ok
+
+KBar(
+    code='2330',
+    date='2026/07/29',
+    time='10:12:00.000000',
+    open=2245.0,
+    high=2250.0,
+    low=2245.0,
+    close=2250.0,
+    volume=72,
+    amount=161880000,
+    tick_count=34,
+)
+
+```
+
+Custom handling
+
+Each KBar is printed by default. To handle the data yourself, see the [Callback](#callback-python-only) section below.
+
+**Regular**
+
+In
+
+```
+# subscribe (the stocks array accepts multiple securities at once)
+curl -X POST http://localhost:8080/api/v1/stream/subscribe/kbars \
+  -H 'Content-Type: application/json' \
+  -d '{
+    "stocks": [
+      {
+        "security_type": "STK",
+        "exchange": "TSE",
+        "code": "2330",
+        "target_code": null
+      }
+    ]
+  }'
+
+# open SSE to receive real-time KBars (Ctrl+C to stop)
+curl -N http://localhost:8080/api/v1/stream/data/kbar
+
+# unsubscribe
+# curl -X POST http://localhost:8080/api/v1/stream/unsubscribe/kbars \
+#   -H 'Content-Type: application/json' \
+#   -d '{"stocks": [{"security_type": "STK", "exchange": "TSE", "code": "2330", "target_code": null}]}'
+
+```
+
+Out
+
+```
+event:kbar
+data:{
+  "code": "2330",
+  "date": "2026/07/28",
+  "time": "11:18:00.000000",
+  "open": 2280.0,
+  "high": 2285.0,
+  "low": 2280.0,
+  "close": 2285.0,
+  "volume": 34,
+  "amount": 77600000,
+  "tick_count": 20
+}
+
+```
+
+### Attributes
+
+KBar
+
+```
+code (str)                               security code
+date (str)                               date (2026/07/29)
+time (str)                               time (10:12:00.000000)
+open (float)                             open price
+high (float)                             high price
+low (float)                              low price
+close (float)                            close price
+volume (int)                             volume (lot)
+amount (int)                             turnover (NTD)
+tick_count (int)                         number of trades
+
+```
+
 ## Callback (Python only)
 
 By default real-time market data is shown via `print` with only a summary of fields. You can customize the callback to get the full payload and feed it into other applications (a local quote board, conditional / trigger orders, etc.). Avoid heavy computation inside the callback.
@@ -1217,5 +1334,37 @@ diff_ask_vol=[0, 0, 0, 0, 0]
 avail_borrowing=8894631
 suspend=False
 simtrade=False
+
+```
+
+### KBar
+
+Decorator style
+
+```
+from shioaji import KBar
+
+@api.on_kbar()
+def kbar_callback(kbar: KBar):
+    print(kbar)
+
+```
+
+Traditional style
+
+```
+from shioaji import KBar
+
+def kbar_callback(kbar: KBar):
+    print(kbar)
+
+api.set_on_kbar_callback(kbar_callback)
+
+```
+
+Out
+
+```
+KBar(code='2330', date='2026/07/29', time='10:12:00.000000', open=2245.0, high=2250.0, low=2245.0, close=2250.0, volume=72, amount=161880000, tick_count=34)
 
 ```

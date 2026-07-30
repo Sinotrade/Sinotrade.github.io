@@ -1,0 +1,2759 @@
+
+<!doctype html>
+<html lang="en" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+        <meta name="description" content="Shioaji is Taiwan's most popular trading API with highest market share. Cross-platform support for Windows, Linux, and Mac. Trade stocks, futures, options with Python. First Taiwan trading API with AI coding agent skills.">
+      
+      
+        <meta name="author" content="SinoPac Securities, Sinotrade">
+      
+      
+        <link rel="canonical" href="https://sinotrade.github.io/tutor/market_data/streaming/enriched/">
+      
+      
+        <link rel="prev" href="../">
+      
+      
+        <link rel="next" href="../signals/">
+      
+      
+      <link rel="icon" href="https://sinotrade.github.io/images/shioaji-logo-01.png">
+      <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.6.12">
+    
+    
+      
+        <title>Enriched Data - Shioaji - Taiwan's Leading Cross Platform Trading API</title>
+      
+    
+    
+      <link rel="stylesheet" href="../../../../assets/stylesheets/main.2afb09e1.min.css">
+      
+        
+        <link rel="stylesheet" href="../../../../assets/stylesheets/palette.06af60db.min.css">
+      
+      
+
+
+    
+    
+      
+    
+    
+      
+        
+        
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Noto+Serif+Traditional+Chinese:300,300i,400,400i,700,700i%7CRoboto+Mono:400,400i,700,700i&display=fallback">
+        <style>:root{--md-text-font:"Noto Serif Traditional Chinese";--md-code-font:"Roboto Mono"}</style>
+      
+    
+    
+      <link rel="stylesheet" href="../../../../stylesheets/extra.css">
+    
+    <script>__md_scope=new URL("../../../..",location),__md_hash=e=>[...e].reduce(((e,_)=>(e<<5)-e+_.charCodeAt(0)),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    
+      
+  
+
+
+  
+  
+
+<script id="__analytics">function __md_analytics(){function e(){dataLayer.push(arguments)}window.dataLayer=window.dataLayer||[],e("js",new Date),e("config","G-YSCWD7H6W6"),document.addEventListener("DOMContentLoaded",(function(){document.forms.search&&document.forms.search.query.addEventListener("blur",(function(){this.value&&e("event","search",{search_term:this.value})}));document$.subscribe((function(){var t=document.forms.feedback;if(void 0!==t)for(var a of t.querySelectorAll("[type=submit]"))a.addEventListener("click",(function(a){a.preventDefault();var n=document.location.pathname,d=this.getAttribute("data-md-value");e("event","feedback",{page:n,data:d}),t.firstElementChild.disabled=!0;var r=t.querySelector(".md-feedback__note [data-md-value='"+d+"']");r&&(r.hidden=!1)})),t.hidden=!1})),location$.subscribe((function(t){e("config","G-YSCWD7H6W6",{page_path:t.pathname})}))}));var t=document.createElement("script");t.async=!0,t.src="https://www.googletagmanager.com/gtag/js?id=G-YSCWD7H6W6",document.getElementById("__analytics").insertAdjacentElement("afterEnd",t)}</script>
+  
+    <script>"undefined"!=typeof __md_analytics&&__md_analytics()</script>
+  
+
+    
+    
+    
+  <meta name="google-site-verification" content="EsM_j7AlViGH1R67dwMAcR5Pu6wkbZXruW5EDQ2d4zA">
+  <meta name="keywords" content="trading api, cross platform trading api, linux trading api, mac trading api, python trading api, taiwan stock api, shioaji, sinopac api, automated trading, algorithmic trading">
+  <meta property="og:type" content="website">
+  <meta property="og:title" content="Shioaji - Taiwan's Leading Cross Platform Trading API">
+  <meta property="og:description" content="Shioaji is Taiwan's most popular trading API with highest market share. Cross-platform support for Windows, Linux, and Mac. Trade stocks, futures, options with Python. First Taiwan trading API with AI coding agent skills.">
+  <meta property="og:image" content="https://sinotrade.github.io/img/shioaji-logo-01.png">
+  <meta property="og:url" content="https://sinotrade.github.io/">
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="Shioaji - Taiwan's Leading Cross Platform Trading API">
+  <meta name="twitter:description" content="Shioaji is Taiwan's most popular trading API with highest market share. Cross-platform support for Windows, Linux, and Mac. Trade stocks, futures, options with Python. First Taiwan trading API with AI coding agent skills.">
+  <meta name="twitter:image" content="https://sinotrade.github.io/img/shioaji-logo-01.png">
+
+  </head>
+  
+  
+    
+    
+      
+    
+    
+    
+    
+    <body dir="ltr" data-md-color-scheme="default" data-md-color-primary="cyan" data-md-color-accent="amber">
+  
+    
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#overview" class="md-skip">
+          Skip to content
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
+    
+    
+      
+
+  
+
+<header class="md-header md-header--shadow" data-md-component="header">
+  <nav class="md-header__inner md-grid" aria-label="Header">
+    <a href="../../../.." title="Shioaji - Taiwan&#39;s Leading Cross Platform Trading API" class="md-header__button md-logo" aria-label="Shioaji - Taiwan's Leading Cross Platform Trading API" data-md-component="logo">
+      
+  <img src="../../../../img/shioaji-logo.svg" alt="logo">
+
+    </a>
+    <label class="md-header__button md-icon" for="__drawer">
+      
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3zm0 5h18v2H3zm0 5h18v2H3z"/></svg>
+    </label>
+    <div class="md-header__title" data-md-component="header-title">
+      <div class="md-header__ellipsis">
+        <div class="md-header__topic">
+          <span class="md-ellipsis">
+            Shioaji - Taiwan's Leading Cross Platform Trading API
+          </span>
+        </div>
+        <div class="md-header__topic" data-md-component="header-topic">
+          <span class="md-ellipsis">
+            
+              Enriched Data
+            
+          </span>
+        </div>
+      </div>
+    </div>
+    
+      
+        <form class="md-header__option" data-md-component="palette">
+  
+    
+    
+    
+    <input class="md-option" data-md-color-media="(prefers-color-scheme: light)" data-md-color-scheme="default" data-md-color-primary="cyan" data-md-color-accent="amber"  aria-label="Switch to dark mode"  type="radio" name="__palette" id="__palette_0">
+    
+      <label class="md-header__button md-icon" title="Switch to dark mode" for="__palette_1" hidden>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="m17.75 4.09-2.53 1.94.91 3.06-2.63-1.81-2.63 1.81.91-3.06-2.53-1.94L12.44 4l1.06-3 1.06 3zm3.5 6.91-1.64 1.25.59 1.98-1.7-1.17-1.7 1.17.59-1.98L15.75 11l2.06-.05L18.5 9l.69 1.95zm-2.28 4.95c.83-.08 1.72 1.1 1.19 1.85-.32.45-.66.87-1.08 1.27C15.17 23 8.84 23 4.94 19.07c-3.91-3.9-3.91-10.24 0-14.14.4-.4.82-.76 1.27-1.08.75-.53 1.93.36 1.85 1.19-.27 2.86.69 5.83 2.89 8.02a9.96 9.96 0 0 0 8.02 2.89m-1.64 2.02a12.08 12.08 0 0 1-7.8-3.47c-2.17-2.19-3.33-5-3.49-7.82-2.81 3.14-2.7 7.96.31 10.98 3.02 3.01 7.84 3.12 10.98.31"/></svg>
+      </label>
+    
+  
+    
+    
+    
+    <input class="md-option" data-md-color-media="(prefers-color-scheme: dark)" data-md-color-scheme="slate" data-md-color-primary="black" data-md-color-accent="amber"  aria-label="Switch to light mode"  type="radio" name="__palette" id="__palette_1">
+    
+      <label class="md-header__button md-icon" title="Switch to light mode" for="__palette_0" hidden>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 7a5 5 0 0 1 5 5 5 5 0 0 1-5 5 5 5 0 0 1-5-5 5 5 0 0 1 5-5m0 2a3 3 0 0 0-3 3 3 3 0 0 0 3 3 3 3 0 0 0 3-3 3 3 0 0 0-3-3m0-7 2.39 3.42C13.65 5.15 12.84 5 12 5s-1.65.15-2.39.42zM3.34 7l4.16-.35A7.2 7.2 0 0 0 5.94 8.5c-.44.74-.69 1.5-.83 2.29zm.02 10 1.76-3.77a7.131 7.131 0 0 0 2.38 4.14zM20.65 7l-1.77 3.79a7.02 7.02 0 0 0-2.38-4.15zm-.01 10-4.14.36c.59-.51 1.12-1.14 1.54-1.86.42-.73.69-1.5.83-2.29zM12 22l-2.41-3.44c.74.27 1.55.44 2.41.44.82 0 1.63-.17 2.37-.44z"/></svg>
+      </label>
+    
+  
+</form>
+      
+    
+    
+      <script>var palette=__md_get("__palette");if(palette&&palette.color){if("(prefers-color-scheme)"===palette.color.media){var media=matchMedia("(prefers-color-scheme: light)"),input=document.querySelector(media.matches?"[data-md-color-media='(prefers-color-scheme: light)']":"[data-md-color-media='(prefers-color-scheme: dark)']");palette.color.media=input.getAttribute("data-md-color-media"),palette.color.scheme=input.getAttribute("data-md-color-scheme"),palette.color.primary=input.getAttribute("data-md-color-primary"),palette.color.accent=input.getAttribute("data-md-color-accent")}for(var[key,value]of Object.entries(palette.color))document.body.setAttribute("data-md-color-"+key,value)}</script>
+    
+    
+      <div class="md-header__option">
+  <div class="md-select">
+    
+    <button class="md-header__button md-icon" aria-label="Select language">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="m12.87 15.07-2.54-2.51.03-.03A17.5 17.5 0 0 0 14.07 6H17V4h-7V2H8v2H1v2h11.17C11.5 7.92 10.44 9.75 9 11.35 8.07 10.32 7.3 9.19 6.69 8h-2c.73 1.63 1.73 3.17 2.98 4.56l-5.09 5.02L4 19l5-5 3.11 3.11zM18.5 10h-2L12 22h2l1.12-3h4.75L21 22h2zm-2.62 7 1.62-4.33L19.12 17z"/></svg>
+    </button>
+    <div class="md-select__inner">
+      <ul class="md-select__list">
+        
+          <li class="md-select__item">
+            <a href="./" hreflang="en" class="md-select__link">
+              English
+            </a>
+          </li>
+        
+          <li class="md-select__item">
+            <a href="../../../../zh/tutor/market_data/streaming/enriched/" hreflang="zh" class="md-select__link">
+              中文
+            </a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+</div>
+    
+    
+      
+      
+        <label class="md-header__button md-icon" for="__search">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        </label>
+        <div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" aria-label="Search" placeholder="Search" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" required>
+      <label class="md-search__icon md-icon" for="__search">
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11z"/></svg>
+      </label>
+      <nav class="md-search__options" aria-label="Search">
+        
+        <button type="reset" class="md-search__icon md-icon" title="Clear" aria-label="Clear" tabindex="-1">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"/></svg>
+        </button>
+      </nav>
+      
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" tabindex="0" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="search-result">
+          <div class="md-search-result__meta">
+            Initializing search
+          </div>
+          <ol class="md-search-result__list" role="presentation"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+      
+    
+    
+      <div class="md-header__source">
+        <a href="https://github.com/Sinotrade/Shioaji" title="Go to repository" class="md-source" data-md-component="source">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><!--! Font Awesome Free 6.7.2 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2024 Fonticons, Inc.--><path d="M439.55 236.05 244 40.45a28.87 28.87 0 0 0-40.81 0l-40.66 40.63 51.52 51.52c27.06-9.14 52.68 16.77 43.39 43.68l49.66 49.66c34.23-11.8 61.18 31 35.47 56.69-26.49 26.49-70.21-2.87-56-37.34L240.22 199v121.85c25.3 12.54 22.26 41.85 9.08 55a34.34 34.34 0 0 1-48.55 0c-17.57-17.6-11.07-46.91 11.25-56v-123c-20.8-8.51-24.6-30.74-18.64-45L142.57 101 8.45 235.14a28.86 28.86 0 0 0 0 40.81l195.61 195.6a28.86 28.86 0 0 0 40.8 0l194.69-194.69a28.86 28.86 0 0 0 0-40.81"/></svg>
+  </div>
+  <div class="md-source__repository">
+    Sinotrade/Shioaji
+  </div>
+</a>
+      </div>
+    
+  </nav>
+  
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+      
+        
+          
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              
+              <div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+
+
+<nav class="md-nav md-nav--primary" aria-label="Navigation" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href="../../../.." title="Shioaji - Taiwan&#39;s Leading Cross Platform Trading API" class="md-nav__button md-logo" aria-label="Shioaji - Taiwan's Leading Cross Platform Trading API" data-md-component="logo">
+      
+  <img src="../../../../img/shioaji-logo.svg" alt="logo">
+
+    </a>
+    Shioaji - Taiwan's Leading Cross Platform Trading API
+  </label>
+  
+    <div class="md-nav__source">
+      <a href="https://github.com/Sinotrade/Shioaji" title="Go to repository" class="md-source" data-md-component="source">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><!--! Font Awesome Free 6.7.2 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2024 Fonticons, Inc.--><path d="M439.55 236.05 244 40.45a28.87 28.87 0 0 0-40.81 0l-40.66 40.63 51.52 51.52c27.06-9.14 52.68 16.77 43.39 43.68l49.66 49.66c34.23-11.8 61.18 31 35.47 56.69-26.49 26.49-70.21-2.87-56-37.34L240.22 199v121.85c25.3 12.54 22.26 41.85 9.08 55a34.34 34.34 0 0 1-48.55 0c-17.57-17.6-11.07-46.91 11.25-56v-123c-20.8-8.51-24.6-30.74-18.64-45L142.57 101 8.45 235.14a28.86 28.86 0 0 0 0 40.81l195.61 195.6a28.86 28.86 0 0 0 40.8 0l194.69-194.69a28.86 28.86 0 0 0 0-40.81"/></svg>
+  </div>
+  <div class="md-source__repository">
+    Sinotrade/Shioaji
+  </div>
+</a>
+    </div>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../.." class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Overview
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../ai_assistant/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    AI Coding Assistant
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../quickstart/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Quick Start
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_4" >
+        
+          
+          <label class="md-nav__link" for="__nav_4" id="__nav_4_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    Environment Setup
+    
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_4_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_4">
+            <span class="md-nav__icon md-icon"></span>
+            Environment Setup
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../env_setup/python/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Python User
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../env_setup/other/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Other Language User
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+    
+  
+  
+  
+    
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--active md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_5" checked>
+        
+          
+          <label class="md-nav__link" for="__nav_5" id="__nav_5_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    Tutorial - User Guide
+    
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_5_label" aria-expanded="true">
+          <label class="md-nav__title" for="__nav_5">
+            <span class="md-nav__icon md-icon"></span>
+            Tutorial - User Guide
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_5_1" >
+        
+          
+          <label class="md-nav__link" for="__nav_5_1" id="__nav_5_1_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    Prepare
+    
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_5_1_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_5_1">
+            <span class="md-nav__icon md-icon"></span>
+            Prepare
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../prepare/open_account/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Open Account
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../prepare/token/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Token & Certificate
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../prepare/terms/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    API Signing and Test
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../prepare/example_testing_flow/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Example Project For Testing Flow
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../login/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Login
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../contract/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Contract
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+    
+  
+  
+  
+    
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--active md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_5_4" checked>
+        
+          
+          <label class="md-nav__link" for="__nav_5_4" id="__nav_5_4_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    Market Data
+    
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_5_4_label" aria-expanded="true">
+          <label class="md-nav__title" for="__nav_5_4">
+            <span class="md-nav__icon md-icon"></span>
+            Market Data
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+    
+  
+  
+  
+    
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--active md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_5_4_1" checked>
+        
+          
+          <label class="md-nav__link" for="__nav_5_4_1" id="__nav_5_4_1_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    Streaming Market Data
+    
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="3" aria-labelledby="__nav_5_4_1_label" aria-expanded="true">
+          <label class="md-nav__title" for="__nav_5_4_1">
+            <span class="md-nav__icon md-icon"></span>
+            Streaming Market Data
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../stocks/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Stocks
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../futures/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Futures and Option
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Index
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+    
+  
+  
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
+      
+      
+      
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          
+  
+  
+  <span class="md-ellipsis">
+    Enriched Data
+    
+  </span>
+  
+
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <a href="./" class="md-nav__link md-nav__link--active">
+        
+  
+  
+  <span class="md-ellipsis">
+    Enriched Data
+    
+  </span>
+  
+
+      </a>
+      
+        
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#overview" class="md-nav__link">
+    <span class="md-ellipsis">
+      Overview
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#calculatedindex" class="md-nav__link">
+    <span class="md-ellipsis">
+      Calculated Index
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Calculated Index">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#attributes" class="md-nav__link">
+    <span class="md-ellipsis">
+      Attributes
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#indexcontribution" class="md-nav__link">
+    <span class="md-ellipsis">
+      Index Contribution
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Index Contribution">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#attributes_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      Attributes
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#industrycontribution" class="md-nav__link">
+    <span class="md-ellipsis">
+      Industry Contribution
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Industry Contribution">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#attributes_2" class="md-nav__link">
+    <span class="md-ellipsis">
+      Attributes
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../signals/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Market Signals
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../historical/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Historical Market Data
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../snapshot/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Snapshot
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../short_stock_source/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Short Stock Source
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../credit_enquires/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Credit Enquires
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../scanners/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Scanners
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../disposition_attention/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Disposition and Attention Stocks
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_5_5" >
+        
+          
+          <label class="md-nav__link" for="__nav_5_5" id="__nav_5_5_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    Order
+    
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_5_5_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_5_5">
+            <span class="md-nav__icon md-icon"></span>
+            Order
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../order/Stock/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Stock
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../order/FutureOption/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Futures and Option
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../order/IntradayOdd/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Intraday Odd
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../order/Combo/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Combo
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../order/Reserve/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Reserve Order
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../order/UpdateStatus/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Update Status
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_5_5_7" >
+        
+          
+          <label class="md-nav__link" for="__nav_5_5_7" id="__nav_5_5_7_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    CallBack Info.
+    
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="3" aria-labelledby="__nav_5_5_7_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_5_5_7">
+            <span class="md-nav__icon md-icon"></span>
+            CallBack Info.
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../order/order_deal_event/stocks/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Stock
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../order/order_deal_event/futures/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Futures
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_5_6" >
+        
+          
+          <label class="md-nav__link" for="__nav_5_6" id="__nav_5_6_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    CallBack
+    
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_5_6_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_5_6">
+            <span class="md-nav__icon md-icon"></span>
+            CallBack
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../callback/orderdeal_event/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Order Event
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../callback/event_cb/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Event Callback
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_5_7" >
+        
+          
+          <label class="md-nav__link" for="__nav_5_7" id="__nav_5_7_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    Account Data
+    
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_5_7_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_5_7">
+            <span class="md-nav__icon md-icon"></span>
+            Account Data
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../accounting/account_balance/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Account Balance
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../accounting/trading_limits/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Trading Limits
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../accounting/margin/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Margin
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../accounting/position/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Position
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../accounting/profit_loss/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Profit Loss
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../accounting/settlements/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Settlements
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../simulation/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Simulation Mode
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../shioaji_apps/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Shioaji Apps
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_5_10" >
+        
+          
+          <label class="md-nav__link" for="__nav_5_10" id="__nav_5_10_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    Advanced Guide
+    
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_5_10_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_5_10">
+            <span class="md-nav__icon md-icon"></span>
+            Advanced Guide
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../advanced/quote_binding/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Quote-Binding Mode
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../advanced/nonblock/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Non-blocking Mode
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../advanced/touchorder/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Touch Price Order
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../advanced/quote_manager_basic/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Quote Manager Basic
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_6" >
+        
+          
+          <label class="md-nav__link" for="__nav_6" id="__nav_6_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    Upgrading
+    
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_6_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_6">
+            <span class="md-nav__icon md-icon"></span>
+            Upgrading
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../upgrade/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Upgrading to 1.0
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../upgrade_to_1_5/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Upgrading to 1.5
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../upgrade_to_1_7/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Upgrading to 1.7
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../qa/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    QA
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../release/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Release Note
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../limit/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Use Restrictions
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+              
+              <div class="md-sidebar md-sidebar--secondary" data-md-component="sidebar" data-md-type="toc" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#overview" class="md-nav__link">
+    <span class="md-ellipsis">
+      Overview
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#calculatedindex" class="md-nav__link">
+    <span class="md-ellipsis">
+      Calculated Index
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Calculated Index">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#attributes" class="md-nav__link">
+    <span class="md-ellipsis">
+      Attributes
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#indexcontribution" class="md-nav__link">
+    <span class="md-ellipsis">
+      Index Contribution
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Index Contribution">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#attributes_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      Attributes
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#industrycontribution" class="md-nav__link">
+    <span class="md-ellipsis">
+      Industry Contribution
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Industry Contribution">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#attributes_2" class="md-nav__link">
+    <span class="md-ellipsis">
+      Attributes
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+          
+          
+            <div class="md-content" data-md-component="content">
+              <article class="md-content__inner md-typeset">
+                
+                  
+
+
+
+  <h1>Enriched Data</h1>
+
+<p>Enriched data is value-added market data computed in real time by the quote engine on top of raw exchange feeds, and is only pushed during trading hours. Like regular streaming market data, you receive it by subscribing to a <a href="../../../contract/">contract</a> with the corresponding <code>quote_type</code>.</p>
+<div class="admonition tip">
+<p class="admonition-title">Tips</p>
+<p>Enriched data subscriptions do not count against your subscription quota.</p>
+</div>
+<div class="tabbed-set tabbed-alternate" data-tabs="1:2"><input checked="checked" id="__tabbed_1_1" name="__tabbed_1" type="radio" /><input id="__tabbed_1_2" name="__tabbed_1" type="radio" /><div class="tabbed-labels"><label for="__tabbed_1_1">Python</label><label for="__tabbed_1_2">HTTP</label></div>
+<div class="tabbed-content">
+<div class="tabbed-block">
+<div class="admonition example">
+<p class="admonition-title">Subscribe</p>
+<div class="highlight"><pre><span></span><code><span class="o">&gt;&gt;</span> <span class="n">api</span><span class="o">.</span><span class="n">subscribe</span><span class="err">?</span>
+
+<span class="n">Signature</span><span class="p">:</span>
+<span class="n">api</span><span class="o">.</span><span class="n">subscribe</span><span class="p">(</span>
+    <span class="n">contract</span><span class="p">,</span>
+    <span class="n">quote_type</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
+    <span class="n">intraday_odd</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span>
+    <span class="n">version</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
+    <span class="o">*</span><span class="p">,</span>
+    <span class="n">ranking</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
+<span class="p">)</span>
+</code></pre></div>
+</div>
+<div class="admonition done">
+<p class="admonition-title">Quote Parameters:</p>
+<div class="highlight"><pre><span></span><code>contract:     index contract to subscribe (from api.contracts.get)
+quote_type:   enriched data type {CalculatedIndex, IndexContribution, IndustryContribution}
+intraday_odd: not supported for enriched data, keep False
+version:      not supported for enriched data, omit it
+ranking:      ranking type, only for QuoteType.IndexContribution (keyword-only)
+</code></pre></div>
+</div>
+</div>
+<div class="tabbed-block">
+<div class="admonition example">
+<p class="admonition-title">Subscribe</p>
+<div class="highlight"><pre><span></span><code><span class="err">POST /api/v1/stream/subscribe/calculated_index</span>
+<span class="err">POST /api/v1/stream/subscribe/index_contribution</span>
+<span class="err">POST /api/v1/stream/subscribe/industry_contribution</span>
+</code></pre></div>
+<p>Each enriched data type has its own endpoint; to unsubscribe, call the matching <code>/api/v1/stream/unsubscribe/...</code> with the same body.</p>
+</div>
+<div class="admonition done">
+<p class="admonition-title">Quote Parameters:</p>
+<div class="highlight"><pre><span></span><code>calculated_index:      {&quot;index&quot;: &lt;StreamContract&gt;}
+index_contribution:    {&quot;index&quot;: &lt;StreamContract&gt;, &quot;ranking&quot;: &lt;ContributionRanking&gt;}
+industry_contribution: {&quot;index&quot;: &lt;StreamContract&gt;}
+</code></pre></div>
+</div>
+</div>
+</div>
+</div>
+<h2 id="overview">Overview<a class="headerlink" href="#overview" title="Permanent link">&para;</a></h2>
+<table>
+<thead>
+<tr>
+<th style="text-align: left;">QuoteType</th>
+<th style="text-align: left;">Description</th>
+<th style="text-align: left;">Push cadence</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: left;"><code>CalculatedIndex</code></td>
+<td style="text-align: left;"><a href="#calculatedindex">Calculated index</a></td>
+<td style="text-align: left;">multiple per second</td>
+</tr>
+<tr>
+<td style="text-align: left;"><code>IndexContribution</code></td>
+<td style="text-align: left;"><a href="#indexcontribution">Index contribution</a> (contribution points of individual stocks to the index)</td>
+<td style="text-align: left;">once per second</td>
+</tr>
+<tr>
+<td style="text-align: left;"><code>IndustryContribution</code></td>
+<td style="text-align: left;"><a href="#industrycontribution">Industry contribution</a> (contribution points of industry sectors to the index)</td>
+<td style="text-align: left;">once per second</td>
+</tr>
+</tbody>
+</table>
+<div class="admonition warning">
+<p class="admonition-title">Product restrictions</p>
+<p>Enriched data is subscribed with <strong>index contracts</strong>, currently only <code>IX0001</code> (the TSE weighted index) and <code>IX0043</code> (the TPEx index).</p>
+</div>
+<div class="admonition info">
+<p class="admonition-title">Attention</p>
+<ul>
+<li>Enriched data does not support the <code>intraday_odd</code> and <code>version</code> parameters; passing them raises an error.</li>
+<li>The CLI <code>shioaji data stream</code> command does not support enriched data; use the Python or HTTP interface instead.</li>
+</ul>
+</div>
+<h2 id="calculatedindex">Calculated Index<a class="headerlink" href="#calculatedindex" title="Permanent link">&para;</a></h2>
+<p>The quote engine computes the index in real time from its constituent-stock trades; it updates more frequently than the official index, and multiple updates may be pushed within the same second.</p>
+<div class="tabbed-set tabbed-alternate" data-tabs="2:2"><input checked="checked" id="__tabbed_2_1" name="__tabbed_2" type="radio" /><input id="__tabbed_2_2" name="__tabbed_2" type="radio" /><div class="tabbed-labels"><label for="__tabbed_2_1">Python</label><label for="__tabbed_2_2">HTTP</label></div>
+<div class="tabbed-content">
+<div class="tabbed-block">
+<div class="admonition info">
+<p class="admonition-title">In</p>
+<div class="highlight"><pre><span></span><code><span class="n">contract</span> <span class="o">=</span> <span class="n">api</span><span class="o">.</span><span class="n">contracts</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s2">&quot;IX0001&quot;</span><span class="p">)</span>
+<span class="n">api</span><span class="o">.</span><span class="n">subscribe</span><span class="p">(</span>
+    <span class="n">contract</span><span class="p">,</span>
+<span class="hll">    <span class="n">quote_type</span><span class="o">=</span><span class="n">sj</span><span class="o">.</span><span class="n">QuoteType</span><span class="o">.</span><span class="n">CalculatedIndex</span><span class="p">,</span>
+</span><span class="p">)</span>
+
+<span class="c1"># unsubscribe</span>
+<span class="c1"># api.unsubscribe(</span>
+<span class="c1">#     contract,</span>
+<span class="c1">#     quote_type=sj.QuoteType.CalculatedIndex,</span>
+<span class="c1"># )</span>
+</code></pre></div>
+</div>
+<div class="admonition done">
+<p class="admonition-title">Out</p>
+<div class="highlight"><pre><span></span><code><span class="n">CalculatedIndex</span><span class="p">(</span>
+    <span class="n">code</span><span class="o">=</span><span class="s1">&#39;IX0001&#39;</span><span class="p">,</span>
+    <span class="n">date</span><span class="o">=</span><span class="s1">&#39;2026/07/29&#39;</span><span class="p">,</span>
+    <span class="n">time</span><span class="o">=</span><span class="s1">&#39;10:27:16.000000&#39;</span><span class="p">,</span>
+    <span class="nb">open</span><span class="o">=</span><span class="mf">41603.37</span><span class="p">,</span>
+    <span class="n">high</span><span class="o">=</span><span class="mf">41711.37</span><span class="p">,</span>
+    <span class="n">low</span><span class="o">=</span><span class="mf">40211.28</span><span class="p">,</span>
+    <span class="n">close</span><span class="o">=</span><span class="mf">40385.25</span><span class="p">,</span>
+    <span class="n">total_amount</span><span class="o">=</span><span class="mi">505597362400</span><span class="p">,</span>
+    <span class="n">price_chg</span><span class="o">=-</span><span class="mf">1218.11</span><span class="p">,</span>
+    <span class="n">pct_chg</span><span class="o">=-</span><span class="mf">2.93</span><span class="p">,</span>
+    <span class="n">simtrade</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span>
+<span class="p">)</span>
+</code></pre></div>
+</div>
+<div class="admonition info">
+<p class="admonition-title">Callback (decorator style)</p>
+<p>Without a callback, each event is printed by default. To handle the data yourself, register a callback function with the decorator:</p>
+<div class="highlight"><pre><span></span><code><span class="kn">from</span><span class="w"> </span><span class="nn">shioaji</span><span class="w"> </span><span class="kn">import</span> <span class="n">CalculatedIndex</span>
+
+<span class="nd">@api</span><span class="o">.</span><span class="n">on_calculated_index</span><span class="p">()</span>
+<span class="k">def</span><span class="w"> </span><span class="nf">calculated_index_callback</span><span class="p">(</span><span class="n">idx</span><span class="p">:</span> <span class="n">CalculatedIndex</span><span class="p">):</span>
+    <span class="nb">print</span><span class="p">(</span><span class="n">idx</span><span class="p">)</span>
+</code></pre></div>
+</div>
+<div class="admonition info">
+<p class="admonition-title">Callback (traditional style)</p>
+<div class="highlight"><pre><span></span><code><span class="kn">from</span><span class="w"> </span><span class="nn">shioaji</span><span class="w"> </span><span class="kn">import</span> <span class="n">CalculatedIndex</span>
+
+<span class="k">def</span><span class="w"> </span><span class="nf">calculated_index_callback</span><span class="p">(</span><span class="n">idx</span><span class="p">:</span> <span class="n">CalculatedIndex</span><span class="p">):</span>
+    <span class="nb">print</span><span class="p">(</span><span class="n">idx</span><span class="p">)</span>
+
+<span class="n">api</span><span class="o">.</span><span class="n">set_on_calculated_index_callback</span><span class="p">(</span><span class="n">calculated_index_callback</span><span class="p">)</span>
+</code></pre></div>
+</div>
+</div>
+<div class="tabbed-block">
+<div class="admonition info">
+<p class="admonition-title">In</p>
+<div class="highlight"><pre><span></span><code><span class="c1"># subscribe</span>
+curl<span class="w"> </span>-X<span class="w"> </span>POST<span class="w"> </span>http://localhost:8080/api/v1/stream/subscribe/calculated_index<span class="w"> </span><span class="se">\</span>
+<span class="w">  </span>-H<span class="w"> </span><span class="s1">&#39;Content-Type: application/json&#39;</span><span class="w"> </span><span class="se">\</span>
+<span class="w">  </span>-d<span class="w"> </span><span class="s1">&#39;{&quot;index&quot;: {&quot;security_type&quot;: &quot;IND&quot;, &quot;exchange&quot;: &quot;TSE&quot;, &quot;code&quot;: &quot;IX0001&quot;, &quot;target_code&quot;: null}}&#39;</span>
+
+<span class="c1"># open SSE to receive the calculated index (Ctrl+C to stop)</span>
+curl<span class="w"> </span>-N<span class="w"> </span>http://localhost:8080/api/v1/stream/data/calculated_index
+
+<span class="c1"># unsubscribe</span>
+<span class="c1"># curl -X POST http://localhost:8080/api/v1/stream/unsubscribe/calculated_index \</span>
+<span class="c1">#   -H &#39;Content-Type: application/json&#39; \</span>
+<span class="c1">#   -d &#39;{&quot;index&quot;: {&quot;security_type&quot;: &quot;IND&quot;, &quot;exchange&quot;: &quot;TSE&quot;, &quot;code&quot;: &quot;IX0001&quot;, &quot;target_code&quot;: null}}&#39;</span>
+</code></pre></div>
+</div>
+<div class="admonition done">
+<p class="admonition-title">Out</p>
+<div class="highlight"><pre><span></span><code>event:calculated_index
+data:{
+  &quot;code&quot;: &quot;IX0001&quot;,
+  &quot;date&quot;: &quot;2026/07/28&quot;,
+  &quot;time&quot;: &quot;12:25:46.000000&quot;,
+  &quot;open&quot;: 43634.19,
+  &quot;high&quot;: 43634.19,
+  &quot;low&quot;: 41568.96,
+  &quot;close&quot;: 41936.96,
+  &quot;total_amount&quot;: 527835364040,
+  &quot;price_chg&quot;: -1697.23,
+  &quot;pct_chg&quot;: -3.89,
+  &quot;simtrade&quot;: false
+}
+</code></pre></div>
+</div>
+</div>
+</div>
+</div>
+<h3 id="attributes">Attributes<a class="headerlink" href="#attributes" title="Permanent link">&para;</a></h3>
+<div class="admonition example">
+<p class="admonition-title">CalculatedIndex</p>
+<div class="highlight"><pre><span></span><code><span class="n">code</span> <span class="p">(</span><span class="nb">str</span><span class="p">)</span>                               <span class="n">index</span> <span class="n">code</span>
+<span class="n">date</span> <span class="p">(</span><span class="nb">str</span><span class="p">)</span>                               <span class="n">date</span>
+<span class="n">time</span> <span class="p">(</span><span class="nb">str</span><span class="p">)</span>                               <span class="n">time</span>
+<span class="nb">open</span> <span class="p">(</span><span class="nb">float</span><span class="p">)</span>                             <span class="nb">open</span>
+<span class="n">high</span> <span class="p">(</span><span class="nb">float</span><span class="p">)</span>                             <span class="n">high</span>
+<span class="n">low</span> <span class="p">(</span><span class="nb">float</span><span class="p">)</span>                              <span class="n">low</span>
+<span class="n">close</span> <span class="p">(</span><span class="nb">float</span><span class="p">)</span>                            <span class="n">latest</span> <span class="n">index</span> <span class="n">value</span>
+<span class="n">total_amount</span> <span class="p">(</span><span class="nb">int</span><span class="p">)</span>                       <span class="n">cumulative</span> <span class="n">turnover</span> <span class="p">(</span><span class="n">NTD</span><span class="p">)</span>
+<span class="n">price_chg</span> <span class="p">(</span><span class="nb">float</span><span class="p">)</span>                        <span class="n">price</span> <span class="n">change</span>
+<span class="n">pct_chg</span> <span class="p">(</span><span class="nb">float</span><span class="p">)</span>                          <span class="n">percentage</span> <span class="n">change</span> <span class="p">(</span><span class="o">%</span><span class="p">)</span>
+<span class="n">simtrade</span> <span class="p">(</span><span class="nb">bool</span><span class="p">)</span>                          <span class="n">simulated</span> <span class="n">trading</span>
+</code></pre></div>
+</div>
+<h2 id="indexcontribution">Index Contribution<a class="headerlink" href="#indexcontribution" title="Permanent link">&para;</a></h2>
+<p>A per-stock contribution ranking is pushed once per second, listing the constituent stocks contributing most to that index's movement; specify the ranking type with the keyword argument <code>ranking</code>:</p>
+<div class="admonition example">
+<p class="admonition-title">ContributionRanking</p>
+<div class="highlight"><pre><span></span><code><span class="c1"># Python                                 HTTP (ranking)</span>
+<span class="n">ContributionRanking</span><span class="o">.</span><span class="n">Top10</span>                <span class="n">top10</span>            <span class="n">top</span> <span class="mi">10</span> <span class="n">by</span> <span class="n">contribution</span> <span class="n">points</span>
+<span class="n">ContributionRanking</span><span class="o">.</span><span class="n">Abs10</span>                <span class="n">abs10</span>            <span class="n">top</span> <span class="mi">10</span> <span class="n">by</span> <span class="n">absolute</span> <span class="n">contribution</span> <span class="n">points</span>
+<span class="n">ContributionRanking</span><span class="o">.</span><span class="n">Positive25</span>           <span class="n">positive25</span>       <span class="n">top</span> <span class="mi">25</span> <span class="n">positive</span> <span class="n">contributors</span>
+<span class="n">ContributionRanking</span><span class="o">.</span><span class="n">Negative25</span>           <span class="n">negative25</span>       <span class="n">top</span> <span class="mi">25</span> <span class="n">negative</span> <span class="n">contributors</span>
+</code></pre></div>
+</div>
+<div class="admonition tip">
+<p class="admonition-title">Tips</p>
+<p><code>ranking</code> is required; omitting it raises an error. It is only valid for <code>QuoteType.IndexContribution</code>; combining it with any other <code>quote_type</code> also raises an error.</p>
+</div>
+<div class="tabbed-set tabbed-alternate" data-tabs="3:2"><input checked="checked" id="__tabbed_3_1" name="__tabbed_3" type="radio" /><input id="__tabbed_3_2" name="__tabbed_3" type="radio" /><div class="tabbed-labels"><label for="__tabbed_3_1">Python</label><label for="__tabbed_3_2">HTTP</label></div>
+<div class="tabbed-content">
+<div class="tabbed-block">
+<div class="admonition info">
+<p class="admonition-title">In</p>
+<div class="highlight"><pre><span></span><code><span class="n">contract</span> <span class="o">=</span> <span class="n">api</span><span class="o">.</span><span class="n">contracts</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s2">&quot;IX0001&quot;</span><span class="p">)</span>
+<span class="n">api</span><span class="o">.</span><span class="n">subscribe</span><span class="p">(</span>
+    <span class="n">contract</span><span class="p">,</span>
+<span class="hll">    <span class="n">quote_type</span><span class="o">=</span><span class="n">sj</span><span class="o">.</span><span class="n">QuoteType</span><span class="o">.</span><span class="n">IndexContribution</span><span class="p">,</span>
+</span><span class="hll">    <span class="n">ranking</span><span class="o">=</span><span class="n">sj</span><span class="o">.</span><span class="n">ContributionRanking</span><span class="o">.</span><span class="n">Top10</span><span class="p">,</span>
+</span><span class="p">)</span>
+
+<span class="c1"># unsubscribe</span>
+<span class="c1"># api.unsubscribe(</span>
+<span class="c1">#     contract,</span>
+<span class="c1">#     quote_type=sj.QuoteType.IndexContribution,</span>
+<span class="c1">#     ranking=sj.ContributionRanking.Top10,</span>
+<span class="c1"># )</span>
+</code></pre></div>
+</div>
+<div class="admonition done">
+<p class="admonition-title">Out</p>
+<div class="highlight"><pre><span></span><code><span class="n">IndexContribution</span><span class="p">(</span>
+    <span class="n">ranking</span><span class="o">=&lt;</span><span class="n">ContributionRanking</span><span class="o">.</span><span class="n">top10</span><span class="p">:</span> <span class="s1">&#39;top10&#39;</span><span class="o">&gt;</span><span class="p">,</span>
+    <span class="n">code</span><span class="o">=</span><span class="s1">&#39;IX0001&#39;</span><span class="p">,</span>
+    <span class="n">date</span><span class="o">=</span><span class="s1">&#39;2026/07/29&#39;</span><span class="p">,</span>
+    <span class="n">time</span><span class="o">=</span><span class="s1">&#39;10:28:25.000000&#39;</span><span class="p">,</span>
+    <span class="n">entries</span><span class="o">=</span><span class="p">[</span>
+        <span class="p">{</span><span class="s1">&#39;code&#39;</span><span class="p">:</span> <span class="s1">&#39;2317&#39;</span><span class="p">,</span> <span class="s1">&#39;price&#39;</span><span class="p">:</span> <span class="mf">239.0</span><span class="p">,</span> <span class="s1">&#39;reference&#39;</span><span class="p">:</span> <span class="mf">238.0</span><span class="p">,</span> <span class="s1">&#39;price_chg&#39;</span><span class="p">:</span> <span class="mf">1.0</span><span class="p">,</span> <span class="s1">&#39;pct_chg&#39;</span><span class="p">:</span> <span class="mf">0.42016806722689076</span><span class="p">,</span> <span class="s1">&#39;points&#39;</span><span class="p">:</span> <span class="mf">4.3</span><span class="p">},</span>
+        <span class="p">{</span><span class="s1">&#39;code&#39;</span><span class="p">:</span> <span class="s1">&#39;2357&#39;</span><span class="p">,</span> <span class="s1">&#39;price&#39;</span><span class="p">:</span> <span class="mf">753.0</span><span class="p">,</span> <span class="s1">&#39;reference&#39;</span><span class="p">:</span> <span class="mf">735.0</span><span class="p">,</span> <span class="s1">&#39;price_chg&#39;</span><span class="p">:</span> <span class="mf">18.0</span><span class="p">,</span> <span class="s1">&#39;pct_chg&#39;</span><span class="p">:</span> <span class="mf">2.4489795918367347</span><span class="p">,</span> <span class="s1">&#39;points&#39;</span><span class="p">:</span> <span class="mf">4.1</span><span class="p">},</span>
+        <span class="p">{</span><span class="s1">&#39;code&#39;</span><span class="p">:</span> <span class="s1">&#39;2880&#39;</span><span class="p">,</span> <span class="s1">&#39;price&#39;</span><span class="p">:</span> <span class="mf">42.35</span><span class="p">,</span> <span class="s1">&#39;reference&#39;</span><span class="p">:</span> <span class="mf">41.4</span><span class="p">,</span> <span class="s1">&#39;price_chg&#39;</span><span class="p">:</span> <span class="mf">0.95</span><span class="p">,</span> <span class="s1">&#39;pct_chg&#39;</span><span class="p">:</span> <span class="mf">2.2946859903381642</span><span class="p">,</span> <span class="s1">&#39;points&#39;</span><span class="p">:</span> <span class="mf">4.06</span><span class="p">},</span>
+        <span class="p">{</span><span class="s1">&#39;code&#39;</span><span class="p">:</span> <span class="s1">&#39;2207&#39;</span><span class="p">,</span> <span class="s1">&#39;price&#39;</span><span class="p">:</span> <span class="mf">520.0</span><span class="p">,</span> <span class="s1">&#39;reference&#39;</span><span class="p">:</span> <span class="mf">500.0</span><span class="p">,</span> <span class="s1">&#39;price_chg&#39;</span><span class="p">:</span> <span class="mf">20.0</span><span class="p">,</span> <span class="s1">&#39;pct_chg&#39;</span><span class="p">:</span> <span class="mf">4.0</span><span class="p">,</span> <span class="s1">&#39;points&#39;</span><span class="p">:</span> <span class="mf">3.42</span><span class="p">},</span>
+        <span class="p">{</span><span class="s1">&#39;code&#39;</span><span class="p">:</span> <span class="s1">&#39;2603&#39;</span><span class="p">,</span> <span class="s1">&#39;price&#39;</span><span class="p">:</span> <span class="mf">203.0</span><span class="p">,</span> <span class="s1">&#39;reference&#39;</span><span class="p">:</span> <span class="mf">200.0</span><span class="p">,</span> <span class="s1">&#39;price_chg&#39;</span><span class="p">:</span> <span class="mf">3.0</span><span class="p">,</span> <span class="s1">&#39;pct_chg&#39;</span><span class="p">:</span> <span class="mf">1.5</span><span class="p">,</span> <span class="s1">&#39;points&#39;</span><span class="p">:</span> <span class="mf">1.99</span><span class="p">},</span>
+        <span class="p">{</span><span class="s1">&#39;code&#39;</span><span class="p">:</span> <span class="s1">&#39;2615&#39;</span><span class="p">,</span> <span class="s1">&#39;price&#39;</span><span class="p">:</span> <span class="mf">85.9</span><span class="p">,</span> <span class="s1">&#39;reference&#39;</span><span class="p">:</span> <span class="mf">83.6</span><span class="p">,</span> <span class="s1">&#39;price_chg&#39;</span><span class="p">:</span> <span class="mf">2.3</span><span class="p">,</span> <span class="s1">&#39;pct_chg&#39;</span><span class="p">:</span> <span class="mf">2.751196172248804</span><span class="p">,</span> <span class="s1">&#39;points&#39;</span><span class="p">:</span> <span class="mf">1.98</span><span class="p">},</span>
+        <span class="p">{</span><span class="s1">&#39;code&#39;</span><span class="p">:</span> <span class="s1">&#39;3034&#39;</span><span class="p">,</span> <span class="s1">&#39;price&#39;</span><span class="p">:</span> <span class="mf">502.0</span><span class="p">,</span> <span class="s1">&#39;reference&#39;</span><span class="p">:</span> <span class="mf">492.5</span><span class="p">,</span> <span class="s1">&#39;price_chg&#39;</span><span class="p">:</span> <span class="mf">9.5</span><span class="p">,</span> <span class="s1">&#39;pct_chg&#39;</span><span class="p">:</span> <span class="mf">1.9289340101522845</span><span class="p">,</span> <span class="s1">&#39;points&#39;</span><span class="p">:</span> <span class="mf">1.77</span><span class="p">},</span>
+        <span class="p">{</span><span class="s1">&#39;code&#39;</span><span class="p">:</span> <span class="s1">&#39;4904&#39;</span><span class="p">,</span> <span class="s1">&#39;price&#39;</span><span class="p">:</span> <span class="mf">107.5</span><span class="p">,</span> <span class="s1">&#39;reference&#39;</span><span class="p">:</span> <span class="mf">106.0</span><span class="p">,</span> <span class="s1">&#39;price_chg&#39;</span><span class="p">:</span> <span class="mf">1.5</span><span class="p">,</span> <span class="s1">&#39;pct_chg&#39;</span><span class="p">:</span> <span class="mf">1.4150943396226416</span><span class="p">,</span> <span class="s1">&#39;points&#39;</span><span class="p">:</span> <span class="mf">1.66</span><span class="p">},</span>
+        <span class="p">{</span><span class="s1">&#39;code&#39;</span><span class="p">:</span> <span class="s1">&#39;3231&#39;</span><span class="p">,</span> <span class="s1">&#39;price&#39;</span><span class="p">:</span> <span class="mf">171.5</span><span class="p">,</span> <span class="s1">&#39;reference&#39;</span><span class="p">:</span> <span class="mf">170.0</span><span class="p">,</span> <span class="s1">&#39;price_chg&#39;</span><span class="p">:</span> <span class="mf">1.5</span><span class="p">,</span> <span class="s1">&#39;pct_chg&#39;</span><span class="p">:</span> <span class="mf">0.8823529411764706</span><span class="p">,</span> <span class="s1">&#39;points&#39;</span><span class="p">:</span> <span class="mf">1.46</span><span class="p">},</span>
+        <span class="p">{</span><span class="s1">&#39;code&#39;</span><span class="p">:</span> <span class="s1">&#39;2923&#39;</span><span class="p">,</span> <span class="s1">&#39;price&#39;</span><span class="p">:</span> <span class="mf">40.2</span><span class="p">,</span> <span class="s1">&#39;reference&#39;</span><span class="p">:</span> <span class="mf">37.65</span><span class="p">,</span> <span class="s1">&#39;price_chg&#39;</span><span class="p">:</span> <span class="mf">2.55</span><span class="p">,</span> <span class="s1">&#39;pct_chg&#39;</span><span class="p">:</span> <span class="mf">6.772908366533864</span><span class="p">,</span> <span class="s1">&#39;points&#39;</span><span class="p">:</span> <span class="mf">1.36</span><span class="p">},</span>
+    <span class="p">],</span>
+    <span class="n">simtrade</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span>
+<span class="p">)</span>
+</code></pre></div>
+</div>
+<div class="admonition info">
+<p class="admonition-title">Callback (decorator style)</p>
+<p>Without a callback, each event is printed by default. To handle the data yourself, register a callback function with the decorator:</p>
+<div class="highlight"><pre><span></span><code><span class="kn">from</span><span class="w"> </span><span class="nn">shioaji</span><span class="w"> </span><span class="kn">import</span> <span class="n">IndexContribution</span>
+
+<span class="nd">@api</span><span class="o">.</span><span class="n">on_index_contribution</span><span class="p">()</span>
+<span class="k">def</span><span class="w"> </span><span class="nf">index_contribution_callback</span><span class="p">(</span><span class="n">ic</span><span class="p">:</span> <span class="n">IndexContribution</span><span class="p">):</span>
+    <span class="nb">print</span><span class="p">(</span><span class="n">ic</span><span class="p">)</span>
+</code></pre></div>
+</div>
+<div class="admonition info">
+<p class="admonition-title">Callback (traditional style)</p>
+<div class="highlight"><pre><span></span><code><span class="kn">from</span><span class="w"> </span><span class="nn">shioaji</span><span class="w"> </span><span class="kn">import</span> <span class="n">IndexContribution</span>
+
+<span class="k">def</span><span class="w"> </span><span class="nf">index_contribution_callback</span><span class="p">(</span><span class="n">ic</span><span class="p">:</span> <span class="n">IndexContribution</span><span class="p">):</span>
+    <span class="nb">print</span><span class="p">(</span><span class="n">ic</span><span class="p">)</span>
+
+<span class="n">api</span><span class="o">.</span><span class="n">set_on_index_contribution_callback</span><span class="p">(</span><span class="n">index_contribution_callback</span><span class="p">)</span>
+</code></pre></div>
+</div>
+</div>
+<div class="tabbed-block">
+<div class="admonition info">
+<p class="admonition-title">In</p>
+<div class="highlight"><pre><span></span><code><span class="c1"># subscribe (ranking: top10 / abs10 / positive25 / negative25)</span>
+curl<span class="w"> </span>-X<span class="w"> </span>POST<span class="w"> </span>http://localhost:8080/api/v1/stream/subscribe/index_contribution<span class="w"> </span><span class="se">\</span>
+<span class="w">  </span>-H<span class="w"> </span><span class="s1">&#39;Content-Type: application/json&#39;</span><span class="w"> </span><span class="se">\</span>
+<span class="w">  </span>-d<span class="w"> </span><span class="s1">&#39;{&quot;index&quot;: {&quot;security_type&quot;: &quot;IND&quot;, &quot;exchange&quot;: &quot;TSE&quot;, &quot;code&quot;: &quot;IX0001&quot;, &quot;target_code&quot;: null}, &quot;ranking&quot;: &quot;top10&quot;}&#39;</span>
+
+<span class="c1"># open SSE to receive index contribution (Ctrl+C to stop)</span>
+curl<span class="w"> </span>-N<span class="w"> </span>http://localhost:8080/api/v1/stream/data/index_contribution
+
+<span class="c1"># unsubscribe</span>
+<span class="c1"># curl -X POST http://localhost:8080/api/v1/stream/unsubscribe/index_contribution \</span>
+<span class="c1">#   -H &#39;Content-Type: application/json&#39; \</span>
+<span class="c1">#   -d &#39;{&quot;index&quot;: {&quot;security_type&quot;: &quot;IND&quot;, &quot;exchange&quot;: &quot;TSE&quot;, &quot;code&quot;: &quot;IX0001&quot;, &quot;target_code&quot;: null}, &quot;ranking&quot;: &quot;top10&quot;}&#39;</span>
+</code></pre></div>
+</div>
+<div class="admonition done">
+<p class="admonition-title">Out</p>
+<div class="highlight"><pre><span></span><code>event:index_contribution
+data:{
+  &quot;ranking&quot;: &quot;top10&quot;,
+  &quot;code&quot;: &quot;IX0001&quot;,
+  &quot;date&quot;: &quot;2026/07/28&quot;,
+  &quot;time&quot;: &quot;12:32:07.000000&quot;,
+  &quot;entries&quot;: [
+    {&quot;code&quot;: &quot;3665&quot;, &quot;price&quot;: 2205.0, &quot;reference&quot;: 2150.0, &quot;price_chg&quot;: 55.0, &quot;pct_chg&quot;: 2.558139534883721, &quot;points&quot;: 3.29},
+    {&quot;code&quot;: &quot;2886&quot;, &quot;price&quot;: 49.8, &quot;reference&quot;: 49.4, &quot;price_chg&quot;: 0.4, &quot;pct_chg&quot;: 0.8097165991902834, &quot;points&quot;: 1.82},
+    {&quot;code&quot;: &quot;5269&quot;, &quot;price&quot;: 1465.0, &quot;reference&quot;: 1385.0, &quot;price_chg&quot;: 80.0, &quot;pct_chg&quot;: 5.776173285198556, &quot;points&quot;: 1.82},
+    {&quot;code&quot;: &quot;2207&quot;, &quot;price&quot;: 505.0, &quot;reference&quot;: 498.0, &quot;price_chg&quot;: 7.0, &quot;pct_chg&quot;: 1.4056224899598393, &quot;points&quot;: 1.2},
+    {&quot;code&quot;: &quot;2618&quot;, &quot;price&quot;: 42.65, &quot;reference&quot;: 41.95, &quot;price_chg&quot;: 0.7, &quot;pct_chg&quot;: 1.66865315852205, &quot;points&quot;: 1.16},
+    {&quot;code&quot;: &quot;2610&quot;, &quot;price&quot;: 21.85, &quot;reference&quot;: 21.25, &quot;price_chg&quot;: 0.6, &quot;pct_chg&quot;: 2.823529411764706, &quot;points&quot;: 1.13},
+    {&quot;code&quot;: &quot;2923&quot;, &quot;price&quot;: 36.0, &quot;reference&quot;: 34.45, &quot;price_chg&quot;: 1.55, &quot;pct_chg&quot;: 4.499274310595065, &quot;points&quot;: 0.83},
+    {&quot;code&quot;: &quot;1101&quot;, &quot;price&quot;: 24.7, &quot;reference&quot;: 24.4, &quot;price_chg&quot;: 0.3, &quot;pct_chg&quot;: 1.2295081967213115, &quot;points&quot;: 0.69},
+    {&quot;code&quot;: &quot;3045&quot;, &quot;price&quot;: 114.0, &quot;reference&quot;: 113.5, &quot;price_chg&quot;: 0.5, &quot;pct_chg&quot;: 0.4405286343612335, &quot;points&quot;: 0.57},
+    {&quot;code&quot;: &quot;5871&quot;, &quot;price&quot;: 121.0, &quot;reference&quot;: 120.0, &quot;price_chg&quot;: 1.0, &quot;pct_chg&quot;: 0.8333333333333334, &quot;points&quot;: 0.53}
+  ],
+  &quot;simtrade&quot;: false
+}
+</code></pre></div>
+</div>
+</div>
+</div>
+</div>
+<h3 id="attributes_1">Attributes<a class="headerlink" href="#attributes_1" title="Permanent link">&para;</a></h3>
+<div class="admonition example">
+<p class="admonition-title">IndexContribution</p>
+<div class="highlight"><pre><span></span><code><span class="n">ranking</span> <span class="p">(</span><span class="n">ContributionRanking</span><span class="p">)</span>            <span class="n">ranking</span> <span class="nb">type</span>
+<span class="n">code</span> <span class="p">(</span><span class="nb">str</span><span class="p">)</span>                               <span class="n">index</span> <span class="n">code</span>
+<span class="n">date</span> <span class="p">(</span><span class="nb">str</span><span class="p">)</span>                               <span class="n">date</span>
+<span class="n">time</span> <span class="p">(</span><span class="nb">str</span><span class="p">)</span>                               <span class="n">time</span>
+<span class="n">entries</span> <span class="p">(</span><span class="n">List</span><span class="p">[</span><span class="n">IndexContributionEntry</span><span class="p">])</span>   <span class="n">contribution</span> <span class="n">ranking</span> <span class="nb">list</span>
+<span class="n">simtrade</span> <span class="p">(</span><span class="nb">bool</span><span class="p">)</span>                          <span class="n">simulated</span> <span class="n">trading</span>
+</code></pre></div>
+</div>
+<div class="admonition example">
+<p class="admonition-title">IndexContributionEntry</p>
+<div class="highlight"><pre><span></span><code><span class="n">code</span> <span class="p">(</span><span class="nb">str</span><span class="p">)</span>                               <span class="n">stock</span> <span class="n">code</span>
+<span class="n">price</span> <span class="p">(</span><span class="nb">float</span><span class="p">)</span>                            <span class="n">traded</span> <span class="n">price</span>
+<span class="n">reference</span> <span class="p">(</span><span class="nb">float</span><span class="p">)</span>                        <span class="n">reference</span> <span class="n">price</span>
+<span class="n">price_chg</span> <span class="p">(</span><span class="nb">float</span><span class="p">)</span>                        <span class="n">price</span> <span class="n">change</span>
+<span class="n">pct_chg</span> <span class="p">(</span><span class="nb">float</span><span class="p">)</span>                          <span class="n">percentage</span> <span class="n">change</span> <span class="p">(</span><span class="o">%</span><span class="p">)</span>
+<span class="n">points</span> <span class="p">(</span><span class="nb">float</span><span class="p">)</span>                           <span class="n">contribution</span> <span class="n">points</span>
+</code></pre></div>
+</div>
+<h2 id="industrycontribution">Industry Contribution<a class="headerlink" href="#industrycontribution" title="Permanent link">&para;</a></h2>
+<p>An industry contribution ranking is pushed once per second, listing each industry sector's contribution points to that index's movement, sorted from highest to lowest.</p>
+<div class="tabbed-set tabbed-alternate" data-tabs="4:2"><input checked="checked" id="__tabbed_4_1" name="__tabbed_4" type="radio" /><input id="__tabbed_4_2" name="__tabbed_4" type="radio" /><div class="tabbed-labels"><label for="__tabbed_4_1">Python</label><label for="__tabbed_4_2">HTTP</label></div>
+<div class="tabbed-content">
+<div class="tabbed-block">
+<div class="admonition info">
+<p class="admonition-title">In</p>
+<div class="highlight"><pre><span></span><code><span class="n">contract</span> <span class="o">=</span> <span class="n">api</span><span class="o">.</span><span class="n">contracts</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s2">&quot;IX0001&quot;</span><span class="p">)</span>
+<span class="n">api</span><span class="o">.</span><span class="n">subscribe</span><span class="p">(</span>
+    <span class="n">contract</span><span class="p">,</span>
+<span class="hll">    <span class="n">quote_type</span><span class="o">=</span><span class="n">sj</span><span class="o">.</span><span class="n">QuoteType</span><span class="o">.</span><span class="n">IndustryContribution</span><span class="p">,</span>
+</span><span class="p">)</span>
+
+<span class="c1"># unsubscribe</span>
+<span class="c1"># api.unsubscribe(</span>
+<span class="c1">#     contract,</span>
+<span class="c1">#     quote_type=sj.QuoteType.IndustryContribution,</span>
+<span class="c1"># )</span>
+</code></pre></div>
+</div>
+<div class="admonition done">
+<p class="admonition-title">Out</p>
+<div class="highlight"><pre><span></span><code><span class="n">IndustryContribution</span><span class="p">(</span>
+    <span class="n">code</span><span class="o">=</span><span class="s1">&#39;IX0001&#39;</span><span class="p">,</span>
+    <span class="n">date</span><span class="o">=</span><span class="s1">&#39;2026/07/30&#39;</span><span class="p">,</span>
+    <span class="n">time</span><span class="o">=</span><span class="s1">&#39;09:03:47.000000&#39;</span><span class="p">,</span>
+    <span class="n">entries</span><span class="o">=</span><span class="p">[</span>
+        <span class="p">{</span><span class="s1">&#39;category&#39;</span><span class="p">:</span> <span class="s1">&#39;2&#39;</span><span class="p">,</span> <span class="s1">&#39;points&#39;</span><span class="p">:</span> <span class="mf">1.69</span><span class="p">},</span>
+        <span class="p">{</span><span class="s1">&#39;category&#39;</span><span class="p">:</span> <span class="s1">&#39;1&#39;</span><span class="p">,</span> <span class="s1">&#39;points&#39;</span><span class="p">:</span> <span class="mf">0.01</span><span class="p">},</span>
+        <span class="p">{</span><span class="s1">&#39;category&#39;</span><span class="p">:</span> <span class="s1">&#39;16&#39;</span><span class="p">,</span> <span class="s1">&#39;points&#39;</span><span class="p">:</span> <span class="mf">0.01</span><span class="p">},</span>
+        <span class="p">{</span><span class="s1">&#39;category&#39;</span><span class="p">:</span> <span class="s1">&#39;14&#39;</span><span class="p">,</span> <span class="s1">&#39;points&#39;</span><span class="p">:</span> <span class="o">-</span><span class="mf">0.02</span><span class="p">},</span>
+        <span class="p">{</span><span class="s1">&#39;category&#39;</span><span class="p">:</span> <span class="s1">&#39;9&#39;</span><span class="p">,</span> <span class="s1">&#39;points&#39;</span><span class="p">:</span> <span class="o">-</span><span class="mf">0.07</span><span class="p">},</span>
+        <span class="p">{</span><span class="s1">&#39;category&#39;</span><span class="p">:</span> <span class="s1">&#39;30&#39;</span><span class="p">,</span> <span class="s1">&#39;points&#39;</span><span class="p">:</span> <span class="o">-</span><span class="mf">0.11</span><span class="p">},</span>
+        <span class="p">{</span><span class="s1">&#39;category&#39;</span><span class="p">:</span> <span class="s1">&#39;11&#39;</span><span class="p">,</span> <span class="s1">&#39;points&#39;</span><span class="p">:</span> <span class="o">-</span><span class="mf">0.13</span><span class="p">},</span>
+        <span class="p">{</span><span class="s1">&#39;category&#39;</span><span class="p">:</span> <span class="s1">&#39;38&#39;</span><span class="p">,</span> <span class="s1">&#39;points&#39;</span><span class="p">:</span> <span class="o">-</span><span class="mf">0.21</span><span class="p">},</span>
+        <span class="p">{</span><span class="s1">&#39;category&#39;</span><span class="p">:</span> <span class="s1">&#39;36&#39;</span><span class="p">,</span> <span class="s1">&#39;points&#39;</span><span class="p">:</span> <span class="o">-</span><span class="mf">0.27</span><span class="p">},</span>
+        <span class="p">{</span><span class="s1">&#39;category&#39;</span><span class="p">:</span> <span class="s1">&#39;18&#39;</span><span class="p">,</span> <span class="s1">&#39;points&#39;</span><span class="p">:</span> <span class="o">-</span><span class="mf">0.29</span><span class="p">},</span>
+        <span class="o">...</span>
+    <span class="p">],</span>
+    <span class="n">simtrade</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span>
+    <span class="n">index_close</span><span class="o">=</span><span class="mf">39600.94</span><span class="p">,</span>
+    <span class="n">index_price_chg</span><span class="o">=-</span><span class="mf">438.24</span><span class="p">,</span>
+<span class="p">)</span>
+</code></pre></div>
+</div>
+<div class="admonition info">
+<p class="admonition-title">Callback (decorator style)</p>
+<p>Without a callback, each event is printed by default. To handle the data yourself, register a callback function with the decorator:</p>
+<div class="highlight"><pre><span></span><code><span class="kn">from</span><span class="w"> </span><span class="nn">shioaji</span><span class="w"> </span><span class="kn">import</span> <span class="n">IndustryContribution</span>
+
+<span class="nd">@api</span><span class="o">.</span><span class="n">on_industry_contribution</span><span class="p">()</span>
+<span class="k">def</span><span class="w"> </span><span class="nf">industry_contribution_callback</span><span class="p">(</span><span class="n">ind</span><span class="p">:</span> <span class="n">IndustryContribution</span><span class="p">):</span>
+    <span class="nb">print</span><span class="p">(</span><span class="n">ind</span><span class="p">)</span>
+</code></pre></div>
+</div>
+<div class="admonition info">
+<p class="admonition-title">Callback (traditional style)</p>
+<div class="highlight"><pre><span></span><code><span class="kn">from</span><span class="w"> </span><span class="nn">shioaji</span><span class="w"> </span><span class="kn">import</span> <span class="n">IndustryContribution</span>
+
+<span class="k">def</span><span class="w"> </span><span class="nf">industry_contribution_callback</span><span class="p">(</span><span class="n">ind</span><span class="p">:</span> <span class="n">IndustryContribution</span><span class="p">):</span>
+    <span class="nb">print</span><span class="p">(</span><span class="n">ind</span><span class="p">)</span>
+
+<span class="n">api</span><span class="o">.</span><span class="n">set_on_industry_contribution_callback</span><span class="p">(</span><span class="n">industry_contribution_callback</span><span class="p">)</span>
+</code></pre></div>
+</div>
+</div>
+<div class="tabbed-block">
+<div class="admonition info">
+<p class="admonition-title">In</p>
+<div class="highlight"><pre><span></span><code><span class="c1"># subscribe</span>
+curl<span class="w"> </span>-X<span class="w"> </span>POST<span class="w"> </span>http://localhost:8080/api/v1/stream/subscribe/industry_contribution<span class="w"> </span><span class="se">\</span>
+<span class="w">  </span>-H<span class="w"> </span><span class="s1">&#39;Content-Type: application/json&#39;</span><span class="w"> </span><span class="se">\</span>
+<span class="w">  </span>-d<span class="w"> </span><span class="s1">&#39;{&quot;index&quot;: {&quot;security_type&quot;: &quot;IND&quot;, &quot;exchange&quot;: &quot;TSE&quot;, &quot;code&quot;: &quot;IX0001&quot;, &quot;target_code&quot;: null}}&#39;</span>
+
+<span class="c1"># open SSE to receive industry contribution (Ctrl+C to stop)</span>
+curl<span class="w"> </span>-N<span class="w"> </span>http://localhost:8080/api/v1/stream/data/industry_contribution
+
+<span class="c1"># unsubscribe</span>
+<span class="c1"># curl -X POST http://localhost:8080/api/v1/stream/unsubscribe/industry_contribution \</span>
+<span class="c1">#   -H &#39;Content-Type: application/json&#39; \</span>
+<span class="c1">#   -d &#39;{&quot;index&quot;: {&quot;security_type&quot;: &quot;IND&quot;, &quot;exchange&quot;: &quot;TSE&quot;, &quot;code&quot;: &quot;IX0001&quot;, &quot;target_code&quot;: null}}&#39;</span>
+</code></pre></div>
+</div>
+<div class="admonition done">
+<p class="admonition-title">Out</p>
+<div class="highlight"><pre><span></span><code>event:industry_contribution
+data:{
+  &quot;code&quot;: &quot;IX0001&quot;,
+  &quot;date&quot;: &quot;2026/07/30&quot;,
+  &quot;time&quot;: &quot;09:29:25.000000&quot;,
+  &quot;entries&quot;: [
+    {&quot;category&quot;: &quot;24&quot;, &quot;points&quot;: 251.05},
+    {&quot;category&quot;: &quot;28&quot;, &quot;points&quot;: 64.66},
+    {&quot;category&quot;: &quot;17&quot;, &quot;points&quot;: 20.81},
+    {&quot;category&quot;: &quot;26&quot;, &quot;points&quot;: 7.74},
+    {&quot;category&quot;: &quot;3&quot;, &quot;points&quot;: 4.81},
+    {&quot;category&quot;: &quot;12&quot;, &quot;points&quot;: 2.09},
+    {&quot;category&quot;: &quot;21&quot;, &quot;points&quot;: 0.94},
+    {&quot;category&quot;: &quot;10&quot;, &quot;points&quot;: 0.79},
+    {&quot;category&quot;: &quot;18&quot;, &quot;points&quot;: 0.52},
+    {&quot;category&quot;: &quot;1&quot;, &quot;points&quot;: 0.36},
+    ...
+  ],
+  &quot;simtrade&quot;: false,
+  &quot;index_close&quot;: 40310.28,
+  &quot;index_price_chg&quot;: 271.1
+}
+</code></pre></div>
+</div>
+</div>
+</div>
+</div>
+<h3 id="attributes_2">Attributes<a class="headerlink" href="#attributes_2" title="Permanent link">&para;</a></h3>
+<div class="admonition example">
+<p class="admonition-title">IndustryContribution</p>
+<div class="highlight"><pre><span></span><code><span class="n">code</span> <span class="p">(</span><span class="nb">str</span><span class="p">)</span>                                <span class="n">index</span> <span class="n">code</span>
+<span class="n">date</span> <span class="p">(</span><span class="nb">str</span><span class="p">)</span>                                <span class="n">date</span>
+<span class="n">time</span> <span class="p">(</span><span class="nb">str</span><span class="p">)</span>                                <span class="n">time</span>
+<span class="n">entries</span> <span class="p">(</span><span class="n">List</span><span class="p">[</span><span class="n">IndustryContributionEntry</span><span class="p">])</span> <span class="n">industry</span> <span class="n">contribution</span> <span class="nb">list</span>
+<span class="n">simtrade</span> <span class="p">(</span><span class="nb">bool</span><span class="p">)</span>                           <span class="n">simulated</span> <span class="n">trading</span>
+<span class="n">index_close</span> <span class="p">(</span><span class="nb">float</span><span class="p">)</span>                       <span class="n">latest</span> <span class="n">index</span> <span class="n">value</span>
+<span class="n">index_price_chg</span> <span class="p">(</span><span class="nb">float</span><span class="p">)</span>                   <span class="n">index</span> <span class="n">price</span> <span class="n">change</span> <span class="p">(</span><span class="n">the</span> <span class="n">entries</span><span class="s1">&#39; points sum to it)</span>
+</code></pre></div>
+</div>
+<div class="admonition example">
+<p class="admonition-title">IndustryContributionEntry</p>
+<div class="highlight"><pre><span></span><code><span class="n">category</span> <span class="p">(</span><span class="nb">str</span><span class="p">)</span>                           <span class="n">industry</span> <span class="n">category</span> <span class="n">code</span>
+<span class="n">points</span> <span class="p">(</span><span class="nb">float</span><span class="p">)</span>                           <span class="n">contribution</span> <span class="n">points</span>
+</code></pre></div>
+</div>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+                
+              </article>
+            </div>
+          
+          
+<script>var target=document.getElementById(location.hash.slice(1));target&&target.name&&(target.checked=target.name.startsWith("__tabbed_"))</script>
+        </div>
+        
+      </main>
+      
+        <footer class="md-footer">
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-copyright">
+  
+    <div class="md-copyright__highlight">
+      Copyright
+    </div>
+  
+  
+    Made with
+    <a href="https://squidfunk.github.io/mkdocs-material/" target="_blank" rel="noopener">
+      Material for MkDocs
+    </a>
+  
+</div>
+      
+        <div class="md-social">
+  
+    
+    
+    
+    
+      
+      
+    
+    <a href="https://github.com/Sinotrade/Shioaji" target="_blank" rel="noopener" title="github.com" class="md-social__link">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 480 512"><!--! Font Awesome Free 6.7.2 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2024 Fonticons, Inc.--><path d="M186.1 328.7c0 20.9-10.9 55.1-36.7 55.1s-36.7-34.2-36.7-55.1 10.9-55.1 36.7-55.1 36.7 34.2 36.7 55.1M480 278.2c0 31.9-3.2 65.7-17.5 95-37.9 76.6-142.1 74.8-216.7 74.8-75.8 0-186.2 2.7-225.6-74.8-14.6-29-20.2-63.1-20.2-95 0-41.9 13.9-81.5 41.5-113.6-5.2-15.8-7.7-32.4-7.7-48.8 0-21.5 4.9-32.3 14.6-51.8 45.3 0 74.3 9 108.8 36 29-6.9 58.8-10 88.7-10 27 0 54.2 2.9 80.4 9.2 34-26.7 63-35.2 107.8-35.2 9.8 19.5 14.6 30.3 14.6 51.8 0 16.4-2.6 32.7-7.7 48.2 27.5 32.4 39 72.3 39 114.2m-64.3 50.5c0-43.9-26.7-82.6-73.5-82.6-18.9 0-37 3.4-56 6-14.9 2.3-29.8 3.2-45.1 3.2-15.2 0-30.1-.9-45.1-3.2-18.7-2.6-37-6-56-6-46.8 0-73.5 38.7-73.5 82.6 0 87.8 80.4 101.3 150.4 101.3h48.2c70.3 0 150.6-13.4 150.6-101.3m-82.6-55.1c-25.8 0-36.7 34.2-36.7 55.1s10.9 55.1 36.7 55.1 36.7-34.2 36.7-55.1-10.9-55.1-36.7-55.1"/></svg>
+    </a>
+  
+    
+    
+    
+    
+    <a href="/llms-full.txt" target="_blank" rel="noopener" title="Download LLMs text" class="md-social__link">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 384 512"><!--! Font Awesome Free 6.7.2 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2024 Fonticons, Inc.--><path d="M64 0C28.7 0 0 28.7 0 64v384c0 35.3 28.7 64 64 64h256c35.3 0 64-28.7 64-64V160H256c-17.7 0-32-14.3-32-32V0zm192 0v128h128zM112 256h160c8.8 0 16 7.2 16 16s-7.2 16-16 16H112c-8.8 0-16-7.2-16-16s7.2-16 16-16m0 64h160c8.8 0 16 7.2 16 16s-7.2 16-16 16H112c-8.8 0-16-7.2-16-16s7.2-16 16-16m0 64h160c8.8 0 16 7.2 16 16s-7.2 16-16 16H112c-8.8 0-16-7.2-16-16s7.2-16 16-16"/></svg>
+    </a>
+  
+</div>
+      
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    <div class="md-dialog" data-md-component="dialog">
+      <div class="md-dialog__inner md-typeset"></div>
+    </div>
+    
+    
+    
+      
+      <script id="__config" type="application/json">{"base": "../../../..", "features": [], "search": "../../../../assets/javascripts/workers/search.f8cc74c7.min.js", "tags": null, "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}, "version": null}</script>
+    
+    
+      <script src="../../../../assets/javascripts/bundle.c8b220af.min.js"></script>
+      
+    
+  </body>
+</html>

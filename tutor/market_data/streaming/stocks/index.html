@@ -932,6 +932,39 @@
 </li>
       
         <li class="md-nav__item">
+  <a href="#kbar" class="md-nav__link">
+    <span class="md-ellipsis">
+      KBar
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="KBar">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#regular" class="md-nav__link">
+    <span class="md-ellipsis">
+      Regular
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#attributes_3" class="md-nav__link">
+    <span class="md-ellipsis">
+      Attributes
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
   <a href="#callback-python-only" class="md-nav__link">
     <span class="md-ellipsis">
       Callback (Python only)
@@ -968,6 +1001,15 @@
   
 </li>
         
+          <li class="md-nav__item">
+  <a href="#kbar_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      KBar
+    </span>
+  </a>
+  
+</li>
+        
       </ul>
     </nav>
   
@@ -994,7 +1036,7 @@
   
   
   <span class="md-ellipsis">
-    Futures
+    Futures and Option
     
   </span>
   
@@ -1018,6 +1060,52 @@
   
   <span class="md-ellipsis">
     Index
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../enriched/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Enriched Data
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../signals/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Market Signals
     
   </span>
   
@@ -2247,6 +2335,39 @@
 </li>
       
         <li class="md-nav__item">
+  <a href="#kbar" class="md-nav__link">
+    <span class="md-ellipsis">
+      KBar
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="KBar">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#regular" class="md-nav__link">
+    <span class="md-ellipsis">
+      Regular
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#attributes_3" class="md-nav__link">
+    <span class="md-ellipsis">
+      Attributes
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
   <a href="#callback-python-only" class="md-nav__link">
     <span class="md-ellipsis">
       Callback (Python only)
@@ -2278,6 +2399,15 @@
   <a href="#quote_1" class="md-nav__link">
     <span class="md-ellipsis">
       Quote
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#kbar_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      KBar
     </span>
   </a>
   
@@ -3720,6 +3850,116 @@ data:{
 <span class="n">simtrade</span> <span class="p">(</span><span class="nb">bool</span><span class="p">)</span>                          <span class="n">Simulated</span> <span class="n">trade</span>
 </code></pre></div>
 </div>
+<h2 id="kbar">KBar<a class="headerlink" href="#kbar" title="Permanent link">&para;</a></h2>
+<p>The quote engine pushes the security's complete 1-minute KBar of the previous minute at the end of every minute; the <code>time</code> field is the start time of the bar.</p>
+<div class="admonition warning">
+<p class="admonition-title">Product restrictions</p>
+<p>KBar currently supports securities only; indexes, futures, and options are not available yet.</p>
+</div>
+<div class="tabbed-set tabbed-alternate" data-tabs="5:2"><input checked="checked" id="__tabbed_5_1" name="__tabbed_5" type="radio" /><input id="__tabbed_5_2" name="__tabbed_5" type="radio" /><div class="tabbed-labels"><label for="__tabbed_5_1">Python</label><label for="__tabbed_5_2">HTTP</label></div>
+<div class="tabbed-content">
+<div class="tabbed-block">
+<h4 id="regular">Regular<a class="headerlink" href="#regular" title="Permanent link">&para;</a></h4>
+<div class="admonition info">
+<p class="admonition-title">In</p>
+<div class="highlight"><pre><span></span><code><span class="n">contract</span> <span class="o">=</span> <span class="n">api</span><span class="o">.</span><span class="n">contracts</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s2">&quot;2330&quot;</span><span class="p">)</span>
+<span class="n">api</span><span class="o">.</span><span class="n">subscribe</span><span class="p">(</span>
+    <span class="n">contract</span><span class="p">,</span>
+<span class="hll">    <span class="n">quote_type</span><span class="o">=</span><span class="n">sj</span><span class="o">.</span><span class="n">QuoteType</span><span class="o">.</span><span class="n">KBar</span><span class="p">,</span>
+</span><span class="p">)</span>
+
+<span class="c1"># unsubscribe</span>
+<span class="c1"># api.unsubscribe(</span>
+<span class="c1">#     contract,</span>
+<span class="c1">#     quote_type=sj.QuoteType.KBar,</span>
+<span class="c1"># )</span>
+</code></pre></div>
+</div>
+<div class="admonition done">
+<p class="admonition-title">Out</p>
+<div class="highlight"><pre><span></span><code><span class="n">Response</span> <span class="n">Code</span><span class="p">:</span> <span class="mi">200</span> <span class="o">|</span> <span class="n">Event</span> <span class="n">Code</span><span class="p">:</span> <span class="mi">16</span> <span class="o">|</span> <span class="n">Info</span><span class="p">:</span> <span class="n">APISUB</span><span class="o">/</span><span class="n">v1</span><span class="o">/</span><span class="n">k</span><span class="o">/</span><span class="mi">1</span><span class="n">m</span><span class="o">/</span><span class="n">tw</span><span class="o">/</span><span class="mi">23</span> <span class="o">|</span> <span class="n">Event</span><span class="p">:</span> <span class="n">Subscribe</span> <span class="ow">or</span> <span class="n">Unsubscribe</span> <span class="n">ok</span>
+
+<span class="n">KBar</span><span class="p">(</span>
+    <span class="n">code</span><span class="o">=</span><span class="s1">&#39;2330&#39;</span><span class="p">,</span>
+    <span class="n">date</span><span class="o">=</span><span class="s1">&#39;2026/07/29&#39;</span><span class="p">,</span>
+    <span class="n">time</span><span class="o">=</span><span class="s1">&#39;10:12:00.000000&#39;</span><span class="p">,</span>
+    <span class="nb">open</span><span class="o">=</span><span class="mf">2245.0</span><span class="p">,</span>
+    <span class="n">high</span><span class="o">=</span><span class="mf">2250.0</span><span class="p">,</span>
+    <span class="n">low</span><span class="o">=</span><span class="mf">2245.0</span><span class="p">,</span>
+    <span class="n">close</span><span class="o">=</span><span class="mf">2250.0</span><span class="p">,</span>
+    <span class="n">volume</span><span class="o">=</span><span class="mi">72</span><span class="p">,</span>
+    <span class="n">amount</span><span class="o">=</span><span class="mi">161880000</span><span class="p">,</span>
+    <span class="n">tick_count</span><span class="o">=</span><span class="mi">34</span><span class="p">,</span>
+<span class="p">)</span>
+</code></pre></div>
+</div>
+<div class="admonition tip">
+<p class="admonition-title">Custom handling</p>
+<p>Each KBar is printed by default. To handle the data yourself, see the <a href="#callback-python-only">Callback</a> section below.</p>
+</div>
+</div>
+<div class="tabbed-block">
+<p><strong>Regular</strong></p>
+<div class="admonition info">
+<p class="admonition-title">In</p>
+<div class="highlight"><pre><span></span><code><span class="c1"># subscribe (the stocks array accepts multiple securities at once)</span>
+curl<span class="w"> </span>-X<span class="w"> </span>POST<span class="w"> </span>http://localhost:8080/api/v1/stream/subscribe/kbars<span class="w"> </span><span class="se">\</span>
+<span class="w">  </span>-H<span class="w"> </span><span class="s1">&#39;Content-Type: application/json&#39;</span><span class="w"> </span><span class="se">\</span>
+<span class="w">  </span>-d<span class="w"> </span><span class="s1">&#39;{</span>
+<span class="s1">    &quot;stocks&quot;: [</span>
+<span class="s1">      {</span>
+<span class="s1">        &quot;security_type&quot;: &quot;STK&quot;,</span>
+<span class="s1">        &quot;exchange&quot;: &quot;TSE&quot;,</span>
+<span class="s1">        &quot;code&quot;: &quot;2330&quot;,</span>
+<span class="s1">        &quot;target_code&quot;: null</span>
+<span class="s1">      }</span>
+<span class="s1">    ]</span>
+<span class="s1">  }&#39;</span>
+
+<span class="c1"># open SSE to receive real-time KBars (Ctrl+C to stop)</span>
+curl<span class="w"> </span>-N<span class="w"> </span>http://localhost:8080/api/v1/stream/data/kbar
+
+<span class="c1"># unsubscribe</span>
+<span class="c1"># curl -X POST http://localhost:8080/api/v1/stream/unsubscribe/kbars \</span>
+<span class="c1">#   -H &#39;Content-Type: application/json&#39; \</span>
+<span class="c1">#   -d &#39;{&quot;stocks&quot;: [{&quot;security_type&quot;: &quot;STK&quot;, &quot;exchange&quot;: &quot;TSE&quot;, &quot;code&quot;: &quot;2330&quot;, &quot;target_code&quot;: null}]}&#39;</span>
+</code></pre></div>
+</div>
+<div class="admonition done">
+<p class="admonition-title">Out</p>
+<div class="highlight"><pre><span></span><code>event:kbar
+data:{
+  &quot;code&quot;: &quot;2330&quot;,
+  &quot;date&quot;: &quot;2026/07/28&quot;,
+  &quot;time&quot;: &quot;11:18:00.000000&quot;,
+  &quot;open&quot;: 2280.0,
+  &quot;high&quot;: 2285.0,
+  &quot;low&quot;: 2280.0,
+  &quot;close&quot;: 2285.0,
+  &quot;volume&quot;: 34,
+  &quot;amount&quot;: 77600000,
+  &quot;tick_count&quot;: 20
+}
+</code></pre></div>
+</div>
+</div>
+</div>
+</div>
+<h3 id="attributes_3">Attributes<a class="headerlink" href="#attributes_3" title="Permanent link">&para;</a></h3>
+<div class="admonition example">
+<p class="admonition-title">KBar</p>
+<div class="highlight"><pre><span></span><code><span class="n">code</span> <span class="p">(</span><span class="nb">str</span><span class="p">)</span>                               <span class="n">security</span> <span class="n">code</span>
+<span class="n">date</span> <span class="p">(</span><span class="nb">str</span><span class="p">)</span>                               <span class="n">date</span> <span class="p">(</span><span class="mi">2026</span><span class="o">/</span><span class="mi">07</span><span class="o">/</span><span class="mi">29</span><span class="p">)</span>
+<span class="n">time</span> <span class="p">(</span><span class="nb">str</span><span class="p">)</span>                               <span class="n">time</span> <span class="p">(</span><span class="mi">10</span><span class="p">:</span><span class="mi">12</span><span class="p">:</span><span class="mf">00.000000</span><span class="p">)</span>
+<span class="nb">open</span> <span class="p">(</span><span class="nb">float</span><span class="p">)</span>                             <span class="nb">open</span> <span class="n">price</span>
+<span class="n">high</span> <span class="p">(</span><span class="nb">float</span><span class="p">)</span>                             <span class="n">high</span> <span class="n">price</span>
+<span class="n">low</span> <span class="p">(</span><span class="nb">float</span><span class="p">)</span>                              <span class="n">low</span> <span class="n">price</span>
+<span class="n">close</span> <span class="p">(</span><span class="nb">float</span><span class="p">)</span>                            <span class="n">close</span> <span class="n">price</span>
+<span class="n">volume</span> <span class="p">(</span><span class="nb">int</span><span class="p">)</span>                             <span class="n">volume</span> <span class="p">(</span><span class="n">lot</span><span class="p">)</span>
+<span class="n">amount</span> <span class="p">(</span><span class="nb">int</span><span class="p">)</span>                             <span class="n">turnover</span> <span class="p">(</span><span class="n">NTD</span><span class="p">)</span>
+<span class="n">tick_count</span> <span class="p">(</span><span class="nb">int</span><span class="p">)</span>                         <span class="n">number</span> <span class="n">of</span> <span class="n">trades</span>
+</code></pre></div>
+</div>
 <h2 id="callback-python-only">Callback (Python only)<a class="headerlink" href="#callback-python-only" title="Permanent link">&para;</a></h2>
 <p>By default real-time market data is shown via <code>print</code> with only a summary of fields. You can customize the callback to get the full payload and feed it into other applications (a local quote board, conditional / trigger orders, etc.). Avoid heavy computation inside the callback.</p>
 <ul>
@@ -3994,6 +4234,31 @@ diff_ask_vol=[0, 0, 0, 0, 0]
 avail_borrowing=8894631
 suspend=False
 simtrade=False
+</code></pre></div>
+</div>
+<h3 id="kbar_1">KBar<a class="headerlink" href="#kbar_1" title="Permanent link">&para;</a></h3>
+<div class="admonition info">
+<p class="admonition-title">Decorator style</p>
+<div class="highlight"><pre><span></span><code><span class="kn">from</span><span class="w"> </span><span class="nn">shioaji</span><span class="w"> </span><span class="kn">import</span> <span class="n">KBar</span>
+
+<span class="nd">@api</span><span class="o">.</span><span class="n">on_kbar</span><span class="p">()</span>
+<span class="k">def</span><span class="w"> </span><span class="nf">kbar_callback</span><span class="p">(</span><span class="n">kbar</span><span class="p">:</span> <span class="n">KBar</span><span class="p">):</span>
+    <span class="nb">print</span><span class="p">(</span><span class="n">kbar</span><span class="p">)</span>
+</code></pre></div>
+</div>
+<div class="admonition info">
+<p class="admonition-title">Traditional style</p>
+<div class="highlight"><pre><span></span><code><span class="kn">from</span><span class="w"> </span><span class="nn">shioaji</span><span class="w"> </span><span class="kn">import</span> <span class="n">KBar</span>
+
+<span class="k">def</span><span class="w"> </span><span class="nf">kbar_callback</span><span class="p">(</span><span class="n">kbar</span><span class="p">:</span> <span class="n">KBar</span><span class="p">):</span>
+    <span class="nb">print</span><span class="p">(</span><span class="n">kbar</span><span class="p">)</span>
+
+<span class="n">api</span><span class="o">.</span><span class="n">set_on_kbar_callback</span><span class="p">(</span><span class="n">kbar_callback</span><span class="p">)</span>
+</code></pre></div>
+</div>
+<div class="admonition done">
+<p class="admonition-title">Out</p>
+<div class="highlight"><pre><span></span><code>KBar(code=&#39;2330&#39;, date=&#39;2026/07/29&#39;, time=&#39;10:12:00.000000&#39;, open=2245.0, high=2250.0, low=2245.0, close=2250.0, volume=72, amount=161880000, tick_count=34)
 </code></pre></div>
 </div>
 

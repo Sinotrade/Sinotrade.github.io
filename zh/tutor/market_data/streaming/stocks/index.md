@@ -922,6 +922,123 @@ simtrade (bool)                          試撮
 
 ```
 
+## KBar
+
+行情引擎會在每分鐘結束時推送該檔證券前一分鐘的完整 K 棒，`time` 欄位為該根 K 棒的起始時間。
+
+商品限制
+
+KBar 目前僅支援證券，指數、期貨、選擇權尚未支援。
+
+#### 整股
+
+In
+
+```
+contract = api.contracts.get("2330")
+api.subscribe(
+    contract,
+    quote_type=sj.QuoteType.KBar,
+)
+
+# 取消訂閱
+# api.unsubscribe(
+#     contract,
+#     quote_type=sj.QuoteType.KBar,
+# )
+
+```
+
+Out
+
+```
+Response Code: 200 | Event Code: 16 | Info: APISUB/v1/k/1m/tw/23 | Event: Subscribe or Unsubscribe ok
+
+KBar(
+    code='2330',
+    date='2026/07/29',
+    time='10:12:00.000000',
+    open=2245.0,
+    high=2250.0,
+    low=2245.0,
+    close=2250.0,
+    volume=72,
+    amount=161880000,
+    tick_count=34,
+)
+
+```
+
+自訂處理
+
+預設會直接印出收到的 K 棒。如需自行處理資料，請參考下方 [Callback](#callback-%E5%83%85-python) 章節。
+
+**整股**
+
+In
+
+```
+# 訂閱（stocks 陣列可一次帶多檔）
+curl -X POST http://localhost:8080/api/v1/stream/subscribe/kbars \
+  -H 'Content-Type: application/json' \
+  -d '{
+    "stocks": [
+      {
+        "security_type": "STK",
+        "exchange": "TSE",
+        "code": "2330",
+        "target_code": null
+      }
+    ]
+  }'
+
+# 開 SSE 收即時 K 棒（Ctrl+C 結束）
+curl -N http://localhost:8080/api/v1/stream/data/kbar
+
+# 取消訂閱
+# curl -X POST http://localhost:8080/api/v1/stream/unsubscribe/kbars \
+#   -H 'Content-Type: application/json' \
+#   -d '{"stocks": [{"security_type": "STK", "exchange": "TSE", "code": "2330", "target_code": null}]}'
+
+```
+
+Out
+
+```
+event:kbar
+data:{
+  "code": "2330",
+  "date": "2026/07/28",
+  "time": "11:18:00.000000",
+  "open": 2280.0,
+  "high": 2285.0,
+  "low": 2280.0,
+  "close": 2285.0,
+  "volume": 34,
+  "amount": 77600000,
+  "tick_count": 20
+}
+
+```
+
+### 屬性
+
+KBar
+
+```
+code (str)                               商品代碼
+date (str)                               日期 (2026/07/29)
+time (str)                               時間 (10:12:00.000000)
+open (float)                             開盤價
+high (float)                             最高價
+low (float)                              最低價
+close (float)                            收盤價
+volume (int)                             成交量 (張)
+amount (int)                             成交金額 (NTD)
+tick_count (int)                         成交筆數
+
+```
+
 ## Callback（僅 Python）
 
 預設狀況下我們將即時行情使用 `print` 的方式呈現，僅顯示部分摘要欄位。可根據個人需求修改 callback 函式以取得完整欄位內容，並串接其他應用（行情管理、觸價單等）。請避免在函式內進行運算。
@@ -1217,5 +1334,37 @@ diff_ask_vol=[0, 0, 0, 0, 0]
 avail_borrowing=8894631
 suspend=False
 simtrade=False
+
+```
+
+### KBar
+
+decorator 方式
+
+```
+from shioaji import KBar
+
+@api.on_kbar()
+def kbar_callback(kbar: KBar):
+    print(kbar)
+
+```
+
+傳統方式
+
+```
+from shioaji import KBar
+
+def kbar_callback(kbar: KBar):
+    print(kbar)
+
+api.set_on_kbar_callback(kbar_callback)
+
+```
+
+Out
+
+```
+KBar(code='2330', date='2026/07/29', time='10:12:00.000000', open=2245.0, high=2250.0, low=2245.0, close=2250.0, volume=72, amount=161880000, tick_count=34)
 
 ```
