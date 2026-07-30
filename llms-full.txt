@@ -9677,7 +9677,7 @@ simtrade=False
 
 ```
 
-市場訊號（Scanner）是行情引擎即時掃描全市場行情後推送的訊號資料，個股一觸發指定條件（漲跌停、價格急變、爆量等）就主動推送事件，監測全市場行情，不需要再逐檔訂閱。透過 `subscribe_scanner()` 訂閱：以 `scanner` 參數指定掃描規則，並以 `region`、`security_type`、`exchange` 指定掃描的市場範圍。
+市場訊號是行情引擎即時掃描全市場行情後推送的訊號資料，個股一觸發指定條件（漲跌停、價格急變、爆量等）就主動推送事件，監測全市場行情，不需要再逐檔訂閱。透過 `subscribe_scanner()` 訂閱：以 `scanner` 參數指定掃描規則，並以 `region`、`security_type`、`exchange` 指定掃描的市場範圍。
 
 Subscribe
 

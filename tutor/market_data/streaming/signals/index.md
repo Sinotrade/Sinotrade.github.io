@@ -1,4 +1,4 @@
-Market signals (Scanner) are signal data pushed by the quote engine as it scans the whole market in real time: an event is pushed as soon as any stock triggers the specified condition (price limit, rapid price move, volume burst, and so on), so the whole market is monitored without per-stock subscriptions. Subscribe with `subscribe_scanner()`: the `scanner` argument picks the scanner rule, and `region`, `security_type`, and `exchange` set the market scope to scan.
+Market signals are signal data pushed by the quote engine as it scans the whole market in real time: an event is pushed as soon as any stock triggers the specified condition (price limit, rapid price move, volume burst, and so on), so the whole market is monitored without per-stock subscriptions. Subscribe with `subscribe_scanner()`: the `scanner` argument picks the scanner rule, and `region`, `security_type`, and `exchange` set the market scope to scan.
 
 Subscribe
 
