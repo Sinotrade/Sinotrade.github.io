@@ -2318,7 +2318,8 @@ cb:       選填，callback 函式
 <span class="n">price_type</span> <span class="p">(</span><span class="n">StockPriceType</span><span class="p">):</span>  <span class="n">價格別</span> <span class="p">{</span><span class="n">LMT</span><span class="p">:</span> <span class="n">限價</span><span class="p">,</span> <span class="n">MKT</span><span class="p">:</span> <span class="n">市價</span><span class="p">}</span>
 <span class="n">order_type</span> <span class="p">(</span><span class="n">OrderType</span><span class="p">):</span>       <span class="n">委託條件</span> <span class="p">{</span><span class="n">ROD</span><span class="p">,</span> <span class="n">IOC</span><span class="p">,</span> <span class="n">FOK</span><span class="p">}</span>
 <span class="n">order_lot</span> <span class="p">(</span><span class="n">StockOrderLot</span><span class="p">):</span>    <span class="n">委託別</span> <span class="p">{</span><span class="n">Common</span><span class="p">:</span> <span class="n">整股</span><span class="p">,</span> <span class="n">Fixing</span><span class="p">:</span> <span class="n">定盤</span><span class="p">,</span> <span class="n">Odd</span><span class="p">:</span> <span class="n">盤後零股</span><span class="p">,</span> <span class="n">IntradayOdd</span><span class="p">:</span> <span class="n">盤中零股</span><span class="p">}</span>
-<span class="n">order_cond</span> <span class="p">(</span><span class="n">StockOrderCond</span><span class="p">):</span>  <span class="n">委託種類</span> <span class="p">{</span><span class="n">Cash</span><span class="p">:</span> <span class="n">現股</span><span class="p">,</span> <span class="n">MarginTrading</span><span class="p">:</span> <span class="n">融資</span><span class="p">,</span> <span class="n">ShortSelling</span><span class="p">:</span> <span class="n">融券</span><span class="p">}</span>
+<span class="n">order_cond</span> <span class="p">(</span><span class="n">StockOrderCond</span><span class="p">):</span>  <span class="n">委託種類</span> <span class="p">{</span><span class="n">Cash</span><span class="p">:</span> <span class="n">現股</span><span class="p">,</span> <span class="n">MarginTrading</span><span class="p">:</span> <span class="n">融資</span><span class="p">,</span> <span class="n">ShortSelling</span><span class="p">:</span> <span class="n">融券</span><span class="p">,</span>
+                              <span class="n">SBLShort</span><span class="p">:</span> <span class="n">借券賣出</span><span class="p">,</span> <span class="n">SBLShortPriceExempt</span><span class="p">:</span> <span class="n">價格豁免借券賣出</span><span class="p">}</span>
 <span class="n">daytrade_short</span> <span class="p">(</span><span class="nb">bool</span><span class="p">):</span>        <span class="n">先賣後買</span>
 <span class="n">custom_field</span> <span class="p">(</span><span class="nb">str</span><span class="p">):</span>           <span class="n">備註</span><span class="err">，</span><span class="n">只允許輸入大小寫英文字母及數字</span><span class="err">，</span><span class="n">且長度最長為</span> <span class="mi">6</span>
 <span class="n">account</span> <span class="p">(</span><span class="n">Account</span><span class="p">):</span>            <span class="n">下單帳號</span>
@@ -2357,7 +2358,7 @@ Options:
 --price-type:    價格別 {lmt, mkt}
 --order-type:    委託條件 {rod, ioc, fok}
 --order-lot:     委託別 {common, fixing, odd, intraday-odd}
---order-cond:    委託種類 {cash, margin-trading, short-selling}
+--order-cond:    委託種類 {cash, margin-trading, short-selling, sbl-short, sbl-short-price-exempt}
 --account:       下單帳號（BROKER_ID-ACCOUNT_ID 格式）
 --security-type: 商品類型，預設 STK
 --no-wait:       下單後不等委託事件
@@ -2397,7 +2398,7 @@ stock_order.quantity:       數量
 stock_order.price_type:     價格別 {LMT, MKT}
 stock_order.order_type:     委託條件 {ROD, IOC, FOK}
 stock_order.order_lot:      委託別 {Common, Fixing, Odd, IntradayOdd}
-stock_order.order_cond:     委託種類 {Cash, MarginTrading, ShortSelling}
+stock_order.order_cond:     委託種類 {Cash, MarginTrading, ShortSelling, SBLShort, SBLShortPriceExempt}
 stock_order.daytrade_short: 先賣後買
 stock_order.custom_field:   備註，只允許輸入大小寫英文字母及數字，且長度最長為 6
 stock_order.account:        下單帳號（省略則使用預設證券帳號）
@@ -2405,6 +2406,15 @@ stock_order.account:        下單帳號（省略則使用預設證券帳號）
 </div>
 </div>
 </div>
+</div>
+<div class="admonition note">
+<p class="admonition-title">借券賣出</p>
+<p><code>SBLShort</code> 與 <code>SBLShortPriceExempt</code> 皆為借券賣出，搭配 <code>Action.Sell</code> 使用，與融券賣出（<code>ShortSelling</code>）不同：</p>
+<ul>
+<li><code>SBLShort</code>（借券賣出）：對應證交所規範中受平盤下不得放空限制之借券賣出</li>
+<li><code>SBLShortPriceExempt</code>（價格豁免借券賣出）：對應豁免價格限制之借券賣出</li>
+</ul>
+<p>詳細規定請參考<a href="https://www.twse.com.tw/zh/products/sbl/qa.html#10">證交所借券問答集</a>。</p>
 </div>
 <h4 id="_2">範例：下單<a class="headerlink" href="#_2" title="Permanent link">&para;</a></h4>
 <div class="tabbed-set tabbed-alternate" data-tabs="2:3"><input checked="checked" id="__tabbed_2_1" name="__tabbed_2" type="radio" /><input id="__tabbed_2_2" name="__tabbed_2" type="radio" /><input id="__tabbed_2_3" name="__tabbed_2" type="radio" /><div class="tabbed-labels"><label for="__tabbed_2_1">Python</label><label for="__tabbed_2_2">CLI</label><label for="__tabbed_2_3">HTTP</label></div>

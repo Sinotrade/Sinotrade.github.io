@@ -83,6 +83,10 @@ intraday_odd:  Intraday odd lot {true, false}, default false
 
 ```
 
+Aggregate stream endpoint
+
+To receive several event families at once (market data, K-bars, market signals, order events, contract changes, ...), connect to `GET /api/v1/stream/data` instead: a single connection carries all named events (distinguished by SSE event name), shares one heartbeat, and counts as only one SSE connection. Subscriptions are unchanged — keep using the respective subscribe endpoints. Stay on a dedicated endpoint when you need only one event family or an independent stream lifecycle.
+
 ## Tick
 
 #### Common Stock

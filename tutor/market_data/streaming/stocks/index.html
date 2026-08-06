@@ -2515,6 +2515,15 @@ quote_type:    Subscription type {Tick, BidAsk, Quote}
 intraday_odd:  Intraday odd lot {true, false}, default false
 </code></pre></div>
 </div>
+<div class="admonition note">
+<p class="admonition-title">Aggregate stream endpoint</p>
+<p>To receive several event families at once (market data, K-bars, market signals,
+order events, contract changes, ...), connect to <code>GET /api/v1/stream/data</code> instead:
+a single connection carries all named events (distinguished by SSE event name),
+shares one heartbeat, and counts as only one SSE connection. Subscriptions are
+unchanged — keep using the respective subscribe endpoints. Stay on a dedicated
+endpoint when you need only one event family or an independent stream lifecycle.</p>
+</div>
 </div>
 </div>
 </div>

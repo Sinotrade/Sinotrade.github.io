@@ -42,7 +42,8 @@ quantity (int):               quantity
 price_type (StockPriceType):  price type {LMT: limit, MKT: market}
 order_type (OrderType):       order condition {ROD, IOC, FOK}
 order_lot (StockOrderLot):    order lot {Common: common, Fixing: fixing, Odd: odd, IntradayOdd: intraday odd}
-order_cond (StockOrderCond):  order category {Cash, MarginTrading, ShortSelling}
+order_cond (StockOrderCond):  order category {Cash, MarginTrading, ShortSelling,
+                              SBLShort, SBLShortPriceExempt}
 daytrade_short (bool):        sell first then buy back
 custom_field (str):           memo, only letters and digits, max length 6
 account (Account):            order account
@@ -83,7 +84,7 @@ Parameters
 --price-type:    price type {lmt, mkt}
 --order-type:    order condition {rod, ioc, fok}
 --order-lot:     order lot {common, fixing, odd, intraday-odd}
---order-cond:    order category {cash, margin-trading, short-selling}
+--order-cond:    order category {cash, margin-trading, short-selling, sbl-short, sbl-short-price-exempt}
 --account:       order account (BROKER_ID-ACCOUNT_ID format)
 --security-type: security type, default STK
 --no-wait:       skip waiting for order events after placing
@@ -125,12 +126,21 @@ stock_order.quantity:       quantity
 stock_order.price_type:     price type {LMT, MKT}
 stock_order.order_type:     order condition {ROD, IOC, FOK}
 stock_order.order_lot:      order lot {Common, Fixing, Odd, IntradayOdd}
-stock_order.order_cond:     order category {Cash, MarginTrading, ShortSelling}
+stock_order.order_cond:     order category {Cash, MarginTrading, ShortSelling, SBLShort, SBLShortPriceExempt}
 stock_order.daytrade_short: sell first then buy back
 stock_order.custom_field:   memo, only letters and digits, max length 6
 stock_order.account:        order account (omit to use the default stock account)
 
 ```
+
+SBL Short Sale
+
+Both `SBLShort` and `SBLShortPriceExempt` are SBL (securities borrowing and lending) short sales. Use them with `Action.Sell`; they are distinct from a margin short sale (`ShortSelling`):
+
+- `SBLShort`: corresponds to the SBL short sale subject to the TWSE restriction on short selling below the previous close
+- `SBLShortPriceExempt`: corresponds to the SBL short sale exempt from the price restriction
+
+For details, see the [TWSE SBL FAQ](https://www.twse.com.tw/zh/products/sbl/qa.html#10).
 
 #### Example: Place Order
 

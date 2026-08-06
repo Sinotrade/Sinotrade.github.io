@@ -56,6 +56,19 @@ SJ_PRODUCTION=false
 
 shioaji server 啟動時會自動讀取此檔，完成登入與憑證載入。
 
+## 啟用 HTTPS（選用）
+
+伺服器預設為明文 HTTP/1.1，本機使用不需額外設定。需要瀏覽器直接以 HTTP/2 連線（例如 Web App 同時掛多條 SSE 串流）時，可設定憑證啟用 HTTPS：
+
+```
+# .env 追加（兩者需成對設定；本機受信任憑證可用 mkcert 產生）
+SJ_HTTP_TLS_CERT=/path/to/localhost.pem
+SJ_HTTP_TLS_KEY=/path/to/localhost-key.pem
+
+```
+
+設定後 REST、OpenAPI 與 SSE 的 URL 皆改用 `https://`。公開網域部署另支援 ACME 自動憑證與 HTTP/3。
+
 ## 檢查伺服器狀態
 
 伺服器啟動後，可隨時檢查 daemon 與串流的健康狀態。
@@ -113,18 +126,20 @@ curl http://localhost:8080/api/v1/info
 Out
 
 ```
-{"name":"Shioaji API Server","version":"1.5.3","description":"SinoPac Shioaji Cross-Platform Trading API HTTP Adaptor","protocols":["HTTP"],"simulation":false}
+{"name":"Shioaji API Server","version":"1.7.2","description":"SinoPac Shioaji Cross-Platform Trading API HTTP Adaptor","protocols":["HTTP/1.1"],"scheme":"http","uds_plaintext":true,"simulation":false}
 
 ```
 
 屬性
 
 ```
-name (str):        服務名稱
-version (str):     伺服器版本
-description (str): 服務說明
-protocols (list):  支援的協定
-simulation (bool): 是否為模擬模式（對應 .env 的 SJ_PRODUCTION）
+name (str):           服務名稱
+version (str):        伺服器版本
+description (str):    服務說明
+protocols (list):     支援的協定
+scheme (str):         對外協定（http 或 https）
+uds_plaintext (bool): 本機 UDS 通道是否維持明文
+simulation (bool):    是否為模擬模式（對應 .env 的 SJ_PRODUCTION）
 
 ```
 
@@ -10354,6 +10369,10 @@ intraday_odd:  盤中零股 {true, false}，預設 false
 
 ```
 
+聚合串流端點
+
+需要同時接收多種事件（行情、K 棒、市場訊號、委託回報、商品檔異動等）時，可改連 `GET /api/v1/stream/data`：單一連線帶出所有具名事件（以 SSE event name 區分）， 共用一個 heartbeat，且只計為一條 SSE 連線。訂閱方式不變，仍透過各自的 subscribe 端點。 只需要單一類型事件、或該串流需要獨立生命週期時，維持使用個別端點即可。
+
 ## Tick
 
 #### 整股
@@ -14272,7 +14291,8 @@ quantity (int):               數量
 price_type (StockPriceType):  價格別 {LMT: 限價, MKT: 市價}
 order_type (OrderType):       委託條件 {ROD, IOC, FOK}
 order_lot (StockOrderLot):    委託別 {Common: 整股, Fixing: 定盤, Odd: 盤後零股, IntradayOdd: 盤中零股}
-order_cond (StockOrderCond):  委託種類 {Cash: 現股, MarginTrading: 融資, ShortSelling: 融券}
+order_cond (StockOrderCond):  委託種類 {Cash: 現股, MarginTrading: 融資, ShortSelling: 融券,
+                              SBLShort: 借券賣出, SBLShortPriceExempt: 價格豁免借券賣出}
 daytrade_short (bool):        先賣後買
 custom_field (str):           備註，只允許輸入大小寫英文字母及數字，且長度最長為 6
 account (Account):            下單帳號
@@ -14313,7 +14333,7 @@ Parameters
 --price-type:    價格別 {lmt, mkt}
 --order-type:    委託條件 {rod, ioc, fok}
 --order-lot:     委託別 {common, fixing, odd, intraday-odd}
---order-cond:    委託種類 {cash, margin-trading, short-selling}
+--order-cond:    委託種類 {cash, margin-trading, short-selling, sbl-short, sbl-short-price-exempt}
 --account:       下單帳號（BROKER_ID-ACCOUNT_ID 格式）
 --security-type: 商品類型，預設 STK
 --no-wait:       下單後不等委託事件
@@ -14355,12 +14375,21 @@ stock_order.quantity:       數量
 stock_order.price_type:     價格別 {LMT, MKT}
 stock_order.order_type:     委託條件 {ROD, IOC, FOK}
 stock_order.order_lot:      委託別 {Common, Fixing, Odd, IntradayOdd}
-stock_order.order_cond:     委託種類 {Cash, MarginTrading, ShortSelling}
+stock_order.order_cond:     委託種類 {Cash, MarginTrading, ShortSelling, SBLShort, SBLShortPriceExempt}
 stock_order.daytrade_short: 先賣後買
 stock_order.custom_field:   備註，只允許輸入大小寫英文字母及數字，且長度最長為 6
 stock_order.account:        下單帳號（省略則使用預設證券帳號）
 
 ```
+
+借券賣出
+
+`SBLShort` 與 `SBLShortPriceExempt` 皆為借券賣出，搭配 `Action.Sell` 使用，與融券賣出（`ShortSelling`）不同：
+
+- `SBLShort`（借券賣出）：對應證交所規範中受平盤下不得放空限制之借券賣出
+- `SBLShortPriceExempt`（價格豁免借券賣出）：對應豁免價格限制之借券賣出
+
+詳細規定請參考[證交所借券問答集](https://www.twse.com.tw/zh/products/sbl/qa.html#10)。
 
 #### 範例：下單
 

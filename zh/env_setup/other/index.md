@@ -50,6 +50,19 @@ SJ_PRODUCTION=false
 
 shioaji server 啟動時會自動讀取此檔，完成登入與憑證載入。
 
+## 啟用 HTTPS（選用）
+
+伺服器預設為明文 HTTP/1.1，本機使用不需額外設定。需要瀏覽器直接以 HTTP/2 連線（例如 Web App 同時掛多條 SSE 串流）時，可設定憑證啟用 HTTPS：
+
+```
+# .env 追加（兩者需成對設定；本機受信任憑證可用 mkcert 產生）
+SJ_HTTP_TLS_CERT=/path/to/localhost.pem
+SJ_HTTP_TLS_KEY=/path/to/localhost-key.pem
+
+```
+
+設定後 REST、OpenAPI 與 SSE 的 URL 皆改用 `https://`。公開網域部署另支援 ACME 自動憑證與 HTTP/3。
+
 ## 檢查伺服器狀態
 
 伺服器啟動後，可隨時檢查 daemon 與串流的健康狀態。
@@ -107,18 +120,20 @@ curl http://localhost:8080/api/v1/info
 Out
 
 ```
-{"name":"Shioaji API Server","version":"1.5.3","description":"SinoPac Shioaji Cross-Platform Trading API HTTP Adaptor","protocols":["HTTP"],"simulation":false}
+{"name":"Shioaji API Server","version":"1.7.2","description":"SinoPac Shioaji Cross-Platform Trading API HTTP Adaptor","protocols":["HTTP/1.1"],"scheme":"http","uds_plaintext":true,"simulation":false}
 
 ```
 
 屬性
 
 ```
-name (str):        服務名稱
-version (str):     伺服器版本
-description (str): 服務說明
-protocols (list):  支援的協定
-simulation (bool): 是否為模擬模式（對應 .env 的 SJ_PRODUCTION）
+name (str):           服務名稱
+version (str):        伺服器版本
+description (str):    服務說明
+protocols (list):     支援的協定
+scheme (str):         對外協定（http 或 https）
+uds_plaintext (bool): 本機 UDS 通道是否維持明文
+simulation (bool):    是否為模擬模式（對應 .env 的 SJ_PRODUCTION）
 
 ```
 

@@ -42,7 +42,8 @@ quantity (int):               數量
 price_type (StockPriceType):  價格別 {LMT: 限價, MKT: 市價}
 order_type (OrderType):       委託條件 {ROD, IOC, FOK}
 order_lot (StockOrderLot):    委託別 {Common: 整股, Fixing: 定盤, Odd: 盤後零股, IntradayOdd: 盤中零股}
-order_cond (StockOrderCond):  委託種類 {Cash: 現股, MarginTrading: 融資, ShortSelling: 融券}
+order_cond (StockOrderCond):  委託種類 {Cash: 現股, MarginTrading: 融資, ShortSelling: 融券,
+                              SBLShort: 借券賣出, SBLShortPriceExempt: 價格豁免借券賣出}
 daytrade_short (bool):        先賣後買
 custom_field (str):           備註，只允許輸入大小寫英文字母及數字，且長度最長為 6
 account (Account):            下單帳號
@@ -83,7 +84,7 @@ Parameters
 --price-type:    價格別 {lmt, mkt}
 --order-type:    委託條件 {rod, ioc, fok}
 --order-lot:     委託別 {common, fixing, odd, intraday-odd}
---order-cond:    委託種類 {cash, margin-trading, short-selling}
+--order-cond:    委託種類 {cash, margin-trading, short-selling, sbl-short, sbl-short-price-exempt}
 --account:       下單帳號（BROKER_ID-ACCOUNT_ID 格式）
 --security-type: 商品類型，預設 STK
 --no-wait:       下單後不等委託事件
@@ -125,12 +126,21 @@ stock_order.quantity:       數量
 stock_order.price_type:     價格別 {LMT, MKT}
 stock_order.order_type:     委託條件 {ROD, IOC, FOK}
 stock_order.order_lot:      委託別 {Common, Fixing, Odd, IntradayOdd}
-stock_order.order_cond:     委託種類 {Cash, MarginTrading, ShortSelling}
+stock_order.order_cond:     委託種類 {Cash, MarginTrading, ShortSelling, SBLShort, SBLShortPriceExempt}
 stock_order.daytrade_short: 先賣後買
 stock_order.custom_field:   備註，只允許輸入大小寫英文字母及數字，且長度最長為 6
 stock_order.account:        下單帳號（省略則使用預設證券帳號）
 
 ```
+
+借券賣出
+
+`SBLShort` 與 `SBLShortPriceExempt` 皆為借券賣出，搭配 `Action.Sell` 使用，與融券賣出（`ShortSelling`）不同：
+
+- `SBLShort`（借券賣出）：對應證交所規範中受平盤下不得放空限制之借券賣出
+- `SBLShortPriceExempt`（價格豁免借券賣出）：對應豁免價格限制之借券賣出
+
+詳細規定請參考[證交所借券問答集](https://www.twse.com.tw/zh/products/sbl/qa.html#10)。
 
 #### 範例：下單
 

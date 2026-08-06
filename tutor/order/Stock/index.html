@@ -2318,7 +2318,8 @@ cb:       optional callback function
 <span class="n">price_type</span> <span class="p">(</span><span class="n">StockPriceType</span><span class="p">):</span>  <span class="n">price</span> <span class="nb">type</span> <span class="p">{</span><span class="n">LMT</span><span class="p">:</span> <span class="n">limit</span><span class="p">,</span> <span class="n">MKT</span><span class="p">:</span> <span class="n">market</span><span class="p">}</span>
 <span class="n">order_type</span> <span class="p">(</span><span class="n">OrderType</span><span class="p">):</span>       <span class="n">order</span> <span class="n">condition</span> <span class="p">{</span><span class="n">ROD</span><span class="p">,</span> <span class="n">IOC</span><span class="p">,</span> <span class="n">FOK</span><span class="p">}</span>
 <span class="n">order_lot</span> <span class="p">(</span><span class="n">StockOrderLot</span><span class="p">):</span>    <span class="n">order</span> <span class="n">lot</span> <span class="p">{</span><span class="n">Common</span><span class="p">:</span> <span class="n">common</span><span class="p">,</span> <span class="n">Fixing</span><span class="p">:</span> <span class="n">fixing</span><span class="p">,</span> <span class="n">Odd</span><span class="p">:</span> <span class="n">odd</span><span class="p">,</span> <span class="n">IntradayOdd</span><span class="p">:</span> <span class="n">intraday</span> <span class="n">odd</span><span class="p">}</span>
-<span class="n">order_cond</span> <span class="p">(</span><span class="n">StockOrderCond</span><span class="p">):</span>  <span class="n">order</span> <span class="n">category</span> <span class="p">{</span><span class="n">Cash</span><span class="p">,</span> <span class="n">MarginTrading</span><span class="p">,</span> <span class="n">ShortSelling</span><span class="p">}</span>
+<span class="n">order_cond</span> <span class="p">(</span><span class="n">StockOrderCond</span><span class="p">):</span>  <span class="n">order</span> <span class="n">category</span> <span class="p">{</span><span class="n">Cash</span><span class="p">,</span> <span class="n">MarginTrading</span><span class="p">,</span> <span class="n">ShortSelling</span><span class="p">,</span>
+                              <span class="n">SBLShort</span><span class="p">,</span> <span class="n">SBLShortPriceExempt</span><span class="p">}</span>
 <span class="n">daytrade_short</span> <span class="p">(</span><span class="nb">bool</span><span class="p">):</span>        <span class="n">sell</span> <span class="n">first</span> <span class="n">then</span> <span class="n">buy</span> <span class="n">back</span>
 <span class="n">custom_field</span> <span class="p">(</span><span class="nb">str</span><span class="p">):</span>           <span class="n">memo</span><span class="p">,</span> <span class="n">only</span> <span class="n">letters</span> <span class="ow">and</span> <span class="n">digits</span><span class="p">,</span> <span class="nb">max</span> <span class="n">length</span> <span class="mi">6</span>
 <span class="n">account</span> <span class="p">(</span><span class="n">Account</span><span class="p">):</span>            <span class="n">order</span> <span class="n">account</span>
@@ -2357,7 +2358,7 @@ Options:
 --price-type:    price type {lmt, mkt}
 --order-type:    order condition {rod, ioc, fok}
 --order-lot:     order lot {common, fixing, odd, intraday-odd}
---order-cond:    order category {cash, margin-trading, short-selling}
+--order-cond:    order category {cash, margin-trading, short-selling, sbl-short, sbl-short-price-exempt}
 --account:       order account (BROKER_ID-ACCOUNT_ID format)
 --security-type: security type, default STK
 --no-wait:       skip waiting for order events after placing
@@ -2397,7 +2398,7 @@ stock_order.quantity:       quantity
 stock_order.price_type:     price type {LMT, MKT}
 stock_order.order_type:     order condition {ROD, IOC, FOK}
 stock_order.order_lot:      order lot {Common, Fixing, Odd, IntradayOdd}
-stock_order.order_cond:     order category {Cash, MarginTrading, ShortSelling}
+stock_order.order_cond:     order category {Cash, MarginTrading, ShortSelling, SBLShort, SBLShortPriceExempt}
 stock_order.daytrade_short: sell first then buy back
 stock_order.custom_field:   memo, only letters and digits, max length 6
 stock_order.account:        order account (omit to use the default stock account)
@@ -2405,6 +2406,15 @@ stock_order.account:        order account (omit to use the default stock account
 </div>
 </div>
 </div>
+</div>
+<div class="admonition note">
+<p class="admonition-title">SBL Short Sale</p>
+<p>Both <code>SBLShort</code> and <code>SBLShortPriceExempt</code> are SBL (securities borrowing and lending) short sales. Use them with <code>Action.Sell</code>; they are distinct from a margin short sale (<code>ShortSelling</code>):</p>
+<ul>
+<li><code>SBLShort</code>: corresponds to the SBL short sale subject to the TWSE restriction on short selling below the previous close</li>
+<li><code>SBLShortPriceExempt</code>: corresponds to the SBL short sale exempt from the price restriction</li>
+</ul>
+<p>For details, see the <a href="https://www.twse.com.tw/zh/products/sbl/qa.html#10">TWSE SBL FAQ</a>.</p>
 </div>
 <h4 id="example-place-order">Example: Place Order<a class="headerlink" href="#example-place-order" title="Permanent link">&para;</a></h4>
 <div class="tabbed-set tabbed-alternate" data-tabs="2:3"><input checked="checked" id="__tabbed_2_1" name="__tabbed_2" type="radio" /><input id="__tabbed_2_2" name="__tabbed_2" type="radio" /><input id="__tabbed_2_3" name="__tabbed_2" type="radio" /><div class="tabbed-labels"><label for="__tabbed_2_1">Python</label><label for="__tabbed_2_2">CLI</label><label for="__tabbed_2_3">HTTP</label></div>

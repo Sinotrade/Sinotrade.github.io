@@ -514,6 +514,15 @@
 </li>
       
         <li class="md-nav__item">
+  <a href="#https" class="md-nav__link">
+    <span class="md-ellipsis">
+      啟用 HTTPS（選用）
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
   <a href="#_3" class="md-nav__link">
     <span class="md-ellipsis">
       檢查伺服器狀態
@@ -2082,6 +2091,15 @@
 </li>
       
         <li class="md-nav__item">
+  <a href="#https" class="md-nav__link">
+    <span class="md-ellipsis">
+      啟用 HTTPS（選用）
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
   <a href="#_3" class="md-nav__link">
     <span class="md-ellipsis">
       檢查伺服器狀態
@@ -2146,6 +2164,13 @@ SJ_CA_PASSWD=YOUR_CA_PASSWORD
 SJ_PRODUCTION=false
 </code></pre></div>
 <p>shioaji server 啟動時會自動讀取此檔，完成登入與憑證載入。</p>
+<h2 id="https">啟用 HTTPS（選用）<a class="headerlink" href="#https" title="Permanent link">&para;</a></h2>
+<p>伺服器預設為明文 HTTP/1.1，本機使用不需額外設定。需要瀏覽器直接以 HTTP/2 連線（例如 Web App 同時掛多條 SSE 串流）時，可設定憑證啟用 HTTPS：</p>
+<div class="highlight"><pre><span></span><code><span class="c1"># .env 追加（兩者需成對設定；本機受信任憑證可用 mkcert 產生）</span>
+<span class="nv">SJ_HTTP_TLS_CERT</span><span class="o">=</span>/path/to/localhost.pem
+<span class="nv">SJ_HTTP_TLS_KEY</span><span class="o">=</span>/path/to/localhost-key.pem
+</code></pre></div>
+<p>設定後 REST、OpenAPI 與 SSE 的 URL 皆改用 <code>https://</code>。公開網域部署另支援 ACME 自動憑證與 HTTP/3。</p>
 <h2 id="_3">檢查伺服器狀態<a class="headerlink" href="#_3" title="Permanent link">&para;</a></h2>
 <p>伺服器啟動後，可隨時檢查 daemon 與串流的健康狀態。</p>
 <div class="tabbed-set tabbed-alternate" data-tabs="2:2"><input checked="checked" id="__tabbed_2_1" name="__tabbed_2" type="radio" /><input id="__tabbed_2_2" name="__tabbed_2" type="radio" /><div class="tabbed-labels"><label for="__tabbed_2_1">CLI</label><label for="__tabbed_2_2">HTTP</label></div>
@@ -2195,16 +2220,18 @@ active_connections (int): 目前掛在 SSE 串流上的 client 連線數（行�
 </div>
 <div class="admonition done">
 <p class="admonition-title">Out</p>
-<div class="highlight"><pre><span></span><code><span class="p">{</span><span class="nt">&quot;name&quot;</span><span class="p">:</span><span class="s2">&quot;Shioaji API Server&quot;</span><span class="p">,</span><span class="nt">&quot;version&quot;</span><span class="p">:</span><span class="s2">&quot;1.5.3&quot;</span><span class="p">,</span><span class="nt">&quot;description&quot;</span><span class="p">:</span><span class="s2">&quot;SinoPac Shioaji Cross-Platform Trading API HTTP Adaptor&quot;</span><span class="p">,</span><span class="nt">&quot;protocols&quot;</span><span class="p">:[</span><span class="s2">&quot;HTTP&quot;</span><span class="p">],</span><span class="nt">&quot;simulation&quot;</span><span class="p">:</span><span class="kc">false</span><span class="p">}</span>
+<div class="highlight"><pre><span></span><code><span class="p">{</span><span class="nt">&quot;name&quot;</span><span class="p">:</span><span class="s2">&quot;Shioaji API Server&quot;</span><span class="p">,</span><span class="nt">&quot;version&quot;</span><span class="p">:</span><span class="s2">&quot;1.7.2&quot;</span><span class="p">,</span><span class="nt">&quot;description&quot;</span><span class="p">:</span><span class="s2">&quot;SinoPac Shioaji Cross-Platform Trading API HTTP Adaptor&quot;</span><span class="p">,</span><span class="nt">&quot;protocols&quot;</span><span class="p">:[</span><span class="s2">&quot;HTTP/1.1&quot;</span><span class="p">],</span><span class="nt">&quot;scheme&quot;</span><span class="p">:</span><span class="s2">&quot;http&quot;</span><span class="p">,</span><span class="nt">&quot;uds_plaintext&quot;</span><span class="p">:</span><span class="kc">true</span><span class="p">,</span><span class="nt">&quot;simulation&quot;</span><span class="p">:</span><span class="kc">false</span><span class="p">}</span>
 </code></pre></div>
 </div>
 <div class="admonition example">
 <p class="admonition-title">屬性</p>
-<div class="highlight"><pre><span></span><code>name (str):        服務名稱
-version (str):     伺服器版本
-description (str): 服務說明
-protocols (list):  支援的協定
-simulation (bool): 是否為模擬模式（對應 .env 的 SJ_PRODUCTION）
+<div class="highlight"><pre><span></span><code>name (str):           服務名稱
+version (str):        伺服器版本
+description (str):    服務說明
+protocols (list):     支援的協定
+scheme (str):         對外協定（http 或 https）
+uds_plaintext (bool): 本機 UDS 通道是否維持明文
+simulation (bool):    是否為模擬模式（對應 .env 的 SJ_PRODUCTION）
 </code></pre></div>
 </div>
 <p><strong>串流連線狀態</strong></p>

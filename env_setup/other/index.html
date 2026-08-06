@@ -514,6 +514,15 @@
 </li>
       
         <li class="md-nav__item">
+  <a href="#enable-https-optional" class="md-nav__link">
+    <span class="md-ellipsis">
+      Enable HTTPS (Optional)
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
   <a href="#check-server-status" class="md-nav__link">
     <span class="md-ellipsis">
       Check Server Status
@@ -2082,6 +2091,15 @@
 </li>
       
         <li class="md-nav__item">
+  <a href="#enable-https-optional" class="md-nav__link">
+    <span class="md-ellipsis">
+      Enable HTTPS (Optional)
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
   <a href="#check-server-status" class="md-nav__link">
     <span class="md-ellipsis">
       Check Server Status
@@ -2146,6 +2164,13 @@ SJ_CA_PASSWD=YOUR_CA_PASSWORD
 SJ_PRODUCTION=false
 </code></pre></div>
 <p>When the shioaji server starts, it will automatically read this file to complete login and CA activation.</p>
+<h2 id="enable-https-optional">Enable HTTPS (Optional)<a class="headerlink" href="#enable-https-optional" title="Permanent link">&para;</a></h2>
+<p>The server defaults to plaintext HTTP/1.1 — no extra setup is needed for local use. To let browsers connect directly over HTTP/2 (e.g. a web app holding several SSE streams at once), configure a certificate to enable HTTPS:</p>
+<div class="highlight"><pre><span></span><code><span class="c1"># Append to .env (set both together; use mkcert to create a locally trusted certificate)</span>
+<span class="nv">SJ_HTTP_TLS_CERT</span><span class="o">=</span>/path/to/localhost.pem
+<span class="nv">SJ_HTTP_TLS_KEY</span><span class="o">=</span>/path/to/localhost-key.pem
+</code></pre></div>
+<p>Once set, use <code>https://</code> URLs for REST, OpenAPI, and SSE. Public-domain deployments additionally support ACME automatic certificates and HTTP/3.</p>
 <h2 id="check-server-status">Check Server Status<a class="headerlink" href="#check-server-status" title="Permanent link">&para;</a></h2>
 <p>After the server is up, you can check the daemon and stream health at any time.</p>
 <div class="tabbed-set tabbed-alternate" data-tabs="2:2"><input checked="checked" id="__tabbed_2_1" name="__tabbed_2" type="radio" /><input id="__tabbed_2_2" name="__tabbed_2" type="radio" /><div class="tabbed-labels"><label for="__tabbed_2_1">CLI</label><label for="__tabbed_2_2">HTTP</label></div>
@@ -2196,16 +2221,18 @@ active_connections (int): number of client connections currently attached to the
 </div>
 <div class="admonition done">
 <p class="admonition-title">Out</p>
-<div class="highlight"><pre><span></span><code><span class="p">{</span><span class="nt">&quot;name&quot;</span><span class="p">:</span><span class="s2">&quot;Shioaji API Server&quot;</span><span class="p">,</span><span class="nt">&quot;version&quot;</span><span class="p">:</span><span class="s2">&quot;1.5.3&quot;</span><span class="p">,</span><span class="nt">&quot;description&quot;</span><span class="p">:</span><span class="s2">&quot;SinoPac Shioaji Cross-Platform Trading API HTTP Adaptor&quot;</span><span class="p">,</span><span class="nt">&quot;protocols&quot;</span><span class="p">:[</span><span class="s2">&quot;HTTP&quot;</span><span class="p">],</span><span class="nt">&quot;simulation&quot;</span><span class="p">:</span><span class="kc">false</span><span class="p">}</span>
+<div class="highlight"><pre><span></span><code><span class="p">{</span><span class="nt">&quot;name&quot;</span><span class="p">:</span><span class="s2">&quot;Shioaji API Server&quot;</span><span class="p">,</span><span class="nt">&quot;version&quot;</span><span class="p">:</span><span class="s2">&quot;1.7.2&quot;</span><span class="p">,</span><span class="nt">&quot;description&quot;</span><span class="p">:</span><span class="s2">&quot;SinoPac Shioaji Cross-Platform Trading API HTTP Adaptor&quot;</span><span class="p">,</span><span class="nt">&quot;protocols&quot;</span><span class="p">:[</span><span class="s2">&quot;HTTP/1.1&quot;</span><span class="p">],</span><span class="nt">&quot;scheme&quot;</span><span class="p">:</span><span class="s2">&quot;http&quot;</span><span class="p">,</span><span class="nt">&quot;uds_plaintext&quot;</span><span class="p">:</span><span class="kc">true</span><span class="p">,</span><span class="nt">&quot;simulation&quot;</span><span class="p">:</span><span class="kc">false</span><span class="p">}</span>
 </code></pre></div>
 </div>
 <div class="admonition example">
 <p class="admonition-title">Attributes</p>
-<div class="highlight"><pre><span></span><code>name (str):        service name
-version (str):     server version
-description (str): service description
-protocols (list):  supported protocols
-simulation (bool): whether the server is in simulation mode (corresponds to SJ_PRODUCTION in .env)
+<div class="highlight"><pre><span></span><code>name (str):           service name
+version (str):        server version
+description (str):    service description
+protocols (list):     supported protocols
+scheme (str):         external scheme (http or https)
+uds_plaintext (bool): whether the local UDS channel stays plaintext
+simulation (bool):    whether the server is in simulation mode (corresponds to SJ_PRODUCTION in .env)
 </code></pre></div>
 </div>
 <p><strong>Stream connection status</strong></p>

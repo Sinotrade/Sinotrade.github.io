@@ -83,6 +83,10 @@ intraday_odd:  盤中零股 {true, false}，預設 false
 
 ```
 
+聚合串流端點
+
+需要同時接收多種事件（行情、K 棒、市場訊號、委託回報、商品檔異動等）時，可改連 `GET /api/v1/stream/data`：單一連線帶出所有具名事件（以 SSE event name 區分）， 共用一個 heartbeat，且只計為一條 SSE 連線。訂閱方式不變，仍透過各自的 subscribe 端點。 只需要單一類型事件、或該串流需要獨立生命週期時，維持使用個別端點即可。
+
 ## Tick
 
 #### 整股

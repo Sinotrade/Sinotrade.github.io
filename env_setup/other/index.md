@@ -50,6 +50,19 @@ SJ_PRODUCTION=false
 
 When the shioaji server starts, it will automatically read this file to complete login and CA activation.
 
+## Enable HTTPS (Optional)
+
+The server defaults to plaintext HTTP/1.1 — no extra setup is needed for local use. To let browsers connect directly over HTTP/2 (e.g. a web app holding several SSE streams at once), configure a certificate to enable HTTPS:
+
+```
+# Append to .env (set both together; use mkcert to create a locally trusted certificate)
+SJ_HTTP_TLS_CERT=/path/to/localhost.pem
+SJ_HTTP_TLS_KEY=/path/to/localhost-key.pem
+
+```
+
+Once set, use `https://` URLs for REST, OpenAPI, and SSE. Public-domain deployments additionally support ACME automatic certificates and HTTP/3.
+
 ## Check Server Status
 
 After the server is up, you can check the daemon and stream health at any time.
@@ -108,18 +121,20 @@ curl http://localhost:8080/api/v1/info
 Out
 
 ```
-{"name":"Shioaji API Server","version":"1.5.3","description":"SinoPac Shioaji Cross-Platform Trading API HTTP Adaptor","protocols":["HTTP"],"simulation":false}
+{"name":"Shioaji API Server","version":"1.7.2","description":"SinoPac Shioaji Cross-Platform Trading API HTTP Adaptor","protocols":["HTTP/1.1"],"scheme":"http","uds_plaintext":true,"simulation":false}
 
 ```
 
 Attributes
 
 ```
-name (str):        service name
-version (str):     server version
-description (str): service description
-protocols (list):  supported protocols
-simulation (bool): whether the server is in simulation mode (corresponds to SJ_PRODUCTION in .env)
+name (str):           service name
+version (str):        server version
+description (str):    service description
+protocols (list):     supported protocols
+scheme (str):         external scheme (http or https)
+uds_plaintext (bool): whether the local UDS channel stays plaintext
+simulation (bool):    whether the server is in simulation mode (corresponds to SJ_PRODUCTION in .env)
 
 ```
 
