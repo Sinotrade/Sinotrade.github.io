@@ -75,7 +75,7 @@ def testing_stock_ordering():
 
     # 準備下單的 Contract
     # 使用 2890 永豐金為例
-    contract = api.Contracts.Stocks["2890"]
+    contract = api.contracts.get("2890")
     print(f"Contract: {contract}")
 
     # 建立委託下單的 Order
@@ -138,7 +138,7 @@ def testing_futures_ordering():
     )
 
     # 取得合約 使用台指期近月為例
-    contract = api.Contracts.Futures["TXFR1"]
+    contract = api.contracts.get("TXFR1")
     print(f"Contract: {contract}")
 
     # 建立期貨委託下單的 Order

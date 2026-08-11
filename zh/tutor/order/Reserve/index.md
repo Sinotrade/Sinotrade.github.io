@@ -37,7 +37,7 @@ Parameters
 
 ```
 reserve_earmarking
-    contract: 商品檔（由 api.Contracts.Stocks.* 取得）
+    contract: 商品檔（由 api.contracts.get 取得）
     share:    預收股數
     price:    預收價格
     account:  證券帳號
@@ -134,7 +134,7 @@ Order
 
 ```
 # 商品檔
-contract = api.Contracts.Stocks.TSE.TSE1217
+contract = api.contracts.get("1217")
 # 預收款項內容
 share = 1000
 price = 9
@@ -372,7 +372,7 @@ Parameters
 
 ```
 reserve_stock
-    contract: 商品檔（由 api.Contracts.Stocks.* 取得）
+    contract: 商品檔（由 api.contracts.get 取得）
     share:    預收股數
     account:  證券帳號
     timeout:  逾時毫秒
@@ -491,7 +491,7 @@ Order
 
 ```
 # 商品檔
-contract = api.Contracts.Stocks.TSE.TSE1217
+contract = api.contracts.get("1217")
 # 預收股數
 share = 1000
 

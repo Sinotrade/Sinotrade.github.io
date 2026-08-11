@@ -15,7 +15,7 @@ Signature:
 Parameters
 
 ```
-contracts: list of contracts (from api.Contracts.Stocks.*)
+contracts: list of contracts (from api.contracts.get)
 timeout:   timeout in milliseconds
 cb:        optional, callback function, used when timeout=0
 
@@ -89,7 +89,7 @@ ts / datetime:            time (integer Unix timestamp in Python, ISO string in 
 In
 
 ```
-contracts = [api.Contracts.Stocks['2330'], api.Contracts.Stocks['2317']]
+contracts = [api.contracts.get("2330"), api.contracts.get("2317")]
 short_stock_sources = api.short_stock_sources(contracts)
 short_stock_sources
 

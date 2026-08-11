@@ -52,21 +52,21 @@ def __init__(self, api: sj.Shioaji):
 
 def subscribe_stk_tick(self, codes: List[str], recover: bool = False):
     for code in codes:
-        contract = self.api.Contracts.Stocks[code]
+        contract = self.api.contracts.get(code)
         if contract is not None and code not in self.subscribed_stk_tick:
             self.api.quote.subscribe(contract, "tick")
             self.subscribed_stk_tick.add(code)
 
 def unsubscribe_stk_tick(self, codes: List[str]):
     for code in codes:
-        contract = self.api.Contracts.Stocks[code]
+        contract = self.api.contracts.get(code)
         if contract is not None and code in self.subscribed_stk_tick:
             self.api.quote.unsubscribe(contract, "tick")
             self.subscribed_stk_tick.remove(code)
 
 def unsubscribe_all_stk_tick(self):
     for code in self.subscribed_stk_tick:
-        contract = self.api.Contracts.Stocks[code]
+        contract = self.api.contracts.get(code)
         if contract is not None:
             self.api.quote.unsubscribe(contract, "tick")
     self.subscribed_stk_tick.clear()

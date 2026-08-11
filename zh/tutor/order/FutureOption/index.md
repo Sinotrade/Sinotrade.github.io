@@ -26,7 +26,7 @@ Docstring:
 Parameters
 
 ```
-contract: 商品檔（由 api.Contracts.Futures.* 取得）
+contract: 商品檔（由 api.contracts.get 取得）
 order:    期貨委託單物件
 timeout:  逾時毫秒
 cb:       選填，callback 函式
@@ -88,7 +88,7 @@ Order
 
 ```
 # 商品檔
-contract = api.Contracts.Futures.TMF.TMFR1
+contract = api.contracts.get("TMFR1")
 # 委託內容
 order = sj.FuturesOrder(
     action=sj.Action.Buy,

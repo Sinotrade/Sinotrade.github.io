@@ -2099,7 +2099,7 @@
 </div>
 <div class="admonition done">
 <p class="admonition-title">Parameters</p>
-<div class="highlight"><pre><span></span><code>contracts: list of contracts (from api.Contracts.*), up to 500 per request
+<div class="highlight"><pre><span></span><code>contracts: list of contracts (from api.contracts.get), up to 500 per request
 timeout:   timeout in milliseconds
 cb:        optional, callback function, used when timeout=0
 </code></pre></div>
@@ -2185,7 +2185,7 @@ contracts[].code:          security code (e.g. 2330, TXFR1)
 <div class="tabbed-block">
 <div class="admonition info">
 <p class="admonition-title">In</p>
-<div class="highlight"><pre><span></span><code><span class="n">contracts</span> <span class="o">=</span> <span class="p">[</span><span class="n">api</span><span class="o">.</span><span class="n">Contracts</span><span class="o">.</span><span class="n">Stocks</span><span class="p">[</span><span class="s1">&#39;2330&#39;</span><span class="p">],</span> <span class="n">api</span><span class="o">.</span><span class="n">Contracts</span><span class="o">.</span><span class="n">Stocks</span><span class="p">[</span><span class="s1">&#39;2317&#39;</span><span class="p">]]</span>
+<div class="highlight"><pre><span></span><code><span class="n">contracts</span> <span class="o">=</span> <span class="p">[</span><span class="n">api</span><span class="o">.</span><span class="n">contracts</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s2">&quot;2330&quot;</span><span class="p">),</span> <span class="n">api</span><span class="o">.</span><span class="n">contracts</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s2">&quot;2317&quot;</span><span class="p">)]</span>
 <span class="n">snapshots</span> <span class="o">=</span> <span class="n">api</span><span class="o">.</span><span class="n">snapshots</span><span class="p">(</span><span class="n">contracts</span><span class="p">)</span>
 <span class="n">snapshots</span>
 </code></pre></div>

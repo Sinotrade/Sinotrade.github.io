@@ -2348,7 +2348,7 @@
 </div>
 <div class="admonition done">
 <p class="admonition-title">Parameters</p>
-<div class="highlight"><pre><span></span><code>contract:    contract (from api.Contracts.*)
+<div class="highlight"><pre><span></span><code>contract:    contract (from api.contracts.get)
 date:        trading date (YYYY-MM-DD)
 query_type:  query mode {&#39;AllDay&#39;, &#39;RangeTime&#39;, &#39;LastCount&#39;}
 time_start:  optional, start time, used when query_type=&#39;RangeTime&#39;
@@ -2439,8 +2439,9 @@ last_cnt:               optional, last N ticks, used when query_type=&#39;LastCo
 <h4 id="ticks-by-date">Ticks by Date<a class="headerlink" href="#ticks-by-date" title="Permanent link">&para;</a></h4>
 <div class="admonition info">
 <p class="admonition-title">In</p>
-<div class="highlight"><pre><span></span><code><span class="n">ticks</span> <span class="o">=</span> <span class="n">api</span><span class="o">.</span><span class="n">ticks</span><span class="p">(</span>
-    <span class="n">contract</span><span class="o">=</span><span class="n">api</span><span class="o">.</span><span class="n">Contracts</span><span class="o">.</span><span class="n">Stocks</span><span class="p">[</span><span class="s2">&quot;2330&quot;</span><span class="p">],</span>
+<div class="highlight"><pre><span></span><code><span class="n">contract</span> <span class="o">=</span> <span class="n">api</span><span class="o">.</span><span class="n">contracts</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s2">&quot;2330&quot;</span><span class="p">)</span>
+<span class="n">ticks</span> <span class="o">=</span> <span class="n">api</span><span class="o">.</span><span class="n">ticks</span><span class="p">(</span>
+    <span class="n">contract</span><span class="o">=</span><span class="n">contract</span><span class="p">,</span>
     <span class="n">date</span><span class="o">=</span><span class="s2">&quot;2026-05-18&quot;</span>
 <span class="p">)</span>
 <span class="n">ticks</span>
@@ -2532,8 +2533,9 @@ last_cnt:               optional, last N ticks, used when query_type=&#39;LastCo
 <h4 id="ticks-by-time-range">Ticks by Time Range<a class="headerlink" href="#ticks-by-time-range" title="Permanent link">&para;</a></h4>
 <div class="admonition info">
 <p class="admonition-title">In</p>
-<div class="highlight"><pre><span></span><code><span class="n">ticks</span> <span class="o">=</span> <span class="n">api</span><span class="o">.</span><span class="n">ticks</span><span class="p">(</span>
-    <span class="n">contract</span><span class="o">=</span><span class="n">api</span><span class="o">.</span><span class="n">Contracts</span><span class="o">.</span><span class="n">Stocks</span><span class="p">[</span><span class="s2">&quot;2330&quot;</span><span class="p">],</span>
+<div class="highlight"><pre><span></span><code><span class="n">contract</span> <span class="o">=</span> <span class="n">api</span><span class="o">.</span><span class="n">contracts</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s2">&quot;2330&quot;</span><span class="p">)</span>
+<span class="n">ticks</span> <span class="o">=</span> <span class="n">api</span><span class="o">.</span><span class="n">ticks</span><span class="p">(</span>
+    <span class="n">contract</span><span class="o">=</span><span class="n">contract</span><span class="p">,</span>
     <span class="n">date</span><span class="o">=</span><span class="s2">&quot;2026-05-18&quot;</span><span class="p">,</span>
 <span class="hll">    <span class="n">query_type</span><span class="o">=</span><span class="n">sj</span><span class="o">.</span><span class="n">constant</span><span class="o">.</span><span class="n">TicksQueryType</span><span class="o">.</span><span class="n">RangeTime</span><span class="p">,</span>
 </span><span class="hll">    <span class="n">time_start</span><span class="o">=</span><span class="s2">&quot;09:00:00&quot;</span><span class="p">,</span>
@@ -2559,8 +2561,9 @@ last_cnt:               optional, last N ticks, used when query_type=&#39;LastCo
 <h4 id="last-n-ticks">Last N Ticks<a class="headerlink" href="#last-n-ticks" title="Permanent link">&para;</a></h4>
 <div class="admonition info">
 <p class="admonition-title">In</p>
-<div class="highlight"><pre><span></span><code><span class="n">ticks</span> <span class="o">=</span> <span class="n">api</span><span class="o">.</span><span class="n">ticks</span><span class="p">(</span>
-    <span class="n">contract</span><span class="o">=</span><span class="n">api</span><span class="o">.</span><span class="n">Contracts</span><span class="o">.</span><span class="n">Stocks</span><span class="p">[</span><span class="s2">&quot;2330&quot;</span><span class="p">],</span>
+<div class="highlight"><pre><span></span><code><span class="n">contract</span> <span class="o">=</span> <span class="n">api</span><span class="o">.</span><span class="n">contracts</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s2">&quot;2330&quot;</span><span class="p">)</span>
+<span class="n">ticks</span> <span class="o">=</span> <span class="n">api</span><span class="o">.</span><span class="n">ticks</span><span class="p">(</span>
+    <span class="n">contract</span><span class="o">=</span><span class="n">contract</span><span class="p">,</span>
     <span class="n">date</span><span class="o">=</span><span class="s2">&quot;2026-05-18&quot;</span><span class="p">,</span>
 <span class="hll">    <span class="n">query_type</span><span class="o">=</span><span class="n">sj</span><span class="o">.</span><span class="n">constant</span><span class="o">.</span><span class="n">TicksQueryType</span><span class="o">.</span><span class="n">LastCount</span><span class="p">,</span>
 </span><span class="hll">    <span class="n">last_cnt</span><span class="o">=</span><span class="mi">4</span><span class="p">,</span>
@@ -3294,7 +3297,7 @@ last_cnt:               optional, last N ticks, used when query_type=&#39;LastCo
 </div>
 <div class="admonition done">
 <p class="admonition-title">Parameters</p>
-<div class="highlight"><pre><span></span><code>contract: contract (from api.Contracts.*)
+<div class="highlight"><pre><span></span><code>contract: contract (from api.contracts.get)
 start:    start date (YYYY-MM-DD), defaults to yesterday
 end:      end date (YYYY-MM-DD), defaults to today
 timeout:  timeout in milliseconds
@@ -3372,8 +3375,9 @@ end:                    end date (YYYY-MM-DD)
 <div class="tabbed-block">
 <div class="admonition info">
 <p class="admonition-title">In</p>
-<div class="highlight"><pre><span></span><code><span class="n">kbars</span> <span class="o">=</span> <span class="n">api</span><span class="o">.</span><span class="n">kbars</span><span class="p">(</span>
-    <span class="n">contract</span><span class="o">=</span><span class="n">api</span><span class="o">.</span><span class="n">Contracts</span><span class="o">.</span><span class="n">Stocks</span><span class="p">[</span><span class="s2">&quot;2330&quot;</span><span class="p">],</span>
+<div class="highlight"><pre><span></span><code><span class="n">contract</span> <span class="o">=</span> <span class="n">api</span><span class="o">.</span><span class="n">contracts</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s2">&quot;2330&quot;</span><span class="p">)</span>
+<span class="n">kbars</span> <span class="o">=</span> <span class="n">api</span><span class="o">.</span><span class="n">kbars</span><span class="p">(</span>
+    <span class="n">contract</span><span class="o">=</span><span class="n">contract</span><span class="p">,</span>
     <span class="n">start</span><span class="o">=</span><span class="s2">&quot;2026-05-17&quot;</span><span class="p">,</span>
     <span class="n">end</span><span class="o">=</span><span class="s2">&quot;2026-05-18&quot;</span>
 <span class="p">)</span>
@@ -3715,10 +3719,10 @@ end:                    end date (YYYY-MM-DD)
 </table>
 </div>
 <h2 id="continuous-futures">Continuous Futures<a class="headerlink" href="#continuous-futures" title="Permanent link">&para;</a></h2>
-<p>Once a futures contract passes its expiration date, the contract is invalid, and it will not exist in your <code>api.Contracts</code>. In order to get historical data for expired futures contracts, we provide continuous futures contracts. <code>R1</code>, <code>R2</code> are continuous near-month and next-to-near-month futures contracts respectively. They will automatically roll contracts on delivery date (i.e. <code>target_code</code> changes). You can use <code>R1</code>, <code>R2</code> to get long-term historical data, e.g. <code>api.Contracts.Futures.TXF.TXFR1</code>. The examples below show how to use <code>R1</code>, <code>R2</code> to fetch historical <code>Ticks</code> and <code>Kbars</code> of expired futures.</p>
+<p>Once a futures contract passes its expiration date, the contract is invalid, and <code>api.contracts.get()</code> will no longer find it. In order to get historical data for expired futures contracts, we provide continuous futures contracts. <code>R1</code>, <code>R2</code> are continuous near-month and next-to-near-month futures contracts respectively. They will automatically roll contracts on delivery date (i.e. <code>target_code</code> changes). You can use <code>R1</code>, <code>R2</code> to get long-term historical data, e.g. <code>api.contracts.get("TXFR1")</code>. The examples below show how to use <code>R1</code>, <code>R2</code> to fetch historical <code>Ticks</code> and <code>Kbars</code> of expired futures.</p>
 <div class="admonition warning">
 <p class="admonition-title">Note</p>
-<p><code>code</code> must exist in <code>api.Contracts</code> to be passed into <code>api.ticks</code> / <code>api.kbars</code>. For example, <code>TXFE6</code> is the contract for May 2026; by June 2026 it no longer appears in <code>api.Contracts</code>, so <code>TXFE6</code> cannot be queried at that point.</p>
+<p><code>code</code> must be a contract that <code>api.contracts.get()</code> can find to be passed into <code>api.ticks</code> / <code>api.kbars</code>. For example, <code>TXFE6</code> is the contract for May 2026; by June 2026 it can no longer be found, so <code>TXFE6</code> cannot be queried at that point.</p>
 </div>
 <div class="tabbed-set tabbed-alternate" data-tabs="5:3"><input checked="checked" id="__tabbed_5_1" name="__tabbed_5" type="radio" /><input id="__tabbed_5_2" name="__tabbed_5" type="radio" /><input id="__tabbed_5_3" name="__tabbed_5" type="radio" /><div class="tabbed-labels"><label for="__tabbed_5_1">Python</label><label for="__tabbed_5_2">CLI</label><label for="__tabbed_5_3">Other (HTTP)</label></div>
 <div class="tabbed-content">
@@ -3726,9 +3730,10 @@ end:                    end date (YYYY-MM-DD)
 <h4 id="ticks_1">Ticks<a class="headerlink" href="#ticks_1" title="Permanent link">&para;</a></h4>
 <div class="admonition info">
 <p class="admonition-title">In</p>
-<div class="highlight"><pre><span></span><code><span class="n">ticks</span> <span class="o">=</span> <span class="n">api</span><span class="o">.</span><span class="n">ticks</span><span class="p">(</span>
-<span class="hll">    <span class="n">contract</span><span class="o">=</span><span class="n">api</span><span class="o">.</span><span class="n">Contracts</span><span class="o">.</span><span class="n">Futures</span><span class="o">.</span><span class="n">TXF</span><span class="o">.</span><span class="n">TXFR1</span><span class="p">,</span>
-</span>    <span class="n">date</span><span class="o">=</span><span class="s2">&quot;2026-05-18&quot;</span><span class="p">,</span>
+<div class="highlight"><pre><span></span><code><span class="hll"><span class="n">contract</span> <span class="o">=</span> <span class="n">api</span><span class="o">.</span><span class="n">contracts</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s2">&quot;TXFR1&quot;</span><span class="p">)</span>
+</span><span class="n">ticks</span> <span class="o">=</span> <span class="n">api</span><span class="o">.</span><span class="n">ticks</span><span class="p">(</span>
+    <span class="n">contract</span><span class="o">=</span><span class="n">contract</span><span class="p">,</span>
+    <span class="n">date</span><span class="o">=</span><span class="s2">&quot;2026-05-18&quot;</span><span class="p">,</span>
     <span class="n">query_type</span><span class="o">=</span><span class="n">sj</span><span class="o">.</span><span class="n">constant</span><span class="o">.</span><span class="n">TicksQueryType</span><span class="o">.</span><span class="n">LastCount</span><span class="p">,</span>
     <span class="n">last_cnt</span><span class="o">=</span><span class="mi">4</span><span class="p">,</span>
 <span class="p">)</span>
@@ -3752,9 +3757,10 @@ end:                    end date (YYYY-MM-DD)
 <h4 id="kbars_1">Kbars<a class="headerlink" href="#kbars_1" title="Permanent link">&para;</a></h4>
 <div class="admonition info">
 <p class="admonition-title">In</p>
-<div class="highlight"><pre><span></span><code><span class="n">kbars</span> <span class="o">=</span> <span class="n">api</span><span class="o">.</span><span class="n">kbars</span><span class="p">(</span>
-<span class="hll">    <span class="n">contract</span><span class="o">=</span><span class="n">api</span><span class="o">.</span><span class="n">Contracts</span><span class="o">.</span><span class="n">Futures</span><span class="o">.</span><span class="n">TXF</span><span class="o">.</span><span class="n">TXFR1</span><span class="p">,</span>
-</span>    <span class="n">start</span><span class="o">=</span><span class="s2">&quot;2026-05-17&quot;</span><span class="p">,</span>
+<div class="highlight"><pre><span></span><code><span class="hll"><span class="n">contract</span> <span class="o">=</span> <span class="n">api</span><span class="o">.</span><span class="n">contracts</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s2">&quot;TXFR1&quot;</span><span class="p">)</span>
+</span><span class="n">kbars</span> <span class="o">=</span> <span class="n">api</span><span class="o">.</span><span class="n">kbars</span><span class="p">(</span>
+    <span class="n">contract</span><span class="o">=</span><span class="n">contract</span><span class="p">,</span>
+    <span class="n">start</span><span class="o">=</span><span class="s2">&quot;2026-05-17&quot;</span><span class="p">,</span>
     <span class="n">end</span><span class="o">=</span><span class="s2">&quot;2026-05-18&quot;</span>
 <span class="p">)</span>
 <span class="n">kbars</span>

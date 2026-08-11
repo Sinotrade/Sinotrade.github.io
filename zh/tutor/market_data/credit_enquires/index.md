@@ -15,7 +15,7 @@ Signature:
 Parameters
 
 ```
-contracts: 商品檔列表（由 api.Contracts.Stocks.* 取得）
+contracts: 商品檔列表（由 api.contracts.get 取得）
 timeout:   逾時毫秒
 cb:        選填，callback 函式，timeout=0 時使用
 
@@ -93,7 +93,7 @@ short_margin_ratio (int): 融券成數
 In
 
 ```
-contracts = [api.Contracts.Stocks['2330'], api.Contracts.Stocks['2890']]
+contracts = [api.contracts.get("2330"), api.contracts.get("2890")]
 credit_enquires = api.credit_enquires(contracts)
 credit_enquires
 

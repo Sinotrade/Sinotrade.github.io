@@ -2458,7 +2458,7 @@
 </div>
 <div class="admonition done">
 <p class="admonition-title">Quote Parameters:</p>
-<div class="highlight"><pre><span></span><code>contract:     要訂閱的商品檔（由 api.Contracts.* 取得）
+<div class="highlight"><pre><span></span><code>contract:     要訂閱的商品檔（由 api.contracts.get 取得）
 quote_type:   訂閱類型 {&#39;tick&#39;, &#39;bid_ask&#39;, &#39;quote&#39;}
 intraday_odd: 盤中零股 {True, False}
 </code></pre></div>
@@ -2509,7 +2509,7 @@ Options:
 <p class="admonition-title">Quote Parameters:</p>
 <div class="highlight"><pre><span></span><code>security_type: 商品類型 {STK, FUT, OPT, IND}
 exchange:      交易所 {TSE, OTC, OES, TAIFEX}
-code:          商品代碼（例如 2330、TXFE5）
+code:          商品代碼（例如 2330、TXFR1）
 target_code:   對應實際商品代碼。選填，期貨連續月（TXFR1/R2）才會用到，股票不需指定
 quote_type:    訂閱類型 {Tick, BidAsk, Quote}
 intraday_odd:  盤中零股 {true, false}，預設 false
@@ -2532,14 +2532,15 @@ intraday_odd:  盤中零股 {true, false}，預設 false
 <h4 id="_1">整股<a class="headerlink" href="#_1" title="Permanent link">&para;</a></h4>
 <div class="admonition info">
 <p class="admonition-title">In</p>
-<div class="highlight"><pre><span></span><code><span class="n">api</span><span class="o">.</span><span class="n">subscribe</span><span class="p">(</span>
-    <span class="n">api</span><span class="o">.</span><span class="n">Contracts</span><span class="o">.</span><span class="n">Stocks</span><span class="o">.</span><span class="n">TSE</span><span class="o">.</span><span class="n">TSE2890</span><span class="p">,</span>
+<div class="highlight"><pre><span></span><code><span class="n">contract</span> <span class="o">=</span> <span class="n">api</span><span class="o">.</span><span class="n">contracts</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s2">&quot;2890&quot;</span><span class="p">)</span>
+<span class="n">api</span><span class="o">.</span><span class="n">subscribe</span><span class="p">(</span>
+    <span class="n">contract</span><span class="p">,</span>
 <span class="hll">    <span class="n">quote_type</span><span class="o">=</span><span class="n">sj</span><span class="o">.</span><span class="n">QuoteType</span><span class="o">.</span><span class="n">Tick</span><span class="p">,</span>
 </span><span class="p">)</span>
 
 <span class="c1"># 取消訂閱</span>
 <span class="c1"># api.unsubscribe(</span>
-<span class="c1">#     api.Contracts.Stocks.TSE.TSE2890,</span>
+<span class="c1">#     contract,</span>
 <span class="c1">#     quote_type=sj.QuoteType.Tick,</span>
 <span class="c1"># )</span>
 </code></pre></div>
@@ -2566,15 +2567,16 @@ intraday_odd:  盤中零股 {true, false}，預設 false
 <h4 id="_2">盤中零股<a class="headerlink" href="#_2" title="Permanent link">&para;</a></h4>
 <div class="admonition info">
 <p class="admonition-title">In</p>
-<div class="highlight"><pre><span></span><code><span class="n">api</span><span class="o">.</span><span class="n">subscribe</span><span class="p">(</span>
-    <span class="n">api</span><span class="o">.</span><span class="n">Contracts</span><span class="o">.</span><span class="n">Stocks</span><span class="o">.</span><span class="n">TSE</span><span class="o">.</span><span class="n">TSE2890</span><span class="p">,</span>
+<div class="highlight"><pre><span></span><code><span class="n">contract</span> <span class="o">=</span> <span class="n">api</span><span class="o">.</span><span class="n">contracts</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s2">&quot;2890&quot;</span><span class="p">)</span>
+<span class="n">api</span><span class="o">.</span><span class="n">subscribe</span><span class="p">(</span>
+    <span class="n">contract</span><span class="p">,</span>
     <span class="n">quote_type</span><span class="o">=</span><span class="n">sj</span><span class="o">.</span><span class="n">QuoteType</span><span class="o">.</span><span class="n">Tick</span><span class="p">,</span>
 <span class="hll">    <span class="n">intraday_odd</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span>
 </span><span class="p">)</span>
 
 <span class="c1"># 取消訂閱</span>
 <span class="c1"># api.unsubscribe(</span>
-<span class="c1">#     api.Contracts.Stocks.TSE.TSE2890,</span>
+<span class="c1">#     contract,</span>
 <span class="c1">#     quote_type=sj.QuoteType.Tick,</span>
 <span class="c1">#     intraday_odd=True,</span>
 <span class="c1"># )</span>
@@ -3382,14 +3384,15 @@ data:{&quot;code&quot;:&quot;2330&quot;,&quot;date&quot;:&quot;2026-05-19&quot;,
 <h4 id="_4">整股<a class="headerlink" href="#_4" title="Permanent link">&para;</a></h4>
 <div class="admonition info">
 <p class="admonition-title">In</p>
-<div class="highlight"><pre><span></span><code><span class="n">api</span><span class="o">.</span><span class="n">subscribe</span><span class="p">(</span>
-    <span class="n">api</span><span class="o">.</span><span class="n">Contracts</span><span class="o">.</span><span class="n">Stocks</span><span class="o">.</span><span class="n">TSE</span><span class="o">.</span><span class="n">TSE2890</span><span class="p">,</span>
+<div class="highlight"><pre><span></span><code><span class="n">contract</span> <span class="o">=</span> <span class="n">api</span><span class="o">.</span><span class="n">contracts</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s2">&quot;2890&quot;</span><span class="p">)</span>
+<span class="n">api</span><span class="o">.</span><span class="n">subscribe</span><span class="p">(</span>
+    <span class="n">contract</span><span class="p">,</span>
 <span class="hll">    <span class="n">quote_type</span><span class="o">=</span><span class="n">sj</span><span class="o">.</span><span class="n">QuoteType</span><span class="o">.</span><span class="n">BidAsk</span><span class="p">,</span>
 </span><span class="p">)</span>
 
 <span class="c1"># 取消訂閱</span>
 <span class="c1"># api.unsubscribe(</span>
-<span class="c1">#     api.Contracts.Stocks.TSE.TSE2890,</span>
+<span class="c1">#     contract,</span>
 <span class="c1">#     quote_type=sj.QuoteType.BidAsk,</span>
 <span class="c1"># )</span>
 </code></pre></div>
@@ -3416,15 +3419,16 @@ data:{&quot;code&quot;:&quot;2330&quot;,&quot;date&quot;:&quot;2026-05-19&quot;,
 <h4 id="_5">盤中零股<a class="headerlink" href="#_5" title="Permanent link">&para;</a></h4>
 <div class="admonition info">
 <p class="admonition-title">In</p>
-<div class="highlight"><pre><span></span><code><span class="n">api</span><span class="o">.</span><span class="n">subscribe</span><span class="p">(</span>
-    <span class="n">api</span><span class="o">.</span><span class="n">Contracts</span><span class="o">.</span><span class="n">Stocks</span><span class="o">.</span><span class="n">TSE</span><span class="o">.</span><span class="n">TSE2890</span><span class="p">,</span>
+<div class="highlight"><pre><span></span><code><span class="n">contract</span> <span class="o">=</span> <span class="n">api</span><span class="o">.</span><span class="n">contracts</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s2">&quot;2890&quot;</span><span class="p">)</span>
+<span class="n">api</span><span class="o">.</span><span class="n">subscribe</span><span class="p">(</span>
+    <span class="n">contract</span><span class="p">,</span>
     <span class="n">quote_type</span><span class="o">=</span><span class="n">sj</span><span class="o">.</span><span class="n">QuoteType</span><span class="o">.</span><span class="n">BidAsk</span><span class="p">,</span>
 <span class="hll">    <span class="n">intraday_odd</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span>
 </span><span class="p">)</span>
 
 <span class="c1"># 取消訂閱</span>
 <span class="c1"># api.unsubscribe(</span>
-<span class="c1">#     api.Contracts.Stocks.TSE.TSE2890,</span>
+<span class="c1">#     contract,</span>
 <span class="c1">#     quote_type=sj.QuoteType.BidAsk,</span>
 <span class="c1">#     intraday_odd=True,</span>
 <span class="c1"># )</span>
@@ -3640,14 +3644,15 @@ data:{
 <h4 id="_7">整股<a class="headerlink" href="#_7" title="Permanent link">&para;</a></h4>
 <div class="admonition info">
 <p class="admonition-title">In</p>
-<div class="highlight"><pre><span></span><code><span class="n">api</span><span class="o">.</span><span class="n">subscribe</span><span class="p">(</span>
-    <span class="n">api</span><span class="o">.</span><span class="n">Contracts</span><span class="o">.</span><span class="n">Stocks</span><span class="o">.</span><span class="n">TSE</span><span class="o">.</span><span class="n">TSE2890</span><span class="p">,</span>
+<div class="highlight"><pre><span></span><code><span class="n">contract</span> <span class="o">=</span> <span class="n">api</span><span class="o">.</span><span class="n">contracts</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s2">&quot;2890&quot;</span><span class="p">)</span>
+<span class="n">api</span><span class="o">.</span><span class="n">subscribe</span><span class="p">(</span>
+    <span class="n">contract</span><span class="p">,</span>
 <span class="hll">    <span class="n">quote_type</span><span class="o">=</span><span class="n">sj</span><span class="o">.</span><span class="n">QuoteType</span><span class="o">.</span><span class="n">Quote</span><span class="p">,</span>
 </span><span class="p">)</span>
 
 <span class="c1"># 取消訂閱</span>
 <span class="c1"># api.unsubscribe(</span>
-<span class="c1">#     api.Contracts.Stocks.TSE.TSE2890,</span>
+<span class="c1">#     contract,</span>
 <span class="c1">#     quote_type=sj.QuoteType.Quote,</span>
 <span class="c1"># )</span>
 </code></pre></div>
@@ -4013,8 +4018,9 @@ data:{
     <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;simtrade=</span><span class="si">{</span><span class="n">tick</span><span class="o">.</span><span class="n">simtrade</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
     <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;intraday_odd=</span><span class="si">{</span><span class="n">tick</span><span class="o">.</span><span class="n">intraday_odd</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
 
+<span class="n">contract</span> <span class="o">=</span> <span class="n">api</span><span class="o">.</span><span class="n">contracts</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s2">&quot;2890&quot;</span><span class="p">)</span>
 <span class="n">api</span><span class="o">.</span><span class="n">subscribe</span><span class="p">(</span>
-    <span class="n">api</span><span class="o">.</span><span class="n">Contracts</span><span class="o">.</span><span class="n">Stocks</span><span class="o">.</span><span class="n">TSE</span><span class="o">.</span><span class="n">TSE2890</span><span class="p">,</span>
+    <span class="n">contract</span><span class="p">,</span>
     <span class="n">quote_type</span><span class="o">=</span><span class="n">sj</span><span class="o">.</span><span class="n">QuoteType</span><span class="o">.</span><span class="n">Tick</span><span class="p">,</span>
 <span class="p">)</span>
 </code></pre></div>
@@ -4028,8 +4034,9 @@ data:{
 
 <span class="n">api</span><span class="o">.</span><span class="n">set_on_tick_stk_v1_callback</span><span class="p">(</span><span class="n">quote_callback</span><span class="p">)</span>
 
+<span class="n">contract</span> <span class="o">=</span> <span class="n">api</span><span class="o">.</span><span class="n">contracts</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s2">&quot;2890&quot;</span><span class="p">)</span>
 <span class="n">api</span><span class="o">.</span><span class="n">subscribe</span><span class="p">(</span>
-    <span class="n">api</span><span class="o">.</span><span class="n">Contracts</span><span class="o">.</span><span class="n">Stocks</span><span class="o">.</span><span class="n">TSE</span><span class="o">.</span><span class="n">TSE2890</span><span class="p">,</span>
+    <span class="n">contract</span><span class="p">,</span>
     <span class="n">quote_type</span><span class="o">=</span><span class="n">sj</span><span class="o">.</span><span class="n">QuoteType</span><span class="o">.</span><span class="n">Tick</span><span class="p">,</span>
 <span class="p">)</span>
 </code></pre></div>
@@ -4093,8 +4100,9 @@ intraday_odd=False
     <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;simtrade=</span><span class="si">{</span><span class="n">bidask</span><span class="o">.</span><span class="n">simtrade</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
     <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;intraday_odd=</span><span class="si">{</span><span class="n">bidask</span><span class="o">.</span><span class="n">intraday_odd</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
 
+<span class="n">contract</span> <span class="o">=</span> <span class="n">api</span><span class="o">.</span><span class="n">contracts</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s2">&quot;2890&quot;</span><span class="p">)</span>
 <span class="n">api</span><span class="o">.</span><span class="n">subscribe</span><span class="p">(</span>
-    <span class="n">api</span><span class="o">.</span><span class="n">Contracts</span><span class="o">.</span><span class="n">Stocks</span><span class="o">.</span><span class="n">TSE</span><span class="o">.</span><span class="n">TSE2890</span><span class="p">,</span>
+    <span class="n">contract</span><span class="p">,</span>
     <span class="n">quote_type</span><span class="o">=</span><span class="n">sj</span><span class="o">.</span><span class="n">QuoteType</span><span class="o">.</span><span class="n">BidAsk</span><span class="p">,</span>
 <span class="p">)</span>
 </code></pre></div>
@@ -4108,8 +4116,9 @@ intraday_odd=False
 
 <span class="n">api</span><span class="o">.</span><span class="n">set_on_bidask_stk_v1_callback</span><span class="p">(</span><span class="n">quote_callback</span><span class="p">)</span>
 
+<span class="n">contract</span> <span class="o">=</span> <span class="n">api</span><span class="o">.</span><span class="n">contracts</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s2">&quot;2890&quot;</span><span class="p">)</span>
 <span class="n">api</span><span class="o">.</span><span class="n">subscribe</span><span class="p">(</span>
-    <span class="n">api</span><span class="o">.</span><span class="n">Contracts</span><span class="o">.</span><span class="n">Stocks</span><span class="o">.</span><span class="n">TSE</span><span class="o">.</span><span class="n">TSE2890</span><span class="p">,</span>
+    <span class="n">contract</span><span class="p">,</span>
     <span class="n">quote_type</span><span class="o">=</span><span class="n">sj</span><span class="o">.</span><span class="n">QuoteType</span><span class="o">.</span><span class="n">BidAsk</span><span class="p">,</span>
 <span class="p">)</span>
 </code></pre></div>
@@ -4179,8 +4188,9 @@ intraday_odd=False
     <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;suspend=</span><span class="si">{</span><span class="n">quote</span><span class="o">.</span><span class="n">suspend</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
     <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;simtrade=</span><span class="si">{</span><span class="n">quote</span><span class="o">.</span><span class="n">simtrade</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
 
+<span class="n">contract</span> <span class="o">=</span> <span class="n">api</span><span class="o">.</span><span class="n">contracts</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s2">&quot;2890&quot;</span><span class="p">)</span>
 <span class="n">api</span><span class="o">.</span><span class="n">subscribe</span><span class="p">(</span>
-    <span class="n">api</span><span class="o">.</span><span class="n">Contracts</span><span class="o">.</span><span class="n">Stocks</span><span class="o">.</span><span class="n">TSE</span><span class="o">.</span><span class="n">TSE2890</span><span class="p">,</span>
+    <span class="n">contract</span><span class="p">,</span>
     <span class="n">quote_type</span><span class="o">=</span><span class="n">sj</span><span class="o">.</span><span class="n">QuoteType</span><span class="o">.</span><span class="n">Quote</span><span class="p">,</span>
 <span class="p">)</span>
 </code></pre></div>
@@ -4194,8 +4204,9 @@ intraday_odd=False
 
 <span class="n">api</span><span class="o">.</span><span class="n">set_on_quote_stk_v1_callback</span><span class="p">(</span><span class="n">quote_callback</span><span class="p">)</span>
 
+<span class="n">contract</span> <span class="o">=</span> <span class="n">api</span><span class="o">.</span><span class="n">contracts</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s2">&quot;2890&quot;</span><span class="p">)</span>
 <span class="n">api</span><span class="o">.</span><span class="n">subscribe</span><span class="p">(</span>
-    <span class="n">api</span><span class="o">.</span><span class="n">Contracts</span><span class="o">.</span><span class="n">Stocks</span><span class="o">.</span><span class="n">TSE</span><span class="o">.</span><span class="n">TSE2890</span><span class="p">,</span>
+    <span class="n">contract</span><span class="p">,</span>
     <span class="n">quote_type</span><span class="o">=</span><span class="n">sj</span><span class="o">.</span><span class="n">QuoteType</span><span class="o">.</span><span class="n">Quote</span><span class="p">,</span>
 <span class="p">)</span>
 </code></pre></div>

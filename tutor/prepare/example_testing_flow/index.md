@@ -74,8 +74,8 @@ def testing_stock_ordering():
     )
 
     # Prepare the Contract for Ordering
-    # Use 2890 Fubon Financial as an example
-    contract = api.Contracts.Stocks["2890"]
+    # Use 2890 SinoPac Financial as an example
+    contract = api.contracts.get("2890")
     print(f"Contract: {contract}")
 
     # Create an Order for Ordering
@@ -139,7 +139,7 @@ def testing_futures_ordering():
 
     # Get the contract for ordering
     # Use TXFR1 as an example
-    contract = api.Contracts.Futures["TXFR1"]
+    contract = api.contracts.get("TXFR1")
     print(f"Contract: {contract}")
 
     # Create an Order for Ordering

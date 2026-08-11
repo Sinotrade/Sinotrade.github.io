@@ -29,7 +29,7 @@ Place Order
 
 ```
 # Contract
-contract = api.Contracts.Stocks.TSE.TSE2890
+contract = api.contracts.get("2890")
 # Order
 order = sj.StockOrder(
     action=sj.Action.Buy,

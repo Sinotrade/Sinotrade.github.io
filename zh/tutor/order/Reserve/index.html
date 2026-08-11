@@ -2243,7 +2243,7 @@
 <div class="admonition done">
 <p class="admonition-title">Parameters</p>
 <div class="highlight"><pre><span></span><code>reserve_earmarking
-    contract: 商品檔（由 api.Contracts.Stocks.* 取得）
+    contract: 商品檔（由 api.contracts.get 取得）
     share:    預收股數
     price:    預收價格
     account:  證券帳號
@@ -2339,7 +2339,7 @@ earmarking_detail
 <div class="admonition info">
 <p class="admonition-title">Order</p>
 <div class="highlight"><pre><span></span><code><span class="c1"># 商品檔</span>
-<span class="hll"><span class="n">contract</span> <span class="o">=</span> <span class="n">api</span><span class="o">.</span><span class="n">Contracts</span><span class="o">.</span><span class="n">Stocks</span><span class="o">.</span><span class="n">TSE</span><span class="o">.</span><span class="n">TSE1217</span>
+<span class="hll"><span class="n">contract</span> <span class="o">=</span> <span class="n">api</span><span class="o">.</span><span class="n">contracts</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s2">&quot;1217&quot;</span><span class="p">)</span>
 </span><span class="c1"># 預收款項內容</span>
 <span class="hll"><span class="n">share</span> <span class="o">=</span> <span class="mi">1000</span>
 </span><span class="hll"><span class="n">price</span> <span class="o">=</span> <span class="mi">9</span>
@@ -2599,7 +2599,7 @@ account:
 <div class="admonition done">
 <p class="admonition-title">Parameters</p>
 <div class="highlight"><pre><span></span><code>reserve_stock
-    contract: 商品檔（由 api.Contracts.Stocks.* 取得）
+    contract: 商品檔（由 api.contracts.get 取得）
     share:    預收股數
     account:  證券帳號
     timeout:  逾時毫秒
@@ -2717,7 +2717,7 @@ stock_reserve_detail
 <div class="admonition info">
 <p class="admonition-title">Order</p>
 <div class="highlight"><pre><span></span><code><span class="c1"># 商品檔</span>
-<span class="hll"><span class="n">contract</span> <span class="o">=</span> <span class="n">api</span><span class="o">.</span><span class="n">Contracts</span><span class="o">.</span><span class="n">Stocks</span><span class="o">.</span><span class="n">TSE</span><span class="o">.</span><span class="n">TSE1217</span>
+<span class="hll"><span class="n">contract</span> <span class="o">=</span> <span class="n">api</span><span class="o">.</span><span class="n">contracts</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s2">&quot;1217&quot;</span><span class="p">)</span>
 </span><span class="c1"># 預收股數</span>
 <span class="hll"><span class="n">share</span> <span class="o">=</span> <span class="mi">1000</span>
 </span></code></pre></div>

@@ -25,7 +25,7 @@ Signature:
 Quote Parameters:
 
 ```
-contract:     the index contract to subscribe (from api.contracts.get or api.Contracts.Indexs)
+contract:     the index contract to subscribe (from api.contracts.get)
 quote_type:   indices support Quote only; can be omitted
 intraday_odd: not supported for indices, always False
 

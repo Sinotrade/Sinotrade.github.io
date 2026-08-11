@@ -109,7 +109,7 @@ curl http://localhost:8080/api/v1/auth/accounts
 
 ```
 # 商品檔 - 請修改此處
-contract = api.Contracts.Stocks.TSE.TSE2890
+contract = api.contracts.get("2890")
 
 # 證券委託單 - 請修改此處
 order = sj.StockOrder(
@@ -237,7 +237,7 @@ Out
 
 ```
 # 商品檔 - 請修改此處
-contract = api.Contracts.Futures.TXF.TXFE6
+contract = api.contracts.get("TXFR1")
 
 # 期貨委託單 - 請修改此處
 order = sj.FuturesOrder(

@@ -26,7 +26,7 @@ Signature:
 Quote Parameters:
 
 ```
-contract:     要訂閱的商品檔（由 api.Contracts.Futures.* 或 api.Contracts.Options.* 取得）
+contract:     要訂閱的商品檔（由 api.contracts.get 取得）
 quote_type:   訂閱類型 {'tick', 'bid_ask', 'quote'}
 intraday_odd: 期貨 / 選擇權不支援，固定為 False
 
@@ -52,7 +52,7 @@ Options:
 Quote Parameters:
 
 ```
---code:          要訂閱的商品代碼（期貨 / 選擇權如 TXFR1、TXFF6、TXO20260526900C）
+--code:          要訂閱的商品代碼（期貨 / 選擇權如 TXFR1）
 --quote-type:    訂閱類型 {tick, bid_ask, quote}，預設 tick
 --security-type: 商品類型 {STK, FUT, OPT, IND}，期貨填 FUT、選擇權填 OPT
 --intraday-odd:  期貨 / 選擇權不支援
@@ -80,7 +80,7 @@ Quote Parameters:
 ```
 security_type: 商品類型 {FUT, OPT}
 exchange:      交易所 {TAIFEX}
-code:          商品代碼（例 TXFR1、TXFF6、TXO20260526900C）
+code:          商品代碼（例 TXFR1）
 target_code:   對應實際商品代碼。連續月（TXFR1 / TXFR2）必填，否則 server 雖回 200 但收不到資料
 quote_type:    訂閱類型 {Tick, BidAsk, Quote}
 
@@ -91,14 +91,15 @@ quote_type:    訂閱類型 {Tick, BidAsk, Quote}
 In
 
 ```
+contract = api.contracts.get("TXFR1")
 api.subscribe(
-    api.Contracts.Futures.TXF.TXFR1,
+    contract,
     quote_type=sj.QuoteType.Tick,
 )
 
 # 取消訂閱
 # api.unsubscribe(
-#     api.Contracts.Futures.TXF.TXFR1,
+#     contract,
 #     quote_type=sj.QuoteType.Tick,
 # )
 
@@ -264,14 +265,15 @@ simtrade (bool)                          試撮
 In
 
 ```
+contract = api.contracts.get("TXFR1")
 api.subscribe(
-    api.Contracts.Futures.TXF.TXFR1,
+    contract,
     quote_type=sj.QuoteType.BidAsk,
 )
 
 # 取消訂閱
 # api.unsubscribe(
-#     api.Contracts.Futures.TXF.TXFR1,
+#     contract,
 #     quote_type=sj.QuoteType.BidAsk,
 # )
 
@@ -430,14 +432,15 @@ simtrade (bool)                          試撮
 In
 
 ```
+contract = api.contracts.get("TXFR1")
 api.subscribe(
-    api.Contracts.Futures.TXF.TXFR1,
+    contract,
     quote_type=sj.QuoteType.Quote,
 )
 
 # 取消訂閱
 # api.unsubscribe(
-#     api.Contracts.Futures.TXF.TXFR1,
+#     contract,
 #     quote_type=sj.QuoteType.Quote,
 # )
 
@@ -670,8 +673,9 @@ def quote_callback(exchange: Exchange, tick: TickFOPv1):
     print(f"pct_chg={tick.pct_chg}")
     print(f"simtrade={tick.simtrade}")
 
+contract = api.contracts.get("TXFR1")
 api.subscribe(
-    api.Contracts.Futures.TXF.TXFR1,
+    contract,
     quote_type=sj.QuoteType.Tick,
 )
 
@@ -687,8 +691,9 @@ def quote_callback(exchange: Exchange, tick: TickFOPv1):
 
 api.set_on_tick_fop_v1_callback(quote_callback)
 
+contract = api.contracts.get("TXFR1")
 api.subscribe(
-    api.Contracts.Futures.TXF.TXFR1,
+    contract,
     quote_type=sj.QuoteType.Tick,
 )
 
@@ -752,8 +757,9 @@ def quote_callback(exchange: Exchange, bidask: BidAskFOPv1):
     print(f"underlying_price={bidask.underlying_price}")
     print(f"simtrade={bidask.simtrade}")
 
+contract = api.contracts.get("TXFR1")
 api.subscribe(
-    api.Contracts.Futures.TXF.TXFR1,
+    contract,
     quote_type=sj.QuoteType.BidAsk,
 )
 
@@ -769,8 +775,9 @@ def quote_callback(exchange: Exchange, bidask: BidAskFOPv1):
 
 api.set_on_bidask_fop_v1_callback(quote_callback)
 
+contract = api.contracts.get("TXFR1")
 api.subscribe(
-    api.Contracts.Futures.TXF.TXFR1,
+    contract,
     quote_type=sj.QuoteType.BidAsk,
 )
 
@@ -846,8 +853,9 @@ def quote_callback(exchange: Exchange, quote: QuoteFOPv1):
     print(f"first_derived_ask_vol={quote.first_derived_ask_vol}")
     print(f"simtrade={quote.simtrade}")
 
+contract = api.contracts.get("TXFR1")
 api.subscribe(
-    api.Contracts.Futures.TXF.TXFR1,
+    contract,
     quote_type=sj.QuoteType.Quote,
 )
 
@@ -863,8 +871,9 @@ def quote_callback(exchange: Exchange, quote: QuoteFOPv1):
 
 api.set_on_quote_fop_v1_callback(quote_callback)
 
+contract = api.contracts.get("TXFR1")
 api.subscribe(
-    api.Contracts.Futures.TXF.TXFR1,
+    contract,
     quote_type=sj.QuoteType.Quote,
 )
 

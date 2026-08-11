@@ -33,7 +33,7 @@ Docstring:
 Parameters
 
 ```
-contract:    商品檔（由 api.Contracts.* 取得）
+contract:    商品檔（由 api.contracts.get 取得）
 date:        交易日（YYYY-MM-DD）
 query_type:  查詢類型 {'AllDay', 'RangeTime', 'LastCount'}
 time_start:  選填，起始時間，query_type='RangeTime' 時使用
@@ -129,8 +129,9 @@ tick_type (int):   內外盤別{1: 外盤, 2: 內盤, 0: 無法判定}
 In
 
 ```
+contract = api.contracts.get("2330")
 ticks = api.ticks(
-    contract=api.Contracts.Stocks["2330"],
+    contract=contract,
     date="2026-05-18"
 )
 ticks
@@ -175,8 +176,9 @@ Out
 In
 
 ```
+contract = api.contracts.get("2330")
 ticks = api.ticks(
-    contract=api.Contracts.Stocks["2330"],
+    contract=contract,
     date="2026-05-18",
     query_type=sj.constant.TicksQueryType.RangeTime,
     time_start="09:00:00",
@@ -207,8 +209,9 @@ Ticks[1151](
 In
 
 ```
+contract = api.contracts.get("2330")
 ticks = api.ticks(
-    contract=api.Contracts.Stocks["2330"],
+    contract=contract,
     date="2026-05-18",
     query_type=sj.constant.TicksQueryType.LastCount,
     last_cnt=4,
@@ -371,7 +374,7 @@ Docstring:
 Parameters
 
 ```
-contract: 商品檔（由 api.Contracts.* 取得）
+contract: 商品檔（由 api.contracts.get 取得）
 start:    起始日期（YYYY-MM-DD），預設為昨天
 end:      結束日期（YYYY-MM-DD），預設為今天
 timeout:  逾時毫秒
@@ -453,8 +456,9 @@ Amount (float): 成交額
 In
 
 ```
+contract = api.contracts.get("2330")
 kbars = api.kbars(
-    contract=api.Contracts.Stocks["2330"],
+    contract=contract,
     start="2026-05-17",
     end="2026-05-18"
 )
@@ -540,19 +544,20 @@ Historical Periods
 
 ## 連續期貨合約
 
-期貨合約一旦到期，合約即不再有效，亦即他將不會出現在您的`api.Contracts`裡。為了取得到期的期貨合約歷史資料，我們提供連續期貨合約。`R1`, `R2`是近月及次月的連續期貨合約，他們會自動在結算日更換新的合約（即 `target_code` 會變）。您可以使用`R1`, `R2`合約來取得長期的歷史資料，例如`api.Contracts.Futures.TXF.TXFR1`。以下顯示如何使用`R1`, `R2`合約取得到期期貨的歷史`Ticks`及`Kbars`。
+期貨合約一旦到期，合約即不再有效，亦即 `api.contracts.get()` 將查不到他。為了取得到期的期貨合約歷史資料，我們提供連續期貨合約。`R1`, `R2`是近月及次月的連續期貨合約，他們會自動在結算日更換新的合約（即 `target_code` 會變）。您可以使用`R1`, `R2`合約來取得長期的歷史資料，例如`api.contracts.get("TXFR1")`。以下顯示如何使用`R1`, `R2`合約取得到期期貨的歷史`Ticks`及`Kbars`。
 
 注意
 
-`code` 必須出現在 `api.Contracts` 裡才能放入 `api.ticks` / `api.kbars` 查詢。例如 `TXFE6` 是 2026 年 5 月的合約，到了 2026 年 6 月就不再出現在 `api.Contracts`，此時就無法用 `TXFE6` 查詢。
+`code` 必須是 `api.contracts.get()` 查得到的商品才能放入 `api.ticks` / `api.kbars` 查詢。例如 `TXFE6` 是 2026 年 5 月的合約，到了 2026 年 6 月就查不到了，此時就無法用 `TXFE6` 查詢。
 
 #### Ticks
 
 In
 
 ```
+contract = api.contracts.get("TXFR1")
 ticks = api.ticks(
-    contract=api.Contracts.Futures.TXF.TXFR1,
+    contract=contract,
     date="2026-05-18",
     query_type=sj.constant.TicksQueryType.LastCount,
     last_cnt=4,
@@ -582,8 +587,9 @@ Ticks[4](
 In
 
 ```
+contract = api.contracts.get("TXFR1")
 kbars = api.kbars(
-    contract=api.Contracts.Futures.TXF.TXFR1,
+    contract=contract,
     start="2026-05-17",
     end="2026-05-18"
 )

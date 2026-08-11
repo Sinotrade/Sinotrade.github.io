@@ -2327,8 +2327,9 @@ curl<span class="w"> </span>http://localhost:8080/api/v1/auth/accounts
 <div class="tabbed-set tabbed-alternate" data-tabs="2:3"><input checked="checked" id="__tabbed_2_1" name="__tabbed_2" type="radio" /><input id="__tabbed_2_2" name="__tabbed_2" type="radio" /><input id="__tabbed_2_3" name="__tabbed_2" type="radio" /><div class="tabbed-labels"><label for="__tabbed_2_1">Python</label><label for="__tabbed_2_2">CLI</label><label for="__tabbed_2_3">HTTP</label></div>
 <div class="tabbed-content">
 <div class="tabbed-block">
-<div class="highlight"><pre><span></span><code><span class="n">api</span><span class="o">.</span><span class="n">subscribe</span><span class="p">(</span><span class="n">api</span><span class="o">.</span><span class="n">Contracts</span><span class="o">.</span><span class="n">Stocks</span><span class="p">[</span><span class="s2">&quot;2330&quot;</span><span class="p">],</span> <span class="n">quote_type</span><span class="o">=</span><span class="s2">&quot;tick&quot;</span><span class="p">)</span>
-<span class="n">api</span><span class="o">.</span><span class="n">subscribe</span><span class="p">(</span><span class="n">api</span><span class="o">.</span><span class="n">Contracts</span><span class="o">.</span><span class="n">Stocks</span><span class="p">[</span><span class="s2">&quot;2330&quot;</span><span class="p">],</span> <span class="n">quote_type</span><span class="o">=</span><span class="s2">&quot;bid_ask&quot;</span><span class="p">)</span>
+<div class="highlight"><pre><span></span><code><span class="n">contract</span> <span class="o">=</span> <span class="n">api</span><span class="o">.</span><span class="n">contracts</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s2">&quot;2330&quot;</span><span class="p">)</span>
+<span class="n">api</span><span class="o">.</span><span class="n">subscribe</span><span class="p">(</span><span class="n">contract</span><span class="p">,</span> <span class="n">quote_type</span><span class="o">=</span><span class="s2">&quot;tick&quot;</span><span class="p">)</span>
+<span class="n">api</span><span class="o">.</span><span class="n">subscribe</span><span class="p">(</span><span class="n">contract</span><span class="p">,</span> <span class="n">quote_type</span><span class="o">=</span><span class="s2">&quot;bid_ask&quot;</span><span class="p">)</span>
 </code></pre></div>
 </div>
 <div class="tabbed-block">
@@ -2520,7 +2521,7 @@ security_type / exchange / code 等欄位，可呼叫
 <div class="tabbed-set tabbed-alternate" data-tabs="3:3"><input checked="checked" id="__tabbed_3_1" name="__tabbed_3" type="radio" /><input id="__tabbed_3_2" name="__tabbed_3" type="radio" /><input id="__tabbed_3_3" name="__tabbed_3" type="radio" /><div class="tabbed-labels"><label for="__tabbed_3_1">Python</label><label for="__tabbed_3_2">CLI</label><label for="__tabbed_3_3">HTTP</label></div>
 <div class="tabbed-content">
 <div class="tabbed-block">
-<div class="highlight"><pre><span></span><code><span class="n">contract</span> <span class="o">=</span> <span class="n">api</span><span class="o">.</span><span class="n">Contracts</span><span class="o">.</span><span class="n">Stocks</span><span class="p">[</span><span class="s2">&quot;2890&quot;</span><span class="p">]</span>
+<div class="highlight"><pre><span></span><code><span class="n">contract</span> <span class="o">=</span> <span class="n">api</span><span class="o">.</span><span class="n">contracts</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s2">&quot;2890&quot;</span><span class="p">)</span>
 <span class="n">order</span> <span class="o">=</span> <span class="n">sj</span><span class="o">.</span><span class="n">StockOrder</span><span class="p">(</span>
     <span class="n">action</span><span class="o">=</span><span class="n">sj</span><span class="o">.</span><span class="n">Action</span><span class="o">.</span><span class="n">Buy</span><span class="p">,</span>
     <span class="n">price</span><span class="o">=</span><span class="mi">28</span><span class="p">,</span>

@@ -29,7 +29,7 @@ api.set_order_callback(order_cb)
 
 ```
 # 商品檔
-contract = api.Contracts.Stocks.TSE.TSE2890
+contract = api.contracts.get("2890")
 # 委託內容
 order = sj.StockOrder(
     action=sj.Action.Buy,

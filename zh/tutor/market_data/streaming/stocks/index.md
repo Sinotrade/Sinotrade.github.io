@@ -21,7 +21,7 @@ Signature:
 Quote Parameters:
 
 ```
-contract:     要訂閱的商品檔（由 api.Contracts.* 取得）
+contract:     要訂閱的商品檔（由 api.contracts.get 取得）
 quote_type:   訂閱類型 {'tick', 'bid_ask', 'quote'}
 intraday_odd: 盤中零股 {True, False}
 
@@ -76,7 +76,7 @@ Quote Parameters:
 ```
 security_type: 商品類型 {STK, FUT, OPT, IND}
 exchange:      交易所 {TSE, OTC, OES, TAIFEX}
-code:          商品代碼（例如 2330、TXFE5）
+code:          商品代碼（例如 2330、TXFR1）
 target_code:   對應實際商品代碼。選填，期貨連續月（TXFR1/R2）才會用到，股票不需指定
 quote_type:    訂閱類型 {Tick, BidAsk, Quote}
 intraday_odd:  盤中零股 {true, false}，預設 false
@@ -94,14 +94,15 @@ intraday_odd:  盤中零股 {true, false}，預設 false
 In
 
 ```
+contract = api.contracts.get("2890")
 api.subscribe(
-    api.Contracts.Stocks.TSE.TSE2890,
+    contract,
     quote_type=sj.QuoteType.Tick,
 )
 
 # 取消訂閱
 # api.unsubscribe(
-#     api.Contracts.Stocks.TSE.TSE2890,
+#     contract,
 #     quote_type=sj.QuoteType.Tick,
 # )
 
@@ -133,15 +134,16 @@ TickSTKv1(
 In
 
 ```
+contract = api.contracts.get("2890")
 api.subscribe(
-    api.Contracts.Stocks.TSE.TSE2890,
+    contract,
     quote_type=sj.QuoteType.Tick,
     intraday_odd=True,
 )
 
 # 取消訂閱
 # api.unsubscribe(
-#     api.Contracts.Stocks.TSE.TSE2890,
+#     contract,
 #     quote_type=sj.QuoteType.Tick,
 #     intraday_odd=True,
 # )
@@ -450,14 +452,15 @@ intraday_odd (bool)                      盤中零股 {True, False}
 In
 
 ```
+contract = api.contracts.get("2890")
 api.subscribe(
-    api.Contracts.Stocks.TSE.TSE2890,
+    contract,
     quote_type=sj.QuoteType.BidAsk,
 )
 
 # 取消訂閱
 # api.unsubscribe(
-#     api.Contracts.Stocks.TSE.TSE2890,
+#     contract,
 #     quote_type=sj.QuoteType.BidAsk,
 # )
 
@@ -489,15 +492,16 @@ BidAskSTKv1(
 In
 
 ```
+contract = api.contracts.get("2890")
 api.subscribe(
-    api.Contracts.Stocks.TSE.TSE2890,
+    contract,
     quote_type=sj.QuoteType.BidAsk,
     intraday_odd=True,
 )
 
 # 取消訂閱
 # api.unsubscribe(
-#     api.Contracts.Stocks.TSE.TSE2890,
+#     contract,
 #     quote_type=sj.QuoteType.BidAsk,
 #     intraday_odd=True,
 # )
@@ -716,14 +720,15 @@ intraday_odd (bool)                      盤中零股 {True, False}
 In
 
 ```
+contract = api.contracts.get("2890")
 api.subscribe(
-    api.Contracts.Stocks.TSE.TSE2890,
+    contract,
     quote_type=sj.QuoteType.Quote,
 )
 
 # 取消訂閱
 # api.unsubscribe(
-#     api.Contracts.Stocks.TSE.TSE2890,
+#     contract,
 #     quote_type=sj.QuoteType.Quote,
 # )
 
@@ -1092,8 +1097,9 @@ def quote_callback(exchange: Exchange, tick: TickSTKv1):
     print(f"simtrade={tick.simtrade}")
     print(f"intraday_odd={tick.intraday_odd}")
 
+contract = api.contracts.get("2890")
 api.subscribe(
-    api.Contracts.Stocks.TSE.TSE2890,
+    contract,
     quote_type=sj.QuoteType.Tick,
 )
 
@@ -1109,8 +1115,9 @@ def quote_callback(exchange: Exchange, tick: TickSTKv1):
 
 api.set_on_tick_stk_v1_callback(quote_callback)
 
+contract = api.contracts.get("2890")
 api.subscribe(
-    api.Contracts.Stocks.TSE.TSE2890,
+    contract,
     quote_type=sj.QuoteType.Tick,
 )
 
@@ -1179,8 +1186,9 @@ def quote_callback(exchange: Exchange, bidask: BidAskSTKv1):
     print(f"simtrade={bidask.simtrade}")
     print(f"intraday_odd={bidask.intraday_odd}")
 
+contract = api.contracts.get("2890")
 api.subscribe(
-    api.Contracts.Stocks.TSE.TSE2890,
+    contract,
     quote_type=sj.QuoteType.BidAsk,
 )
 
@@ -1196,8 +1204,9 @@ def quote_callback(exchange: Exchange, bidask: BidAskSTKv1):
 
 api.set_on_bidask_stk_v1_callback(quote_callback)
 
+contract = api.contracts.get("2890")
 api.subscribe(
-    api.Contracts.Stocks.TSE.TSE2890,
+    contract,
     quote_type=sj.QuoteType.BidAsk,
 )
 
@@ -1272,8 +1281,9 @@ def quote_callback(exchange: Exchange, quote: QuoteSTKv1):
     print(f"suspend={quote.suspend}")
     print(f"simtrade={quote.simtrade}")
 
+contract = api.contracts.get("2890")
 api.subscribe(
-    api.Contracts.Stocks.TSE.TSE2890,
+    contract,
     quote_type=sj.QuoteType.Quote,
 )
 
@@ -1289,8 +1299,9 @@ def quote_callback(exchange: Exchange, quote: QuoteSTKv1):
 
 api.set_on_quote_stk_v1_callback(quote_callback)
 
+contract = api.contracts.get("2890")
 api.subscribe(
-    api.Contracts.Stocks.TSE.TSE2890,
+    contract,
     quote_type=sj.QuoteType.Quote,
 )
 

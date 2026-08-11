@@ -2291,7 +2291,7 @@
 </div>
 <div class="admonition done">
 <p class="admonition-title">Quote Parameters:</p>
-<div class="highlight"><pre><span></span><code>contract:     Contract to subscribe (obtained from api.Contracts.Futures.* or api.Contracts.Options.*)
+<div class="highlight"><pre><span></span><code>contract:     Contract to subscribe (obtained from api.contracts.get)
 quote_type:   Subscription type {&#39;tick&#39;, &#39;bid_ask&#39;, &#39;quote&#39;}
 intraday_odd: Not supported for futures / options; always False
 </code></pre></div>
@@ -2315,7 +2315,7 @@ Options:
 </div>
 <div class="admonition done">
 <p class="admonition-title">Quote Parameters:</p>
-<div class="highlight"><pre><span></span><code>--code:          Security code to subscribe (futures / options, e.g. TXFR1, TXFF6, TXO20260526900C)
+<div class="highlight"><pre><span></span><code>--code:          Security code to subscribe (futures / options, e.g. TXFR1)
 --quote-type:    Subscription type {tick, bid_ask, quote}, default tick
 --security-type: Security type {STK, FUT, OPT, IND}; use FUT for futures, OPT for options
 --intraday-odd:  Not supported for futures / options
@@ -2341,7 +2341,7 @@ Options:
 <p class="admonition-title">Quote Parameters:</p>
 <div class="highlight"><pre><span></span><code>security_type: Security type {FUT, OPT}
 exchange:      Exchange {TAIFEX}
-code:          Security code (e.g. TXFR1, TXFF6, TXO20260526900C)
+code:          Security code (e.g. TXFR1)
 target_code:   Resolved underlying contract code. Required for continuous-month (TXFR1 / TXFR2), otherwise the server returns 200 but no data is received
 quote_type:    Subscription type {Tick, BidAsk, Quote}
 </code></pre></div>
@@ -2355,14 +2355,15 @@ quote_type:    Subscription type {Tick, BidAsk, Quote}
 <div class="tabbed-block">
 <div class="admonition info">
 <p class="admonition-title">In</p>
-<div class="highlight"><pre><span></span><code><span class="n">api</span><span class="o">.</span><span class="n">subscribe</span><span class="p">(</span>
-    <span class="n">api</span><span class="o">.</span><span class="n">Contracts</span><span class="o">.</span><span class="n">Futures</span><span class="o">.</span><span class="n">TXF</span><span class="o">.</span><span class="n">TXFR1</span><span class="p">,</span>
+<div class="highlight"><pre><span></span><code><span class="n">contract</span> <span class="o">=</span> <span class="n">api</span><span class="o">.</span><span class="n">contracts</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s2">&quot;TXFR1&quot;</span><span class="p">)</span>
+<span class="n">api</span><span class="o">.</span><span class="n">subscribe</span><span class="p">(</span>
+    <span class="n">contract</span><span class="p">,</span>
 <span class="hll">    <span class="n">quote_type</span><span class="o">=</span><span class="n">sj</span><span class="o">.</span><span class="n">QuoteType</span><span class="o">.</span><span class="n">Tick</span><span class="p">,</span>
 </span><span class="p">)</span>
 
 <span class="c1"># Unsubscribe</span>
 <span class="c1"># api.unsubscribe(</span>
-<span class="c1">#     api.Contracts.Futures.TXF.TXFR1,</span>
+<span class="c1">#     contract,</span>
 <span class="c1">#     quote_type=sj.QuoteType.Tick,</span>
 <span class="c1"># )</span>
 </code></pre></div>
@@ -2530,14 +2531,15 @@ simtrade (bool)                          Trial match
 <div class="tabbed-block">
 <div class="admonition info">
 <p class="admonition-title">In</p>
-<div class="highlight"><pre><span></span><code><span class="n">api</span><span class="o">.</span><span class="n">subscribe</span><span class="p">(</span>
-    <span class="n">api</span><span class="o">.</span><span class="n">Contracts</span><span class="o">.</span><span class="n">Futures</span><span class="o">.</span><span class="n">TXF</span><span class="o">.</span><span class="n">TXFR1</span><span class="p">,</span>
+<div class="highlight"><pre><span></span><code><span class="n">contract</span> <span class="o">=</span> <span class="n">api</span><span class="o">.</span><span class="n">contracts</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s2">&quot;TXFR1&quot;</span><span class="p">)</span>
+<span class="n">api</span><span class="o">.</span><span class="n">subscribe</span><span class="p">(</span>
+    <span class="n">contract</span><span class="p">,</span>
 <span class="hll">    <span class="n">quote_type</span><span class="o">=</span><span class="n">sj</span><span class="o">.</span><span class="n">QuoteType</span><span class="o">.</span><span class="n">BidAsk</span><span class="p">,</span>
 </span><span class="p">)</span>
 
 <span class="c1"># Unsubscribe</span>
 <span class="c1"># api.unsubscribe(</span>
-<span class="c1">#     api.Contracts.Futures.TXF.TXFR1,</span>
+<span class="c1">#     contract,</span>
 <span class="c1">#     quote_type=sj.QuoteType.BidAsk,</span>
 <span class="c1"># )</span>
 </code></pre></div>
@@ -2696,14 +2698,15 @@ simtrade (bool)                          Trial match
 <div class="tabbed-block">
 <div class="admonition info">
 <p class="admonition-title">In</p>
-<div class="highlight"><pre><span></span><code><span class="n">api</span><span class="o">.</span><span class="n">subscribe</span><span class="p">(</span>
-    <span class="n">api</span><span class="o">.</span><span class="n">Contracts</span><span class="o">.</span><span class="n">Futures</span><span class="o">.</span><span class="n">TXF</span><span class="o">.</span><span class="n">TXFR1</span><span class="p">,</span>
+<div class="highlight"><pre><span></span><code><span class="n">contract</span> <span class="o">=</span> <span class="n">api</span><span class="o">.</span><span class="n">contracts</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s2">&quot;TXFR1&quot;</span><span class="p">)</span>
+<span class="n">api</span><span class="o">.</span><span class="n">subscribe</span><span class="p">(</span>
+    <span class="n">contract</span><span class="p">,</span>
 <span class="hll">    <span class="n">quote_type</span><span class="o">=</span><span class="n">sj</span><span class="o">.</span><span class="n">QuoteType</span><span class="o">.</span><span class="n">Quote</span><span class="p">,</span>
 </span><span class="p">)</span>
 
 <span class="c1"># Unsubscribe</span>
 <span class="c1"># api.unsubscribe(</span>
-<span class="c1">#     api.Contracts.Futures.TXF.TXFR1,</span>
+<span class="c1">#     contract,</span>
 <span class="c1">#     quote_type=sj.QuoteType.Quote,</span>
 <span class="c1"># )</span>
 </code></pre></div>
@@ -2933,8 +2936,9 @@ simtrade (bool)                          Trial match
     <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;pct_chg=</span><span class="si">{</span><span class="n">tick</span><span class="o">.</span><span class="n">pct_chg</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
     <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;simtrade=</span><span class="si">{</span><span class="n">tick</span><span class="o">.</span><span class="n">simtrade</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
 
+<span class="n">contract</span> <span class="o">=</span> <span class="n">api</span><span class="o">.</span><span class="n">contracts</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s2">&quot;TXFR1&quot;</span><span class="p">)</span>
 <span class="n">api</span><span class="o">.</span><span class="n">subscribe</span><span class="p">(</span>
-    <span class="n">api</span><span class="o">.</span><span class="n">Contracts</span><span class="o">.</span><span class="n">Futures</span><span class="o">.</span><span class="n">TXF</span><span class="o">.</span><span class="n">TXFR1</span><span class="p">,</span>
+    <span class="n">contract</span><span class="p">,</span>
     <span class="n">quote_type</span><span class="o">=</span><span class="n">sj</span><span class="o">.</span><span class="n">QuoteType</span><span class="o">.</span><span class="n">Tick</span><span class="p">,</span>
 <span class="p">)</span>
 </code></pre></div>
@@ -2948,8 +2952,9 @@ simtrade (bool)                          Trial match
 
 <span class="n">api</span><span class="o">.</span><span class="n">set_on_tick_fop_v1_callback</span><span class="p">(</span><span class="n">quote_callback</span><span class="p">)</span>
 
+<span class="n">contract</span> <span class="o">=</span> <span class="n">api</span><span class="o">.</span><span class="n">contracts</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s2">&quot;TXFR1&quot;</span><span class="p">)</span>
 <span class="n">api</span><span class="o">.</span><span class="n">subscribe</span><span class="p">(</span>
-    <span class="n">api</span><span class="o">.</span><span class="n">Contracts</span><span class="o">.</span><span class="n">Futures</span><span class="o">.</span><span class="n">TXF</span><span class="o">.</span><span class="n">TXFR1</span><span class="p">,</span>
+    <span class="n">contract</span><span class="p">,</span>
     <span class="n">quote_type</span><span class="o">=</span><span class="n">sj</span><span class="o">.</span><span class="n">QuoteType</span><span class="o">.</span><span class="n">Tick</span><span class="p">,</span>
 <span class="p">)</span>
 </code></pre></div>
@@ -3008,8 +3013,9 @@ simtrade=False
     <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;underlying_price=</span><span class="si">{</span><span class="n">bidask</span><span class="o">.</span><span class="n">underlying_price</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
     <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;simtrade=</span><span class="si">{</span><span class="n">bidask</span><span class="o">.</span><span class="n">simtrade</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
 
+<span class="n">contract</span> <span class="o">=</span> <span class="n">api</span><span class="o">.</span><span class="n">contracts</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s2">&quot;TXFR1&quot;</span><span class="p">)</span>
 <span class="n">api</span><span class="o">.</span><span class="n">subscribe</span><span class="p">(</span>
-    <span class="n">api</span><span class="o">.</span><span class="n">Contracts</span><span class="o">.</span><span class="n">Futures</span><span class="o">.</span><span class="n">TXF</span><span class="o">.</span><span class="n">TXFR1</span><span class="p">,</span>
+    <span class="n">contract</span><span class="p">,</span>
     <span class="n">quote_type</span><span class="o">=</span><span class="n">sj</span><span class="o">.</span><span class="n">QuoteType</span><span class="o">.</span><span class="n">BidAsk</span><span class="p">,</span>
 <span class="p">)</span>
 </code></pre></div>
@@ -3023,8 +3029,9 @@ simtrade=False
 
 <span class="n">api</span><span class="o">.</span><span class="n">set_on_bidask_fop_v1_callback</span><span class="p">(</span><span class="n">quote_callback</span><span class="p">)</span>
 
+<span class="n">contract</span> <span class="o">=</span> <span class="n">api</span><span class="o">.</span><span class="n">contracts</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s2">&quot;TXFR1&quot;</span><span class="p">)</span>
 <span class="n">api</span><span class="o">.</span><span class="n">subscribe</span><span class="p">(</span>
-    <span class="n">api</span><span class="o">.</span><span class="n">Contracts</span><span class="o">.</span><span class="n">Futures</span><span class="o">.</span><span class="n">TXF</span><span class="o">.</span><span class="n">TXFR1</span><span class="p">,</span>
+    <span class="n">contract</span><span class="p">,</span>
     <span class="n">quote_type</span><span class="o">=</span><span class="n">sj</span><span class="o">.</span><span class="n">QuoteType</span><span class="o">.</span><span class="n">BidAsk</span><span class="p">,</span>
 <span class="p">)</span>
 </code></pre></div>
@@ -3095,8 +3102,9 @@ simtrade=False
     <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;first_derived_ask_vol=</span><span class="si">{</span><span class="n">quote</span><span class="o">.</span><span class="n">first_derived_ask_vol</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
     <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;simtrade=</span><span class="si">{</span><span class="n">quote</span><span class="o">.</span><span class="n">simtrade</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
 
+<span class="n">contract</span> <span class="o">=</span> <span class="n">api</span><span class="o">.</span><span class="n">contracts</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s2">&quot;TXFR1&quot;</span><span class="p">)</span>
 <span class="n">api</span><span class="o">.</span><span class="n">subscribe</span><span class="p">(</span>
-    <span class="n">api</span><span class="o">.</span><span class="n">Contracts</span><span class="o">.</span><span class="n">Futures</span><span class="o">.</span><span class="n">TXF</span><span class="o">.</span><span class="n">TXFR1</span><span class="p">,</span>
+    <span class="n">contract</span><span class="p">,</span>
     <span class="n">quote_type</span><span class="o">=</span><span class="n">sj</span><span class="o">.</span><span class="n">QuoteType</span><span class="o">.</span><span class="n">Quote</span><span class="p">,</span>
 <span class="p">)</span>
 </code></pre></div>
@@ -3110,8 +3118,9 @@ simtrade=False
 
 <span class="n">api</span><span class="o">.</span><span class="n">set_on_quote_fop_v1_callback</span><span class="p">(</span><span class="n">quote_callback</span><span class="p">)</span>
 
+<span class="n">contract</span> <span class="o">=</span> <span class="n">api</span><span class="o">.</span><span class="n">contracts</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s2">&quot;TXFR1&quot;</span><span class="p">)</span>
 <span class="n">api</span><span class="o">.</span><span class="n">subscribe</span><span class="p">(</span>
-    <span class="n">api</span><span class="o">.</span><span class="n">Contracts</span><span class="o">.</span><span class="n">Futures</span><span class="o">.</span><span class="n">TXF</span><span class="o">.</span><span class="n">TXFR1</span><span class="p">,</span>
+    <span class="n">contract</span><span class="p">,</span>
     <span class="n">quote_type</span><span class="o">=</span><span class="n">sj</span><span class="o">.</span><span class="n">QuoteType</span><span class="o">.</span><span class="n">Quote</span><span class="p">,</span>
 <span class="p">)</span>
 </code></pre></div>

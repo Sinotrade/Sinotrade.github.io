@@ -15,7 +15,7 @@ Signature:
 Parameters
 
 ```
-contracts: list of contracts (from api.Contracts.Stocks.*)
+contracts: list of contracts (from api.contracts.get)
 timeout:   timeout in milliseconds
 cb:        optional, callback function, used when timeout=0
 
@@ -93,7 +93,7 @@ short_margin_ratio (int): short margin ratio
 In
 
 ```
-contracts = [api.Contracts.Stocks['2330'], api.Contracts.Stocks['2890']]
+contracts = [api.contracts.get("2330"), api.contracts.get("2890")]
 credit_enquires = api.credit_enquires(contracts)
 credit_enquires
 

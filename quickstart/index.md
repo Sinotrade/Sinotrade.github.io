@@ -67,8 +67,9 @@ Quote Types
 Currently three quote types are supported: tick / bid_ask / quote.
 
 ```
-api.subscribe(api.Contracts.Stocks["2330"], quote_type="tick")
-api.subscribe(api.Contracts.Stocks["2330"], quote_type="bid_ask")
+contract = api.contracts.get("2330")
+api.subscribe(contract, quote_type="tick")
+api.subscribe(contract, quote_type="bid_ask")
 
 ```
 
@@ -102,7 +103,7 @@ Python / CLI users can subscribe with a contract object or symbol directly. Othe
 Placing an order requires specifying a contract and the order details (action, price, quantity, etc.); the response contains the trade status.
 
 ```
-contract = api.Contracts.Stocks["2890"]
+contract = api.contracts.get("2890")
 order = sj.StockOrder(
     action=sj.Action.Buy,
     price=28,

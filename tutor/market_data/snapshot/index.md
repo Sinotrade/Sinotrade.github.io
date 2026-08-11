@@ -28,7 +28,7 @@ Docstring:
 Parameters
 
 ```
-contracts: list of contracts (from api.Contracts.*), up to 500 per request
+contracts: list of contracts (from api.contracts.get), up to 500 per request
 timeout:   timeout in milliseconds
 cb:        optional, callback function, used when timeout=0
 
@@ -118,7 +118,7 @@ volume_ratio (float):     volume ratio (total_volume / yesterday_volume)
 In
 
 ```
-contracts = [api.Contracts.Stocks['2330'], api.Contracts.Stocks['2317']]
+contracts = [api.contracts.get("2330"), api.contracts.get("2317")]
 snapshots = api.snapshots(contracts)
 snapshots
 

@@ -2140,8 +2140,8 @@ cd sj-trading-demo
     <span class="p">)</span>
 
     <span class="c1"># Prepare the Contract for Ordering</span>
-    <span class="c1"># Use 2890 Fubon Financial as an example</span>
-    <span class="n">contract</span> <span class="o">=</span> <span class="n">api</span><span class="o">.</span><span class="n">Contracts</span><span class="o">.</span><span class="n">Stocks</span><span class="p">[</span><span class="s2">&quot;2890&quot;</span><span class="p">]</span>
+    <span class="c1"># Use 2890 SinoPac Financial as an example</span>
+    <span class="n">contract</span> <span class="o">=</span> <span class="n">api</span><span class="o">.</span><span class="n">contracts</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s2">&quot;2890&quot;</span><span class="p">)</span>
     <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Contract: </span><span class="si">{</span><span class="n">contract</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
 
     <span class="c1"># Create an Order for Ordering</span>
@@ -2197,7 +2197,7 @@ cd sj-trading-demo
 
     <span class="c1"># Get the contract for ordering</span>
     <span class="c1"># Use TXFR1 as an example</span>
-    <span class="n">contract</span> <span class="o">=</span> <span class="n">api</span><span class="o">.</span><span class="n">Contracts</span><span class="o">.</span><span class="n">Futures</span><span class="p">[</span><span class="s2">&quot;TXFR1&quot;</span><span class="p">]</span>
+    <span class="n">contract</span> <span class="o">=</span> <span class="n">api</span><span class="o">.</span><span class="n">contracts</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s2">&quot;TXFR1&quot;</span><span class="p">)</span>
     <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Contract: </span><span class="si">{</span><span class="n">contract</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
 
     <span class="c1"># Create an Order for Ordering</span>

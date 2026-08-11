@@ -25,7 +25,7 @@ Signature:
 Quote Parameters:
 
 ```
-contract:     要訂閱的指數商品合約（由 api.contracts.get 或 api.Contracts.Indexs 取得）
+contract:     要訂閱的指數商品合約（由 api.contracts.get 取得）
 quote_type:   指數僅支援 Quote，省略即可
 intraday_odd: 指數不支援，固定為 False
 

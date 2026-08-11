@@ -28,7 +28,7 @@ Docstring:
 Parameters
 
 ```
-contracts: 商品檔列表（由 api.Contracts.* 取得），最多 500 檔
+contracts: 商品檔列表（由 api.contracts.get 取得），最多 500 檔
 timeout:   逾時毫秒
 cb:        選填，callback 函式，timeout=0 時使用
 
@@ -118,7 +118,7 @@ volume_ratio (float):     昨量比
 In
 
 ```
-contracts = [api.Contracts.Stocks['2330'], api.Contracts.Stocks['2317']]
+contracts = [api.contracts.get("2330"), api.contracts.get("2317")]
 snapshots = api.snapshots(contracts)
 snapshots
 

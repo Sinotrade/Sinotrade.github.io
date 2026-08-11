@@ -109,7 +109,7 @@ Stock
 
 ```
 # contract - edit it
-contract = api.Contracts.Stocks.TSE.TSE2890
+contract = api.contracts.get("2890")
 
 # stock order - edit it
 order = sj.StockOrder(
@@ -237,7 +237,7 @@ Futures
 
 ```
 # contract - edit it
-contract = api.Contracts.Futures.TXF.TXFE6
+contract = api.contracts.get("TXFR1")
 
 # futures order - edit it
 order = sj.FuturesOrder(

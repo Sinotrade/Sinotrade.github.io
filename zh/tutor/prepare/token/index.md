@@ -94,7 +94,6 @@ def main():
     api.login(
         api_key=os.environ["SJ_API_KEY"],
         secret_key=os.environ["SJ_SEC_KEY"],
-        fetch_contract=False
     )
     api.activate_ca(
         ca_path=os.environ["SJ_CA_PATH"],

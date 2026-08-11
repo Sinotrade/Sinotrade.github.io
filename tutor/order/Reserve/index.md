@@ -37,7 +37,7 @@ Parameters
 
 ```
 reserve_earmarking
-    contract: Contract object (from api.Contracts.Stocks.*)
+    contract: Contract object (from api.contracts.get)
     share:    Earmark share count
     price:    Earmark price
     account:  Stock account
@@ -134,7 +134,7 @@ Order
 
 ```
 # Contract
-contract = api.Contracts.Stocks.TSE.TSE1217
+contract = api.contracts.get("1217")
 # Earmark details
 share = 1000
 price = 9
@@ -372,7 +372,7 @@ Parameters
 
 ```
 reserve_stock
-    contract: Contract object (from api.Contracts.Stocks.*)
+    contract: Contract object (from api.contracts.get)
     share:    Reserve share count
     account:  Stock account
     timeout:  Timeout in milliseconds
@@ -491,7 +491,7 @@ Order
 
 ```
 # Contract
-contract = api.Contracts.Stocks.TSE.TSE1217
+contract = api.contracts.get("1217")
 # Reserve share count
 share = 1000
 

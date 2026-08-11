@@ -21,7 +21,7 @@ Signature:
 Quote Parameters:
 
 ```
-contract:     Contract to subscribe (obtained from api.Contracts.*)
+contract:     Contract to subscribe (obtained from api.contracts.get)
 quote_type:   Subscription type {'tick', 'bid_ask', 'quote'}
 intraday_odd: Intraday odd lot {True, False}
 
@@ -76,7 +76,7 @@ Quote Parameters:
 ```
 security_type: Security type {STK, FUT, OPT, IND}
 exchange:      Exchange {TSE, OTC, OES, TAIFEX}
-code:          Security code (e.g. 2330, TXFE5)
+code:          Security code (e.g. 2330, TXFR1)
 target_code:   Resolved underlying contract code. Optional, only needed for futures continuous-month (TXFR1/R2); not used for stocks
 quote_type:    Subscription type {Tick, BidAsk, Quote}
 intraday_odd:  Intraday odd lot {true, false}, default false
@@ -94,14 +94,15 @@ To receive several event families at once (market data, K-bars, market signals, 
 In
 
 ```
+contract = api.contracts.get("2890")
 api.subscribe(
-    api.Contracts.Stocks.TSE.TSE2890,
+    contract,
     quote_type=sj.QuoteType.Tick,
 )
 
 # Unsubscribe
 # api.unsubscribe(
-#     api.Contracts.Stocks.TSE.TSE2890,
+#     contract,
 #     quote_type=sj.QuoteType.Tick,
 # )
 
@@ -133,15 +134,16 @@ By default only a summary is shown. To get the full payload, refer to the [Callb
 In
 
 ```
+contract = api.contracts.get("2890")
 api.subscribe(
-    api.Contracts.Stocks.TSE.TSE2890,
+    contract,
     quote_type=sj.QuoteType.Tick,
     intraday_odd=True,
 )
 
 # Unsubscribe
 # api.unsubscribe(
-#     api.Contracts.Stocks.TSE.TSE2890,
+#     contract,
 #     quote_type=sj.QuoteType.Tick,
 #     intraday_odd=True,
 # )
@@ -450,14 +452,15 @@ intraday_odd (bool)                      Intraday odd lot {True, False}
 In
 
 ```
+contract = api.contracts.get("2890")
 api.subscribe(
-    api.Contracts.Stocks.TSE.TSE2890,
+    contract,
     quote_type=sj.QuoteType.BidAsk,
 )
 
 # Unsubscribe
 # api.unsubscribe(
-#     api.Contracts.Stocks.TSE.TSE2890,
+#     contract,
 #     quote_type=sj.QuoteType.BidAsk,
 # )
 
@@ -489,15 +492,16 @@ By default only a summary is shown. To get the full payload, refer to the [Callb
 In
 
 ```
+contract = api.contracts.get("2890")
 api.subscribe(
-    api.Contracts.Stocks.TSE.TSE2890,
+    contract,
     quote_type=sj.QuoteType.BidAsk,
     intraday_odd=True,
 )
 
 # Unsubscribe
 # api.unsubscribe(
-#     api.Contracts.Stocks.TSE.TSE2890,
+#     contract,
 #     quote_type=sj.QuoteType.BidAsk,
 #     intraday_odd=True,
 # )
@@ -716,14 +720,15 @@ intraday_odd (bool)                      Intraday odd lot {True, False}
 In
 
 ```
+contract = api.contracts.get("2890")
 api.subscribe(
-    api.Contracts.Stocks.TSE.TSE2890,
+    contract,
     quote_type=sj.QuoteType.Quote,
 )
 
 # Unsubscribe
 # api.unsubscribe(
-#     api.Contracts.Stocks.TSE.TSE2890,
+#     contract,
 #     quote_type=sj.QuoteType.Quote,
 # )
 
@@ -1092,8 +1097,9 @@ def quote_callback(exchange: Exchange, tick: TickSTKv1):
     print(f"simtrade={tick.simtrade}")
     print(f"intraday_odd={tick.intraday_odd}")
 
+contract = api.contracts.get("2890")
 api.subscribe(
-    api.Contracts.Stocks.TSE.TSE2890,
+    contract,
     quote_type=sj.QuoteType.Tick,
 )
 
@@ -1109,8 +1115,9 @@ def quote_callback(exchange: Exchange, tick: TickSTKv1):
 
 api.set_on_tick_stk_v1_callback(quote_callback)
 
+contract = api.contracts.get("2890")
 api.subscribe(
-    api.Contracts.Stocks.TSE.TSE2890,
+    contract,
     quote_type=sj.QuoteType.Tick,
 )
 
@@ -1179,8 +1186,9 @@ def quote_callback(exchange: Exchange, bidask: BidAskSTKv1):
     print(f"simtrade={bidask.simtrade}")
     print(f"intraday_odd={bidask.intraday_odd}")
 
+contract = api.contracts.get("2890")
 api.subscribe(
-    api.Contracts.Stocks.TSE.TSE2890,
+    contract,
     quote_type=sj.QuoteType.BidAsk,
 )
 
@@ -1196,8 +1204,9 @@ def quote_callback(exchange: Exchange, bidask: BidAskSTKv1):
 
 api.set_on_bidask_stk_v1_callback(quote_callback)
 
+contract = api.contracts.get("2890")
 api.subscribe(
-    api.Contracts.Stocks.TSE.TSE2890,
+    contract,
     quote_type=sj.QuoteType.BidAsk,
 )
 
@@ -1272,8 +1281,9 @@ def quote_callback(exchange: Exchange, quote: QuoteSTKv1):
     print(f"suspend={quote.suspend}")
     print(f"simtrade={quote.simtrade}")
 
+contract = api.contracts.get("2890")
 api.subscribe(
-    api.Contracts.Stocks.TSE.TSE2890,
+    contract,
     quote_type=sj.QuoteType.Quote,
 )
 
@@ -1289,8 +1299,9 @@ def quote_callback(exchange: Exchange, quote: QuoteSTKv1):
 
 api.set_on_quote_stk_v1_callback(quote_callback)
 
+contract = api.contracts.get("2890")
 api.subscribe(
-    api.Contracts.Stocks.TSE.TSE2890,
+    contract,
     quote_type=sj.QuoteType.Quote,
 )
 

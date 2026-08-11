@@ -5567,21 +5567,21 @@ def __init__(self, api: sj.Shioaji):
 
 def subscribe_stk_tick(self, codes: List[str], recover: bool = False):
     for code in codes:
-        contract = self.api.Contracts.Stocks[code]
+        contract = self.api.contracts.get(code)
         if contract is not None and code not in self.subscribed_stk_tick:
             self.api.quote.subscribe(contract, "tick")
             self.subscribed_stk_tick.add(code)
 
 def unsubscribe_stk_tick(self, codes: List[str]):
     for code in codes:
-        contract = self.api.Contracts.Stocks[code]
+        contract = self.api.contracts.get(code)
         if contract is not None and code in self.subscribed_stk_tick:
             self.api.quote.unsubscribe(contract, "tick")
             self.subscribed_stk_tick.remove(code)
 
 def unsubscribe_all_stk_tick(self):
     for code in self.subscribed_stk_tick:
-        contract = self.api.Contracts.Stocks[code]
+        contract = self.api.contracts.get(code)
         if contract is not None:
             self.api.quote.unsubscribe(contract, "tick")
     self.subscribed_stk_tick.clear()
@@ -5813,7 +5813,7 @@ api.set_order_callback(order_cb)
 
 ```
 # 商品檔
-contract = api.Contracts.Stocks.TSE.TSE2890
+contract = api.contracts.get("2890")
 # 委託內容
 order = sj.StockOrder(
     action=sj.Action.Buy,
@@ -6151,7 +6151,7 @@ Signature:
 Parameters
 
 ```
-contracts: 商品檔列表（由 api.Contracts.Stocks.* 取得）
+contracts: 商品檔列表（由 api.contracts.get 取得）
 timeout:   逾時毫秒
 cb:        選填，callback 函式，timeout=0 時使用
 
@@ -6229,7 +6229,7 @@ short_margin_ratio (int): 融券成數
 In
 
 ```
-contracts = [api.Contracts.Stocks['2330'], api.Contracts.Stocks['2890']]
+contracts = [api.contracts.get("2330"), api.contracts.get("2890")]
 credit_enquires = api.credit_enquires(contracts)
 credit_enquires
 
@@ -6624,7 +6624,7 @@ Docstring:
 Parameters
 
 ```
-contract:    商品檔（由 api.Contracts.* 取得）
+contract:    商品檔（由 api.contracts.get 取得）
 date:        交易日（YYYY-MM-DD）
 query_type:  查詢類型 {'AllDay', 'RangeTime', 'LastCount'}
 time_start:  選填，起始時間，query_type='RangeTime' 時使用
@@ -6720,8 +6720,9 @@ tick_type (int):   內外盤別{1: 外盤, 2: 內盤, 0: 無法判定}
 In
 
 ```
+contract = api.contracts.get("2330")
 ticks = api.ticks(
-    contract=api.Contracts.Stocks["2330"],
+    contract=contract,
     date="2026-05-18"
 )
 ticks
@@ -6766,8 +6767,9 @@ Out
 In
 
 ```
+contract = api.contracts.get("2330")
 ticks = api.ticks(
-    contract=api.Contracts.Stocks["2330"],
+    contract=contract,
     date="2026-05-18",
     query_type=sj.constant.TicksQueryType.RangeTime,
     time_start="09:00:00",
@@ -6798,8 +6800,9 @@ Ticks[1151](
 In
 
 ```
+contract = api.contracts.get("2330")
 ticks = api.ticks(
-    contract=api.Contracts.Stocks["2330"],
+    contract=contract,
     date="2026-05-18",
     query_type=sj.constant.TicksQueryType.LastCount,
     last_cnt=4,
@@ -6962,7 +6965,7 @@ Docstring:
 Parameters
 
 ```
-contract: 商品檔（由 api.Contracts.* 取得）
+contract: 商品檔（由 api.contracts.get 取得）
 start:    起始日期（YYYY-MM-DD），預設為昨天
 end:      結束日期（YYYY-MM-DD），預設為今天
 timeout:  逾時毫秒
@@ -7044,8 +7047,9 @@ Amount (float): 成交額
 In
 
 ```
+contract = api.contracts.get("2330")
 kbars = api.kbars(
-    contract=api.Contracts.Stocks["2330"],
+    contract=contract,
     start="2026-05-17",
     end="2026-05-18"
 )
@@ -7131,19 +7135,20 @@ Historical Periods
 
 ## 連續期貨合約
 
-期貨合約一旦到期，合約即不再有效，亦即他將不會出現在您的`api.Contracts`裡。為了取得到期的期貨合約歷史資料，我們提供連續期貨合約。`R1`, `R2`是近月及次月的連續期貨合約，他們會自動在結算日更換新的合約（即 `target_code` 會變）。您可以使用`R1`, `R2`合約來取得長期的歷史資料，例如`api.Contracts.Futures.TXF.TXFR1`。以下顯示如何使用`R1`, `R2`合約取得到期期貨的歷史`Ticks`及`Kbars`。
+期貨合約一旦到期，合約即不再有效，亦即 `api.contracts.get()` 將查不到他。為了取得到期的期貨合約歷史資料，我們提供連續期貨合約。`R1`, `R2`是近月及次月的連續期貨合約，他們會自動在結算日更換新的合約（即 `target_code` 會變）。您可以使用`R1`, `R2`合約來取得長期的歷史資料，例如`api.contracts.get("TXFR1")`。以下顯示如何使用`R1`, `R2`合約取得到期期貨的歷史`Ticks`及`Kbars`。
 
 注意
 
-`code` 必須出現在 `api.Contracts` 裡才能放入 `api.ticks` / `api.kbars` 查詢。例如 `TXFE6` 是 2026 年 5 月的合約，到了 2026 年 6 月就不再出現在 `api.Contracts`，此時就無法用 `TXFE6` 查詢。
+`code` 必須是 `api.contracts.get()` 查得到的商品才能放入 `api.ticks` / `api.kbars` 查詢。例如 `TXFE6` 是 2026 年 5 月的合約，到了 2026 年 6 月就查不到了，此時就無法用 `TXFE6` 查詢。
 
 #### Ticks
 
 In
 
 ```
+contract = api.contracts.get("TXFR1")
 ticks = api.ticks(
-    contract=api.Contracts.Futures.TXF.TXFR1,
+    contract=contract,
     date="2026-05-18",
     query_type=sj.constant.TicksQueryType.LastCount,
     last_cnt=4,
@@ -7173,8 +7178,9 @@ Ticks[4](
 In
 
 ```
+contract = api.contracts.get("TXFR1")
 kbars = api.kbars(
-    contract=api.Contracts.Futures.TXF.TXFR1,
+    contract=contract,
     start="2026-05-17",
     end="2026-05-18"
 )
@@ -7536,7 +7542,7 @@ Signature:
 Parameters
 
 ```
-contracts: 商品檔列表（由 api.Contracts.Stocks.* 取得）
+contracts: 商品檔列表（由 api.contracts.get 取得）
 timeout:   逾時毫秒
 cb:        選填，callback 函式，timeout=0 時使用
 
@@ -7610,7 +7616,7 @@ ts / datetime:            時間（Python 為 Unix 時間戳，其他語言為 I
 In
 
 ```
-contracts = [api.Contracts.Stocks['2330'], api.Contracts.Stocks['2317']]
+contracts = [api.contracts.get("2330"), api.contracts.get("2317")]
 short_stock_sources = api.short_stock_sources(contracts)
 short_stock_sources
 
@@ -7708,7 +7714,7 @@ Docstring:
 Parameters
 
 ```
-contracts: 商品檔列表（由 api.Contracts.* 取得），最多 500 檔
+contracts: 商品檔列表（由 api.contracts.get 取得），最多 500 檔
 timeout:   逾時毫秒
 cb:        選填，callback 函式，timeout=0 時使用
 
@@ -7798,7 +7804,7 @@ volume_ratio (float):     昨量比
 In
 
 ```
-contracts = [api.Contracts.Stocks['2330'], api.Contracts.Stocks['2317']]
+contracts = [api.contracts.get("2330"), api.contracts.get("2317")]
 snapshots = api.snapshots(contracts)
 snapshots
 
@@ -7941,7 +7947,7 @@ Signature:
 Quote Parameters:
 
 ```
-contract:     要訂閱的指數商品合約（由 api.contracts.get 或 api.Contracts.Indexs 取得）
+contract:     要訂閱的指數商品合約（由 api.contracts.get 取得）
 quote_type:   指數僅支援 Quote，省略即可
 intraday_odd: 指數不支援，固定為 False
 
@@ -8807,7 +8813,7 @@ Signature:
 Quote Parameters:
 
 ```
-contract:     要訂閱的商品檔（由 api.Contracts.Futures.* 或 api.Contracts.Options.* 取得）
+contract:     要訂閱的商品檔（由 api.contracts.get 取得）
 quote_type:   訂閱類型 {'tick', 'bid_ask', 'quote'}
 intraday_odd: 期貨 / 選擇權不支援，固定為 False
 
@@ -8833,7 +8839,7 @@ Options:
 Quote Parameters:
 
 ```
---code:          要訂閱的商品代碼（期貨 / 選擇權如 TXFR1、TXFF6、TXO20260526900C）
+--code:          要訂閱的商品代碼（期貨 / 選擇權如 TXFR1）
 --quote-type:    訂閱類型 {tick, bid_ask, quote}，預設 tick
 --security-type: 商品類型 {STK, FUT, OPT, IND}，期貨填 FUT、選擇權填 OPT
 --intraday-odd:  期貨 / 選擇權不支援
@@ -8861,7 +8867,7 @@ Quote Parameters:
 ```
 security_type: 商品類型 {FUT, OPT}
 exchange:      交易所 {TAIFEX}
-code:          商品代碼（例 TXFR1、TXFF6、TXO20260526900C）
+code:          商品代碼（例 TXFR1）
 target_code:   對應實際商品代碼。連續月（TXFR1 / TXFR2）必填，否則 server 雖回 200 但收不到資料
 quote_type:    訂閱類型 {Tick, BidAsk, Quote}
 
@@ -8872,14 +8878,15 @@ quote_type:    訂閱類型 {Tick, BidAsk, Quote}
 In
 
 ```
+contract = api.contracts.get("TXFR1")
 api.subscribe(
-    api.Contracts.Futures.TXF.TXFR1,
+    contract,
     quote_type=sj.QuoteType.Tick,
 )
 
 # 取消訂閱
 # api.unsubscribe(
-#     api.Contracts.Futures.TXF.TXFR1,
+#     contract,
 #     quote_type=sj.QuoteType.Tick,
 # )
 
@@ -9045,14 +9052,15 @@ simtrade (bool)                          試撮
 In
 
 ```
+contract = api.contracts.get("TXFR1")
 api.subscribe(
-    api.Contracts.Futures.TXF.TXFR1,
+    contract,
     quote_type=sj.QuoteType.BidAsk,
 )
 
 # 取消訂閱
 # api.unsubscribe(
-#     api.Contracts.Futures.TXF.TXFR1,
+#     contract,
 #     quote_type=sj.QuoteType.BidAsk,
 # )
 
@@ -9211,14 +9219,15 @@ simtrade (bool)                          試撮
 In
 
 ```
+contract = api.contracts.get("TXFR1")
 api.subscribe(
-    api.Contracts.Futures.TXF.TXFR1,
+    contract,
     quote_type=sj.QuoteType.Quote,
 )
 
 # 取消訂閱
 # api.unsubscribe(
-#     api.Contracts.Futures.TXF.TXFR1,
+#     contract,
 #     quote_type=sj.QuoteType.Quote,
 # )
 
@@ -9451,8 +9460,9 @@ def quote_callback(exchange: Exchange, tick: TickFOPv1):
     print(f"pct_chg={tick.pct_chg}")
     print(f"simtrade={tick.simtrade}")
 
+contract = api.contracts.get("TXFR1")
 api.subscribe(
-    api.Contracts.Futures.TXF.TXFR1,
+    contract,
     quote_type=sj.QuoteType.Tick,
 )
 
@@ -9468,8 +9478,9 @@ def quote_callback(exchange: Exchange, tick: TickFOPv1):
 
 api.set_on_tick_fop_v1_callback(quote_callback)
 
+contract = api.contracts.get("TXFR1")
 api.subscribe(
-    api.Contracts.Futures.TXF.TXFR1,
+    contract,
     quote_type=sj.QuoteType.Tick,
 )
 
@@ -9533,8 +9544,9 @@ def quote_callback(exchange: Exchange, bidask: BidAskFOPv1):
     print(f"underlying_price={bidask.underlying_price}")
     print(f"simtrade={bidask.simtrade}")
 
+contract = api.contracts.get("TXFR1")
 api.subscribe(
-    api.Contracts.Futures.TXF.TXFR1,
+    contract,
     quote_type=sj.QuoteType.BidAsk,
 )
 
@@ -9550,8 +9562,9 @@ def quote_callback(exchange: Exchange, bidask: BidAskFOPv1):
 
 api.set_on_bidask_fop_v1_callback(quote_callback)
 
+contract = api.contracts.get("TXFR1")
 api.subscribe(
-    api.Contracts.Futures.TXF.TXFR1,
+    contract,
     quote_type=sj.QuoteType.BidAsk,
 )
 
@@ -9627,8 +9640,9 @@ def quote_callback(exchange: Exchange, quote: QuoteFOPv1):
     print(f"first_derived_ask_vol={quote.first_derived_ask_vol}")
     print(f"simtrade={quote.simtrade}")
 
+contract = api.contracts.get("TXFR1")
 api.subscribe(
-    api.Contracts.Futures.TXF.TXFR1,
+    contract,
     quote_type=sj.QuoteType.Quote,
 )
 
@@ -9644,8 +9658,9 @@ def quote_callback(exchange: Exchange, quote: QuoteFOPv1):
 
 api.set_on_quote_fop_v1_callback(quote_callback)
 
+contract = api.contracts.get("TXFR1")
 api.subscribe(
-    api.Contracts.Futures.TXF.TXFR1,
+    contract,
     quote_type=sj.QuoteType.Quote,
 )
 
@@ -10307,7 +10322,7 @@ Signature:
 Quote Parameters:
 
 ```
-contract:     要訂閱的商品檔（由 api.Contracts.* 取得）
+contract:     要訂閱的商品檔（由 api.contracts.get 取得）
 quote_type:   訂閱類型 {'tick', 'bid_ask', 'quote'}
 intraday_odd: 盤中零股 {True, False}
 
@@ -10362,7 +10377,7 @@ Quote Parameters:
 ```
 security_type: 商品類型 {STK, FUT, OPT, IND}
 exchange:      交易所 {TSE, OTC, OES, TAIFEX}
-code:          商品代碼（例如 2330、TXFE5）
+code:          商品代碼（例如 2330、TXFR1）
 target_code:   對應實際商品代碼。選填，期貨連續月（TXFR1/R2）才會用到，股票不需指定
 quote_type:    訂閱類型 {Tick, BidAsk, Quote}
 intraday_odd:  盤中零股 {true, false}，預設 false
@@ -10380,14 +10395,15 @@ intraday_odd:  盤中零股 {true, false}，預設 false
 In
 
 ```
+contract = api.contracts.get("2890")
 api.subscribe(
-    api.Contracts.Stocks.TSE.TSE2890,
+    contract,
     quote_type=sj.QuoteType.Tick,
 )
 
 # 取消訂閱
 # api.unsubscribe(
-#     api.Contracts.Stocks.TSE.TSE2890,
+#     contract,
 #     quote_type=sj.QuoteType.Tick,
 # )
 
@@ -10419,15 +10435,16 @@ TickSTKv1(
 In
 
 ```
+contract = api.contracts.get("2890")
 api.subscribe(
-    api.Contracts.Stocks.TSE.TSE2890,
+    contract,
     quote_type=sj.QuoteType.Tick,
     intraday_odd=True,
 )
 
 # 取消訂閱
 # api.unsubscribe(
-#     api.Contracts.Stocks.TSE.TSE2890,
+#     contract,
 #     quote_type=sj.QuoteType.Tick,
 #     intraday_odd=True,
 # )
@@ -10736,14 +10753,15 @@ intraday_odd (bool)                      盤中零股 {True, False}
 In
 
 ```
+contract = api.contracts.get("2890")
 api.subscribe(
-    api.Contracts.Stocks.TSE.TSE2890,
+    contract,
     quote_type=sj.QuoteType.BidAsk,
 )
 
 # 取消訂閱
 # api.unsubscribe(
-#     api.Contracts.Stocks.TSE.TSE2890,
+#     contract,
 #     quote_type=sj.QuoteType.BidAsk,
 # )
 
@@ -10775,15 +10793,16 @@ BidAskSTKv1(
 In
 
 ```
+contract = api.contracts.get("2890")
 api.subscribe(
-    api.Contracts.Stocks.TSE.TSE2890,
+    contract,
     quote_type=sj.QuoteType.BidAsk,
     intraday_odd=True,
 )
 
 # 取消訂閱
 # api.unsubscribe(
-#     api.Contracts.Stocks.TSE.TSE2890,
+#     contract,
 #     quote_type=sj.QuoteType.BidAsk,
 #     intraday_odd=True,
 # )
@@ -11002,14 +11021,15 @@ intraday_odd (bool)                      盤中零股 {True, False}
 In
 
 ```
+contract = api.contracts.get("2890")
 api.subscribe(
-    api.Contracts.Stocks.TSE.TSE2890,
+    contract,
     quote_type=sj.QuoteType.Quote,
 )
 
 # 取消訂閱
 # api.unsubscribe(
-#     api.Contracts.Stocks.TSE.TSE2890,
+#     contract,
 #     quote_type=sj.QuoteType.Quote,
 # )
 
@@ -11378,8 +11398,9 @@ def quote_callback(exchange: Exchange, tick: TickSTKv1):
     print(f"simtrade={tick.simtrade}")
     print(f"intraday_odd={tick.intraday_odd}")
 
+contract = api.contracts.get("2890")
 api.subscribe(
-    api.Contracts.Stocks.TSE.TSE2890,
+    contract,
     quote_type=sj.QuoteType.Tick,
 )
 
@@ -11395,8 +11416,9 @@ def quote_callback(exchange: Exchange, tick: TickSTKv1):
 
 api.set_on_tick_stk_v1_callback(quote_callback)
 
+contract = api.contracts.get("2890")
 api.subscribe(
-    api.Contracts.Stocks.TSE.TSE2890,
+    contract,
     quote_type=sj.QuoteType.Tick,
 )
 
@@ -11465,8 +11487,9 @@ def quote_callback(exchange: Exchange, bidask: BidAskSTKv1):
     print(f"simtrade={bidask.simtrade}")
     print(f"intraday_odd={bidask.intraday_odd}")
 
+contract = api.contracts.get("2890")
 api.subscribe(
-    api.Contracts.Stocks.TSE.TSE2890,
+    contract,
     quote_type=sj.QuoteType.BidAsk,
 )
 
@@ -11482,8 +11505,9 @@ def quote_callback(exchange: Exchange, bidask: BidAskSTKv1):
 
 api.set_on_bidask_stk_v1_callback(quote_callback)
 
+contract = api.contracts.get("2890")
 api.subscribe(
-    api.Contracts.Stocks.TSE.TSE2890,
+    contract,
     quote_type=sj.QuoteType.BidAsk,
 )
 
@@ -11558,8 +11582,9 @@ def quote_callback(exchange: Exchange, quote: QuoteSTKv1):
     print(f"suspend={quote.suspend}")
     print(f"simtrade={quote.simtrade}")
 
+contract = api.contracts.get("2890")
 api.subscribe(
-    api.Contracts.Stocks.TSE.TSE2890,
+    contract,
     quote_type=sj.QuoteType.Quote,
 )
 
@@ -11575,8 +11600,9 @@ def quote_callback(exchange: Exchange, quote: QuoteSTKv1):
 
 api.set_on_quote_stk_v1_callback(quote_callback)
 
+contract = api.contracts.get("2890")
 api.subscribe(
-    api.Contracts.Stocks.TSE.TSE2890,
+    contract,
     quote_type=sj.QuoteType.Quote,
 )
 
@@ -12099,7 +12125,7 @@ Docstring:
 Parameters
 
 ```
-contract: 商品檔（由 api.Contracts.Futures.* 取得）
+contract: 商品檔（由 api.contracts.get 取得）
 order:    期貨委託單物件
 timeout:  逾時毫秒
 cb:       選填，callback 函式
@@ -12161,7 +12187,7 @@ Order
 
 ```
 # 商品檔
-contract = api.Contracts.Futures.TMF.TMFR1
+contract = api.contracts.get("TMFR1")
 # 委託內容
 order = sj.FuturesOrder(
     action=sj.Action.Buy,
@@ -13074,7 +13100,7 @@ Order
 
 ```
 # 商品檔
-contract = api.Contracts.Stocks.TSE.TSE2890
+contract = api.contracts.get("2890")
 # 委託內容
 order = sj.StockOrder(
     action=sj.Action.Buy,
@@ -13481,7 +13507,7 @@ Parameters
 
 ```
 reserve_earmarking
-    contract: 商品檔（由 api.Contracts.Stocks.* 取得）
+    contract: 商品檔（由 api.contracts.get 取得）
     share:    預收股數
     price:    預收價格
     account:  證券帳號
@@ -13578,7 +13604,7 @@ Order
 
 ```
 # 商品檔
-contract = api.Contracts.Stocks.TSE.TSE1217
+contract = api.contracts.get("1217")
 # 預收款項內容
 share = 1000
 price = 9
@@ -13816,7 +13842,7 @@ Parameters
 
 ```
 reserve_stock
-    contract: 商品檔（由 api.Contracts.Stocks.* 取得）
+    contract: 商品檔（由 api.contracts.get 取得）
     share:    預收股數
     account:  證券帳號
     timeout:  逾時毫秒
@@ -13935,7 +13961,7 @@ Order
 
 ```
 # 商品檔
-contract = api.Contracts.Stocks.TSE.TSE1217
+contract = api.contracts.get("1217")
 # 預收股數
 share = 1000
 
@@ -14275,7 +14301,7 @@ Docstring:
 Parameters
 
 ```
-contract: 商品檔（由 api.Contracts.Stocks.* 取得）
+contract: 商品檔（由 api.contracts.get 取得）
 order:    證券委託單物件
 timeout:  逾時毫秒
 cb:       選填，callback 函式
@@ -14397,7 +14423,7 @@ Order
 
 ```
 # 商品檔
-contract = api.Contracts.Stocks.TSE.TSE2890
+contract = api.contracts.get("2890")
 # 委託內容
 order = sj.StockOrder(
     action=sj.Action.Buy,
@@ -16215,7 +16241,7 @@ def testing_stock_ordering():
 
     # 準備下單的 Contract
     # 使用 2890 永豐金為例
-    contract = api.Contracts.Stocks["2890"]
+    contract = api.contracts.get("2890")
     print(f"Contract: {contract}")
 
     # 建立委託下單的 Order
@@ -16278,7 +16304,7 @@ def testing_futures_ordering():
     )
 
     # 取得合約 使用台指期近月為例
-    contract = api.Contracts.Futures["TXFR1"]
+    contract = api.contracts.get("TXFR1")
     print(f"Contract: {contract}")
 
     # 建立期貨委託下單的 Order
@@ -16435,7 +16461,7 @@ curl http://localhost:8080/api/v1/auth/accounts
 
 ```
 # 商品檔 - 請修改此處
-contract = api.Contracts.Stocks.TSE.TSE2890
+contract = api.contracts.get("2890")
 
 # 證券委託單 - 請修改此處
 order = sj.StockOrder(
@@ -16563,7 +16589,7 @@ Out
 
 ```
 # 商品檔 - 請修改此處
-contract = api.Contracts.Futures.TXF.TXFE6
+contract = api.contracts.get("TXFR1")
 
 # 期貨委託單 - 請修改此處
 order = sj.FuturesOrder(
@@ -16847,7 +16873,6 @@ def main():
     api.login(
         api_key=os.environ["SJ_API_KEY"],
         secret_key=os.environ["SJ_SEC_KEY"],
-        fetch_contract=False
     )
     api.activate_ca(
         ca_path=os.environ["SJ_CA_PATH"],

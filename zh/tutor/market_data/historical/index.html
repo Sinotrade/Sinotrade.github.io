@@ -2348,7 +2348,7 @@
 </div>
 <div class="admonition done">
 <p class="admonition-title">Parameters</p>
-<div class="highlight"><pre><span></span><code>contract:    商品檔（由 api.Contracts.* 取得）
+<div class="highlight"><pre><span></span><code>contract:    商品檔（由 api.contracts.get 取得）
 date:        交易日（YYYY-MM-DD）
 query_type:  查詢類型 {&#39;AllDay&#39;, &#39;RangeTime&#39;, &#39;LastCount&#39;}
 time_start:  選填，起始時間，query_type=&#39;RangeTime&#39; 時使用
@@ -2439,8 +2439,9 @@ last_cnt:               選填，取末 N 筆，query_type=&#39;LastCount&#39; �
 <h4 id="ticks_1">取得特定日期 Ticks<a class="headerlink" href="#ticks_1" title="Permanent link">&para;</a></h4>
 <div class="admonition info">
 <p class="admonition-title">In</p>
-<div class="highlight"><pre><span></span><code><span class="n">ticks</span> <span class="o">=</span> <span class="n">api</span><span class="o">.</span><span class="n">ticks</span><span class="p">(</span>
-    <span class="n">contract</span><span class="o">=</span><span class="n">api</span><span class="o">.</span><span class="n">Contracts</span><span class="o">.</span><span class="n">Stocks</span><span class="p">[</span><span class="s2">&quot;2330&quot;</span><span class="p">],</span>
+<div class="highlight"><pre><span></span><code><span class="n">contract</span> <span class="o">=</span> <span class="n">api</span><span class="o">.</span><span class="n">contracts</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s2">&quot;2330&quot;</span><span class="p">)</span>
+<span class="n">ticks</span> <span class="o">=</span> <span class="n">api</span><span class="o">.</span><span class="n">ticks</span><span class="p">(</span>
+    <span class="n">contract</span><span class="o">=</span><span class="n">contract</span><span class="p">,</span>
     <span class="n">date</span><span class="o">=</span><span class="s2">&quot;2026-05-18&quot;</span>
 <span class="p">)</span>
 <span class="n">ticks</span>
@@ -2532,8 +2533,9 @@ last_cnt:               選填，取末 N 筆，query_type=&#39;LastCount&#39; �
 <h4 id="ticks_2">取得特定時間區段 Ticks<a class="headerlink" href="#ticks_2" title="Permanent link">&para;</a></h4>
 <div class="admonition info">
 <p class="admonition-title">In</p>
-<div class="highlight"><pre><span></span><code><span class="n">ticks</span> <span class="o">=</span> <span class="n">api</span><span class="o">.</span><span class="n">ticks</span><span class="p">(</span>
-    <span class="n">contract</span><span class="o">=</span><span class="n">api</span><span class="o">.</span><span class="n">Contracts</span><span class="o">.</span><span class="n">Stocks</span><span class="p">[</span><span class="s2">&quot;2330&quot;</span><span class="p">],</span>
+<div class="highlight"><pre><span></span><code><span class="n">contract</span> <span class="o">=</span> <span class="n">api</span><span class="o">.</span><span class="n">contracts</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s2">&quot;2330&quot;</span><span class="p">)</span>
+<span class="n">ticks</span> <span class="o">=</span> <span class="n">api</span><span class="o">.</span><span class="n">ticks</span><span class="p">(</span>
+    <span class="n">contract</span><span class="o">=</span><span class="n">contract</span><span class="p">,</span>
     <span class="n">date</span><span class="o">=</span><span class="s2">&quot;2026-05-18&quot;</span><span class="p">,</span>
 <span class="hll">    <span class="n">query_type</span><span class="o">=</span><span class="n">sj</span><span class="o">.</span><span class="n">constant</span><span class="o">.</span><span class="n">TicksQueryType</span><span class="o">.</span><span class="n">RangeTime</span><span class="p">,</span>
 </span><span class="hll">    <span class="n">time_start</span><span class="o">=</span><span class="s2">&quot;09:00:00&quot;</span><span class="p">,</span>
@@ -2559,8 +2561,9 @@ last_cnt:               選填，取末 N 筆，query_type=&#39;LastCount&#39; �
 <h4 id="ticks_3">取得最後數筆 Ticks<a class="headerlink" href="#ticks_3" title="Permanent link">&para;</a></h4>
 <div class="admonition info">
 <p class="admonition-title">In</p>
-<div class="highlight"><pre><span></span><code><span class="n">ticks</span> <span class="o">=</span> <span class="n">api</span><span class="o">.</span><span class="n">ticks</span><span class="p">(</span>
-    <span class="n">contract</span><span class="o">=</span><span class="n">api</span><span class="o">.</span><span class="n">Contracts</span><span class="o">.</span><span class="n">Stocks</span><span class="p">[</span><span class="s2">&quot;2330&quot;</span><span class="p">],</span>
+<div class="highlight"><pre><span></span><code><span class="n">contract</span> <span class="o">=</span> <span class="n">api</span><span class="o">.</span><span class="n">contracts</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s2">&quot;2330&quot;</span><span class="p">)</span>
+<span class="n">ticks</span> <span class="o">=</span> <span class="n">api</span><span class="o">.</span><span class="n">ticks</span><span class="p">(</span>
+    <span class="n">contract</span><span class="o">=</span><span class="n">contract</span><span class="p">,</span>
     <span class="n">date</span><span class="o">=</span><span class="s2">&quot;2026-05-18&quot;</span><span class="p">,</span>
 <span class="hll">    <span class="n">query_type</span><span class="o">=</span><span class="n">sj</span><span class="o">.</span><span class="n">constant</span><span class="o">.</span><span class="n">TicksQueryType</span><span class="o">.</span><span class="n">LastCount</span><span class="p">,</span>
 </span><span class="hll">    <span class="n">last_cnt</span><span class="o">=</span><span class="mi">4</span><span class="p">,</span>
@@ -3293,7 +3296,7 @@ last_cnt:               選填，取末 N 筆，query_type=&#39;LastCount&#39; �
 </div>
 <div class="admonition done">
 <p class="admonition-title">Parameters</p>
-<div class="highlight"><pre><span></span><code>contract: 商品檔（由 api.Contracts.* 取得）
+<div class="highlight"><pre><span></span><code>contract: 商品檔（由 api.contracts.get 取得）
 start:    起始日期（YYYY-MM-DD），預設為昨天
 end:      結束日期（YYYY-MM-DD），預設為今天
 timeout:  逾時毫秒
@@ -3371,8 +3374,9 @@ end:                    結束日期（YYYY-MM-DD）
 <div class="tabbed-block">
 <div class="admonition info">
 <p class="admonition-title">In</p>
-<div class="highlight"><pre><span></span><code><span class="n">kbars</span> <span class="o">=</span> <span class="n">api</span><span class="o">.</span><span class="n">kbars</span><span class="p">(</span>
-    <span class="n">contract</span><span class="o">=</span><span class="n">api</span><span class="o">.</span><span class="n">Contracts</span><span class="o">.</span><span class="n">Stocks</span><span class="p">[</span><span class="s2">&quot;2330&quot;</span><span class="p">],</span>
+<div class="highlight"><pre><span></span><code><span class="n">contract</span> <span class="o">=</span> <span class="n">api</span><span class="o">.</span><span class="n">contracts</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s2">&quot;2330&quot;</span><span class="p">)</span>
+<span class="n">kbars</span> <span class="o">=</span> <span class="n">api</span><span class="o">.</span><span class="n">kbars</span><span class="p">(</span>
+    <span class="n">contract</span><span class="o">=</span><span class="n">contract</span><span class="p">,</span>
     <span class="n">start</span><span class="o">=</span><span class="s2">&quot;2026-05-17&quot;</span><span class="p">,</span>
     <span class="n">end</span><span class="o">=</span><span class="s2">&quot;2026-05-18&quot;</span>
 <span class="p">)</span>
@@ -3714,10 +3718,10 @@ end:                    結束日期（YYYY-MM-DD）
 </table>
 </div>
 <h2 id="_6">連續期貨合約<a class="headerlink" href="#_6" title="Permanent link">&para;</a></h2>
-<p>期貨合約一旦到期，合約即不再有效，亦即他將不會出現在您的<code>api.Contracts</code>裡。為了取得到期的期貨合約歷史資料，我們提供連續期貨合約。<code>R1</code>, <code>R2</code>是近月及次月的連續期貨合約，他們會自動在結算日更換新的合約（即 <code>target_code</code> 會變）。您可以使用<code>R1</code>, <code>R2</code>合約來取得長期的歷史資料，例如<code>api.Contracts.Futures.TXF.TXFR1</code>。以下顯示如何使用<code>R1</code>, <code>R2</code>合約取得到期期貨的歷史<code>Ticks</code>及<code>Kbars</code>。</p>
+<p>期貨合約一旦到期，合約即不再有效，亦即 <code>api.contracts.get()</code> 將查不到他。為了取得到期的期貨合約歷史資料，我們提供連續期貨合約。<code>R1</code>, <code>R2</code>是近月及次月的連續期貨合約，他們會自動在結算日更換新的合約（即 <code>target_code</code> 會變）。您可以使用<code>R1</code>, <code>R2</code>合約來取得長期的歷史資料，例如<code>api.contracts.get("TXFR1")</code>。以下顯示如何使用<code>R1</code>, <code>R2</code>合約取得到期期貨的歷史<code>Ticks</code>及<code>Kbars</code>。</p>
 <div class="admonition warning">
 <p class="admonition-title">注意</p>
-<p><code>code</code> 必須出現在 <code>api.Contracts</code> 裡才能放入 <code>api.ticks</code> / <code>api.kbars</code> 查詢。例如 <code>TXFE6</code> 是 2026 年 5 月的合約，到了 2026 年 6 月就不再出現在 <code>api.Contracts</code>，此時就無法用 <code>TXFE6</code> 查詢。</p>
+<p><code>code</code> 必須是 <code>api.contracts.get()</code> 查得到的商品才能放入 <code>api.ticks</code> / <code>api.kbars</code> 查詢。例如 <code>TXFE6</code> 是 2026 年 5 月的合約，到了 2026 年 6 月就查不到了，此時就無法用 <code>TXFE6</code> 查詢。</p>
 </div>
 <div class="tabbed-set tabbed-alternate" data-tabs="5:3"><input checked="checked" id="__tabbed_5_1" name="__tabbed_5" type="radio" /><input id="__tabbed_5_2" name="__tabbed_5" type="radio" /><input id="__tabbed_5_3" name="__tabbed_5" type="radio" /><div class="tabbed-labels"><label for="__tabbed_5_1">Python</label><label for="__tabbed_5_2">CLI</label><label for="__tabbed_5_3">其他 (HTTP)</label></div>
 <div class="tabbed-content">
@@ -3725,9 +3729,10 @@ end:                    結束日期（YYYY-MM-DD）
 <h4 id="ticks_4">Ticks<a class="headerlink" href="#ticks_4" title="Permanent link">&para;</a></h4>
 <div class="admonition info">
 <p class="admonition-title">In</p>
-<div class="highlight"><pre><span></span><code><span class="n">ticks</span> <span class="o">=</span> <span class="n">api</span><span class="o">.</span><span class="n">ticks</span><span class="p">(</span>
-<span class="hll">    <span class="n">contract</span><span class="o">=</span><span class="n">api</span><span class="o">.</span><span class="n">Contracts</span><span class="o">.</span><span class="n">Futures</span><span class="o">.</span><span class="n">TXF</span><span class="o">.</span><span class="n">TXFR1</span><span class="p">,</span>
-</span>    <span class="n">date</span><span class="o">=</span><span class="s2">&quot;2026-05-18&quot;</span><span class="p">,</span>
+<div class="highlight"><pre><span></span><code><span class="hll"><span class="n">contract</span> <span class="o">=</span> <span class="n">api</span><span class="o">.</span><span class="n">contracts</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s2">&quot;TXFR1&quot;</span><span class="p">)</span>
+</span><span class="n">ticks</span> <span class="o">=</span> <span class="n">api</span><span class="o">.</span><span class="n">ticks</span><span class="p">(</span>
+    <span class="n">contract</span><span class="o">=</span><span class="n">contract</span><span class="p">,</span>
+    <span class="n">date</span><span class="o">=</span><span class="s2">&quot;2026-05-18&quot;</span><span class="p">,</span>
     <span class="n">query_type</span><span class="o">=</span><span class="n">sj</span><span class="o">.</span><span class="n">constant</span><span class="o">.</span><span class="n">TicksQueryType</span><span class="o">.</span><span class="n">LastCount</span><span class="p">,</span>
     <span class="n">last_cnt</span><span class="o">=</span><span class="mi">4</span><span class="p">,</span>
 <span class="p">)</span>
@@ -3751,9 +3756,10 @@ end:                    結束日期（YYYY-MM-DD）
 <h4 id="kbars_1">Kbars<a class="headerlink" href="#kbars_1" title="Permanent link">&para;</a></h4>
 <div class="admonition info">
 <p class="admonition-title">In</p>
-<div class="highlight"><pre><span></span><code><span class="n">kbars</span> <span class="o">=</span> <span class="n">api</span><span class="o">.</span><span class="n">kbars</span><span class="p">(</span>
-<span class="hll">    <span class="n">contract</span><span class="o">=</span><span class="n">api</span><span class="o">.</span><span class="n">Contracts</span><span class="o">.</span><span class="n">Futures</span><span class="o">.</span><span class="n">TXF</span><span class="o">.</span><span class="n">TXFR1</span><span class="p">,</span>
-</span>    <span class="n">start</span><span class="o">=</span><span class="s2">&quot;2026-05-17&quot;</span><span class="p">,</span>
+<div class="highlight"><pre><span></span><code><span class="hll"><span class="n">contract</span> <span class="o">=</span> <span class="n">api</span><span class="o">.</span><span class="n">contracts</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s2">&quot;TXFR1&quot;</span><span class="p">)</span>
+</span><span class="n">kbars</span> <span class="o">=</span> <span class="n">api</span><span class="o">.</span><span class="n">kbars</span><span class="p">(</span>
+    <span class="n">contract</span><span class="o">=</span><span class="n">contract</span><span class="p">,</span>
+    <span class="n">start</span><span class="o">=</span><span class="s2">&quot;2026-05-17&quot;</span><span class="p">,</span>
     <span class="n">end</span><span class="o">=</span><span class="s2">&quot;2026-05-18&quot;</span>
 <span class="p">)</span>
 <span class="n">kbars</span>

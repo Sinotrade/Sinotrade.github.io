@@ -33,7 +33,7 @@ Docstring:
 Parameters
 
 ```
-contract:    contract (from api.Contracts.*)
+contract:    contract (from api.contracts.get)
 date:        trading date (YYYY-MM-DD)
 query_type:  query mode {'AllDay', 'RangeTime', 'LastCount'}
 time_start:  optional, start time, used when query_type='RangeTime'
@@ -129,8 +129,9 @@ tick_type (int): inside/outside {1: outside, 2: inside, 0: unknown}
 In
 
 ```
+contract = api.contracts.get("2330")
 ticks = api.ticks(
-    contract=api.Contracts.Stocks["2330"],
+    contract=contract,
     date="2026-05-18"
 )
 ticks
@@ -175,8 +176,9 @@ Out
 In
 
 ```
+contract = api.contracts.get("2330")
 ticks = api.ticks(
-    contract=api.Contracts.Stocks["2330"],
+    contract=contract,
     date="2026-05-18",
     query_type=sj.constant.TicksQueryType.RangeTime,
     time_start="09:00:00",
@@ -207,8 +209,9 @@ Ticks[1151](
 In
 
 ```
+contract = api.contracts.get("2330")
 ticks = api.ticks(
-    contract=api.Contracts.Stocks["2330"],
+    contract=contract,
     date="2026-05-18",
     query_type=sj.constant.TicksQueryType.LastCount,
     last_cnt=4,
@@ -371,7 +374,7 @@ Docstring:
 Parameters
 
 ```
-contract: contract (from api.Contracts.*)
+contract: contract (from api.contracts.get)
 start:    start date (YYYY-MM-DD), defaults to yesterday
 end:      end date (YYYY-MM-DD), defaults to today
 timeout:  timeout in milliseconds
@@ -453,8 +456,9 @@ Amount (float): trade amount
 In
 
 ```
+contract = api.contracts.get("2330")
 kbars = api.kbars(
-    contract=api.Contracts.Stocks["2330"],
+    contract=contract,
     start="2026-05-17",
     end="2026-05-18"
 )
@@ -540,19 +544,20 @@ Historical Periods
 
 ## Continuous Futures
 
-Once a futures contract passes its expiration date, the contract is invalid, and it will not exist in your `api.Contracts`. In order to get historical data for expired futures contracts, we provide continuous futures contracts. `R1`, `R2` are continuous near-month and next-to-near-month futures contracts respectively. They will automatically roll contracts on delivery date (i.e. `target_code` changes). You can use `R1`, `R2` to get long-term historical data, e.g. `api.Contracts.Futures.TXF.TXFR1`. The examples below show how to use `R1`, `R2` to fetch historical `Ticks` and `Kbars` of expired futures.
+Once a futures contract passes its expiration date, the contract is invalid, and `api.contracts.get()` will no longer find it. In order to get historical data for expired futures contracts, we provide continuous futures contracts. `R1`, `R2` are continuous near-month and next-to-near-month futures contracts respectively. They will automatically roll contracts on delivery date (i.e. `target_code` changes). You can use `R1`, `R2` to get long-term historical data, e.g. `api.contracts.get("TXFR1")`. The examples below show how to use `R1`, `R2` to fetch historical `Ticks` and `Kbars` of expired futures.
 
 Note
 
-`code` must exist in `api.Contracts` to be passed into `api.ticks` / `api.kbars`. For example, `TXFE6` is the contract for May 2026; by June 2026 it no longer appears in `api.Contracts`, so `TXFE6` cannot be queried at that point.
+`code` must be a contract that `api.contracts.get()` can find to be passed into `api.ticks` / `api.kbars`. For example, `TXFE6` is the contract for May 2026; by June 2026 it can no longer be found, so `TXFE6` cannot be queried at that point.
 
 #### Ticks
 
 In
 
 ```
+contract = api.contracts.get("TXFR1")
 ticks = api.ticks(
-    contract=api.Contracts.Futures.TXF.TXFR1,
+    contract=contract,
     date="2026-05-18",
     query_type=sj.constant.TicksQueryType.LastCount,
     last_cnt=4,
@@ -582,8 +587,9 @@ Ticks[4](
 In
 
 ```
+contract = api.contracts.get("TXFR1")
 kbars = api.kbars(
-    contract=api.Contracts.Futures.TXF.TXFR1,
+    contract=contract,
     start="2026-05-17",
     end="2026-05-18"
 )

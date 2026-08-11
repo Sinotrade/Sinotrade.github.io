@@ -26,7 +26,7 @@ Docstring:
 Parameters
 
 ```
-contract: 商品檔（由 api.Contracts.Stocks.* 取得）
+contract: 商品檔（由 api.contracts.get 取得）
 order:    證券委託單物件
 timeout:  逾時毫秒
 cb:       選填，callback 函式
@@ -148,7 +148,7 @@ Order
 
 ```
 # 商品檔
-contract = api.Contracts.Stocks.TSE.TSE2890
+contract = api.contracts.get("2890")
 # 委託內容
 order = sj.StockOrder(
     action=sj.Action.Buy,

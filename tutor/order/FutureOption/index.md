@@ -26,7 +26,7 @@ Docstring:
 Parameters
 
 ```
-contract: contract (obtained via api.Contracts.Futures.*)
+contract: contract (obtained via api.contracts.get)
 order:    futures order object
 timeout:  timeout in milliseconds
 cb:       optional callback function
@@ -88,7 +88,7 @@ Order
 
 ```
 # contract
-contract = api.Contracts.Futures.TMF.TMFR1
+contract = api.contracts.get("TMFR1")
 # order
 order = sj.FuturesOrder(
     action=sj.Action.Buy,

@@ -26,7 +26,7 @@ Signature:
 Quote Parameters:
 
 ```
-contract:     Contract to subscribe (obtained from api.Contracts.Futures.* or api.Contracts.Options.*)
+contract:     Contract to subscribe (obtained from api.contracts.get)
 quote_type:   Subscription type {'tick', 'bid_ask', 'quote'}
 intraday_odd: Not supported for futures / options; always False
 
@@ -52,7 +52,7 @@ Options:
 Quote Parameters:
 
 ```
---code:          Security code to subscribe (futures / options, e.g. TXFR1, TXFF6, TXO20260526900C)
+--code:          Security code to subscribe (futures / options, e.g. TXFR1)
 --quote-type:    Subscription type {tick, bid_ask, quote}, default tick
 --security-type: Security type {STK, FUT, OPT, IND}; use FUT for futures, OPT for options
 --intraday-odd:  Not supported for futures / options
@@ -80,7 +80,7 @@ Quote Parameters:
 ```
 security_type: Security type {FUT, OPT}
 exchange:      Exchange {TAIFEX}
-code:          Security code (e.g. TXFR1, TXFF6, TXO20260526900C)
+code:          Security code (e.g. TXFR1)
 target_code:   Resolved underlying contract code. Required for continuous-month (TXFR1 / TXFR2), otherwise the server returns 200 but no data is received
 quote_type:    Subscription type {Tick, BidAsk, Quote}
 
@@ -91,14 +91,15 @@ quote_type:    Subscription type {Tick, BidAsk, Quote}
 In
 
 ```
+contract = api.contracts.get("TXFR1")
 api.subscribe(
-    api.Contracts.Futures.TXF.TXFR1,
+    contract,
     quote_type=sj.QuoteType.Tick,
 )
 
 # Unsubscribe
 # api.unsubscribe(
-#     api.Contracts.Futures.TXF.TXFR1,
+#     contract,
 #     quote_type=sj.QuoteType.Tick,
 # )
 
@@ -258,14 +259,15 @@ simtrade (bool)                          Trial match
 In
 
 ```
+contract = api.contracts.get("TXFR1")
 api.subscribe(
-    api.Contracts.Futures.TXF.TXFR1,
+    contract,
     quote_type=sj.QuoteType.BidAsk,
 )
 
 # Unsubscribe
 # api.unsubscribe(
-#     api.Contracts.Futures.TXF.TXFR1,
+#     contract,
 #     quote_type=sj.QuoteType.BidAsk,
 # )
 
@@ -416,14 +418,15 @@ simtrade (bool)                          Trial match
 In
 
 ```
+contract = api.contracts.get("TXFR1")
 api.subscribe(
-    api.Contracts.Futures.TXF.TXFR1,
+    contract,
     quote_type=sj.QuoteType.Quote,
 )
 
 # Unsubscribe
 # api.unsubscribe(
-#     api.Contracts.Futures.TXF.TXFR1,
+#     contract,
 #     quote_type=sj.QuoteType.Quote,
 # )
 
@@ -650,8 +653,9 @@ def quote_callback(exchange: Exchange, tick: TickFOPv1):
     print(f"pct_chg={tick.pct_chg}")
     print(f"simtrade={tick.simtrade}")
 
+contract = api.contracts.get("TXFR1")
 api.subscribe(
-    api.Contracts.Futures.TXF.TXFR1,
+    contract,
     quote_type=sj.QuoteType.Tick,
 )
 
@@ -667,8 +671,9 @@ def quote_callback(exchange: Exchange, tick: TickFOPv1):
 
 api.set_on_tick_fop_v1_callback(quote_callback)
 
+contract = api.contracts.get("TXFR1")
 api.subscribe(
-    api.Contracts.Futures.TXF.TXFR1,
+    contract,
     quote_type=sj.QuoteType.Tick,
 )
 
@@ -732,8 +737,9 @@ def quote_callback(exchange: Exchange, bidask: BidAskFOPv1):
     print(f"underlying_price={bidask.underlying_price}")
     print(f"simtrade={bidask.simtrade}")
 
+contract = api.contracts.get("TXFR1")
 api.subscribe(
-    api.Contracts.Futures.TXF.TXFR1,
+    contract,
     quote_type=sj.QuoteType.BidAsk,
 )
 
@@ -749,8 +755,9 @@ def quote_callback(exchange: Exchange, bidask: BidAskFOPv1):
 
 api.set_on_bidask_fop_v1_callback(quote_callback)
 
+contract = api.contracts.get("TXFR1")
 api.subscribe(
-    api.Contracts.Futures.TXF.TXFR1,
+    contract,
     quote_type=sj.QuoteType.BidAsk,
 )
 
@@ -826,8 +833,9 @@ def quote_callback(exchange: Exchange, quote: QuoteFOPv1):
     print(f"first_derived_ask_vol={quote.first_derived_ask_vol}")
     print(f"simtrade={quote.simtrade}")
 
+contract = api.contracts.get("TXFR1")
 api.subscribe(
-    api.Contracts.Futures.TXF.TXFR1,
+    contract,
     quote_type=sj.QuoteType.Quote,
 )
 
@@ -843,8 +851,9 @@ def quote_callback(exchange: Exchange, quote: QuoteFOPv1):
 
 api.set_on_quote_fop_v1_callback(quote_callback)
 
+contract = api.contracts.get("TXFR1")
 api.subscribe(
-    api.Contracts.Futures.TXF.TXFR1,
+    contract,
     quote_type=sj.QuoteType.Quote,
 )
 

@@ -15,7 +15,7 @@ Signature:
 Parameters
 
 ```
-contracts: 商品檔列表（由 api.Contracts.Stocks.* 取得）
+contracts: 商品檔列表（由 api.contracts.get 取得）
 timeout:   逾時毫秒
 cb:        選填，callback 函式，timeout=0 時使用
 
@@ -89,7 +89,7 @@ ts / datetime:            時間（Python 為 Unix 時間戳，其他語言為 I
 In
 
 ```
-contracts = [api.Contracts.Stocks['2330'], api.Contracts.Stocks['2317']]
+contracts = [api.contracts.get("2330"), api.contracts.get("2317")]
 short_stock_sources = api.short_stock_sources(contracts)
 short_stock_sources
 

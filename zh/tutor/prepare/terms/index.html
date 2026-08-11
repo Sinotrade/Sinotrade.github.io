@@ -2508,7 +2508,7 @@ curl<span class="w"> </span>http://localhost:8080/api/v1/auth/accounts
 <div class="admonition info">
 <p class="admonition-title">證券</p>
 <div class="highlight"><pre><span></span><code><span class="hll"><span class="c1"># 商品檔 - 請修改此處</span>
-</span><span class="hll"><span class="n">contract</span> <span class="o">=</span> <span class="n">api</span><span class="o">.</span><span class="n">Contracts</span><span class="o">.</span><span class="n">Stocks</span><span class="o">.</span><span class="n">TSE</span><span class="o">.</span><span class="n">TSE2890</span>
+</span><span class="hll"><span class="n">contract</span> <span class="o">=</span> <span class="n">api</span><span class="o">.</span><span class="n">contracts</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s2">&quot;2890&quot;</span><span class="p">)</span>
 </span>
 <span class="hll"><span class="c1"># 證券委託單 - 請修改此處</span>
 </span><span class="n">order</span> <span class="o">=</span> <span class="n">sj</span><span class="o">.</span><span class="n">StockOrder</span><span class="p">(</span>
@@ -3001,7 +3001,7 @@ curl<span class="w"> </span>http://localhost:8080/api/v1/auth/accounts
 <div class="admonition info">
 <p class="admonition-title">期貨</p>
 <div class="highlight"><pre><span></span><code><span class="hll"><span class="c1"># 商品檔 - 請修改此處</span>
-</span><span class="hll"><span class="n">contract</span> <span class="o">=</span> <span class="n">api</span><span class="o">.</span><span class="n">Contracts</span><span class="o">.</span><span class="n">Futures</span><span class="o">.</span><span class="n">TXF</span><span class="o">.</span><span class="n">TXFE6</span>
+</span><span class="hll"><span class="n">contract</span> <span class="o">=</span> <span class="n">api</span><span class="o">.</span><span class="n">contracts</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s2">&quot;TXFR1&quot;</span><span class="p">)</span>
 </span>
 <span class="hll"><span class="c1"># 期貨委託單 - 請修改此處</span>
 </span><span class="n">order</span> <span class="o">=</span> <span class="n">sj</span><span class="o">.</span><span class="n">FuturesOrder</span><span class="p">(</span>
