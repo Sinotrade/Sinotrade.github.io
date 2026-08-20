@@ -164,7 +164,7 @@ api.contracts.info(c)
 Out
 
 ```
-StockInfo(Contract(security_type='STK', region='TW', exchange='TSE', code='2330'), code='2330', name='台積電', category='24', currency=<Currency.TWD: 'TWD'>, unit=1000.0, day_trade=<DayTrade.Yes: 'Yes'>, reference=2440.0, limit_up=2680.0, limit_down=2200.0, margin_trading_balance=0, short_selling_balance=99, trading_suspended=False, margin_loan_ratio=0.6, margin_quota_lots=0, short_margin_ratio=0.9, short_quota_lots=99, short_selling_suspended=False, disposition_level=0, attention_flag=False, short_below_par_eligible=True, slb_below_par_eligible=True, etf_constituent=True, settlement_type='0', update_date=datetime.date(2026, 7, 16))
+StockInfo(Contract(security_type='STK', region='TW', exchange='TSE', code='2330'), code='2330', name='台積電', category='24', currency=<Currency.TWD: 'TWD'>, unit=1000.0, day_trade=<DayTrade.Yes: 'Yes'>, reference=2440.0, limit_up=2680.0, limit_down=2200.0, margin_trading_balance=0, short_selling_balance=99, trading_suspended=False, margin_loan_ratio=0.6, margin_quota_lots=0, short_margin_ratio=0.9, short_quota_lots=99, margin_shortable=True, sbl_shortable=True, below_ref_shortable=True, disposition_level=0, attention_flag=False, etf_constituent=True, settlement_type='0', update_date=datetime.date(2026, 7, 16))
 
 ```
 
@@ -186,7 +186,7 @@ curl "http://localhost:8080/api/v1/data/contracts/2330/info"
 Out
 
 ```
-{"security_type":"STK","region":"TW","exchange":"TSE","code":"2330","target_code":null,"name":"台積電","category":"24","currency":"TWD","unit":1000.0,"day_trade":"Yes","reference":2440.0,"limit_up":2680.0,"limit_down":2200.0,"margin_trading_balance":0,"short_selling_balance":99,"trading_suspended":false,"margin_loan_ratio":0.6,"margin_quota_lots":0,"short_margin_ratio":0.9,"short_quota_lots":99,"short_selling_suspended":false,"disposition_level":0,"attention_flag":false,"short_below_par_eligible":true,"slb_below_par_eligible":true,"etf_constituent":true,"settlement_type":"0","disposition_match_interval_min":null,"disposition_max_lots_single_order":null,"disposition_max_lots_total_orders":null,"disposition_prepay_ratio":null,"update_date":"2026-07-16"}
+{"security_type":"STK","region":"TW","exchange":"TSE","code":"2330","target_code":null,"name":"台積電","category":"24","currency":"TWD","unit":1000.0,"day_trade":"Yes","reference":2440.0,"limit_up":2680.0,"limit_down":2200.0,"margin_trading_balance":0,"short_selling_balance":99,"trading_suspended":false,"margin_loan_ratio":0.6,"margin_quota_lots":0,"short_margin_ratio":0.9,"short_quota_lots":99,"margin_shortable":true,"sbl_shortable":true,"below_ref_shortable":true,"disposition_level":0,"attention_flag":false,"etf_constituent":true,"settlement_type":"0","disposition_match_interval_min":null,"disposition_max_lots_single_order":null,"disposition_max_lots_total_orders":null,"disposition_prepay_ratio":null,"update_date":"2026-07-16"}
 
 ```
 
@@ -231,11 +231,11 @@ StockInfo(
     margin_quota_lots=0,
     short_margin_ratio=0.9,
     short_quota_lots=99,
-    short_selling_suspended=False,
+    margin_shortable=True,
+    sbl_shortable=True,
+    below_ref_shortable=True,
     disposition_level=0,
     attention_flag=False,
-    short_below_par_eligible=True,
-    slb_below_par_eligible=True,
     etf_constituent=True,
     settlement_type='0',
     update_date=datetime.date(2026, 7, 16),
@@ -262,11 +262,11 @@ margin_loan_ratio (float):                 margin loan ratio
 margin_quota_lots (int):                   margin quota (lots)
 short_margin_ratio (float):                short selling margin ratio
 short_quota_lots (int):                    short selling quota (lots)
-short_selling_suspended (bool):            short selling suspended
+margin_shortable (bool):                   margin short selling allowed
+sbl_shortable (bool):                      SBL short selling allowed
+below_ref_shortable (bool):                short selling below reference price allowed
 disposition_level (int):                   disposition level (0 when not under disposition)
 attention_flag (bool):                     attention stock
-short_below_par_eligible (bool):           short selling below par eligible
-slb_below_par_eligible (bool):             securities lending below par eligible
 etf_constituent (bool):                    ETF constituent
 settlement_type (str):                     settlement type
 disposition_match_interval_min (int):      disposition matching interval (minutes)
@@ -1029,6 +1029,257 @@ Parameters
 ```
 include_name: whether to include the underlying name and warrant count, defaults to false (returns only the underlying code and basic fields)
 region:       market region, defaults to TW
+
+```
+
+## Combo Contracts
+
+TAIFEX offers **combination orders**, which bundle two futures/options contracts into a single order traded as one, such as futures time spreads and option straddles; see the TAIFEX [order types introduction](https://www.taifex.com.tw/cht/4/oamIntroduction) for the definitions and rules of each type. In Shioaji the combination to trade is represented by a **combo contract (`ComboContract`)**; the same contract works for both [combo orders](../order/Combo/) and [combo market data](../market_data/streaming/combo/) (streaming, snapshots, historical data).
+
+Put the two products' contract objects (`Contract`) into `legs` of `api.contracts.combo()` to build a combo contract; the products you pick and their order inside `legs` determine the **combo type**, with the order defined by TAIFEX and not reversible:
+
+| Target type | `sj.ComboType` | Pick two products | Order `legs=[first, second]` | `combo_type` | | --- | --- | --- | --- | --- | | **Futures** | | | | | | Time spread | `TimeSpread` | Same product, different delivery months | `[near, far]` | auto-derived | | Weekly time spread | `WeeklyTimeSpread` | Same family, at least one weekly contract | `[near expiry, far expiry]` | auto-derived | | **Options** | | | | | | Time spread | `TimeSpread` | Same product, strike, and right; different expiries | `[near expiry, far expiry]` | auto-derived | | Call spread | `PriceSpread` | Two Calls, same expiry, different strikes | `[higher strike, lower strike]` | auto-derived | | Put spread | `PriceSpread` | Two Puts, same expiry, different strikes | `[lower strike, higher strike]` | auto-derived | | Straddle | `Straddle` | Call and Put, same expiry and strike | `[Call, Put]` | **required** | | Strangle | `Strangle` | Call and Put, same expiry, different strikes | `[Call, Put]` | auto-derived | | Conversion/Reversal | `ConversionReversal` | Call and Put, same expiry and strike | `[Call, Put]` | **required** |
+
+Why Straddle and Conversion/Reversal require combo_type
+
+Their component products are identical, but on TAIFEX they are two different combo products: the direction expansion differs (Straddle `Buy` = buy Call and buy Put; Conversion = sell Call, buy Put) and so does the net-price definition (Call+Put vs Put−Call). It cannot be inferred from the components, so omitting it raises `sj.ShioajiValueError`. Other types are auto-derived; an explicit value must match the components.
+
+A built contract carries **no buy/sell direction**; whether you buy or sell the combo is decided at order time by `ComboOrder.action` — see [Combo Orders](../order/Combo/).
+
+contracts.combo
+
+```
+api.contracts.combo?
+
+Signature:
+    api.contracts.combo(
+        legs: List[sj.BaseContract],
+        combo_type: Optional[sj.ComboType] = None,
+    ) -> sj.ComboContract
+
+```
+
+Parameters
+
+```
+legs:       Two products' contract objects (from api.contracts.get()); order per the table above.
+            Must be concrete delivery months — TXFR1/R2 continuous contracts are not accepted
+combo_type: Optional combo type; most shapes are auto-derived, see the table above
+
+```
+
+sj.ComboContract
+
+```
+legs (List[BaseContract]):  Component products
+combo_type (ComboType):     Combo type
+region (str):               Market region
+code (str):                 Exchange-native combo code (e.g. TXFH6/I6), identical to the
+                            code in market-data callbacks; generated by Shioaji — never
+                            hand-build the slash code as input. Not available for option combos
+managed (bool):             Whether the contract was built by contracts.combo()
+
+```
+
+contracts/combo
+
+```
+POST /api/v1/data/contracts/combo
+Content-Type: application/json
+
+{
+  "legs": [
+    {
+      "security_type": <SecurityType>,
+      "exchange": <Exchange>,
+      "code": <string>
+    }
+  ],
+  "combo_type": <ComboType, optional>
+}
+
+```
+
+Parameters
+
+```
+legs[].security_type: Security type {FUT, OPT}
+legs[].exchange:      Exchange
+legs[].code:          Product code; R1/R2 continuous contracts are not accepted,
+                      and legs must not carry an action (400 if present)
+combo_type:           Optional combo type; auto-derived when omitted
+
+```
+
+### Example
+
+Futures (time spread):
+
+In
+
+```
+near = api.contracts.get("TXFH6")
+far = api.contracts.get("TXFI6")
+combo_contract = api.contracts.combo(
+    legs=[near, far],
+)
+combo_contract
+
+```
+
+Out
+
+```
+ComboContract(
+    legs=[
+        Contract(security_type='FUT', region='TW', exchange='TAIFEX', code='TXFH6'),
+        Contract(security_type='FUT', region='TW', exchange='TAIFEX', code='TXFI6')
+    ],
+    combo_type=TimeSpread
+)
+
+```
+
+Options (straddle):
+
+In
+
+```
+call = api.contracts.get("TXO34000I6")
+put = api.contracts.get("TXO34000U6")
+straddle_contract = api.contracts.combo(
+    legs=[call, put],
+    combo_type=sj.ComboType.Straddle,
+)
+straddle_contract
+
+```
+
+Out
+
+```
+ComboContract(
+    legs=[
+        Contract(security_type='OPT', region='TW', exchange='TAIFEX', code='TXO34000I6'),
+        Contract(security_type='OPT', region='TW', exchange='TAIFEX', code='TXO34000U6')
+    ],
+    combo_type=Straddle
+)
+
+```
+
+Invalid combos
+
+A wrong leg order, or omitting a required `combo_type`, raises `sj.ShioajiValueError` (a subclass of Python's `ValueError`) at build time, e.g.:
+
+```
+contracts: validation: combo legs are reversed for TimeSpread; expected canonical exchange order
+contracts: validation: combo shape is ambiguous ([Straddle, ConversionReversal]); pass combo_type explicitly
+
+```
+
+In
+
+```
+curl -X POST http://localhost:8080/api/v1/data/contracts/combo \
+  -H 'Content-Type: application/json' \
+  -d '{
+    "legs": [
+      {"security_type": "FUT", "exchange": "TAIFEX", "code": "TXFH6"},
+      {"security_type": "FUT", "exchange": "TAIFEX", "code": "TXFI6"}
+    ]
+  }'
+
+```
+
+Out
+
+```
+{"code":"TXFH6/I6","legs":[{"security_type":"FUT","region":"TW","exchange":"TAIFEX","code":"TXFH6","target_code":null},{"security_type":"FUT","region":"TW","exchange":"TAIFEX","code":"TXFI6","target_code":null}],"region":"TW","exchange":"TAIFEX","combo_type":"TimeSpread","managed":true}
+
+```
+
+### Listing Futures Combos
+
+Not sure which pair to build? `combo_futures` lists every currently valid time-spread combo of a futures family, ready to use with no ordering work. Futures time spreads only; build option combos with `contracts.combo()`.
+
+contracts.combo_futures
+
+```
+api.contracts.combo_futures?
+
+Signature:
+    api.contracts.combo_futures(
+        root: str,
+        region: sj.Region = sj.Region.TW,
+    ) -> List[sj.ComboContract]
+
+```
+
+Parameters
+
+```
+root:   Futures product family (e.g. TXF)
+region: Market region, default Taiwan
+
+```
+
+In
+
+```
+combos = api.contracts.combo_futures(root="TXF")
+[c.code for c in combos]
+
+```
+
+Out
+
+```
+['TXFH6/I6',
+ 'TXFH6/J6',
+ 'TXFH6/L6',
+ 'TXFH6/C7',
+ 'TXFH6/F7',
+ 'TXFI6/J6',
+ 'TXFI6/L6',
+ 'TXFI6/C7',
+ 'TXFI6/F7',
+ 'TXFJ6/L6',
+ 'TXFJ6/C7',
+ 'TXFJ6/F7',
+ 'TXFL6/C7',
+ 'TXFL6/F7',
+ 'TXFC7/F7']
+
+```
+
+The list is computed from local contract data (expired contracts excluded). It does not guarantee live orders exist for every pair — check quotes for actual markets.
+
+contracts/combo/futures
+
+```
+GET /api/v1/data/contracts/combo/futures?root=<string>
+
+```
+
+Parameters
+
+```
+root: Futures product family (e.g. TXF)
+
+```
+
+In
+
+```
+curl 'http://localhost:8080/api/v1/data/contracts/combo/futures?root=TXF'
+
+```
+
+Out
+
+```
+[{"code":"TXFH6/I6","legs":[{"security_type":"FUT","region":"TW","exchange":"TAIFEX","code":"TXFH6","target_code":null},{"security_type":"FUT","region":"TW","exchange":"TAIFEX","code":"TXFI6","target_code":null}],"region":"TW","exchange":"TAIFEX","combo_type":"TimeSpread","managed":true},{"code":"TXFH6/J6","legs":[...],"region":"TW","exchange":"TAIFEX","combo_type":"TimeSpread","managed":true},...]
 
 ```
 

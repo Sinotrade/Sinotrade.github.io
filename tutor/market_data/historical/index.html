@@ -813,6 +813,29 @@
   
   
     <li class="md-nav__item">
+      <a href="../streaming/combo/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Combo Products
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
       <a href="../streaming/" class="md-nav__link">
         
   
@@ -1064,6 +1087,39 @@
         
           <li class="md-nav__item">
   <a href="#kbars_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      Kbars
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#combo-products" class="md-nav__link">
+    <span class="md-ellipsis">
+      Combo Products
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Combo Products">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#ticks_2" class="md-nav__link">
+    <span class="md-ellipsis">
+      Ticks
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#kbars_2" class="md-nav__link">
     <span class="md-ellipsis">
       Kbars
     </span>
@@ -2284,6 +2340,39 @@
         
           <li class="md-nav__item">
   <a href="#kbars_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      Kbars
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#combo-products" class="md-nav__link">
+    <span class="md-ellipsis">
+      Combo Products
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Combo Products">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#ticks_2" class="md-nav__link">
+    <span class="md-ellipsis">
+      Ticks
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#kbars_2" class="md-nav__link">
     <span class="md-ellipsis">
       Kbars
     </span>
@@ -3846,6 +3935,141 @@ end:                    end date (YYYY-MM-DD)
 <div class="admonition done">
 <p class="admonition-title">Out</p>
 <div class="highlight"><pre><span></span><code>{&quot;datetime&quot;:[&quot;2026-05-18T08:46:00&quot;,&quot;2026-05-18T08:47:00&quot;,&quot;2026-05-18T08:48:00&quot;,...],&quot;Open&quot;:[40200.0,40308.0,40276.0,...],&quot;High&quot;:[40369.0,40342.0,40316.0,...],&quot;Low&quot;:[40169.0,40262.0,40251.0,...],&quot;Close&quot;:[40310.0,40276.0,40316.0,...],&quot;Volume&quot;:[2051,704,443,...],&quot;Amount&quot;:[82536213.0,28372910.0,17845729.0,...]}
+</code></pre></div>
+</div>
+</div>
+</div>
+</div>
+<h2 id="combo-products">Combo Products<a class="headerlink" href="#combo-products" title="Permanent link">&para;</a></h2>
+<p>Combo contracts (see <a href="../../contract/#combo">Contract</a> for how to build one) can query historical <code>Ticks</code> and <code>Kbars</code> directly; every price field is the combo net price.</p>
+<div class="tabbed-set tabbed-alternate" data-tabs="6:3"><input checked="checked" id="__tabbed_6_1" name="__tabbed_6" type="radio" /><input id="__tabbed_6_2" name="__tabbed_6" type="radio" /><input id="__tabbed_6_3" name="__tabbed_6" type="radio" /><div class="tabbed-labels"><label for="__tabbed_6_1">Python</label><label for="__tabbed_6_2">CLI</label><label for="__tabbed_6_3">HTTP</label></div>
+<div class="tabbed-content">
+<div class="tabbed-block">
+<h4 id="ticks_2">Ticks<a class="headerlink" href="#ticks_2" title="Permanent link">&para;</a></h4>
+<div class="admonition info">
+<p class="admonition-title">In</p>
+<div class="highlight"><pre><span></span><code><span class="n">near</span> <span class="o">=</span> <span class="n">api</span><span class="o">.</span><span class="n">contracts</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s2">&quot;TXFH6&quot;</span><span class="p">)</span>
+<span class="n">far</span> <span class="o">=</span> <span class="n">api</span><span class="o">.</span><span class="n">contracts</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s2">&quot;TXFI6&quot;</span><span class="p">)</span>
+<span class="n">combo_contract</span> <span class="o">=</span> <span class="n">api</span><span class="o">.</span><span class="n">contracts</span><span class="o">.</span><span class="n">combo</span><span class="p">(</span><span class="n">legs</span><span class="o">=</span><span class="p">[</span><span class="n">near</span><span class="p">,</span> <span class="n">far</span><span class="p">])</span>
+
+<span class="n">ticks</span> <span class="o">=</span> <span class="n">api</span><span class="o">.</span><span class="n">ticks</span><span class="p">(</span><span class="n">combo_contract</span><span class="p">,</span> <span class="n">date</span><span class="o">=</span><span class="s2">&quot;2026-08-12&quot;</span><span class="p">)</span>
+<span class="n">ticks</span>
+</code></pre></div>
+</div>
+<div class="admonition done">
+<p class="admonition-title">Out</p>
+<div class="highlight"><pre><span></span><code><span class="n">Ticks</span><span class="p">[</span><span class="mi">1885</span><span class="p">](</span>
+    <span class="n">ts</span><span class="o">=</span><span class="p">[</span><span class="mi">1786524486391000000</span><span class="p">,</span> <span class="mi">1786524537279000000</span><span class="p">,</span> <span class="mi">1786524537461000000</span><span class="p">,</span> <span class="o">...</span><span class="p">,</span> <span class="mi">1786542270048000000</span><span class="p">,</span> <span class="mi">1786542283251000000</span><span class="p">,</span> <span class="mi">1786542283355000000</span><span class="p">],</span>
+    <span class="n">close</span><span class="o">=</span><span class="p">[</span><span class="mi">131</span><span class="p">,</span> <span class="mi">130</span><span class="p">,</span> <span class="mi">132</span><span class="p">,</span> <span class="o">...</span><span class="p">,</span> <span class="mi">149</span><span class="p">,</span> <span class="mi">151</span><span class="p">,</span> <span class="mi">151</span><span class="p">],</span>
+    <span class="n">volume</span><span class="o">=</span><span class="p">[</span><span class="mi">3</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="o">...</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">],</span>
+    <span class="n">bid_price</span><span class="o">=</span><span class="p">[</span><span class="mi">131</span><span class="p">,</span> <span class="mi">130</span><span class="p">,</span> <span class="mi">129</span><span class="p">,</span> <span class="o">...</span><span class="p">,</span> <span class="mi">149</span><span class="p">,</span> <span class="mi">148</span><span class="p">,</span> <span class="mi">148</span><span class="p">],</span>
+    <span class="n">bid_volume</span><span class="o">=</span><span class="p">[</span><span class="mi">3</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="mi">5</span><span class="p">,</span> <span class="o">...</span><span class="p">,</span> <span class="mi">11</span><span class="p">,</span> <span class="mi">16</span><span class="p">,</span> <span class="mi">16</span><span class="p">],</span>
+    <span class="n">ask_price</span><span class="o">=</span><span class="p">[</span><span class="mi">132</span><span class="p">,</span> <span class="mi">132</span><span class="p">,</span> <span class="mi">132</span><span class="p">,</span> <span class="o">...</span><span class="p">,</span> <span class="mi">151</span><span class="p">,</span> <span class="mi">151</span><span class="p">,</span> <span class="mi">151</span><span class="p">],</span>
+    <span class="n">ask_volume</span><span class="o">=</span><span class="p">[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="o">...</span><span class="p">,</span> <span class="mi">13</span><span class="p">,</span> <span class="mi">13</span><span class="p">,</span> <span class="mi">12</span><span class="p">],</span>
+    <span class="n">tick_type</span><span class="o">=</span><span class="p">[</span><span class="mi">2</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="o">...</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">]</span>
+<span class="p">)</span>
+</code></pre></div>
+</div>
+<h4 id="kbars_2">Kbars<a class="headerlink" href="#kbars_2" title="Permanent link">&para;</a></h4>
+<div class="admonition info">
+<p class="admonition-title">In</p>
+<div class="highlight"><pre><span></span><code><span class="n">near</span> <span class="o">=</span> <span class="n">api</span><span class="o">.</span><span class="n">contracts</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s2">&quot;TXFH6&quot;</span><span class="p">)</span>
+<span class="n">far</span> <span class="o">=</span> <span class="n">api</span><span class="o">.</span><span class="n">contracts</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s2">&quot;TXFI6&quot;</span><span class="p">)</span>
+<span class="n">combo_contract</span> <span class="o">=</span> <span class="n">api</span><span class="o">.</span><span class="n">contracts</span><span class="o">.</span><span class="n">combo</span><span class="p">(</span><span class="n">legs</span><span class="o">=</span><span class="p">[</span><span class="n">near</span><span class="p">,</span> <span class="n">far</span><span class="p">])</span>
+
+<span class="n">kbars</span> <span class="o">=</span> <span class="n">api</span><span class="o">.</span><span class="n">kbars</span><span class="p">(</span><span class="n">combo_contract</span><span class="p">,</span> <span class="n">start</span><span class="o">=</span><span class="s2">&quot;2026-08-11&quot;</span><span class="p">,</span> <span class="n">end</span><span class="o">=</span><span class="s2">&quot;2026-08-12&quot;</span><span class="p">)</span>
+<span class="n">kbars</span>
+</code></pre></div>
+</div>
+<div class="admonition done">
+<p class="admonition-title">Out</p>
+<div class="highlight"><pre><span></span><code><span class="n">KBars</span><span class="p">[</span><span class="mi">564</span><span class="p">](</span>
+    <span class="n">ts</span><span class="o">=</span><span class="p">[</span><span class="mi">1786438440000000000</span><span class="p">,</span> <span class="mi">1786438680000000000</span><span class="p">,</span> <span class="mi">1786438860000000000</span><span class="p">,</span> <span class="o">...</span><span class="p">,</span> <span class="mi">1786555200000000000</span><span class="p">,</span> <span class="mi">1786555260000000000</span><span class="p">,</span> <span class="mi">1786555440000000000</span><span class="p">],</span>
+    <span class="n">Open</span><span class="o">=</span><span class="p">[</span><span class="mi">135</span><span class="p">,</span> <span class="mi">135</span><span class="p">,</span> <span class="mi">130</span><span class="p">,</span> <span class="o">...</span><span class="p">,</span> <span class="mi">165</span><span class="p">,</span> <span class="mi">166</span><span class="p">,</span> <span class="mi">169</span><span class="p">],</span>
+    <span class="n">High</span><span class="o">=</span><span class="p">[</span><span class="mi">135</span><span class="p">,</span> <span class="mi">136</span><span class="p">,</span> <span class="mi">130</span><span class="p">,</span> <span class="o">...</span><span class="p">,</span> <span class="mi">165</span><span class="p">,</span> <span class="mi">166</span><span class="p">,</span> <span class="mi">169</span><span class="p">],</span>
+    <span class="n">Low</span><span class="o">=</span><span class="p">[</span><span class="mi">135</span><span class="p">,</span> <span class="mi">135</span><span class="p">,</span> <span class="mi">130</span><span class="p">,</span> <span class="o">...</span><span class="p">,</span> <span class="mi">165</span><span class="p">,</span> <span class="mi">166</span><span class="p">,</span> <span class="mi">169</span><span class="p">],</span>
+    <span class="n">Close</span><span class="o">=</span><span class="p">[</span><span class="mi">135</span><span class="p">,</span> <span class="mi">136</span><span class="p">,</span> <span class="mi">130</span><span class="p">,</span> <span class="o">...</span><span class="p">,</span> <span class="mi">165</span><span class="p">,</span> <span class="mi">166</span><span class="p">,</span> <span class="mi">169</span><span class="p">],</span>
+    <span class="n">Volume</span><span class="o">=</span><span class="p">[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">5</span><span class="p">,</span> <span class="o">...</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">4</span><span class="p">],</span>
+    <span class="n">Amount</span><span class="o">=</span><span class="p">[</span><span class="mi">135</span><span class="p">,</span> <span class="mi">271</span><span class="p">,</span> <span class="mi">650</span><span class="p">,</span> <span class="o">...</span><span class="p">,</span> <span class="mi">165</span><span class="p">,</span> <span class="mi">166</span><span class="p">,</span> <span class="mi">676</span><span class="p">]</span>
+<span class="p">)</span>
+</code></pre></div>
+</div>
+</div>
+<div class="tabbed-block">
+<p><strong>Ticks</strong></p>
+<div class="admonition info">
+<p class="admonition-title">In</p>
+<div class="highlight"><pre><span></span><code>shioaji<span class="w"> </span>data<span class="w"> </span>ticks<span class="w"> </span>--code<span class="w"> </span>TXFH6<span class="w"> </span>--combo-with<span class="w"> </span>TXFI6<span class="w"> </span>--security-type<span class="w"> </span>FUT<span class="w"> </span>--date<span class="w"> </span><span class="m">2026</span>-08-12<span class="w"> </span>--all
+</code></pre></div>
+</div>
+<div class="admonition done">
+<p class="admonition-title">Out</p>
+<div class="highlight"><pre><span></span><code>[1885]{datetime,close,volume,bid_price,bid_volume,ask_price,ask_volume,tick_type}:
+  2026-08-12T08:48:06.391000,131,3,131,3,132,1,2
+  2026-08-12T08:48:57.279000,130,3,130,3,132,1,2
+  2026-08-12T08:48:57.461000,132,1,129,5,132,1,1
+  ...
+</code></pre></div>
+</div>
+<p><strong>Kbars</strong></p>
+<div class="admonition info">
+<p class="admonition-title">In</p>
+<div class="highlight"><pre><span></span><code>shioaji<span class="w"> </span>data<span class="w"> </span>kbars<span class="w"> </span>--code<span class="w"> </span>TXFH6<span class="w"> </span>--combo-with<span class="w"> </span>TXFI6<span class="w"> </span>--security-type<span class="w"> </span>FUT<span class="w"> </span>--start<span class="w"> </span><span class="m">2026</span>-08-11<span class="w"> </span>--end<span class="w"> </span><span class="m">2026</span>-08-12
+</code></pre></div>
+</div>
+<div class="admonition done">
+<p class="admonition-title">Out</p>
+<div class="highlight"><pre><span></span><code>[564]{datetime,Open,High,Low,Close,Volume,Amount}:
+  2026-08-11T08:54:00,135,135,135,135,1,135
+  2026-08-11T08:58:00,135,136,135,136,2,271
+  2026-08-11T09:01:00,130,130,130,130,5,650
+  ...
+</code></pre></div>
+</div>
+</div>
+<div class="tabbed-block">
+<p><strong>Ticks</strong></p>
+<div class="admonition info">
+<p class="admonition-title">In</p>
+<div class="highlight"><pre><span></span><code>curl<span class="w"> </span>-X<span class="w"> </span>POST<span class="w"> </span>http://localhost:8080/api/v1/data/ticks<span class="w"> </span><span class="se">\</span>
+<span class="w">  </span>-H<span class="w"> </span><span class="s1">&#39;Content-Type: application/json&#39;</span><span class="w"> </span><span class="se">\</span>
+<span class="w">  </span>-d<span class="w"> </span><span class="s1">&#39;{</span>
+<span class="s1">    &quot;contract&quot;: {</span>
+<span class="s1">      &quot;legs&quot;: [</span>
+<span class="s1">        {&quot;security_type&quot;: &quot;FUT&quot;, &quot;exchange&quot;: &quot;TAIFEX&quot;, &quot;code&quot;: &quot;TXFH6&quot;},</span>
+<span class="s1">        {&quot;security_type&quot;: &quot;FUT&quot;, &quot;exchange&quot;: &quot;TAIFEX&quot;, &quot;code&quot;: &quot;TXFI6&quot;}</span>
+<span class="s1">      ]</span>
+<span class="s1">    },</span>
+<span class="s1">    &quot;date&quot;: &quot;2026-08-12&quot;,</span>
+<span class="s1">    &quot;query_type&quot;: &quot;AllDay&quot;</span>
+<span class="s1">  }&#39;</span>
+</code></pre></div>
+</div>
+<div class="admonition done">
+<p class="admonition-title">Out</p>
+<div class="highlight"><pre><span></span><code>{&quot;datetime&quot;:[&quot;2026-08-12T08:48:06.391000&quot;,&quot;2026-08-12T08:48:57.279000&quot;,&quot;2026-08-12T08:48:57.461000&quot;,...],&quot;close&quot;:[131.0,130.0,132.0,...],&quot;volume&quot;:[3,3,1,...],&quot;bid_price&quot;:[131.0,130.0,129.0,...],&quot;bid_volume&quot;:[3,3,5,...],&quot;ask_price&quot;:[132.0,132.0,132.0,...],&quot;ask_volume&quot;:[1,1,1,...],&quot;tick_type&quot;:[2,2,1,...]}
+</code></pre></div>
+</div>
+<p><strong>Kbars</strong></p>
+<div class="admonition info">
+<p class="admonition-title">In</p>
+<div class="highlight"><pre><span></span><code>curl<span class="w"> </span>-X<span class="w"> </span>POST<span class="w"> </span>http://localhost:8080/api/v1/data/kbars<span class="w"> </span><span class="se">\</span>
+<span class="w">  </span>-H<span class="w"> </span><span class="s1">&#39;Content-Type: application/json&#39;</span><span class="w"> </span><span class="se">\</span>
+<span class="w">  </span>-d<span class="w"> </span><span class="s1">&#39;{</span>
+<span class="s1">    &quot;contract&quot;: {</span>
+<span class="s1">      &quot;legs&quot;: [</span>
+<span class="s1">        {&quot;security_type&quot;: &quot;FUT&quot;, &quot;exchange&quot;: &quot;TAIFEX&quot;, &quot;code&quot;: &quot;TXFH6&quot;},</span>
+<span class="s1">        {&quot;security_type&quot;: &quot;FUT&quot;, &quot;exchange&quot;: &quot;TAIFEX&quot;, &quot;code&quot;: &quot;TXFI6&quot;}</span>
+<span class="s1">      ]</span>
+<span class="s1">    },</span>
+<span class="s1">    &quot;start&quot;: &quot;2026-08-11&quot;,</span>
+<span class="s1">    &quot;end&quot;: &quot;2026-08-12&quot;</span>
+<span class="s1">  }&#39;</span>
+</code></pre></div>
+</div>
+<div class="admonition done">
+<p class="admonition-title">Out</p>
+<div class="highlight"><pre><span></span><code>{&quot;datetime&quot;:[&quot;2026-08-11T08:54:00&quot;,&quot;2026-08-11T08:58:00&quot;,&quot;2026-08-11T09:01:00&quot;,...],&quot;Open&quot;:[135.0,135.0,130.0,...],&quot;High&quot;:[135.0,136.0,130.0,...],&quot;Low&quot;:[135.0,135.0,130.0,...],&quot;Close&quot;:[135.0,136.0,130.0,...],&quot;Volume&quot;:[1,2,5,...],&quot;Amount&quot;:[135.0,271.0,650.0,...]}
 </code></pre></div>
 </div>
 </div>

@@ -2,9 +2,27 @@ Reminder
 
 Before placing orders, you must first [log in](../../login/) and [activate your CA](../../prepare/terms/).
 
-A combo order bundles multiple futures or options contracts into a single submission. Supported types include **price spread**, **time spread**, **straddle**, **strangle**, **conversion**, and **reversal**; see the TAIFEX [reference](https://www.taifex.com.tw/cht/5/margingReqIndexOpt) for the combination rules.
+A combo order bundles two futures/options contracts into a single submission. See the TAIFEX [order types introduction](https://www.taifex.com.tw/cht/4/oamIntroduction) for the full rules and the [margin page](https://www.taifex.com.tw/cht/5/margingReqIndexOpt) for margin information.
+
+Build a combo contract before placing; see [Contract](../../contract/#combo) for how.
 
 ## Place
+
+A combo order buys or sells the **whole combo**. Per the TAIFEX definition "the side of a spread order follows the far-month contract", buying a time spread means buying the far month and selling the near month. Each type is defined as follows (the **Direction & Net Price Table**):
+
+| Type | `sj.ComboType` | `action=Buy` | `action=Sell` | Net price (`price`) | | --- | --- | --- | --- | --- | | Time spread | `TimeSpread` / `WeeklyTimeSpread` | sell near, buy far | buy near, sell far | far − near (can be negative) | | Call spread | `PriceSpread` | sell higher strike, buy lower | buy higher strike, sell lower | lower-strike premium − higher-strike premium | | Put spread | `PriceSpread` | sell lower strike, buy higher | buy lower strike, sell higher | higher-strike premium − lower-strike premium | | Straddle / Strangle | `Straddle` / `Strangle` | buy Call, buy Put | sell Call, sell Put | Call premium + Put premium | | Conversion / Reversal | `ConversionReversal` | sell Call, buy Put (Conversion) | buy Call, sell Put (Reversal) | Put premium − Call premium |
+
+`price` is the net price of the whole combo, not any single product's price — see the Direction & Net Price Table; for quotes before placing, see [Combo Products](../../market_data/streaming/combo/).
+
+Price range limits
+
+Combo order prices are range-limited: for a time spread, the ceiling is the far month's limit-up minus the near month's limit-down, and the floor is the far month's limit-down minus the near month's limit-up. Orders outside the range are rejected by the exchange.
+
+Order condition limits
+
+- Standard option combos **cannot use `ROD`** — send `LMT` with `IOC` or `FOK`; an `ROD` order is rejected by TAIFEX with `9927 order-condition error`.
+- Futures time spreads may use `ROD` during continuous trading, subject to product rules.
+- Combo orders are not accepted during pre-open.
 
 place_comboorder
 
@@ -15,7 +33,7 @@ Signature:
     api.place_comboorder(
         combo_contract: sj.ComboContract,
         order: Union[sj.ComboOrder, sj.FuturesOrder],
-        timeout: Optional[int] = 5000,
+        timeout: Optional[int] = 30000,
         cb: Optional[Callable[[sj.ComboTrade], None]] = None,
     ) -> sj.ComboTrade
 
@@ -24,36 +42,30 @@ Signature:
 Parameters
 
 ```
-combo_contract: Combo contract with multiple ComboBase legs
+combo_contract: Combo contract (see the Contract page for how to build one)
 order:          Combo order (ComboOrder or FuturesOrder)
 timeout:        Timeout in milliseconds
-cb:             Optional callback function
+cb:             Optional callback function, used when timeout=0
 
 ```
 
 sj.ComboOrder
 
 ```
-action (Action):                Buy/Sell {Buy, Sell}
-price (float or int):           Price
-quantity (int):                 Quantity
+action (Action):                Buy/Sell {Buy, Sell}, required; both products' directions
+                                are expanded from it per the Direction & Net Price Table
+price (float or int):           Net price, defined in the table above; can be negative
+quantity (int):                 Quantity (both products share it)
 price_type (FuturesPriceType):  Price type {LMT, MKT, MKP}
-order_type (OrderType):         Order type {ROD, IOC, FOK}
+order_type (OrderType):         Order condition {ROD, IOC, FOK}
 octype (FuturesOCType):         Open/cover type {Auto, New, Cover, DayTrade}
-combo_type (ComboType):         Optional; derived from legs when omitted
-account (Account):              Trading account
+combo_type (ComboType):         Optional; auto-filled from the derived type, must match
+                                when supplied
+account (Account):              Trading account (defaults to the primary futures account)
 
 ```
 
-sj.ComboBase
-
-```
-action (Action):              Buy/Sell {Buy, Sell}
-security_type (SecurityType): Security type {FUT, OPT}
-exchange (Exchange):          Exchange
-code (str):                   Security code
-
-```
+`combo_contract` legs carry no actions (see [Contract](../../contract/#combo) for the shape); `order.action` is a required field.
 
 place_comboorder
 
@@ -62,20 +74,7 @@ POST /api/v1/order/place_comboorder
 Content-Type: application/json
 
 {
-  "combo_contract": {
-    "legs": [
-      {
-        "action": <Action>,
-        "security_type": <SecurityType>,
-        "exchange": <Exchange>,
-        "code": <string>,
-        "category": <string>,
-        "delivery_month": <string>,
-        "strike_price": <number>,
-        "option_right": <string>
-      }
-    ]
-  },
+  "combo_contract": { "legs": [ ... ] },
   "order": {
     "action": <Action>,
     "price": <number>,
@@ -83,6 +82,7 @@ Content-Type: application/json
     "price_type": <FuturesPriceType>,
     "order_type": <OrderType>,
     "octype": <FuturesOCType>,
+    "combo_type": <ComboType>,
     "account": { "broker_id": <string>, "account_id": <string> }
   }
 }
@@ -92,57 +92,87 @@ Content-Type: application/json
 Parameters
 
 ```
-combo_contract.legs[].action:         Buy/Sell {Buy, Sell}
-combo_contract.legs[].security_type:  Security type {FUT, OPT}
-combo_contract.legs[].exchange:       Exchange
-combo_contract.legs[].code:           Security code
-combo_contract.legs[].category:       Product category
-combo_contract.legs[].delivery_month: Delivery month YYYYMM
-combo_contract.legs[].strike_price:   Strike price (null for futures)
-combo_contract.legs[].option_right:   {C, P} (null for futures)
-order.action:                         Buy/Sell {Buy, Sell}
-order.price:                          Price
-order.quantity:                       Quantity
-order.price_type:                     Price type {LMT, MKT, MKP}
-order.order_type:                     Order type {ROD, IOC, FOK}
-order.octype:                         Open/cover type {Auto, New, Cover, DayTrade}
-order.account:                        Trading account (defaults to the primary futures account)
+combo_contract:   Combo contract (see the Contract page)
+order.action:     Buy/Sell {Buy, Sell}, required; both products' directions are
+                  expanded from it
+order.price:      Net price, can be negative
+order.quantity:   Quantity (both products share it)
+order.price_type: Price type {LMT, MKT, MKP}
+order.order_type: Order condition {ROD, IOC, FOK}
+order.octype:     Open/cover type {Auto, New, Cover, DayTrade}
+order.combo_type: Optional combo type
+order.account:    Trading account (defaults to the primary futures account)
 
 ```
 
 ### Example
 
-Order
+**Futures time spread**, buying the spread (sell near, buy far). Composition: two futures of the same product with different delivery months, near month first.
 
-```
-# Contract (short straddle: same expiry, same strike, sell call + sell put)
-call = api.Contracts.Options.TXO.get("TXO20260527000C")
-put = api.Contracts.Options.TXO.get("TXO20260527000P")
-combo_contract = sj.ComboContract(
-    legs=[
-        sj.ComboBase.from_contract(call, action=sj.Action.Sell),
-        sj.ComboBase.from_contract(put, action=sj.Action.Sell),
-    ]
-)
-# Order
-order = sj.ComboOrder(
-    action=sj.Action.Sell,
-    price=1,
-    quantity=1,
-    price_type=sj.FuturesPriceType.LMT,
-    order_type=sj.OrderType.IOC,
-    octype=sj.FuturesOCType.New,
-    account=api.futopt_account,
-)
-
-```
+- Contract: `legs=[near, far]`, no actions on the products
+- Order: `action=Buy` (buying the spread; Shioaji expands it to sell near, buy far)
 
 In
 
 ```
-# Place combo order
+near = api.contracts.get("TXFH6")
+far = api.contracts.get("TXFI6")
+combo_contract = api.contracts.combo(legs=[near, far])
+
+order = sj.ComboOrder(
+    action=sj.Action.Buy,  # buy the spread: Shioaji expands to sell near, buy far
+    price=50,  # net price (far - near)
+    quantity=1,
+    price_type=sj.FuturesPriceType.LMT,
+    order_type=sj.OrderType.ROD,
+    octype=sj.FuturesOCType.Auto,
+    account=api.futopt_account,
+)
 trade = api.place_comboorder(combo_contract, order)
 trade
+
+```
+
+Out
+
+```
+ComboTrade(
+    contract=ComboContract(
+        legs=[
+            Contract(security_type='FUT', region='TW', exchange='TAIFEX', code='TXFH6'),
+            Contract(security_type='FUT', region='TW', exchange='TAIFEX', code='TXFI6')
+        ],
+        combo_type=TimeSpread
+    ),
+    order=Order(
+        id='46989de8',
+        action=<Action.Buy: 'Buy'>,
+        price=50.0,
+        quantity=1,
+        seqno='743595',
+        ordno='000000',
+        order_type=<OrderType.ROD: 'ROD'>,
+        price_type=<PriceType.LMT: 'LMT'>,
+        account=FutureAccount(
+            person_id='YOUR_PERSON_ID',
+            broker_id='YOUR_BROKER_ID',
+            account_id='YOUR_ACCOUNT_ID',
+            signed=true,
+            username=''
+        ),
+        octype=<FuturesOCType.Auto: 'Auto'>
+    ),
+    status=ComboStatus(
+        id='46989de8',
+        status=<OrderStatus.Submitted: 'Submitted'>,
+        status_code='0000',
+        order_datetime=datetime.datetime(2026, 8, 12, 11, 35, 0, tzinfo=datetime.timezone(datetime.timedelta(hours=8))),
+        modified_time=datetime.datetime(2026, 8, 12, 11, 35, 0, tzinfo=datetime.timezone(datetime.timedelta(hours=8))),
+        modified_price=50.0,
+        order_quantity=1,
+        deals={}
+    )
+)
 
 ```
 
@@ -154,43 +184,138 @@ curl -X POST http://localhost:8080/api/v1/order/place_comboorder \
   -d '{
     "combo_contract": {
       "legs": [
-        {
-          "action": "Sell",
-          "security_type": "OPT",
-          "exchange": "TAIFEX",
-          "code": "TXO20260527000C",
-          "symbol": "TXO20260527000C",
-          "category": "TXO",
-          "delivery_month": "202605",
-          "strike_price": 27000,
-          "option_right": "C"
-        },
-        {
-          "action": "Sell",
-          "security_type": "OPT",
-          "exchange": "TAIFEX",
-          "code": "TXO20260527000P",
-          "symbol": "TXO20260527000P",
-          "category": "TXO",
-          "delivery_month": "202605",
-          "strike_price": 27000,
-          "option_right": "P"
-        }
+        {"security_type": "FUT", "exchange": "TAIFEX", "code": "TXFH6"},
+        {"security_type": "FUT", "exchange": "TAIFEX", "code": "TXFI6"}
       ]
     },
     "order": {
-      "action": "Sell",
-      "price": 1,
+      "action": "Buy",
+      "price": 50,
       "quantity": 1,
       "price_type": "LMT",
-      "order_type": "IOC",
-      "octype": "New",
+      "order_type": "ROD",
+      "octype": "Auto",
       "account": {
         "broker_id": "YOUR_BROKER_ID",
         "account_id": "YOUR_ACCOUNT_ID"
       }
     }
   }'
+
+```
+
+Out
+
+```
+{"contract":{"legs":[{"action":"Sell","security_type":"FUT","exchange":"TAIFEX","code":"TXFH6","symbol":"TXFH6","category":"TXF","delivery_month":"202608"},{"action":"Buy","security_type":"FUT","exchange":"TAIFEX","code":"TXFI6","symbol":"TXFI6","category":"TXF","delivery_month":"202609"}]},"order":{"id":"46989de8","action":"Buy","price":50.0,"quantity":1,"seqno":"743595","ordno":"000000","order_type":"ROD","price_type":"LMT","account":{"account_type":"F","person_id":"YOUR_PERSON_ID","broker_id":"YOUR_BROKER_ID","account_id":"YOUR_ACCOUNT_ID","signed":true,"username":""},"octype":"Auto"},"status":{"id":"46989de8","status":"Submitted","status_code":"0000","order_datetime":"2026-08-12T11:35:00+08:00","modified_price":50.0,"order_quantity":1,"deals":{}}}
+
+```
+
+**Option straddle**, buying the straddle (buy Call, buy Put). Composition: a Call and a Put with the same expiry and strike, Call first; standard option combos use `IOC`.
+
+- Contract: `legs=[Call, Put]` plus `combo_type=Straddle` (required — same components as Conversion/Reversal)
+- Order: `action=Buy` (buy Call, buy Put)
+
+In
+
+```
+call = api.contracts.get("TXO34000I6")
+put = api.contracts.get("TXO34000U6")
+straddle_contract = api.contracts.combo(
+    legs=[call, put],
+    combo_type=sj.ComboType.Straddle,
+)
+
+order = sj.ComboOrder(
+    action=sj.Action.Buy,  # buy the straddle: buy Call, buy Put
+    price=1,  # net price (Call premium + Put premium)
+    quantity=1,
+    price_type=sj.FuturesPriceType.LMT,
+    order_type=sj.OrderType.IOC,  # standard option combos cannot use ROD
+    octype=sj.FuturesOCType.Auto,
+    account=api.futopt_account,
+)
+trade = api.place_comboorder(straddle_contract, order)
+trade
+
+```
+
+Out
+
+```
+ComboTrade(
+    contract=ComboContract(
+        legs=[
+            Contract(security_type='OPT', region='TW', exchange='TAIFEX', code='TXO34000I6'),
+            Contract(security_type='OPT', region='TW', exchange='TAIFEX', code='TXO34000U6')
+        ],
+        combo_type=Straddle
+    ),
+    order=Order(
+        id='a3512bd6',
+        action=<Action.Buy: 'Buy'>,
+        price=1.0,
+        quantity=1,
+        seqno='743597',
+        ordno='000000',
+        order_type=<OrderType.IOC: 'IOC'>,
+        price_type=<PriceType.LMT: 'LMT'>,
+        account=FutureAccount(
+            person_id='YOUR_PERSON_ID',
+            broker_id='YOUR_BROKER_ID',
+            account_id='YOUR_ACCOUNT_ID',
+            signed=true,
+            username=''
+        ),
+        octype=<FuturesOCType.Auto: 'Auto'>
+    ),
+    status=ComboStatus(
+        id='a3512bd6',
+        status=<OrderStatus.Submitted: 'Submitted'>,
+        status_code='0000',
+        order_datetime=datetime.datetime(2026, 8, 12, 11, 37, 0, tzinfo=datetime.timezone(datetime.timedelta(hours=8))),
+        modified_time=datetime.datetime(2026, 8, 12, 11, 37, 0, tzinfo=datetime.timezone(datetime.timedelta(hours=8))),
+        modified_price=1.0,
+        order_quantity=1,
+        deals={}
+    )
+)
+
+```
+
+In
+
+```
+curl -X POST http://localhost:8080/api/v1/order/place_comboorder \
+  -H 'Content-Type: application/json' \
+  -d '{
+    "combo_contract": {
+      "legs": [
+        {"security_type": "OPT", "exchange": "TAIFEX", "code": "TXO34000I6"},
+        {"security_type": "OPT", "exchange": "TAIFEX", "code": "TXO34000U6"}
+      ],
+      "combo_type": "Straddle"
+    },
+    "order": {
+      "action": "Buy",
+      "price": 1,
+      "quantity": 1,
+      "price_type": "LMT",
+      "order_type": "IOC",
+      "octype": "Auto",
+      "account": {
+        "broker_id": "YOUR_BROKER_ID",
+        "account_id": "YOUR_ACCOUNT_ID"
+      }
+    }
+  }'
+
+```
+
+Out
+
+```
+{"contract":{"legs":[{"action":"Buy","security_type":"OPT","exchange":"TAIFEX","code":"TXO34000I6","symbol":"TXO34000I6","category":"TXO","delivery_month":"202609","strike_price":34000.0,"option_right":"C"},{"action":"Buy","security_type":"OPT","exchange":"TAIFEX","code":"TXO34000U6","symbol":"TXO34000U6","category":"TXO","delivery_month":"202609","strike_price":34000.0,"option_right":"P"}]},"order":{"id":"a3512bd6","action":"Buy","price":1.0,"quantity":1,"seqno":"743597","ordno":"000000","order_type":"IOC","price_type":"LMT","account":{"account_type":"F","person_id":"YOUR_PERSON_ID","broker_id":"YOUR_BROKER_ID","account_id":"YOUR_ACCOUNT_ID","signed":true,"username":""},"octype":"Auto"},"status":{"id":"a3512bd6","status":"Submitted","status_code":"0000","order_datetime":"2026-08-12T11:37:00+08:00","modified_price":1.0,"order_quantity":1,"deals":{}}}
 
 ```
 
@@ -206,7 +331,7 @@ api.cancel_comboorder?
 Signature:
     api.cancel_comboorder(
         combo_trade: sj.ComboTrade,
-        timeout: Optional[int] = 5000,
+        timeout: Optional[int] = 30000,
         cb: Optional[Callable[[sj.ComboTrade], None]] = None,
     ) -> sj.ComboTrade
 
@@ -215,9 +340,9 @@ Signature:
 Parameters
 
 ```
-combo_trade: Combo trade to cancel (obtained from list_combotrades / update_combostatus)
+combo_trade: Combo trade to cancel (from list_combotrades / update_combostatus)
 timeout:     Timeout in milliseconds
-cb:          Optional callback function
+cb:          Optional callback function, used when timeout=0
 
 ```
 
@@ -236,7 +361,7 @@ Content-Type: application/json
 Parameters
 
 ```
-trade_id: Combo trade ID (from place response status.id)
+trade_id: Combo trade ID (from the place response status.id)
 
 ```
 
@@ -255,14 +380,14 @@ In
 curl -X POST http://localhost:8080/api/v1/order/cancel_comboorder \
   -H 'Content-Type: application/json' \
   -d '{
-    "trade_id": "YOUR_TRADE_ID"
+    "trade_id": "46989de8"
   }'
 
 ```
 
 ## Query Status
 
-Like the relationship between `list_trades` and `update_status`: you must call `update_combostatus` to refresh combo trades before reading them. The HTTP endpoint `/order/combotrades` performs the refresh and the read in a single call.
+Like the relationship between `list_trades` and `update_status`: call `update_combostatus` to refresh combo trades before reading them. The HTTP endpoint `/order/combotrades` performs the refresh and the read in a single call.
 
 update_combostatus / list_combotrades
 
@@ -272,7 +397,7 @@ api.update_combostatus?
 Signature:
     api.update_combostatus(
         account: Optional[sj.Account] = None,
-        timeout: Optional[int] = 5000,
+        timeout: Optional[int] = 30000,
         cb: Optional[Callable[[List[sj.ComboTrade]], None]] = None,
     ) -> List[sj.ComboTrade]
 
@@ -289,7 +414,7 @@ Parameters
 update_combostatus
     account: Futures account; omit to refresh all futures accounts under your name
     timeout: Timeout in milliseconds
-    cb:      Optional callback function
+    cb:      Optional callback function; receives the refreshed ComboTrade list when timeout=0
 
 list_combotrades
     (No parameters; returns known combo trades from the local cache)
@@ -315,6 +440,10 @@ account: Futures account
 
 ```
 
+An unfilled IOC is a normal ending
+
+A combo order sent with `IOC` that does not fill ends with `status=Cancelled`, `status_code='0000'`, `deal_quantity=0`, `cancel_quantity=1`, `deals={}` — the order was accepted by the exchange and auto-cancelled for lack of a fill. It is not an error.
+
 ### Example
 
 In
@@ -334,36 +463,32 @@ Out
             legs=[
                 ComboBase(
                     action=<Action.Sell: 'Sell'>,
-                    security_type=<SecurityType.Option: 'OPT'>,
+                    security_type=<SecurityType.Future: 'FUT'>,
                     exchange=<Exchange.TAIFEX: 'TAIFEX'>,
-                    code='TXO20260527000C',
-                    symbol='TXO20260527000C',
-                    category='TXO',
-                    delivery_month='202605',
-                    strike_price=27000.0,
-                    option_right=<OptionRight.Call: 'C'>
+                    code='TXFH6',
+                    symbol='TXFH6',
+                    category='TXF',
+                    delivery_month='202608'
                 ),
                 ComboBase(
-                    action=<Action.Sell: 'Sell'>,
-                    security_type=<SecurityType.Option: 'OPT'>,
+                    action=<Action.Buy: 'Buy'>,
+                    security_type=<SecurityType.Future: 'FUT'>,
                     exchange=<Exchange.TAIFEX: 'TAIFEX'>,
-                    code='TXO20260527000P',
-                    symbol='TXO20260527000P',
-                    category='TXO',
-                    delivery_month='202605',
-                    strike_price=27000.0,
-                    option_right=<OptionRight.Put: 'P'>
+                    code='TXFI6',
+                    symbol='TXFI6',
+                    category='TXF',
+                    delivery_month='202609'
                 )
             ]
         ),
         order=Order(
             id='46989de8',
-            action=<Action.Sell: 'Sell'>,
-            price=1.0,
+            action=<Action.Buy: 'Buy'>,
+            price=50.0,
             quantity=1,
             seqno='743595',
             ordno='000000',
-            order_type=<OrderType.IOC: 'IOC'>,
+            order_type=<OrderType.ROD: 'ROD'>,
             price_type=<PriceType.LMT: 'LMT'>,
             account=FutureAccount(
                 person_id='YOUR_PERSON_ID',
@@ -372,15 +497,15 @@ Out
                 signed=true,
                 username=''
             ),
-            octype=<FuturesOCType.New: 'New'>
+            octype=<FuturesOCType.Auto: 'Auto'>
         ),
         status=ComboStatus(
             id='46989de8',
             status=<OrderStatus.Submitted: 'Submitted'>,
             status_code='0000',
-            order_datetime=datetime.datetime(2026, 5, 20, 11, 24, 30, tzinfo=datetime.timezone(datetime.timedelta(hours=8))),
-            modified_time=datetime.datetime(2026, 5, 20, 11, 24, 30, tzinfo=datetime.timezone(datetime.timedelta(hours=8))),
-            modified_price=1.0,
+            order_datetime=datetime.datetime(2026, 8, 12, 11, 35, 0, tzinfo=datetime.timezone(datetime.timedelta(hours=8))),
+            modified_time=datetime.datetime(2026, 8, 12, 11, 35, 0, tzinfo=datetime.timezone(datetime.timedelta(hours=8))),
+            modified_price=50.0,
             order_quantity=1,
             deals={}
         )
@@ -406,6 +531,6 @@ curl -X POST http://localhost:8080/api/v1/order/combotrades \
 Out
 
 ```
-[{"contract":{"legs":[{"action":"Sell","security_type":"OPT","exchange":"TAIFEX","code":"TXO20260527000C","symbol":"TXO20260527000C","category":"TXO","delivery_month":"202605","strike_price":27000.0,"option_right":"C"},{"action":"Sell","security_type":"OPT","exchange":"TAIFEX","code":"TXO20260527000P","symbol":"TXO20260527000P","category":"TXO","delivery_month":"202605","strike_price":27000.0,"option_right":"P"}]},"order":{"id":"46989de8","action":"Sell","price":1.0,"quantity":1,"seqno":"743595","ordno":"000000","order_type":"IOC","price_type":"LMT","account":{"account_type":"F","person_id":"YOUR_PERSON_ID","broker_id":"YOUR_BROKER_ID","account_id":"YOUR_ACCOUNT_ID","signed":true,"username":""},"octype":"New"},"status":{"id":"46989de8","status":"Submitted","status_code":"0000","order_datetime":"2026-05-20T11:24:30+08:00","modified_time":"2026-05-20T11:24:30+08:00","modified_price":1.0,"order_quantity":1,"deals":{}}}]
+[{"contract":{"legs":[{"action":"Sell","security_type":"FUT","exchange":"TAIFEX","code":"TXFH6","symbol":"TXFH6","category":"TXF","delivery_month":"202608"},{"action":"Buy","security_type":"FUT","exchange":"TAIFEX","code":"TXFI6","symbol":"TXFI6","category":"TXF","delivery_month":"202609"}]},"order":{"id":"46989de8","action":"Buy","price":50.0,"quantity":1,"seqno":"743595","ordno":"000000","order_type":"ROD","price_type":"LMT","account":{"account_type":"F","person_id":"YOUR_PERSON_ID","broker_id":"YOUR_BROKER_ID","account_id":"YOUR_ACCOUNT_ID","signed":true,"username":""},"octype":"Auto"},"status":{"id":"46989de8","status":"Submitted","status_code":"0000","order_datetime":"2026-08-12T11:35:00+08:00","modified_price":50.0,"order_quantity":1,"deals":{}}}]
 
 ```

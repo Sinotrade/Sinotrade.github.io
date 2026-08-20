@@ -246,6 +246,13 @@
         <xhtml:link rel="alternate" hreflang="zh" href="https://sinotrade.github.io/zh/tutor/market_data/streaming/"/>
     </url>
     <url>
+        <loc>https://sinotrade.github.io/tutor/market_data/streaming/combo/</loc>
+        <lastmod>2026-08-20</lastmod>
+        <changefreq>daily</changefreq>
+        <xhtml:link rel="alternate" hreflang="en" href="https://sinotrade.github.io/tutor/market_data/streaming/combo/"/>
+        <xhtml:link rel="alternate" hreflang="zh" href="https://sinotrade.github.io/zh/tutor/market_data/streaming/combo/"/>
+    </url>
+    <url>
         <loc>https://sinotrade.github.io/tutor/market_data/streaming/enriched/</loc>
         <lastmod>2026-08-20</lastmod>
         <changefreq>daily</changefreq>
@@ -601,6 +608,13 @@
         <changefreq>daily</changefreq>
         <xhtml:link rel="alternate" hreflang="zh" href="https://sinotrade.github.io/zh/tutor/market_data/streaming/"/>
         <xhtml:link rel="alternate" hreflang="en" href="https://sinotrade.github.io/tutor/market_data/streaming/"/>
+    </url>
+    <url>
+        <loc>https://sinotrade.github.io/zh/tutor/market_data/streaming/combo/</loc>
+        <lastmod>2026-08-20</lastmod>
+        <changefreq>daily</changefreq>
+        <xhtml:link rel="alternate" hreflang="zh" href="https://sinotrade.github.io/zh/tutor/market_data/streaming/combo/"/>
+        <xhtml:link rel="alternate" hreflang="en" href="https://sinotrade.github.io/tutor/market_data/streaming/combo/"/>
     </url>
     <url>
         <loc>https://sinotrade.github.io/zh/tutor/market_data/streaming/enriched/</loc>

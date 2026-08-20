@@ -233,3 +233,90 @@ Out
 [{"datetime":"2026-05-18T14:30:00","code":"2330","exchange":"TSE","open":2225.0,"high":2260.0,"low":2215.0,"close":2240.0,"tick_type":"Sell","change_price":-25.0,"change_rate":-1.1,"change_type":"Down","average_price":2234.72,"volume":75,"total_volume":25820,"amount":168000000,"total_amount":57700920000,"yesterday_volume":29811.0,"buy_price":2240.0,"buy_volume":524.0,"sell_price":2245.0,"sell_volume":103,"volume_ratio":0.87},{"datetime":"2026-05-18T14:30:00","code":"2317","exchange":"TSE","open":251.0,"high":251.0,"low":241.0,"close":248.5,"tick_type":"Sell","change_price":0.0,"change_rate":0.0,"change_type":"Unchanged","average_price":246.67,"volume":58,"total_volume":60665,"amount":14413000,"total_amount":14964920500,"yesterday_volume":134926.0,"buy_price":248.5,"buy_volume":415.0,"sell_price":249.0,"sell_volume":368,"volume_ratio":0.45}]
 
 ```
+
+## Combo Products
+
+Combo contracts (see [Contract](../../contract/#combo) for how to build one) can also query snapshots, and can be mixed with other products in the same request; every price field is the combo net price.
+
+In
+
+```
+near = api.contracts.get("TXFH6")
+far = api.contracts.get("TXFI6")
+combo_contract = api.contracts.combo(legs=[near, far])
+
+api.snapshots([combo_contract])
+
+```
+
+Out
+
+```
+[
+    Snapshot(
+        ts=1786555404820000000,
+        code='TXFH6/I6',
+        exchange='',
+        open=153,
+        high=174,
+        low=153,
+        close=169,
+        tick_type=<TickType.Buy: 'Buy'>,
+        change_price=0,
+        change_rate=0,
+        change_type=<ChangeType.LimitUp: 'LimitUp'>,
+        average_price=165.84,
+        volume=2,
+        total_volume=79,
+        amount=338,
+        total_amount=13101,
+        yesterday_volume=1496,
+        buy_price=165,
+        buy_volume=1,
+        sell_price=170,
+        sell_volume=2,
+        volume_ratio=0.05
+    )
+]
+
+```
+
+In
+
+```
+shioaji data snapshots --codes 'TXFH6+TXFI6'
+
+```
+
+Out
+
+```
+[1]{datetime,code,exchange,open,high,low,close,tick_type,change_price,change_rate,change_type,average_price,volume,total_volume,amount,total_amount,yesterday_volume,buy_price,buy_volume,sell_price,sell_volume,volume_ratio}:
+  2026-08-12T17:23:24.820000,"TXFH6/I6",,153,174,153,169,Buy,0,0,LimitUp,165.84,2,79,338,13101,1496,165,1,170,2,0.05
+
+```
+
+In
+
+```
+curl -X POST http://localhost:8080/api/v1/data/snapshots \
+  -H 'Content-Type: application/json' \
+  -d '{
+    "contracts": [
+      {
+        "legs": [
+          {"security_type": "FUT", "exchange": "TAIFEX", "code": "TXFH6"},
+          {"security_type": "FUT", "exchange": "TAIFEX", "code": "TXFI6"}
+        ]
+      }
+    ]
+  }'
+
+```
+
+Out
+
+```
+[{"datetime":"2026-08-12T17:23:24.820000","code":"TXFH6/I6","exchange":"","open":153.0,"high":174.0,"low":153.0,"close":169.0,"tick_type":"Buy","change_price":0.0,"change_rate":0.0,"change_type":"LimitUp","average_price":165.84,"volume":2,"total_volume":79,"amount":338,"total_amount":13101,"yesterday_volume":1496.0,"buy_price":165.0,"buy_volume":1.0,"sell_price":170.0,"sell_volume":2,"volume_ratio":0.05}]
+
+```

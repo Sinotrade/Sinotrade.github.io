@@ -166,7 +166,7 @@ api.contracts.info(c)
 Out
 
 ```
-StockInfo(Contract(security_type='STK', region='TW', exchange='TSE', code='2330'), code='2330', name='台積電', category='24', currency=<Currency.TWD: 'TWD'>, unit=1000.0, day_trade=<DayTrade.Yes: 'Yes'>, reference=2440.0, limit_up=2680.0, limit_down=2200.0, margin_trading_balance=0, short_selling_balance=99, trading_suspended=False, margin_loan_ratio=0.6, margin_quota_lots=0, short_margin_ratio=0.9, short_quota_lots=99, short_selling_suspended=False, disposition_level=0, attention_flag=False, short_below_par_eligible=True, slb_below_par_eligible=True, etf_constituent=True, settlement_type='0', update_date=datetime.date(2026, 7, 16))
+StockInfo(Contract(security_type='STK', region='TW', exchange='TSE', code='2330'), code='2330', name='台積電', category='24', currency=<Currency.TWD: 'TWD'>, unit=1000.0, day_trade=<DayTrade.Yes: 'Yes'>, reference=2440.0, limit_up=2680.0, limit_down=2200.0, margin_trading_balance=0, short_selling_balance=99, trading_suspended=False, margin_loan_ratio=0.6, margin_quota_lots=0, short_margin_ratio=0.9, short_quota_lots=99, margin_shortable=True, sbl_shortable=True, below_ref_shortable=True, disposition_level=0, attention_flag=False, etf_constituent=True, settlement_type='0', update_date=datetime.date(2026, 7, 16))
 
 ```
 
@@ -188,7 +188,7 @@ curl "http://localhost:8080/api/v1/data/contracts/2330/info"
 Out
 
 ```
-{"security_type":"STK","region":"TW","exchange":"TSE","code":"2330","target_code":null,"name":"台積電","category":"24","currency":"TWD","unit":1000.0,"day_trade":"Yes","reference":2440.0,"limit_up":2680.0,"limit_down":2200.0,"margin_trading_balance":0,"short_selling_balance":99,"trading_suspended":false,"margin_loan_ratio":0.6,"margin_quota_lots":0,"short_margin_ratio":0.9,"short_quota_lots":99,"short_selling_suspended":false,"disposition_level":0,"attention_flag":false,"short_below_par_eligible":true,"slb_below_par_eligible":true,"etf_constituent":true,"settlement_type":"0","disposition_match_interval_min":null,"disposition_max_lots_single_order":null,"disposition_max_lots_total_orders":null,"disposition_prepay_ratio":null,"update_date":"2026-07-16"}
+{"security_type":"STK","region":"TW","exchange":"TSE","code":"2330","target_code":null,"name":"台積電","category":"24","currency":"TWD","unit":1000.0,"day_trade":"Yes","reference":2440.0,"limit_up":2680.0,"limit_down":2200.0,"margin_trading_balance":0,"short_selling_balance":99,"trading_suspended":false,"margin_loan_ratio":0.6,"margin_quota_lots":0,"short_margin_ratio":0.9,"short_quota_lots":99,"margin_shortable":true,"sbl_shortable":true,"below_ref_shortable":true,"disposition_level":0,"attention_flag":false,"etf_constituent":true,"settlement_type":"0","disposition_match_interval_min":null,"disposition_max_lots_single_order":null,"disposition_max_lots_total_orders":null,"disposition_prepay_ratio":null,"update_date":"2026-07-16"}
 
 ```
 
@@ -233,11 +233,11 @@ StockInfo(
     margin_quota_lots=0,
     short_margin_ratio=0.9,
     short_quota_lots=99,
-    short_selling_suspended=False,
+    margin_shortable=True,
+    sbl_shortable=True,
+    below_ref_shortable=True,
     disposition_level=0,
     attention_flag=False,
-    short_below_par_eligible=True,
-    slb_below_par_eligible=True,
     etf_constituent=True,
     settlement_type='0',
     update_date=datetime.date(2026, 7, 16),
@@ -264,11 +264,11 @@ margin_loan_ratio (float):                 融資成數
 margin_quota_lots (int):                   融資配額張數
 short_margin_ratio (float):                融券保證金成數
 short_quota_lots (int):                    融券配額張數
-short_selling_suspended (bool):            暫停融券
+margin_shortable (bool):                   可融券
+sbl_shortable (bool):                      可借券賣出
+below_ref_shortable (bool):                平盤下可放空
 disposition_level (int):                   處置等級（無處置為 0）
 attention_flag (bool):                     注意股票
-short_below_par_eligible (bool):           可低於面額融券
-slb_below_par_eligible (bool):             可低於面額借券
 etf_constituent (bool):                    ETF 成分股
 settlement_type (str):                     交割類型
 disposition_match_interval_min (int):      處置撮合間隔（分鐘）
@@ -1031,6 +1031,257 @@ Parameters
 ```
 include_name: 是否帶入標的名稱與發行檔數，預設 false（僅回傳標的代碼等基本欄位）
 region:       市場別，預設 TW
+
+```
+
+## 組合合約
+
+期交所提供**組合式委託**，將兩支期貨／選擇權合約組成單一委託同時交易，例如期貨跨月價差、選擇權跨式組合，各類型的定義與規範見期交所[委託單種介紹](https://www.taifex.com.tw/cht/4/oamIntroduction)。要交易的組合在 Shioaji 中以\*\*組合合約（`ComboContract`）\*\*表示，同一個合約可用於[組合單](../order/Combo/)下單，也可用於[組合商品行情](../market_data/streaming/combo/)（訂閱、快照、歷史資料）。
+
+以 `api.contracts.combo()` 將兩支商品的合約物件（`Contract`）放入 `legs`，即可建立組合合約；挑選的商品與 `legs` 內的順序決定**組合類型**，順序為期交所規定、不可顛倒：
+
+| 想組的類型 | `sj.ComboType` | 挑哪兩支商品 | 擺放順序 `legs=[前, 後]` | `combo_type` | | --- | --- | --- | --- | --- | | **期貨** | | | | | | 跨月價差 | `TimeSpread` | 同商品、不同到期月 | `[近月, 遠月]` | 自動推導 | | 週跨月價差 | `WeeklyTimeSpread` | 同家族、至少一支為週契約 | `[近到期, 遠到期]` | 自動推導 | | **選擇權** | | | | | | 跨月價差 | `TimeSpread` | 同商品、同履約價、同買賣權、不同到期 | `[近到期, 遠到期]` | 自動推導 | | 買權價差 | `PriceSpread` | 同到期、不同履約價的兩支 Call | `[高履約價, 低履約價]` | 自動推導 | | 賣權價差 | `PriceSpread` | 同到期、不同履約價的兩支 Put | `[低履約價, 高履約價]` | 自動推導 | | 跨式 | `Straddle` | 同到期、同履約價的 Call 與 Put | `[Call, Put]` | **必填** | | 勒式 | `Strangle` | 同到期、不同履約價的 Call 與 Put | `[Call, Put]` | 自動推導 | | 轉換／逆轉 | `ConversionReversal` | 同到期、同履約價的 Call 與 Put | `[Call, Put]` | **必填** |
+
+為什麼跨式與轉換／逆轉必填 combo_type
+
+兩者的組成商品完全相同，但在期交所是兩個不同的組合商品：展開方向不同（跨式 `Buy` 為買 Call 買 Put；轉換為賣 Call 買 Put），淨價定義也不同（Call+Put vs Put−Call）， 無法從組成商品推斷，未填會拋出 `sj.ShioajiValueError`。其他類型可自動推導；明填時 必須與組成商品相符。
+
+建立的合約**不帶買賣方向**；買或賣這個組合，於下單時由 `ComboOrder.action` 決定，見[組合單](../order/Combo/)。
+
+contracts.combo
+
+```
+api.contracts.combo?
+
+Signature:
+    api.contracts.combo(
+        legs: List[sj.BaseContract],
+        combo_type: Optional[sj.ComboType] = None,
+    ) -> sj.ComboContract
+
+```
+
+Parameters
+
+```
+legs:       兩支商品的合約物件（api.contracts.get() 取得），順序見上表。
+            必須是具體月份合約，不可使用 TXFR1/R2 連續月合約
+combo_type: 選填，組合類型；多數形狀可自動推導，見上表說明
+
+```
+
+sj.ComboContract
+
+```
+legs (List[BaseContract]):  組成商品
+combo_type (ComboType):     組合類型
+region (str):               市場別
+code (str):                 交易所原生組合代碼（例：TXFH6/I6），與行情回報中的
+                            code 相同，由 Shioaji 產生，請勿自行拼斜線碼作為輸入；
+                            選擇權組合暫不提供
+managed (bool):             是否為 contracts.combo() 建立的合約
+
+```
+
+contracts/combo
+
+```
+POST /api/v1/data/contracts/combo
+Content-Type: application/json
+
+{
+  "legs": [
+    {
+      "security_type": <SecurityType>,
+      "exchange": <Exchange>,
+      "code": <string>
+    }
+  ],
+  "combo_type": <ComboType, optional>
+}
+
+```
+
+Parameters
+
+```
+legs[].security_type: 商品類型 {FUT, OPT}
+legs[].exchange:      交易所
+legs[].code:          商品代碼；不可使用 R1/R2 連續月合約，
+                      商品不可帶 action，帶了會回 400
+combo_type:           選填，組合類型；省略時自動推導
+
+```
+
+### 範例
+
+期貨（跨月價差）：
+
+In
+
+```
+near = api.contracts.get("TXFH6")
+far = api.contracts.get("TXFI6")
+combo_contract = api.contracts.combo(
+    legs=[near, far],
+)
+combo_contract
+
+```
+
+Out
+
+```
+ComboContract(
+    legs=[
+        Contract(security_type='FUT', region='TW', exchange='TAIFEX', code='TXFH6'),
+        Contract(security_type='FUT', region='TW', exchange='TAIFEX', code='TXFI6')
+    ],
+    combo_type=TimeSpread
+)
+
+```
+
+選擇權（跨式）：
+
+In
+
+```
+call = api.contracts.get("TXO34000I6")
+put = api.contracts.get("TXO34000U6")
+straddle_contract = api.contracts.combo(
+    legs=[call, put],
+    combo_type=sj.ComboType.Straddle,
+)
+straddle_contract
+
+```
+
+Out
+
+```
+ComboContract(
+    legs=[
+        Contract(security_type='OPT', region='TW', exchange='TAIFEX', code='TXO34000I6'),
+        Contract(security_type='OPT', region='TW', exchange='TAIFEX', code='TXO34000U6')
+    ],
+    combo_type=Straddle
+)
+
+```
+
+不合法的組合
+
+順序擺錯或未指定必填的 `combo_type`，會在建立當下拋出 `sj.ShioajiValueError` （為 Python `ValueError` 之子類），例如：
+
+```
+contracts: validation: combo legs are reversed for TimeSpread; expected canonical exchange order
+contracts: validation: combo shape is ambiguous ([Straddle, ConversionReversal]); pass combo_type explicitly
+
+```
+
+In
+
+```
+curl -X POST http://localhost:8080/api/v1/data/contracts/combo \
+  -H 'Content-Type: application/json' \
+  -d '{
+    "legs": [
+      {"security_type": "FUT", "exchange": "TAIFEX", "code": "TXFH6"},
+      {"security_type": "FUT", "exchange": "TAIFEX", "code": "TXFI6"}
+    ]
+  }'
+
+```
+
+Out
+
+```
+{"code":"TXFH6/I6","legs":[{"security_type":"FUT","region":"TW","exchange":"TAIFEX","code":"TXFH6","target_code":null},{"security_type":"FUT","region":"TW","exchange":"TAIFEX","code":"TXFI6","target_code":null}],"region":"TW","exchange":"TAIFEX","combo_type":"TimeSpread","managed":true}
+
+```
+
+### 列舉期貨組合
+
+不確定要組哪一組時，可用 `combo_futures` 列出一個期貨家族目前所有合法的跨月價差組合，直接挑選使用，不需要自己排順序。僅支援期貨跨月價差；選擇權組合請用 `contracts.combo()` 指定商品。
+
+contracts.combo_futures
+
+```
+api.contracts.combo_futures?
+
+Signature:
+    api.contracts.combo_futures(
+        root: str,
+        region: sj.Region = sj.Region.TW,
+    ) -> List[sj.ComboContract]
+
+```
+
+Parameters
+
+```
+root:   期貨商品家族（例：TXF）
+region: 市場別，預設台灣
+
+```
+
+In
+
+```
+combos = api.contracts.combo_futures(root="TXF")
+[c.code for c in combos]
+
+```
+
+Out
+
+```
+['TXFH6/I6',
+ 'TXFH6/J6',
+ 'TXFH6/L6',
+ 'TXFH6/C7',
+ 'TXFH6/F7',
+ 'TXFI6/J6',
+ 'TXFI6/L6',
+ 'TXFI6/C7',
+ 'TXFI6/F7',
+ 'TXFJ6/L6',
+ 'TXFJ6/C7',
+ 'TXFJ6/F7',
+ 'TXFL6/C7',
+ 'TXFL6/F7',
+ 'TXFC7/F7']
+
+```
+
+列出的組合是從本地合約資料推算的有效配對（已排除到期合約），不保證每一組當下都有掛單， 是否有市場請以報價為準。
+
+contracts/combo/futures
+
+```
+GET /api/v1/data/contracts/combo/futures?root=<string>
+
+```
+
+Parameters
+
+```
+root: 期貨商品家族（例：TXF）
+
+```
+
+In
+
+```
+curl 'http://localhost:8080/api/v1/data/contracts/combo/futures?root=TXF'
+
+```
+
+Out
+
+```
+[{"code":"TXFH6/I6","legs":[{"security_type":"FUT","region":"TW","exchange":"TAIFEX","code":"TXFH6","target_code":null},{"security_type":"FUT","region":"TW","exchange":"TAIFEX","code":"TXFI6","target_code":null}],"region":"TW","exchange":"TAIFEX","combo_type":"TimeSpread","managed":true},{"code":"TXFH6/J6","legs":[...],"region":"TW","exchange":"TAIFEX","combo_type":"TimeSpread","managed":true},...]
 
 ```
 

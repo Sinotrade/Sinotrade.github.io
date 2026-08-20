@@ -811,6 +811,29 @@
   
   
     <li class="md-nav__item">
+      <a href="../../market_data/streaming/combo/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    組合商品
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
       <a href="../../market_data/streaming/" class="md-nav__link">
         
   
@@ -2180,8 +2203,73 @@
 <p class="admonition-title">提醒</p>
 <p>下單前必須先<a href="../../login/">登入</a>及啟用<a href="../../prepare/terms/">憑證</a>。</p>
 </div>
-<p>組合單（Combo Order）將多支期貨／選擇權合約綁定為單一委託送出，提供類型包括<strong>價格價差</strong>、<strong>時間價差</strong>、<strong>跨式</strong>、<strong>勒式</strong>、<strong>轉換</strong>以及<strong>逆轉</strong>，組合規則詳見期交所<a href="https://www.taifex.com.tw/cht/5/margingReqIndexOpt">文件</a>。</p>
+<p>組合單（Combo Order）將兩支期貨／選擇權合約綁定為單一委託送出。組合單的完整規範請見期交所<a href="https://www.taifex.com.tw/cht/4/oamIntroduction">委託單種介紹</a>，保證金資訊請見<a href="https://www.taifex.com.tw/cht/5/margingReqIndexOpt">結算保證金頁面</a>。</p>
+<p>下單前請先建立組合合約，建法見<a href="../../contract/#combo">商品合約</a>。</p>
 <h2 id="_1">下單<a class="headerlink" href="#_1" title="Permanent link">&para;</a></h2>
+<p>組合單買賣的是<strong>整個組合</strong>。依期交所定義「價差委託之買賣別和遠月份契約相同」，買進跨月價差即買遠月、賣近月；各類型的定義如下（<strong>買賣方向與淨價表</strong>）：</p>
+<table>
+<thead>
+<tr>
+<th>類型</th>
+<th><code>sj.ComboType</code></th>
+<th><code>action=Buy</code></th>
+<th><code>action=Sell</code></th>
+<th>淨價（<code>price</code>）</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>跨月價差</td>
+<td><code>TimeSpread</code>／<code>WeeklyTimeSpread</code></td>
+<td>賣近、買遠</td>
+<td>買近、賣遠</td>
+<td>遠 − 近（可為負值）</td>
+</tr>
+<tr>
+<td>買權價差</td>
+<td><code>PriceSpread</code></td>
+<td>賣高履約價、買低履約價</td>
+<td>買高履約價、賣低履約價</td>
+<td>低履約價權利金 − 高履約價權利金</td>
+</tr>
+<tr>
+<td>賣權價差</td>
+<td><code>PriceSpread</code></td>
+<td>賣低履約價、買高履約價</td>
+<td>買低履約價、賣高履約價</td>
+<td>高履約價權利金 − 低履約價權利金</td>
+</tr>
+<tr>
+<td>跨式／勒式</td>
+<td><code>Straddle</code>／<code>Strangle</code></td>
+<td>買 Call、買 Put</td>
+<td>賣 Call、賣 Put</td>
+<td>Call 權利金 + Put 權利金</td>
+</tr>
+<tr>
+<td>轉換／逆轉</td>
+<td><code>ConversionReversal</code></td>
+<td>賣 Call、買 Put（轉換）</td>
+<td>買 Call、賣 Put（逆轉）</td>
+<td>Put 權利金 − Call 權利金</td>
+</tr>
+</tbody>
+</table>
+<p><code>price</code> 為整個組合的淨價，非任何一支商品的價格，定義見買賣方向與淨價表；下單前的報價參考見<a href="../../market_data/streaming/combo/">組合商品行情</a>。</p>
+<div class="admonition attention">
+<p class="admonition-title">價格範圍限制</p>
+<p>組合單委託價格有範圍限制：以跨月價差為例，上限為遠月漲停價減近月跌停價、
+下限為遠月跌停價減近月漲停價，超出範圍的委託交易所不接受。</p>
+</div>
+<div class="admonition warning">
+<p class="admonition-title">委託條件限制</p>
+<ul>
+<li>標準選擇權組合<strong>不可用 <code>ROD</code></strong>，請以 <code>LMT</code> 搭配 <code>IOC</code> 或 <code>FOK</code> 送單；
+  若以 <code>ROD</code> 送單，會被期交所以 <code>9927 委託條件錯誤</code> 退單。</li>
+<li>期貨跨月價差於盤中可依商品規則使用 <code>ROD</code>。</li>
+<li>盤前不接受組合單。</li>
+</ul>
+</div>
 <div class="tabbed-set tabbed-alternate" data-tabs="1:2"><input checked="checked" id="__tabbed_1_1" name="__tabbed_1" type="radio" /><input id="__tabbed_1_2" name="__tabbed_1" type="radio" /><div class="tabbed-labels"><label for="__tabbed_1_1">Python</label><label for="__tabbed_1_2">其他語言</label></div>
 <div class="tabbed-content">
 <div class="tabbed-block">
@@ -2193,61 +2281,43 @@
     <span class="n">api</span><span class="o">.</span><span class="n">place_comboorder</span><span class="p">(</span>
         <span class="n">combo_contract</span><span class="p">:</span> <span class="n">sj</span><span class="o">.</span><span class="n">ComboContract</span><span class="p">,</span>
         <span class="n">order</span><span class="p">:</span> <span class="n">Union</span><span class="p">[</span><span class="n">sj</span><span class="o">.</span><span class="n">ComboOrder</span><span class="p">,</span> <span class="n">sj</span><span class="o">.</span><span class="n">FuturesOrder</span><span class="p">],</span>
-        <span class="n">timeout</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="nb">int</span><span class="p">]</span> <span class="o">=</span> <span class="mi">5000</span><span class="p">,</span>
+        <span class="n">timeout</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="nb">int</span><span class="p">]</span> <span class="o">=</span> <span class="mi">30000</span><span class="p">,</span>
         <span class="n">cb</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="n">Callable</span><span class="p">[[</span><span class="n">sj</span><span class="o">.</span><span class="n">ComboTrade</span><span class="p">],</span> <span class="kc">None</span><span class="p">]]</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
     <span class="p">)</span> <span class="o">-&gt;</span> <span class="n">sj</span><span class="o">.</span><span class="n">ComboTrade</span>
 </code></pre></div>
 </div>
 <div class="admonition done">
 <p class="admonition-title">Parameters</p>
-<div class="highlight"><pre><span></span><code>combo_contract: 組合商品檔，含多個 ComboBase legs
+<div class="highlight"><pre><span></span><code>combo_contract: 組合合約（建法見「商品合約」頁）
 order:          組合委託單（ComboOrder 或 FuturesOrder）
 timeout:        逾時毫秒
-cb:             選填，callback 函式
+cb:             選填，callback 函式，timeout=0 時使用
 </code></pre></div>
 </div>
 <div class="admonition info">
 <p class="admonition-title">sj.ComboOrder</p>
-<div class="highlight"><pre><span></span><code><span class="n">action</span> <span class="p">(</span><span class="n">Action</span><span class="p">):</span>                <span class="n">買賣別</span> <span class="p">{</span><span class="n">Buy</span><span class="p">:</span> <span class="n">買</span><span class="p">,</span> <span class="n">Sell</span><span class="p">:</span> <span class="n">賣</span><span class="p">}</span>
-<span class="n">price</span> <span class="p">(</span><span class="nb">float</span> <span class="ow">or</span> <span class="nb">int</span><span class="p">):</span>           <span class="n">價格</span>
-<span class="n">quantity</span> <span class="p">(</span><span class="nb">int</span><span class="p">):</span>                 <span class="n">數量</span>
+<div class="highlight"><pre><span></span><code><span class="n">action</span> <span class="p">(</span><span class="n">Action</span><span class="p">):</span>                <span class="n">買賣別</span> <span class="p">{</span><span class="n">Buy</span><span class="p">:</span> <span class="n">買</span><span class="p">,</span> <span class="n">Sell</span><span class="p">:</span> <span class="n">賣</span><span class="p">}</span><span class="err">，</span><span class="n">必填</span><span class="err">；</span><span class="n">依買賣方向與淨價表</span>
+                                <span class="n">展開兩支商品的方向</span>
+<span class="n">price</span> <span class="p">(</span><span class="nb">float</span> <span class="ow">or</span> <span class="nb">int</span><span class="p">):</span>           <span class="n">淨價</span><span class="err">，</span><span class="n">定義見上表</span><span class="err">，</span><span class="n">可為負值</span>
+<span class="n">quantity</span> <span class="p">(</span><span class="nb">int</span><span class="p">):</span>                 <span class="n">數量</span><span class="err">（</span><span class="n">兩支商品同量</span><span class="err">）</span>
 <span class="n">price_type</span> <span class="p">(</span><span class="n">FuturesPriceType</span><span class="p">):</span>  <span class="n">價格別</span> <span class="p">{</span><span class="n">LMT</span><span class="p">:</span> <span class="n">限價</span><span class="p">,</span> <span class="n">MKT</span><span class="p">:</span> <span class="n">市價</span><span class="p">,</span> <span class="n">MKP</span><span class="p">:</span> <span class="n">範圍市價</span><span class="p">}</span>
 <span class="n">order_type</span> <span class="p">(</span><span class="n">OrderType</span><span class="p">):</span>         <span class="n">委託條件</span> <span class="p">{</span><span class="n">ROD</span><span class="p">,</span> <span class="n">IOC</span><span class="p">,</span> <span class="n">FOK</span><span class="p">}</span>
 <span class="n">octype</span> <span class="p">(</span><span class="n">FuturesOCType</span><span class="p">):</span>         <span class="n">倉別</span> <span class="p">{</span><span class="n">Auto</span><span class="p">:</span> <span class="n">自動</span><span class="p">,</span> <span class="n">New</span><span class="p">:</span> <span class="n">新倉</span><span class="p">,</span> <span class="n">Cover</span><span class="p">:</span> <span class="n">平倉</span><span class="p">,</span> <span class="n">DayTrade</span><span class="p">:</span> <span class="n">當沖</span><span class="p">}</span>
-<span class="n">combo_type</span> <span class="p">(</span><span class="n">ComboType</span><span class="p">):</span>         <span class="n">選填</span><span class="err">，</span><span class="n">組合類型</span><span class="err">；</span><span class="n">省略時由</span> <span class="n">legs</span> <span class="n">自動推導</span>
-<span class="n">account</span> <span class="p">(</span><span class="n">Account</span><span class="p">):</span>              <span class="n">下單帳號</span>
-</code></pre></div>
-</div>
-<div class="admonition info">
-<p class="admonition-title">sj.ComboBase</p>
-<div class="highlight"><pre><span></span><code><span class="n">action</span> <span class="p">(</span><span class="n">Action</span><span class="p">):</span>              <span class="n">買賣別</span> <span class="p">{</span><span class="n">Buy</span><span class="p">:</span> <span class="n">買</span><span class="p">,</span> <span class="n">Sell</span><span class="p">:</span> <span class="n">賣</span><span class="p">}</span>
-<span class="n">security_type</span> <span class="p">(</span><span class="n">SecurityType</span><span class="p">):</span> <span class="n">商品類型</span> <span class="p">{</span><span class="n">FUT</span><span class="p">,</span> <span class="n">OPT</span><span class="p">}</span>
-<span class="n">exchange</span> <span class="p">(</span><span class="n">Exchange</span><span class="p">):</span>          <span class="n">交易所</span>
-<span class="n">code</span> <span class="p">(</span><span class="nb">str</span><span class="p">):</span>                   <span class="n">商品代碼</span>
+<span class="n">combo_type</span> <span class="p">(</span><span class="n">ComboType</span><span class="p">):</span>         <span class="n">選填</span><span class="err">；</span><span class="n">自動帶入推導結果</span><span class="err">，</span><span class="n">明填時必須相符</span>
+<span class="n">account</span> <span class="p">(</span><span class="n">Account</span><span class="p">):</span>              <span class="n">下單帳號</span><span class="err">（</span><span class="n">省略則使用預設期貨帳號</span><span class="err">）</span>
 </code></pre></div>
 </div>
 </div>
 <div class="tabbed-block">
+<p><code>combo_contract</code> 的 legs 不帶買賣別（形狀見<a href="../../contract/#combo">商品合約</a>）；
+<code>order.action</code> 為必填欄位。</p>
 <div class="admonition example">
 <p class="admonition-title">place_comboorder</p>
 <div class="highlight"><pre><span></span><code><span class="err">POST /api/v1/order/place_comboorder</span>
 <span class="err">Content-Type: application/json</span>
 
 <span class="err">{</span>
-<span class="err">  &quot;combo_contract&quot;: {</span>
-<span class="err">    &quot;legs&quot;: [</span>
-<span class="err">      {</span>
-<span class="err">        &quot;action&quot;: &lt;Action&gt;,</span>
-<span class="err">        &quot;security_type&quot;: &lt;SecurityType&gt;,</span>
-<span class="err">        &quot;exchange&quot;: &lt;Exchange&gt;,</span>
-<span class="err">        &quot;code&quot;: &lt;string&gt;,</span>
-<span class="err">        &quot;category&quot;: &lt;string&gt;,</span>
-<span class="err">        &quot;delivery_month&quot;: &lt;string&gt;,</span>
-<span class="err">        &quot;strike_price&quot;: &lt;number&gt;,</span>
-<span class="err">        &quot;option_right&quot;: &lt;string&gt;</span>
-<span class="err">      }</span>
-<span class="err">    ]</span>
-<span class="err">  },</span>
+<span class="err">  &quot;combo_contract&quot;: { &quot;legs&quot;: [ ... ] },</span>
 <span class="err">  &quot;order&quot;: {</span>
 <span class="err">    &quot;action&quot;: &lt;Action&gt;,</span>
 <span class="err">    &quot;price&quot;: &lt;number&gt;,</span>
@@ -2255,6 +2325,7 @@ cb:             選填，callback 函式
 <span class="err">    &quot;price_type&quot;: &lt;FuturesPriceType&gt;,</span>
 <span class="err">    &quot;order_type&quot;: &lt;OrderType&gt;,</span>
 <span class="err">    &quot;octype&quot;: &lt;FuturesOCType&gt;,</span>
+<span class="err">    &quot;combo_type&quot;: &lt;ComboType&gt;,</span>
 <span class="err">    &quot;account&quot;: { &quot;broker_id&quot;: &lt;string&gt;, &quot;account_id&quot;: &lt;string&gt; }</span>
 <span class="err">  }</span>
 <span class="err">}</span>
@@ -2262,58 +2333,87 @@ cb:             選填，callback 函式
 </div>
 <div class="admonition done">
 <p class="admonition-title">Parameters</p>
-<div class="highlight"><pre><span></span><code>combo_contract.legs[].action:         買賣別 {Buy, Sell}
-combo_contract.legs[].security_type:  商品類型 {FUT, OPT}
-combo_contract.legs[].exchange:       交易所
-combo_contract.legs[].code:           商品代碼
-combo_contract.legs[].category:       商品類別
-combo_contract.legs[].delivery_month: 到期月份 YYYYMM
-combo_contract.legs[].strike_price:   履約價（期貨可填 null）
-combo_contract.legs[].option_right:   買賣權別 {C, P}（期貨可填 null）
-order.action:                         買賣別 {Buy, Sell}
-order.price:                          價格
-order.quantity:                       數量
-order.price_type:                     價格別 {LMT, MKT, MKP}
-order.order_type:                     委託條件 {ROD, IOC, FOK}
-order.octype:                         倉別 {Auto, New, Cover, DayTrade}
-order.account:                        下單帳號（省略則使用預設期貨帳號）
+<div class="highlight"><pre><span></span><code>combo_contract:   組合合約（見「商品合約」頁）
+order.action:     買賣別 {Buy, Sell}，必填；依此展開兩支商品的方向
+order.price:      淨價，可為負值
+order.quantity:   數量（兩支商品同量）
+order.price_type: 價格別 {LMT, MKT, MKP}
+order.order_type: 委託條件 {ROD, IOC, FOK}
+order.octype:     倉別 {Auto, New, Cover, DayTrade}
+order.combo_type: 選填，組合類型
+order.account:    下單帳號（省略則使用預設期貨帳號）
 </code></pre></div>
 </div>
 </div>
 </div>
 </div>
 <h3 id="_2">範例<a class="headerlink" href="#_2" title="Permanent link">&para;</a></h3>
+<p><strong>期貨跨月價差</strong>，以買進價差（賣近月、買遠月）為例。組合方式：同商品、不同到期月的兩支期貨，近月在前。</p>
+<ul>
+<li>合約：<code>legs=[近月, 遠月]</code>，不帶買賣別</li>
+<li>委託：<code>action=Buy</code>（買進價差，Shioaji 展開為賣近月、買遠月）</li>
+</ul>
 <div class="tabbed-set tabbed-alternate" data-tabs="2:2"><input checked="checked" id="__tabbed_2_1" name="__tabbed_2" type="radio" /><input id="__tabbed_2_2" name="__tabbed_2" type="radio" /><div class="tabbed-labels"><label for="__tabbed_2_1">Python</label><label for="__tabbed_2_2">HTTP</label></div>
 <div class="tabbed-content">
 <div class="tabbed-block">
 <div class="admonition info">
-<p class="admonition-title">Order</p>
-<div class="highlight"><pre><span></span><code><span class="c1"># 商品檔（賣出跨式：同到期、同履約價，賣 Call + 賣 Put）</span>
-<span class="n">call</span> <span class="o">=</span> <span class="n">api</span><span class="o">.</span><span class="n">Contracts</span><span class="o">.</span><span class="n">Options</span><span class="o">.</span><span class="n">TXO</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s2">&quot;TXO20260527000C&quot;</span><span class="p">)</span>
-<span class="n">put</span> <span class="o">=</span> <span class="n">api</span><span class="o">.</span><span class="n">Contracts</span><span class="o">.</span><span class="n">Options</span><span class="o">.</span><span class="n">TXO</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s2">&quot;TXO20260527000P&quot;</span><span class="p">)</span>
-<span class="n">combo_contract</span> <span class="o">=</span> <span class="n">sj</span><span class="o">.</span><span class="n">ComboContract</span><span class="p">(</span>
-    <span class="n">legs</span><span class="o">=</span><span class="p">[</span>
-        <span class="n">sj</span><span class="o">.</span><span class="n">ComboBase</span><span class="o">.</span><span class="n">from_contract</span><span class="p">(</span><span class="n">call</span><span class="p">,</span> <span class="n">action</span><span class="o">=</span><span class="n">sj</span><span class="o">.</span><span class="n">Action</span><span class="o">.</span><span class="n">Sell</span><span class="p">),</span>
-        <span class="n">sj</span><span class="o">.</span><span class="n">ComboBase</span><span class="o">.</span><span class="n">from_contract</span><span class="p">(</span><span class="n">put</span><span class="p">,</span> <span class="n">action</span><span class="o">=</span><span class="n">sj</span><span class="o">.</span><span class="n">Action</span><span class="o">.</span><span class="n">Sell</span><span class="p">),</span>
-    <span class="p">]</span>
-<span class="p">)</span>
-<span class="c1"># 委託內容</span>
+<p class="admonition-title">In</p>
+<div class="highlight"><pre><span></span><code><span class="n">near</span> <span class="o">=</span> <span class="n">api</span><span class="o">.</span><span class="n">contracts</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s2">&quot;TXFH6&quot;</span><span class="p">)</span>
+<span class="n">far</span> <span class="o">=</span> <span class="n">api</span><span class="o">.</span><span class="n">contracts</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s2">&quot;TXFI6&quot;</span><span class="p">)</span>
+<span class="n">combo_contract</span> <span class="o">=</span> <span class="n">api</span><span class="o">.</span><span class="n">contracts</span><span class="o">.</span><span class="n">combo</span><span class="p">(</span><span class="n">legs</span><span class="o">=</span><span class="p">[</span><span class="n">near</span><span class="p">,</span> <span class="n">far</span><span class="p">])</span>
+
 <span class="n">order</span> <span class="o">=</span> <span class="n">sj</span><span class="o">.</span><span class="n">ComboOrder</span><span class="p">(</span>
-    <span class="n">action</span><span class="o">=</span><span class="n">sj</span><span class="o">.</span><span class="n">Action</span><span class="o">.</span><span class="n">Sell</span><span class="p">,</span>
-    <span class="n">price</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span>
+<span class="hll">    <span class="n">action</span><span class="o">=</span><span class="n">sj</span><span class="o">.</span><span class="n">Action</span><span class="o">.</span><span class="n">Buy</span><span class="p">,</span>  <span class="c1"># 買進價差：由 Shioaji 展開為賣近月、買遠月</span>
+</span>    <span class="n">price</span><span class="o">=</span><span class="mi">50</span><span class="p">,</span>  <span class="c1"># 淨價（遠月 − 近月）</span>
     <span class="n">quantity</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span>
     <span class="n">price_type</span><span class="o">=</span><span class="n">sj</span><span class="o">.</span><span class="n">FuturesPriceType</span><span class="o">.</span><span class="n">LMT</span><span class="p">,</span>
-    <span class="n">order_type</span><span class="o">=</span><span class="n">sj</span><span class="o">.</span><span class="n">OrderType</span><span class="o">.</span><span class="n">IOC</span><span class="p">,</span>
-    <span class="n">octype</span><span class="o">=</span><span class="n">sj</span><span class="o">.</span><span class="n">FuturesOCType</span><span class="o">.</span><span class="n">New</span><span class="p">,</span>
+    <span class="n">order_type</span><span class="o">=</span><span class="n">sj</span><span class="o">.</span><span class="n">OrderType</span><span class="o">.</span><span class="n">ROD</span><span class="p">,</span>
+    <span class="n">octype</span><span class="o">=</span><span class="n">sj</span><span class="o">.</span><span class="n">FuturesOCType</span><span class="o">.</span><span class="n">Auto</span><span class="p">,</span>
     <span class="n">account</span><span class="o">=</span><span class="n">api</span><span class="o">.</span><span class="n">futopt_account</span><span class="p">,</span>
 <span class="p">)</span>
-</code></pre></div>
-</div>
-<div class="admonition info">
-<p class="admonition-title">In</p>
-<div class="highlight"><pre><span></span><code><span class="c1"># 下單</span>
 <span class="n">trade</span> <span class="o">=</span> <span class="n">api</span><span class="o">.</span><span class="n">place_comboorder</span><span class="p">(</span><span class="n">combo_contract</span><span class="p">,</span> <span class="n">order</span><span class="p">)</span>
 <span class="n">trade</span>
+</code></pre></div>
+</div>
+<div class="admonition done">
+<p class="admonition-title">Out</p>
+<div class="highlight"><pre><span></span><code><span class="n">ComboTrade</span><span class="p">(</span>
+    <span class="n">contract</span><span class="o">=</span><span class="n">ComboContract</span><span class="p">(</span>
+        <span class="n">legs</span><span class="o">=</span><span class="p">[</span>
+            <span class="n">Contract</span><span class="p">(</span><span class="n">security_type</span><span class="o">=</span><span class="s1">&#39;FUT&#39;</span><span class="p">,</span> <span class="n">region</span><span class="o">=</span><span class="s1">&#39;TW&#39;</span><span class="p">,</span> <span class="n">exchange</span><span class="o">=</span><span class="s1">&#39;TAIFEX&#39;</span><span class="p">,</span> <span class="n">code</span><span class="o">=</span><span class="s1">&#39;TXFH6&#39;</span><span class="p">),</span>
+            <span class="n">Contract</span><span class="p">(</span><span class="n">security_type</span><span class="o">=</span><span class="s1">&#39;FUT&#39;</span><span class="p">,</span> <span class="n">region</span><span class="o">=</span><span class="s1">&#39;TW&#39;</span><span class="p">,</span> <span class="n">exchange</span><span class="o">=</span><span class="s1">&#39;TAIFEX&#39;</span><span class="p">,</span> <span class="n">code</span><span class="o">=</span><span class="s1">&#39;TXFI6&#39;</span><span class="p">)</span>
+        <span class="p">],</span>
+        <span class="n">combo_type</span><span class="o">=</span><span class="n">TimeSpread</span>
+    <span class="p">),</span>
+    <span class="n">order</span><span class="o">=</span><span class="n">Order</span><span class="p">(</span>
+        <span class="nb">id</span><span class="o">=</span><span class="s1">&#39;46989de8&#39;</span><span class="p">,</span>
+        <span class="n">action</span><span class="o">=&lt;</span><span class="n">Action</span><span class="o">.</span><span class="n">Buy</span><span class="p">:</span> <span class="s1">&#39;Buy&#39;</span><span class="o">&gt;</span><span class="p">,</span>
+        <span class="n">price</span><span class="o">=</span><span class="mf">50.0</span><span class="p">,</span>
+        <span class="n">quantity</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span>
+        <span class="n">seqno</span><span class="o">=</span><span class="s1">&#39;743595&#39;</span><span class="p">,</span>
+        <span class="n">ordno</span><span class="o">=</span><span class="s1">&#39;000000&#39;</span><span class="p">,</span>
+        <span class="n">order_type</span><span class="o">=&lt;</span><span class="n">OrderType</span><span class="o">.</span><span class="n">ROD</span><span class="p">:</span> <span class="s1">&#39;ROD&#39;</span><span class="o">&gt;</span><span class="p">,</span>
+        <span class="n">price_type</span><span class="o">=&lt;</span><span class="n">PriceType</span><span class="o">.</span><span class="n">LMT</span><span class="p">:</span> <span class="s1">&#39;LMT&#39;</span><span class="o">&gt;</span><span class="p">,</span>
+        <span class="n">account</span><span class="o">=</span><span class="n">FutureAccount</span><span class="p">(</span>
+            <span class="n">person_id</span><span class="o">=</span><span class="s1">&#39;YOUR_PERSON_ID&#39;</span><span class="p">,</span>
+            <span class="n">broker_id</span><span class="o">=</span><span class="s1">&#39;YOUR_BROKER_ID&#39;</span><span class="p">,</span>
+            <span class="n">account_id</span><span class="o">=</span><span class="s1">&#39;YOUR_ACCOUNT_ID&#39;</span><span class="p">,</span>
+            <span class="n">signed</span><span class="o">=</span><span class="n">true</span><span class="p">,</span>
+            <span class="n">username</span><span class="o">=</span><span class="s1">&#39;&#39;</span>
+        <span class="p">),</span>
+        <span class="n">octype</span><span class="o">=&lt;</span><span class="n">FuturesOCType</span><span class="o">.</span><span class="n">Auto</span><span class="p">:</span> <span class="s1">&#39;Auto&#39;</span><span class="o">&gt;</span>
+    <span class="p">),</span>
+    <span class="n">status</span><span class="o">=</span><span class="n">ComboStatus</span><span class="p">(</span>
+        <span class="nb">id</span><span class="o">=</span><span class="s1">&#39;46989de8&#39;</span><span class="p">,</span>
+        <span class="n">status</span><span class="o">=&lt;</span><span class="n">OrderStatus</span><span class="o">.</span><span class="n">Submitted</span><span class="p">:</span> <span class="s1">&#39;Submitted&#39;</span><span class="o">&gt;</span><span class="p">,</span>
+        <span class="n">status_code</span><span class="o">=</span><span class="s1">&#39;0000&#39;</span><span class="p">,</span>
+        <span class="n">order_datetime</span><span class="o">=</span><span class="n">datetime</span><span class="o">.</span><span class="n">datetime</span><span class="p">(</span><span class="mi">2026</span><span class="p">,</span> <span class="mi">8</span><span class="p">,</span> <span class="mi">12</span><span class="p">,</span> <span class="mi">11</span><span class="p">,</span> <span class="mi">35</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="n">tzinfo</span><span class="o">=</span><span class="n">datetime</span><span class="o">.</span><span class="n">timezone</span><span class="p">(</span><span class="n">datetime</span><span class="o">.</span><span class="n">timedelta</span><span class="p">(</span><span class="n">hours</span><span class="o">=</span><span class="mi">8</span><span class="p">))),</span>
+        <span class="n">modified_time</span><span class="o">=</span><span class="n">datetime</span><span class="o">.</span><span class="n">datetime</span><span class="p">(</span><span class="mi">2026</span><span class="p">,</span> <span class="mi">8</span><span class="p">,</span> <span class="mi">12</span><span class="p">,</span> <span class="mi">11</span><span class="p">,</span> <span class="mi">35</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="n">tzinfo</span><span class="o">=</span><span class="n">datetime</span><span class="o">.</span><span class="n">timezone</span><span class="p">(</span><span class="n">datetime</span><span class="o">.</span><span class="n">timedelta</span><span class="p">(</span><span class="n">hours</span><span class="o">=</span><span class="mi">8</span><span class="p">))),</span>
+        <span class="n">modified_price</span><span class="o">=</span><span class="mf">50.0</span><span class="p">,</span>
+        <span class="n">order_quantity</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span>
+        <span class="n">deals</span><span class="o">=</span><span class="p">{}</span>
+    <span class="p">)</span>
+<span class="p">)</span>
 </code></pre></div>
 </div>
 </div>
@@ -2325,37 +2425,17 @@ order.account:                        下單帳號（省略則使用預設期貨
 <span class="w">  </span>-d<span class="w"> </span><span class="s1">&#39;{</span>
 <span class="s1">    &quot;combo_contract&quot;: {</span>
 <span class="s1">      &quot;legs&quot;: [</span>
-<span class="s1">        {</span>
-<span class="s1">          &quot;action&quot;: &quot;Sell&quot;,</span>
-<span class="s1">          &quot;security_type&quot;: &quot;OPT&quot;,</span>
-<span class="s1">          &quot;exchange&quot;: &quot;TAIFEX&quot;,</span>
-<span class="s1">          &quot;code&quot;: &quot;TXO20260527000C&quot;,</span>
-<span class="s1">          &quot;symbol&quot;: &quot;TXO20260527000C&quot;,</span>
-<span class="s1">          &quot;category&quot;: &quot;TXO&quot;,</span>
-<span class="s1">          &quot;delivery_month&quot;: &quot;202605&quot;,</span>
-<span class="s1">          &quot;strike_price&quot;: 27000,</span>
-<span class="s1">          &quot;option_right&quot;: &quot;C&quot;</span>
-<span class="s1">        },</span>
-<span class="s1">        {</span>
-<span class="s1">          &quot;action&quot;: &quot;Sell&quot;,</span>
-<span class="s1">          &quot;security_type&quot;: &quot;OPT&quot;,</span>
-<span class="s1">          &quot;exchange&quot;: &quot;TAIFEX&quot;,</span>
-<span class="s1">          &quot;code&quot;: &quot;TXO20260527000P&quot;,</span>
-<span class="s1">          &quot;symbol&quot;: &quot;TXO20260527000P&quot;,</span>
-<span class="s1">          &quot;category&quot;: &quot;TXO&quot;,</span>
-<span class="s1">          &quot;delivery_month&quot;: &quot;202605&quot;,</span>
-<span class="s1">          &quot;strike_price&quot;: 27000,</span>
-<span class="s1">          &quot;option_right&quot;: &quot;P&quot;</span>
-<span class="s1">        }</span>
+<span class="s1">        {&quot;security_type&quot;: &quot;FUT&quot;, &quot;exchange&quot;: &quot;TAIFEX&quot;, &quot;code&quot;: &quot;TXFH6&quot;},</span>
+<span class="s1">        {&quot;security_type&quot;: &quot;FUT&quot;, &quot;exchange&quot;: &quot;TAIFEX&quot;, &quot;code&quot;: &quot;TXFI6&quot;}</span>
 <span class="s1">      ]</span>
 <span class="s1">    },</span>
 <span class="s1">    &quot;order&quot;: {</span>
-<span class="s1">      &quot;action&quot;: &quot;Sell&quot;,</span>
-<span class="s1">      &quot;price&quot;: 1,</span>
+<span class="s1">      &quot;action&quot;: &quot;Buy&quot;,</span>
+<span class="s1">      &quot;price&quot;: 50,</span>
 <span class="s1">      &quot;quantity&quot;: 1,</span>
 <span class="s1">      &quot;price_type&quot;: &quot;LMT&quot;,</span>
-<span class="s1">      &quot;order_type&quot;: &quot;IOC&quot;,</span>
-<span class="s1">      &quot;octype&quot;: &quot;New&quot;,</span>
+<span class="s1">      &quot;order_type&quot;: &quot;ROD&quot;,</span>
+<span class="s1">      &quot;octype&quot;: &quot;Auto&quot;,</span>
 <span class="s1">      &quot;account&quot;: {</span>
 <span class="s1">        &quot;broker_id&quot;: &quot;YOUR_BROKER_ID&quot;,</span>
 <span class="s1">        &quot;account_id&quot;: &quot;YOUR_ACCOUNT_ID&quot;</span>
@@ -2364,10 +2444,123 @@ order.account:                        下單帳號（省略則使用預設期貨
 <span class="s1">  }&#39;</span>
 </code></pre></div>
 </div>
+<div class="admonition done">
+<p class="admonition-title">Out</p>
+<div class="highlight"><pre><span></span><code><span class="p">{</span><span class="nt">&quot;contract&quot;</span><span class="p">:{</span><span class="nt">&quot;legs&quot;</span><span class="p">:[{</span><span class="nt">&quot;action&quot;</span><span class="p">:</span><span class="s2">&quot;Sell&quot;</span><span class="p">,</span><span class="nt">&quot;security_type&quot;</span><span class="p">:</span><span class="s2">&quot;FUT&quot;</span><span class="p">,</span><span class="nt">&quot;exchange&quot;</span><span class="p">:</span><span class="s2">&quot;TAIFEX&quot;</span><span class="p">,</span><span class="nt">&quot;code&quot;</span><span class="p">:</span><span class="s2">&quot;TXFH6&quot;</span><span class="p">,</span><span class="nt">&quot;symbol&quot;</span><span class="p">:</span><span class="s2">&quot;TXFH6&quot;</span><span class="p">,</span><span class="nt">&quot;category&quot;</span><span class="p">:</span><span class="s2">&quot;TXF&quot;</span><span class="p">,</span><span class="nt">&quot;delivery_month&quot;</span><span class="p">:</span><span class="s2">&quot;202608&quot;</span><span class="p">},{</span><span class="nt">&quot;action&quot;</span><span class="p">:</span><span class="s2">&quot;Buy&quot;</span><span class="p">,</span><span class="nt">&quot;security_type&quot;</span><span class="p">:</span><span class="s2">&quot;FUT&quot;</span><span class="p">,</span><span class="nt">&quot;exchange&quot;</span><span class="p">:</span><span class="s2">&quot;TAIFEX&quot;</span><span class="p">,</span><span class="nt">&quot;code&quot;</span><span class="p">:</span><span class="s2">&quot;TXFI6&quot;</span><span class="p">,</span><span class="nt">&quot;symbol&quot;</span><span class="p">:</span><span class="s2">&quot;TXFI6&quot;</span><span class="p">,</span><span class="nt">&quot;category&quot;</span><span class="p">:</span><span class="s2">&quot;TXF&quot;</span><span class="p">,</span><span class="nt">&quot;delivery_month&quot;</span><span class="p">:</span><span class="s2">&quot;202609&quot;</span><span class="p">}]},</span><span class="nt">&quot;order&quot;</span><span class="p">:{</span><span class="nt">&quot;id&quot;</span><span class="p">:</span><span class="s2">&quot;46989de8&quot;</span><span class="p">,</span><span class="nt">&quot;action&quot;</span><span class="p">:</span><span class="s2">&quot;Buy&quot;</span><span class="p">,</span><span class="nt">&quot;price&quot;</span><span class="p">:</span><span class="mf">50.0</span><span class="p">,</span><span class="nt">&quot;quantity&quot;</span><span class="p">:</span><span class="mi">1</span><span class="p">,</span><span class="nt">&quot;seqno&quot;</span><span class="p">:</span><span class="s2">&quot;743595&quot;</span><span class="p">,</span><span class="nt">&quot;ordno&quot;</span><span class="p">:</span><span class="s2">&quot;000000&quot;</span><span class="p">,</span><span class="nt">&quot;order_type&quot;</span><span class="p">:</span><span class="s2">&quot;ROD&quot;</span><span class="p">,</span><span class="nt">&quot;price_type&quot;</span><span class="p">:</span><span class="s2">&quot;LMT&quot;</span><span class="p">,</span><span class="nt">&quot;account&quot;</span><span class="p">:{</span><span class="nt">&quot;account_type&quot;</span><span class="p">:</span><span class="s2">&quot;F&quot;</span><span class="p">,</span><span class="nt">&quot;person_id&quot;</span><span class="p">:</span><span class="s2">&quot;YOUR_PERSON_ID&quot;</span><span class="p">,</span><span class="nt">&quot;broker_id&quot;</span><span class="p">:</span><span class="s2">&quot;YOUR_BROKER_ID&quot;</span><span class="p">,</span><span class="nt">&quot;account_id&quot;</span><span class="p">:</span><span class="s2">&quot;YOUR_ACCOUNT_ID&quot;</span><span class="p">,</span><span class="nt">&quot;signed&quot;</span><span class="p">:</span><span class="kc">true</span><span class="p">,</span><span class="nt">&quot;username&quot;</span><span class="p">:</span><span class="s2">&quot;&quot;</span><span class="p">},</span><span class="nt">&quot;octype&quot;</span><span class="p">:</span><span class="s2">&quot;Auto&quot;</span><span class="p">},</span><span class="nt">&quot;status&quot;</span><span class="p">:{</span><span class="nt">&quot;id&quot;</span><span class="p">:</span><span class="s2">&quot;46989de8&quot;</span><span class="p">,</span><span class="nt">&quot;status&quot;</span><span class="p">:</span><span class="s2">&quot;Submitted&quot;</span><span class="p">,</span><span class="nt">&quot;status_code&quot;</span><span class="p">:</span><span class="s2">&quot;0000&quot;</span><span class="p">,</span><span class="nt">&quot;order_datetime&quot;</span><span class="p">:</span><span class="s2">&quot;2026-08-12T11:35:00+08:00&quot;</span><span class="p">,</span><span class="nt">&quot;modified_price&quot;</span><span class="p">:</span><span class="mf">50.0</span><span class="p">,</span><span class="nt">&quot;order_quantity&quot;</span><span class="p">:</span><span class="mi">1</span><span class="p">,</span><span class="nt">&quot;deals&quot;</span><span class="p">:{}}}</span>
+</code></pre></div>
 </div>
 </div>
 </div>
-<!-- TODO: 補上 JavaScript / Go / C++ / C# / Rust / Java tabs（依 sj_test_multi_lang/order/combo/place/ 跑出的測試結果）
+</div>
+<p><strong>選擇權跨式</strong>，以買進跨式（買 Call、買 Put）為例。組合方式：同到期、同履約價的 Call 與 Put，Call 在前；標準選擇權組合委託條件用 <code>IOC</code>。</p>
+<ul>
+<li>合約：<code>legs=[Call, Put]</code> ＋ <code>combo_type=Straddle</code>（必填，與轉換／逆轉同組成）</li>
+<li>委託：<code>action=Buy</code>（買 Call、買 Put）</li>
+</ul>
+<div class="tabbed-set tabbed-alternate" data-tabs="3:2"><input checked="checked" id="__tabbed_3_1" name="__tabbed_3" type="radio" /><input id="__tabbed_3_2" name="__tabbed_3" type="radio" /><div class="tabbed-labels"><label for="__tabbed_3_1">Python</label><label for="__tabbed_3_2">HTTP</label></div>
+<div class="tabbed-content">
+<div class="tabbed-block">
+<div class="admonition info">
+<p class="admonition-title">In</p>
+<div class="highlight"><pre><span></span><code><span class="n">call</span> <span class="o">=</span> <span class="n">api</span><span class="o">.</span><span class="n">contracts</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s2">&quot;TXO34000I6&quot;</span><span class="p">)</span>
+<span class="n">put</span> <span class="o">=</span> <span class="n">api</span><span class="o">.</span><span class="n">contracts</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s2">&quot;TXO34000U6&quot;</span><span class="p">)</span>
+<span class="n">straddle_contract</span> <span class="o">=</span> <span class="n">api</span><span class="o">.</span><span class="n">contracts</span><span class="o">.</span><span class="n">combo</span><span class="p">(</span>
+    <span class="n">legs</span><span class="o">=</span><span class="p">[</span><span class="n">call</span><span class="p">,</span> <span class="n">put</span><span class="p">],</span>
+<span class="hll">    <span class="n">combo_type</span><span class="o">=</span><span class="n">sj</span><span class="o">.</span><span class="n">ComboType</span><span class="o">.</span><span class="n">Straddle</span><span class="p">,</span>
+</span><span class="p">)</span>
+
+<span class="n">order</span> <span class="o">=</span> <span class="n">sj</span><span class="o">.</span><span class="n">ComboOrder</span><span class="p">(</span>
+<span class="hll">    <span class="n">action</span><span class="o">=</span><span class="n">sj</span><span class="o">.</span><span class="n">Action</span><span class="o">.</span><span class="n">Buy</span><span class="p">,</span>  <span class="c1"># 買進跨式：買 Call、買 Put</span>
+</span>    <span class="n">price</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span>  <span class="c1"># 淨價（Call 權利金 + Put 權利金）</span>
+    <span class="n">quantity</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span>
+    <span class="n">price_type</span><span class="o">=</span><span class="n">sj</span><span class="o">.</span><span class="n">FuturesPriceType</span><span class="o">.</span><span class="n">LMT</span><span class="p">,</span>
+    <span class="n">order_type</span><span class="o">=</span><span class="n">sj</span><span class="o">.</span><span class="n">OrderType</span><span class="o">.</span><span class="n">IOC</span><span class="p">,</span>  <span class="c1"># 標準選擇權組合不可用 ROD</span>
+    <span class="n">octype</span><span class="o">=</span><span class="n">sj</span><span class="o">.</span><span class="n">FuturesOCType</span><span class="o">.</span><span class="n">Auto</span><span class="p">,</span>
+    <span class="n">account</span><span class="o">=</span><span class="n">api</span><span class="o">.</span><span class="n">futopt_account</span><span class="p">,</span>
+<span class="p">)</span>
+<span class="n">trade</span> <span class="o">=</span> <span class="n">api</span><span class="o">.</span><span class="n">place_comboorder</span><span class="p">(</span><span class="n">straddle_contract</span><span class="p">,</span> <span class="n">order</span><span class="p">)</span>
+<span class="n">trade</span>
+</code></pre></div>
+</div>
+<div class="admonition done">
+<p class="admonition-title">Out</p>
+<div class="highlight"><pre><span></span><code><span class="n">ComboTrade</span><span class="p">(</span>
+    <span class="n">contract</span><span class="o">=</span><span class="n">ComboContract</span><span class="p">(</span>
+        <span class="n">legs</span><span class="o">=</span><span class="p">[</span>
+            <span class="n">Contract</span><span class="p">(</span><span class="n">security_type</span><span class="o">=</span><span class="s1">&#39;OPT&#39;</span><span class="p">,</span> <span class="n">region</span><span class="o">=</span><span class="s1">&#39;TW&#39;</span><span class="p">,</span> <span class="n">exchange</span><span class="o">=</span><span class="s1">&#39;TAIFEX&#39;</span><span class="p">,</span> <span class="n">code</span><span class="o">=</span><span class="s1">&#39;TXO34000I6&#39;</span><span class="p">),</span>
+            <span class="n">Contract</span><span class="p">(</span><span class="n">security_type</span><span class="o">=</span><span class="s1">&#39;OPT&#39;</span><span class="p">,</span> <span class="n">region</span><span class="o">=</span><span class="s1">&#39;TW&#39;</span><span class="p">,</span> <span class="n">exchange</span><span class="o">=</span><span class="s1">&#39;TAIFEX&#39;</span><span class="p">,</span> <span class="n">code</span><span class="o">=</span><span class="s1">&#39;TXO34000U6&#39;</span><span class="p">)</span>
+        <span class="p">],</span>
+        <span class="n">combo_type</span><span class="o">=</span><span class="n">Straddle</span>
+    <span class="p">),</span>
+    <span class="n">order</span><span class="o">=</span><span class="n">Order</span><span class="p">(</span>
+        <span class="nb">id</span><span class="o">=</span><span class="s1">&#39;a3512bd6&#39;</span><span class="p">,</span>
+        <span class="n">action</span><span class="o">=&lt;</span><span class="n">Action</span><span class="o">.</span><span class="n">Buy</span><span class="p">:</span> <span class="s1">&#39;Buy&#39;</span><span class="o">&gt;</span><span class="p">,</span>
+        <span class="n">price</span><span class="o">=</span><span class="mf">1.0</span><span class="p">,</span>
+        <span class="n">quantity</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span>
+        <span class="n">seqno</span><span class="o">=</span><span class="s1">&#39;743597&#39;</span><span class="p">,</span>
+        <span class="n">ordno</span><span class="o">=</span><span class="s1">&#39;000000&#39;</span><span class="p">,</span>
+        <span class="n">order_type</span><span class="o">=&lt;</span><span class="n">OrderType</span><span class="o">.</span><span class="n">IOC</span><span class="p">:</span> <span class="s1">&#39;IOC&#39;</span><span class="o">&gt;</span><span class="p">,</span>
+        <span class="n">price_type</span><span class="o">=&lt;</span><span class="n">PriceType</span><span class="o">.</span><span class="n">LMT</span><span class="p">:</span> <span class="s1">&#39;LMT&#39;</span><span class="o">&gt;</span><span class="p">,</span>
+        <span class="n">account</span><span class="o">=</span><span class="n">FutureAccount</span><span class="p">(</span>
+            <span class="n">person_id</span><span class="o">=</span><span class="s1">&#39;YOUR_PERSON_ID&#39;</span><span class="p">,</span>
+            <span class="n">broker_id</span><span class="o">=</span><span class="s1">&#39;YOUR_BROKER_ID&#39;</span><span class="p">,</span>
+            <span class="n">account_id</span><span class="o">=</span><span class="s1">&#39;YOUR_ACCOUNT_ID&#39;</span><span class="p">,</span>
+            <span class="n">signed</span><span class="o">=</span><span class="n">true</span><span class="p">,</span>
+            <span class="n">username</span><span class="o">=</span><span class="s1">&#39;&#39;</span>
+        <span class="p">),</span>
+        <span class="n">octype</span><span class="o">=&lt;</span><span class="n">FuturesOCType</span><span class="o">.</span><span class="n">Auto</span><span class="p">:</span> <span class="s1">&#39;Auto&#39;</span><span class="o">&gt;</span>
+    <span class="p">),</span>
+    <span class="n">status</span><span class="o">=</span><span class="n">ComboStatus</span><span class="p">(</span>
+        <span class="nb">id</span><span class="o">=</span><span class="s1">&#39;a3512bd6&#39;</span><span class="p">,</span>
+        <span class="n">status</span><span class="o">=&lt;</span><span class="n">OrderStatus</span><span class="o">.</span><span class="n">Submitted</span><span class="p">:</span> <span class="s1">&#39;Submitted&#39;</span><span class="o">&gt;</span><span class="p">,</span>
+        <span class="n">status_code</span><span class="o">=</span><span class="s1">&#39;0000&#39;</span><span class="p">,</span>
+        <span class="n">order_datetime</span><span class="o">=</span><span class="n">datetime</span><span class="o">.</span><span class="n">datetime</span><span class="p">(</span><span class="mi">2026</span><span class="p">,</span> <span class="mi">8</span><span class="p">,</span> <span class="mi">12</span><span class="p">,</span> <span class="mi">11</span><span class="p">,</span> <span class="mi">37</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="n">tzinfo</span><span class="o">=</span><span class="n">datetime</span><span class="o">.</span><span class="n">timezone</span><span class="p">(</span><span class="n">datetime</span><span class="o">.</span><span class="n">timedelta</span><span class="p">(</span><span class="n">hours</span><span class="o">=</span><span class="mi">8</span><span class="p">))),</span>
+        <span class="n">modified_time</span><span class="o">=</span><span class="n">datetime</span><span class="o">.</span><span class="n">datetime</span><span class="p">(</span><span class="mi">2026</span><span class="p">,</span> <span class="mi">8</span><span class="p">,</span> <span class="mi">12</span><span class="p">,</span> <span class="mi">11</span><span class="p">,</span> <span class="mi">37</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="n">tzinfo</span><span class="o">=</span><span class="n">datetime</span><span class="o">.</span><span class="n">timezone</span><span class="p">(</span><span class="n">datetime</span><span class="o">.</span><span class="n">timedelta</span><span class="p">(</span><span class="n">hours</span><span class="o">=</span><span class="mi">8</span><span class="p">))),</span>
+        <span class="n">modified_price</span><span class="o">=</span><span class="mf">1.0</span><span class="p">,</span>
+        <span class="n">order_quantity</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span>
+        <span class="n">deals</span><span class="o">=</span><span class="p">{}</span>
+    <span class="p">)</span>
+<span class="p">)</span>
+</code></pre></div>
+</div>
+</div>
+<div class="tabbed-block">
+<div class="admonition info">
+<p class="admonition-title">In</p>
+<div class="highlight"><pre><span></span><code>curl<span class="w"> </span>-X<span class="w"> </span>POST<span class="w"> </span>http://localhost:8080/api/v1/order/place_comboorder<span class="w"> </span><span class="se">\</span>
+<span class="w">  </span>-H<span class="w"> </span><span class="s1">&#39;Content-Type: application/json&#39;</span><span class="w"> </span><span class="se">\</span>
+<span class="w">  </span>-d<span class="w"> </span><span class="s1">&#39;{</span>
+<span class="s1">    &quot;combo_contract&quot;: {</span>
+<span class="s1">      &quot;legs&quot;: [</span>
+<span class="s1">        {&quot;security_type&quot;: &quot;OPT&quot;, &quot;exchange&quot;: &quot;TAIFEX&quot;, &quot;code&quot;: &quot;TXO34000I6&quot;},</span>
+<span class="s1">        {&quot;security_type&quot;: &quot;OPT&quot;, &quot;exchange&quot;: &quot;TAIFEX&quot;, &quot;code&quot;: &quot;TXO34000U6&quot;}</span>
+<span class="s1">      ],</span>
+<span class="s1">      &quot;combo_type&quot;: &quot;Straddle&quot;</span>
+<span class="s1">    },</span>
+<span class="s1">    &quot;order&quot;: {</span>
+<span class="s1">      &quot;action&quot;: &quot;Buy&quot;,</span>
+<span class="s1">      &quot;price&quot;: 1,</span>
+<span class="s1">      &quot;quantity&quot;: 1,</span>
+<span class="s1">      &quot;price_type&quot;: &quot;LMT&quot;,</span>
+<span class="s1">      &quot;order_type&quot;: &quot;IOC&quot;,</span>
+<span class="s1">      &quot;octype&quot;: &quot;Auto&quot;,</span>
+<span class="s1">      &quot;account&quot;: {</span>
+<span class="s1">        &quot;broker_id&quot;: &quot;YOUR_BROKER_ID&quot;,</span>
+<span class="s1">        &quot;account_id&quot;: &quot;YOUR_ACCOUNT_ID&quot;</span>
+<span class="s1">      }</span>
+<span class="s1">    }</span>
+<span class="s1">  }&#39;</span>
+</code></pre></div>
+</div>
+<div class="admonition done">
+<p class="admonition-title">Out</p>
+<div class="highlight"><pre><span></span><code><span class="p">{</span><span class="nt">&quot;contract&quot;</span><span class="p">:{</span><span class="nt">&quot;legs&quot;</span><span class="p">:[{</span><span class="nt">&quot;action&quot;</span><span class="p">:</span><span class="s2">&quot;Buy&quot;</span><span class="p">,</span><span class="nt">&quot;security_type&quot;</span><span class="p">:</span><span class="s2">&quot;OPT&quot;</span><span class="p">,</span><span class="nt">&quot;exchange&quot;</span><span class="p">:</span><span class="s2">&quot;TAIFEX&quot;</span><span class="p">,</span><span class="nt">&quot;code&quot;</span><span class="p">:</span><span class="s2">&quot;TXO34000I6&quot;</span><span class="p">,</span><span class="nt">&quot;symbol&quot;</span><span class="p">:</span><span class="s2">&quot;TXO34000I6&quot;</span><span class="p">,</span><span class="nt">&quot;category&quot;</span><span class="p">:</span><span class="s2">&quot;TXO&quot;</span><span class="p">,</span><span class="nt">&quot;delivery_month&quot;</span><span class="p">:</span><span class="s2">&quot;202609&quot;</span><span class="p">,</span><span class="nt">&quot;strike_price&quot;</span><span class="p">:</span><span class="mf">34000.0</span><span class="p">,</span><span class="nt">&quot;option_right&quot;</span><span class="p">:</span><span class="s2">&quot;C&quot;</span><span class="p">},{</span><span class="nt">&quot;action&quot;</span><span class="p">:</span><span class="s2">&quot;Buy&quot;</span><span class="p">,</span><span class="nt">&quot;security_type&quot;</span><span class="p">:</span><span class="s2">&quot;OPT&quot;</span><span class="p">,</span><span class="nt">&quot;exchange&quot;</span><span class="p">:</span><span class="s2">&quot;TAIFEX&quot;</span><span class="p">,</span><span class="nt">&quot;code&quot;</span><span class="p">:</span><span class="s2">&quot;TXO34000U6&quot;</span><span class="p">,</span><span class="nt">&quot;symbol&quot;</span><span class="p">:</span><span class="s2">&quot;TXO34000U6&quot;</span><span class="p">,</span><span class="nt">&quot;category&quot;</span><span class="p">:</span><span class="s2">&quot;TXO&quot;</span><span class="p">,</span><span class="nt">&quot;delivery_month&quot;</span><span class="p">:</span><span class="s2">&quot;202609&quot;</span><span class="p">,</span><span class="nt">&quot;strike_price&quot;</span><span class="p">:</span><span class="mf">34000.0</span><span class="p">,</span><span class="nt">&quot;option_right&quot;</span><span class="p">:</span><span class="s2">&quot;P&quot;</span><span class="p">}]},</span><span class="nt">&quot;order&quot;</span><span class="p">:{</span><span class="nt">&quot;id&quot;</span><span class="p">:</span><span class="s2">&quot;a3512bd6&quot;</span><span class="p">,</span><span class="nt">&quot;action&quot;</span><span class="p">:</span><span class="s2">&quot;Buy&quot;</span><span class="p">,</span><span class="nt">&quot;price&quot;</span><span class="p">:</span><span class="mf">1.0</span><span class="p">,</span><span class="nt">&quot;quantity&quot;</span><span class="p">:</span><span class="mi">1</span><span class="p">,</span><span class="nt">&quot;seqno&quot;</span><span class="p">:</span><span class="s2">&quot;743597&quot;</span><span class="p">,</span><span class="nt">&quot;ordno&quot;</span><span class="p">:</span><span class="s2">&quot;000000&quot;</span><span class="p">,</span><span class="nt">&quot;order_type&quot;</span><span class="p">:</span><span class="s2">&quot;IOC&quot;</span><span class="p">,</span><span class="nt">&quot;price_type&quot;</span><span class="p">:</span><span class="s2">&quot;LMT&quot;</span><span class="p">,</span><span class="nt">&quot;account&quot;</span><span class="p">:{</span><span class="nt">&quot;account_type&quot;</span><span class="p">:</span><span class="s2">&quot;F&quot;</span><span class="p">,</span><span class="nt">&quot;person_id&quot;</span><span class="p">:</span><span class="s2">&quot;YOUR_PERSON_ID&quot;</span><span class="p">,</span><span class="nt">&quot;broker_id&quot;</span><span class="p">:</span><span class="s2">&quot;YOUR_BROKER_ID&quot;</span><span class="p">,</span><span class="nt">&quot;account_id&quot;</span><span class="p">:</span><span class="s2">&quot;YOUR_ACCOUNT_ID&quot;</span><span class="p">,</span><span class="nt">&quot;signed&quot;</span><span class="p">:</span><span class="kc">true</span><span class="p">,</span><span class="nt">&quot;username&quot;</span><span class="p">:</span><span class="s2">&quot;&quot;</span><span class="p">},</span><span class="nt">&quot;octype&quot;</span><span class="p">:</span><span class="s2">&quot;Auto&quot;</span><span class="p">},</span><span class="nt">&quot;status&quot;</span><span class="p">:{</span><span class="nt">&quot;id&quot;</span><span class="p">:</span><span class="s2">&quot;a3512bd6&quot;</span><span class="p">,</span><span class="nt">&quot;status&quot;</span><span class="p">:</span><span class="s2">&quot;Submitted&quot;</span><span class="p">,</span><span class="nt">&quot;status_code&quot;</span><span class="p">:</span><span class="s2">&quot;0000&quot;</span><span class="p">,</span><span class="nt">&quot;order_datetime&quot;</span><span class="p">:</span><span class="s2">&quot;2026-08-12T11:37:00+08:00&quot;</span><span class="p">,</span><span class="nt">&quot;modified_price&quot;</span><span class="p">:</span><span class="mf">1.0</span><span class="p">,</span><span class="nt">&quot;order_quantity&quot;</span><span class="p">:</span><span class="mi">1</span><span class="p">,</span><span class="nt">&quot;deals&quot;</span><span class="p">:{}}}</span>
+</code></pre></div>
+</div>
+</div>
+</div>
+</div>
+<!-- TODO: Add JavaScript / Go / C++ / C# / Rust / Java tabs (based on sj_test_multi_lang/order/combo/place/ test results)
 
 === "JavaScript"
 
@@ -2384,8 +2577,8 @@ order.account:                        下單帳號（省略則使用預設期貨
 -->
 
 <h2 id="_3">刪單<a class="headerlink" href="#_3" title="Permanent link">&para;</a></h2>
-<p><code>trade</code> 為要刪的單，可從<a href="#_4">查詢狀態</a>取得。</p>
-<div class="tabbed-set tabbed-alternate" data-tabs="3:2"><input checked="checked" id="__tabbed_3_1" name="__tabbed_3" type="radio" /><input id="__tabbed_3_2" name="__tabbed_3" type="radio" /><div class="tabbed-labels"><label for="__tabbed_3_1">Python</label><label for="__tabbed_3_2">其他語言</label></div>
+<p><code>trade</code> 為要刪的單，可從<a href="#_5">查詢狀態</a>取得。</p>
+<div class="tabbed-set tabbed-alternate" data-tabs="4:2"><input checked="checked" id="__tabbed_4_1" name="__tabbed_4" type="radio" /><input id="__tabbed_4_2" name="__tabbed_4" type="radio" /><div class="tabbed-labels"><label for="__tabbed_4_1">Python</label><label for="__tabbed_4_2">其他語言</label></div>
 <div class="tabbed-content">
 <div class="tabbed-block">
 <div class="admonition example">
@@ -2395,16 +2588,16 @@ order.account:                        下單帳號（省略則使用預設期貨
 <span class="n">Signature</span><span class="p">:</span>
     <span class="n">api</span><span class="o">.</span><span class="n">cancel_comboorder</span><span class="p">(</span>
         <span class="n">combo_trade</span><span class="p">:</span> <span class="n">sj</span><span class="o">.</span><span class="n">ComboTrade</span><span class="p">,</span>
-        <span class="n">timeout</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="nb">int</span><span class="p">]</span> <span class="o">=</span> <span class="mi">5000</span><span class="p">,</span>
+        <span class="n">timeout</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="nb">int</span><span class="p">]</span> <span class="o">=</span> <span class="mi">30000</span><span class="p">,</span>
         <span class="n">cb</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="n">Callable</span><span class="p">[[</span><span class="n">sj</span><span class="o">.</span><span class="n">ComboTrade</span><span class="p">],</span> <span class="kc">None</span><span class="p">]]</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
     <span class="p">)</span> <span class="o">-&gt;</span> <span class="n">sj</span><span class="o">.</span><span class="n">ComboTrade</span>
 </code></pre></div>
 </div>
 <div class="admonition done">
 <p class="admonition-title">Parameters</p>
-<div class="highlight"><pre><span></span><code>combo_trade: 欲刪除的組合單物件（從 list_combotrades / update_combostatus 取得）
+<div class="highlight"><pre><span></span><code>combo_trade: 要刪的組合單（list_combotrades / update_combostatus 取得）
 timeout:     逾時毫秒
-cb:          選填，callback 函式
+cb:          選填，callback 函式，timeout=0 時使用
 </code></pre></div>
 </div>
 </div>
@@ -2421,14 +2614,14 @@ cb:          選填，callback 函式
 </div>
 <div class="admonition done">
 <p class="admonition-title">Parameters</p>
-<div class="highlight"><pre><span></span><code>trade_id: 組合單 ID（取自 place 回傳的 status.id）
+<div class="highlight"><pre><span></span><code>trade_id: 組合單編號（下單回應 status.id）
 </code></pre></div>
 </div>
 </div>
 </div>
 </div>
 <h3 id="_4">範例<a class="headerlink" href="#_4" title="Permanent link">&para;</a></h3>
-<div class="tabbed-set tabbed-alternate" data-tabs="4:2"><input checked="checked" id="__tabbed_4_1" name="__tabbed_4" type="radio" /><input id="__tabbed_4_2" name="__tabbed_4" type="radio" /><div class="tabbed-labels"><label for="__tabbed_4_1">Python</label><label for="__tabbed_4_2">HTTP</label></div>
+<div class="tabbed-set tabbed-alternate" data-tabs="5:2"><input checked="checked" id="__tabbed_5_1" name="__tabbed_5" type="radio" /><input id="__tabbed_5_2" name="__tabbed_5" type="radio" /><div class="tabbed-labels"><label for="__tabbed_5_1">Python</label><label for="__tabbed_5_2">HTTP</label></div>
 <div class="tabbed-content">
 <div class="tabbed-block">
 <div class="admonition info">
@@ -2443,14 +2636,14 @@ cb:          選填，callback 函式
 <div class="highlight"><pre><span></span><code>curl<span class="w"> </span>-X<span class="w"> </span>POST<span class="w"> </span>http://localhost:8080/api/v1/order/cancel_comboorder<span class="w"> </span><span class="se">\</span>
 <span class="w">  </span>-H<span class="w"> </span><span class="s1">&#39;Content-Type: application/json&#39;</span><span class="w"> </span><span class="se">\</span>
 <span class="w">  </span>-d<span class="w"> </span><span class="s1">&#39;{</span>
-<span class="s1">    &quot;trade_id&quot;: &quot;YOUR_TRADE_ID&quot;</span>
+<span class="s1">    &quot;trade_id&quot;: &quot;46989de8&quot;</span>
 <span class="s1">  }&#39;</span>
 </code></pre></div>
 </div>
 </div>
 </div>
 </div>
-<!-- TODO: 補上 JavaScript / Go / C++ / C# / Rust / Java tabs（依 sj_test_multi_lang/order/combo/cancel/ 跑出的測試結果）
+<!-- TODO: Add JavaScript / Go / C++ / C# / Rust / Java tabs (based on sj_test_multi_lang/order/combo/cancel/ test results)
 
 === "JavaScript"
 
@@ -2468,7 +2661,7 @@ cb:          選填，callback 函式
 
 <h2 id="_5">查詢狀態<a class="headerlink" href="#_5" title="Permanent link">&para;</a></h2>
 <p>如同 <code>list_trades</code> 及 <code>update_status</code> 的概念，取得組合單狀態前，必須先呼叫 <code>update_combostatus</code> 更新；HTTP <code>/order/combotrades</code> 端點則一次完成「更新 + 取得」。</p>
-<div class="tabbed-set tabbed-alternate" data-tabs="5:2"><input checked="checked" id="__tabbed_5_1" name="__tabbed_5" type="radio" /><input id="__tabbed_5_2" name="__tabbed_5" type="radio" /><div class="tabbed-labels"><label for="__tabbed_5_1">Python</label><label for="__tabbed_5_2">其他語言</label></div>
+<div class="tabbed-set tabbed-alternate" data-tabs="6:2"><input checked="checked" id="__tabbed_6_1" name="__tabbed_6" type="radio" /><input id="__tabbed_6_2" name="__tabbed_6" type="radio" /><div class="tabbed-labels"><label for="__tabbed_6_1">Python</label><label for="__tabbed_6_2">其他語言</label></div>
 <div class="tabbed-content">
 <div class="tabbed-block">
 <div class="admonition example">
@@ -2478,7 +2671,7 @@ cb:          選填，callback 函式
 <span class="n">Signature</span><span class="p">:</span>
     <span class="n">api</span><span class="o">.</span><span class="n">update_combostatus</span><span class="p">(</span>
         <span class="n">account</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="n">sj</span><span class="o">.</span><span class="n">Account</span><span class="p">]</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
-        <span class="n">timeout</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="nb">int</span><span class="p">]</span> <span class="o">=</span> <span class="mi">5000</span><span class="p">,</span>
+        <span class="n">timeout</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="nb">int</span><span class="p">]</span> <span class="o">=</span> <span class="mi">30000</span><span class="p">,</span>
         <span class="n">cb</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="n">Callable</span><span class="p">[[</span><span class="n">List</span><span class="p">[</span><span class="n">sj</span><span class="o">.</span><span class="n">ComboTrade</span><span class="p">]],</span> <span class="kc">None</span><span class="p">]]</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
     <span class="p">)</span> <span class="o">-&gt;</span> <span class="n">List</span><span class="p">[</span><span class="n">sj</span><span class="o">.</span><span class="n">ComboTrade</span><span class="p">]</span>
 
@@ -2493,10 +2686,10 @@ cb:          選填，callback 函式
 <div class="highlight"><pre><span></span><code>update_combostatus
     account: 期貨帳號；省略則更新名下所有期貨帳號
     timeout: 逾時毫秒
-    cb:      選填，callback 函式
+    cb:      選填，callback 函式；timeout=0 時會收到更新後的 ComboTrade 清單
 
 list_combotrades
-    （無參數，從本地快取回傳已知組合單）
+    （無參數；回傳本地快取中已知的組合單）
 </code></pre></div>
 </div>
 </div>
@@ -2519,8 +2712,14 @@ list_combotrades
 </div>
 </div>
 </div>
+<div class="admonition note">
+<p class="admonition-title">IOC 未成交是正常結局</p>
+<p>以 <code>IOC</code> 送出且未成交的組合單，最終狀態為 <code>status=Cancelled</code>、<code>status_code='0000'</code>、
+<code>deal_quantity=0</code>、<code>cancel_quantity=1</code>、<code>deals={}</code>——代表委託被交易所接受、
+因未成交而自動取消，不是錯誤。</p>
+</div>
 <h3 id="_6">範例<a class="headerlink" href="#_6" title="Permanent link">&para;</a></h3>
-<div class="tabbed-set tabbed-alternate" data-tabs="6:2"><input checked="checked" id="__tabbed_6_1" name="__tabbed_6" type="radio" /><input id="__tabbed_6_2" name="__tabbed_6" type="radio" /><div class="tabbed-labels"><label for="__tabbed_6_1">Python</label><label for="__tabbed_6_2">HTTP</label></div>
+<div class="tabbed-set tabbed-alternate" data-tabs="7:2"><input checked="checked" id="__tabbed_7_1" name="__tabbed_7" type="radio" /><input id="__tabbed_7_2" name="__tabbed_7" type="radio" /><div class="tabbed-labels"><label for="__tabbed_7_1">Python</label><label for="__tabbed_7_2">HTTP</label></div>
 <div class="tabbed-content">
 <div class="tabbed-block">
 <div class="admonition info">
@@ -2537,36 +2736,32 @@ list_combotrades
             <span class="n">legs</span><span class="o">=</span><span class="p">[</span>
                 <span class="n">ComboBase</span><span class="p">(</span>
                     <span class="n">action</span><span class="o">=&lt;</span><span class="n">Action</span><span class="o">.</span><span class="n">Sell</span><span class="p">:</span> <span class="s1">&#39;Sell&#39;</span><span class="o">&gt;</span><span class="p">,</span>
-                    <span class="n">security_type</span><span class="o">=&lt;</span><span class="n">SecurityType</span><span class="o">.</span><span class="n">Option</span><span class="p">:</span> <span class="s1">&#39;OPT&#39;</span><span class="o">&gt;</span><span class="p">,</span>
+                    <span class="n">security_type</span><span class="o">=&lt;</span><span class="n">SecurityType</span><span class="o">.</span><span class="n">Future</span><span class="p">:</span> <span class="s1">&#39;FUT&#39;</span><span class="o">&gt;</span><span class="p">,</span>
                     <span class="n">exchange</span><span class="o">=&lt;</span><span class="n">Exchange</span><span class="o">.</span><span class="n">TAIFEX</span><span class="p">:</span> <span class="s1">&#39;TAIFEX&#39;</span><span class="o">&gt;</span><span class="p">,</span>
-                    <span class="n">code</span><span class="o">=</span><span class="s1">&#39;TXO20260527000C&#39;</span><span class="p">,</span>
-                    <span class="n">symbol</span><span class="o">=</span><span class="s1">&#39;TXO20260527000C&#39;</span><span class="p">,</span>
-                    <span class="n">category</span><span class="o">=</span><span class="s1">&#39;TXO&#39;</span><span class="p">,</span>
-                    <span class="n">delivery_month</span><span class="o">=</span><span class="s1">&#39;202605&#39;</span><span class="p">,</span>
-                    <span class="n">strike_price</span><span class="o">=</span><span class="mf">27000.0</span><span class="p">,</span>
-                    <span class="n">option_right</span><span class="o">=&lt;</span><span class="n">OptionRight</span><span class="o">.</span><span class="n">Call</span><span class="p">:</span> <span class="s1">&#39;C&#39;</span><span class="o">&gt;</span>
+                    <span class="n">code</span><span class="o">=</span><span class="s1">&#39;TXFH6&#39;</span><span class="p">,</span>
+                    <span class="n">symbol</span><span class="o">=</span><span class="s1">&#39;TXFH6&#39;</span><span class="p">,</span>
+                    <span class="n">category</span><span class="o">=</span><span class="s1">&#39;TXF&#39;</span><span class="p">,</span>
+                    <span class="n">delivery_month</span><span class="o">=</span><span class="s1">&#39;202608&#39;</span>
                 <span class="p">),</span>
                 <span class="n">ComboBase</span><span class="p">(</span>
-                    <span class="n">action</span><span class="o">=&lt;</span><span class="n">Action</span><span class="o">.</span><span class="n">Sell</span><span class="p">:</span> <span class="s1">&#39;Sell&#39;</span><span class="o">&gt;</span><span class="p">,</span>
-                    <span class="n">security_type</span><span class="o">=&lt;</span><span class="n">SecurityType</span><span class="o">.</span><span class="n">Option</span><span class="p">:</span> <span class="s1">&#39;OPT&#39;</span><span class="o">&gt;</span><span class="p">,</span>
+                    <span class="n">action</span><span class="o">=&lt;</span><span class="n">Action</span><span class="o">.</span><span class="n">Buy</span><span class="p">:</span> <span class="s1">&#39;Buy&#39;</span><span class="o">&gt;</span><span class="p">,</span>
+                    <span class="n">security_type</span><span class="o">=&lt;</span><span class="n">SecurityType</span><span class="o">.</span><span class="n">Future</span><span class="p">:</span> <span class="s1">&#39;FUT&#39;</span><span class="o">&gt;</span><span class="p">,</span>
                     <span class="n">exchange</span><span class="o">=&lt;</span><span class="n">Exchange</span><span class="o">.</span><span class="n">TAIFEX</span><span class="p">:</span> <span class="s1">&#39;TAIFEX&#39;</span><span class="o">&gt;</span><span class="p">,</span>
-                    <span class="n">code</span><span class="o">=</span><span class="s1">&#39;TXO20260527000P&#39;</span><span class="p">,</span>
-                    <span class="n">symbol</span><span class="o">=</span><span class="s1">&#39;TXO20260527000P&#39;</span><span class="p">,</span>
-                    <span class="n">category</span><span class="o">=</span><span class="s1">&#39;TXO&#39;</span><span class="p">,</span>
-                    <span class="n">delivery_month</span><span class="o">=</span><span class="s1">&#39;202605&#39;</span><span class="p">,</span>
-                    <span class="n">strike_price</span><span class="o">=</span><span class="mf">27000.0</span><span class="p">,</span>
-                    <span class="n">option_right</span><span class="o">=&lt;</span><span class="n">OptionRight</span><span class="o">.</span><span class="n">Put</span><span class="p">:</span> <span class="s1">&#39;P&#39;</span><span class="o">&gt;</span>
+                    <span class="n">code</span><span class="o">=</span><span class="s1">&#39;TXFI6&#39;</span><span class="p">,</span>
+                    <span class="n">symbol</span><span class="o">=</span><span class="s1">&#39;TXFI6&#39;</span><span class="p">,</span>
+                    <span class="n">category</span><span class="o">=</span><span class="s1">&#39;TXF&#39;</span><span class="p">,</span>
+                    <span class="n">delivery_month</span><span class="o">=</span><span class="s1">&#39;202609&#39;</span>
                 <span class="p">)</span>
             <span class="p">]</span>
         <span class="p">),</span>
         <span class="n">order</span><span class="o">=</span><span class="n">Order</span><span class="p">(</span>
             <span class="nb">id</span><span class="o">=</span><span class="s1">&#39;46989de8&#39;</span><span class="p">,</span>
-            <span class="n">action</span><span class="o">=&lt;</span><span class="n">Action</span><span class="o">.</span><span class="n">Sell</span><span class="p">:</span> <span class="s1">&#39;Sell&#39;</span><span class="o">&gt;</span><span class="p">,</span>
-            <span class="n">price</span><span class="o">=</span><span class="mf">1.0</span><span class="p">,</span>
+            <span class="n">action</span><span class="o">=&lt;</span><span class="n">Action</span><span class="o">.</span><span class="n">Buy</span><span class="p">:</span> <span class="s1">&#39;Buy&#39;</span><span class="o">&gt;</span><span class="p">,</span>
+            <span class="n">price</span><span class="o">=</span><span class="mf">50.0</span><span class="p">,</span>
             <span class="n">quantity</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span>
             <span class="n">seqno</span><span class="o">=</span><span class="s1">&#39;743595&#39;</span><span class="p">,</span>
             <span class="n">ordno</span><span class="o">=</span><span class="s1">&#39;000000&#39;</span><span class="p">,</span>
-            <span class="n">order_type</span><span class="o">=&lt;</span><span class="n">OrderType</span><span class="o">.</span><span class="n">IOC</span><span class="p">:</span> <span class="s1">&#39;IOC&#39;</span><span class="o">&gt;</span><span class="p">,</span>
+            <span class="n">order_type</span><span class="o">=&lt;</span><span class="n">OrderType</span><span class="o">.</span><span class="n">ROD</span><span class="p">:</span> <span class="s1">&#39;ROD&#39;</span><span class="o">&gt;</span><span class="p">,</span>
             <span class="n">price_type</span><span class="o">=&lt;</span><span class="n">PriceType</span><span class="o">.</span><span class="n">LMT</span><span class="p">:</span> <span class="s1">&#39;LMT&#39;</span><span class="o">&gt;</span><span class="p">,</span>
             <span class="n">account</span><span class="o">=</span><span class="n">FutureAccount</span><span class="p">(</span>
                 <span class="n">person_id</span><span class="o">=</span><span class="s1">&#39;YOUR_PERSON_ID&#39;</span><span class="p">,</span>
@@ -2575,15 +2770,15 @@ list_combotrades
                 <span class="n">signed</span><span class="o">=</span><span class="n">true</span><span class="p">,</span>
                 <span class="n">username</span><span class="o">=</span><span class="s1">&#39;&#39;</span>
             <span class="p">),</span>
-            <span class="n">octype</span><span class="o">=&lt;</span><span class="n">FuturesOCType</span><span class="o">.</span><span class="n">New</span><span class="p">:</span> <span class="s1">&#39;New&#39;</span><span class="o">&gt;</span>
+            <span class="n">octype</span><span class="o">=&lt;</span><span class="n">FuturesOCType</span><span class="o">.</span><span class="n">Auto</span><span class="p">:</span> <span class="s1">&#39;Auto&#39;</span><span class="o">&gt;</span>
         <span class="p">),</span>
         <span class="n">status</span><span class="o">=</span><span class="n">ComboStatus</span><span class="p">(</span>
             <span class="nb">id</span><span class="o">=</span><span class="s1">&#39;46989de8&#39;</span><span class="p">,</span>
             <span class="n">status</span><span class="o">=&lt;</span><span class="n">OrderStatus</span><span class="o">.</span><span class="n">Submitted</span><span class="p">:</span> <span class="s1">&#39;Submitted&#39;</span><span class="o">&gt;</span><span class="p">,</span>
             <span class="n">status_code</span><span class="o">=</span><span class="s1">&#39;0000&#39;</span><span class="p">,</span>
-            <span class="n">order_datetime</span><span class="o">=</span><span class="n">datetime</span><span class="o">.</span><span class="n">datetime</span><span class="p">(</span><span class="mi">2026</span><span class="p">,</span> <span class="mi">5</span><span class="p">,</span> <span class="mi">20</span><span class="p">,</span> <span class="mi">11</span><span class="p">,</span> <span class="mi">24</span><span class="p">,</span> <span class="mi">30</span><span class="p">,</span> <span class="n">tzinfo</span><span class="o">=</span><span class="n">datetime</span><span class="o">.</span><span class="n">timezone</span><span class="p">(</span><span class="n">datetime</span><span class="o">.</span><span class="n">timedelta</span><span class="p">(</span><span class="n">hours</span><span class="o">=</span><span class="mi">8</span><span class="p">))),</span>
-            <span class="n">modified_time</span><span class="o">=</span><span class="n">datetime</span><span class="o">.</span><span class="n">datetime</span><span class="p">(</span><span class="mi">2026</span><span class="p">,</span> <span class="mi">5</span><span class="p">,</span> <span class="mi">20</span><span class="p">,</span> <span class="mi">11</span><span class="p">,</span> <span class="mi">24</span><span class="p">,</span> <span class="mi">30</span><span class="p">,</span> <span class="n">tzinfo</span><span class="o">=</span><span class="n">datetime</span><span class="o">.</span><span class="n">timezone</span><span class="p">(</span><span class="n">datetime</span><span class="o">.</span><span class="n">timedelta</span><span class="p">(</span><span class="n">hours</span><span class="o">=</span><span class="mi">8</span><span class="p">))),</span>
-            <span class="n">modified_price</span><span class="o">=</span><span class="mf">1.0</span><span class="p">,</span>
+            <span class="n">order_datetime</span><span class="o">=</span><span class="n">datetime</span><span class="o">.</span><span class="n">datetime</span><span class="p">(</span><span class="mi">2026</span><span class="p">,</span> <span class="mi">8</span><span class="p">,</span> <span class="mi">12</span><span class="p">,</span> <span class="mi">11</span><span class="p">,</span> <span class="mi">35</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="n">tzinfo</span><span class="o">=</span><span class="n">datetime</span><span class="o">.</span><span class="n">timezone</span><span class="p">(</span><span class="n">datetime</span><span class="o">.</span><span class="n">timedelta</span><span class="p">(</span><span class="n">hours</span><span class="o">=</span><span class="mi">8</span><span class="p">))),</span>
+            <span class="n">modified_time</span><span class="o">=</span><span class="n">datetime</span><span class="o">.</span><span class="n">datetime</span><span class="p">(</span><span class="mi">2026</span><span class="p">,</span> <span class="mi">8</span><span class="p">,</span> <span class="mi">12</span><span class="p">,</span> <span class="mi">11</span><span class="p">,</span> <span class="mi">35</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="n">tzinfo</span><span class="o">=</span><span class="n">datetime</span><span class="o">.</span><span class="n">timezone</span><span class="p">(</span><span class="n">datetime</span><span class="o">.</span><span class="n">timedelta</span><span class="p">(</span><span class="n">hours</span><span class="o">=</span><span class="mi">8</span><span class="p">))),</span>
+            <span class="n">modified_price</span><span class="o">=</span><span class="mf">50.0</span><span class="p">,</span>
             <span class="n">order_quantity</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span>
             <span class="n">deals</span><span class="o">=</span><span class="p">{}</span>
         <span class="p">)</span>
@@ -2607,13 +2802,13 @@ list_combotrades
 </div>
 <div class="admonition done">
 <p class="admonition-title">Out</p>
-<div class="highlight"><pre><span></span><code><span class="p">[{</span><span class="nt">&quot;contract&quot;</span><span class="p">:{</span><span class="nt">&quot;legs&quot;</span><span class="p">:[{</span><span class="nt">&quot;action&quot;</span><span class="p">:</span><span class="s2">&quot;Sell&quot;</span><span class="p">,</span><span class="nt">&quot;security_type&quot;</span><span class="p">:</span><span class="s2">&quot;OPT&quot;</span><span class="p">,</span><span class="nt">&quot;exchange&quot;</span><span class="p">:</span><span class="s2">&quot;TAIFEX&quot;</span><span class="p">,</span><span class="nt">&quot;code&quot;</span><span class="p">:</span><span class="s2">&quot;TXO20260527000C&quot;</span><span class="p">,</span><span class="nt">&quot;symbol&quot;</span><span class="p">:</span><span class="s2">&quot;TXO20260527000C&quot;</span><span class="p">,</span><span class="nt">&quot;category&quot;</span><span class="p">:</span><span class="s2">&quot;TXO&quot;</span><span class="p">,</span><span class="nt">&quot;delivery_month&quot;</span><span class="p">:</span><span class="s2">&quot;202605&quot;</span><span class="p">,</span><span class="nt">&quot;strike_price&quot;</span><span class="p">:</span><span class="mf">27000.0</span><span class="p">,</span><span class="nt">&quot;option_right&quot;</span><span class="p">:</span><span class="s2">&quot;C&quot;</span><span class="p">},{</span><span class="nt">&quot;action&quot;</span><span class="p">:</span><span class="s2">&quot;Sell&quot;</span><span class="p">,</span><span class="nt">&quot;security_type&quot;</span><span class="p">:</span><span class="s2">&quot;OPT&quot;</span><span class="p">,</span><span class="nt">&quot;exchange&quot;</span><span class="p">:</span><span class="s2">&quot;TAIFEX&quot;</span><span class="p">,</span><span class="nt">&quot;code&quot;</span><span class="p">:</span><span class="s2">&quot;TXO20260527000P&quot;</span><span class="p">,</span><span class="nt">&quot;symbol&quot;</span><span class="p">:</span><span class="s2">&quot;TXO20260527000P&quot;</span><span class="p">,</span><span class="nt">&quot;category&quot;</span><span class="p">:</span><span class="s2">&quot;TXO&quot;</span><span class="p">,</span><span class="nt">&quot;delivery_month&quot;</span><span class="p">:</span><span class="s2">&quot;202605&quot;</span><span class="p">,</span><span class="nt">&quot;strike_price&quot;</span><span class="p">:</span><span class="mf">27000.0</span><span class="p">,</span><span class="nt">&quot;option_right&quot;</span><span class="p">:</span><span class="s2">&quot;P&quot;</span><span class="p">}]},</span><span class="nt">&quot;order&quot;</span><span class="p">:{</span><span class="nt">&quot;id&quot;</span><span class="p">:</span><span class="s2">&quot;46989de8&quot;</span><span class="p">,</span><span class="nt">&quot;action&quot;</span><span class="p">:</span><span class="s2">&quot;Sell&quot;</span><span class="p">,</span><span class="nt">&quot;price&quot;</span><span class="p">:</span><span class="mf">1.0</span><span class="p">,</span><span class="nt">&quot;quantity&quot;</span><span class="p">:</span><span class="mi">1</span><span class="p">,</span><span class="nt">&quot;seqno&quot;</span><span class="p">:</span><span class="s2">&quot;743595&quot;</span><span class="p">,</span><span class="nt">&quot;ordno&quot;</span><span class="p">:</span><span class="s2">&quot;000000&quot;</span><span class="p">,</span><span class="nt">&quot;order_type&quot;</span><span class="p">:</span><span class="s2">&quot;IOC&quot;</span><span class="p">,</span><span class="nt">&quot;price_type&quot;</span><span class="p">:</span><span class="s2">&quot;LMT&quot;</span><span class="p">,</span><span class="nt">&quot;account&quot;</span><span class="p">:{</span><span class="nt">&quot;account_type&quot;</span><span class="p">:</span><span class="s2">&quot;F&quot;</span><span class="p">,</span><span class="nt">&quot;person_id&quot;</span><span class="p">:</span><span class="s2">&quot;YOUR_PERSON_ID&quot;</span><span class="p">,</span><span class="nt">&quot;broker_id&quot;</span><span class="p">:</span><span class="s2">&quot;YOUR_BROKER_ID&quot;</span><span class="p">,</span><span class="nt">&quot;account_id&quot;</span><span class="p">:</span><span class="s2">&quot;YOUR_ACCOUNT_ID&quot;</span><span class="p">,</span><span class="nt">&quot;signed&quot;</span><span class="p">:</span><span class="kc">true</span><span class="p">,</span><span class="nt">&quot;username&quot;</span><span class="p">:</span><span class="s2">&quot;&quot;</span><span class="p">},</span><span class="nt">&quot;octype&quot;</span><span class="p">:</span><span class="s2">&quot;New&quot;</span><span class="p">},</span><span class="nt">&quot;status&quot;</span><span class="p">:{</span><span class="nt">&quot;id&quot;</span><span class="p">:</span><span class="s2">&quot;46989de8&quot;</span><span class="p">,</span><span class="nt">&quot;status&quot;</span><span class="p">:</span><span class="s2">&quot;Submitted&quot;</span><span class="p">,</span><span class="nt">&quot;status_code&quot;</span><span class="p">:</span><span class="s2">&quot;0000&quot;</span><span class="p">,</span><span class="nt">&quot;order_datetime&quot;</span><span class="p">:</span><span class="s2">&quot;2026-05-20T11:24:30+08:00&quot;</span><span class="p">,</span><span class="nt">&quot;modified_time&quot;</span><span class="p">:</span><span class="s2">&quot;2026-05-20T11:24:30+08:00&quot;</span><span class="p">,</span><span class="nt">&quot;modified_price&quot;</span><span class="p">:</span><span class="mf">1.0</span><span class="p">,</span><span class="nt">&quot;order_quantity&quot;</span><span class="p">:</span><span class="mi">1</span><span class="p">,</span><span class="nt">&quot;deals&quot;</span><span class="p">:{}}}]</span>
+<div class="highlight"><pre><span></span><code><span class="p">[{</span><span class="nt">&quot;contract&quot;</span><span class="p">:{</span><span class="nt">&quot;legs&quot;</span><span class="p">:[{</span><span class="nt">&quot;action&quot;</span><span class="p">:</span><span class="s2">&quot;Sell&quot;</span><span class="p">,</span><span class="nt">&quot;security_type&quot;</span><span class="p">:</span><span class="s2">&quot;FUT&quot;</span><span class="p">,</span><span class="nt">&quot;exchange&quot;</span><span class="p">:</span><span class="s2">&quot;TAIFEX&quot;</span><span class="p">,</span><span class="nt">&quot;code&quot;</span><span class="p">:</span><span class="s2">&quot;TXFH6&quot;</span><span class="p">,</span><span class="nt">&quot;symbol&quot;</span><span class="p">:</span><span class="s2">&quot;TXFH6&quot;</span><span class="p">,</span><span class="nt">&quot;category&quot;</span><span class="p">:</span><span class="s2">&quot;TXF&quot;</span><span class="p">,</span><span class="nt">&quot;delivery_month&quot;</span><span class="p">:</span><span class="s2">&quot;202608&quot;</span><span class="p">},{</span><span class="nt">&quot;action&quot;</span><span class="p">:</span><span class="s2">&quot;Buy&quot;</span><span class="p">,</span><span class="nt">&quot;security_type&quot;</span><span class="p">:</span><span class="s2">&quot;FUT&quot;</span><span class="p">,</span><span class="nt">&quot;exchange&quot;</span><span class="p">:</span><span class="s2">&quot;TAIFEX&quot;</span><span class="p">,</span><span class="nt">&quot;code&quot;</span><span class="p">:</span><span class="s2">&quot;TXFI6&quot;</span><span class="p">,</span><span class="nt">&quot;symbol&quot;</span><span class="p">:</span><span class="s2">&quot;TXFI6&quot;</span><span class="p">,</span><span class="nt">&quot;category&quot;</span><span class="p">:</span><span class="s2">&quot;TXF&quot;</span><span class="p">,</span><span class="nt">&quot;delivery_month&quot;</span><span class="p">:</span><span class="s2">&quot;202609&quot;</span><span class="p">}]},</span><span class="nt">&quot;order&quot;</span><span class="p">:{</span><span class="nt">&quot;id&quot;</span><span class="p">:</span><span class="s2">&quot;46989de8&quot;</span><span class="p">,</span><span class="nt">&quot;action&quot;</span><span class="p">:</span><span class="s2">&quot;Buy&quot;</span><span class="p">,</span><span class="nt">&quot;price&quot;</span><span class="p">:</span><span class="mf">50.0</span><span class="p">,</span><span class="nt">&quot;quantity&quot;</span><span class="p">:</span><span class="mi">1</span><span class="p">,</span><span class="nt">&quot;seqno&quot;</span><span class="p">:</span><span class="s2">&quot;743595&quot;</span><span class="p">,</span><span class="nt">&quot;ordno&quot;</span><span class="p">:</span><span class="s2">&quot;000000&quot;</span><span class="p">,</span><span class="nt">&quot;order_type&quot;</span><span class="p">:</span><span class="s2">&quot;ROD&quot;</span><span class="p">,</span><span class="nt">&quot;price_type&quot;</span><span class="p">:</span><span class="s2">&quot;LMT&quot;</span><span class="p">,</span><span class="nt">&quot;account&quot;</span><span class="p">:{</span><span class="nt">&quot;account_type&quot;</span><span class="p">:</span><span class="s2">&quot;F&quot;</span><span class="p">,</span><span class="nt">&quot;person_id&quot;</span><span class="p">:</span><span class="s2">&quot;YOUR_PERSON_ID&quot;</span><span class="p">,</span><span class="nt">&quot;broker_id&quot;</span><span class="p">:</span><span class="s2">&quot;YOUR_BROKER_ID&quot;</span><span class="p">,</span><span class="nt">&quot;account_id&quot;</span><span class="p">:</span><span class="s2">&quot;YOUR_ACCOUNT_ID&quot;</span><span class="p">,</span><span class="nt">&quot;signed&quot;</span><span class="p">:</span><span class="kc">true</span><span class="p">,</span><span class="nt">&quot;username&quot;</span><span class="p">:</span><span class="s2">&quot;&quot;</span><span class="p">},</span><span class="nt">&quot;octype&quot;</span><span class="p">:</span><span class="s2">&quot;Auto&quot;</span><span class="p">},</span><span class="nt">&quot;status&quot;</span><span class="p">:{</span><span class="nt">&quot;id&quot;</span><span class="p">:</span><span class="s2">&quot;46989de8&quot;</span><span class="p">,</span><span class="nt">&quot;status&quot;</span><span class="p">:</span><span class="s2">&quot;Submitted&quot;</span><span class="p">,</span><span class="nt">&quot;status_code&quot;</span><span class="p">:</span><span class="s2">&quot;0000&quot;</span><span class="p">,</span><span class="nt">&quot;order_datetime&quot;</span><span class="p">:</span><span class="s2">&quot;2026-08-12T11:35:00+08:00&quot;</span><span class="p">,</span><span class="nt">&quot;modified_price&quot;</span><span class="p">:</span><span class="mf">50.0</span><span class="p">,</span><span class="nt">&quot;order_quantity&quot;</span><span class="p">:</span><span class="mi">1</span><span class="p">,</span><span class="nt">&quot;deals&quot;</span><span class="p">:{}}}]</span>
 </code></pre></div>
 </div>
 </div>
 </div>
 </div>
-<!-- TODO: 補上 JavaScript / Go / C++ / C# / Rust / Java tabs（依 sj_test_multi_lang/order/combo/status/ 跑出的測試結果）
+<!-- TODO: Add JavaScript / Go / C++ / C# / Rust / Java tabs (based on sj_test_multi_lang/order/combo/status/ test results)
 
 === "JavaScript"
 

@@ -813,6 +813,29 @@
   
   
     <li class="md-nav__item">
+      <a href="../streaming/combo/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    組合商品
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
       <a href="../streaming/" class="md-nav__link">
         
   
@@ -971,6 +994,15 @@
   <a href="#_2" class="md-nav__link">
     <span class="md-ellipsis">
       範例
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_3" class="md-nav__link">
+    <span class="md-ellipsis">
+      組合商品
     </span>
   </a>
   
@@ -2050,6 +2082,15 @@
   
 </li>
       
+        <li class="md-nav__item">
+  <a href="#_3" class="md-nav__link">
+    <span class="md-ellipsis">
+      組合商品
+    </span>
+  </a>
+  
+</li>
+      
     </ul>
   
 </nav>
@@ -2646,6 +2687,90 @@ contracts[].code:          商品代碼（例如 2330、TXFR1）
 
 
 -->
+
+<h2 id="_3">組合商品<a class="headerlink" href="#_3" title="Permanent link">&para;</a></h2>
+<p>組合合約（建法見<a href="../../contract/#combo">商品合約</a>）亦可查詢快照，並可與其他商品混列於同一次查詢；價格欄位皆為組合淨價。</p>
+<div class="tabbed-set tabbed-alternate" data-tabs="3:3"><input checked="checked" id="__tabbed_3_1" name="__tabbed_3" type="radio" /><input id="__tabbed_3_2" name="__tabbed_3" type="radio" /><input id="__tabbed_3_3" name="__tabbed_3" type="radio" /><div class="tabbed-labels"><label for="__tabbed_3_1">Python</label><label for="__tabbed_3_2">CLI</label><label for="__tabbed_3_3">HTTP</label></div>
+<div class="tabbed-content">
+<div class="tabbed-block">
+<div class="admonition info">
+<p class="admonition-title">In</p>
+<div class="highlight"><pre><span></span><code><span class="n">near</span> <span class="o">=</span> <span class="n">api</span><span class="o">.</span><span class="n">contracts</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s2">&quot;TXFH6&quot;</span><span class="p">)</span>
+<span class="n">far</span> <span class="o">=</span> <span class="n">api</span><span class="o">.</span><span class="n">contracts</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s2">&quot;TXFI6&quot;</span><span class="p">)</span>
+<span class="n">combo_contract</span> <span class="o">=</span> <span class="n">api</span><span class="o">.</span><span class="n">contracts</span><span class="o">.</span><span class="n">combo</span><span class="p">(</span><span class="n">legs</span><span class="o">=</span><span class="p">[</span><span class="n">near</span><span class="p">,</span> <span class="n">far</span><span class="p">])</span>
+
+<span class="n">api</span><span class="o">.</span><span class="n">snapshots</span><span class="p">([</span><span class="n">combo_contract</span><span class="p">])</span>
+</code></pre></div>
+</div>
+<div class="admonition done">
+<p class="admonition-title">Out</p>
+<div class="highlight"><pre><span></span><code><span class="p">[</span>
+    <span class="n">Snapshot</span><span class="p">(</span>
+        <span class="n">ts</span><span class="o">=</span><span class="mi">1786555404820000000</span><span class="p">,</span>
+        <span class="n">code</span><span class="o">=</span><span class="s1">&#39;TXFH6/I6&#39;</span><span class="p">,</span>
+        <span class="n">exchange</span><span class="o">=</span><span class="s1">&#39;&#39;</span><span class="p">,</span>
+        <span class="nb">open</span><span class="o">=</span><span class="mi">153</span><span class="p">,</span>
+        <span class="n">high</span><span class="o">=</span><span class="mi">174</span><span class="p">,</span>
+        <span class="n">low</span><span class="o">=</span><span class="mi">153</span><span class="p">,</span>
+        <span class="n">close</span><span class="o">=</span><span class="mi">169</span><span class="p">,</span>
+        <span class="n">tick_type</span><span class="o">=&lt;</span><span class="n">TickType</span><span class="o">.</span><span class="n">Buy</span><span class="p">:</span> <span class="s1">&#39;Buy&#39;</span><span class="o">&gt;</span><span class="p">,</span>
+        <span class="n">change_price</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span>
+        <span class="n">change_rate</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span>
+        <span class="n">change_type</span><span class="o">=&lt;</span><span class="n">ChangeType</span><span class="o">.</span><span class="n">LimitUp</span><span class="p">:</span> <span class="s1">&#39;LimitUp&#39;</span><span class="o">&gt;</span><span class="p">,</span>
+        <span class="n">average_price</span><span class="o">=</span><span class="mf">165.84</span><span class="p">,</span>
+        <span class="n">volume</span><span class="o">=</span><span class="mi">2</span><span class="p">,</span>
+        <span class="n">total_volume</span><span class="o">=</span><span class="mi">79</span><span class="p">,</span>
+        <span class="n">amount</span><span class="o">=</span><span class="mi">338</span><span class="p">,</span>
+        <span class="n">total_amount</span><span class="o">=</span><span class="mi">13101</span><span class="p">,</span>
+        <span class="n">yesterday_volume</span><span class="o">=</span><span class="mi">1496</span><span class="p">,</span>
+        <span class="n">buy_price</span><span class="o">=</span><span class="mi">165</span><span class="p">,</span>
+        <span class="n">buy_volume</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span>
+        <span class="n">sell_price</span><span class="o">=</span><span class="mi">170</span><span class="p">,</span>
+        <span class="n">sell_volume</span><span class="o">=</span><span class="mi">2</span><span class="p">,</span>
+        <span class="n">volume_ratio</span><span class="o">=</span><span class="mf">0.05</span>
+    <span class="p">)</span>
+<span class="p">]</span>
+</code></pre></div>
+</div>
+</div>
+<div class="tabbed-block">
+<div class="admonition info">
+<p class="admonition-title">In</p>
+<div class="highlight"><pre><span></span><code>shioaji<span class="w"> </span>data<span class="w"> </span>snapshots<span class="w"> </span>--codes<span class="w"> </span><span class="s1">&#39;TXFH6+TXFI6&#39;</span>
+</code></pre></div>
+</div>
+<div class="admonition done">
+<p class="admonition-title">Out</p>
+<div class="highlight"><pre><span></span><code>[1]{datetime,code,exchange,open,high,low,close,tick_type,change_price,change_rate,change_type,average_price,volume,total_volume,amount,total_amount,yesterday_volume,buy_price,buy_volume,sell_price,sell_volume,volume_ratio}:
+  2026-08-12T17:23:24.820000,&quot;TXFH6/I6&quot;,,153,174,153,169,Buy,0,0,LimitUp,165.84,2,79,338,13101,1496,165,1,170,2,0.05
+</code></pre></div>
+</div>
+</div>
+<div class="tabbed-block">
+<div class="admonition info">
+<p class="admonition-title">In</p>
+<div class="highlight"><pre><span></span><code>curl<span class="w"> </span>-X<span class="w"> </span>POST<span class="w"> </span>http://localhost:8080/api/v1/data/snapshots<span class="w"> </span><span class="se">\</span>
+<span class="w">  </span>-H<span class="w"> </span><span class="s1">&#39;Content-Type: application/json&#39;</span><span class="w"> </span><span class="se">\</span>
+<span class="w">  </span>-d<span class="w"> </span><span class="s1">&#39;{</span>
+<span class="s1">    &quot;contracts&quot;: [</span>
+<span class="s1">      {</span>
+<span class="s1">        &quot;legs&quot;: [</span>
+<span class="s1">          {&quot;security_type&quot;: &quot;FUT&quot;, &quot;exchange&quot;: &quot;TAIFEX&quot;, &quot;code&quot;: &quot;TXFH6&quot;},</span>
+<span class="s1">          {&quot;security_type&quot;: &quot;FUT&quot;, &quot;exchange&quot;: &quot;TAIFEX&quot;, &quot;code&quot;: &quot;TXFI6&quot;}</span>
+<span class="s1">        ]</span>
+<span class="s1">      }</span>
+<span class="s1">    ]</span>
+<span class="s1">  }&#39;</span>
+</code></pre></div>
+</div>
+<div class="admonition done">
+<p class="admonition-title">Out</p>
+<div class="highlight"><pre><span></span><code>[{&quot;datetime&quot;:&quot;2026-08-12T17:23:24.820000&quot;,&quot;code&quot;:&quot;TXFH6/I6&quot;,&quot;exchange&quot;:&quot;&quot;,&quot;open&quot;:153.0,&quot;high&quot;:174.0,&quot;low&quot;:153.0,&quot;close&quot;:169.0,&quot;tick_type&quot;:&quot;Buy&quot;,&quot;change_price&quot;:0.0,&quot;change_rate&quot;:0.0,&quot;change_type&quot;:&quot;LimitUp&quot;,&quot;average_price&quot;:165.84,&quot;volume&quot;:2,&quot;total_volume&quot;:79,&quot;amount&quot;:338,&quot;total_amount&quot;:13101,&quot;yesterday_volume&quot;:1496.0,&quot;buy_price&quot;:165.0,&quot;buy_volume&quot;:1.0,&quot;sell_price&quot;:170.0,&quot;sell_volume&quot;:2,&quot;volume_ratio&quot;:0.05}]
+</code></pre></div>
+</div>
+</div>
+</div>
+</div>
 
 
 

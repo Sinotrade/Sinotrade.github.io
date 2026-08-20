@@ -696,3 +696,160 @@ Out
 {"datetime":["2026-05-18T08:46:00","2026-05-18T08:47:00","2026-05-18T08:48:00",...],"Open":[40200.0,40308.0,40276.0,...],"High":[40369.0,40342.0,40316.0,...],"Low":[40169.0,40262.0,40251.0,...],"Close":[40310.0,40276.0,40316.0,...],"Volume":[2051,704,443,...],"Amount":[82536213.0,28372910.0,17845729.0,...]}
 
 ```
+
+## Combo Products
+
+Combo contracts (see [Contract](../../contract/#combo) for how to build one) can query historical `Ticks` and `Kbars` directly; every price field is the combo net price.
+
+#### Ticks
+
+In
+
+```
+near = api.contracts.get("TXFH6")
+far = api.contracts.get("TXFI6")
+combo_contract = api.contracts.combo(legs=[near, far])
+
+ticks = api.ticks(combo_contract, date="2026-08-12")
+ticks
+
+```
+
+Out
+
+```
+Ticks[1885](
+    ts=[1786524486391000000, 1786524537279000000, 1786524537461000000, ..., 1786542270048000000, 1786542283251000000, 1786542283355000000],
+    close=[131, 130, 132, ..., 149, 151, 151],
+    volume=[3, 3, 1, ..., 2, 1, 1],
+    bid_price=[131, 130, 129, ..., 149, 148, 148],
+    bid_volume=[3, 3, 5, ..., 11, 16, 16],
+    ask_price=[132, 132, 132, ..., 151, 151, 151],
+    ask_volume=[1, 1, 1, ..., 13, 13, 12],
+    tick_type=[2, 2, 1, ..., 2, 1, 1]
+)
+
+```
+
+#### Kbars
+
+In
+
+```
+near = api.contracts.get("TXFH6")
+far = api.contracts.get("TXFI6")
+combo_contract = api.contracts.combo(legs=[near, far])
+
+kbars = api.kbars(combo_contract, start="2026-08-11", end="2026-08-12")
+kbars
+
+```
+
+Out
+
+```
+KBars[564](
+    ts=[1786438440000000000, 1786438680000000000, 1786438860000000000, ..., 1786555200000000000, 1786555260000000000, 1786555440000000000],
+    Open=[135, 135, 130, ..., 165, 166, 169],
+    High=[135, 136, 130, ..., 165, 166, 169],
+    Low=[135, 135, 130, ..., 165, 166, 169],
+    Close=[135, 136, 130, ..., 165, 166, 169],
+    Volume=[1, 2, 5, ..., 1, 1, 4],
+    Amount=[135, 271, 650, ..., 165, 166, 676]
+)
+
+```
+
+**Ticks**
+
+In
+
+```
+shioaji data ticks --code TXFH6 --combo-with TXFI6 --security-type FUT --date 2026-08-12 --all
+
+```
+
+Out
+
+```
+[1885]{datetime,close,volume,bid_price,bid_volume,ask_price,ask_volume,tick_type}:
+  2026-08-12T08:48:06.391000,131,3,131,3,132,1,2
+  2026-08-12T08:48:57.279000,130,3,130,3,132,1,2
+  2026-08-12T08:48:57.461000,132,1,129,5,132,1,1
+  ...
+
+```
+
+**Kbars**
+
+In
+
+```
+shioaji data kbars --code TXFH6 --combo-with TXFI6 --security-type FUT --start 2026-08-11 --end 2026-08-12
+
+```
+
+Out
+
+```
+[564]{datetime,Open,High,Low,Close,Volume,Amount}:
+  2026-08-11T08:54:00,135,135,135,135,1,135
+  2026-08-11T08:58:00,135,136,135,136,2,271
+  2026-08-11T09:01:00,130,130,130,130,5,650
+  ...
+
+```
+
+**Ticks**
+
+In
+
+```
+curl -X POST http://localhost:8080/api/v1/data/ticks \
+  -H 'Content-Type: application/json' \
+  -d '{
+    "contract": {
+      "legs": [
+        {"security_type": "FUT", "exchange": "TAIFEX", "code": "TXFH6"},
+        {"security_type": "FUT", "exchange": "TAIFEX", "code": "TXFI6"}
+      ]
+    },
+    "date": "2026-08-12",
+    "query_type": "AllDay"
+  }'
+
+```
+
+Out
+
+```
+{"datetime":["2026-08-12T08:48:06.391000","2026-08-12T08:48:57.279000","2026-08-12T08:48:57.461000",...],"close":[131.0,130.0,132.0,...],"volume":[3,3,1,...],"bid_price":[131.0,130.0,129.0,...],"bid_volume":[3,3,5,...],"ask_price":[132.0,132.0,132.0,...],"ask_volume":[1,1,1,...],"tick_type":[2,2,1,...]}
+
+```
+
+**Kbars**
+
+In
+
+```
+curl -X POST http://localhost:8080/api/v1/data/kbars \
+  -H 'Content-Type: application/json' \
+  -d '{
+    "contract": {
+      "legs": [
+        {"security_type": "FUT", "exchange": "TAIFEX", "code": "TXFH6"},
+        {"security_type": "FUT", "exchange": "TAIFEX", "code": "TXFI6"}
+      ]
+    },
+    "start": "2026-08-11",
+    "end": "2026-08-12"
+  }'
+
+```
+
+Out
+
+```
+{"datetime":["2026-08-11T08:54:00","2026-08-11T08:58:00","2026-08-11T09:01:00",...],"Open":[135.0,135.0,130.0,...],"High":[135.0,136.0,130.0,...],"Low":[135.0,135.0,130.0,...],"Close":[135.0,136.0,130.0,...],"Volume":[1,2,5,...],"Amount":[135.0,271.0,650.0,...]}
+
+```

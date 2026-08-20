@@ -501,7 +501,7 @@ api.contracts.info(c)
 Out
 
 ```
-StockInfo(Contract(security_type='STK', region='TW', exchange='TSE', code='2330'), code='2330', name='台積電', category='24', currency=<Currency.TWD: 'TWD'>, unit=1000.0, day_trade=<DayTrade.Yes: 'Yes'>, reference=2440.0, limit_up=2680.0, limit_down=2200.0, margin_trading_balance=0, short_selling_balance=99, trading_suspended=False, margin_loan_ratio=0.6, margin_quota_lots=0, short_margin_ratio=0.9, short_quota_lots=99, short_selling_suspended=False, disposition_level=0, attention_flag=False, short_below_par_eligible=True, slb_below_par_eligible=True, etf_constituent=True, settlement_type='0', update_date=datetime.date(2026, 7, 16))
+StockInfo(Contract(security_type='STK', region='TW', exchange='TSE', code='2330'), code='2330', name='台積電', category='24', currency=<Currency.TWD: 'TWD'>, unit=1000.0, day_trade=<DayTrade.Yes: 'Yes'>, reference=2440.0, limit_up=2680.0, limit_down=2200.0, margin_trading_balance=0, short_selling_balance=99, trading_suspended=False, margin_loan_ratio=0.6, margin_quota_lots=0, short_margin_ratio=0.9, short_quota_lots=99, margin_shortable=True, sbl_shortable=True, below_ref_shortable=True, disposition_level=0, attention_flag=False, etf_constituent=True, settlement_type='0', update_date=datetime.date(2026, 7, 16))
 
 ```
 
@@ -523,7 +523,7 @@ curl "http://localhost:8080/api/v1/data/contracts/2330/info"
 Out
 
 ```
-{"security_type":"STK","region":"TW","exchange":"TSE","code":"2330","target_code":null,"name":"台積電","category":"24","currency":"TWD","unit":1000.0,"day_trade":"Yes","reference":2440.0,"limit_up":2680.0,"limit_down":2200.0,"margin_trading_balance":0,"short_selling_balance":99,"trading_suspended":false,"margin_loan_ratio":0.6,"margin_quota_lots":0,"short_margin_ratio":0.9,"short_quota_lots":99,"short_selling_suspended":false,"disposition_level":0,"attention_flag":false,"short_below_par_eligible":true,"slb_below_par_eligible":true,"etf_constituent":true,"settlement_type":"0","disposition_match_interval_min":null,"disposition_max_lots_single_order":null,"disposition_max_lots_total_orders":null,"disposition_prepay_ratio":null,"update_date":"2026-07-16"}
+{"security_type":"STK","region":"TW","exchange":"TSE","code":"2330","target_code":null,"name":"台積電","category":"24","currency":"TWD","unit":1000.0,"day_trade":"Yes","reference":2440.0,"limit_up":2680.0,"limit_down":2200.0,"margin_trading_balance":0,"short_selling_balance":99,"trading_suspended":false,"margin_loan_ratio":0.6,"margin_quota_lots":0,"short_margin_ratio":0.9,"short_quota_lots":99,"margin_shortable":true,"sbl_shortable":true,"below_ref_shortable":true,"disposition_level":0,"attention_flag":false,"etf_constituent":true,"settlement_type":"0","disposition_match_interval_min":null,"disposition_max_lots_single_order":null,"disposition_max_lots_total_orders":null,"disposition_prepay_ratio":null,"update_date":"2026-07-16"}
 
 ```
 
@@ -568,11 +568,11 @@ StockInfo(
     margin_quota_lots=0,
     short_margin_ratio=0.9,
     short_quota_lots=99,
-    short_selling_suspended=False,
+    margin_shortable=True,
+    sbl_shortable=True,
+    below_ref_shortable=True,
     disposition_level=0,
     attention_flag=False,
-    short_below_par_eligible=True,
-    slb_below_par_eligible=True,
     etf_constituent=True,
     settlement_type='0',
     update_date=datetime.date(2026, 7, 16),
@@ -599,11 +599,11 @@ margin_loan_ratio (float):                 融資成數
 margin_quota_lots (int):                   融資配額張數
 short_margin_ratio (float):                融券保證金成數
 short_quota_lots (int):                    融券配額張數
-short_selling_suspended (bool):            暫停融券
+margin_shortable (bool):                   可融券
+sbl_shortable (bool):                      可借券賣出
+below_ref_shortable (bool):                平盤下可放空
 disposition_level (int):                   處置等級（無處置為 0）
 attention_flag (bool):                     注意股票
-short_below_par_eligible (bool):           可低於面額融券
-slb_below_par_eligible (bool):             可低於面額借券
 etf_constituent (bool):                    ETF 成分股
 settlement_type (str):                     交割類型
 disposition_match_interval_min (int):      處置撮合間隔（分鐘）
@@ -1366,6 +1366,257 @@ Parameters
 ```
 include_name: 是否帶入標的名稱與發行檔數，預設 false（僅回傳標的代碼等基本欄位）
 region:       市場別，預設 TW
+
+```
+
+## 組合合約
+
+期交所提供**組合式委託**，將兩支期貨／選擇權合約組成單一委託同時交易，例如期貨跨月價差、選擇權跨式組合，各類型的定義與規範見期交所[委託單種介紹](https://www.taifex.com.tw/cht/4/oamIntroduction)。要交易的組合在 Shioaji 中以\*\*組合合約（`ComboContract`）\*\*表示，同一個合約可用於[組合單](../order/Combo/)下單，也可用於[組合商品行情](../market_data/streaming/combo/)（訂閱、快照、歷史資料）。
+
+以 `api.contracts.combo()` 將兩支商品的合約物件（`Contract`）放入 `legs`，即可建立組合合約；挑選的商品與 `legs` 內的順序決定**組合類型**，順序為期交所規定、不可顛倒：
+
+| 想組的類型 | `sj.ComboType` | 挑哪兩支商品 | 擺放順序 `legs=[前, 後]` | `combo_type` | | --- | --- | --- | --- | --- | | **期貨** | | | | | | 跨月價差 | `TimeSpread` | 同商品、不同到期月 | `[近月, 遠月]` | 自動推導 | | 週跨月價差 | `WeeklyTimeSpread` | 同家族、至少一支為週契約 | `[近到期, 遠到期]` | 自動推導 | | **選擇權** | | | | | | 跨月價差 | `TimeSpread` | 同商品、同履約價、同買賣權、不同到期 | `[近到期, 遠到期]` | 自動推導 | | 買權價差 | `PriceSpread` | 同到期、不同履約價的兩支 Call | `[高履約價, 低履約價]` | 自動推導 | | 賣權價差 | `PriceSpread` | 同到期、不同履約價的兩支 Put | `[低履約價, 高履約價]` | 自動推導 | | 跨式 | `Straddle` | 同到期、同履約價的 Call 與 Put | `[Call, Put]` | **必填** | | 勒式 | `Strangle` | 同到期、不同履約價的 Call 與 Put | `[Call, Put]` | 自動推導 | | 轉換／逆轉 | `ConversionReversal` | 同到期、同履約價的 Call 與 Put | `[Call, Put]` | **必填** |
+
+為什麼跨式與轉換／逆轉必填 combo_type
+
+兩者的組成商品完全相同，但在期交所是兩個不同的組合商品：展開方向不同（跨式 `Buy` 為買 Call 買 Put；轉換為賣 Call 買 Put），淨價定義也不同（Call+Put vs Put−Call）， 無法從組成商品推斷，未填會拋出 `sj.ShioajiValueError`。其他類型可自動推導；明填時 必須與組成商品相符。
+
+建立的合約**不帶買賣方向**；買或賣這個組合，於下單時由 `ComboOrder.action` 決定，見[組合單](../order/Combo/)。
+
+contracts.combo
+
+```
+api.contracts.combo?
+
+Signature:
+    api.contracts.combo(
+        legs: List[sj.BaseContract],
+        combo_type: Optional[sj.ComboType] = None,
+    ) -> sj.ComboContract
+
+```
+
+Parameters
+
+```
+legs:       兩支商品的合約物件（api.contracts.get() 取得），順序見上表。
+            必須是具體月份合約，不可使用 TXFR1/R2 連續月合約
+combo_type: 選填，組合類型；多數形狀可自動推導，見上表說明
+
+```
+
+sj.ComboContract
+
+```
+legs (List[BaseContract]):  組成商品
+combo_type (ComboType):     組合類型
+region (str):               市場別
+code (str):                 交易所原生組合代碼（例：TXFH6/I6），與行情回報中的
+                            code 相同，由 Shioaji 產生，請勿自行拼斜線碼作為輸入；
+                            選擇權組合暫不提供
+managed (bool):             是否為 contracts.combo() 建立的合約
+
+```
+
+contracts/combo
+
+```
+POST /api/v1/data/contracts/combo
+Content-Type: application/json
+
+{
+  "legs": [
+    {
+      "security_type": <SecurityType>,
+      "exchange": <Exchange>,
+      "code": <string>
+    }
+  ],
+  "combo_type": <ComboType, optional>
+}
+
+```
+
+Parameters
+
+```
+legs[].security_type: 商品類型 {FUT, OPT}
+legs[].exchange:      交易所
+legs[].code:          商品代碼；不可使用 R1/R2 連續月合約，
+                      商品不可帶 action，帶了會回 400
+combo_type:           選填，組合類型；省略時自動推導
+
+```
+
+### 範例
+
+期貨（跨月價差）：
+
+In
+
+```
+near = api.contracts.get("TXFH6")
+far = api.contracts.get("TXFI6")
+combo_contract = api.contracts.combo(
+    legs=[near, far],
+)
+combo_contract
+
+```
+
+Out
+
+```
+ComboContract(
+    legs=[
+        Contract(security_type='FUT', region='TW', exchange='TAIFEX', code='TXFH6'),
+        Contract(security_type='FUT', region='TW', exchange='TAIFEX', code='TXFI6')
+    ],
+    combo_type=TimeSpread
+)
+
+```
+
+選擇權（跨式）：
+
+In
+
+```
+call = api.contracts.get("TXO34000I6")
+put = api.contracts.get("TXO34000U6")
+straddle_contract = api.contracts.combo(
+    legs=[call, put],
+    combo_type=sj.ComboType.Straddle,
+)
+straddle_contract
+
+```
+
+Out
+
+```
+ComboContract(
+    legs=[
+        Contract(security_type='OPT', region='TW', exchange='TAIFEX', code='TXO34000I6'),
+        Contract(security_type='OPT', region='TW', exchange='TAIFEX', code='TXO34000U6')
+    ],
+    combo_type=Straddle
+)
+
+```
+
+不合法的組合
+
+順序擺錯或未指定必填的 `combo_type`，會在建立當下拋出 `sj.ShioajiValueError` （為 Python `ValueError` 之子類），例如：
+
+```
+contracts: validation: combo legs are reversed for TimeSpread; expected canonical exchange order
+contracts: validation: combo shape is ambiguous ([Straddle, ConversionReversal]); pass combo_type explicitly
+
+```
+
+In
+
+```
+curl -X POST http://localhost:8080/api/v1/data/contracts/combo \
+  -H 'Content-Type: application/json' \
+  -d '{
+    "legs": [
+      {"security_type": "FUT", "exchange": "TAIFEX", "code": "TXFH6"},
+      {"security_type": "FUT", "exchange": "TAIFEX", "code": "TXFI6"}
+    ]
+  }'
+
+```
+
+Out
+
+```
+{"code":"TXFH6/I6","legs":[{"security_type":"FUT","region":"TW","exchange":"TAIFEX","code":"TXFH6","target_code":null},{"security_type":"FUT","region":"TW","exchange":"TAIFEX","code":"TXFI6","target_code":null}],"region":"TW","exchange":"TAIFEX","combo_type":"TimeSpread","managed":true}
+
+```
+
+### 列舉期貨組合
+
+不確定要組哪一組時，可用 `combo_futures` 列出一個期貨家族目前所有合法的跨月價差組合，直接挑選使用，不需要自己排順序。僅支援期貨跨月價差；選擇權組合請用 `contracts.combo()` 指定商品。
+
+contracts.combo_futures
+
+```
+api.contracts.combo_futures?
+
+Signature:
+    api.contracts.combo_futures(
+        root: str,
+        region: sj.Region = sj.Region.TW,
+    ) -> List[sj.ComboContract]
+
+```
+
+Parameters
+
+```
+root:   期貨商品家族（例：TXF）
+region: 市場別，預設台灣
+
+```
+
+In
+
+```
+combos = api.contracts.combo_futures(root="TXF")
+[c.code for c in combos]
+
+```
+
+Out
+
+```
+['TXFH6/I6',
+ 'TXFH6/J6',
+ 'TXFH6/L6',
+ 'TXFH6/C7',
+ 'TXFH6/F7',
+ 'TXFI6/J6',
+ 'TXFI6/L6',
+ 'TXFI6/C7',
+ 'TXFI6/F7',
+ 'TXFJ6/L6',
+ 'TXFJ6/C7',
+ 'TXFJ6/F7',
+ 'TXFL6/C7',
+ 'TXFL6/F7',
+ 'TXFC7/F7']
+
+```
+
+列出的組合是從本地合約資料推算的有效配對（已排除到期合約），不保證每一組當下都有掛單， 是否有市場請以報價為準。
+
+contracts/combo/futures
+
+```
+GET /api/v1/data/contracts/combo/futures?root=<string>
+
+```
+
+Parameters
+
+```
+root: 期貨商品家族（例：TXF）
+
+```
+
+In
+
+```
+curl 'http://localhost:8080/api/v1/data/contracts/combo/futures?root=TXF'
+
+```
+
+Out
+
+```
+[{"code":"TXFH6/I6","legs":[{"security_type":"FUT","region":"TW","exchange":"TAIFEX","code":"TXFH6","target_code":null},{"security_type":"FUT","region":"TW","exchange":"TAIFEX","code":"TXFI6","target_code":null}],"region":"TW","exchange":"TAIFEX","combo_type":"TimeSpread","managed":true},{"code":"TXFH6/J6","legs":[...],"region":"TW","exchange":"TAIFEX","combo_type":"TimeSpread","managed":true},...]
 
 ```
 
@@ -7288,6 +7539,163 @@ Out
 
 ```
 
+## 組合商品
+
+組合合約（建法見[商品合約](../../contract/#combo)）可直接查詢歷史 `Ticks` 與 `Kbars`，價格欄位皆為組合淨價。
+
+#### Ticks
+
+In
+
+```
+near = api.contracts.get("TXFH6")
+far = api.contracts.get("TXFI6")
+combo_contract = api.contracts.combo(legs=[near, far])
+
+ticks = api.ticks(combo_contract, date="2026-08-12")
+ticks
+
+```
+
+Out
+
+```
+Ticks[1885](
+    ts=[1786524486391000000, 1786524537279000000, 1786524537461000000, ..., 1786542270048000000, 1786542283251000000, 1786542283355000000],
+    close=[131, 130, 132, ..., 149, 151, 151],
+    volume=[3, 3, 1, ..., 2, 1, 1],
+    bid_price=[131, 130, 129, ..., 149, 148, 148],
+    bid_volume=[3, 3, 5, ..., 11, 16, 16],
+    ask_price=[132, 132, 132, ..., 151, 151, 151],
+    ask_volume=[1, 1, 1, ..., 13, 13, 12],
+    tick_type=[2, 2, 1, ..., 2, 1, 1]
+)
+
+```
+
+#### Kbars
+
+In
+
+```
+near = api.contracts.get("TXFH6")
+far = api.contracts.get("TXFI6")
+combo_contract = api.contracts.combo(legs=[near, far])
+
+kbars = api.kbars(combo_contract, start="2026-08-11", end="2026-08-12")
+kbars
+
+```
+
+Out
+
+```
+KBars[564](
+    ts=[1786438440000000000, 1786438680000000000, 1786438860000000000, ..., 1786555200000000000, 1786555260000000000, 1786555440000000000],
+    Open=[135, 135, 130, ..., 165, 166, 169],
+    High=[135, 136, 130, ..., 165, 166, 169],
+    Low=[135, 135, 130, ..., 165, 166, 169],
+    Close=[135, 136, 130, ..., 165, 166, 169],
+    Volume=[1, 2, 5, ..., 1, 1, 4],
+    Amount=[135, 271, 650, ..., 165, 166, 676]
+)
+
+```
+
+**Ticks**
+
+In
+
+```
+shioaji data ticks --code TXFH6 --combo-with TXFI6 --security-type FUT --date 2026-08-12 --all
+
+```
+
+Out
+
+```
+[1885]{datetime,close,volume,bid_price,bid_volume,ask_price,ask_volume,tick_type}:
+  2026-08-12T08:48:06.391000,131,3,131,3,132,1,2
+  2026-08-12T08:48:57.279000,130,3,130,3,132,1,2
+  2026-08-12T08:48:57.461000,132,1,129,5,132,1,1
+  ...
+
+```
+
+**Kbars**
+
+In
+
+```
+shioaji data kbars --code TXFH6 --combo-with TXFI6 --security-type FUT --start 2026-08-11 --end 2026-08-12
+
+```
+
+Out
+
+```
+[564]{datetime,Open,High,Low,Close,Volume,Amount}:
+  2026-08-11T08:54:00,135,135,135,135,1,135
+  2026-08-11T08:58:00,135,136,135,136,2,271
+  2026-08-11T09:01:00,130,130,130,130,5,650
+  ...
+
+```
+
+**Ticks**
+
+In
+
+```
+curl -X POST http://localhost:8080/api/v1/data/ticks \
+  -H 'Content-Type: application/json' \
+  -d '{
+    "contract": {
+      "legs": [
+        {"security_type": "FUT", "exchange": "TAIFEX", "code": "TXFH6"},
+        {"security_type": "FUT", "exchange": "TAIFEX", "code": "TXFI6"}
+      ]
+    },
+    "date": "2026-08-12",
+    "query_type": "AllDay"
+  }'
+
+```
+
+Out
+
+```
+{"datetime":["2026-08-12T08:48:06.391000","2026-08-12T08:48:57.279000","2026-08-12T08:48:57.461000",...],"close":[131.0,130.0,132.0,...],"volume":[3,3,1,...],"bid_price":[131.0,130.0,129.0,...],"bid_volume":[3,3,5,...],"ask_price":[132.0,132.0,132.0,...],"ask_volume":[1,1,1,...],"tick_type":[2,2,1,...]}
+
+```
+
+**Kbars**
+
+In
+
+```
+curl -X POST http://localhost:8080/api/v1/data/kbars \
+  -H 'Content-Type: application/json' \
+  -d '{
+    "contract": {
+      "legs": [
+        {"security_type": "FUT", "exchange": "TAIFEX", "code": "TXFH6"},
+        {"security_type": "FUT", "exchange": "TAIFEX", "code": "TXFI6"}
+      ]
+    },
+    "start": "2026-08-11",
+    "end": "2026-08-12"
+  }'
+
+```
+
+Out
+
+```
+{"datetime":["2026-08-11T08:54:00","2026-08-11T08:58:00","2026-08-11T09:01:00",...],"Open":[135.0,135.0,130.0,...],"High":[135.0,136.0,130.0,...],"Low":[135.0,135.0,130.0,...],"Close":[135.0,136.0,130.0,...],"Volume":[1,2,5,...],"Amount":[135.0,271.0,650.0,...]}
+
+```
+
 包含漲跌幅、漲跌、高低價差、成交量及成交金額排行。`Scanners`利用`scanner_type`去取得不同類型的排行。
 
 Scanners
@@ -7920,6 +8328,93 @@ Out
 
 ```
 
+## 組合商品
+
+組合合約（建法見[商品合約](../../contract/#combo)）亦可查詢快照，並可與其他商品混列於同一次查詢；價格欄位皆為組合淨價。
+
+In
+
+```
+near = api.contracts.get("TXFH6")
+far = api.contracts.get("TXFI6")
+combo_contract = api.contracts.combo(legs=[near, far])
+
+api.snapshots([combo_contract])
+
+```
+
+Out
+
+```
+[
+    Snapshot(
+        ts=1786555404820000000,
+        code='TXFH6/I6',
+        exchange='',
+        open=153,
+        high=174,
+        low=153,
+        close=169,
+        tick_type=<TickType.Buy: 'Buy'>,
+        change_price=0,
+        change_rate=0,
+        change_type=<ChangeType.LimitUp: 'LimitUp'>,
+        average_price=165.84,
+        volume=2,
+        total_volume=79,
+        amount=338,
+        total_amount=13101,
+        yesterday_volume=1496,
+        buy_price=165,
+        buy_volume=1,
+        sell_price=170,
+        sell_volume=2,
+        volume_ratio=0.05
+    )
+]
+
+```
+
+In
+
+```
+shioaji data snapshots --codes 'TXFH6+TXFI6'
+
+```
+
+Out
+
+```
+[1]{datetime,code,exchange,open,high,low,close,tick_type,change_price,change_rate,change_type,average_price,volume,total_volume,amount,total_amount,yesterday_volume,buy_price,buy_volume,sell_price,sell_volume,volume_ratio}:
+  2026-08-12T17:23:24.820000,"TXFH6/I6",,153,174,153,169,Buy,0,0,LimitUp,165.84,2,79,338,13101,1496,165,1,170,2,0.05
+
+```
+
+In
+
+```
+curl -X POST http://localhost:8080/api/v1/data/snapshots \
+  -H 'Content-Type: application/json' \
+  -d '{
+    "contracts": [
+      {
+        "legs": [
+          {"security_type": "FUT", "exchange": "TAIFEX", "code": "TXFH6"},
+          {"security_type": "FUT", "exchange": "TAIFEX", "code": "TXFI6"}
+        ]
+      }
+    ]
+  }'
+
+```
+
+Out
+
+```
+[{"datetime":"2026-08-12T17:23:24.820000","code":"TXFH6/I6","exchange":"","open":153.0,"high":174.0,"low":153.0,"close":169.0,"tick_type":"Buy","change_price":0.0,"change_rate":0.0,"change_type":"LimitUp","average_price":165.84,"volume":2,"total_volume":79,"amount":338,"total_amount":13101,"yesterday_volume":1496.0,"buy_price":165.0,"buy_volume":1.0,"sell_price":170.0,"sell_volume":2,"volume_ratio":0.05}]
+
+```
+
 指數即時行情是交易所即時轉送的市場資料，僅在開盤時段才會推送。利用訂閱[商品合約](../../contract/)的方式即可開始接收即時行情。
 
 提醒
@@ -8293,6 +8788,483 @@ close=45625.32
 amount_sum=618594787860
 volume=918
 vol_sum=7430030
+
+```
+
+組合商品在期交所是獨立商品，有**自己的委託簿與報價**，與兩支商品各自的行情分開；價差是交易所實際撮合的結果，不是把兩支商品的價格相減。要取得組合的即時行情，必須直接訂閱組合商品本身。
+
+閱讀組合報價時有兩件事與一般商品不同：
+
+- 報價中的價格是整個組合的**淨價**：跨月價差為「遠月 − 近月」，**可能為負值**。
+- 報價中的 `bid`／`ask` 是**對整個組合**的掛買與掛賣，一次訂閱即包含雙邊。
+
+僅期貨組合有報價
+
+選擇權組合僅能以 `IOC`／`FOK` 送單、不會留存於委託簿，因此**沒有組合報價**； 需要參考價格時，請訂閱個別商品並依淨價定義自行估算（見[組合單](../../../order/Combo/)）。
+
+訂閱前請先以 `api.contracts.combo()` 建立組合合約（不可使用 `TXFR1`／`R2` 連續月合約），建法詳見[商品合約](../../../contract/#combo)。
+
+## 訂閱
+
+Subscribe
+
+```
+>> api.subscribe?
+
+Signature:
+    api.subscribe(
+        contract: shioaji.Contract,
+        quote_type: shioaji.QuoteType = <QuoteType.Tick: 'tick'>,
+        intraday_odd: bool = False,
+    )
+
+```
+
+Quote Parameters:
+
+```
+contract:     組合合約（api.contracts.combo() / combo_futures() 建立）
+quote_type:   訂閱類型 {'tick', 'bid_ask'}
+intraday_odd: 組合商品不支援，固定為 False
+
+```
+
+回報對照
+
+回報中的 `code`（例 `'TXFH6/I6'`）即為 `combo_contract.code`。訂閱多個組合時， 可先建立對照表，於 callback 中以 `code` 對回合約：
+
+```
+combo_by_code = {c.code: c for c in api.contracts.combo_futures(root="TXF")}
+
+```
+
+Subscribe
+
+```
+shioaji data stream --code <CODE> --combo-with <CODE> [OPTIONS]
+
+```
+
+Quote Parameters:
+
+```
+--code:          組合第一支商品的代碼（近月，例 TXFH6）
+--combo-with:    組合第二支商品的代碼（遠月，例 TXFI6）
+--security-type: 商品類型，組合填 FUT
+--quote-type:    訂閱類型 {tick, bid_ask}，預設 tick
+
+```
+
+組合訂閱的 body 以 `contract.legs` 帶入兩支商品（與一般商品的平面格式不同）；商品不可帶 `action`、不可使用 `TXFR1`／`R2` 連續月合約。
+
+Subscribe
+
+```
+POST /api/v1/stream/subscribe
+Content-Type: application/json
+
+{
+  "contract": {
+    "legs": [
+      {
+        "security_type": <SecurityType>,
+        "exchange": <Exchange>,
+        "code": <string>
+      }
+    ],
+    "combo_type": <ComboType, optional>
+  },
+  "quote_type": <QuoteType>
+}
+
+```
+
+Quote Parameters:
+
+```
+contract.legs[].security_type: 商品類型 {FUT}
+contract.legs[].exchange:      交易所 {TAIFEX}
+contract.legs[].code:          商品代碼；不可帶 action，帶了會回 400
+contract.combo_type:           選填，組合類型；省略時自動推導
+quote_type:                    訂閱類型 {Tick, BidAsk}
+
+```
+
+## Tick
+
+In
+
+```
+near = api.contracts.get("TXFH6")
+far = api.contracts.get("TXFI6")
+combo_contract = api.contracts.combo(legs=[near, far])
+
+api.subscribe(combo_contract, quote_type=sj.QuoteType.Tick)
+
+# 取消訂閱
+# api.unsubscribe(combo_contract, quote_type=sj.QuoteType.Tick)
+
+```
+
+Out
+
+```
+Response Code: 200 | Event Code: 16 | Info: TIC/v1/FOP/*/TFE/TXFH6/I6 | Event: Subscribe or Unsubscribe ok
+
+TickFOPv1(
+    code='TXFH6/I6',
+    date=2026-08-12,
+    time=15:56:09,
+    close=172,
+    volume=1,
+)
+
+```
+
+顯示完整欄位
+
+預設不會展示所有欄位，僅顯示摘要。如需取得完整內容，請參考下方 [Callback](#callback) 章節自訂 callback 函式。
+
+組合需有實際成交才會產生 tick，流量遠低於單式商品；驗證訂閱是否生效請以 `BidAsk` 為準。
+
+In
+
+```
+shioaji data stream --code TXFH6 --combo-with TXFI6 --security-type FUT --quote-type tick
+# 按 Ctrl+C 即可停止訂閱，CLI 會自動取消
+
+```
+
+Out
+
+```
+Subscribed to TXFH6 tick (Ctrl+C to stop)
+{"code":"TXFH6/I6","date":"2026-08-12","time":"16:01:06.089000","open":"153","underlying_price":"45518.07","bid_side_total_vol":27,"ask_side_total_vol":3,"avg_price":"162.533333","close":"169","high":"174","low":"153","amount":"169","total_amount":"4876","volume":1,"total_volume":30,"tick_type":2,"chg_type":1,"price_chg":"0","pct_chg":"0","simtrade":false}
+
+```
+
+In
+
+```
+# Step 1: 訂閱
+curl -X POST http://localhost:8080/api/v1/stream/subscribe \
+  -H 'Content-Type: application/json' \
+  -d '{
+    "contract": {
+      "legs": [
+        {"security_type": "FUT", "exchange": "TAIFEX", "code": "TXFH6"},
+        {"security_type": "FUT", "exchange": "TAIFEX", "code": "TXFI6"}
+      ]
+    },
+    "quote_type": "Tick"
+  }'
+
+# Step 2: 開啟 SSE 串流接收報價（Ctrl+C 停止）
+curl -N http://localhost:8080/api/v1/stream/data/tick_fop
+
+# 取消訂閱
+# curl -X POST http://localhost:8080/api/v1/stream/unsubscribe \
+#   -H 'Content-Type: application/json' \
+#   -d '{
+#     "contract": {
+#       "legs": [
+#         {"security_type": "FUT", "exchange": "TAIFEX", "code": "TXFH6"},
+#         {"security_type": "FUT", "exchange": "TAIFEX", "code": "TXFI6"}
+#       ]
+#     },
+#     "quote_type": "Tick"
+#   }'
+
+```
+
+Out (Step 1: 訂閱回應)
+
+```
+{"success":true,"message":"Subscription successful","subscription":{"contract":{"legs":[{"security_type":"FUT","region":"TW","exchange":"TAIFEX","code":"TXFH6","target_code":null},{"security_type":"FUT","region":"TW","exchange":"TAIFEX","code":"TXFI6","target_code":null}],"combo_type":null},"quote_type":"Tick","intraday_odd":false}}
+
+```
+
+Out (Step 2: SSE tick)
+
+```
+event:tick_fop
+data:{"code":"TXFH6/I6","date":"2026-08-12","time":"16:01:06.089000","open":"153","underlying_price":"45518.07","bid_side_total_vol":27,"ask_side_total_vol":3,"avg_price":"162.533333","close":"169","high":"174","low":"153","amount":"169","total_amount":"4876","volume":1,"total_volume":30,"tick_type":2,"chg_type":1,"price_chg":"0","pct_chg":"0","simtrade":false}
+
+```
+
+### 屬性
+
+回報型別與期貨／選擇權相同（`TickFOPv1`），價格類欄位皆為組合淨價：
+
+Tick
+
+```
+code (str)                               組合代碼（例 TXFH6/I6）
+exchange (Exchange)                      交易所
+date (tuple)                             日期
+time (tuple)                             成交時間
+datetime (tuple)                         日期與時間
+open (Decimal)                           開盤價
+underlying_price (Decimal)               標的指數現價
+avg_price (Decimal)                      均價
+close (Decimal)                          成交價
+high (Decimal)                           最高價（自開盤）
+low (Decimal)                            最低價（自開盤）
+amount (Decimal)                         單筆成交額 (NTD)
+total_amount (Decimal)                   總成交額 (NTD)
+volume (int)                             單筆成交量 (lot)
+total_volume (int)                       總成交量 (lot)
+tick_type (int)                          內外盤別{1: 外盤, 2: 內盤, 0: 無法判定}
+chg_type (int)                           漲跌註記{1: 漲停, 2: 漲, 3: 平盤, 4: 跌, 5: 跌停}
+price_chg (Decimal)                      漲跌
+pct_chg (Decimal)                        漲跌幅 (%)
+bid_side_total_vol (int)                 買盤成交總量 (lot)
+ask_side_total_vol (int)                 賣盤成交總量 (lot)
+simtrade (bool)                          試撮
+
+```
+
+## BidAsk
+
+In
+
+```
+near = api.contracts.get("TXFH6")
+far = api.contracts.get("TXFI6")
+combo_contract = api.contracts.combo(legs=[near, far])
+
+api.subscribe(combo_contract, quote_type=sj.QuoteType.BidAsk)
+
+# 取消訂閱
+# api.unsubscribe(combo_contract, quote_type=sj.QuoteType.BidAsk)
+
+```
+
+Out
+
+```
+Response Code: 200 | Event Code: 16 | Info: QUO/v1/FOP/*/TFE/TXFH6/I6 | Event: Subscribe or Unsubscribe ok
+
+BidAskFOPv1(
+    code='TXFH6/I6',
+    date=2026-08-12,
+    time=15:54:41,
+    bid_price=[169, 168, 167, 166, 165],
+    ask_price=[175, 176, 177, 178, 179],
+    bid_volume=[4, 3, 2, 12, 16],
+    ask_volume=[8, 1, 3, 3, 3],
+)
+
+```
+
+顯示完整欄位
+
+預設不會展示所有欄位，僅顯示摘要。如需取得完整內容，請參考下方 [Callback](#callback) 章節自訂 callback 函式。
+
+In
+
+```
+shioaji data stream --code TXFH6 --combo-with TXFI6 --security-type FUT --quote-type bid_ask
+# 按 Ctrl+C 即可停止訂閱，CLI 會自動取消
+
+```
+
+Out
+
+```
+Subscribed to TXFH6 bid_ask (Ctrl+C to stop)
+{"code":"TXFH6/I6","date":"2026-08-12","time":"15:59:43.034000","bid_total_vol":30,"ask_total_vol":50,"bid_price":["169","168","167","166","165"],"bid_volume":[5,3,7,12,3],"diff_bid_vol":[0,0,0,0,-13],"ask_price":["173","174","175","176","177"],"ask_volume":[5,11,12,10,12],"diff_ask_vol":[0,0,0,0,0],"first_derived_bid_price":"0","first_derived_ask_price":"0","first_derived_bid_vol":0,"first_derived_ask_vol":0,"underlying_price":"45518.07","simtrade":false}
+
+```
+
+In
+
+```
+# Step 1: 訂閱
+curl -X POST http://localhost:8080/api/v1/stream/subscribe \
+  -H 'Content-Type: application/json' \
+  -d '{
+    "contract": {
+      "legs": [
+        {"security_type": "FUT", "exchange": "TAIFEX", "code": "TXFH6"},
+        {"security_type": "FUT", "exchange": "TAIFEX", "code": "TXFI6"}
+      ]
+    },
+    "quote_type": "BidAsk"
+  }'
+
+# Step 2: 開啟 SSE 串流接收報價（Ctrl+C 停止）
+curl -N http://localhost:8080/api/v1/stream/data/bidask_fop
+
+# 取消訂閱
+# curl -X POST http://localhost:8080/api/v1/stream/unsubscribe \
+#   -H 'Content-Type: application/json' \
+#   -d '{
+#     "contract": {
+#       "legs": [
+#         {"security_type": "FUT", "exchange": "TAIFEX", "code": "TXFH6"},
+#         {"security_type": "FUT", "exchange": "TAIFEX", "code": "TXFI6"}
+#       ]
+#     },
+#     "quote_type": "BidAsk"
+#   }'
+
+```
+
+Out (Step 1: 訂閱回應)
+
+```
+{"success":true,"message":"Subscription successful","subscription":{"contract":{"legs":[{"security_type":"FUT","region":"TW","exchange":"TAIFEX","code":"TXFH6","target_code":null},{"security_type":"FUT","region":"TW","exchange":"TAIFEX","code":"TXFI6","target_code":null}],"combo_type":null},"quote_type":"BidAsk","intraday_odd":false}}
+
+```
+
+Out (Step 2: SSE 報價)
+
+```
+event:bidask_fop
+data:{"code":"TXFH6/I6","date":"2026-08-12","time":"16:02:27.159000","bid_total_vol":26,"ask_total_vol":51,"bid_price":["169","168","167","166","165"],"bid_volume":[1,3,7,12,3],"diff_bid_vol":[0,0,0,0,0],"ask_price":["174","175","176","177","178"],"ask_volume":[7,14,11,11,8],"diff_ask_vol":[0,0,0,0,0],"first_derived_bid_price":"0","first_derived_ask_price":"0","first_derived_bid_vol":0,"first_derived_ask_vol":0,"underlying_price":"45518.07","simtrade":false}
+
+```
+
+### 屬性
+
+回報型別與期貨／選擇權相同（`BidAskFOPv1`），價格類欄位皆為組合淨價：
+
+BidAsk
+
+```
+code (str)                               組合代碼（例 TXFH6/I6）
+exchange (Exchange)                      交易所
+date (tuple)                             日期
+time (tuple)                             時間
+datetime (tuple)                         日期與時間
+bid_total_vol (int)                      委買量總計 (lot)
+ask_total_vol (int)                      委賣量總計 (lot)
+bid_price (list[Decimal])                五檔委買價
+bid_volume (list[int])                   五檔委買量 (lot)
+diff_bid_vol (list[int])                 五檔委買價增減量 (lot)
+ask_price (list[Decimal])                五檔委賣價
+ask_volume (list[int])                   五檔委賣量 (lot)
+diff_ask_vol (list[int])                 五檔委賣價增減量 (lot)
+first_derived_bid_price (Decimal)        衍生一檔委買價
+first_derived_ask_price (Decimal)        衍生一檔委賣價
+first_derived_bid_vol (int)              衍生一檔委買量 (lot)
+first_derived_ask_vol (int)              衍生一檔委賣量 (lot)
+underlying_price (Decimal)               標的指數現價
+simtrade (bool)                          試撮
+
+```
+
+## Callback（僅 Python）
+
+預設狀況下我們將即時行情使用 `print` 的方式呈現，僅顯示部分摘要欄位。可根據個人需求修改 callback 函式以取得完整欄位內容，並串接其他應用。請避免在函式內進行運算。組合報價與期貨／選擇權共用同一組 FOP callback，回報中的 `code` 即為 `combo_contract.code`。
+
+### Tick
+
+decorator 方式
+
+```
+from shioaji import TickFOPv1, Exchange
+
+@api.on_tick_fop_v1()
+def quote_callback(exchange: Exchange, tick: TickFOPv1):
+    print(f"exchange={exchange}")
+    print(f"code={tick.code}")
+    print(f"date={tick.date}")
+    print(f"time={tick.time}")
+    print(f"datetime={tick.datetime}")
+    print(f"open={tick.open}")
+    print(f"underlying_price={tick.underlying_price}")
+    print(f"bid_side_total_vol={tick.bid_side_total_vol}")
+    print(f"ask_side_total_vol={tick.ask_side_total_vol}")
+    print(f"avg_price={tick.avg_price}")
+    print(f"close={tick.close}")
+    print(f"high={tick.high}")
+    print(f"low={tick.low}")
+    print(f"amount={tick.amount}")
+    print(f"total_amount={tick.total_amount}")
+    print(f"volume={tick.volume}")
+    print(f"total_volume={tick.total_volume}")
+    print(f"tick_type={tick.tick_type}")
+    print(f"chg_type={tick.chg_type}")
+    print(f"price_chg={tick.price_chg}")
+    print(f"pct_chg={tick.pct_chg}")
+    print(f"simtrade={tick.simtrade}")
+
+near = api.contracts.get("TXFH6")
+far = api.contracts.get("TXFI6")
+combo_contract = api.contracts.combo(legs=[near, far])
+api.subscribe(combo_contract, quote_type=sj.QuoteType.Tick)
+
+```
+
+傳統方式
+
+```
+from shioaji import TickFOPv1, Exchange
+
+def quote_callback(exchange: Exchange, tick: TickFOPv1):
+    print(f"{exchange} {tick}")
+
+api.set_on_tick_fop_v1_callback(quote_callback)
+
+near = api.contracts.get("TXFH6")
+far = api.contracts.get("TXFI6")
+combo_contract = api.contracts.combo(legs=[near, far])
+api.subscribe(combo_contract, quote_type=sj.QuoteType.Tick)
+
+```
+
+### BidAsk
+
+decorator 方式
+
+```
+from shioaji import BidAskFOPv1, Exchange
+
+@api.on_bidask_fop_v1()
+def quote_callback(exchange: Exchange, bidask: BidAskFOPv1):
+    print(f"exchange={exchange}")
+    print(f"code={bidask.code}")
+    print(f"date={bidask.date}")
+    print(f"time={bidask.time}")
+    print(f"datetime={bidask.datetime}")
+    print(f"bid_total_vol={bidask.bid_total_vol}")
+    print(f"ask_total_vol={bidask.ask_total_vol}")
+    print(f"bid_price={bidask.bid_price}")
+    print(f"bid_volume={bidask.bid_volume}")
+    print(f"diff_bid_vol={bidask.diff_bid_vol}")
+    print(f"ask_price={bidask.ask_price}")
+    print(f"ask_volume={bidask.ask_volume}")
+    print(f"diff_ask_vol={bidask.diff_ask_vol}")
+    print(f"first_derived_bid_price={bidask.first_derived_bid_price}")
+    print(f"first_derived_ask_price={bidask.first_derived_ask_price}")
+    print(f"first_derived_bid_vol={bidask.first_derived_bid_vol}")
+    print(f"first_derived_ask_vol={bidask.first_derived_ask_vol}")
+    print(f"underlying_price={bidask.underlying_price}")
+    print(f"simtrade={bidask.simtrade}")
+
+near = api.contracts.get("TXFH6")
+far = api.contracts.get("TXFI6")
+combo_contract = api.contracts.combo(legs=[near, far])
+api.subscribe(combo_contract, quote_type=sj.QuoteType.BidAsk)
+
+```
+
+傳統方式
+
+```
+from shioaji import BidAskFOPv1, Exchange
+
+def quote_callback(exchange: Exchange, bidask: BidAskFOPv1):
+    print(f"{exchange} {bidask}")
+
+api.set_on_bidask_fop_v1_callback(quote_callback)
+
+near = api.contracts.get("TXFH6")
+far = api.contracts.get("TXFI6")
+combo_contract = api.contracts.combo(legs=[near, far])
+api.subscribe(combo_contract, quote_type=sj.QuoteType.BidAsk)
 
 ```
 
@@ -11689,9 +12661,27 @@ KBar(code='2330', date='2026/07/29', time='10:12:00.000000', open=2245.0, high=2
 
 下單前必須先[登入](../../login/)及啟用[憑證](../../prepare/terms/)。
 
-組合單（Combo Order）將多支期貨／選擇權合約綁定為單一委託送出，提供類型包括**價格價差**、**時間價差**、**跨式**、**勒式**、**轉換**以及**逆轉**，組合規則詳見期交所[文件](https://www.taifex.com.tw/cht/5/margingReqIndexOpt)。
+組合單（Combo Order）將兩支期貨／選擇權合約綁定為單一委託送出。組合單的完整規範請見期交所[委託單種介紹](https://www.taifex.com.tw/cht/4/oamIntroduction)，保證金資訊請見[結算保證金頁面](https://www.taifex.com.tw/cht/5/margingReqIndexOpt)。
+
+下單前請先建立組合合約，建法見[商品合約](../../contract/#combo)。
 
 ## 下單
+
+組合單買賣的是**整個組合**。依期交所定義「價差委託之買賣別和遠月份契約相同」，買進跨月價差即買遠月、賣近月；各類型的定義如下（**買賣方向與淨價表**）：
+
+| 類型 | `sj.ComboType` | `action=Buy` | `action=Sell` | 淨價（`price`） | | --- | --- | --- | --- | --- | | 跨月價差 | `TimeSpread`／`WeeklyTimeSpread` | 賣近、買遠 | 買近、賣遠 | 遠 − 近（可為負值） | | 買權價差 | `PriceSpread` | 賣高履約價、買低履約價 | 買高履約價、賣低履約價 | 低履約價權利金 − 高履約價權利金 | | 賣權價差 | `PriceSpread` | 賣低履約價、買高履約價 | 買低履約價、賣高履約價 | 高履約價權利金 − 低履約價權利金 | | 跨式／勒式 | `Straddle`／`Strangle` | 買 Call、買 Put | 賣 Call、賣 Put | Call 權利金 + Put 權利金 | | 轉換／逆轉 | `ConversionReversal` | 賣 Call、買 Put（轉換） | 買 Call、賣 Put（逆轉） | Put 權利金 − Call 權利金 |
+
+`price` 為整個組合的淨價，非任何一支商品的價格，定義見買賣方向與淨價表；下單前的報價參考見[組合商品行情](../../market_data/streaming/combo/)。
+
+價格範圍限制
+
+組合單委託價格有範圍限制：以跨月價差為例，上限為遠月漲停價減近月跌停價、 下限為遠月跌停價減近月漲停價，超出範圍的委託交易所不接受。
+
+委託條件限制
+
+- 標準選擇權組合**不可用 `ROD`**，請以 `LMT` 搭配 `IOC` 或 `FOK` 送單； 若以 `ROD` 送單，會被期交所以 `9927 委託條件錯誤` 退單。
+- 期貨跨月價差於盤中可依商品規則使用 `ROD`。
+- 盤前不接受組合單。
 
 place_comboorder
 
@@ -11702,7 +12692,7 @@ Signature:
     api.place_comboorder(
         combo_contract: sj.ComboContract,
         order: Union[sj.ComboOrder, sj.FuturesOrder],
-        timeout: Optional[int] = 5000,
+        timeout: Optional[int] = 30000,
         cb: Optional[Callable[[sj.ComboTrade], None]] = None,
     ) -> sj.ComboTrade
 
@@ -11711,36 +12701,29 @@ Signature:
 Parameters
 
 ```
-combo_contract: 組合商品檔，含多個 ComboBase legs
+combo_contract: 組合合約（建法見「商品合約」頁）
 order:          組合委託單（ComboOrder 或 FuturesOrder）
 timeout:        逾時毫秒
-cb:             選填，callback 函式
+cb:             選填，callback 函式，timeout=0 時使用
 
 ```
 
 sj.ComboOrder
 
 ```
-action (Action):                買賣別 {Buy: 買, Sell: 賣}
-price (float or int):           價格
-quantity (int):                 數量
+action (Action):                買賣別 {Buy: 買, Sell: 賣}，必填；依買賣方向與淨價表
+                                展開兩支商品的方向
+price (float or int):           淨價，定義見上表，可為負值
+quantity (int):                 數量（兩支商品同量）
 price_type (FuturesPriceType):  價格別 {LMT: 限價, MKT: 市價, MKP: 範圍市價}
 order_type (OrderType):         委託條件 {ROD, IOC, FOK}
 octype (FuturesOCType):         倉別 {Auto: 自動, New: 新倉, Cover: 平倉, DayTrade: 當沖}
-combo_type (ComboType):         選填，組合類型；省略時由 legs 自動推導
-account (Account):              下單帳號
+combo_type (ComboType):         選填；自動帶入推導結果，明填時必須相符
+account (Account):              下單帳號（省略則使用預設期貨帳號）
 
 ```
 
-sj.ComboBase
-
-```
-action (Action):              買賣別 {Buy: 買, Sell: 賣}
-security_type (SecurityType): 商品類型 {FUT, OPT}
-exchange (Exchange):          交易所
-code (str):                   商品代碼
-
-```
+`combo_contract` 的 legs 不帶買賣別（形狀見[商品合約](../../contract/#combo)）； `order.action` 為必填欄位。
 
 place_comboorder
 
@@ -11749,20 +12732,7 @@ POST /api/v1/order/place_comboorder
 Content-Type: application/json
 
 {
-  "combo_contract": {
-    "legs": [
-      {
-        "action": <Action>,
-        "security_type": <SecurityType>,
-        "exchange": <Exchange>,
-        "code": <string>,
-        "category": <string>,
-        "delivery_month": <string>,
-        "strike_price": <number>,
-        "option_right": <string>
-      }
-    ]
-  },
+  "combo_contract": { "legs": [ ... ] },
   "order": {
     "action": <Action>,
     "price": <number>,
@@ -11770,6 +12740,7 @@ Content-Type: application/json
     "price_type": <FuturesPriceType>,
     "order_type": <OrderType>,
     "octype": <FuturesOCType>,
+    "combo_type": <ComboType>,
     "account": { "broker_id": <string>, "account_id": <string> }
   }
 }
@@ -11779,57 +12750,86 @@ Content-Type: application/json
 Parameters
 
 ```
-combo_contract.legs[].action:         買賣別 {Buy, Sell}
-combo_contract.legs[].security_type:  商品類型 {FUT, OPT}
-combo_contract.legs[].exchange:       交易所
-combo_contract.legs[].code:           商品代碼
-combo_contract.legs[].category:       商品類別
-combo_contract.legs[].delivery_month: 到期月份 YYYYMM
-combo_contract.legs[].strike_price:   履約價（期貨可填 null）
-combo_contract.legs[].option_right:   買賣權別 {C, P}（期貨可填 null）
-order.action:                         買賣別 {Buy, Sell}
-order.price:                          價格
-order.quantity:                       數量
-order.price_type:                     價格別 {LMT, MKT, MKP}
-order.order_type:                     委託條件 {ROD, IOC, FOK}
-order.octype:                         倉別 {Auto, New, Cover, DayTrade}
-order.account:                        下單帳號（省略則使用預設期貨帳號）
+combo_contract:   組合合約（見「商品合約」頁）
+order.action:     買賣別 {Buy, Sell}，必填；依此展開兩支商品的方向
+order.price:      淨價，可為負值
+order.quantity:   數量（兩支商品同量）
+order.price_type: 價格別 {LMT, MKT, MKP}
+order.order_type: 委託條件 {ROD, IOC, FOK}
+order.octype:     倉別 {Auto, New, Cover, DayTrade}
+order.combo_type: 選填，組合類型
+order.account:    下單帳號（省略則使用預設期貨帳號）
 
 ```
 
 ### 範例
 
-Order
+**期貨跨月價差**，以買進價差（賣近月、買遠月）為例。組合方式：同商品、不同到期月的兩支期貨，近月在前。
 
-```
-# 商品檔（賣出跨式：同到期、同履約價，賣 Call + 賣 Put）
-call = api.Contracts.Options.TXO.get("TXO20260527000C")
-put = api.Contracts.Options.TXO.get("TXO20260527000P")
-combo_contract = sj.ComboContract(
-    legs=[
-        sj.ComboBase.from_contract(call, action=sj.Action.Sell),
-        sj.ComboBase.from_contract(put, action=sj.Action.Sell),
-    ]
-)
-# 委託內容
-order = sj.ComboOrder(
-    action=sj.Action.Sell,
-    price=1,
-    quantity=1,
-    price_type=sj.FuturesPriceType.LMT,
-    order_type=sj.OrderType.IOC,
-    octype=sj.FuturesOCType.New,
-    account=api.futopt_account,
-)
-
-```
+- 合約：`legs=[近月, 遠月]`，不帶買賣別
+- 委託：`action=Buy`（買進價差，Shioaji 展開為賣近月、買遠月）
 
 In
 
 ```
-# 下單
+near = api.contracts.get("TXFH6")
+far = api.contracts.get("TXFI6")
+combo_contract = api.contracts.combo(legs=[near, far])
+
+order = sj.ComboOrder(
+    action=sj.Action.Buy,  # 買進價差：由 Shioaji 展開為賣近月、買遠月
+    price=50,  # 淨價（遠月 − 近月）
+    quantity=1,
+    price_type=sj.FuturesPriceType.LMT,
+    order_type=sj.OrderType.ROD,
+    octype=sj.FuturesOCType.Auto,
+    account=api.futopt_account,
+)
 trade = api.place_comboorder(combo_contract, order)
 trade
+
+```
+
+Out
+
+```
+ComboTrade(
+    contract=ComboContract(
+        legs=[
+            Contract(security_type='FUT', region='TW', exchange='TAIFEX', code='TXFH6'),
+            Contract(security_type='FUT', region='TW', exchange='TAIFEX', code='TXFI6')
+        ],
+        combo_type=TimeSpread
+    ),
+    order=Order(
+        id='46989de8',
+        action=<Action.Buy: 'Buy'>,
+        price=50.0,
+        quantity=1,
+        seqno='743595',
+        ordno='000000',
+        order_type=<OrderType.ROD: 'ROD'>,
+        price_type=<PriceType.LMT: 'LMT'>,
+        account=FutureAccount(
+            person_id='YOUR_PERSON_ID',
+            broker_id='YOUR_BROKER_ID',
+            account_id='YOUR_ACCOUNT_ID',
+            signed=true,
+            username=''
+        ),
+        octype=<FuturesOCType.Auto: 'Auto'>
+    ),
+    status=ComboStatus(
+        id='46989de8',
+        status=<OrderStatus.Submitted: 'Submitted'>,
+        status_code='0000',
+        order_datetime=datetime.datetime(2026, 8, 12, 11, 35, 0, tzinfo=datetime.timezone(datetime.timedelta(hours=8))),
+        modified_time=datetime.datetime(2026, 8, 12, 11, 35, 0, tzinfo=datetime.timezone(datetime.timedelta(hours=8))),
+        modified_price=50.0,
+        order_quantity=1,
+        deals={}
+    )
+)
 
 ```
 
@@ -11841,37 +12841,17 @@ curl -X POST http://localhost:8080/api/v1/order/place_comboorder \
   -d '{
     "combo_contract": {
       "legs": [
-        {
-          "action": "Sell",
-          "security_type": "OPT",
-          "exchange": "TAIFEX",
-          "code": "TXO20260527000C",
-          "symbol": "TXO20260527000C",
-          "category": "TXO",
-          "delivery_month": "202605",
-          "strike_price": 27000,
-          "option_right": "C"
-        },
-        {
-          "action": "Sell",
-          "security_type": "OPT",
-          "exchange": "TAIFEX",
-          "code": "TXO20260527000P",
-          "symbol": "TXO20260527000P",
-          "category": "TXO",
-          "delivery_month": "202605",
-          "strike_price": 27000,
-          "option_right": "P"
-        }
+        {"security_type": "FUT", "exchange": "TAIFEX", "code": "TXFH6"},
+        {"security_type": "FUT", "exchange": "TAIFEX", "code": "TXFI6"}
       ]
     },
     "order": {
-      "action": "Sell",
-      "price": 1,
+      "action": "Buy",
+      "price": 50,
       "quantity": 1,
       "price_type": "LMT",
-      "order_type": "IOC",
-      "octype": "New",
+      "order_type": "ROD",
+      "octype": "Auto",
       "account": {
         "broker_id": "YOUR_BROKER_ID",
         "account_id": "YOUR_ACCOUNT_ID"
@@ -11881,9 +12861,124 @@ curl -X POST http://localhost:8080/api/v1/order/place_comboorder \
 
 ```
 
+Out
+
+```
+{"contract":{"legs":[{"action":"Sell","security_type":"FUT","exchange":"TAIFEX","code":"TXFH6","symbol":"TXFH6","category":"TXF","delivery_month":"202608"},{"action":"Buy","security_type":"FUT","exchange":"TAIFEX","code":"TXFI6","symbol":"TXFI6","category":"TXF","delivery_month":"202609"}]},"order":{"id":"46989de8","action":"Buy","price":50.0,"quantity":1,"seqno":"743595","ordno":"000000","order_type":"ROD","price_type":"LMT","account":{"account_type":"F","person_id":"YOUR_PERSON_ID","broker_id":"YOUR_BROKER_ID","account_id":"YOUR_ACCOUNT_ID","signed":true,"username":""},"octype":"Auto"},"status":{"id":"46989de8","status":"Submitted","status_code":"0000","order_datetime":"2026-08-12T11:35:00+08:00","modified_price":50.0,"order_quantity":1,"deals":{}}}
+
+```
+
+**選擇權跨式**，以買進跨式（買 Call、買 Put）為例。組合方式：同到期、同履約價的 Call 與 Put，Call 在前；標準選擇權組合委託條件用 `IOC`。
+
+- 合約：`legs=[Call, Put]` ＋ `combo_type=Straddle`（必填，與轉換／逆轉同組成）
+- 委託：`action=Buy`（買 Call、買 Put）
+
+In
+
+```
+call = api.contracts.get("TXO34000I6")
+put = api.contracts.get("TXO34000U6")
+straddle_contract = api.contracts.combo(
+    legs=[call, put],
+    combo_type=sj.ComboType.Straddle,
+)
+
+order = sj.ComboOrder(
+    action=sj.Action.Buy,  # 買進跨式：買 Call、買 Put
+    price=1,  # 淨價（Call 權利金 + Put 權利金）
+    quantity=1,
+    price_type=sj.FuturesPriceType.LMT,
+    order_type=sj.OrderType.IOC,  # 標準選擇權組合不可用 ROD
+    octype=sj.FuturesOCType.Auto,
+    account=api.futopt_account,
+)
+trade = api.place_comboorder(straddle_contract, order)
+trade
+
+```
+
+Out
+
+```
+ComboTrade(
+    contract=ComboContract(
+        legs=[
+            Contract(security_type='OPT', region='TW', exchange='TAIFEX', code='TXO34000I6'),
+            Contract(security_type='OPT', region='TW', exchange='TAIFEX', code='TXO34000U6')
+        ],
+        combo_type=Straddle
+    ),
+    order=Order(
+        id='a3512bd6',
+        action=<Action.Buy: 'Buy'>,
+        price=1.0,
+        quantity=1,
+        seqno='743597',
+        ordno='000000',
+        order_type=<OrderType.IOC: 'IOC'>,
+        price_type=<PriceType.LMT: 'LMT'>,
+        account=FutureAccount(
+            person_id='YOUR_PERSON_ID',
+            broker_id='YOUR_BROKER_ID',
+            account_id='YOUR_ACCOUNT_ID',
+            signed=true,
+            username=''
+        ),
+        octype=<FuturesOCType.Auto: 'Auto'>
+    ),
+    status=ComboStatus(
+        id='a3512bd6',
+        status=<OrderStatus.Submitted: 'Submitted'>,
+        status_code='0000',
+        order_datetime=datetime.datetime(2026, 8, 12, 11, 37, 0, tzinfo=datetime.timezone(datetime.timedelta(hours=8))),
+        modified_time=datetime.datetime(2026, 8, 12, 11, 37, 0, tzinfo=datetime.timezone(datetime.timedelta(hours=8))),
+        modified_price=1.0,
+        order_quantity=1,
+        deals={}
+    )
+)
+
+```
+
+In
+
+```
+curl -X POST http://localhost:8080/api/v1/order/place_comboorder \
+  -H 'Content-Type: application/json' \
+  -d '{
+    "combo_contract": {
+      "legs": [
+        {"security_type": "OPT", "exchange": "TAIFEX", "code": "TXO34000I6"},
+        {"security_type": "OPT", "exchange": "TAIFEX", "code": "TXO34000U6"}
+      ],
+      "combo_type": "Straddle"
+    },
+    "order": {
+      "action": "Buy",
+      "price": 1,
+      "quantity": 1,
+      "price_type": "LMT",
+      "order_type": "IOC",
+      "octype": "Auto",
+      "account": {
+        "broker_id": "YOUR_BROKER_ID",
+        "account_id": "YOUR_ACCOUNT_ID"
+      }
+    }
+  }'
+
+```
+
+Out
+
+```
+{"contract":{"legs":[{"action":"Buy","security_type":"OPT","exchange":"TAIFEX","code":"TXO34000I6","symbol":"TXO34000I6","category":"TXO","delivery_month":"202609","strike_price":34000.0,"option_right":"C"},{"action":"Buy","security_type":"OPT","exchange":"TAIFEX","code":"TXO34000U6","symbol":"TXO34000U6","category":"TXO","delivery_month":"202609","strike_price":34000.0,"option_right":"P"}]},"order":{"id":"a3512bd6","action":"Buy","price":1.0,"quantity":1,"seqno":"743597","ordno":"000000","order_type":"IOC","price_type":"LMT","account":{"account_type":"F","person_id":"YOUR_PERSON_ID","broker_id":"YOUR_BROKER_ID","account_id":"YOUR_ACCOUNT_ID","signed":true,"username":""},"octype":"Auto"},"status":{"id":"a3512bd6","status":"Submitted","status_code":"0000","order_datetime":"2026-08-12T11:37:00+08:00","modified_price":1.0,"order_quantity":1,"deals":{}}}
+
+```
+
 ## 刪單
 
-`trade` 為要刪的單，可從[查詢狀態](#_4)取得。
+`trade` 為要刪的單，可從[查詢狀態](#_5)取得。
 
 cancel_comboorder
 
@@ -11893,7 +12988,7 @@ api.cancel_comboorder?
 Signature:
     api.cancel_comboorder(
         combo_trade: sj.ComboTrade,
-        timeout: Optional[int] = 5000,
+        timeout: Optional[int] = 30000,
         cb: Optional[Callable[[sj.ComboTrade], None]] = None,
     ) -> sj.ComboTrade
 
@@ -11902,9 +12997,9 @@ Signature:
 Parameters
 
 ```
-combo_trade: 欲刪除的組合單物件（從 list_combotrades / update_combostatus 取得）
+combo_trade: 要刪的組合單（list_combotrades / update_combostatus 取得）
 timeout:     逾時毫秒
-cb:          選填，callback 函式
+cb:          選填，callback 函式，timeout=0 時使用
 
 ```
 
@@ -11923,7 +13018,7 @@ Content-Type: application/json
 Parameters
 
 ```
-trade_id: 組合單 ID（取自 place 回傳的 status.id）
+trade_id: 組合單編號（下單回應 status.id）
 
 ```
 
@@ -11942,7 +13037,7 @@ In
 curl -X POST http://localhost:8080/api/v1/order/cancel_comboorder \
   -H 'Content-Type: application/json' \
   -d '{
-    "trade_id": "YOUR_TRADE_ID"
+    "trade_id": "46989de8"
   }'
 
 ```
@@ -11959,7 +13054,7 @@ api.update_combostatus?
 Signature:
     api.update_combostatus(
         account: Optional[sj.Account] = None,
-        timeout: Optional[int] = 5000,
+        timeout: Optional[int] = 30000,
         cb: Optional[Callable[[List[sj.ComboTrade]], None]] = None,
     ) -> List[sj.ComboTrade]
 
@@ -11976,10 +13071,10 @@ Parameters
 update_combostatus
     account: 期貨帳號；省略則更新名下所有期貨帳號
     timeout: 逾時毫秒
-    cb:      選填，callback 函式
+    cb:      選填，callback 函式；timeout=0 時會收到更新後的 ComboTrade 清單
 
 list_combotrades
-    （無參數，從本地快取回傳已知組合單）
+    （無參數；回傳本地快取中已知的組合單）
 
 ```
 
@@ -12002,6 +13097,10 @@ account: 期貨帳號
 
 ```
 
+IOC 未成交是正常結局
+
+以 `IOC` 送出且未成交的組合單，最終狀態為 `status=Cancelled`、`status_code='0000'`、 `deal_quantity=0`、`cancel_quantity=1`、`deals={}`——代表委託被交易所接受、 因未成交而自動取消，不是錯誤。
+
 ### 範例
 
 In
@@ -12021,36 +13120,32 @@ Out
             legs=[
                 ComboBase(
                     action=<Action.Sell: 'Sell'>,
-                    security_type=<SecurityType.Option: 'OPT'>,
+                    security_type=<SecurityType.Future: 'FUT'>,
                     exchange=<Exchange.TAIFEX: 'TAIFEX'>,
-                    code='TXO20260527000C',
-                    symbol='TXO20260527000C',
-                    category='TXO',
-                    delivery_month='202605',
-                    strike_price=27000.0,
-                    option_right=<OptionRight.Call: 'C'>
+                    code='TXFH6',
+                    symbol='TXFH6',
+                    category='TXF',
+                    delivery_month='202608'
                 ),
                 ComboBase(
-                    action=<Action.Sell: 'Sell'>,
-                    security_type=<SecurityType.Option: 'OPT'>,
+                    action=<Action.Buy: 'Buy'>,
+                    security_type=<SecurityType.Future: 'FUT'>,
                     exchange=<Exchange.TAIFEX: 'TAIFEX'>,
-                    code='TXO20260527000P',
-                    symbol='TXO20260527000P',
-                    category='TXO',
-                    delivery_month='202605',
-                    strike_price=27000.0,
-                    option_right=<OptionRight.Put: 'P'>
+                    code='TXFI6',
+                    symbol='TXFI6',
+                    category='TXF',
+                    delivery_month='202609'
                 )
             ]
         ),
         order=Order(
             id='46989de8',
-            action=<Action.Sell: 'Sell'>,
-            price=1.0,
+            action=<Action.Buy: 'Buy'>,
+            price=50.0,
             quantity=1,
             seqno='743595',
             ordno='000000',
-            order_type=<OrderType.IOC: 'IOC'>,
+            order_type=<OrderType.ROD: 'ROD'>,
             price_type=<PriceType.LMT: 'LMT'>,
             account=FutureAccount(
                 person_id='YOUR_PERSON_ID',
@@ -12059,15 +13154,15 @@ Out
                 signed=true,
                 username=''
             ),
-            octype=<FuturesOCType.New: 'New'>
+            octype=<FuturesOCType.Auto: 'Auto'>
         ),
         status=ComboStatus(
             id='46989de8',
             status=<OrderStatus.Submitted: 'Submitted'>,
             status_code='0000',
-            order_datetime=datetime.datetime(2026, 5, 20, 11, 24, 30, tzinfo=datetime.timezone(datetime.timedelta(hours=8))),
-            modified_time=datetime.datetime(2026, 5, 20, 11, 24, 30, tzinfo=datetime.timezone(datetime.timedelta(hours=8))),
-            modified_price=1.0,
+            order_datetime=datetime.datetime(2026, 8, 12, 11, 35, 0, tzinfo=datetime.timezone(datetime.timedelta(hours=8))),
+            modified_time=datetime.datetime(2026, 8, 12, 11, 35, 0, tzinfo=datetime.timezone(datetime.timedelta(hours=8))),
+            modified_price=50.0,
             order_quantity=1,
             deals={}
         )
@@ -12093,7 +13188,7 @@ curl -X POST http://localhost:8080/api/v1/order/combotrades \
 Out
 
 ```
-[{"contract":{"legs":[{"action":"Sell","security_type":"OPT","exchange":"TAIFEX","code":"TXO20260527000C","symbol":"TXO20260527000C","category":"TXO","delivery_month":"202605","strike_price":27000.0,"option_right":"C"},{"action":"Sell","security_type":"OPT","exchange":"TAIFEX","code":"TXO20260527000P","symbol":"TXO20260527000P","category":"TXO","delivery_month":"202605","strike_price":27000.0,"option_right":"P"}]},"order":{"id":"46989de8","action":"Sell","price":1.0,"quantity":1,"seqno":"743595","ordno":"000000","order_type":"IOC","price_type":"LMT","account":{"account_type":"F","person_id":"YOUR_PERSON_ID","broker_id":"YOUR_BROKER_ID","account_id":"YOUR_ACCOUNT_ID","signed":true,"username":""},"octype":"New"},"status":{"id":"46989de8","status":"Submitted","status_code":"0000","order_datetime":"2026-05-20T11:24:30+08:00","modified_time":"2026-05-20T11:24:30+08:00","modified_price":1.0,"order_quantity":1,"deals":{}}}]
+[{"contract":{"legs":[{"action":"Sell","security_type":"FUT","exchange":"TAIFEX","code":"TXFH6","symbol":"TXFH6","category":"TXF","delivery_month":"202608"},{"action":"Buy","security_type":"FUT","exchange":"TAIFEX","code":"TXFI6","symbol":"TXFI6","category":"TXF","delivery_month":"202609"}]},"order":{"id":"46989de8","action":"Buy","price":50.0,"quantity":1,"seqno":"743595","ordno":"000000","order_type":"ROD","price_type":"LMT","account":{"account_type":"F","person_id":"YOUR_PERSON_ID","broker_id":"YOUR_BROKER_ID","account_id":"YOUR_ACCOUNT_ID","signed":true,"username":""},"octype":"Auto"},"status":{"id":"46989de8","status":"Submitted","status_code":"0000","order_datetime":"2026-08-12T11:35:00+08:00","modified_price":50.0,"order_quantity":1,"deals":{}}}]
 
 ```
 
