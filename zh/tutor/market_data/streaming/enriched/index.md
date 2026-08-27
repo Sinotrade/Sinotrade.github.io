@@ -15,8 +15,7 @@ api.subscribe(
     quote_type=None,
     intraday_odd=False,
     version=None,
-    *,
-    ranking=None,
+    projection=None,
 )
 
 ```
@@ -25,10 +24,10 @@ Quote Parameters:
 
 ```
 contract:     要訂閱的指數合約（由 api.contracts.get 取得）
-quote_type:   加值資料類型 {CalculatedIndex, IndexContribution, IndustryContribution}
+quote_type:   加值資料類型 {CalculatedIndex, IndexComponents}
 intraday_odd: 即時加值資料不支援，固定為 False
 version:      即時加值資料不支援，省略即可
-ranking:      排行方式，僅 QuoteType.IndexContribution 使用（keyword-only）
+projection:   投影方式，僅 QuoteType.IndexComponents 使用
 
 ```
 
@@ -36,8 +35,7 @@ Subscribe
 
 ```
 POST /api/v1/stream/subscribe/calculated_index
-POST /api/v1/stream/subscribe/index_contribution
-POST /api/v1/stream/subscribe/industry_contribution
+POST /api/v1/stream/subscribe/index_components
 
 ```
 
@@ -46,15 +44,14 @@ POST /api/v1/stream/subscribe/industry_contribution
 Quote Parameters:
 
 ```
-calculated_index:      {"index": <StreamContract>}
-index_contribution:    {"index": <StreamContract>, "ranking": <ContributionRanking>}
-industry_contribution: {"index": <StreamContract>}
+calculated_index:  {"index": <StreamContract>}
+index_components:  {"index": <StreamContract>, "projection": <IndexComponentsProjection>}
 
 ```
 
 ## 類型總覽
 
-| QuoteType | 說明 | 推送頻率 | | --- | --- | --- | | `CalculatedIndex` | [自算指數](#calculatedindex) | 一秒可多筆 | | `IndexContribution` | [指數貢獻](#indexcontribution)（個股對指數的貢獻點數） | 每秒一次 | | `IndustryContribution` | [產業貢獻](#industrycontribution)（類股對指數的貢獻點數） | 每秒一次 |
+| QuoteType | projection | 說明 | 推送頻率 | | --- | --- | --- | --- | | `CalculatedIndex` | — | [自算指數](#calculatedindex) | 一秒可多筆 | | `IndexComponents` | `component_ranking` | [成分股排行](#component-ranking) | 每秒一次（產業內每 5 秒） | | `IndexComponents` | `group_metric` | [產業類股指標](#group-metric) | 每秒一次 | | `IndexComponents` | `group_ranking` | [產業類股排行](#group-ranking) | 每秒一次 |
 
 商品限制
 
@@ -102,31 +99,6 @@ CalculatedIndex(
     pct_chg=-2.93,
     simtrade=False,
 )
-
-```
-
-Callback（decorator 方式）
-
-未設定 callback 時預設直接印出。如需自行處理資料，可用 decorator 註冊 callback 函式：
-
-```
-from shioaji import CalculatedIndex
-
-@api.on_calculated_index()
-def calculated_index_callback(idx: CalculatedIndex):
-    print(idx)
-
-```
-
-Callback（傳統方式）
-
-```
-from shioaji import CalculatedIndex
-
-def calculated_index_callback(idx: CalculatedIndex):
-    print(idx)
-
-api.set_on_calculated_index_callback(calculated_index_callback)
 
 ```
 
@@ -187,24 +159,47 @@ simtrade (bool)                          試撮
 
 ```
 
-## 指數貢獻
+## 成分股與產業類股
 
-每秒推送一次個股貢獻排行，列出對該指數漲跌貢獻最大的成分股，排行方式以 keyword 參數 `ranking` 指定：
+以 `QuoteType.IndexComponents` 訂閱，並以 `projection` 指定推送下列三種資料之一。
 
-ContributionRanking
+注意
+
+`projection` 為必填參數，未帶會直接報錯；`projection` 也僅適用於 `QuoteType.IndexComponents`，與其他 `quote_type` 併用同樣會報錯。
+
+### 成分股排行
+
+每秒推送一次成分股排行，列出依指定指標排序的成分股；`projection` 以 `component_ranking` 建立：
+
+Projection
 
 ```
-# Python                                 HTTP (ranking)
-ContributionRanking.Top10                top10            貢獻點數前 10 名
-ContributionRanking.Abs10                abs10            貢獻點數絕對值前 10 名
-ContributionRanking.Positive25           positive25       正貢獻前 25 名
-ContributionRanking.Negative25           negative25       負貢獻前 25 名
+sj.IndexComponentsProjection.component_ranking(metric, order, limit, group=None)
+
+```
+
+Projection Parameters:
+
+```
+metric: 排行指標                                          HTTP (metric)
+        IndexComponentsComponentMetric.Contribution       contribution       貢獻點數
+        IndexComponentsComponentMetric.PctChange          pct_chg            漲跌幅 (%)
+        IndexComponentsComponentMetric.Weight             weight             權重 (%)
+        IndexComponentsComponentMetric.Amount             amount             成交金額
+order:  排序方式                                          HTTP (order)
+        IndexComponentsRankingOrder.Desc                  desc               由高至低
+        IndexComponentsRankingOrder.Asc                   asc                由低至高
+        IndexComponentsRankingOrder.AbsDesc               abs_desc           絕對值由高至低
+        IndexComponentsRankingOrder.PositiveDesc          positive_desc      僅正值，由高至低
+        IndexComponentsRankingOrder.NegativeAsc           negative_asc       僅負值，由低至高
+limit:  筆數，10 或 25
+group:  產業類別代碼（如 "24" 為半導體業），帶入則只排該產業內的成分股，每 5 秒推送一次；代碼見產業類股指標的 category
 
 ```
 
 提醒
 
-`ranking` 為必填參數，未帶會直接報錯；`ranking` 也僅適用於 `QuoteType.IndexContribution`，與其他 `quote_type` 併用同樣會報錯。
+`order` / `limit` 僅支援以下組合，其他組合在建立 projection 時即會拋出 `ValueError`：`Contribution`、`PctChange` 可用 `Desc` / 10、`AbsDesc` / 10、`PositiveDesc` / 25、`NegativeAsc` / 25；`Weight`、`Amount` 僅 `Desc` / 10；帶入 `group` 時僅 `Contribution` 搭配 `AbsDesc` / 10、`Amount` 搭配 `Desc` / 10。取消訂閱需帶入與訂閱時相同的 `projection`。
 
 In
 
@@ -212,15 +207,25 @@ In
 contract = api.contracts.get("IX0001")
 api.subscribe(
     contract,
-    quote_type=sj.QuoteType.IndexContribution,
-    ranking=sj.ContributionRanking.Top10,
+    quote_type=sj.QuoteType.IndexComponents,
+    projection=sj.IndexComponentsProjection.component_ranking(
+        sj.IndexComponentsComponentMetric.Contribution,
+        sj.IndexComponentsRankingOrder.AbsDesc,
+        10,
+        group="24",
+    ),
 )
 
 # 取消訂閱
 # api.unsubscribe(
 #     contract,
-#     quote_type=sj.QuoteType.IndexContribution,
-#     ranking=sj.ContributionRanking.Top10,
+#     quote_type=sj.QuoteType.IndexComponents,
+#     projection=sj.IndexComponentsProjection.component_ranking(
+#         sj.IndexComponentsComponentMetric.Contribution,
+#         sj.IndexComponentsRankingOrder.AbsDesc,
+#         10,
+#         group="24",
+#     ),
 # )
 
 ```
@@ -228,193 +233,44 @@ api.subscribe(
 Out
 
 ```
-IndexContribution(
-    ranking=<ContributionRanking.top10: 'top10'>,
-    code='IX0001',
-    date='2026/07/29',
-    time='10:28:25.000000',
-    entries=[
-        {'code': '2317', 'price': 239.0, 'reference': 238.0, 'price_chg': 1.0, 'pct_chg': 0.42016806722689076, 'points': 4.3},
-        {'code': '2357', 'price': 753.0, 'reference': 735.0, 'price_chg': 18.0, 'pct_chg': 2.4489795918367347, 'points': 4.1},
-        {'code': '2880', 'price': 42.35, 'reference': 41.4, 'price_chg': 0.95, 'pct_chg': 2.2946859903381642, 'points': 4.06},
-        {'code': '2207', 'price': 520.0, 'reference': 500.0, 'price_chg': 20.0, 'pct_chg': 4.0, 'points': 3.42},
-        {'code': '2603', 'price': 203.0, 'reference': 200.0, 'price_chg': 3.0, 'pct_chg': 1.5, 'points': 1.99},
-        {'code': '2615', 'price': 85.9, 'reference': 83.6, 'price_chg': 2.3, 'pct_chg': 2.751196172248804, 'points': 1.98},
-        {'code': '3034', 'price': 502.0, 'reference': 492.5, 'price_chg': 9.5, 'pct_chg': 1.9289340101522845, 'points': 1.77},
-        {'code': '4904', 'price': 107.5, 'reference': 106.0, 'price_chg': 1.5, 'pct_chg': 1.4150943396226416, 'points': 1.66},
-        {'code': '3231', 'price': 171.5, 'reference': 170.0, 'price_chg': 1.5, 'pct_chg': 0.8823529411764706, 'points': 1.46},
-        {'code': '2923', 'price': 40.2, 'reference': 37.65, 'price_chg': 2.55, 'pct_chg': 6.772908366533864, 'points': 1.36},
-    ],
+IndexComponentsRankingUpdate(entries=10)(
+    contract=Contract(code='IX0001', exchange='TSE'),
+    projection=IndexComponentsProjection(kind='ranking', target='component', metric='contribution', order='abs_desc', limit=10, group='24'),
+    date=datetime.date(2026, 8, 27),
+    time=datetime.time(10, 42, 35),
+    calculated_at=datetime.datetime(2026, 8, 27, 10, 42, 35, tzinfo=datetime.timezone(datetime.timedelta(seconds=28800))),
+    reference_date=datetime.date(2026, 8, 27),
+    market_phase=TwStockMarketPhase.continuous_trading,
     simtrade=False,
-)
 
-```
-
-Callback（decorator 方式）
-
-未設定 callback 時預設直接印出。如需自行處理資料，可用 decorator 註冊 callback 函式：
-
-```
-from shioaji import IndexContribution
-
-@api.on_index_contribution()
-def index_contribution_callback(ic: IndexContribution):
-    print(ic)
-
-```
-
-Callback（傳統方式）
-
-```
-from shioaji import IndexContribution
-
-def index_contribution_callback(ic: IndexContribution):
-    print(ic)
-
-api.set_on_index_contribution_callback(index_contribution_callback)
-
-```
-
-In
-
-```
-# 訂閱（ranking：top10 / abs10 / positive25 / negative25）
-curl -X POST http://localhost:8080/api/v1/stream/subscribe/index_contribution \
-  -H 'Content-Type: application/json' \
-  -d '{"index": {"security_type": "IND", "exchange": "TSE", "code": "IX0001", "target_code": null}, "ranking": "top10"}'
-
-# 開 SSE 收指數貢獻（Ctrl+C 結束）
-curl -N http://localhost:8080/api/v1/stream/data/index_contribution
-
-# 取消訂閱
-# curl -X POST http://localhost:8080/api/v1/stream/unsubscribe/index_contribution \
-#   -H 'Content-Type: application/json' \
-#   -d '{"index": {"security_type": "IND", "exchange": "TSE", "code": "IX0001", "target_code": null}, "ranking": "top10"}'
-
-```
-
-Out
-
-```
-event:index_contribution
-data:{
-  "ranking": "top10",
-  "code": "IX0001",
-  "date": "2026/07/28",
-  "time": "12:32:07.000000",
-  "entries": [
-    {"code": "3665", "price": 2205.0, "reference": 2150.0, "price_chg": 55.0, "pct_chg": 2.558139534883721, "points": 3.29},
-    {"code": "2886", "price": 49.8, "reference": 49.4, "price_chg": 0.4, "pct_chg": 0.8097165991902834, "points": 1.82},
-    {"code": "5269", "price": 1465.0, "reference": 1385.0, "price_chg": 80.0, "pct_chg": 5.776173285198556, "points": 1.82},
-    {"code": "2207", "price": 505.0, "reference": 498.0, "price_chg": 7.0, "pct_chg": 1.4056224899598393, "points": 1.2},
-    {"code": "2618", "price": 42.65, "reference": 41.95, "price_chg": 0.7, "pct_chg": 1.66865315852205, "points": 1.16},
-    {"code": "2610", "price": 21.85, "reference": 21.25, "price_chg": 0.6, "pct_chg": 2.823529411764706, "points": 1.13},
-    {"code": "2923", "price": 36.0, "reference": 34.45, "price_chg": 1.55, "pct_chg": 4.499274310595065, "points": 0.83},
-    {"code": "1101", "price": 24.7, "reference": 24.4, "price_chg": 0.3, "pct_chg": 1.2295081967213115, "points": 0.69},
-    {"code": "3045", "price": 114.0, "reference": 113.5, "price_chg": 0.5, "pct_chg": 0.4405286343612335, "points": 0.57},
-    {"code": "5871", "price": 121.0, "reference": 120.0, "price_chg": 1.0, "pct_chg": 0.8333333333333334, "points": 0.53}
-  ],
-  "simtrade": false
-}
-
-```
-
-### 屬性
-
-IndexContribution
-
-```
-ranking (ContributionRanking)            排行方式
-code (str)                               指數代碼
-date (str)                               日期
-time (str)                               時間
-entries (List[IndexContributionEntry])   貢獻排行清單
-simtrade (bool)                          試撮
-
-```
-
-IndexContributionEntry
-
-```
-code (str)                               股票代碼
-price (float)                            成交價
-reference (float)                        參考價
-price_chg (float)                        漲跌
-pct_chg (float)                          漲跌幅 (%)
-points (float)                           貢獻點數
-
-```
-
-## 產業貢獻
-
-每秒推送一次產業貢獻排行，列出各產業類股對該指數漲跌的貢獻點數，依貢獻由高至低排列。
-
-In
-
-```
-contract = api.contracts.get("IX0001")
-api.subscribe(
-    contract,
-    quote_type=sj.QuoteType.IndustryContribution,
-)
-
-# 取消訂閱
-# api.unsubscribe(
-#     contract,
-#     quote_type=sj.QuoteType.IndustryContribution,
-# )
-
-```
-
-Out
-
-```
-IndustryContribution(
-    code='IX0001',
-    date='2026/07/30',
-    time='09:03:47.000000',
     entries=[
-        {'category': '2', 'points': 1.69},
-        {'category': '1', 'points': 0.01},
-        {'category': '16', 'points': 0.01},
-        {'category': '14', 'points': -0.02},
-        {'category': '9', 'points': -0.07},
-        {'category': '30', 'points': -0.11},
-        {'category': '11', 'points': -0.13},
-        {'category': '38', 'points': -0.21},
-        {'category': '36', 'points': -0.27},
-        {'category': '18', 'points': -0.29},
-        ...
+        IndexComponentRankingEntry(
+            code='2330', category='24', price=Decimal('2425.00'),
+            pct_chg=Decimal('0.41'), value=Decimal('79.51'), trading_status=TradingStatus.active,
+        ),
+        IndexComponentRankingEntry(
+            code='2408', category='24', price=Decimal('546.00'),
+            pct_chg=Decimal('5.61'), value=Decimal('27.55'), trading_status=TradingStatus.active,
+        ),
+        IndexComponentRankingEntry(
+            code='2303', category='24', price=Decimal('117.00'),
+            pct_chg=Decimal('-5.26'), value=Decimal('-25.05'), trading_status=TradingStatus.active,
+        ),
+        ... 4 entries omitted ...,
+        IndexComponentRankingEntry(
+            code='3443', category='24', price=Decimal('6075.00'),
+            pct_chg=Decimal('-0.82'), value=Decimal('-2.05'), trading_status=TradingStatus.active,
+        ),
+        IndexComponentRankingEntry(
+            code='6770', category='24', price=Decimal('71.10'),
+            pct_chg=Decimal('1.57'), value=Decimal('1.59'), trading_status=TradingStatus.active,
+        ),
+        IndexComponentRankingEntry(
+            code='2337', category='24', price=Decimal('128.00'),
+            pct_chg=Decimal('1.99'), value=Decimal('1.52'), trading_status=TradingStatus.active,
+        ),
     ],
-    simtrade=False,
-    index_close=39600.94,
-    index_price_chg=-438.24,
 )
-
-```
-
-Callback（decorator 方式）
-
-未設定 callback 時預設直接印出。如需自行處理資料，可用 decorator 註冊 callback 函式：
-
-```
-from shioaji import IndustryContribution
-
-@api.on_industry_contribution()
-def industry_contribution_callback(ind: IndustryContribution):
-    print(ind)
-
-```
-
-Callback（傳統方式）
-
-```
-from shioaji import IndustryContribution
-
-def industry_contribution_callback(ind: IndustryContribution):
-    print(ind)
-
-api.set_on_industry_contribution_callback(industry_contribution_callback)
 
 ```
 
@@ -422,67 +278,390 @@ In
 
 ```
 # 訂閱
-curl -X POST http://localhost:8080/api/v1/stream/subscribe/industry_contribution \
+curl -X POST http://localhost:8080/api/v1/stream/subscribe/index_components \
   -H 'Content-Type: application/json' \
-  -d '{"index": {"security_type": "IND", "exchange": "TSE", "code": "IX0001", "target_code": null}}'
+  -d '{"index": {"security_type": "IND", "exchange": "TSE", "code": "IX0001", "target_code": null}, "projection": {"kind": "ranking", "target": "component", "metric": "contribution", "order": "abs_desc", "limit": 10, "group": "24"}}'
 
-# 開 SSE 收產業貢獻（Ctrl+C 結束）
-curl -N http://localhost:8080/api/v1/stream/data/industry_contribution
+# 開 SSE 收成分股排行（Ctrl+C 結束）
+curl -N http://localhost:8080/api/v1/stream/data/index_components
 
 # 取消訂閱
-# curl -X POST http://localhost:8080/api/v1/stream/unsubscribe/industry_contribution \
+# curl -X POST http://localhost:8080/api/v1/stream/unsubscribe/index_components \
 #   -H 'Content-Type: application/json' \
-#   -d '{"index": {"security_type": "IND", "exchange": "TSE", "code": "IX0001", "target_code": null}}'
+#   -d '{"index": {"security_type": "IND", "exchange": "TSE", "code": "IX0001", "target_code": null}, "projection": {"kind": "ranking", "target": "component", "metric": "contribution", "order": "abs_desc", "limit": 10, "group": "24"}}'
+
+```
+
+#### 屬性
+
+IndexComponentsRankingUpdate
+
+```
+contract (Contract)                          指數合約
+projection (IndexComponentsProjection)       投影方式
+date (datetime.date)                         日期
+time (datetime.time)                         時間
+calculated_at (datetime.datetime)            計算時間
+reference_date (datetime.date)               參考價基準日
+market_phase (TwStockMarketPhase)            盤別
+simtrade (bool)                              試撮
+entries (List[IndexComponentRankingEntry])   排行清單
+
+```
+
+IndexComponentRankingEntry
+
+```
+code (str)                               股票代碼
+category (str)                           產業類別代碼
+price (Decimal)                          成交價
+reference (Decimal)                      參考價
+price_chg (Decimal)                      漲跌
+pct_chg (Decimal)                        漲跌幅 (%)
+value (Decimal)                          指標值（依 metric）
+reference_weight_ppm (int)               參考權重 (ppm)
+price_source (PriceSource)               價格來源
+trading_status (TradingStatus)           交易狀態
+data_status (DataStatus)                 資料狀態
+
+```
+
+### 產業類股指標
+
+每秒推送一次全部產業類股的指標值；`projection` 以 `group_metric` 建立：
+
+Projection
+
+```
+sj.IndexComponentsProjection.group_metric(metric)
+
+```
+
+Projection Parameters:
+
+```
+metric: 產業指標                                          HTTP (metric)
+        IndexComponentsGroupMetric.Contribution           contribution               貢獻點數
+        IndexComponentsGroupMetric.EqualWeightPerformance equal_weight_performance   等權重漲跌幅 (%)
+        IndexComponentsGroupMetric.WeightedPerformance    weighted_performance       加權漲跌幅 (%)
+        IndexComponentsGroupMetric.Weight                 weight                     權重 (%)
+        IndexComponentsGroupMetric.Amount                 amount                     成交金額
+        IndexComponentsGroupMetric.AmountShare            amount_share               成交金額占比 (%)
+        IndexComponentsGroupMetric.Breadth                breadth                    漲跌家數比 (%)
+
+```
+
+提醒
+
+取消訂閱需帶入與訂閱時相同的 `projection`。
+
+In
+
+```
+contract = api.contracts.get("IX0001")
+api.subscribe(
+    contract,
+    quote_type=sj.QuoteType.IndexComponents,
+    projection=sj.IndexComponentsProjection.group_metric(
+        sj.IndexComponentsGroupMetric.Contribution,
+    ),
+)
+
+# 取消訂閱
+# api.unsubscribe(
+#     contract,
+#     quote_type=sj.QuoteType.IndexComponents,
+#     projection=sj.IndexComponentsProjection.group_metric(
+#         sj.IndexComponentsGroupMetric.Contribution,
+#     ),
+# )
 
 ```
 
 Out
 
 ```
-event:industry_contribution
-data:{
-  "code": "IX0001",
-  "date": "2026/07/30",
-  "time": "09:29:25.000000",
-  "entries": [
-    {"category": "24", "points": 251.05},
-    {"category": "28", "points": 64.66},
-    {"category": "17", "points": 20.81},
-    {"category": "26", "points": 7.74},
-    {"category": "3", "points": 4.81},
-    {"category": "12", "points": 2.09},
-    {"category": "21", "points": 0.94},
-    {"category": "10", "points": 0.79},
-    {"category": "18", "points": 0.52},
-    {"category": "1", "points": 0.36},
-    ...
-  ],
-  "simtrade": false,
-  "index_close": 40310.28,
-  "index_price_chg": 271.1
-}
+IndexComponentsGroupUpdate(groups=32)(
+    contract=Contract(code='IX0001', exchange='TSE'),
+    projection=IndexComponentsProjection(kind='group_metric', target=None, metric='contribution', order=None, limit=None, group=None),
+    date=datetime.date(2026, 8, 27),
+    time=datetime.time(12, 22, 38),
+    calculated_at=datetime.datetime(2026, 8, 27, 12, 22, 38, tzinfo=datetime.timezone(datetime.timedelta(seconds=28800))),
+    reference_date=datetime.date(2026, 8, 27),
+    market_phase=TwStockMarketPhase.continuous_trading,
+    simtrade=False,
+    unit=IndexComponentsUnit.points,
+
+    groups=[
+        IndexComponentGroupValue(
+            category='1', name='水泥工業', item_count=7, value=Decimal('-0.62'),
+        ),
+        IndexComponentGroupValue(
+            category='2', name='食品工業', item_count=25, value=Decimal('-2.00'),
+        ),
+        IndexComponentGroupValue(
+            category='3', name='塑膠工業', item_count=21, value=Decimal('61.77'),
+        ),
+        ... 26 groups omitted ...,
+        IndexComponentGroupValue(
+            category='36', name='數位雲端', item_count=13, value=Decimal('-0.03'),
+        ),
+        IndexComponentGroupValue(
+            category='37', name='運動休閒', item_count=18, value=Decimal('0.28'),
+        ),
+        IndexComponentGroupValue(
+            category='38', name='居家生活', item_count=11, value=Decimal('-0.46'),
+        ),
+    ],
+)
 
 ```
 
-### 屬性
-
-IndustryContribution
+In
 
 ```
-code (str)                                指數代碼
-date (str)                                日期
-time (str)                                時間
-entries (List[IndustryContributionEntry]) 產業貢獻清單
-simtrade (bool)                           試撮
-index_close (float)                       最新指數
-index_price_chg (float)                   指數漲跌（entries 貢獻點數加總等於此值）
+# 訂閱
+curl -X POST http://localhost:8080/api/v1/stream/subscribe/index_components \
+  -H 'Content-Type: application/json' \
+  -d '{"index": {"security_type": "IND", "exchange": "TSE", "code": "IX0001", "target_code": null}, "projection": {"kind": "group_metric", "metric": "contribution"}}'
+
+# 開 SSE 收產業類股指標（Ctrl+C 結束）
+curl -N http://localhost:8080/api/v1/stream/data/index_components
+
+# 取消訂閱
+# curl -X POST http://localhost:8080/api/v1/stream/unsubscribe/index_components \
+#   -H 'Content-Type: application/json' \
+#   -d '{"index": {"security_type": "IND", "exchange": "TSE", "code": "IX0001", "target_code": null}, "projection": {"kind": "group_metric", "metric": "contribution"}}'
 
 ```
 
-IndustryContributionEntry
+#### 屬性
+
+IndexComponentsGroupUpdate
+
+```
+contract (Contract)                          指數合約
+projection (IndexComponentsProjection)       投影方式
+date (datetime.date)                         日期
+time (datetime.time)                         時間
+calculated_at (datetime.datetime)            計算時間
+reference_date (datetime.date)               參考價基準日
+market_phase (TwStockMarketPhase)            盤別
+simtrade (bool)                              試撮
+unit (IndexComponentsUnit)                   value 的單位
+groups (List[IndexComponentGroupValue])      產業清單
+
+```
+
+IndexComponentGroupValue
 
 ```
 category (str)                           產業類別代碼
-points (float)                           貢獻點數
+name (str)                               產業名稱
+item_count (int)                         成分股家數
+value (Decimal)                          指標值（依 metric）
+
+```
+
+### 產業類股排行
+
+每秒推送一次產業類股排行，列出依指定指標排序的產業；`projection` 以 `group_ranking` 建立：
+
+Projection
+
+```
+sj.IndexComponentsProjection.group_ranking(metric, order, limit)
+
+```
+
+Projection Parameters:
+
+```
+metric: 產業指標                                          HTTP (metric)
+        IndexComponentsGroupMetric.Contribution           contribution               貢獻點數
+        IndexComponentsGroupMetric.EqualWeightPerformance equal_weight_performance   等權重漲跌幅 (%)
+        IndexComponentsGroupMetric.WeightedPerformance    weighted_performance       加權漲跌幅 (%)
+        IndexComponentsGroupMetric.Weight                 weight                     權重 (%)
+        IndexComponentsGroupMetric.Amount                 amount                     成交金額
+        IndexComponentsGroupMetric.Breadth                breadth                    漲跌家數比 (%)
+order:  排序方式                                          HTTP (order)
+        IndexComponentsRankingOrder.Desc                  desc                       由高至低
+        IndexComponentsRankingOrder.Asc                   asc                        由低至高
+        IndexComponentsRankingOrder.AbsDesc               abs_desc                   絕對值由高至低
+        IndexComponentsRankingOrder.PositiveDesc          positive_desc              僅正值，由高至低
+        IndexComponentsRankingOrder.NegativeAsc           negative_asc               僅負值，由低至高
+limit:  筆數，10
+
+```
+
+提醒
+
+`metric` / `order` 僅支援以下組合，其他組合在建立 projection 時即會拋出 `ValueError`：`Contribution`、`EqualWeightPerformance`、`WeightedPerformance`、`Breadth` 搭配 `AbsDesc` / 10；`Weight`、`Amount` 搭配 `Desc` / 10。取消訂閱需帶入與訂閱時相同的 `projection`。
+
+In
+
+```
+contract = api.contracts.get("IX0001")
+api.subscribe(
+    contract,
+    quote_type=sj.QuoteType.IndexComponents,
+    projection=sj.IndexComponentsProjection.group_ranking(
+        sj.IndexComponentsGroupMetric.Contribution,
+        sj.IndexComponentsRankingOrder.AbsDesc,
+        10,
+    ),
+)
+
+# 取消訂閱
+# api.unsubscribe(
+#     contract,
+#     quote_type=sj.QuoteType.IndexComponents,
+#     projection=sj.IndexComponentsProjection.group_ranking(
+#         sj.IndexComponentsGroupMetric.Contribution,
+#         sj.IndexComponentsRankingOrder.AbsDesc,
+#         10,
+#     ),
+# )
+
+```
+
+Out
+
+```
+IndexComponentsGroupUpdate(groups=10)(
+    contract=Contract(code='IX0001', exchange='TSE'),
+    projection=IndexComponentsProjection(kind='ranking', target='group', metric='contribution', order='abs_desc', limit=10, group=None),
+    date=datetime.date(2026, 8, 27),
+    time=datetime.time(10, 43, 4),
+    calculated_at=datetime.datetime(2026, 8, 27, 10, 43, 4, tzinfo=datetime.timezone(datetime.timedelta(seconds=28800))),
+    reference_date=datetime.date(2026, 8, 27),
+    market_phase=TwStockMarketPhase.continuous_trading,
+    simtrade=False,
+    unit=IndexComponentsUnit.points,
+
+    groups=[
+        IndexComponentGroupValue(
+            category='24', name='半導體業', item_count=96, value=Decimal('109.90'),
+        ),
+        IndexComponentGroupValue(
+            category='28', name='電子零組件業', item_count=104, value=Decimal('81.66'),
+        ),
+        IndexComponentGroupValue(
+            category='3', name='塑膠工業', item_count=21, value=Decimal('62.17'),
+        ),
+        ... 4 groups omitted ...,
+        IndexComponentGroupValue(
+            category='5', name='電機機械', item_count=50, value=Decimal('15.85'),
+        ),
+        IndexComponentGroupValue(
+            category='27', name='通信網路業', item_count=46, value=Decimal('11.89'),
+        ),
+        IndexComponentGroupValue(
+            category='23', name='油電燃氣', item_count=8, value=Decimal('6.42'),
+        ),
+    ],
+)
+
+```
+
+In
+
+```
+# 訂閱
+curl -X POST http://localhost:8080/api/v1/stream/subscribe/index_components \
+  -H 'Content-Type: application/json' \
+  -d '{"index": {"security_type": "IND", "exchange": "TSE", "code": "IX0001", "target_code": null}, "projection": {"kind": "ranking", "target": "group", "metric": "contribution", "order": "abs_desc", "limit": 10}}'
+
+# 開 SSE 收產業類股排行（Ctrl+C 結束）
+curl -N http://localhost:8080/api/v1/stream/data/index_components
+
+# 取消訂閱
+# curl -X POST http://localhost:8080/api/v1/stream/unsubscribe/index_components \
+#   -H 'Content-Type: application/json' \
+#   -d '{"index": {"security_type": "IND", "exchange": "TSE", "code": "IX0001", "target_code": null}, "projection": {"kind": "ranking", "target": "group", "metric": "contribution", "order": "abs_desc", "limit": 10}}'
+
+```
+
+#### 屬性
+
+IndexComponentsGroupUpdate
+
+```
+contract (Contract)                          指數合約
+projection (IndexComponentsProjection)       投影方式
+date (datetime.date)                         日期
+time (datetime.time)                         時間
+calculated_at (datetime.datetime)            計算時間
+reference_date (datetime.date)               參考價基準日
+market_phase (TwStockMarketPhase)            盤別
+simtrade (bool)                              試撮
+unit (IndexComponentsUnit)                   value 的單位
+groups (List[IndexComponentGroupValue])      產業清單
+
+```
+
+IndexComponentGroupValue
+
+```
+category (str)                           產業類別代碼
+name (str)                               產業名稱
+item_count (int)                         成分股家數
+value (Decimal)                          指標值（依 metric）
+
+```
+
+## Callback
+
+未設定 callback 時預設直接印出。如需自行處理資料，可用 decorator 註冊 callback 函式：
+
+### 自算指數
+
+Callback（decorator 方式）
+
+```
+from shioaji import CalculatedIndex
+
+@api.on_calculated_index()
+def calculated_index_callback(idx: CalculatedIndex):
+    print(idx)
+
+```
+
+Callback（傳統方式）
+
+```
+from shioaji import CalculatedIndex
+
+def calculated_index_callback(idx: CalculatedIndex):
+    print(idx)
+
+api.set_on_calculated_index_callback(calculated_index_callback)
+
+```
+
+### 成分股與產業類股
+
+成分股排行、產業類股指標、產業類股排行共用 `on_index_components`，收到的型別依 `projection` 而定：
+
+Callback（decorator 方式）
+
+```
+from shioaji import IndexComponentsRankingUpdate, IndexComponentsGroupUpdate
+
+@api.on_index_components()
+def index_components_callback(update: IndexComponentsRankingUpdate | IndexComponentsGroupUpdate):
+    print(update)
+
+```
+
+Callback（傳統方式）
+
+```
+from shioaji import IndexComponentsRankingUpdate, IndexComponentsGroupUpdate
+
+def index_components_callback(update: IndexComponentsRankingUpdate | IndexComponentsGroupUpdate):
+    print(update)
+
+api.set_on_index_components_callback(index_components_callback)
 
 ```
