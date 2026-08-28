@@ -9562,6 +9562,35 @@ curl -N http://localhost:8080/api/v1/stream/data/index_components
 
 ```
 
+Out
+
+```
+event:index_components
+data:{
+  "contract": {"security_type": "IND", "region": "TW", "exchange": "TSE", "code": "IX0001"},
+  "projection": {"kind": "ranking", "target": "component", "metric": "contribution", "order": "abs_desc", "limit": 10, "group": "24"},
+  "date": "2026-08-28",
+  "time": "09:07:20.000000",
+  "calculated_at": "2026-08-28T09:07:20.000000+08:00",
+  "reference_date": "2026-08-28",
+  "market_phase": "continuous_trading",
+  "simtrade": false,
+  "entries": [
+    {"code": "2330", "category": "24", "value": "198.67", "price": "2435.00", "reference": "2410.00", "price_chg": "25.00", "pct_chg": "1.04", "reference_weight_ppm": 416563, "price_source": "regular", "trading_status": "active", "data_status": "live"},
+    {"code": "2454", "category": "24", "value": "34.40", "price": "3935.00", "reference": "3865.00", "price_chg": "70.00", "pct_chg": "1.81", "reference_weight_ppm": 41319, "price_source": "regular", "trading_status": "active", "data_status": "live"},
+    {"code": "2408", "category": "24", "value": "24.69", "price": "567.00", "reference": "541.00", "price_chg": "26.00", "pct_chg": "4.81", "reference_weight_ppm": 11173, "price_source": "regular", "trading_status": "active", "data_status": "live"},
+    {"code": "2303", "category": "24", "value": "17.33", "price": "123.00", "reference": "118.50", "price_chg": "4.50", "pct_chg": "3.80", "reference_weight_ppm": 9928, "price_source": "regular", "trading_status": "active", "data_status": "live"},
+    {"code": "3711", "category": "24", "value": "6.85", "price": "610.00", "reference": "605.00", "price_chg": "5.00", "pct_chg": "0.83", "reference_weight_ppm": 18028, "price_source": "regular", "trading_status": "active", "data_status": "live"},
+    {"code": "2344", "category": "24", "value": "5.52", "price": "190.00", "reference": "186.00", "price_chg": "4.00", "pct_chg": "2.15", "reference_weight_ppm": 5579, "price_source": "regular", "trading_status": "active", "data_status": "live"},
+    {"code": "7769", "category": "24", "value": "5.51", "price": "6445.00", "reference": "6345.00", "price_chg": "100.00", "pct_chg": "1.58", "reference_weight_ppm": 7609, "price_source": "regular", "trading_status": "active", "data_status": "live"},
+    {"code": "3443", "category": "24", "value": "2.87", "price": "5990.00", "reference": "5920.00", "price_chg": "70.00", "pct_chg": "1.18", "reference_weight_ppm": 5288, "price_source": "regular", "trading_status": "active", "data_status": "live"},
+    {"code": "6770", "category": "24", "value": "2.02", "price": "71.00", "reference": "69.60", "price_chg": "1.40", "pct_chg": "2.01", "reference_weight_ppm": 2185, "price_source": "regular", "trading_status": "active", "data_status": "live"},
+    {"code": "6239", "category": "24", "value": "1.74", "price": "284.50", "reference": "277.00", "price_chg": "7.50", "pct_chg": "2.71", "reference_weight_ppm": 1402, "price_source": "regular", "trading_status": "active", "data_status": "live"}
+  ]
+}
+
+```
+
 #### 屬性
 
 IndexComponentsRankingUpdate
@@ -9702,6 +9731,37 @@ curl -N http://localhost:8080/api/v1/stream/data/index_components
 # curl -X POST http://localhost:8080/api/v1/stream/unsubscribe/index_components \
 #   -H 'Content-Type: application/json' \
 #   -d '{"index": {"security_type": "IND", "exchange": "TSE", "code": "IX0001", "target_code": null}, "projection": {"kind": "group_metric", "metric": "contribution"}}'
+
+```
+
+Out
+
+```
+event:index_components
+data:{
+  "contract": {"security_type": "IND", "region": "TW", "exchange": "TSE", "code": "IX0001"},
+  "projection": {"kind": "group_metric", "metric": "contribution"},
+  "date": "2026-08-28",
+  "time": "09:09:29.000000",
+  "calculated_at": "2026-08-28T09:09:29.000000+08:00",
+  "reference_date": "2026-08-28",
+  "market_phase": "continuous_trading",
+  "simtrade": false,
+  "unit": "points",
+  "groups": [
+    {"category": "1", "name": "水泥工業", "item_count": 7, "value": "-0.22"},
+    {"category": "2", "name": "食品工業", "item_count": 25, "value": "-1.38"},
+    {"category": "3", "name": "塑膠工業", "item_count": 21, "value": "19.52"},
+    {"category": "4", "name": "紡織纖維", "item_count": 42, "value": "-0.84"},
+    {"category": "5", "name": "電機機械", "item_count": 50, "value": "-4.36"},
+    {"category": "6", "name": "電器電纜", "item_count": 16, "value": "0.43"},
+    {"category": "8", "name": "玻璃陶瓷", "item_count": 5, "value": "-0.08"},
+    {"category": "9", "name": "造紙工業", "item_count": 7, "value": "-0.03"},
+    {"category": "10", "name": "鋼鐵工業", "item_count": 31, "value": "-0.47"},
+    {"category": "11", "name": "橡膠工業", "item_count": 11, "value": "-0.16"},
+    ...
+  ]
+}
 
 ```
 
@@ -9849,6 +9909,36 @@ curl -N http://localhost:8080/api/v1/stream/data/index_components
 # curl -X POST http://localhost:8080/api/v1/stream/unsubscribe/index_components \
 #   -H 'Content-Type: application/json' \
 #   -d '{"index": {"security_type": "IND", "exchange": "TSE", "code": "IX0001", "target_code": null}, "projection": {"kind": "ranking", "target": "group", "metric": "contribution", "order": "abs_desc", "limit": 10}}'
+
+```
+
+Out
+
+```
+event:index_components
+data:{
+  "contract": {"security_type": "IND", "region": "TW", "exchange": "TSE", "code": "IX0001"},
+  "projection": {"kind": "ranking", "target": "group", "metric": "contribution", "order": "abs_desc", "limit": 10},
+  "date": "2026-08-28",
+  "time": "09:12:01.000000",
+  "calculated_at": "2026-08-28T09:12:01.000000+08:00",
+  "reference_date": "2026-08-28",
+  "market_phase": "continuous_trading",
+  "simtrade": false,
+  "unit": "points",
+  "groups": [
+    {"category": "24", "name": "半導體業", "item_count": 96, "value": "321.15"},
+    {"category": "28", "name": "電子零組件業", "item_count": 104, "value": "103.47"},
+    {"category": "25", "name": "電腦及週邊設備業", "item_count": 64, "value": "29.90"},
+    {"category": "17", "name": "金融保險", "item_count": 32, "value": "27.44"},
+    {"category": "31", "name": "其他電子業", "item_count": 46, "value": "24.16"},
+    {"category": "26", "name": "光電業", "item_count": 68, "value": "17.17"},
+    {"category": "3", "name": "塑膠工業", "item_count": 21, "value": "13.81"},
+    {"category": "15", "name": "航運業", "item_count": 28, "value": "-7.18"},
+    {"category": "27", "name": "通信網路業", "item_count": 46, "value": "5.68"},
+    {"category": "5", "name": "電機機械", "item_count": 50, "value": "-3.77"}
+  ]
+}
 
 ```
 

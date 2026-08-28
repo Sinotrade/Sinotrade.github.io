@@ -2676,6 +2676,33 @@ curl<span class="w"> </span>-N<span class="w"> </span>http://localhost:8080/api/
 <span class="c1">#   -d &#39;{&quot;index&quot;: {&quot;security_type&quot;: &quot;IND&quot;, &quot;exchange&quot;: &quot;TSE&quot;, &quot;code&quot;: &quot;IX0001&quot;, &quot;target_code&quot;: null}, &quot;projection&quot;: {&quot;kind&quot;: &quot;ranking&quot;, &quot;target&quot;: &quot;component&quot;, &quot;metric&quot;: &quot;contribution&quot;, &quot;order&quot;: &quot;abs_desc&quot;, &quot;limit&quot;: 10, &quot;group&quot;: &quot;24&quot;}}&#39;</span>
 </code></pre></div>
 </div>
+<div class="admonition done">
+<p class="admonition-title">Out</p>
+<div class="highlight"><pre><span></span><code>event:index_components
+data:{
+  &quot;contract&quot;: {&quot;security_type&quot;: &quot;IND&quot;, &quot;region&quot;: &quot;TW&quot;, &quot;exchange&quot;: &quot;TSE&quot;, &quot;code&quot;: &quot;IX0001&quot;},
+  &quot;projection&quot;: {&quot;kind&quot;: &quot;ranking&quot;, &quot;target&quot;: &quot;component&quot;, &quot;metric&quot;: &quot;contribution&quot;, &quot;order&quot;: &quot;abs_desc&quot;, &quot;limit&quot;: 10, &quot;group&quot;: &quot;24&quot;},
+  &quot;date&quot;: &quot;2026-08-28&quot;,
+  &quot;time&quot;: &quot;09:07:20.000000&quot;,
+  &quot;calculated_at&quot;: &quot;2026-08-28T09:07:20.000000+08:00&quot;,
+  &quot;reference_date&quot;: &quot;2026-08-28&quot;,
+  &quot;market_phase&quot;: &quot;continuous_trading&quot;,
+  &quot;simtrade&quot;: false,
+  &quot;entries&quot;: [
+    {&quot;code&quot;: &quot;2330&quot;, &quot;category&quot;: &quot;24&quot;, &quot;value&quot;: &quot;198.67&quot;, &quot;price&quot;: &quot;2435.00&quot;, &quot;reference&quot;: &quot;2410.00&quot;, &quot;price_chg&quot;: &quot;25.00&quot;, &quot;pct_chg&quot;: &quot;1.04&quot;, &quot;reference_weight_ppm&quot;: 416563, &quot;price_source&quot;: &quot;regular&quot;, &quot;trading_status&quot;: &quot;active&quot;, &quot;data_status&quot;: &quot;live&quot;},
+    {&quot;code&quot;: &quot;2454&quot;, &quot;category&quot;: &quot;24&quot;, &quot;value&quot;: &quot;34.40&quot;, &quot;price&quot;: &quot;3935.00&quot;, &quot;reference&quot;: &quot;3865.00&quot;, &quot;price_chg&quot;: &quot;70.00&quot;, &quot;pct_chg&quot;: &quot;1.81&quot;, &quot;reference_weight_ppm&quot;: 41319, &quot;price_source&quot;: &quot;regular&quot;, &quot;trading_status&quot;: &quot;active&quot;, &quot;data_status&quot;: &quot;live&quot;},
+    {&quot;code&quot;: &quot;2408&quot;, &quot;category&quot;: &quot;24&quot;, &quot;value&quot;: &quot;24.69&quot;, &quot;price&quot;: &quot;567.00&quot;, &quot;reference&quot;: &quot;541.00&quot;, &quot;price_chg&quot;: &quot;26.00&quot;, &quot;pct_chg&quot;: &quot;4.81&quot;, &quot;reference_weight_ppm&quot;: 11173, &quot;price_source&quot;: &quot;regular&quot;, &quot;trading_status&quot;: &quot;active&quot;, &quot;data_status&quot;: &quot;live&quot;},
+    {&quot;code&quot;: &quot;2303&quot;, &quot;category&quot;: &quot;24&quot;, &quot;value&quot;: &quot;17.33&quot;, &quot;price&quot;: &quot;123.00&quot;, &quot;reference&quot;: &quot;118.50&quot;, &quot;price_chg&quot;: &quot;4.50&quot;, &quot;pct_chg&quot;: &quot;3.80&quot;, &quot;reference_weight_ppm&quot;: 9928, &quot;price_source&quot;: &quot;regular&quot;, &quot;trading_status&quot;: &quot;active&quot;, &quot;data_status&quot;: &quot;live&quot;},
+    {&quot;code&quot;: &quot;3711&quot;, &quot;category&quot;: &quot;24&quot;, &quot;value&quot;: &quot;6.85&quot;, &quot;price&quot;: &quot;610.00&quot;, &quot;reference&quot;: &quot;605.00&quot;, &quot;price_chg&quot;: &quot;5.00&quot;, &quot;pct_chg&quot;: &quot;0.83&quot;, &quot;reference_weight_ppm&quot;: 18028, &quot;price_source&quot;: &quot;regular&quot;, &quot;trading_status&quot;: &quot;active&quot;, &quot;data_status&quot;: &quot;live&quot;},
+    {&quot;code&quot;: &quot;2344&quot;, &quot;category&quot;: &quot;24&quot;, &quot;value&quot;: &quot;5.52&quot;, &quot;price&quot;: &quot;190.00&quot;, &quot;reference&quot;: &quot;186.00&quot;, &quot;price_chg&quot;: &quot;4.00&quot;, &quot;pct_chg&quot;: &quot;2.15&quot;, &quot;reference_weight_ppm&quot;: 5579, &quot;price_source&quot;: &quot;regular&quot;, &quot;trading_status&quot;: &quot;active&quot;, &quot;data_status&quot;: &quot;live&quot;},
+    {&quot;code&quot;: &quot;7769&quot;, &quot;category&quot;: &quot;24&quot;, &quot;value&quot;: &quot;5.51&quot;, &quot;price&quot;: &quot;6445.00&quot;, &quot;reference&quot;: &quot;6345.00&quot;, &quot;price_chg&quot;: &quot;100.00&quot;, &quot;pct_chg&quot;: &quot;1.58&quot;, &quot;reference_weight_ppm&quot;: 7609, &quot;price_source&quot;: &quot;regular&quot;, &quot;trading_status&quot;: &quot;active&quot;, &quot;data_status&quot;: &quot;live&quot;},
+    {&quot;code&quot;: &quot;3443&quot;, &quot;category&quot;: &quot;24&quot;, &quot;value&quot;: &quot;2.87&quot;, &quot;price&quot;: &quot;5990.00&quot;, &quot;reference&quot;: &quot;5920.00&quot;, &quot;price_chg&quot;: &quot;70.00&quot;, &quot;pct_chg&quot;: &quot;1.18&quot;, &quot;reference_weight_ppm&quot;: 5288, &quot;price_source&quot;: &quot;regular&quot;, &quot;trading_status&quot;: &quot;active&quot;, &quot;data_status&quot;: &quot;live&quot;},
+    {&quot;code&quot;: &quot;6770&quot;, &quot;category&quot;: &quot;24&quot;, &quot;value&quot;: &quot;2.02&quot;, &quot;price&quot;: &quot;71.00&quot;, &quot;reference&quot;: &quot;69.60&quot;, &quot;price_chg&quot;: &quot;1.40&quot;, &quot;pct_chg&quot;: &quot;2.01&quot;, &quot;reference_weight_ppm&quot;: 2185, &quot;price_source&quot;: &quot;regular&quot;, &quot;trading_status&quot;: &quot;active&quot;, &quot;data_status&quot;: &quot;live&quot;},
+    {&quot;code&quot;: &quot;6239&quot;, &quot;category&quot;: &quot;24&quot;, &quot;value&quot;: &quot;1.74&quot;, &quot;price&quot;: &quot;284.50&quot;, &quot;reference&quot;: &quot;277.00&quot;, &quot;price_chg&quot;: &quot;7.50&quot;, &quot;pct_chg&quot;: &quot;2.71&quot;, &quot;reference_weight_ppm&quot;: 1402, &quot;price_source&quot;: &quot;regular&quot;, &quot;trading_status&quot;: &quot;active&quot;, &quot;data_status&quot;: &quot;live&quot;}
+  ]
+}
+</code></pre></div>
+</div>
 </div>
 </div>
 </div>
@@ -2808,6 +2835,35 @@ curl<span class="w"> </span>-N<span class="w"> </span>http://localhost:8080/api/
 <span class="c1"># curl -X POST http://localhost:8080/api/v1/stream/unsubscribe/index_components \</span>
 <span class="c1">#   -H &#39;Content-Type: application/json&#39; \</span>
 <span class="c1">#   -d &#39;{&quot;index&quot;: {&quot;security_type&quot;: &quot;IND&quot;, &quot;exchange&quot;: &quot;TSE&quot;, &quot;code&quot;: &quot;IX0001&quot;, &quot;target_code&quot;: null}, &quot;projection&quot;: {&quot;kind&quot;: &quot;group_metric&quot;, &quot;metric&quot;: &quot;contribution&quot;}}&#39;</span>
+</code></pre></div>
+</div>
+<div class="admonition done">
+<p class="admonition-title">Out</p>
+<div class="highlight"><pre><span></span><code>event:index_components
+data:{
+  &quot;contract&quot;: {&quot;security_type&quot;: &quot;IND&quot;, &quot;region&quot;: &quot;TW&quot;, &quot;exchange&quot;: &quot;TSE&quot;, &quot;code&quot;: &quot;IX0001&quot;},
+  &quot;projection&quot;: {&quot;kind&quot;: &quot;group_metric&quot;, &quot;metric&quot;: &quot;contribution&quot;},
+  &quot;date&quot;: &quot;2026-08-28&quot;,
+  &quot;time&quot;: &quot;09:09:29.000000&quot;,
+  &quot;calculated_at&quot;: &quot;2026-08-28T09:09:29.000000+08:00&quot;,
+  &quot;reference_date&quot;: &quot;2026-08-28&quot;,
+  &quot;market_phase&quot;: &quot;continuous_trading&quot;,
+  &quot;simtrade&quot;: false,
+  &quot;unit&quot;: &quot;points&quot;,
+  &quot;groups&quot;: [
+    {&quot;category&quot;: &quot;1&quot;, &quot;name&quot;: &quot;水泥工業&quot;, &quot;item_count&quot;: 7, &quot;value&quot;: &quot;-0.22&quot;},
+    {&quot;category&quot;: &quot;2&quot;, &quot;name&quot;: &quot;食品工業&quot;, &quot;item_count&quot;: 25, &quot;value&quot;: &quot;-1.38&quot;},
+    {&quot;category&quot;: &quot;3&quot;, &quot;name&quot;: &quot;塑膠工業&quot;, &quot;item_count&quot;: 21, &quot;value&quot;: &quot;19.52&quot;},
+    {&quot;category&quot;: &quot;4&quot;, &quot;name&quot;: &quot;紡織纖維&quot;, &quot;item_count&quot;: 42, &quot;value&quot;: &quot;-0.84&quot;},
+    {&quot;category&quot;: &quot;5&quot;, &quot;name&quot;: &quot;電機機械&quot;, &quot;item_count&quot;: 50, &quot;value&quot;: &quot;-4.36&quot;},
+    {&quot;category&quot;: &quot;6&quot;, &quot;name&quot;: &quot;電器電纜&quot;, &quot;item_count&quot;: 16, &quot;value&quot;: &quot;0.43&quot;},
+    {&quot;category&quot;: &quot;8&quot;, &quot;name&quot;: &quot;玻璃陶瓷&quot;, &quot;item_count&quot;: 5, &quot;value&quot;: &quot;-0.08&quot;},
+    {&quot;category&quot;: &quot;9&quot;, &quot;name&quot;: &quot;造紙工業&quot;, &quot;item_count&quot;: 7, &quot;value&quot;: &quot;-0.03&quot;},
+    {&quot;category&quot;: &quot;10&quot;, &quot;name&quot;: &quot;鋼鐵工業&quot;, &quot;item_count&quot;: 31, &quot;value&quot;: &quot;-0.47&quot;},
+    {&quot;category&quot;: &quot;11&quot;, &quot;name&quot;: &quot;橡膠工業&quot;, &quot;item_count&quot;: 11, &quot;value&quot;: &quot;-0.16&quot;},
+    ...
+  ]
+}
 </code></pre></div>
 </div>
 </div>
@@ -2946,6 +3002,34 @@ curl<span class="w"> </span>-N<span class="w"> </span>http://localhost:8080/api/
 <span class="c1"># curl -X POST http://localhost:8080/api/v1/stream/unsubscribe/index_components \</span>
 <span class="c1">#   -H &#39;Content-Type: application/json&#39; \</span>
 <span class="c1">#   -d &#39;{&quot;index&quot;: {&quot;security_type&quot;: &quot;IND&quot;, &quot;exchange&quot;: &quot;TSE&quot;, &quot;code&quot;: &quot;IX0001&quot;, &quot;target_code&quot;: null}, &quot;projection&quot;: {&quot;kind&quot;: &quot;ranking&quot;, &quot;target&quot;: &quot;group&quot;, &quot;metric&quot;: &quot;contribution&quot;, &quot;order&quot;: &quot;abs_desc&quot;, &quot;limit&quot;: 10}}&#39;</span>
+</code></pre></div>
+</div>
+<div class="admonition done">
+<p class="admonition-title">Out</p>
+<div class="highlight"><pre><span></span><code>event:index_components
+data:{
+  &quot;contract&quot;: {&quot;security_type&quot;: &quot;IND&quot;, &quot;region&quot;: &quot;TW&quot;, &quot;exchange&quot;: &quot;TSE&quot;, &quot;code&quot;: &quot;IX0001&quot;},
+  &quot;projection&quot;: {&quot;kind&quot;: &quot;ranking&quot;, &quot;target&quot;: &quot;group&quot;, &quot;metric&quot;: &quot;contribution&quot;, &quot;order&quot;: &quot;abs_desc&quot;, &quot;limit&quot;: 10},
+  &quot;date&quot;: &quot;2026-08-28&quot;,
+  &quot;time&quot;: &quot;09:12:01.000000&quot;,
+  &quot;calculated_at&quot;: &quot;2026-08-28T09:12:01.000000+08:00&quot;,
+  &quot;reference_date&quot;: &quot;2026-08-28&quot;,
+  &quot;market_phase&quot;: &quot;continuous_trading&quot;,
+  &quot;simtrade&quot;: false,
+  &quot;unit&quot;: &quot;points&quot;,
+  &quot;groups&quot;: [
+    {&quot;category&quot;: &quot;24&quot;, &quot;name&quot;: &quot;半導體業&quot;, &quot;item_count&quot;: 96, &quot;value&quot;: &quot;321.15&quot;},
+    {&quot;category&quot;: &quot;28&quot;, &quot;name&quot;: &quot;電子零組件業&quot;, &quot;item_count&quot;: 104, &quot;value&quot;: &quot;103.47&quot;},
+    {&quot;category&quot;: &quot;25&quot;, &quot;name&quot;: &quot;電腦及週邊設備業&quot;, &quot;item_count&quot;: 64, &quot;value&quot;: &quot;29.90&quot;},
+    {&quot;category&quot;: &quot;17&quot;, &quot;name&quot;: &quot;金融保險&quot;, &quot;item_count&quot;: 32, &quot;value&quot;: &quot;27.44&quot;},
+    {&quot;category&quot;: &quot;31&quot;, &quot;name&quot;: &quot;其他電子業&quot;, &quot;item_count&quot;: 46, &quot;value&quot;: &quot;24.16&quot;},
+    {&quot;category&quot;: &quot;26&quot;, &quot;name&quot;: &quot;光電業&quot;, &quot;item_count&quot;: 68, &quot;value&quot;: &quot;17.17&quot;},
+    {&quot;category&quot;: &quot;3&quot;, &quot;name&quot;: &quot;塑膠工業&quot;, &quot;item_count&quot;: 21, &quot;value&quot;: &quot;13.81&quot;},
+    {&quot;category&quot;: &quot;15&quot;, &quot;name&quot;: &quot;航運業&quot;, &quot;item_count&quot;: 28, &quot;value&quot;: &quot;-7.18&quot;},
+    {&quot;category&quot;: &quot;27&quot;, &quot;name&quot;: &quot;通信網路業&quot;, &quot;item_count&quot;: 46, &quot;value&quot;: &quot;5.68&quot;},
+    {&quot;category&quot;: &quot;5&quot;, &quot;name&quot;: &quot;電機機械&quot;, &quot;item_count&quot;: 50, &quot;value&quot;: &quot;-3.77&quot;}
+  ]
+}
 </code></pre></div>
 </div>
 </div>
