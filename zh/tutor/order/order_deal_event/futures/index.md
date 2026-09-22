@@ -6,6 +6,7 @@
 
 ```
 <OrderState.FuturesOrder: 'FORDER'> {
+    'event_id': 'v1:FO:BO7SLUCIyeI:BOnXGyd:1',
     'operation': {
         'op_type': 'New',
         'op_code': '00',
@@ -56,6 +57,13 @@
 ```
 
 委託回報資訊
+
+**event_id**（1.7.6 起）
+
+```
+event_id (str): 回報識別碼，用於去重與跳號判讀
+
+```
 
 **operation**
 
@@ -134,6 +142,7 @@ option_right (str): {Future, OptionCall, OptionPut}
 
 ```
 <OrderState.FuturesDeal: 'FDEAL'> {
+    'event_id': 'v1:FD:BO7SLUCIyeI:BOnXGyd:5',
     'trade_id': '4e6df0f6',
     'seqno': '458545',
     'ordno': 'tA0deX1O',
@@ -160,6 +169,7 @@ option_right (str): {Future, OptionCall, OptionPut}
 成交回報
 
 ```
+event_id (str): 回報識別碼，用於去重與跳號判讀（1.7.6 起）
 trade_id (str): 與委託回報id相同
 seqno (str): 平台單號
 ordno (str): 前五碼為同委託回報委託單號，後三碼為同筆委託成交交易序號。

@@ -2116,7 +2116,8 @@
 <div class="admonition done">
 <p class="admonition-title">Order Event</p>
 <div class="highlight"><pre><span></span><code><span class="hll"><span class="o">&lt;</span><span class="n">OrderState</span><span class="o">.</span><span class="n">FuturesOrder</span><span class="p">:</span> <span class="s1">&#39;FORDER&#39;</span><span class="o">&gt;</span> <span class="p">{</span>
-</span>    <span class="s1">&#39;operation&#39;</span><span class="p">:</span> <span class="p">{</span>
+</span>    <span class="s1">&#39;event_id&#39;</span><span class="p">:</span> <span class="s1">&#39;v1:FO:BO7SLUCIyeI:BOnXGyd:1&#39;</span><span class="p">,</span>
+    <span class="s1">&#39;operation&#39;</span><span class="p">:</span> <span class="p">{</span>
         <span class="s1">&#39;op_type&#39;</span><span class="p">:</span> <span class="s1">&#39;New&#39;</span><span class="p">,</span>
         <span class="s1">&#39;op_code&#39;</span><span class="p">:</span> <span class="s1">&#39;00&#39;</span><span class="p">,</span>
         <span class="s1">&#39;op_msg&#39;</span><span class="p">:</span> <span class="s1">&#39;&#39;</span>
@@ -2166,7 +2167,10 @@
 </div>
 <div class="admonition example">
 <p class="admonition-title">Order CallBack Info.</p>
-<p><strong>operation</strong>
+<p><strong>event_id</strong> (1.7.6+)
+<div class="highlight"><pre><span></span><code><span class="n">event_id</span> <span class="p">(</span><span class="nb">str</span><span class="p">):</span> <span class="n">Report</span> <span class="n">identity</span><span class="p">,</span> <span class="n">used</span> <span class="k">for</span> <span class="n">deduplication</span> <span class="ow">and</span> <span class="n">gap</span> <span class="n">detection</span>
+</code></pre></div>
+<strong>operation</strong>
 <div class="highlight"><pre><span></span><code><span class="n">op_type</span> <span class="p">(</span><span class="nb">str</span><span class="p">):</span> <span class="p">{</span>
             <span class="s2">&quot;New&quot;</span><span class="p">:</span> <span class="n">new</span> <span class="n">order</span><span class="p">,</span> 
             <span class="s2">&quot;Cancel&quot;</span><span class="p">:</span> <span class="n">cancel</span> <span class="n">order</span><span class="p">,</span> 
@@ -2220,7 +2224,8 @@
 <div class="admonition done">
 <p class="admonition-title">Deal Event</p>
 <div class="highlight"><pre><span></span><code><span class="hll"><span class="o">&lt;</span><span class="n">OrderState</span><span class="o">.</span><span class="n">FuturesDeal</span><span class="p">:</span> <span class="s1">&#39;FDEAL&#39;</span><span class="o">&gt;</span> <span class="p">{</span>
-</span>    <span class="s1">&#39;trade_id&#39;</span><span class="p">:</span> <span class="s1">&#39;4e6df0f6&#39;</span><span class="p">,</span>
+</span>    <span class="s1">&#39;event_id&#39;</span><span class="p">:</span> <span class="s1">&#39;v1:FD:BO7SLUCIyeI:BOnXGyd:5&#39;</span><span class="p">,</span>
+    <span class="s1">&#39;trade_id&#39;</span><span class="p">:</span> <span class="s1">&#39;4e6df0f6&#39;</span><span class="p">,</span>
     <span class="s1">&#39;seqno&#39;</span><span class="p">:</span> <span class="s1">&#39;458545&#39;</span><span class="p">,</span>
     <span class="s1">&#39;ordno&#39;</span><span class="p">:</span> <span class="s1">&#39;tA0deX1O&#39;</span><span class="p">,</span>
     <span class="s1">&#39;exchange_seq&#39;</span><span class="p">:</span> <span class="s1">&#39;j5006396&#39;</span><span class="p">,</span>
@@ -2244,7 +2249,8 @@
 </div>
 <div class="admonition example">
 <p class="admonition-title">FuturesDeal</p>
-<div class="highlight"><pre><span></span><code><span class="n">trade_id</span> <span class="p">(</span><span class="nb">str</span><span class="p">):</span> <span class="n">same</span> <span class="k">as</span> <span class="n">the</span> <span class="nb">id</span> <span class="ow">in</span> <span class="n">FuturesOrder</span>
+<div class="highlight"><pre><span></span><code><span class="n">event_id</span> <span class="p">(</span><span class="nb">str</span><span class="p">):</span> <span class="n">Report</span> <span class="n">identity</span><span class="p">,</span> <span class="n">used</span> <span class="k">for</span> <span class="n">deduplication</span> <span class="ow">and</span> <span class="n">gap</span> <span class="n">detection</span> <span class="p">(</span><span class="mf">1.7.6</span><span class="o">+</span><span class="p">)</span>
+<span class="n">trade_id</span> <span class="p">(</span><span class="nb">str</span><span class="p">):</span> <span class="n">same</span> <span class="k">as</span> <span class="n">the</span> <span class="nb">id</span> <span class="ow">in</span> <span class="n">FuturesOrder</span>
 <span class="n">seqno</span> <span class="p">(</span><span class="nb">str</span><span class="p">):</span> <span class="n">sequence</span> <span class="n">number</span>
 <span class="n">ordno</span> <span class="p">(</span><span class="nb">str</span><span class="p">):</span> <span class="n">The</span> <span class="n">first</span> <span class="mi">5</span> <span class="n">characters</span> <span class="ow">is</span> <span class="n">the</span> <span class="n">same</span> <span class="k">as</span> <span class="n">ordno</span> <span class="ow">in</span> <span class="n">FuturesOrder</span><span class="o">.</span> <span class="n">The</span> <span class="n">last</span> <span class="mi">3</span> <span class="n">characters</span> <span class="n">represent</span> <span class="n">the</span> <span class="n">deal</span> <span class="n">sequence</span> <span class="n">number</span><span class="o">.</span>
 <span class="n">exchange_seq</span> <span class="p">(</span><span class="nb">str</span><span class="p">):</span> <span class="n">exchange</span> <span class="n">sequence</span> <span class="n">number</span>

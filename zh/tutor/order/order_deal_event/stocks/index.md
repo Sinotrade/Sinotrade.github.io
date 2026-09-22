@@ -6,6 +6,7 @@
 
 ```
 <OrderState.StockOrder: 'SORDER'> {
+    'event_id': 'v1:SO:A1EGVO30H:BOnKZSD:4',
     'operation': {
         'op_type': 'New',
         'op_code': '00',
@@ -53,6 +54,13 @@
 ```
 
 委託回報資訊
+
+**event_id**（1.7.6 起）
+
+```
+event_id (str): 回報識別碼，用於去重與跳號判讀
+
+```
 
 **operation**
 
@@ -127,6 +135,7 @@ currency (str): 幣別
 
 ```
 <OrderState.StockDeal: 'SDEAL'> {
+    'event_id': 'v1:SD:A1EGVO30H:BOnKZSD:7',
     'trade_id': '9c6ae2eb',
     'seqno': '269866',
     'ordno': 'IN497',
@@ -149,6 +158,7 @@ currency (str): 幣別
 成交回報
 
 ```
+event_id (str): 回報識別碼，用於去重與跳號判讀（1.7.6 起）
 trade_id (str): 與委託回報id相同
 seqno (str): 平台單號
 ordno (str): 前五碼為同委託回報委託單號，後三碼為同筆委託成交交易序號。

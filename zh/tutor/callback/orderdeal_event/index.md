@@ -53,6 +53,7 @@ Out
 ```
 my_order_callback
 <OrderState.StockOrder: 'SORDER'> {
+    'event_id': 'v1:SO:A1EGVO30H:BOnKZSD:4',
     'operation': {
         'op_type': 'New',
         'op_code': '00',
@@ -106,6 +107,7 @@ Out
 ```
 my_order_callback
 <OrderState.StockDeal: 'SDEAL'> {
+    'event_id': 'v1:SD:A1EGVO30H:BOnKZSD:7',
     'trade_id': '9c6ae2eb',
     'seqno': '269866',
     'ordno': 'IN497',
@@ -349,3 +351,31 @@ data:{
 }
 
 ```
+
+## 自行維護狀態（1.7.6 起）
+
+若你要用自己的資料結構維護委託狀態，例如加入自己的計算欄位，可在 callback 收到回報時更新。
+
+官方 Trade 為唯讀
+
+它會隨回報自動更新，但不能寫入：
+
+```
+trade.status.status = "Filled"
+# AttributeError: attribute 'status' of 'builtins.OrderStatusInfo' objects is not writable
+
+```
+
+需要寫入的欄位請放在自己的資料結構中。
+
+**重複** — 相同 `event_id`（`msg["event_id"]`）表示同一筆回報再次送達，略過即可。callback 不會替你過濾。
+
+**漏接** — ID 結尾是遞增序號，前面部分相同時可比較是否連續：
+
+```
+"v1:SO:A1EGVO30H:BOnKZSD:4"
+"v1:SO:A1EGVO30H:BOnKZSD:6"   # 尚未收到 5，它仍可能晚到
+
+```
+
+跳號不代表確定遺失。若不想自行判讀，可改用 [trade_cache_health](../../order/UpdateStatus/#%E6%AA%A2%E6%9F%A5%E5%9B%9E%E5%A0%B1%E6%98%AF%E5%90%A6%E6%BC%8F%E6%8E%A5) 檢查。

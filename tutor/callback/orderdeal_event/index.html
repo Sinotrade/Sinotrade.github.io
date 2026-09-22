@@ -1451,6 +1451,15 @@
   
 </li>
       
+        <li class="md-nav__item">
+  <a href="#maintaining-your-own-state-176" class="md-nav__link">
+    <span class="md-ellipsis">
+      Maintaining Your Own State (1.7.6+)
+    </span>
+  </a>
+  
+</li>
+      
     </ul>
   
 </nav>
@@ -2103,6 +2112,15 @@
   
 </li>
       
+        <li class="md-nav__item">
+  <a href="#maintaining-your-own-state-176" class="md-nav__link">
+    <span class="md-ellipsis">
+      Maintaining Your Own State (1.7.6+)
+    </span>
+  </a>
+  
+</li>
+      
     </ul>
   
 </nav>
@@ -2170,7 +2188,8 @@
 <p class="admonition-title">Out</p>
 <div class="highlight"><pre><span></span><code><span class="hll"><span class="n">my_order_callback</span>
 </span><span class="hll"><span class="o">&lt;</span><span class="n">OrderState</span><span class="o">.</span><span class="n">StockOrder</span><span class="p">:</span> <span class="s1">&#39;SORDER&#39;</span><span class="o">&gt;</span> <span class="p">{</span>
-</span>    <span class="s1">&#39;operation&#39;</span><span class="p">:</span> <span class="p">{</span>
+</span>    <span class="s1">&#39;event_id&#39;</span><span class="p">:</span> <span class="s1">&#39;v1:SO:A1EGVO30H:BOnKZSD:4&#39;</span><span class="p">,</span>
+    <span class="s1">&#39;operation&#39;</span><span class="p">:</span> <span class="p">{</span>
         <span class="s1">&#39;op_type&#39;</span><span class="p">:</span> <span class="s1">&#39;New&#39;</span><span class="p">,</span>
         <span class="s1">&#39;op_code&#39;</span><span class="p">:</span> <span class="s1">&#39;00&#39;</span><span class="p">,</span>
         <span class="s1">&#39;op_msg&#39;</span><span class="p">:</span> <span class="s1">&#39;&#39;</span>
@@ -2220,7 +2239,8 @@
 <p class="admonition-title">Out</p>
 <div class="highlight"><pre><span></span><code><span class="hll"><span class="n">my_order_callback</span>
 </span><span class="hll"><span class="o">&lt;</span><span class="n">OrderState</span><span class="o">.</span><span class="n">StockDeal</span><span class="p">:</span> <span class="s1">&#39;SDEAL&#39;</span><span class="o">&gt;</span> <span class="p">{</span>
-</span>    <span class="s1">&#39;trade_id&#39;</span><span class="p">:</span> <span class="s1">&#39;9c6ae2eb&#39;</span><span class="p">,</span>
+</span>    <span class="s1">&#39;event_id&#39;</span><span class="p">:</span> <span class="s1">&#39;v1:SD:A1EGVO30H:BOnKZSD:7&#39;</span><span class="p">,</span>
+    <span class="s1">&#39;trade_id&#39;</span><span class="p">:</span> <span class="s1">&#39;9c6ae2eb&#39;</span><span class="p">,</span>
     <span class="s1">&#39;seqno&#39;</span><span class="p">:</span> <span class="s1">&#39;269866&#39;</span><span class="p">,</span>
     <span class="s1">&#39;ordno&#39;</span><span class="p">:</span> <span class="s1">&#39;IN497&#39;</span><span class="p">,</span>
     <span class="s1">&#39;exchange_seq&#39;</span><span class="p">:</span> <span class="s1">&#39;669915&#39;</span><span class="p">,</span>
@@ -2463,6 +2483,23 @@ data:{
 === "Java"
 
 -->
+
+<h2 id="maintaining-your-own-state-176">Maintaining Your Own State (1.7.6+)<a class="headerlink" href="#maintaining-your-own-state-176" title="Permanent link">&para;</a></h2>
+<p>If you want to keep order state in your own data structure, for example with your own computed fields, update it when a callback arrives.</p>
+<div class="admonition warning">
+<p class="admonition-title">The built-in Trade is read-only</p>
+<p>It updates automatically from reports, but cannot be written to:</p>
+<div class="highlight"><pre><span></span><code><span class="n">trade</span><span class="o">.</span><span class="n">status</span><span class="o">.</span><span class="n">status</span> <span class="o">=</span> <span class="s2">&quot;Filled&quot;</span>
+<span class="c1"># AttributeError: attribute &#39;status&#39; of &#39;builtins.OrderStatusInfo&#39; objects is not writable</span>
+</code></pre></div>
+<p>Keep fields you need to write in your own data structure.</p>
+</div>
+<p><strong>Duplicates</strong> — The same <code>event_id</code> (<code>msg["event_id"]</code>) means the same report was delivered again; skip it. Callbacks do not filter them for you.</p>
+<p><strong>Missed reports</strong> — The ID ends with an increasing sequence number. When the leading part matches, compare whether they are consecutive:</p>
+<div class="highlight"><pre><span></span><code><span class="s2">&quot;v1:SO:A1EGVO30H:BOnKZSD:4&quot;</span>
+<span class="s2">&quot;v1:SO:A1EGVO30H:BOnKZSD:6&quot;</span>   <span class="c1"># 5 has not arrived yet; it may still be late</span>
+</code></pre></div>
+<p>A gap does not mean the report is confirmed lost. If you would rather not track this yourself, use <a href="../../order/UpdateStatus/#check-for-missed-reports-176">trade_cache_health</a> instead.</p>
 
 
 

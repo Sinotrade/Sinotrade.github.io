@@ -1,43 +1,32 @@
-Reminder
+Query **stock / futures-options account** order status. [Login](../../login) is required first.
 
-Before placing orders, you must first [log in](../../login/) and [activate your CA](../../prepare/terms/).
+## Read Order Status
 
-Before reading a `Trade`'s status, you must first refresh it by calling `update_status`. By default the call refreshes every order under all accounts. To refresh a single account, pass it as `account`; to refresh a single order, pass the `Trade` object as the keyword argument `trade=`. After the call, you can read the latest `Trade` list from `api.list_trades()` or directly inspect the `status` field on the `trade` object you passed in.
+`api.list_trades()` takes no parameters and returns the currently known `Trade` list across all your accounts. You can also read the `trade` object you already hold (returned by `place_order` or `list_trades`) and check its `status` field.
 
-update_status
+The list is empty right after a new login; call [reconciliation](#reconciliation) first to fetch the day's orders.
+
+list_trades
 
 ```
-api.update_status?
+api.list_trades?
 
 Signature:
-    api.update_status(
-        account: Optional[sj.Account] = None,
-        *,
-        trade: Optional[sj.Trade] = None,
-        timeout: Optional[int] = 30000,
-        cb: Optional[Callable[[List[sj.Trade]], None]] = None,
-    ) -> None
+    api.list_trades() -> List[sj.Trade]
 
 ```
 
-Parameters
+trades
 
 ```
-account: Stock or futures account; omit to refresh all accounts under your name
-trade:   Specific Trade object to refresh (keyword-only)
-timeout: Timeout in milliseconds
-cb:      Optional callback function; when timeout=0, receives the updated Trade list
-
-```
-
-update_status
-
-```
-POST /api/v1/order/update_status
+POST /api/v1/order/trades
 Content-Type: application/json
 
 {
-  "account": { "broker_id": <string>, "account_id": <string> }
+  "account_type": <string>,
+  "broker_id": <string>,
+  "account_id": <string>,
+  "refresh": <bool>
 }
 
 ```
@@ -45,11 +34,15 @@ Content-Type: application/json
 Parameters
 
 ```
-account: Stock or futures account
+account_type: S for stock, F for futures/options; defaults to S
+broker_id:    Branch code; use with account_id to target a specific account
+account_id:   Account number; omit to use the default account of account_type
+refresh:      Whether to refresh from the backend first; defaults to true.
+              false returns only the local cache (1.7.6+)
 
 ```
 
-## Attributes
+### Attributes
 
 OrderStatus
 
@@ -89,14 +82,11 @@ datetime (datetime): Deal datetime (computed from ts, tz=Asia/Taipei +0800)
 
 ```
 
-## Examples
-
-### Get Stock Order Status
+### Examples
 
 In
 
 ```
-api.update_status(api.stock_account)
 api.list_trades()
 
 ```
@@ -157,13 +147,11 @@ Out
 In
 
 ```
-curl -X POST http://localhost:8080/api/v1/order/update_status \
+curl -X POST http://localhost:8080/api/v1/order/trades \
   -H 'Content-Type: application/json' \
   -d '{
-    "account": {
-      "broker_id": "YOUR_BROKER_ID",
-      "account_id": "YOUR_ACCOUNT_ID"
-    }
+    "account_type": "S",
+    "refresh": false
   }'
 
 ```
@@ -175,114 +163,198 @@ Out
 
 ```
 
-### Get Futures Order Status
+## Get and Keep Trade Current
+
+Right after a new login no reports have arrived yet, so call `update_status` once to fetch the day's orders. How the list stays current afterwards depends on your version:
+
+Maintained for you: `Trade` objects update automatically from active reports.
+
+- Set an [order callback](../../callback/orderdeal_event/) as a notification, then read `trade` once a report arrives.
+- To confirm no reports were missed, check with [trade_cache_health](#check-for-missed-reports-176).
+
+Maintained by you: `Trade` objects do not update on their own.
+
+- Set an [order callback](../../callback/orderdeal_event/) and maintain the `Trade` object from the report contents yourself.
+- Or call `update_status` before each read.
+
+## Reconciliation
+
+`update_status` queries the backend for order status and updates `Trade`. Use it to fetch the day's orders after a new login, when reports may have been missed, or when you need to confirm the final state.
+
+update_status
+
+```
+api.update_status?
+
+Signature:
+    api.update_status(
+        account: Optional[sj.Account] = None,
+        *,
+        trade: Optional[sj.Trade] = None,
+        timeout: Optional[int] = 30000,
+        cb: Optional[Callable[[List[sj.Trade]], None]] = None,
+    ) -> None
+
+```
+
+Parameters
+
+```
+account: Stock or futures account; omit to refresh all accounts under your name
+trade:   Specific Trade object to refresh (keyword-only)
+timeout: Timeout in milliseconds
+cb:      Optional callback function; when timeout=0, receives the updated Trade list
+
+```
+
+trades
+
+```
+POST /api/v1/order/trades
+Content-Type: application/json
+
+{
+  "account_type": <string>,
+  "broker_id": <string>,
+  "account_id": <string>,
+  "refresh": true
+}
+
+```
+
+Parameters
+
+```
+account_type: S for stock, F for futures/options; defaults to S
+broker_id:    Branch code; use with account_id to target a specific account
+account_id:   Account number; omit to use the default account of account_type
+refresh:      Set to true (or omit) to refresh from the backend before returning
+
+```
+
+### Examples
 
 In
 
 ```
-api.update_status(api.futopt_account)
+api.update_status()                      # All accounts under your name
+# api.update_status(api.stock_account)   # Stock account only
+# api.update_status(api.futopt_account)  # Futures/options account only
+# api.update_status(trade=trade)         # A single order only
+
 api.list_trades()
 
 ```
 
-Out
-
-```
-[
-    Trade(
-        contract=Contract(
-            security_type='FUT',
-            exchange='TAIFEX',
-            code='TMFE6'
-        ),
-        order=Order(
-            id='e0ae2459',
-            action=<Action.Buy: 'Buy'>,
-            price=36216,
-            quantity=2,
-            seqno='242472',
-            ordno='vE0Dr',
-            order_type=<OrderType.ROD: 'ROD'>,
-            price_type=<PriceType.LMT: 'LMT'>,
-            account=FutureAccount(
-                person_id='YOUR_PERSON_ID',
-                broker_id='YOUR_BROKER_ID',
-                account_id='YOUR_ACCOUNT_ID',
-                signed=true,
-                username=''
-            ),
-            octype=<FuturesOCType.NewPosition: 'NewPosition'>
-        ),
-        status=OrderStatus(
-            id='e0ae2459',
-            status=<OrderStatus.Filled: 'Filled'>,
-            status_code='0000',
-            order_datetime=datetime.datetime(2026, 5, 19, 18, 3, 7, tzinfo=datetime.timezone(datetime.timedelta(hours=8))),
-            web_id='Z',
-            modified_time=datetime.datetime(2026, 5, 19, 18, 3, 7, tzinfo=datetime.timezone(datetime.timedelta(hours=8))),
-            order_quantity=2,
-            deal_quantity=2,
-            deals=[
-                Deal(
-                    seq='000001',
-                    price=36216,
-                    quantity=2,
-                    ts=1747647787.123456,
-                    datetime=datetime.datetime(2026, 5, 19, 18, 3, 7, tzinfo=datetime.timezone(datetime.timedelta(hours=8)))
-                )
-            ]
-        )
-    )
-]
-
-```
-
 In
 
 ```
-curl -X POST http://localhost:8080/api/v1/order/update_status \
+curl -X POST http://localhost:8080/api/v1/order/trades \
   -H 'Content-Type: application/json' \
   -d '{
-    "account": {
-      "broker_id": "YOUR_BROKER_ID",
-      "account_id": "YOUR_ACCOUNT_ID"
-    }
+    "account_type": "S",
+    "refresh": true
   }'
 
 ```
 
+## Check for Missed Reports (1.7.6+)
+
+When a report is missed, `Trade` stays at its old state and there is no way to tell from the outside. `api.trade_cache_health(account)` tells you whether any reports appear to have been missed.
+
+trade_cache_health
+
+```
+api.trade_cache_health?
+
+Signature:
+    api.trade_cache_health(account: sj.Account) -> sj.TradeCacheHealth
+
+```
+
+Parameters
+
+```
+account: Stock or futures account
+
+```
+
+trade_cache_health
+
+```
+POST /api/v1/order/trade_cache_health
+Content-Type: application/json
+
+{
+  "account_type": <string>,
+  "broker_id": <string>,
+  "account_id": <string>
+}
+
+```
+
+Parameters
+
+```
+account_type: S for stock, F for futures/options; defaults to S
+broker_id:    Branch code; use with account_id to target a specific account
+account_id:   Account number; omit to use the default account of account_type
+
+```
+
+TradeCacheHealth
+
+```
+state (TradeCacheHealthState):          Cache state, {
+                                           Healthy:  Normal,
+                                           Unknown:  Not enough information yet,
+                                           Degraded: Reports may have been missed
+                                        }
+reasons (List[TradeCacheHealthReason]): Reasons for the state, each containing
+                                           event_type (OrderState):             Report type
+                                           reason (TradeCacheHealthReasonCode): Reason code
+
+```
+
+Handle by `state` and `reason`:
+
+| `state` | `reason` | What to do | | --- | --- | --- | | `Healthy` | None | Nothing | | `Unknown` | `NotSubscribed` | Trade reports are not subscribed for this account; call `subscribe_trade(account)` | | `Unknown` | `NoBaseline` | That report type has not occurred yet; nothing to do. It clears once a report arrives, or call `update_status` to establish a baseline immediately | | `Degraded` | `SequenceGap` | A report sequence number was skipped; it may just be late. Call `update_status` when you need to confirm | | `Degraded` | `PendingReport` | A report cannot be correlated to an order yet; usually resolves when later reports arrive. Call `update_status` when you need to confirm | | `Degraded` | `UntrackableEventId` | The event ID is missing or unsupported and cannot be tracked; call `update_status` to reconcile | | `Degraded` | `ProjectionFailed` | The report could not be applied to `Trade`; call `update_status` to reconcile |
+
+### Examples
+
+In
+
+```
+health = api.trade_cache_health(api.stock_account)
+health.state, [(r.event_type, r.reason) for r in health.reasons]
+
+```
+
 Out
 
 ```
-[{"contract":{"security_type":"FUT","exchange":"TAIFEX","code":"TMFE6"},"order":{"id":"e0ae2459","action":"Buy","price":36216,"quantity":2,"seqno":"242472","ordno":"vE0Dr","order_type":"ROD","price_type":"LMT","account":{"account_type":"F","person_id":"YOUR_PERSON_ID","broker_id":"YOUR_BROKER_ID","account_id":"YOUR_ACCOUNT_ID","signed":true,"username":""},"octype":"NewPosition"},"status":{"id":"e0ae2459","status":"Filled","status_code":"0000","order_datetime":"2026-05-19T18:03:07+08:00","web_id":"Z","modified_time":"2026-05-19T18:03:07+08:00","order_quantity":2,"deal_quantity":2,"deals":[{"seq":"000001","price":36216,"quantity":2,"ts":1747647787.123456}]}}]
+(<TradeCacheHealthState.Unknown: 'Unknown'>,
+ [(<OrderState.StockDeal: 'SDEAL'>,
+   <TradeCacheHealthReasonCode.NoBaseline: 'NoBaseline'>)])
 
 ```
 
-### Update a Specific Trade
+The example above is an order placed but not yet filled: the order report (`SORDER`) has arrived, so it is not in `reasons`; the deal report (`SDEAL`) has not happened yet and is still `NoBaseline`. Once both have a baseline, `state` becomes `Healthy`.
 
 In
 
 ```
-# trade can be obtained from place_order or list_trades
-# trade = api.place_order(contract, order)
-# trade = api.list_trades()[0]
-
-api.update_status(trade=trade)
-
-```
-
-The HTTP endpoint only refreshes all orders under the given `account`; it does not support targeting a single trade.
-
-In
-
-```
-curl -X POST http://localhost:8080/api/v1/order/update_status \
+curl -X POST http://localhost:8080/api/v1/order/trade_cache_health \
   -H 'Content-Type: application/json' \
-  -d '{
-    "account": {
-      "broker_id": "YOUR_BROKER_ID",
-      "account_id": "YOUR_ACCOUNT_ID"
-    }
-  }'
+  -d '{"account_type": "S"}'
 
 ```
+
+Out
+
+```
+{"state":"Unknown","reasons":[{"event_type":"StockDeal","reason":"NoBaseline"}]}
+
+```
+
+The example above is an order placed but not yet filled: the order report (`StockOrder`) has arrived, so it is not in `reasons`; the deal report (`StockDeal`) has not happened yet and is still `NoBaseline`. Once both have a baseline, `state` becomes `Healthy`.

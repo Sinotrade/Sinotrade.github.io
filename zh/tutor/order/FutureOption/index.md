@@ -150,13 +150,17 @@ Trade(
 
 下單完成後會收到交易所傳回的下單回報訊息，詳情內容可詳見[下單回報](../order_deal_event/stocks/)。
 
-`place_order` 回傳的 `trade` 狀態若為 `PendingSubmit`，可執行 `update_status` 主動更新，詳見[委託狀態](../UpdateStatus/)。
+`place_order` 回傳的 `trade` 狀態可能是 `PendingSubmit`，1.7.6 起收到委託回報後再讀一次即為最新狀態，詳見[委託狀態](../UpdateStatus/)。
 
 In
 
 ```
-api.update_status(api.futopt_account)
+# 1.7.6 起：收到委託回報後再讀一次即可
 trade
+
+# 1.7.6 以前：需自行由回報維護，或呼叫 update_status
+# api.update_status(api.futopt_account)
+# trade
 
 ```
 
@@ -414,7 +418,7 @@ quantity: 新數量（只能減少）
 
 注意
 
-執行改單前，需先呼叫 `update_status` 取得委託單編號 (`ordno`)。
+1.7.6 以前執行改單前，需先取得委託單編號 (`ordno`)，可由回報取得或呼叫 `update_status`；1.7.6 起 `ordno` 會由委託回報自動補上。
 
 #### 範例：改價
 
@@ -422,8 +426,13 @@ In
 
 ```
 api.update_order(trade=trade, price=36220)
-api.update_status(api.futopt_account)
+
+# 1.7.6 起：收到改單回報後再讀一次即可
 trade
+
+# 1.7.6 以前：需自行由回報維護，或呼叫 update_status
+# api.update_status(api.futopt_account)
+# trade
 
 ```
 
@@ -538,8 +547,13 @@ In
 
 ```
 api.update_order(trade=trade, qty=1)
-api.update_status(api.futopt_account)
+
+# 1.7.6 起：收到改單回報後再讀一次即可
 trade
+
+# 1.7.6 以前：需自行由回報維護，或呼叫 update_status
+# api.update_status(api.futopt_account)
+# trade
 
 ```
 
@@ -695,7 +709,7 @@ trade_id: 委託單 ID（取自 place 回傳的 status.id）
 
 注意
 
-執行刪單前，需先呼叫 `update_status` 取得委託單編號 (`ordno`)。
+1.7.6 以前執行刪單前，需先取得委託單編號 (`ordno`)，可由回報取得或呼叫 `update_status`；1.7.6 起 `ordno` 會由委託回報自動補上。
 
 #### 範例：刪單
 
@@ -703,8 +717,13 @@ In
 
 ```
 api.cancel_order(trade)
-api.update_status(api.futopt_account)
+
+# 1.7.6 起：收到刪單回報後再讀一次即可
 trade
+
+# 1.7.6 以前：需自行由回報維護，或呼叫 update_status
+# api.update_status(api.futopt_account)
+# trade
 
 ```
 
@@ -810,13 +829,17 @@ Out
 
 ### 成交
 
-委託單成交後，可呼叫 `update_status` 看到 `status` 轉為 `Filled`，`deals` 欄位填入成交明細。
+委託單成交後，1.7.6 起 `status` 會轉為 `Filled`，`deals` 欄位填入成交明細。
 
 In
 
 ```
-api.update_status(api.futopt_account)
+# 1.7.6 起：收到成交回報後再讀一次即可
 trade
+
+# 1.7.6 以前：需自行由回報維護，或呼叫 update_status
+# api.update_status(api.futopt_account)
+# trade
 
 ```
 

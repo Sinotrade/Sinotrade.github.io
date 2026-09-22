@@ -2116,7 +2116,8 @@
 <div class="admonition done">
 <p class="admonition-title">委託回報</p>
 <div class="highlight"><pre><span></span><code><span class="hll"><span class="o">&lt;</span><span class="n">OrderState</span><span class="o">.</span><span class="n">FuturesOrder</span><span class="p">:</span> <span class="s1">&#39;FORDER&#39;</span><span class="o">&gt;</span> <span class="p">{</span>
-</span>    <span class="s1">&#39;operation&#39;</span><span class="p">:</span> <span class="p">{</span>
+</span>    <span class="s1">&#39;event_id&#39;</span><span class="p">:</span> <span class="s1">&#39;v1:FO:BO7SLUCIyeI:BOnXGyd:1&#39;</span><span class="p">,</span>
+    <span class="s1">&#39;operation&#39;</span><span class="p">:</span> <span class="p">{</span>
         <span class="s1">&#39;op_type&#39;</span><span class="p">:</span> <span class="s1">&#39;New&#39;</span><span class="p">,</span>
         <span class="s1">&#39;op_code&#39;</span><span class="p">:</span> <span class="s1">&#39;00&#39;</span><span class="p">,</span>
         <span class="s1">&#39;op_msg&#39;</span><span class="p">:</span> <span class="s1">&#39;&#39;</span>
@@ -2166,7 +2167,10 @@
 </div>
 <div class="admonition example">
 <p class="admonition-title">委託回報資訊</p>
-<p><strong>operation</strong>
+<p><strong>event_id</strong>（1.7.6 起）
+<div class="highlight"><pre><span></span><code><span class="n">event_id</span> <span class="p">(</span><span class="nb">str</span><span class="p">):</span> <span class="n">回報識別碼</span><span class="err">，</span><span class="n">用於去重與跳號判讀</span>
+</code></pre></div>
+<strong>operation</strong>
 <div class="highlight"><pre><span></span><code><span class="n">op_type</span> <span class="p">(</span><span class="nb">str</span><span class="p">):</span> <span class="p">{</span>
         <span class="s2">&quot;New&quot;</span><span class="p">:</span> <span class="n">新單</span><span class="p">,</span> 
         <span class="s2">&quot;Cancel&quot;</span><span class="p">:</span> <span class="n">刪單</span><span class="p">,</span> 
@@ -2225,7 +2229,8 @@
 <div class="admonition done">
 <p class="admonition-title">成交回報</p>
 <div class="highlight"><pre><span></span><code><span class="hll"><span class="o">&lt;</span><span class="n">OrderState</span><span class="o">.</span><span class="n">FuturesDeal</span><span class="p">:</span> <span class="s1">&#39;FDEAL&#39;</span><span class="o">&gt;</span> <span class="p">{</span>
-</span>    <span class="s1">&#39;trade_id&#39;</span><span class="p">:</span> <span class="s1">&#39;4e6df0f6&#39;</span><span class="p">,</span>
+</span>    <span class="s1">&#39;event_id&#39;</span><span class="p">:</span> <span class="s1">&#39;v1:FD:BO7SLUCIyeI:BOnXGyd:5&#39;</span><span class="p">,</span>
+    <span class="s1">&#39;trade_id&#39;</span><span class="p">:</span> <span class="s1">&#39;4e6df0f6&#39;</span><span class="p">,</span>
     <span class="s1">&#39;seqno&#39;</span><span class="p">:</span> <span class="s1">&#39;458545&#39;</span><span class="p">,</span>
     <span class="s1">&#39;ordno&#39;</span><span class="p">:</span> <span class="s1">&#39;tA0deX1O&#39;</span><span class="p">,</span>
     <span class="s1">&#39;exchange_seq&#39;</span><span class="p">:</span> <span class="s1">&#39;j5006396&#39;</span><span class="p">,</span>
@@ -2249,7 +2254,8 @@
 </div>
 <div class="admonition example">
 <p class="admonition-title">成交回報</p>
-<div class="highlight"><pre><span></span><code><span class="n">trade_id</span> <span class="p">(</span><span class="nb">str</span><span class="p">):</span> <span class="n">與委託回報id相同</span>
+<div class="highlight"><pre><span></span><code><span class="n">event_id</span> <span class="p">(</span><span class="nb">str</span><span class="p">):</span> <span class="n">回報識別碼</span><span class="err">，</span><span class="n">用於去重與跳號判讀</span><span class="err">（</span><span class="mf">1.7.6</span> <span class="n">起</span><span class="err">）</span>
+<span class="n">trade_id</span> <span class="p">(</span><span class="nb">str</span><span class="p">):</span> <span class="n">與委託回報id相同</span>
 <span class="n">seqno</span> <span class="p">(</span><span class="nb">str</span><span class="p">):</span> <span class="n">平台單號</span>
 <span class="n">ordno</span> <span class="p">(</span><span class="nb">str</span><span class="p">):</span> <span class="n">前五碼為同委託回報委託單號</span><span class="err">，</span><span class="n">後三碼為同筆委託成交交易序號</span><span class="err">。</span>
 <span class="n">exchange_seq</span> <span class="p">(</span><span class="nb">str</span><span class="p">):</span> <span class="n">回報序號</span>

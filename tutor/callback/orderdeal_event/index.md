@@ -53,6 +53,7 @@ Out
 ```
 my_order_callback
 <OrderState.StockOrder: 'SORDER'> {
+    'event_id': 'v1:SO:A1EGVO30H:BOnKZSD:4',
     'operation': {
         'op_type': 'New',
         'op_code': '00',
@@ -106,6 +107,7 @@ Out
 ```
 my_order_callback
 <OrderState.StockDeal: 'SDEAL'> {
+    'event_id': 'v1:SD:A1EGVO30H:BOnKZSD:7',
     'trade_id': '9c6ae2eb',
     'seqno': '269866',
     'ordno': 'IN497',
@@ -349,3 +351,31 @@ data:{
 }
 
 ```
+
+## Maintaining Your Own State (1.7.6+)
+
+If you want to keep order state in your own data structure, for example with your own computed fields, update it when a callback arrives.
+
+The built-in Trade is read-only
+
+It updates automatically from reports, but cannot be written to:
+
+```
+trade.status.status = "Filled"
+# AttributeError: attribute 'status' of 'builtins.OrderStatusInfo' objects is not writable
+
+```
+
+Keep fields you need to write in your own data structure.
+
+**Duplicates** — The same `event_id` (`msg["event_id"]`) means the same report was delivered again; skip it. Callbacks do not filter them for you.
+
+**Missed reports** — The ID ends with an increasing sequence number. When the leading part matches, compare whether they are consecutive:
+
+```
+"v1:SO:A1EGVO30H:BOnKZSD:4"
+"v1:SO:A1EGVO30H:BOnKZSD:6"   # 5 has not arrived yet; it may still be late
+
+```
+
+A gap does not mean the report is confirmed lost. If you would rather not track this yourself, use [trade_cache_health](../../order/UpdateStatus/#check-for-missed-reports-176) instead.

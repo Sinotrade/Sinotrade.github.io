@@ -6,6 +6,7 @@ Order Event
 
 ```
 <OrderState.FuturesOrder: 'FORDER'> {
+    'event_id': 'v1:FO:BO7SLUCIyeI:BOnXGyd:1',
     'operation': {
         'op_type': 'New',
         'op_code': '00',
@@ -56,6 +57,13 @@ Order Event
 ```
 
 Order CallBack Info.
+
+**event_id** (1.7.6+)
+
+```
+event_id (str): Report identity, used for deduplication and gap detection
+
+```
 
 **operation**
 
@@ -129,6 +137,7 @@ Deal Event
 
 ```
 <OrderState.FuturesDeal: 'FDEAL'> {
+    'event_id': 'v1:FD:BO7SLUCIyeI:BOnXGyd:5',
     'trade_id': '4e6df0f6',
     'seqno': '458545',
     'ordno': 'tA0deX1O',
@@ -155,6 +164,7 @@ Deal Event
 FuturesDeal
 
 ```
+event_id (str): Report identity, used for deduplication and gap detection (1.7.6+)
 trade_id (str): same as the id in FuturesOrder
 seqno (str): sequence number
 ordno (str): The first 5 characters is the same as ordno in FuturesOrder. The last 3 characters represent the deal sequence number.

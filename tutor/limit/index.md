@@ -6,7 +6,7 @@ Correct usage
 
 - For real-time intraday data, use quote subscriptions (`api.subscribe()` or SSE streaming); subscription pushes do not count toward traffic. Do not poll `snapshots`, `ticks`, or `kbars` as a substitute for real-time quotes.
 - Historical data queries are recommended after market close; during trading hours, query only when necessary and keep it minimal. Cache the results after querying to avoid repeated queries.
-- Use order/deal callbacks (or SSE order events) for order status instead of polling `update_status()`.
+- Use order/deal callbacks (or SSE order events) for order status instead of polling `update_status()`. Since 1.7.6 `Trade` updates automatically from reports, so just read it.
 - Keep one logged-in connection per process; avoid repeated `login()` calls.
 - When you receive an error or an empty response, check its meaning first (e.g. check traffic with `api.usage()`) before retrying.
 

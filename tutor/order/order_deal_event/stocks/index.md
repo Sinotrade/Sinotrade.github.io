@@ -6,6 +6,7 @@ Order Event
 
 ```
 <OrderState.StockOrder: 'SORDER'> {
+    'event_id': 'v1:SO:A1EGVO30H:BOnKZSD:4',
     'operation': {
         'op_type': 'New',
         'op_code': '00',
@@ -53,6 +54,13 @@ Order Event
 ```
 
 Order CallBack Info.
+
+**event_id** (1.7.6+)
+
+```
+event_id (str): Report identity, used for deduplication and gap detection
+
+```
 
 **operation**
 
@@ -127,6 +135,7 @@ Deal Event
 
 ```
 <OrderState.StockDeal: 'SDEAL'> {
+    'event_id': 'v1:SD:A1EGVO30H:BOnKZSD:7',
     'trade_id': '9c6ae2eb',
     'seqno': '269866',
     'ordno': 'IN497',
@@ -149,6 +158,7 @@ Deal Event
 Deal Callback Info.
 
 ```
+event_id (str): Report identity, used for deduplication and gap detection (1.7.6+)
 trade_id (str): same as the id in StockOrder
 seqno (str): sequence number
 ordno (str): The first 5 characters is the same as ordno in StockOrder. The last 3 characters represent the deal sequence number.

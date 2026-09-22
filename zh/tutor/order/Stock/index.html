@@ -2506,11 +2506,15 @@ stock_order.account:        下單帳號（省略則使用預設證券帳號）
 </code></pre></div>
 </div>
 <p>下單完成後會收到交易所傳回的下單回報訊息，詳情內容可詳見<a href="../order_deal_event/stocks/">下單回報</a>。</p>
-<p><code>place_order</code> 回傳的 <code>trade</code> 狀態若為 <code>PendingSubmit</code>，可執行 <code>update_status</code> 主動更新，詳見<a href="../UpdateStatus/">委託狀態</a>。</p>
+<p><code>place_order</code> 回傳的 <code>trade</code> 狀態可能是 <code>PendingSubmit</code>，1.7.6 起收到委託回報後再讀一次即為最新狀態，詳見<a href="../UpdateStatus/">委託狀態</a>。</p>
 <div class="admonition info">
 <p class="admonition-title">In</p>
-<div class="highlight"><pre><span></span><code><span class="n">api</span><span class="o">.</span><span class="n">update_status</span><span class="p">(</span><span class="n">api</span><span class="o">.</span><span class="n">stock_account</span><span class="p">)</span>
+<div class="highlight"><pre><span></span><code><span class="c1"># 1.7.6 起：收到委託回報後再讀一次即可</span>
 <span class="n">trade</span>
+
+<span class="c1"># 1.7.6 以前：需自行由回報維護，或呼叫 update_status</span>
+<span class="c1"># api.update_status(api.stock_account)</span>
+<span class="c1"># trade</span>
 </code></pre></div>
 </div>
 <div class="admonition done">
@@ -3410,7 +3414,7 @@ quantity: 新數量（只能減少）
 </div>
 <div class="admonition warning">
 <p class="admonition-title">注意</p>
-<p>執行改單前，需先呼叫 <code>update_status</code> 取得委託單編號 (<code>ordno</code>)。</p>
+<p>1.7.6 以前執行改單前，需先取得委託單編號 (<code>ordno</code>)，可由回報取得或呼叫 <code>update_status</code>；1.7.6 起 <code>ordno</code> 會由委託回報自動補上。</p>
 </div>
 <h4 id="_4">範例：改價<a class="headerlink" href="#_4" title="Permanent link">&para;</a></h4>
 <div class="tabbed-set tabbed-alternate" data-tabs="4:2"><input checked="checked" id="__tabbed_4_1" name="__tabbed_4" type="radio" /><input id="__tabbed_4_2" name="__tabbed_4" type="radio" /><div class="tabbed-labels"><label for="__tabbed_4_1">Python</label><label for="__tabbed_4_2">HTTP</label></div>
@@ -3419,8 +3423,13 @@ quantity: 新數量（只能減少）
 <div class="admonition info">
 <p class="admonition-title">In</p>
 <div class="highlight"><pre><span></span><code><span class="n">api</span><span class="o">.</span><span class="n">update_order</span><span class="p">(</span><span class="n">trade</span><span class="o">=</span><span class="n">trade</span><span class="p">,</span> <span class="n">price</span><span class="o">=</span><span class="mf">27.2</span><span class="p">)</span>
-<span class="n">api</span><span class="o">.</span><span class="n">update_status</span><span class="p">(</span><span class="n">api</span><span class="o">.</span><span class="n">stock_account</span><span class="p">)</span>
+
+<span class="c1"># 1.7.6 起：收到改單回報後再讀一次即可</span>
 <span class="n">trade</span>
+
+<span class="c1"># 1.7.6 以前：需自行由回報維護，或呼叫 update_status</span>
+<span class="c1"># api.update_status(api.stock_account)</span>
+<span class="c1"># trade</span>
 </code></pre></div>
 </div>
 <div class="admonition done">
@@ -3536,8 +3545,13 @@ quantity: 新數量（只能減少）
 <div class="admonition info">
 <p class="admonition-title">In</p>
 <div class="highlight"><pre><span></span><code><span class="n">api</span><span class="o">.</span><span class="n">update_order</span><span class="p">(</span><span class="n">trade</span><span class="o">=</span><span class="n">trade</span><span class="p">,</span> <span class="n">qty</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
-<span class="n">api</span><span class="o">.</span><span class="n">update_status</span><span class="p">(</span><span class="n">api</span><span class="o">.</span><span class="n">stock_account</span><span class="p">)</span>
+
+<span class="c1"># 1.7.6 起：收到改單回報後再讀一次即可</span>
 <span class="n">trade</span>
+
+<span class="c1"># 1.7.6 以前：需自行由回報維護，或呼叫 update_status</span>
+<span class="c1"># api.update_status(api.stock_account)</span>
+<span class="c1"># trade</span>
 </code></pre></div>
 </div>
 <div class="admonition done">
@@ -3690,7 +3704,7 @@ cb:      選填，callback 函式
 </div>
 <div class="admonition warning">
 <p class="admonition-title">注意</p>
-<p>執行刪單前，需先呼叫 <code>update_status</code> 取得委託單編號 (<code>ordno</code>)。</p>
+<p>1.7.6 以前執行刪單前，需先取得委託單編號 (<code>ordno</code>)，可由回報取得或呼叫 <code>update_status</code>；1.7.6 起 <code>ordno</code> 會由委託回報自動補上。</p>
 </div>
 <h4 id="_7">範例：刪單<a class="headerlink" href="#_7" title="Permanent link">&para;</a></h4>
 <div class="tabbed-set tabbed-alternate" data-tabs="7:2"><input checked="checked" id="__tabbed_7_1" name="__tabbed_7" type="radio" /><input id="__tabbed_7_2" name="__tabbed_7" type="radio" /><div class="tabbed-labels"><label for="__tabbed_7_1">Python</label><label for="__tabbed_7_2">HTTP</label></div>
@@ -3699,8 +3713,13 @@ cb:      選填，callback 函式
 <div class="admonition info">
 <p class="admonition-title">In</p>
 <div class="highlight"><pre><span></span><code><span class="n">api</span><span class="o">.</span><span class="n">cancel_order</span><span class="p">(</span><span class="n">trade</span><span class="p">)</span>
-<span class="n">api</span><span class="o">.</span><span class="n">update_status</span><span class="p">(</span><span class="n">api</span><span class="o">.</span><span class="n">stock_account</span><span class="p">)</span>
+
+<span class="c1"># 1.7.6 起：收到刪單回報後再讀一次即可</span>
 <span class="n">trade</span>
+
+<span class="c1"># 1.7.6 以前：需自行由回報維護，或呼叫 update_status</span>
+<span class="c1"># api.update_status(api.stock_account)</span>
+<span class="c1"># trade</span>
 </code></pre></div>
 </div>
 <div class="admonition done">
@@ -3804,14 +3823,18 @@ cb:      選填，callback 函式
 </div>
 </div>
 <h3 id="_8">成交<a class="headerlink" href="#_8" title="Permanent link">&para;</a></h3>
-<p>委託單成交後，可呼叫 <code>update_status</code> 看到 <code>status</code> 轉為 <code>Filled</code>，<code>deals</code> 欄位填入成交明細。</p>
+<p>委託單成交後，1.7.6 起 <code>status</code> 會轉為 <code>Filled</code>，<code>deals</code> 欄位填入成交明細。</p>
 <div class="tabbed-set tabbed-alternate" data-tabs="8:2"><input checked="checked" id="__tabbed_8_1" name="__tabbed_8" type="radio" /><input id="__tabbed_8_2" name="__tabbed_8" type="radio" /><div class="tabbed-labels"><label for="__tabbed_8_1">Python</label><label for="__tabbed_8_2">HTTP</label></div>
 <div class="tabbed-content">
 <div class="tabbed-block">
 <div class="admonition info">
 <p class="admonition-title">In</p>
-<div class="highlight"><pre><span></span><code><span class="n">api</span><span class="o">.</span><span class="n">update_status</span><span class="p">(</span><span class="n">api</span><span class="o">.</span><span class="n">stock_account</span><span class="p">)</span>
+<div class="highlight"><pre><span></span><code><span class="c1"># 1.7.6 起：收到成交回報後再讀一次即可</span>
 <span class="n">trade</span>
+
+<span class="c1"># 1.7.6 以前：需自行由回報維護，或呼叫 update_status</span>
+<span class="c1"># api.update_status(api.stock_account)</span>
+<span class="c1"># trade</span>
 </code></pre></div>
 </div>
 <div class="admonition done">

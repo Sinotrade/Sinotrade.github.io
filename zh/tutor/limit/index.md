@@ -6,7 +6,7 @@ Shioaji 的各項使用限制是為了保護所有使用者的連線品質而設
 
 - 盤中即時資料請使用行情訂閱（`api.subscribe()` 或 SSE 串流），訂閱推播不計入流量；請勿以輪詢 `snapshots`、`ticks`、`kbars` 取代即時行情
 - 歷史行情建議於盤後查詢，盤中僅在必要時少量查詢。查詢後請自行快取、避免重複查詢
-- 委託狀態請使用主動回報（callback 或 SSE order event），避免以 `update_status()` 輪詢
+- 委託狀態請使用主動回報（callback 或 SSE order event），避免以 `update_status()` 輪詢；1.7.6 起 `Trade` 會隨回報自動更新，直接讀取即可
 - 每個程式行程維持一個已登入的連線，避免反覆 `login()`
 - 收到錯誤或空回應時，請先確認其意義（例如先以 `api.usage()` 檢查流量），再決定是否重試
 

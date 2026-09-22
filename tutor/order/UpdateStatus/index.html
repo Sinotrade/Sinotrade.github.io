@@ -102,7 +102,7 @@
     <div data-md-component="skip">
       
         
-        <a href="#attributes" class="md-skip">
+        <a href="#read-order-status" class="md-skip">
           Skip to content
         </a>
       
@@ -1258,6 +1258,16 @@
     <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
       
         <li class="md-nav__item">
+  <a href="#read-order-status" class="md-nav__link">
+    <span class="md-ellipsis">
+      Read Order Status
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Read Order Status">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
   <a href="#attributes" class="md-nav__link">
     <span class="md-ellipsis">
       Attributes
@@ -1265,39 +1275,68 @@
   </a>
   
 </li>
-      
-        <li class="md-nav__item">
+        
+          <li class="md-nav__item">
   <a href="#examples" class="md-nav__link">
     <span class="md-ellipsis">
       Examples
     </span>
   </a>
   
-    <nav class="md-nav" aria-label="Examples">
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#get-and-keep-trade-current" class="md-nav__link">
+    <span class="md-ellipsis">
+      Get and Keep Trade Current
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#reconciliation" class="md-nav__link">
+    <span class="md-ellipsis">
+      Reconciliation
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Reconciliation">
       <ul class="md-nav__list">
         
           <li class="md-nav__item">
-  <a href="#get-stock-order-status" class="md-nav__link">
+  <a href="#examples_1" class="md-nav__link">
     <span class="md-ellipsis">
-      Get Stock Order Status
+      Examples
     </span>
   </a>
   
 </li>
         
-          <li class="md-nav__item">
-  <a href="#get-futures-order-status" class="md-nav__link">
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#check-for-missed-reports-176" class="md-nav__link">
     <span class="md-ellipsis">
-      Get Futures Order Status
+      Check for Missed Reports (1.7.6+)
     </span>
   </a>
   
-</li>
+    <nav class="md-nav" aria-label="Check for Missed Reports (1.7.6+)">
+      <ul class="md-nav__list">
         
           <li class="md-nav__item">
-  <a href="#update-a-specific-trade" class="md-nav__link">
+  <a href="#examples_2" class="md-nav__link">
     <span class="md-ellipsis">
-      Update a Specific Trade
+      Examples
     </span>
   </a>
   
@@ -2089,6 +2128,16 @@
     <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
       
         <li class="md-nav__item">
+  <a href="#read-order-status" class="md-nav__link">
+    <span class="md-ellipsis">
+      Read Order Status
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Read Order Status">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
   <a href="#attributes" class="md-nav__link">
     <span class="md-ellipsis">
       Attributes
@@ -2096,39 +2145,68 @@
   </a>
   
 </li>
-      
-        <li class="md-nav__item">
+        
+          <li class="md-nav__item">
   <a href="#examples" class="md-nav__link">
     <span class="md-ellipsis">
       Examples
     </span>
   </a>
   
-    <nav class="md-nav" aria-label="Examples">
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#get-and-keep-trade-current" class="md-nav__link">
+    <span class="md-ellipsis">
+      Get and Keep Trade Current
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#reconciliation" class="md-nav__link">
+    <span class="md-ellipsis">
+      Reconciliation
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Reconciliation">
       <ul class="md-nav__list">
         
           <li class="md-nav__item">
-  <a href="#get-stock-order-status" class="md-nav__link">
+  <a href="#examples_1" class="md-nav__link">
     <span class="md-ellipsis">
-      Get Stock Order Status
+      Examples
     </span>
   </a>
   
 </li>
         
-          <li class="md-nav__item">
-  <a href="#get-futures-order-status" class="md-nav__link">
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#check-for-missed-reports-176" class="md-nav__link">
     <span class="md-ellipsis">
-      Get Futures Order Status
+      Check for Missed Reports (1.7.6+)
     </span>
   </a>
   
-</li>
+    <nav class="md-nav" aria-label="Check for Missed Reports (1.7.6+)">
+      <ul class="md-nav__list">
         
           <li class="md-nav__item">
-  <a href="#update-a-specific-trade" class="md-nav__link">
+  <a href="#examples_2" class="md-nav__link">
     <span class="md-ellipsis">
-      Update a Specific Trade
+      Examples
     </span>
   </a>
   
@@ -2157,57 +2235,49 @@
 
   <h1>Update Status</h1>
 
-<div class="admonition attention">
-<p class="admonition-title">Reminder</p>
-<p>Before placing orders, you must first <a href="../../login/">log in</a> and <a href="../../prepare/terms/">activate your CA</a>.</p>
-</div>
-<p>Before reading a <code>Trade</code>'s status, you must first refresh it by calling <code>update_status</code>. By default the call refreshes every order under all accounts. To refresh a single account, pass it as <code>account</code>; to refresh a single order, pass the <code>Trade</code> object as the keyword argument <code>trade=</code>. After the call, you can read the latest <code>Trade</code> list from <code>api.list_trades()</code> or directly inspect the <code>status</code> field on the <code>trade</code> object you passed in.</p>
+<p>Query <strong>stock / futures-options account</strong> order status. <a href="../../login">Login</a> is required first.</p>
+<h2 id="read-order-status">Read Order Status<a class="headerlink" href="#read-order-status" title="Permanent link">&para;</a></h2>
+<p><code>api.list_trades()</code> takes no parameters and returns the currently known <code>Trade</code> list across all your accounts. You can also read the <code>trade</code> object you already hold (returned by <code>place_order</code> or <code>list_trades</code>) and check its <code>status</code> field.</p>
+<p>The list is empty right after a new login; call <a href="#reconciliation">reconciliation</a> first to fetch the day's orders.</p>
 <div class="tabbed-set tabbed-alternate" data-tabs="1:2"><input checked="checked" id="__tabbed_1_1" name="__tabbed_1" type="radio" /><input id="__tabbed_1_2" name="__tabbed_1" type="radio" /><div class="tabbed-labels"><label for="__tabbed_1_1">Python</label><label for="__tabbed_1_2">Other Languages</label></div>
 <div class="tabbed-content">
 <div class="tabbed-block">
 <div class="admonition example">
-<p class="admonition-title">update_status</p>
-<div class="highlight"><pre><span></span><code><span class="n">api</span><span class="o">.</span><span class="n">update_status</span><span class="err">?</span>
+<p class="admonition-title">list_trades</p>
+<div class="highlight"><pre><span></span><code><span class="n">api</span><span class="o">.</span><span class="n">list_trades</span><span class="err">?</span>
 
 <span class="n">Signature</span><span class="p">:</span>
-    <span class="n">api</span><span class="o">.</span><span class="n">update_status</span><span class="p">(</span>
-        <span class="n">account</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="n">sj</span><span class="o">.</span><span class="n">Account</span><span class="p">]</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
-        <span class="o">*</span><span class="p">,</span>
-        <span class="n">trade</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="n">sj</span><span class="o">.</span><span class="n">Trade</span><span class="p">]</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
-        <span class="n">timeout</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="nb">int</span><span class="p">]</span> <span class="o">=</span> <span class="mi">30000</span><span class="p">,</span>
-        <span class="n">cb</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="n">Callable</span><span class="p">[[</span><span class="n">List</span><span class="p">[</span><span class="n">sj</span><span class="o">.</span><span class="n">Trade</span><span class="p">]],</span> <span class="kc">None</span><span class="p">]]</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
-    <span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span>
-</code></pre></div>
-</div>
-<div class="admonition done">
-<p class="admonition-title">Parameters</p>
-<div class="highlight"><pre><span></span><code>account: Stock or futures account; omit to refresh all accounts under your name
-trade:   Specific Trade object to refresh (keyword-only)
-timeout: Timeout in milliseconds
-cb:      Optional callback function; when timeout=0, receives the updated Trade list
+    <span class="n">api</span><span class="o">.</span><span class="n">list_trades</span><span class="p">()</span> <span class="o">-&gt;</span> <span class="n">List</span><span class="p">[</span><span class="n">sj</span><span class="o">.</span><span class="n">Trade</span><span class="p">]</span>
 </code></pre></div>
 </div>
 </div>
 <div class="tabbed-block">
 <div class="admonition example">
-<p class="admonition-title">update_status</p>
-<div class="highlight"><pre><span></span><code><span class="err">POST /api/v1/order/update_status</span>
+<p class="admonition-title">trades</p>
+<div class="highlight"><pre><span></span><code><span class="err">POST /api/v1/order/trades</span>
 <span class="err">Content-Type: application/json</span>
 
 <span class="err">{</span>
-<span class="err">  &quot;account&quot;: { &quot;broker_id&quot;: &lt;string&gt;, &quot;account_id&quot;: &lt;string&gt; }</span>
+<span class="err">  &quot;account_type&quot;: &lt;string&gt;,</span>
+<span class="err">  &quot;broker_id&quot;: &lt;string&gt;,</span>
+<span class="err">  &quot;account_id&quot;: &lt;string&gt;,</span>
+<span class="err">  &quot;refresh&quot;: &lt;bool&gt;</span>
 <span class="err">}</span>
 </code></pre></div>
 </div>
 <div class="admonition done">
 <p class="admonition-title">Parameters</p>
-<div class="highlight"><pre><span></span><code>account: Stock or futures account
+<div class="highlight"><pre><span></span><code>account_type: S for stock, F for futures/options; defaults to S
+broker_id:    Branch code; use with account_id to target a specific account
+account_id:   Account number; omit to use the default account of account_type
+refresh:      Whether to refresh from the backend first; defaults to true.
+              false returns only the local cache (1.7.6+)
 </code></pre></div>
 </div>
 </div>
 </div>
 </div>
-<h2 id="attributes">Attributes<a class="headerlink" href="#attributes" title="Permanent link">&para;</a></h2>
+<h3 id="attributes">Attributes<a class="headerlink" href="#attributes" title="Permanent link">&para;</a></h3>
 <div class="admonition example">
 <p class="admonition-title">OrderStatus</p>
 <div class="highlight"><pre><span></span><code><span class="nb">id</span> <span class="p">(</span><span class="nb">str</span><span class="p">):</span>                  <span class="n">Linked</span> <span class="n">Order</span> <span class="nb">object</span> <span class="n">ID</span>
@@ -2242,15 +2312,13 @@ cb:      Optional callback function; when timeout=0, receives the updated Trade 
 <span class="n">datetime</span> <span class="p">(</span><span class="n">datetime</span><span class="p">):</span> <span class="n">Deal</span> <span class="n">datetime</span> <span class="p">(</span><span class="n">computed</span> <span class="kn">from</span><span class="w"> </span><span class="nn">ts</span><span class="p">,</span> <span class="n">tz</span><span class="o">=</span><span class="n">Asia</span><span class="o">/</span><span class="n">Taipei</span> <span class="o">+</span><span class="mi">0800</span><span class="p">)</span>
 </code></pre></div>
 </div>
-<h2 id="examples">Examples<a class="headerlink" href="#examples" title="Permanent link">&para;</a></h2>
-<h3 id="get-stock-order-status">Get Stock Order Status<a class="headerlink" href="#get-stock-order-status" title="Permanent link">&para;</a></h3>
+<h3 id="examples">Examples<a class="headerlink" href="#examples" title="Permanent link">&para;</a></h3>
 <div class="tabbed-set tabbed-alternate" data-tabs="2:2"><input checked="checked" id="__tabbed_2_1" name="__tabbed_2" type="radio" /><input id="__tabbed_2_2" name="__tabbed_2" type="radio" /><div class="tabbed-labels"><label for="__tabbed_2_1">Python</label><label for="__tabbed_2_2">HTTP</label></div>
 <div class="tabbed-content">
 <div class="tabbed-block">
 <div class="admonition info">
 <p class="admonition-title">In</p>
-<div class="highlight"><pre><span></span><code><span class="n">api</span><span class="o">.</span><span class="n">update_status</span><span class="p">(</span><span class="n">api</span><span class="o">.</span><span class="n">stock_account</span><span class="p">)</span>
-<span class="n">api</span><span class="o">.</span><span class="n">list_trades</span><span class="p">()</span>
+<div class="highlight"><pre><span></span><code><span class="n">api</span><span class="o">.</span><span class="n">list_trades</span><span class="p">()</span>
 </code></pre></div>
 </div>
 <div class="admonition done">
@@ -2308,13 +2376,11 @@ cb:      Optional callback function; when timeout=0, receives the updated Trade 
 <div class="tabbed-block">
 <div class="admonition info">
 <p class="admonition-title">In</p>
-<div class="highlight"><pre><span></span><code>curl<span class="w"> </span>-X<span class="w"> </span>POST<span class="w"> </span>http://localhost:8080/api/v1/order/update_status<span class="w"> </span><span class="se">\</span>
+<div class="highlight"><pre><span></span><code>curl<span class="w"> </span>-X<span class="w"> </span>POST<span class="w"> </span>http://localhost:8080/api/v1/order/trades<span class="w"> </span><span class="se">\</span>
 <span class="w">  </span>-H<span class="w"> </span><span class="s1">&#39;Content-Type: application/json&#39;</span><span class="w"> </span><span class="se">\</span>
 <span class="w">  </span>-d<span class="w"> </span><span class="s1">&#39;{</span>
-<span class="s1">    &quot;account&quot;: {</span>
-<span class="hll"><span class="s1">      &quot;broker_id&quot;: &quot;YOUR_BROKER_ID&quot;,</span>
-</span><span class="hll"><span class="s1">      &quot;account_id&quot;: &quot;YOUR_ACCOUNT_ID&quot;</span>
-</span><span class="s1">    }</span>
+<span class="s1">    &quot;account_type&quot;: &quot;S&quot;,</span>
+<span class="s1">    &quot;refresh&quot;: false</span>
 <span class="s1">  }&#39;</span>
 </code></pre></div>
 </div>
@@ -2342,150 +2408,245 @@ cb:      Optional callback function; when timeout=0, receives the updated Trade 
 
 -->
 
-<h3 id="get-futures-order-status">Get Futures Order Status<a class="headerlink" href="#get-futures-order-status" title="Permanent link">&para;</a></h3>
-<div class="tabbed-set tabbed-alternate" data-tabs="3:2"><input checked="checked" id="__tabbed_3_1" name="__tabbed_3" type="radio" /><input id="__tabbed_3_2" name="__tabbed_3" type="radio" /><div class="tabbed-labels"><label for="__tabbed_3_1">Python</label><label for="__tabbed_3_2">HTTP</label></div>
+<h2 id="get-and-keep-trade-current">Get and Keep Trade Current<a class="headerlink" href="#get-and-keep-trade-current" title="Permanent link">&para;</a></h2>
+<p>Right after a new login no reports have arrived yet, so call <code>update_status</code> once to fetch the day's orders. How the list stays current afterwards depends on your version:</p>
+<div class="tabbed-set tabbed-alternate" data-tabs="3:2"><input checked="checked" id="__tabbed_3_1" name="__tabbed_3" type="radio" /><input id="__tabbed_3_2" name="__tabbed_3" type="radio" /><div class="tabbed-labels"><label for="__tabbed_3_1">1.7.6 and later</label><label for="__tabbed_3_2">Before 1.7.6</label></div>
+<div class="tabbed-content">
+<div class="tabbed-block">
+<p>Maintained for you: <code>Trade</code> objects update automatically from active reports.</p>
+<ul>
+<li>Set an <a href="../../callback/orderdeal_event/">order callback</a> as a notification, then read <code>trade</code> once a report arrives.</li>
+<li>To confirm no reports were missed, check with <a href="#check-for-missed-reports-176">trade_cache_health</a>.</li>
+</ul>
+</div>
+<div class="tabbed-block">
+<p>Maintained by you: <code>Trade</code> objects do not update on their own.</p>
+<ul>
+<li>Set an <a href="../../callback/orderdeal_event/">order callback</a> and maintain the <code>Trade</code> object from the report contents yourself.</li>
+<li>Or call <code>update_status</code> before each read.</li>
+</ul>
+</div>
+</div>
+</div>
+<h2 id="reconciliation">Reconciliation<a class="headerlink" href="#reconciliation" title="Permanent link">&para;</a></h2>
+<p><code>update_status</code> queries the backend for order status and updates <code>Trade</code>. Use it to fetch the day's orders after a new login, when reports may have been missed, or when you need to confirm the final state.</p>
+<div class="tabbed-set tabbed-alternate" data-tabs="4:2"><input checked="checked" id="__tabbed_4_1" name="__tabbed_4" type="radio" /><input id="__tabbed_4_2" name="__tabbed_4" type="radio" /><div class="tabbed-labels"><label for="__tabbed_4_1">Python</label><label for="__tabbed_4_2">Other Languages</label></div>
+<div class="tabbed-content">
+<div class="tabbed-block">
+<div class="admonition example">
+<p class="admonition-title">update_status</p>
+<div class="highlight"><pre><span></span><code><span class="n">api</span><span class="o">.</span><span class="n">update_status</span><span class="err">?</span>
+
+<span class="n">Signature</span><span class="p">:</span>
+    <span class="n">api</span><span class="o">.</span><span class="n">update_status</span><span class="p">(</span>
+        <span class="n">account</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="n">sj</span><span class="o">.</span><span class="n">Account</span><span class="p">]</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
+        <span class="o">*</span><span class="p">,</span>
+        <span class="n">trade</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="n">sj</span><span class="o">.</span><span class="n">Trade</span><span class="p">]</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
+        <span class="n">timeout</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="nb">int</span><span class="p">]</span> <span class="o">=</span> <span class="mi">30000</span><span class="p">,</span>
+        <span class="n">cb</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="n">Callable</span><span class="p">[[</span><span class="n">List</span><span class="p">[</span><span class="n">sj</span><span class="o">.</span><span class="n">Trade</span><span class="p">]],</span> <span class="kc">None</span><span class="p">]]</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
+    <span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span>
+</code></pre></div>
+</div>
+<div class="admonition done">
+<p class="admonition-title">Parameters</p>
+<div class="highlight"><pre><span></span><code>account: Stock or futures account; omit to refresh all accounts under your name
+trade:   Specific Trade object to refresh (keyword-only)
+timeout: Timeout in milliseconds
+cb:      Optional callback function; when timeout=0, receives the updated Trade list
+</code></pre></div>
+</div>
+</div>
+<div class="tabbed-block">
+<div class="admonition example">
+<p class="admonition-title">trades</p>
+<div class="highlight"><pre><span></span><code><span class="err">POST /api/v1/order/trades</span>
+<span class="err">Content-Type: application/json</span>
+
+<span class="err">{</span>
+<span class="err">  &quot;account_type&quot;: &lt;string&gt;,</span>
+<span class="err">  &quot;broker_id&quot;: &lt;string&gt;,</span>
+<span class="err">  &quot;account_id&quot;: &lt;string&gt;,</span>
+<span class="err">  &quot;refresh&quot;: true</span>
+<span class="err">}</span>
+</code></pre></div>
+</div>
+<div class="admonition done">
+<p class="admonition-title">Parameters</p>
+<div class="highlight"><pre><span></span><code>account_type: S for stock, F for futures/options; defaults to S
+broker_id:    Branch code; use with account_id to target a specific account
+account_id:   Account number; omit to use the default account of account_type
+refresh:      Set to true (or omit) to refresh from the backend before returning
+</code></pre></div>
+</div>
+</div>
+</div>
+</div>
+<h3 id="examples_1">Examples<a class="headerlink" href="#examples_1" title="Permanent link">&para;</a></h3>
+<div class="tabbed-set tabbed-alternate" data-tabs="5:2"><input checked="checked" id="__tabbed_5_1" name="__tabbed_5" type="radio" /><input id="__tabbed_5_2" name="__tabbed_5" type="radio" /><div class="tabbed-labels"><label for="__tabbed_5_1">Python</label><label for="__tabbed_5_2">HTTP</label></div>
 <div class="tabbed-content">
 <div class="tabbed-block">
 <div class="admonition info">
 <p class="admonition-title">In</p>
-<div class="highlight"><pre><span></span><code><span class="n">api</span><span class="o">.</span><span class="n">update_status</span><span class="p">(</span><span class="n">api</span><span class="o">.</span><span class="n">futopt_account</span><span class="p">)</span>
+<div class="highlight"><pre><span></span><code><span class="n">api</span><span class="o">.</span><span class="n">update_status</span><span class="p">()</span>                      <span class="c1"># All accounts under your name</span>
+<span class="c1"># api.update_status(api.stock_account)   # Stock account only</span>
+<span class="c1"># api.update_status(api.futopt_account)  # Futures/options account only</span>
+<span class="c1"># api.update_status(trade=trade)         # A single order only</span>
+
 <span class="n">api</span><span class="o">.</span><span class="n">list_trades</span><span class="p">()</span>
 </code></pre></div>
 </div>
-<div class="admonition done">
-<p class="admonition-title">Out</p>
-<div class="highlight"><pre><span></span><code><span class="p">[</span>
-    <span class="n">Trade</span><span class="p">(</span>
-        <span class="n">contract</span><span class="o">=</span><span class="n">Contract</span><span class="p">(</span>
-            <span class="n">security_type</span><span class="o">=</span><span class="s1">&#39;FUT&#39;</span><span class="p">,</span>
-            <span class="n">exchange</span><span class="o">=</span><span class="s1">&#39;TAIFEX&#39;</span><span class="p">,</span>
-            <span class="n">code</span><span class="o">=</span><span class="s1">&#39;TMFE6&#39;</span>
-        <span class="p">),</span>
-        <span class="n">order</span><span class="o">=</span><span class="n">Order</span><span class="p">(</span>
-            <span class="nb">id</span><span class="o">=</span><span class="s1">&#39;e0ae2459&#39;</span><span class="p">,</span>
-            <span class="n">action</span><span class="o">=&lt;</span><span class="n">Action</span><span class="o">.</span><span class="n">Buy</span><span class="p">:</span> <span class="s1">&#39;Buy&#39;</span><span class="o">&gt;</span><span class="p">,</span>
-            <span class="n">price</span><span class="o">=</span><span class="mi">36216</span><span class="p">,</span>
-            <span class="n">quantity</span><span class="o">=</span><span class="mi">2</span><span class="p">,</span>
-            <span class="n">seqno</span><span class="o">=</span><span class="s1">&#39;242472&#39;</span><span class="p">,</span>
-            <span class="n">ordno</span><span class="o">=</span><span class="s1">&#39;vE0Dr&#39;</span><span class="p">,</span>
-            <span class="n">order_type</span><span class="o">=&lt;</span><span class="n">OrderType</span><span class="o">.</span><span class="n">ROD</span><span class="p">:</span> <span class="s1">&#39;ROD&#39;</span><span class="o">&gt;</span><span class="p">,</span>
-            <span class="n">price_type</span><span class="o">=&lt;</span><span class="n">PriceType</span><span class="o">.</span><span class="n">LMT</span><span class="p">:</span> <span class="s1">&#39;LMT&#39;</span><span class="o">&gt;</span><span class="p">,</span>
-            <span class="n">account</span><span class="o">=</span><span class="n">FutureAccount</span><span class="p">(</span>
-                <span class="n">person_id</span><span class="o">=</span><span class="s1">&#39;YOUR_PERSON_ID&#39;</span><span class="p">,</span>
-                <span class="n">broker_id</span><span class="o">=</span><span class="s1">&#39;YOUR_BROKER_ID&#39;</span><span class="p">,</span>
-                <span class="n">account_id</span><span class="o">=</span><span class="s1">&#39;YOUR_ACCOUNT_ID&#39;</span><span class="p">,</span>
-                <span class="n">signed</span><span class="o">=</span><span class="n">true</span><span class="p">,</span>
-                <span class="n">username</span><span class="o">=</span><span class="s1">&#39;&#39;</span>
-            <span class="p">),</span>
-            <span class="n">octype</span><span class="o">=&lt;</span><span class="n">FuturesOCType</span><span class="o">.</span><span class="n">NewPosition</span><span class="p">:</span> <span class="s1">&#39;NewPosition&#39;</span><span class="o">&gt;</span>
-        <span class="p">),</span>
-        <span class="n">status</span><span class="o">=</span><span class="n">OrderStatus</span><span class="p">(</span>
-            <span class="nb">id</span><span class="o">=</span><span class="s1">&#39;e0ae2459&#39;</span><span class="p">,</span>
-            <span class="n">status</span><span class="o">=&lt;</span><span class="n">OrderStatus</span><span class="o">.</span><span class="n">Filled</span><span class="p">:</span> <span class="s1">&#39;Filled&#39;</span><span class="o">&gt;</span><span class="p">,</span>
-            <span class="n">status_code</span><span class="o">=</span><span class="s1">&#39;0000&#39;</span><span class="p">,</span>
-            <span class="n">order_datetime</span><span class="o">=</span><span class="n">datetime</span><span class="o">.</span><span class="n">datetime</span><span class="p">(</span><span class="mi">2026</span><span class="p">,</span> <span class="mi">5</span><span class="p">,</span> <span class="mi">19</span><span class="p">,</span> <span class="mi">18</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="mi">7</span><span class="p">,</span> <span class="n">tzinfo</span><span class="o">=</span><span class="n">datetime</span><span class="o">.</span><span class="n">timezone</span><span class="p">(</span><span class="n">datetime</span><span class="o">.</span><span class="n">timedelta</span><span class="p">(</span><span class="n">hours</span><span class="o">=</span><span class="mi">8</span><span class="p">))),</span>
-            <span class="n">web_id</span><span class="o">=</span><span class="s1">&#39;Z&#39;</span><span class="p">,</span>
-            <span class="n">modified_time</span><span class="o">=</span><span class="n">datetime</span><span class="o">.</span><span class="n">datetime</span><span class="p">(</span><span class="mi">2026</span><span class="p">,</span> <span class="mi">5</span><span class="p">,</span> <span class="mi">19</span><span class="p">,</span> <span class="mi">18</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="mi">7</span><span class="p">,</span> <span class="n">tzinfo</span><span class="o">=</span><span class="n">datetime</span><span class="o">.</span><span class="n">timezone</span><span class="p">(</span><span class="n">datetime</span><span class="o">.</span><span class="n">timedelta</span><span class="p">(</span><span class="n">hours</span><span class="o">=</span><span class="mi">8</span><span class="p">))),</span>
-            <span class="n">order_quantity</span><span class="o">=</span><span class="mi">2</span><span class="p">,</span>
-            <span class="n">deal_quantity</span><span class="o">=</span><span class="mi">2</span><span class="p">,</span>
-            <span class="n">deals</span><span class="o">=</span><span class="p">[</span>
-                <span class="n">Deal</span><span class="p">(</span>
-                    <span class="n">seq</span><span class="o">=</span><span class="s1">&#39;000001&#39;</span><span class="p">,</span>
-                    <span class="n">price</span><span class="o">=</span><span class="mi">36216</span><span class="p">,</span>
-                    <span class="n">quantity</span><span class="o">=</span><span class="mi">2</span><span class="p">,</span>
-                    <span class="n">ts</span><span class="o">=</span><span class="mf">1747647787.123456</span><span class="p">,</span>
-                    <span class="n">datetime</span><span class="o">=</span><span class="n">datetime</span><span class="o">.</span><span class="n">datetime</span><span class="p">(</span><span class="mi">2026</span><span class="p">,</span> <span class="mi">5</span><span class="p">,</span> <span class="mi">19</span><span class="p">,</span> <span class="mi">18</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="mi">7</span><span class="p">,</span> <span class="n">tzinfo</span><span class="o">=</span><span class="n">datetime</span><span class="o">.</span><span class="n">timezone</span><span class="p">(</span><span class="n">datetime</span><span class="o">.</span><span class="n">timedelta</span><span class="p">(</span><span class="n">hours</span><span class="o">=</span><span class="mi">8</span><span class="p">)))</span>
-                <span class="p">)</span>
-            <span class="p">]</span>
-        <span class="p">)</span>
-    <span class="p">)</span>
-<span class="p">]</span>
-</code></pre></div>
-</div>
 </div>
 <div class="tabbed-block">
 <div class="admonition info">
 <p class="admonition-title">In</p>
-<div class="highlight"><pre><span></span><code>curl<span class="w"> </span>-X<span class="w"> </span>POST<span class="w"> </span>http://localhost:8080/api/v1/order/update_status<span class="w"> </span><span class="se">\</span>
+<div class="highlight"><pre><span></span><code>curl<span class="w"> </span>-X<span class="w"> </span>POST<span class="w"> </span>http://localhost:8080/api/v1/order/trades<span class="w"> </span><span class="se">\</span>
 <span class="w">  </span>-H<span class="w"> </span><span class="s1">&#39;Content-Type: application/json&#39;</span><span class="w"> </span><span class="se">\</span>
 <span class="w">  </span>-d<span class="w"> </span><span class="s1">&#39;{</span>
-<span class="s1">    &quot;account&quot;: {</span>
-<span class="hll"><span class="s1">      &quot;broker_id&quot;: &quot;YOUR_BROKER_ID&quot;,</span>
-</span><span class="hll"><span class="s1">      &quot;account_id&quot;: &quot;YOUR_ACCOUNT_ID&quot;</span>
-</span><span class="s1">    }</span>
+<span class="s1">    &quot;account_type&quot;: &quot;S&quot;,</span>
+<span class="s1">    &quot;refresh&quot;: true</span>
 <span class="s1">  }&#39;</span>
 </code></pre></div>
 </div>
+</div>
+</div>
+</div>
+<h2 id="check-for-missed-reports-176">Check for Missed Reports (1.7.6+)<a class="headerlink" href="#check-for-missed-reports-176" title="Permanent link">&para;</a></h2>
+<p>When a report is missed, <code>Trade</code> stays at its old state and there is no way to tell from the outside. <code>api.trade_cache_health(account)</code> tells you whether any reports appear to have been missed.</p>
+<div class="tabbed-set tabbed-alternate" data-tabs="6:2"><input checked="checked" id="__tabbed_6_1" name="__tabbed_6" type="radio" /><input id="__tabbed_6_2" name="__tabbed_6" type="radio" /><div class="tabbed-labels"><label for="__tabbed_6_1">Python</label><label for="__tabbed_6_2">Other Languages</label></div>
+<div class="tabbed-content">
+<div class="tabbed-block">
+<div class="admonition example">
+<p class="admonition-title">trade_cache_health</p>
+<div class="highlight"><pre><span></span><code><span class="n">api</span><span class="o">.</span><span class="n">trade_cache_health</span><span class="err">?</span>
+
+<span class="n">Signature</span><span class="p">:</span>
+    <span class="n">api</span><span class="o">.</span><span class="n">trade_cache_health</span><span class="p">(</span><span class="n">account</span><span class="p">:</span> <span class="n">sj</span><span class="o">.</span><span class="n">Account</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">sj</span><span class="o">.</span><span class="n">TradeCacheHealth</span>
+</code></pre></div>
+</div>
 <div class="admonition done">
-<p class="admonition-title">Out</p>
-<div class="highlight"><pre><span></span><code><span class="p">[{</span><span class="nt">&quot;contract&quot;</span><span class="p">:{</span><span class="nt">&quot;security_type&quot;</span><span class="p">:</span><span class="s2">&quot;FUT&quot;</span><span class="p">,</span><span class="nt">&quot;exchange&quot;</span><span class="p">:</span><span class="s2">&quot;TAIFEX&quot;</span><span class="p">,</span><span class="nt">&quot;code&quot;</span><span class="p">:</span><span class="s2">&quot;TMFE6&quot;</span><span class="p">},</span><span class="nt">&quot;order&quot;</span><span class="p">:{</span><span class="nt">&quot;id&quot;</span><span class="p">:</span><span class="s2">&quot;e0ae2459&quot;</span><span class="p">,</span><span class="nt">&quot;action&quot;</span><span class="p">:</span><span class="s2">&quot;Buy&quot;</span><span class="p">,</span><span class="nt">&quot;price&quot;</span><span class="p">:</span><span class="mi">36216</span><span class="p">,</span><span class="nt">&quot;quantity&quot;</span><span class="p">:</span><span class="mi">2</span><span class="p">,</span><span class="nt">&quot;seqno&quot;</span><span class="p">:</span><span class="s2">&quot;242472&quot;</span><span class="p">,</span><span class="nt">&quot;ordno&quot;</span><span class="p">:</span><span class="s2">&quot;vE0Dr&quot;</span><span class="p">,</span><span class="nt">&quot;order_type&quot;</span><span class="p">:</span><span class="s2">&quot;ROD&quot;</span><span class="p">,</span><span class="nt">&quot;price_type&quot;</span><span class="p">:</span><span class="s2">&quot;LMT&quot;</span><span class="p">,</span><span class="nt">&quot;account&quot;</span><span class="p">:{</span><span class="nt">&quot;account_type&quot;</span><span class="p">:</span><span class="s2">&quot;F&quot;</span><span class="p">,</span><span class="nt">&quot;person_id&quot;</span><span class="p">:</span><span class="s2">&quot;YOUR_PERSON_ID&quot;</span><span class="p">,</span><span class="nt">&quot;broker_id&quot;</span><span class="p">:</span><span class="s2">&quot;YOUR_BROKER_ID&quot;</span><span class="p">,</span><span class="nt">&quot;account_id&quot;</span><span class="p">:</span><span class="s2">&quot;YOUR_ACCOUNT_ID&quot;</span><span class="p">,</span><span class="nt">&quot;signed&quot;</span><span class="p">:</span><span class="kc">true</span><span class="p">,</span><span class="nt">&quot;username&quot;</span><span class="p">:</span><span class="s2">&quot;&quot;</span><span class="p">},</span><span class="nt">&quot;octype&quot;</span><span class="p">:</span><span class="s2">&quot;NewPosition&quot;</span><span class="p">},</span><span class="nt">&quot;status&quot;</span><span class="p">:{</span><span class="nt">&quot;id&quot;</span><span class="p">:</span><span class="s2">&quot;e0ae2459&quot;</span><span class="p">,</span><span class="nt">&quot;status&quot;</span><span class="p">:</span><span class="s2">&quot;Filled&quot;</span><span class="p">,</span><span class="nt">&quot;status_code&quot;</span><span class="p">:</span><span class="s2">&quot;0000&quot;</span><span class="p">,</span><span class="nt">&quot;order_datetime&quot;</span><span class="p">:</span><span class="s2">&quot;2026-05-19T18:03:07+08:00&quot;</span><span class="p">,</span><span class="nt">&quot;web_id&quot;</span><span class="p">:</span><span class="s2">&quot;Z&quot;</span><span class="p">,</span><span class="nt">&quot;modified_time&quot;</span><span class="p">:</span><span class="s2">&quot;2026-05-19T18:03:07+08:00&quot;</span><span class="p">,</span><span class="nt">&quot;order_quantity&quot;</span><span class="p">:</span><span class="mi">2</span><span class="p">,</span><span class="nt">&quot;deal_quantity&quot;</span><span class="p">:</span><span class="mi">2</span><span class="p">,</span><span class="nt">&quot;deals&quot;</span><span class="p">:[{</span><span class="nt">&quot;seq&quot;</span><span class="p">:</span><span class="s2">&quot;000001&quot;</span><span class="p">,</span><span class="nt">&quot;price&quot;</span><span class="p">:</span><span class="mi">36216</span><span class="p">,</span><span class="nt">&quot;quantity&quot;</span><span class="p">:</span><span class="mi">2</span><span class="p">,</span><span class="nt">&quot;ts&quot;</span><span class="p">:</span><span class="mf">1747647787.123456</span><span class="p">}]}}]</span>
+<p class="admonition-title">Parameters</p>
+<div class="highlight"><pre><span></span><code>account: Stock or futures account
+</code></pre></div>
+</div>
+</div>
+<div class="tabbed-block">
+<div class="admonition example">
+<p class="admonition-title">trade_cache_health</p>
+<div class="highlight"><pre><span></span><code><span class="err">POST /api/v1/order/trade_cache_health</span>
+<span class="err">Content-Type: application/json</span>
+
+<span class="err">{</span>
+<span class="err">  &quot;account_type&quot;: &lt;string&gt;,</span>
+<span class="err">  &quot;broker_id&quot;: &lt;string&gt;,</span>
+<span class="err">  &quot;account_id&quot;: &lt;string&gt;</span>
+<span class="err">}</span>
+</code></pre></div>
+</div>
+<div class="admonition done">
+<p class="admonition-title">Parameters</p>
+<div class="highlight"><pre><span></span><code>account_type: S for stock, F for futures/options; defaults to S
+broker_id:    Branch code; use with account_id to target a specific account
+account_id:   Account number; omit to use the default account of account_type
 </code></pre></div>
 </div>
 </div>
 </div>
 </div>
-<!-- TODO: Add JavaScript / Go / C++ / C# / Rust / Java tabs (based on sj_test_multi_lang/order/update_status/future/ test results)
-
-=== "JavaScript"
-
-=== "Go"
-
-=== "C++"
-
-=== "C#"
-
-=== "Rust"
-
-=== "Java"
-
--->
-
-<h3 id="update-a-specific-trade">Update a Specific Trade<a class="headerlink" href="#update-a-specific-trade" title="Permanent link">&para;</a></h3>
-<div class="tabbed-set tabbed-alternate" data-tabs="4:2"><input checked="checked" id="__tabbed_4_1" name="__tabbed_4" type="radio" /><input id="__tabbed_4_2" name="__tabbed_4" type="radio" /><div class="tabbed-labels"><label for="__tabbed_4_1">Python</label><label for="__tabbed_4_2">HTTP</label></div>
+<div class="admonition example">
+<p class="admonition-title">TradeCacheHealth</p>
+<div class="highlight"><pre><span></span><code><span class="n">state</span> <span class="p">(</span><span class="n">TradeCacheHealthState</span><span class="p">):</span>          <span class="n">Cache</span> <span class="n">state</span><span class="p">,</span> <span class="p">{</span>
+                                           <span class="n">Healthy</span><span class="p">:</span>  <span class="n">Normal</span><span class="p">,</span>
+                                           <span class="n">Unknown</span><span class="p">:</span>  <span class="n">Not</span> <span class="n">enough</span> <span class="n">information</span> <span class="n">yet</span><span class="p">,</span>
+                                           <span class="n">Degraded</span><span class="p">:</span> <span class="n">Reports</span> <span class="n">may</span> <span class="n">have</span> <span class="n">been</span> <span class="n">missed</span>
+                                        <span class="p">}</span>
+<span class="n">reasons</span> <span class="p">(</span><span class="n">List</span><span class="p">[</span><span class="n">TradeCacheHealthReason</span><span class="p">]):</span> <span class="n">Reasons</span> <span class="k">for</span> <span class="n">the</span> <span class="n">state</span><span class="p">,</span> <span class="n">each</span> <span class="n">containing</span>
+                                           <span class="n">event_type</span> <span class="p">(</span><span class="n">OrderState</span><span class="p">):</span>             <span class="n">Report</span> <span class="nb">type</span>
+                                           <span class="n">reason</span> <span class="p">(</span><span class="n">TradeCacheHealthReasonCode</span><span class="p">):</span> <span class="n">Reason</span> <span class="n">code</span>
+</code></pre></div>
+</div>
+<p>Handle by <code>state</code> and <code>reason</code>:</p>
+<table>
+<thead>
+<tr>
+<th><code>state</code></th>
+<th><code>reason</code></th>
+<th>What to do</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>Healthy</code></td>
+<td>None</td>
+<td>Nothing</td>
+</tr>
+<tr>
+<td><code>Unknown</code></td>
+<td><code>NotSubscribed</code></td>
+<td>Trade reports are not subscribed for this account; call <code>subscribe_trade(account)</code></td>
+</tr>
+<tr>
+<td><code>Unknown</code></td>
+<td><code>NoBaseline</code></td>
+<td>That report type has not occurred yet; nothing to do. It clears once a report arrives, or call <code>update_status</code> to establish a baseline immediately</td>
+</tr>
+<tr>
+<td><code>Degraded</code></td>
+<td><code>SequenceGap</code></td>
+<td>A report sequence number was skipped; it may just be late. Call <code>update_status</code> when you need to confirm</td>
+</tr>
+<tr>
+<td><code>Degraded</code></td>
+<td><code>PendingReport</code></td>
+<td>A report cannot be correlated to an order yet; usually resolves when later reports arrive. Call <code>update_status</code> when you need to confirm</td>
+</tr>
+<tr>
+<td><code>Degraded</code></td>
+<td><code>UntrackableEventId</code></td>
+<td>The event ID is missing or unsupported and cannot be tracked; call <code>update_status</code> to reconcile</td>
+</tr>
+<tr>
+<td><code>Degraded</code></td>
+<td><code>ProjectionFailed</code></td>
+<td>The report could not be applied to <code>Trade</code>; call <code>update_status</code> to reconcile</td>
+</tr>
+</tbody>
+</table>
+<h3 id="examples_2">Examples<a class="headerlink" href="#examples_2" title="Permanent link">&para;</a></h3>
+<div class="tabbed-set tabbed-alternate" data-tabs="7:2"><input checked="checked" id="__tabbed_7_1" name="__tabbed_7" type="radio" /><input id="__tabbed_7_2" name="__tabbed_7" type="radio" /><div class="tabbed-labels"><label for="__tabbed_7_1">Python</label><label for="__tabbed_7_2">HTTP</label></div>
 <div class="tabbed-content">
 <div class="tabbed-block">
 <div class="admonition info">
 <p class="admonition-title">In</p>
-<div class="highlight"><pre><span></span><code><span class="c1"># trade can be obtained from place_order or list_trades</span>
-<span class="c1"># trade = api.place_order(contract, order)</span>
-<span class="c1"># trade = api.list_trades()[0]</span>
-
-<span class="n">api</span><span class="o">.</span><span class="n">update_status</span><span class="p">(</span><span class="n">trade</span><span class="o">=</span><span class="n">trade</span><span class="p">)</span>
+<div class="highlight"><pre><span></span><code><span class="n">health</span> <span class="o">=</span> <span class="n">api</span><span class="o">.</span><span class="n">trade_cache_health</span><span class="p">(</span><span class="n">api</span><span class="o">.</span><span class="n">stock_account</span><span class="p">)</span>
+<span class="n">health</span><span class="o">.</span><span class="n">state</span><span class="p">,</span> <span class="p">[(</span><span class="n">r</span><span class="o">.</span><span class="n">event_type</span><span class="p">,</span> <span class="n">r</span><span class="o">.</span><span class="n">reason</span><span class="p">)</span> <span class="k">for</span> <span class="n">r</span> <span class="ow">in</span> <span class="n">health</span><span class="o">.</span><span class="n">reasons</span><span class="p">]</span>
 </code></pre></div>
 </div>
+<div class="admonition done">
+<p class="admonition-title">Out</p>
+<div class="highlight"><pre><span></span><code><span class="p">(</span><span class="o">&lt;</span><span class="n">TradeCacheHealthState</span><span class="o">.</span><span class="n">Unknown</span><span class="p">:</span> <span class="s1">&#39;Unknown&#39;</span><span class="o">&gt;</span><span class="p">,</span>
+ <span class="p">[(</span><span class="o">&lt;</span><span class="n">OrderState</span><span class="o">.</span><span class="n">StockDeal</span><span class="p">:</span> <span class="s1">&#39;SDEAL&#39;</span><span class="o">&gt;</span><span class="p">,</span>
+   <span class="o">&lt;</span><span class="n">TradeCacheHealthReasonCode</span><span class="o">.</span><span class="n">NoBaseline</span><span class="p">:</span> <span class="s1">&#39;NoBaseline&#39;</span><span class="o">&gt;</span><span class="p">)])</span>
+</code></pre></div>
+</div>
+<p>The example above is an order placed but not yet filled: the order report (<code>SORDER</code>) has arrived, so it is not in <code>reasons</code>; the deal report (<code>SDEAL</code>) has not happened yet and is still <code>NoBaseline</code>. Once both have a baseline, <code>state</code> becomes <code>Healthy</code>.</p>
 </div>
 <div class="tabbed-block">
-<p>The HTTP endpoint only refreshes all orders under the given <code>account</code>; it does not support targeting a single trade.</p>
 <div class="admonition info">
 <p class="admonition-title">In</p>
-<div class="highlight"><pre><span></span><code>curl<span class="w"> </span>-X<span class="w"> </span>POST<span class="w"> </span>http://localhost:8080/api/v1/order/update_status<span class="w"> </span><span class="se">\</span>
+<div class="highlight"><pre><span></span><code>curl<span class="w"> </span>-X<span class="w"> </span>POST<span class="w"> </span>http://localhost:8080/api/v1/order/trade_cache_health<span class="w"> </span><span class="se">\</span>
 <span class="w">  </span>-H<span class="w"> </span><span class="s1">&#39;Content-Type: application/json&#39;</span><span class="w"> </span><span class="se">\</span>
-<span class="w">  </span>-d<span class="w"> </span><span class="s1">&#39;{</span>
-<span class="s1">    &quot;account&quot;: {</span>
-<span class="hll"><span class="s1">      &quot;broker_id&quot;: &quot;YOUR_BROKER_ID&quot;,</span>
-</span><span class="hll"><span class="s1">      &quot;account_id&quot;: &quot;YOUR_ACCOUNT_ID&quot;</span>
-</span><span class="s1">    }</span>
-<span class="s1">  }&#39;</span>
+<span class="w">  </span>-d<span class="w"> </span><span class="s1">&#39;{&quot;account_type&quot;: &quot;S&quot;}&#39;</span>
 </code></pre></div>
 </div>
+<div class="admonition done">
+<p class="admonition-title">Out</p>
+<div class="highlight"><pre><span></span><code><span class="p">{</span><span class="nt">&quot;state&quot;</span><span class="p">:</span><span class="s2">&quot;Unknown&quot;</span><span class="p">,</span><span class="nt">&quot;reasons&quot;</span><span class="p">:[{</span><span class="nt">&quot;event_type&quot;</span><span class="p">:</span><span class="s2">&quot;StockDeal&quot;</span><span class="p">,</span><span class="nt">&quot;reason&quot;</span><span class="p">:</span><span class="s2">&quot;NoBaseline&quot;</span><span class="p">}]}</span>
+</code></pre></div>
+</div>
+<p>The example above is an order placed but not yet filled: the order report (<code>StockOrder</code>) has arrived, so it is not in <code>reasons</code>; the deal report (<code>StockDeal</code>) has not happened yet and is still <code>NoBaseline</code>. Once both have a baseline, <code>state</code> becomes <code>Healthy</code>.</p>
 </div>
 </div>
 </div>
-<!-- TODO: Add JavaScript / Go / C++ / C# / Rust / Java tabs (based on sj_test_multi_lang/order/update_status/specific/ test results)
-
-=== "JavaScript"
-
-=== "Go"
-
-=== "C++"
-
-=== "C#"
-
-=== "Rust"
-
-=== "Java"
-
--->
 
 
 
