@@ -127,6 +127,17 @@ my_order_callback
 
 ```
 
+訂閱委託成交回報
+
+```
+shioaji auth subscribe-trade --account-type S
+
+```
+
+注意
+
+server 啟動時不會自動訂閱，請在 server 啟動後逐帳號訂閱一次；證券與期貨都要接收時，請分別以 `--account-type S` 及 `--account-type F` 訂閱。參數說明詳見[訂閱委託/成交回報](../../login/#%E8%A8%82%E9%96%B1%E5%A7%94%E8%A8%97%E6%88%90%E4%BA%A4%E5%9B%9E%E5%A0%B1)。
+
 接收委託成交回報
 
 ```
@@ -233,6 +244,19 @@ Out
 }
 
 ```
+
+訂閱委託成交回報
+
+```
+curl -X POST http://localhost:8080/api/v1/auth/subscribe_trade \
+  -H "Content-Type: application/json" \
+  -d '{"broker_id": "YOUR_BROKER_ID", "account_id": "YOUR_ACCOUNT_ID", "account_type": "S"}'
+
+```
+
+注意
+
+server 啟動時不會自動訂閱，請在 server 啟動後逐帳號訂閱一次，未訂閱時 SSE 只會收到 heartbeat；證券與期貨帳號需分別訂閱。詳見[訂閱委託/成交回報](../../login/#%E8%A8%82%E9%96%B1%E5%A7%94%E8%A8%97%E6%88%90%E4%BA%A4%E5%9B%9E%E5%A0%B1)。
 
 接收委託成交回報
 

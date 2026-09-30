@@ -127,6 +127,17 @@ my_order_callback
 
 ```
 
+Subscribe Order/Deal Events
+
+```
+shioaji auth subscribe-trade --account-type S
+
+```
+
+Note
+
+The server does not subscribe automatically on startup. Subscribe each account once after the server starts; to receive both stock and futures events, subscribe with `--account-type S` and `--account-type F` separately. See [Subscribe Trade](../../login/#subscribe-trade) for parameters.
+
 Receive Order/Deal Events
 
 ```
@@ -233,6 +244,19 @@ Out
 }
 
 ```
+
+Subscribe Order/Deal Events
+
+```
+curl -X POST http://localhost:8080/api/v1/auth/subscribe_trade \
+  -H "Content-Type: application/json" \
+  -d '{"broker_id": "YOUR_BROKER_ID", "account_id": "YOUR_ACCOUNT_ID", "account_type": "S"}'
+
+```
+
+Note
+
+The server does not subscribe automatically on startup. Subscribe each account once after the server starts; without it, the SSE stream only emits heartbeats. Stock and futures accounts must be subscribed separately. See [Subscribe Trade](../../login/#subscribe-trade).
 
 Receive Order/Deal Events
 

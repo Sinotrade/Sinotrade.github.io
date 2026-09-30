@@ -2265,6 +2265,15 @@
 </div>
 <div class="tabbed-block">
 <div class="admonition info">
+<p class="admonition-title">Subscribe Order/Deal Events</p>
+<div class="highlight"><pre><span></span><code>shioaji<span class="w"> </span>auth<span class="w"> </span>subscribe-trade<span class="w"> </span>--account-type<span class="w"> </span>S
+</code></pre></div>
+</div>
+<div class="admonition warning">
+<p class="admonition-title">Note</p>
+<p>The server does not subscribe automatically on startup. Subscribe each account once after the server starts; to receive both stock and futures events, subscribe with <code>--account-type S</code> and <code>--account-type F</code> separately. See <a href="../../login/#subscribe-trade">Subscribe Trade</a> for parameters.</p>
+</div>
+<div class="admonition info">
 <p class="admonition-title">Receive Order/Deal Events</p>
 <p><div class="highlight"><pre><span></span><code>shioaji<span class="w"> </span>order<span class="w"> </span>events
 </code></pre></div>
@@ -2362,6 +2371,17 @@ This command streams order/deal events continuously. Press Ctrl+C to stop.</p>
 </div>
 </div>
 <div class="tabbed-block">
+<div class="admonition info">
+<p class="admonition-title">Subscribe Order/Deal Events</p>
+<div class="highlight"><pre><span></span><code>curl<span class="w"> </span>-X<span class="w"> </span>POST<span class="w"> </span>http://localhost:8080/api/v1/auth/subscribe_trade<span class="w"> </span><span class="se">\</span>
+<span class="w">  </span>-H<span class="w"> </span><span class="s2">&quot;Content-Type: application/json&quot;</span><span class="w"> </span><span class="se">\</span>
+<span class="hll"><span class="w">  </span>-d<span class="w"> </span><span class="s1">&#39;{&quot;broker_id&quot;: &quot;YOUR_BROKER_ID&quot;, &quot;account_id&quot;: &quot;YOUR_ACCOUNT_ID&quot;, &quot;account_type&quot;: &quot;S&quot;}&#39;</span>
+</span></code></pre></div>
+</div>
+<div class="admonition warning">
+<p class="admonition-title">Note</p>
+<p>The server does not subscribe automatically on startup. Subscribe each account once after the server starts; without it, the SSE stream only emits heartbeats. Stock and futures accounts must be subscribed separately. See <a href="../../login/#subscribe-trade">Subscribe Trade</a>.</p>
+</div>
 <div class="admonition info">
 <p class="admonition-title">Receive Order/Deal Events</p>
 <p><div class="highlight"><pre><span></span><code>curl<span class="w"> </span>-N<span class="w"> </span>http://localhost:8080/api/v1/stream/data/order_event

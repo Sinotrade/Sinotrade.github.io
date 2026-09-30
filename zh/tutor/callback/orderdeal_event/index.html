@@ -2265,6 +2265,15 @@
 </div>
 <div class="tabbed-block">
 <div class="admonition info">
+<p class="admonition-title">訂閱委託成交回報</p>
+<div class="highlight"><pre><span></span><code>shioaji<span class="w"> </span>auth<span class="w"> </span>subscribe-trade<span class="w"> </span>--account-type<span class="w"> </span>S
+</code></pre></div>
+</div>
+<div class="admonition warning">
+<p class="admonition-title">注意</p>
+<p>server 啟動時不會自動訂閱，請在 server 啟動後逐帳號訂閱一次；證券與期貨都要接收時，請分別以 <code>--account-type S</code> 及 <code>--account-type F</code> 訂閱。參數說明詳見<a href="../../login/#訂閱委託成交回報">訂閱委託/成交回報</a>。</p>
+</div>
+<div class="admonition info">
 <p class="admonition-title">接收委託成交回報</p>
 <p><div class="highlight"><pre><span></span><code>shioaji<span class="w"> </span>order<span class="w"> </span>events
 </code></pre></div>
@@ -2362,6 +2371,17 @@
 </div>
 </div>
 <div class="tabbed-block">
+<div class="admonition info">
+<p class="admonition-title">訂閱委託成交回報</p>
+<div class="highlight"><pre><span></span><code>curl<span class="w"> </span>-X<span class="w"> </span>POST<span class="w"> </span>http://localhost:8080/api/v1/auth/subscribe_trade<span class="w"> </span><span class="se">\</span>
+<span class="w">  </span>-H<span class="w"> </span><span class="s2">&quot;Content-Type: application/json&quot;</span><span class="w"> </span><span class="se">\</span>
+<span class="hll"><span class="w">  </span>-d<span class="w"> </span><span class="s1">&#39;{&quot;broker_id&quot;: &quot;YOUR_BROKER_ID&quot;, &quot;account_id&quot;: &quot;YOUR_ACCOUNT_ID&quot;, &quot;account_type&quot;: &quot;S&quot;}&#39;</span>
+</span></code></pre></div>
+</div>
+<div class="admonition warning">
+<p class="admonition-title">注意</p>
+<p>server 啟動時不會自動訂閱，請在 server 啟動後逐帳號訂閱一次，未訂閱時 SSE 只會收到 heartbeat；證券與期貨帳號需分別訂閱。詳見<a href="../../login/#訂閱委託成交回報">訂閱委託/成交回報</a>。</p>
+</div>
 <div class="admonition info">
 <p class="admonition-title">接收委託成交回報</p>
 <p><div class="highlight"><pre><span></span><code>curl<span class="w"> </span>-N<span class="w"> </span>http://localhost:8080/api/v1/stream/data/order_event

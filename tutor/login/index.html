@@ -2209,7 +2209,7 @@
 
 <p>Login requires a SinoPac Securities account. If you don't have one yet, see <a href="../prepare/open_account/">Open Account</a>.</p>
 <h2 id="login">Login<a class="headerlink" href="#login" title="Permanent link">&para;</a></h2>
-<div class="admonition attention">
+<div class="admonition warning">
 <p class="admonition-title">API Key</p>
 <p>Shioaji uses API Key as the login method. See <a href="../prepare/token/">Token &amp; Certificate</a> to apply.</p>
 </div>
@@ -2246,7 +2246,7 @@ Response Code: 200 | Event Code: 18 | Info: #P2P/v:&lt;...&gt; | Event: Session 
 <span class="n">receive_window</span> <span class="p">(</span><span class="nb">int</span><span class="p">):</span> <span class="n">valid</span> <span class="n">duration</span> <span class="k">for</span> <span class="n">login</span> <span class="n">execution</span><span class="o">.</span> <span class="p">(</span><span class="n">Default</span><span class="p">:</span> <span class="mi">30</span><span class="p">,</span><span class="mi">000</span> <span class="n">ms</span><span class="p">)</span>
 </code></pre></div>
 </div>
-<div class="admonition attention">
+<div class="admonition warning">
 <p class="admonition-title">Note</p>
 <p>If you receive <strong>Sign data is timeout</strong>, login exceeded the effective execution time. Possible causes:</p>
 <ul>
@@ -2302,7 +2302,7 @@ SJ_SEC_KEY<span class="w">      </span>Secret<span class="w"> </span>Key<span cl
 SJ_PRODUCTION<span class="w">   </span>whether<span class="w"> </span>to<span class="w"> </span>enter<span class="w"> </span>production<span class="w"> </span>mode<span class="w"> </span><span class="o">(</span>Default:<span class="w"> </span><span class="nb">false</span><span class="o">)</span>
 </code></pre></div>
 </div>
-<div class="admonition attention">
+<div class="admonition warning">
 <p class="admonition-title">Note</p>
 <p>If you receive <strong>Sign data is timeout</strong>, login exceeded the effective execution time. Please calibrate system time.</p>
 </div>
@@ -2368,7 +2368,7 @@ subscribe_trade: true
 ts: 20260612021106
 </code></pre></div>
 </div>
-<div class="admonition attention">
+<div class="admonition warning">
 <p class="admonition-title">Note</p>
 <p><code>subscribe-trade</code> only registers the subscription with the server and exits immediately. To actually receive order/deal events, use <code>shioaji order events</code> (SSE stream, Ctrl+C to stop); see <a href="../callback/orderdeal_event/">Order Event</a>.</p>
 </div>
