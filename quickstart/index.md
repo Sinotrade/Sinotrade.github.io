@@ -1,6 +1,6 @@
-Just like using other popular packages, import and instantiate to start using Shioaji.
-
 ### Login
+
+Just like using other popular packages, import and instantiate to start using Shioaji.
 
 ```
 import shioaji as sj
