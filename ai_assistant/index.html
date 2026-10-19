@@ -404,33 +404,6 @@
       <ul class="md-nav__list">
         
           <li class="md-nav__item">
-  <a href="#claude-code" class="md-nav__link">
-    <span class="md-ellipsis">
-      Claude Code
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#openai-codex" class="md-nav__link">
-    <span class="md-ellipsis">
-      OpenAI Codex
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#cursor" class="md-nav__link">
-    <span class="md-ellipsis">
-      Cursor
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
   <a href="#multi-platform-installers-windsurf-copilot-etc" class="md-nav__link">
     <span class="md-ellipsis">
       Multi-platform Installers (Windsurf, Copilot, etc.)
@@ -455,9 +428,9 @@
       <ul class="md-nav__list">
         
           <li class="md-nav__item">
-  <a href="#getting-started-prompt" class="md-nav__link">
+  <a href="#example-prompts" class="md-nav__link">
     <span class="md-ellipsis">
-      Getting Started Prompt
+      Example Prompts
     </span>
   </a>
   
@@ -2172,33 +2145,6 @@
       <ul class="md-nav__list">
         
           <li class="md-nav__item">
-  <a href="#claude-code" class="md-nav__link">
-    <span class="md-ellipsis">
-      Claude Code
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#openai-codex" class="md-nav__link">
-    <span class="md-ellipsis">
-      OpenAI Codex
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#cursor" class="md-nav__link">
-    <span class="md-ellipsis">
-      Cursor
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
   <a href="#multi-platform-installers-windsurf-copilot-etc" class="md-nav__link">
     <span class="md-ellipsis">
       Multi-platform Installers (Windsurf, Copilot, etc.)
@@ -2223,9 +2169,9 @@
       <ul class="md-nav__list">
         
           <li class="md-nav__item">
-  <a href="#getting-started-prompt" class="md-nav__link">
+  <a href="#example-prompts" class="md-nav__link">
     <span class="md-ellipsis">
-      Getting Started Prompt
+      Example Prompts
     </span>
   </a>
   
@@ -2276,28 +2222,35 @@
 
 
 <h1 id="ai-coding-assistant">AI Coding Assistant<a class="headerlink" href="#ai-coding-assistant" title="Permanent link">&para;</a></h1>
-<p>We provide AI-friendly resources to help you integrate the trading API with AI coding assistants. Whether you're using Claude Code, Cursor, or other AI-powered development tools, these resources enable AI to understand and assist with Shioaji API development.</p>
+<p>We support LLM.txt and AI Coding Agent Skills, providing AI-friendly resources to help you integrate the trading API with AI coding assistants. Whether you're using Claude Code, Cursor, or other AI-powered development tools, these resources enable AI to understand and assist with Shioaji API development.</p>
 <h2 id="available-resources">Available Resources<a class="headerlink" href="#available-resources" title="Permanent link">&para;</a></h2>
 <h3 id="ai-coding-agent-skills">AI Coding Agent Skills<a class="headerlink" href="#ai-coding-agent-skills" title="Permanent link">&para;</a></h3>
 <p>For deeper integration, we provide skills/plugins for popular AI coding agents:</p>
-<h4 id="claude-code">Claude Code<a class="headerlink" href="#claude-code" title="Permanent link">&para;</a></h4>
+<div class="tabbed-set tabbed-alternate" data-tabs="1:3"><input checked="checked" id="__tabbed_1_1" name="__tabbed_1" type="radio" /><input id="__tabbed_1_2" name="__tabbed_1" type="radio" /><input id="__tabbed_1_3" name="__tabbed_1" type="radio" /><div class="tabbed-labels"><label for="__tabbed_1_1">Claude Code</label><label for="__tabbed_1_2">OpenAI Codex</label><label for="__tabbed_1_3">Cursor</label></div>
+<div class="tabbed-content">
+<div class="tabbed-block">
 <p><a href="https://docs.anthropic.com/en/docs/claude-code">Claude Code</a> is Anthropic's official CLI for AI-assisted development.</p>
 <p><strong>Install the Shioaji skill:</strong>
 <div class="highlight"><pre><span></span><code>claude<span class="w"> </span>plugin<span class="w"> </span>marketplace<span class="w"> </span>add<span class="w"> </span>Sinotrade/Shioaji
 claude<span class="w"> </span>plugin<span class="w"> </span>install<span class="w"> </span>shioaji
 </code></pre></div></p>
-<h4 id="openai-codex">OpenAI Codex<a class="headerlink" href="#openai-codex" title="Permanent link">&para;</a></h4>
+</div>
+<div class="tabbed-block">
 <p>Search for <strong>Shioaji</strong> in the Codex Marketplace to install it, or use the CLI:</p>
 <div class="highlight"><pre><span></span><code>codex<span class="w"> </span>plugin<span class="w"> </span>marketplace<span class="w"> </span>add<span class="w"> </span>Sinotrade/Shioaji
 codex<span class="w"> </span>plugin<span class="w"> </span>add<span class="w"> </span>shioaji@sinotrade
 </code></pre></div>
-<h4 id="cursor">Cursor<a class="headerlink" href="#cursor" title="Permanent link">&para;</a></h4>
+</div>
+<div class="tabbed-block">
 <p>Search for <strong>Shioaji</strong> in the Cursor Marketplace and click <strong>Get</strong> to install.</p>
 <h4 id="multi-platform-installers-windsurf-copilot-etc">Multi-platform Installers (Windsurf, Copilot, etc.)<a class="headerlink" href="#multi-platform-installers-windsurf-copilot-etc" title="Permanent link">&para;</a></h4>
 <div class="highlight"><pre><span></span><code>npx<span class="w"> </span>skills<span class="w"> </span>add<span class="w"> </span>Sinotrade/Shioaji<span class="w">                </span><span class="c1"># skills.sh - 18+ agents</span>
 npx<span class="w"> </span>skillkit<span class="w"> </span>install<span class="w"> </span>Sinotrade/Shioaji<span class="w">          </span><span class="c1"># skillkit - 32+ agents</span>
 npx<span class="w"> </span>openskills<span class="w"> </span>install<span class="w"> </span>Sinotrade/Shioaji<span class="w">        </span><span class="c1"># openskills - universal</span>
 </code></pre></div>
+</div>
+</div>
+</div>
 <h3 id="skill-capabilities">Skill Capabilities<a class="headerlink" href="#skill-capabilities" title="Permanent link">&para;</a></h3>
 <p>Once installed, AI coding agents can assist you with:</p>
 <ul>
@@ -2308,14 +2261,9 @@ npx<span class="w"> </span>openskills<span class="w"> </span>install<span class=
 <li>Account balance and position tracking</li>
 <li>Historical data retrieval</li>
 </ul>
-<p><strong>Example prompts:</strong>
-<div class="highlight"><pre><span></span><code>How do I subscribe to real-time stock quotes with Shioaji?
-Help me place a limit order for TSMC stock
-Show me how to get my account positions
-</code></pre></div></p>
-<h4 id="getting-started-prompt">Getting Started Prompt<a class="headerlink" href="#getting-started-prompt" title="Permanent link">&para;</a></h4>
+<h4 id="example-prompts">Example Prompts<a class="headerlink" href="#example-prompts" title="Permanent link">&para;</a></h4>
 <p>New to Shioaji? Use this prompt to let AI guide you through the complete setup and testing process:</p>
-<div class="highlight"><pre><span></span><code>I&#39;m new to Shioaji and want to start trading. Please guide me through the complete
+<p><div class="highlight"><pre><span></span><code>I&#39;m new to Shioaji and want to start trading. Please guide me through the complete
 setup process step by step:
 
 1. How to open a Sinopac account
@@ -2328,9 +2276,14 @@ setup process step by step:
 
 Please check my progress at each step and help me troubleshoot any issues.
 </code></pre></div>
-<p>This prompt helps AI walk you through the entire onboarding process, which is required before you can trade in production mode.</p>
+This prompt helps AI walk you through the entire onboarding process, which is required before you can trade in production mode. Beyond onboarding,
+you can also use prompts to work with any feature Shioaji provides:
+<div class="highlight"><pre><span></span><code>How do I subscribe to real-time stock quotes with Shioaji?
+Help me place a limit order for TSMC stock
+Show me my account positions
+</code></pre></div></p>
 <h3 id="llmtxt">LLM.txt<a class="headerlink" href="#llmtxt" title="Permanent link">&para;</a></h3>
-<p>We provide machine-readable documentation files that AI assistants can consume to understand the Shioaji API:</p>
+<p>Following the <a href="https://llmstxt.org/">llms.txt standard</a>, we provide machine-readable documentation files that AI assistants can consume to understand the Shioaji API:</p>
 <table>
 <thead>
 <tr>
@@ -2349,8 +2302,7 @@ Please check my progress at each step and help me troubleshoot any issues.
 </tr>
 </tbody>
 </table>
-<p>These files follow the <a href="https://llmstxt.org/">llms.txt standard</a> and are automatically updated when documentation changes.</p>
-<p><strong>Usage:</strong> Simply provide the URL to your AI assistant:
+<p>These files are updated whenever the documentation changes. Simply provide the URL to your AI assistant:
 <div class="highlight"><pre><span></span><code>https://sinotrade.github.io/llms-full.txt
 </code></pre></div></p>
 <h2 id="best-practices">Best Practices<a class="headerlink" href="#best-practices" title="Permanent link">&para;</a></h2>
