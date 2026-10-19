@@ -404,7 +404,7 @@
         <li class="md-nav__item">
   <a href="#_1" class="md-nav__link">
     <span class="md-ellipsis">
-      登入並啟用憑證
+      登入
     </span>
   </a>
   
@@ -413,7 +413,7 @@
         <li class="md-nav__item">
   <a href="#_2" class="md-nav__link">
     <span class="md-ellipsis">
-      訂閱行情
+      確認狀態
     </span>
   </a>
   
@@ -422,7 +422,7 @@
         <li class="md-nav__item">
   <a href="#_3" class="md-nav__link">
     <span class="md-ellipsis">
-      下單
+      訂閱行情
     </span>
   </a>
   
@@ -430,6 +430,15 @@
       
         <li class="md-nav__item">
   <a href="#_4" class="md-nav__link">
+    <span class="md-ellipsis">
+      下單
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_5" class="md-nav__link">
     <span class="md-ellipsis">
       總結
     </span>
@@ -2076,7 +2085,7 @@
         <li class="md-nav__item">
   <a href="#_1" class="md-nav__link">
     <span class="md-ellipsis">
-      登入並啟用憑證
+      登入
     </span>
   </a>
   
@@ -2085,7 +2094,7 @@
         <li class="md-nav__item">
   <a href="#_2" class="md-nav__link">
     <span class="md-ellipsis">
-      訂閱行情
+      確認狀態
     </span>
   </a>
   
@@ -2094,7 +2103,7 @@
         <li class="md-nav__item">
   <a href="#_3" class="md-nav__link">
     <span class="md-ellipsis">
-      下單
+      訂閱行情
     </span>
   </a>
   
@@ -2102,6 +2111,15 @@
       
         <li class="md-nav__item">
   <a href="#_4" class="md-nav__link">
+    <span class="md-ellipsis">
+      下單
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_5" class="md-nav__link">
     <span class="md-ellipsis">
       總結
     </span>
@@ -2128,12 +2146,8 @@
   <h1>快速入門</h1>
 
 <p>只需像使用其他流行的套件一樣，匯入後新建實例即可開始使用 Shioaji。</p>
-<div class="admonition attention">
-<p class="admonition-title">注意</p>
-<p><strong>在開始前請還需完成前置作業，包含<a href="../tutor/prepare/open_account/"><u>開戶</u></a>、<a href="../tutor/prepare/terms/"><u>服務條款</u></a> 及 <a href="../tutor/prepare/token/"><u>Token</u></a>。</strong></p>
-</div>
-<h3 id="_1">登入並啟用憑證<a class="headerlink" href="#_1" title="Permanent link">&para;</a></h3>
-<div class="tabbed-set tabbed-alternate" data-tabs="1:3"><input checked="checked" id="__tabbed_1_1" name="__tabbed_1" type="radio" /><input id="__tabbed_1_2" name="__tabbed_1" type="radio" /><input id="__tabbed_1_3" name="__tabbed_1" type="radio" /><div class="tabbed-labels"><label for="__tabbed_1_1">Python</label><label for="__tabbed_1_2">CLI</label><label for="__tabbed_1_3">HTTP</label></div>
+<h3 id="_1">登入<a class="headerlink" href="#_1" title="Permanent link">&para;</a></h3>
+<div class="tabbed-set tabbed-alternate" data-tabs="1:2"><input checked="checked" id="__tabbed_1_1" name="__tabbed_1" type="radio" /><input id="__tabbed_1_2" name="__tabbed_1" type="radio" /><div class="tabbed-labels"><label for="__tabbed_1_1">Python</label><label for="__tabbed_1_2">CLI/HTTP</label></div>
 <div class="tabbed-content">
 <div class="tabbed-block">
 <div class="highlight"><pre><span></span><code><span class="kn">import</span><span class="w"> </span><span class="nn">shioaji</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">sj</span>
@@ -2161,23 +2175,6 @@
 
 <span class="c1"># 啟動 server（自動讀取 .env，完成登入與憑證載入）</span>
 shioaji<span class="w"> </span>server<span class="w"> </span>start
-
-<span class="c1"># 確認狀態</span>
-shioaji<span class="w"> </span>server<span class="w"> </span>check
-</code></pre></div>
-</div>
-<div class="tabbed-block">
-<div class="highlight"><pre><span></span><code><span class="c1"># .env（放在執行目錄）應包含：</span>
-<span class="c1">#   SJ_API_KEY=YOUR_API_KEY</span>
-<span class="c1">#   SJ_SEC_KEY=YOUR_SECRET_KEY</span>
-<span class="c1">#   SJ_CA_PATH=your/ca/path/Sinopac.pfx</span>
-<span class="c1">#   SJ_CA_PASSWD=YOUR_CA_PASSWORD</span>
-
-<span class="c1"># 啟動 server</span>
-shioaji<span class="w"> </span>server<span class="w"> </span>start
-
-<span class="c1"># 確認帳戶（驗證已登入）</span>
-curl<span class="w"> </span>http://localhost:8080/api/v1/auth/accounts
 </code></pre></div>
 </div>
 </div>
@@ -2340,18 +2337,29 @@ curl<span class="w"> </span>http://localhost:8080/api/v1/auth/accounts
 </code></pre></div>
 
 -->
-
 <div class="admonition attention">
-<p class="admonition-title">認證路徑</p>
+<p class="admonition-title">注意</p>
+<p><strong>在開始前請還需完成前置作業，包含<a href="../tutor/prepare/open_account/"><u>開戶</u></a>、<a href="../tutor/prepare/terms/"><u>服務條款</u></a> 及 <a href="../tutor/prepare/token/"><u>Token</u></a>。</strong></p>
 <p>Windows環境下複製文件路徑時用<code>\</code>分隔文件，需要用<code>/</code>替換。</p>
 </div>
-<h3 id="_2">訂閱行情<a class="headerlink" href="#_2" title="Permanent link">&para;</a></h3>
-<p>訂閱行情需將合約帶入 <code>subscribe</code> 功能，並指定行情類型，就可以接收資料。</p>
-<div class="admonition tip">
-<p class="admonition-title">行情類型</p>
-<p>目前支援 tick / bid_ask / quote 三種行情類型。</p>
+<h3 id="_2">確認狀態<a class="headerlink" href="#_2" title="Permanent link">&para;</a></h3>
+<div class="tabbed-set tabbed-alternate" data-tabs="2:2"><input checked="checked" id="__tabbed_2_1" name="__tabbed_2" type="radio" /><input id="__tabbed_2_2" name="__tabbed_2" type="radio" /><div class="tabbed-labels"><label for="__tabbed_2_1">CLI</label><label for="__tabbed_2_2">HTTP</label></div>
+<div class="tabbed-content">
+<div class="tabbed-block">
+<div class="highlight"><pre><span></span><code><span class="c1"># 確認狀態</span>
+shioaji<span class="w"> </span>server<span class="w"> </span>check
+</code></pre></div>
 </div>
-<div class="tabbed-set tabbed-alternate" data-tabs="2:3"><input checked="checked" id="__tabbed_2_1" name="__tabbed_2" type="radio" /><input id="__tabbed_2_2" name="__tabbed_2" type="radio" /><input id="__tabbed_2_3" name="__tabbed_2" type="radio" /><div class="tabbed-labels"><label for="__tabbed_2_1">Python</label><label for="__tabbed_2_2">CLI</label><label for="__tabbed_2_3">HTTP</label></div>
+<div class="tabbed-block">
+<div class="highlight"><pre><span></span><code><span class="c1"># 確認帳戶（驗證已登入）</span>
+curl<span class="w"> </span>http://localhost:8080/api/v1/auth/accounts
+</code></pre></div>
+</div>
+</div>
+</div>
+<h3 id="_3">訂閱行情<a class="headerlink" href="#_3" title="Permanent link">&para;</a></h3>
+<p>訂閱行情需將合約帶入 <code>subscribe</code> 功能，並指定行情類型，就可以接收資料。目前支援 tick / bid_ask / quote 三種行情類型。</p>
+<div class="tabbed-set tabbed-alternate" data-tabs="3:3"><input checked="checked" id="__tabbed_3_1" name="__tabbed_3" type="radio" /><input id="__tabbed_3_2" name="__tabbed_3" type="radio" /><input id="__tabbed_3_3" name="__tabbed_3" type="radio" /><div class="tabbed-labels"><label for="__tabbed_3_1">Python</label><label for="__tabbed_3_2">CLI</label><label for="__tabbed_3_3">HTTP</label></div>
 <div class="tabbed-content">
 <div class="tabbed-block">
 <div class="highlight"><pre><span></span><code><span class="n">contract</span> <span class="o">=</span> <span class="n">api</span><span class="o">.</span><span class="n">contracts</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s2">&quot;2330&quot;</span><span class="p">)</span>
@@ -2543,9 +2551,9 @@ curl<span class="w"> </span>-N<span class="w"> </span>http://localhost:8080/api/
 security_type / exchange / code 等欄位，可呼叫
 <code>GET /api/v1/data/contracts/{code}?security_type=...</code> 查詢。</p>
 </div>
-<h3 id="_3">下單<a class="headerlink" href="#_3" title="Permanent link">&para;</a></h3>
+<h3 id="_4">下單<a class="headerlink" href="#_4" title="Permanent link">&para;</a></h3>
 <p>下單需指定合約與委託內容（買賣方向、價格、數量等），送出後會回傳該筆交易的狀態。</p>
-<div class="tabbed-set tabbed-alternate" data-tabs="3:3"><input checked="checked" id="__tabbed_3_1" name="__tabbed_3" type="radio" /><input id="__tabbed_3_2" name="__tabbed_3" type="radio" /><input id="__tabbed_3_3" name="__tabbed_3" type="radio" /><div class="tabbed-labels"><label for="__tabbed_3_1">Python</label><label for="__tabbed_3_2">CLI</label><label for="__tabbed_3_3">HTTP</label></div>
+<div class="tabbed-set tabbed-alternate" data-tabs="4:3"><input checked="checked" id="__tabbed_4_1" name="__tabbed_4" type="radio" /><input id="__tabbed_4_2" name="__tabbed_4" type="radio" /><input id="__tabbed_4_3" name="__tabbed_4" type="radio" /><div class="tabbed-labels"><label for="__tabbed_4_1">Python</label><label for="__tabbed_4_2">CLI</label><label for="__tabbed_4_3">HTTP</label></div>
 <div class="tabbed-content">
 <div class="tabbed-block">
 <div class="highlight"><pre><span></span><code><span class="n">contract</span> <span class="o">=</span> <span class="n">api</span><span class="o">.</span><span class="n">contracts</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s2">&quot;2890&quot;</span><span class="p">)</span>
@@ -2767,7 +2775,7 @@ security_type / exchange / code 等欄位，可呼叫
 
 
 -->
-<h2 id="_4">總結<a class="headerlink" href="#_4" title="Permanent link">&para;</a></h2>
+<h2 id="_5">總結<a class="headerlink" href="#_5" title="Permanent link">&para;</a></h2>
 <p>這份快速入門展示了 Shioaji 的核心操作。無論是 Python、CLI 或 HTTP API（含 JS、Go、C++、C# 等），皆能以相同邏輯完成登入、訂閱與下單。</p>
 
 

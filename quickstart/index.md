@@ -1,10 +1,6 @@
 Just like using other popular packages, import and instantiate to start using Shioaji.
 
-Note
-
-**Please complete the prerequisites first, including [Open Account](../tutor/prepare/open_account/), [Terms of Service](../tutor/prepare/terms/), and [Token](../tutor/prepare/token/).**
-
-### Login and Activate CA
+### Login
 
 ```
 import shioaji as sj
@@ -34,37 +30,31 @@ api.activate_ca(
 # Start server (automatically reads .env, performs login and CA activation)
 shioaji server start
 
+```
+
+Note
+
+**Before you start, please complete the prerequisites, including [Open Account](../tutor/prepare/open_account/), [Terms of Service](../tutor/prepare/terms/), and [Token](../tutor/prepare/token/).**
+
+On Windows, file paths are copied with `\` as the separator; replace them with `/`.
+
+### Check Status
+
+```
 # Check status
 shioaji server check
 
 ```
 
 ```
-# .env (placed in the working directory) should contain:
-#   SJ_API_KEY=YOUR_API_KEY
-#   SJ_SEC_KEY=YOUR_SECRET_KEY
-#   SJ_CA_PATH=your/ca/path/Sinopac.pfx
-#   SJ_CA_PASSWD=YOUR_CA_PASSWORD
-
-# Start server
-shioaji server start
-
 # Check accounts (verify login)
 curl http://localhost:8080/api/v1/auth/accounts
 
 ```
 
-Certificate Path
-
-On Windows, file paths are copied with `\` as the separator; replace them with `/`.
-
 ### Subscribe to Market Data
 
-Subscribing to market data requires passing a contract to `subscribe` with a quote type to receive streaming data.
-
-Quote Types
-
-Currently three quote types are supported: tick / bid_ask / quote.
+Subscribing to market data requires passing a contract to `subscribe` with a quote type to receive streaming data. Currently three quote types are supported: tick / bid_ask / quote.
 
 ```
 contract = api.contracts.get("2330")
