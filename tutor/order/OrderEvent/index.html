@@ -1309,20 +1309,14 @@
     </span>
   </a>
   
-    <nav class="md-nav" aria-label="Deal Event">
-      <ul class="md-nav__list">
-        
-          <li class="md-nav__item">
+</li>
+      
+        <li class="md-nav__item">
   <a href="#handle-events" class="md-nav__link">
     <span class="md-ellipsis">
       Handle Events
     </span>
   </a>
-  
-</li>
-        
-      </ul>
-    </nav>
   
 </li>
       
@@ -2039,20 +2033,14 @@
     </span>
   </a>
   
-    <nav class="md-nav" aria-label="Deal Event">
-      <ul class="md-nav__list">
-        
-          <li class="md-nav__item">
+</li>
+      
+        <li class="md-nav__item">
   <a href="#handle-events" class="md-nav__link">
     <span class="md-ellipsis">
       Handle Events
     </span>
   </a>
-  
-</li>
-        
-      </ul>
-    </nav>
   
 </li>
       
@@ -2417,11 +2405,9 @@ ts: 20260612021106
 
 -->
 <h2 id="order-event">Order Event<a class="headerlink" href="#order-event" title="Permanent link">&para;</a></h2>
-<div class="tabbed-set tabbed-alternate" data-tabs="2:1"><input checked="checked" id="__tabbed_2_1" name="__tabbed_2" type="radio" /><div class="tabbed-labels"><label for="__tabbed_2_1">Stock</label></div>
+<div class="tabbed-set tabbed-alternate" data-tabs="2:2"><input checked="checked" id="__tabbed_2_1" name="__tabbed_2" type="radio" /><input id="__tabbed_2_2" name="__tabbed_2" type="radio" /><div class="tabbed-labels"><label for="__tabbed_2_1">Stock</label><label for="__tabbed_2_2">Futures / Options</label></div>
 <div class="tabbed-content">
-<div class="tabbed-block"></div>
-</div>
-</div>
+<div class="tabbed-block">
 <p>When the stock exchange receives an order, it returns an order event. The event is divided into four parts: operation, order, status and contract. We explain each in detail below.</p>
 <div class="admonition done">
 <p class="admonition-title">Order Event</p>
@@ -2527,11 +2513,8 @@ ts: 20260612021106
 <span class="n">currency</span> <span class="p">(</span><span class="nb">str</span><span class="p">):</span> <span class="n">currency</span>
 </code></pre></div></p>
 </div>
-<div class="tabbed-set tabbed-alternate" data-tabs="3:1"><input checked="checked" id="__tabbed_3_1" name="__tabbed_3" type="radio" /><div class="tabbed-labels"><label for="__tabbed_3_1">Futures / Options</label></div>
-<div class="tabbed-content">
-<div class="tabbed-block"></div>
 </div>
-</div>
+<div class="tabbed-block">
 <p>When the futures exchange receives an order, it returns an order event. The event is divided into four parts: operation, order, status and contract. We explain each in detail below.</p>
 <div class="admonition done">
 <p class="admonition-title">Order Event</p>
@@ -2644,13 +2627,13 @@ ts: 20260612021106
 <span class="n">option_right</span> <span class="p">(</span><span class="nb">str</span><span class="p">):</span> <span class="p">{</span><span class="n">Future</span><span class="p">,</span> <span class="n">OptionCall</span><span class="p">,</span> <span class="n">OptionPut</span><span class="p">}</span>
 </code></pre></div></p>
 </div>
-<p>--&gt;</p>
+</div>
+</div>
+</div>
 <h2 id="deal-event">Deal Event<a class="headerlink" href="#deal-event" title="Permanent link">&para;</a></h2>
-<div class="tabbed-set tabbed-alternate" data-tabs="4:1"><input checked="checked" id="__tabbed_4_1" name="__tabbed_4" type="radio" /><div class="tabbed-labels"><label for="__tabbed_4_1">Stock</label></div>
+<div class="tabbed-set tabbed-alternate" data-tabs="3:2"><input checked="checked" id="__tabbed_3_1" name="__tabbed_3" type="radio" /><input id="__tabbed_3_2" name="__tabbed_3" type="radio" /><div class="tabbed-labels"><label for="__tabbed_3_1">Stock</label><label for="__tabbed_3_2">Futures / Options</label></div>
 <div class="tabbed-content">
-<div class="tabbed-block"></div>
-</div>
-</div>
+<div class="tabbed-block">
 <p>When an order is matched, the stock exchange sends a deal event. A match can be a partial fill or a complete fill. Match the <code>id</code> in the order event with the <code>trade_id</code> in the deal event to confirm they belong to the same order.</p>
 <div class="admonition done">
 <p class="admonition-title">Deal Event</p>
@@ -2703,11 +2686,8 @@ ts: 20260612021106
 <span class="n">ts</span> <span class="p">(</span><span class="nb">int</span><span class="p">):</span> <span class="n">deal</span> <span class="n">timestamp</span>
 </code></pre></div>
 </div>
-<div class="tabbed-set tabbed-alternate" data-tabs="5:1"><input checked="checked" id="__tabbed_5_1" name="__tabbed_5" type="radio" /><div class="tabbed-labels"><label for="__tabbed_5_1">Futures / Options</label></div>
-<div class="tabbed-content">
-<div class="tabbed-block"></div>
 </div>
-</div>
+<div class="tabbed-block">
 <p>When an order is matched, the futures exchange sends a deal event. A match can be a partial fill or a complete fill. Match the <code>id</code> in the order event with the <code>trade_id</code> in the deal event to confirm they belong to the same order.</p>
 <div class="admonition done">
 <p class="admonition-title">Deal Event</p>
@@ -2758,11 +2738,14 @@ ts: 20260612021106
 <span class="n">ts</span> <span class="p">(</span><span class="nb">int</span><span class="p">):</span> <span class="n">deal</span> <span class="n">timestamp</span>
 </code></pre></div>
 </div>
+</div>
+</div>
+</div>
 <div class="admonition attention">
 <p class="admonition-title">Note</p>
 <p>The exchange sends deal events with higher priority than order events, so if an order is filled immediately, you may receive the deal event before the order event.</p>
 </div>
-<h3 id="handle-events">Handle Events<a class="headerlink" href="#handle-events" title="Permanent link">&para;</a></h3>
+<h2 id="handle-events">Handle Events<a class="headerlink" href="#handle-events" title="Permanent link">&para;</a></h2>
 <p>To handle order and deal events, see <a href="../tutor/../../callback/orderdeal_event.md">Callback</a> for details.</p>
 
 

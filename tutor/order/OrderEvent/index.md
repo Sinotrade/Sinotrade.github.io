@@ -359,8 +359,6 @@ option_right (str): {Future, OptionCall, OptionPut}
 
 ```
 
--->
-
 ## Deal Event
 
 When an order is matched, the stock exchange sends a deal event. A match can be a partial fill or a complete fill. Match the `id` in the order event with the `trade_id` in the deal event to confirm they belong to the same order.
@@ -479,6 +477,6 @@ Note
 
 The exchange sends deal events with higher priority than order events, so if an order is filled immediately, you may receive the deal event before the order event.
 
-### Handle Events
+## Handle Events
 
 To handle order and deal events, see [Callback](../tutor/../../callback/orderdeal_event.md) for details.
