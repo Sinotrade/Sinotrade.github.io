@@ -100,8 +100,6 @@ SJ_PRODUCTION   是否進入正式模式 (預設值: false)
 
 若收到 **Sign data is timeout**，表示登入超過有效執行時間。請校準系統時間。
 
--->
-
 ## 帳號
 
 我們支援三種類型的帳號：
@@ -170,6 +168,8 @@ Out
 
 #### 預設&設定帳號
 
+##### 預設帳號
+
 In
 
 ```
@@ -186,7 +186,7 @@ FutureAccount(person_id='PERSON_ID_1', broker_id='BROKER_ID_1', account_id='ACCO
 
 ```
 
-#### 設定預設帳號
+##### 設定帳號
 
 In
 
@@ -207,8 +207,6 @@ FutureAccount(person_id='PERSON_ID_2', broker_id='BROKER_ID_2', account_id='ACCO
 server 啟動時自動挑列表中第一個證券 / 期貨帳號作為預設帳號；下單時 `--account` 不指定即使用預設；若要指定帳號，請帶 `--account BROKER-ACCOUNT`。
 
 server 啟動時自動挑列表中第一個證券 / 期貨帳號作為預設帳號；下單 request 中 `account` 不帶 `broker_id` / `account_id` 即使用預設；若要指定帳號，請帶 `broker_id` + `account_id`。
-
--->
 
 ## 登出
 

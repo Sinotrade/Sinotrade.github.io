@@ -718,12 +718,22 @@
     </span>
   </a>
   
-</li>
+    <nav class="md-nav" aria-label="預設&amp;設定帳號">
+      <ul class="md-nav__list">
         
           <li class="md-nav__item">
   <a href="#_4" class="md-nav__link">
     <span class="md-ellipsis">
-      設定預設帳號
+      預設帳號
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_5" class="md-nav__link">
+    <span class="md-ellipsis">
+      設定帳號
     </span>
   </a>
   
@@ -733,9 +743,14 @@
     </nav>
   
 </li>
+        
+      </ul>
+    </nav>
+  
+</li>
       
         <li class="md-nav__item">
-  <a href="#_5" class="md-nav__link">
+  <a href="#_6" class="md-nav__link">
     <span class="md-ellipsis">
       登出
     </span>
@@ -2047,12 +2062,22 @@
     </span>
   </a>
   
-</li>
+    <nav class="md-nav" aria-label="預設&amp;設定帳號">
+      <ul class="md-nav__list">
         
           <li class="md-nav__item">
   <a href="#_4" class="md-nav__link">
     <span class="md-ellipsis">
-      設定預設帳號
+      預設帳號
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_5" class="md-nav__link">
+    <span class="md-ellipsis">
+      設定帳號
     </span>
   </a>
   
@@ -2062,9 +2087,14 @@
     </nav>
   
 </li>
+        
+      </ul>
+    </nav>
+  
+</li>
       
         <li class="md-nav__item">
-  <a href="#_5" class="md-nav__link">
+  <a href="#_6" class="md-nav__link">
     <span class="md-ellipsis">
       登出
     </span>
@@ -2188,7 +2218,6 @@ SJ_PRODUCTION<span class="w">   </span>是否進入正式模式<span class="w"> 
 </div>
 </div>
 </div>
-<p>--&gt;</p>
 <h2 id="_1">帳號<a class="headerlink" href="#_1" title="Permanent link">&para;</a></h2>
 <p>我們支援三種類型的帳號：</p>
 <ul>
@@ -2451,15 +2480,16 @@ SJ_PRODUCTION<span class="w">   </span>是否進入正式模式<span class="w"> 
 -->
 <div class="admonition attention">
 <p class="admonition-title">注意</p>
-</div>
 <ul>
 <li>若 <code>signed</code> 在帳號列表中未出現，代表該帳號尚未簽署或尚未完成在測試模式中的測試報告。可參見 <a href="../prepare/terms/">API 簽署</a>。</li>
 </ul>
+</div>
 <p>--&gt;</p>
 <h4 id="_3">預設&amp;設定帳號<a class="headerlink" href="#_3" title="Permanent link">&para;</a></h4>
 <div class="tabbed-set tabbed-alternate" data-tabs="3:3"><input checked="checked" id="__tabbed_3_1" name="__tabbed_3" type="radio" /><input id="__tabbed_3_2" name="__tabbed_3" type="radio" /><input id="__tabbed_3_3" name="__tabbed_3" type="radio" /><div class="tabbed-labels"><label for="__tabbed_3_1">Python</label><label for="__tabbed_3_2">CLI</label><label for="__tabbed_3_3">HTTP</label></div>
 <div class="tabbed-content">
 <div class="tabbed-block">
+<h5 id="_4">預設帳號<a class="headerlink" href="#_4" title="Permanent link">&para;</a></h5>
 <div class="admonition info">
 <p class="admonition-title">In</p>
 <div class="highlight"><pre><span></span><code><span class="nb">print</span><span class="p">(</span><span class="n">api</span><span class="o">.</span><span class="n">stock_account</span><span class="p">)</span>
@@ -2472,7 +2502,7 @@ SJ_PRODUCTION<span class="w">   </span>是否進入正式模式<span class="w"> 
 <span class="n">FutureAccount</span><span class="p">(</span><span class="n">person_id</span><span class="o">=</span><span class="s1">&#39;PERSON_ID_1&#39;</span><span class="p">,</span> <span class="n">broker_id</span><span class="o">=</span><span class="s1">&#39;BROKER_ID_1&#39;</span><span class="p">,</span> <span class="n">account_id</span><span class="o">=</span><span class="s1">&#39;ACCOUNT_ID_1&#39;</span><span class="p">,</span> <span class="n">signed</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">username</span><span class="o">=</span><span class="s1">&#39;USERNAME_1&#39;</span><span class="p">)</span>
 </code></pre></div>
 </div>
-<h4 id="_4">設定預設帳號<a class="headerlink" href="#_4" title="Permanent link">&para;</a></h4>
+<h5 id="_5">設定帳號<a class="headerlink" href="#_5" title="Permanent link">&para;</a></h5>
 <div class="admonition info">
 <p class="admonition-title">In</p>
 <div class="highlight"><pre><span></span><code><span class="c1"># 預設的期貨帳號從 ACCOUNT_ID_1 轉換成 ACCOUNT_ID_2</span>
@@ -2494,8 +2524,7 @@ SJ_PRODUCTION<span class="w">   </span>是否進入正式模式<span class="w"> 
 </div>
 </div>
 </div>
-<p>--&gt;</p>
-<h2 id="_5">登出<a class="headerlink" href="#_5" title="Permanent link">&para;</a></h2>
+<h2 id="_6">登出<a class="headerlink" href="#_6" title="Permanent link">&para;</a></h2>
 <p>登出功能將關閉客戶端及服務端之間的連接。為了提供優質的服務，我們從 2021/08/06 開始<a href="../limit/">限制</a>連線數。在不使用的時候終止程式是一個良好的習慣。</p>
 <div class="tabbed-set tabbed-alternate" data-tabs="4:2"><input checked="checked" id="__tabbed_4_1" name="__tabbed_4" type="radio" /><input id="__tabbed_4_2" name="__tabbed_4" type="radio" /><div class="tabbed-labels"><label for="__tabbed_4_1">Python</label><label for="__tabbed_4_2">其他</label></div>
 <div class="tabbed-content">

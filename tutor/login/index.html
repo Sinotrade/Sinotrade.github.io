@@ -718,14 +718,29 @@
     </span>
   </a>
   
+    <nav class="md-nav" aria-label="Default &amp; Set Default Account">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#default-account" class="md-nav__link">
+    <span class="md-ellipsis">
+      Default Account
+    </span>
+  </a>
+  
 </li>
         
           <li class="md-nav__item">
-  <a href="#set-default-account" class="md-nav__link">
+  <a href="#set-account" class="md-nav__link">
     <span class="md-ellipsis">
-      Set Default Account
+      Set Account
     </span>
   </a>
+  
+</li>
+        
+      </ul>
+    </nav>
   
 </li>
         
@@ -2047,14 +2062,29 @@
     </span>
   </a>
   
+    <nav class="md-nav" aria-label="Default &amp; Set Default Account">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#default-account" class="md-nav__link">
+    <span class="md-ellipsis">
+      Default Account
+    </span>
+  </a>
+  
 </li>
         
           <li class="md-nav__item">
-  <a href="#set-default-account" class="md-nav__link">
+  <a href="#set-account" class="md-nav__link">
     <span class="md-ellipsis">
-      Set Default Account
+      Set Account
     </span>
   </a>
+  
+</li>
+        
+      </ul>
+    </nav>
   
 </li>
         
@@ -2452,15 +2482,15 @@ In the Order object you must specify the account to place the order with. For mo
 -->
 <div class="admonition attention">
 <p class="admonition-title">Note</p>
-</div>
 <ul>
 <li>If <code>signed</code> does not appear in the account list, the account has not been signed or has not completed the test report in simulation mode. Please refer to <a href="../prepare/terms/">API Signing and Test</a>.</li>
 </ul>
-<p>--&gt;</p>
+</div>
 <h4 id="default-set-default-account">Default &amp; Set Default Account<a class="headerlink" href="#default-set-default-account" title="Permanent link">&para;</a></h4>
 <div class="tabbed-set tabbed-alternate" data-tabs="3:3"><input checked="checked" id="__tabbed_3_1" name="__tabbed_3" type="radio" /><input id="__tabbed_3_2" name="__tabbed_3" type="radio" /><input id="__tabbed_3_3" name="__tabbed_3" type="radio" /><div class="tabbed-labels"><label for="__tabbed_3_1">Python</label><label for="__tabbed_3_2">CLI</label><label for="__tabbed_3_3">HTTP</label></div>
 <div class="tabbed-content">
 <div class="tabbed-block">
+<h5 id="default-account">Default Account<a class="headerlink" href="#default-account" title="Permanent link">&para;</a></h5>
 <div class="admonition info">
 <p class="admonition-title">In</p>
 <div class="highlight"><pre><span></span><code><span class="nb">print</span><span class="p">(</span><span class="n">api</span><span class="o">.</span><span class="n">stock_account</span><span class="p">)</span>
@@ -2473,7 +2503,7 @@ In the Order object you must specify the account to place the order with. For mo
 <span class="n">FutureAccount</span><span class="p">(</span><span class="n">person_id</span><span class="o">=</span><span class="s1">&#39;PERSON_ID_1&#39;</span><span class="p">,</span> <span class="n">broker_id</span><span class="o">=</span><span class="s1">&#39;BROKER_ID_1&#39;</span><span class="p">,</span> <span class="n">account_id</span><span class="o">=</span><span class="s1">&#39;ACCOUNT_ID_1&#39;</span><span class="p">,</span> <span class="n">signed</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">username</span><span class="o">=</span><span class="s1">&#39;USERNAME_1&#39;</span><span class="p">)</span>
 </code></pre></div>
 </div>
-<h4 id="set-default-account">Set Default Account<a class="headerlink" href="#set-default-account" title="Permanent link">&para;</a></h4>
+<h5 id="set-account">Set Account<a class="headerlink" href="#set-account" title="Permanent link">&para;</a></h5>
 <div class="admonition info">
 <p class="admonition-title">In</p>
 <div class="highlight"><pre><span></span><code><span class="c1"># Switch the default futures account from ACCOUNT_ID_1 to ACCOUNT_ID_2</span>
@@ -2495,7 +2525,6 @@ In the Order object you must specify the account to place the order with. For mo
 </div>
 </div>
 </div>
-<p>--&gt;</p>
 <h2 id="logout">Logout<a class="headerlink" href="#logout" title="Permanent link">&para;</a></h2>
 <p>Logout closes the connection between the client and the server. To provide quality service, we <a href="../limit/">limit the number of connections</a> since 2021/08/06. It is good practice to terminate the program when not in use.</p>
 <div class="tabbed-set tabbed-alternate" data-tabs="4:2"><input checked="checked" id="__tabbed_4_1" name="__tabbed_4" type="radio" /><input id="__tabbed_4_2" name="__tabbed_4" type="radio" /><div class="tabbed-labels"><label for="__tabbed_4_1">Python</label><label for="__tabbed_4_2">Other</label></div>

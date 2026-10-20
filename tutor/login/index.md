@@ -166,9 +166,9 @@ Note
 
 - If `signed` does not appear in the account list, the account has not been signed or has not completed the test report in simulation mode. Please refer to [API Signing and Test](../prepare/terms/).
 
--->
-
 #### Default & Set Default Account
+
+##### Default Account
 
 In
 
@@ -186,7 +186,7 @@ FutureAccount(person_id='PERSON_ID_1', broker_id='BROKER_ID_1', account_id='ACCO
 
 ```
 
-#### Set Default Account
+##### Set Account
 
 In
 
@@ -207,8 +207,6 @@ FutureAccount(person_id='PERSON_ID_2', broker_id='BROKER_ID_2', account_id='ACCO
 The server picks the first stock / futures account as the default on startup. If `--account` is not given on order placement, the default is used; to use a specific account, pass `--account BROKER-ACCOUNT`.
 
 The server picks the first stock / futures account as the default on startup. If the order request `account` omits `broker_id` / `account_id`, the default is used; to use a specific account, include `broker_id` + `account_id`.
-
--->
 
 ## Logout
 
