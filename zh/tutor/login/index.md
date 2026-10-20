@@ -1,10 +1,4 @@
-登入必須擁有永豐金帳戶。若你還沒有擁有永豐金帳戶，可詳見[開戶](../prepare/open_account/)。
-
-## 登入
-
-API Key
-
-Shioaji 使用 API Key 作為登入方式，申請可參見 [金鑰與憑證申請](../prepare/token/)。
+使用Shioaji必須擁有永豐金帳戶。若你還沒有擁有永豐金帳戶，可詳見[開戶](../prepare/open_account/)。登入方式使用 API Key 作為，申請可參見 [金鑰與憑證申請](../prepare/token/)。
 
 In
 
@@ -13,7 +7,8 @@ import shioaji as sj
 api = sj.Shioaji(simulation=False)  # 是否進入模擬模式
 api.login(
     api_key="YOUR_API_KEY",
-    secret_key="YOUR_SECRET_KEY"
+    secret_key="YOUR_SECRET_KEY",
+    subscribe_trade=True
 )
 
 ```
@@ -105,101 +100,7 @@ SJ_PRODUCTION   是否進入正式模式 (預設值: false)
 
 若收到 **Sign data is timeout**，表示登入超過有效執行時間。請校準系統時間。
 
-### 訂閱委託/成交回報
-
-我們提供 2 個方式讓您可以調整訂閱委託/成交回報。首先是於 `login` 的參數 `subscribe_trade`，預設值為 `True`，會自動為您訂閱所有帳號的委託/成交回報。
-
-In
-
-```
-import shioaji as sj
-api = sj.Shioaji()
-api.login(
-    api_key="YOUR_API_KEY",
-    secret_key="YOUR_SECRET_KEY",
-    subscribe_trade=True
-)
-
-```
-
-另一個方式是，對特定帳號使用 API `subscribe_trade` 及 `unsubscribe_trade`，即可訂閱或取消訂閱委託/成交回報。
-
-subscribe trade
-
-```
-api.subscribe_trade(account)
-
-```
-
-unsubscribe trade
-
-```
-api.unsubscribe_trade(account)
-
-```
-
-server 啟動時不自動訂閱，需逐帳號動態訂閱。
-
-subscribe trade
-
-```
-shioaji auth subscribe-trade --account-type F
-
-```
-
-unsubscribe trade
-
-```
-shioaji auth unsubscribe-trade --account-type F
-
-```
-
-Parameters
-
-```
---account-type: 選填，S（證券，預設）或 F（期貨/選擇權）
---account:      選填，BROKER_ID-ACCOUNT_ID 格式；未填時使用該類型的預設帳號
-
-```
-
-Out
-
-```
-account:
-  account_type: F
-  person_id: YOUR_PERSON_ID
-  broker_id: F002000
-  account_id: "YOUR_ACCOUNT_ID"
-  signed: true
-  username: ""
-subscribe_trade: true
-ts: 20260612021106
-
-```
-
-注意
-
-`subscribe-trade` 只負責向 server 登記訂閱，執行完即結束。實際接收委託/成交回報請使用 `shioaji order events`（SSE 串流，Ctrl+C 停止），詳見[委託回報](../callback/orderdeal_event/)。
-
-server 啟動時不自動訂閱，需逐帳號動態訂閱。
-
-subscribe trade
-
-```
-curl -X POST http://localhost:8080/api/v1/auth/subscribe_trade \
-  -H "Content-Type: application/json" \
-  -d '{"broker_id": "YOUR_BROKER_ID", "account_id": "YOUR_ACCOUNT_ID"}'
-
-```
-
-unsubscribe trade
-
-```
-curl -X POST http://localhost:8080/api/v1/auth/unsubscribe_trade \
-  -H "Content-Type: application/json" \
-  -d '{"broker_id": "YOUR_BROKER_ID", "account_id": "YOUR_ACCOUNT_ID"}'
-
-```
+-->
 
 ## 帳號
 

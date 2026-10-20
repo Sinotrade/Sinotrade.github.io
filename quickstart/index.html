@@ -420,6 +420,15 @@
 </li>
       
         <li class="md-nav__item">
+  <a href="#subscribe-order-deal-events" class="md-nav__link">
+    <span class="md-ellipsis">
+      Subscribe Order/Deal Events
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
   <a href="#subscribe-to-market-data" class="md-nav__link">
     <span class="md-ellipsis">
       Subscribe to Market Data
@@ -1317,20 +1326,9 @@
   
   
   
-    
-    
-    
-    
-    
-    <li class="md-nav__item md-nav__item--nested">
-      
+    <li class="md-nav__item">
+      <a href="../tutor/order/OrderEvent/" class="md-nav__link">
         
-        
-        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_5_5_7" >
-        
-          
-          <label class="md-nav__link" for="__nav_5_5_7" id="__nav_5_5_7_label" tabindex="0">
-            
   
   
   <span class="md-ellipsis">
@@ -1339,65 +1337,7 @@
   </span>
   
 
-            <span class="md-nav__icon md-icon"></span>
-          </label>
-        
-        <nav class="md-nav" data-md-level="3" aria-labelledby="__nav_5_5_7_label" aria-expanded="false">
-          <label class="md-nav__title" for="__nav_5_5_7">
-            <span class="md-nav__icon md-icon"></span>
-            CallBack Info.
-          </label>
-          <ul class="md-nav__list" data-md-scrollfix>
-            
-              
-                
-  
-  
-  
-  
-    <li class="md-nav__item">
-      <a href="../tutor/order/order_deal_event/stocks/" class="md-nav__link">
-        
-  
-  
-  <span class="md-ellipsis">
-    Stock
-    
-  </span>
-  
-
       </a>
-    </li>
-  
-
-              
-            
-              
-                
-  
-  
-  
-  
-    <li class="md-nav__item">
-      <a href="../tutor/order/order_deal_event/futures/" class="md-nav__link">
-        
-  
-  
-  <span class="md-ellipsis">
-    Futures
-    
-  </span>
-  
-
-      </a>
-    </li>
-  
-
-              
-            
-          </ul>
-        </nav>
-      
     </li>
   
 
@@ -2101,6 +2041,15 @@
 </li>
       
         <li class="md-nav__item">
+  <a href="#subscribe-order-deal-events" class="md-nav__link">
+    <span class="md-ellipsis">
+      Subscribe Order/Deal Events
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
   <a href="#subscribe-to-market-data" class="md-nav__link">
     <span class="md-ellipsis">
       Subscribe to Market Data
@@ -2156,7 +2105,11 @@
 <span class="n">api</span> <span class="o">=</span> <span class="n">sj</span><span class="o">.</span><span class="n">Shioaji</span><span class="p">()</span>
 
 <span class="c1"># Login</span>
-<span class="n">accounts</span> <span class="o">=</span> <span class="n">api</span><span class="o">.</span><span class="n">login</span><span class="p">(</span><span class="n">api_key</span><span class="o">=</span><span class="s2">&quot;YOUR_API_KEY&quot;</span><span class="p">,</span> <span class="n">secret_key</span><span class="o">=</span><span class="s2">&quot;YOUR_SECRET_KEY&quot;</span><span class="p">)</span>
+<span class="n">accounts</span> <span class="o">=</span> <span class="n">api</span><span class="o">.</span><span class="n">login</span><span class="p">(</span>
+    <span class="n">api_key</span><span class="o">=</span><span class="s2">&quot;YOUR_API_KEY&quot;</span><span class="p">,</span> 
+    <span class="n">secret_key</span><span class="o">=</span><span class="s2">&quot;YOUR_SECRET_KEY&quot;</span><span class="p">,</span> 
+    <span class="n">subscribe_trade</span><span class="o">=</span><span class="kc">True</span>
+<span class="p">)</span>
 
 <span class="c1"># Activate CA (required before placing orders in production)</span>
 <span class="n">api</span><span class="o">.</span><span class="n">activate_ca</span><span class="p">(</span>
@@ -2357,9 +2310,80 @@ curl<span class="w"> </span>http://localhost:8080/api/v1/auth/accounts
 </div>
 </div>
 </div>
+<h3 id="subscribe-order-deal-events">Subscribe Order/Deal Events<a class="headerlink" href="#subscribe-order-deal-events" title="Permanent link">&para;</a></h3>
+<div class="tabbed-set tabbed-alternate" data-tabs="3:3"><input checked="checked" id="__tabbed_3_1" name="__tabbed_3" type="radio" /><input id="__tabbed_3_2" name="__tabbed_3" type="radio" /><input id="__tabbed_3_3" name="__tabbed_3" type="radio" /><div class="tabbed-labels"><label for="__tabbed_3_1">Python</label><label for="__tabbed_3_2">CLI</label><label for="__tabbed_3_3">HTTP</label></div>
+<div class="tabbed-content">
+<div class="tabbed-block">
+<p>We provide 2 ways to control order/deal event subscription. The first is the <code>subscribe_trade</code> parameter of <code>login</code>. It defaults to <code>True</code> and automatically subscribes to order/deal events for all your accounts. The other way is to call <code>subscribe_trade</code> and <code>unsubscribe_trade</code> on a specific account to subscribe to or unsubscribe from its order/deal events.</p>
+<div class="admonition info">
+<p class="admonition-title">subscribe trade</p>
+<div class="highlight"><pre><span></span><code><span class="n">api</span><span class="o">.</span><span class="n">subscribe_trade</span><span class="p">(</span><span class="n">account</span><span class="p">)</span>
+</code></pre></div>
+</div>
+<div class="admonition info">
+<p class="admonition-title">unsubscribe trade</p>
+<div class="highlight"><pre><span></span><code><span class="n">api</span><span class="o">.</span><span class="n">unsubscribe_trade</span><span class="p">(</span><span class="n">account</span><span class="p">)</span>
+</code></pre></div>
+</div>
+</div>
+<div class="tabbed-block">
+<p>The server does not subscribe automatically at startup; subscribe dynamically per account.</p>
+<div class="admonition info">
+<p class="admonition-title">subscribe trade</p>
+<div class="highlight"><pre><span></span><code>shioaji<span class="w"> </span>auth<span class="w"> </span>subscribe-trade<span class="w"> </span>--account-type<span class="w"> </span>F
+</code></pre></div>
+</div>
+<div class="admonition info">
+<p class="admonition-title">unsubscribe trade</p>
+<div class="highlight"><pre><span></span><code>shioaji<span class="w"> </span>auth<span class="w"> </span>unsubscribe-trade<span class="w"> </span>--account-type<span class="w"> </span>F
+</code></pre></div>
+</div>
+<div class="admonition done">
+<p class="admonition-title">Parameters</p>
+<div class="highlight"><pre><span></span><code>--account-type: optional, S (stock, default) or F (futures/options)
+--account:      optional, in BROKER_ID-ACCOUNT_ID format; defaults to the default account of that type
+</code></pre></div>
+</div>
+<div class="admonition done">
+<p class="admonition-title">Out</p>
+<div class="highlight"><pre><span></span><code>account:
+  account_type: F
+  person_id: YOUR_PERSON_ID
+  broker_id: F002000
+  account_id: &quot;YOUR_ACCOUNT_ID&quot;
+  signed: true
+  username: &quot;&quot;
+subscribe_trade: true
+ts: 20260612021106
+</code></pre></div>
+</div>
+<div class="admonition warning">
+<p class="admonition-title">Note</p>
+<p><code>subscribe-trade</code> only registers the subscription with the server and exits once done. To actually receive order/deal events, use <code>shioaji order events</code> (SSE stream, Ctrl+C to stop). See <a href="./callback/orderdeal_event.md">Order Event</a> for details.</p>
+</div>
+</div>
+<div class="tabbed-block">
+<p>The server does not subscribe automatically at startup; subscribe dynamically per account.</p>
+<div class="admonition info">
+<p class="admonition-title">subscribe trade</p>
+<div class="highlight"><pre><span></span><code>curl<span class="w"> </span>-X<span class="w"> </span>POST<span class="w"> </span>http://localhost:8080/api/v1/auth/subscribe_trade<span class="w"> </span><span class="se">\</span>
+<span class="w">  </span>-H<span class="w"> </span><span class="s2">&quot;Content-Type: application/json&quot;</span><span class="w"> </span><span class="se">\</span>
+<span class="hll"><span class="w">  </span>-d<span class="w"> </span><span class="s1">&#39;{&quot;broker_id&quot;: &quot;YOUR_BROKER_ID&quot;, &quot;account_id&quot;: &quot;YOUR_ACCOUNT_ID&quot;}&#39;</span>
+</span></code></pre></div>
+</div>
+<div class="admonition info">
+<p class="admonition-title">unsubscribe trade</p>
+<div class="highlight"><pre><span></span><code>curl<span class="w"> </span>-X<span class="w"> </span>POST<span class="w"> </span>http://localhost:8080/api/v1/auth/unsubscribe_trade<span class="w"> </span><span class="se">\</span>
+<span class="w">  </span>-H<span class="w"> </span><span class="s2">&quot;Content-Type: application/json&quot;</span><span class="w"> </span><span class="se">\</span>
+<span class="hll"><span class="w">  </span>-d<span class="w"> </span><span class="s1">&#39;{&quot;broker_id&quot;: &quot;YOUR_BROKER_ID&quot;, &quot;account_id&quot;: &quot;YOUR_ACCOUNT_ID&quot;}&#39;</span>
+</span></code></pre></div>
+</div>
+</div>
+</div>
+</div>
 <h3 id="subscribe-to-market-data">Subscribe to Market Data<a class="headerlink" href="#subscribe-to-market-data" title="Permanent link">&para;</a></h3>
 <p>Subscribing to market data requires passing a contract to <code>subscribe</code> with a quote type to receive streaming data. Currently three quote types are supported: tick / bid_ask / quote.</p>
-<div class="tabbed-set tabbed-alternate" data-tabs="3:3"><input checked="checked" id="__tabbed_3_1" name="__tabbed_3" type="radio" /><input id="__tabbed_3_2" name="__tabbed_3" type="radio" /><input id="__tabbed_3_3" name="__tabbed_3" type="radio" /><div class="tabbed-labels"><label for="__tabbed_3_1">Python</label><label for="__tabbed_3_2">CLI</label><label for="__tabbed_3_3">HTTP</label></div>
+<div class="tabbed-set tabbed-alternate" data-tabs="4:3"><input checked="checked" id="__tabbed_4_1" name="__tabbed_4" type="radio" /><input id="__tabbed_4_2" name="__tabbed_4" type="radio" /><input id="__tabbed_4_3" name="__tabbed_4" type="radio" /><div class="tabbed-labels"><label for="__tabbed_4_1">Python</label><label for="__tabbed_4_2">CLI</label><label for="__tabbed_4_3">HTTP</label></div>
 <div class="tabbed-content">
 <div class="tabbed-block">
 <div class="highlight"><pre><span></span><code><span class="n">contract</span> <span class="o">=</span> <span class="n">api</span><span class="o">.</span><span class="n">contracts</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s2">&quot;2330&quot;</span><span class="p">)</span>
@@ -2553,7 +2577,7 @@ security_type / exchange / code manually; call
 </div>
 <h3 id="place-order">Place Order<a class="headerlink" href="#place-order" title="Permanent link">&para;</a></h3>
 <p>Placing an order requires specifying a contract and the order details (action, price, quantity, etc.); the response contains the trade status.</p>
-<div class="tabbed-set tabbed-alternate" data-tabs="4:3"><input checked="checked" id="__tabbed_4_1" name="__tabbed_4" type="radio" /><input id="__tabbed_4_2" name="__tabbed_4" type="radio" /><input id="__tabbed_4_3" name="__tabbed_4" type="radio" /><div class="tabbed-labels"><label for="__tabbed_4_1">Python</label><label for="__tabbed_4_2">CLI</label><label for="__tabbed_4_3">HTTP</label></div>
+<div class="tabbed-set tabbed-alternate" data-tabs="5:3"><input checked="checked" id="__tabbed_5_1" name="__tabbed_5" type="radio" /><input id="__tabbed_5_2" name="__tabbed_5" type="radio" /><input id="__tabbed_5_3" name="__tabbed_5" type="radio" /><div class="tabbed-labels"><label for="__tabbed_5_1">Python</label><label for="__tabbed_5_2">CLI</label><label for="__tabbed_5_3">HTTP</label></div>
 <div class="tabbed-content">
 <div class="tabbed-block">
 <div class="highlight"><pre><span></span><code><span class="n">contract</span> <span class="o">=</span> <span class="n">api</span><span class="o">.</span><span class="n">contracts</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s2">&quot;2890&quot;</span><span class="p">)</span>

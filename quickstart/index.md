@@ -9,7 +9,11 @@ import shioaji as sj
 api = sj.Shioaji()
 
 # Login
-accounts = api.login(api_key="YOUR_API_KEY", secret_key="YOUR_SECRET_KEY")
+accounts = api.login(
+    api_key="YOUR_API_KEY", 
+    secret_key="YOUR_SECRET_KEY", 
+    subscribe_trade=True
+)
 
 # Activate CA (required before placing orders in production)
 api.activate_ca(
@@ -49,6 +53,87 @@ shioaji server check
 ```
 # Check accounts (verify login)
 curl http://localhost:8080/api/v1/auth/accounts
+
+```
+
+### Subscribe Order/Deal Events
+
+We provide 2 ways to control order/deal event subscription. The first is the `subscribe_trade` parameter of `login`. It defaults to `True` and automatically subscribes to order/deal events for all your accounts. The other way is to call `subscribe_trade` and `unsubscribe_trade` on a specific account to subscribe to or unsubscribe from its order/deal events.
+
+subscribe trade
+
+```
+api.subscribe_trade(account)
+
+```
+
+unsubscribe trade
+
+```
+api.unsubscribe_trade(account)
+
+```
+
+The server does not subscribe automatically at startup; subscribe dynamically per account.
+
+subscribe trade
+
+```
+shioaji auth subscribe-trade --account-type F
+
+```
+
+unsubscribe trade
+
+```
+shioaji auth unsubscribe-trade --account-type F
+
+```
+
+Parameters
+
+```
+--account-type: optional, S (stock, default) or F (futures/options)
+--account:      optional, in BROKER_ID-ACCOUNT_ID format; defaults to the default account of that type
+
+```
+
+Out
+
+```
+account:
+  account_type: F
+  person_id: YOUR_PERSON_ID
+  broker_id: F002000
+  account_id: "YOUR_ACCOUNT_ID"
+  signed: true
+  username: ""
+subscribe_trade: true
+ts: 20260612021106
+
+```
+
+Note
+
+`subscribe-trade` only registers the subscription with the server and exits once done. To actually receive order/deal events, use `shioaji order events` (SSE stream, Ctrl+C to stop). See [Order Event](./callback/orderdeal_event.md) for details.
+
+The server does not subscribe automatically at startup; subscribe dynamically per account.
+
+subscribe trade
+
+```
+curl -X POST http://localhost:8080/api/v1/auth/subscribe_trade \
+  -H "Content-Type: application/json" \
+  -d '{"broker_id": "YOUR_BROKER_ID", "account_id": "YOUR_ACCOUNT_ID"}'
+
+```
+
+unsubscribe trade
+
+```
+curl -X POST http://localhost:8080/api/v1/auth/unsubscribe_trade \
+  -H "Content-Type: application/json" \
+  -d '{"broker_id": "YOUR_BROKER_ID", "account_id": "YOUR_ACCOUNT_ID"}'
 
 ```
 

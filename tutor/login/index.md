@@ -1,10 +1,4 @@
-Login requires a SinoPac Securities account. If you don't have one yet, see [Open Account](../prepare/open_account/).
-
-## Login
-
-API Key
-
-Shioaji uses API Key as the login method. See [Token & Certificate](../prepare/token/) to apply.
+Using Shioaji requires a SinoPac Securities account. If you don't have one yet, see [Open Account](../prepare/open_account/). Login uses an API Key; to apply for one, see [Token & Certificate](../prepare/token/).
 
 In
 
@@ -13,7 +7,8 @@ import shioaji as sj
 api = sj.Shioaji(simulation=False)  # whether to enter simulation mode
 api.login(
     api_key="YOUR_API_KEY",
-    secret_key="YOUR_SECRET_KEY"
+    secret_key="YOUR_SECRET_KEY",
+    subscribe_trade=True
 )
 
 ```
@@ -105,101 +100,7 @@ Note
 
 If you receive **Sign data is timeout**, login exceeded the effective execution time. Please calibrate system time.
 
-### Subscribe Trade
-
-There are 2 options to adjust trade subscription (Order/Deal Event Callback). The first is the `subscribe_trade` argument of `login`. Its default value is `True`, which auto-subscribes trade events from all accounts.
-
-In
-
-```
-import shioaji as sj
-api = sj.Shioaji()
-api.login(
-    api_key="YOUR_API_KEY",
-    secret_key="YOUR_SECRET_KEY",
-    subscribe_trade=True
-)
-
-```
-
-The second option is to call `subscribe_trade` / `unsubscribe_trade` on a specific account to subscribe or unsubscribe.
-
-subscribe trade
-
-```
-api.subscribe_trade(account)
-
-```
-
-unsubscribe trade
-
-```
-api.unsubscribe_trade(account)
-
-```
-
-The server doesn't auto-subscribe on startup; subscribe per account.
-
-subscribe trade
-
-```
-shioaji auth subscribe-trade --account-type F
-
-```
-
-unsubscribe trade
-
-```
-shioaji auth unsubscribe-trade --account-type F
-
-```
-
-Parameters
-
-```
---account-type: optional, S (stock / default) or F (futures and options)
---account:      optional, BROKER_ID-ACCOUNT_ID format; defaults to the default account of that type
-
-```
-
-Out
-
-```
-account:
-  account_type: F
-  person_id: YOUR_PERSON_ID
-  broker_id: F002000
-  account_id: "YOUR_ACCOUNT_ID"
-  signed: true
-  username: ""
-subscribe_trade: true
-ts: 20260612021106
-
-```
-
-Note
-
-`subscribe-trade` only registers the subscription with the server and exits immediately. To actually receive order/deal events, use `shioaji order events` (SSE stream, Ctrl+C to stop); see [Order Event](../callback/orderdeal_event/).
-
-The server doesn't auto-subscribe on startup; subscribe per account.
-
-subscribe trade
-
-```
-curl -X POST http://localhost:8080/api/v1/auth/subscribe_trade \
-  -H "Content-Type: application/json" \
-  -d '{"broker_id": "YOUR_BROKER_ID", "account_id": "YOUR_ACCOUNT_ID"}'
-
-```
-
-unsubscribe trade
-
-```
-curl -X POST http://localhost:8080/api/v1/auth/unsubscribe_trade \
-  -H "Content-Type: application/json" \
-  -d '{"broker_id": "YOUR_BROKER_ID", "account_id": "YOUR_ACCOUNT_ID"}'
-
-```
+-->
 
 ## Account
 

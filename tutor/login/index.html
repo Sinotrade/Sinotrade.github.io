@@ -106,7 +106,7 @@
     <div data-md-component="skip">
       
         
-        <a href="#login" class="md-skip">
+        <a href="#account" class="md-skip">
           Skip to content
         </a>
       
@@ -691,30 +691,6 @@
       Table of contents
     </label>
     <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
-      
-        <li class="md-nav__item">
-  <a href="#login" class="md-nav__link">
-    <span class="md-ellipsis">
-      Login
-    </span>
-  </a>
-  
-    <nav class="md-nav" aria-label="Login">
-      <ul class="md-nav__list">
-        
-          <li class="md-nav__item">
-  <a href="#subscribe-trade" class="md-nav__link">
-    <span class="md-ellipsis">
-      Subscribe Trade
-    </span>
-  </a>
-  
-</li>
-        
-      </ul>
-    </nav>
-  
-</li>
       
         <li class="md-nav__item">
   <a href="#account" class="md-nav__link">
@@ -1349,20 +1325,9 @@
   
   
   
-    
-    
-    
-    
-    
-    <li class="md-nav__item md-nav__item--nested">
-      
+    <li class="md-nav__item">
+      <a href="../order/OrderEvent/" class="md-nav__link">
         
-        
-        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_5_5_7" >
-        
-          
-          <label class="md-nav__link" for="__nav_5_5_7" id="__nav_5_5_7_label" tabindex="0">
-            
   
   
   <span class="md-ellipsis">
@@ -1371,65 +1336,7 @@
   </span>
   
 
-            <span class="md-nav__icon md-icon"></span>
-          </label>
-        
-        <nav class="md-nav" data-md-level="3" aria-labelledby="__nav_5_5_7_label" aria-expanded="false">
-          <label class="md-nav__title" for="__nav_5_5_7">
-            <span class="md-nav__icon md-icon"></span>
-            CallBack Info.
-          </label>
-          <ul class="md-nav__list" data-md-scrollfix>
-            
-              
-                
-  
-  
-  
-  
-    <li class="md-nav__item">
-      <a href="../order/order_deal_event/stocks/" class="md-nav__link">
-        
-  
-  
-  <span class="md-ellipsis">
-    Stock
-    
-  </span>
-  
-
       </a>
-    </li>
-  
-
-              
-            
-              
-                
-  
-  
-  
-  
-    <li class="md-nav__item">
-      <a href="../order/order_deal_event/futures/" class="md-nav__link">
-        
-  
-  
-  <span class="md-ellipsis">
-    Futures
-    
-  </span>
-  
-
-      </a>
-    </li>
-  
-
-              
-            
-          </ul>
-        </nav>
-      
     </li>
   
 
@@ -2115,30 +2022,6 @@
     <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
       
         <li class="md-nav__item">
-  <a href="#login" class="md-nav__link">
-    <span class="md-ellipsis">
-      Login
-    </span>
-  </a>
-  
-    <nav class="md-nav" aria-label="Login">
-      <ul class="md-nav__list">
-        
-          <li class="md-nav__item">
-  <a href="#subscribe-trade" class="md-nav__link">
-    <span class="md-ellipsis">
-      Subscribe Trade
-    </span>
-  </a>
-  
-</li>
-        
-      </ul>
-    </nav>
-  
-</li>
-      
-        <li class="md-nav__item">
   <a href="#account" class="md-nav__link">
     <span class="md-ellipsis">
       Account
@@ -2207,13 +2090,8 @@
 
   <h1>Login</h1>
 
-<p>Login requires a SinoPac Securities account. If you don't have one yet, see <a href="../prepare/open_account/">Open Account</a>.</p>
-<h2 id="login">Login<a class="headerlink" href="#login" title="Permanent link">&para;</a></h2>
-<div class="admonition warning">
-<p class="admonition-title">API Key</p>
-<p>Shioaji uses API Key as the login method. See <a href="../prepare/token/">Token &amp; Certificate</a> to apply.</p>
-</div>
-<div class="tabbed-set tabbed-alternate" data-tabs="1:2"><input checked="checked" id="__tabbed_1_1" name="__tabbed_1" type="radio" /><input id="__tabbed_1_2" name="__tabbed_1" type="radio" /><div class="tabbed-labels"><label for="__tabbed_1_1">Python</label><label for="__tabbed_1_2">Other Languages</label></div>
+<p>Using Shioaji requires a SinoPac Securities account. If you don't have one yet, see <a href="../prepare/open_account/">Open Account</a>. Login uses an API Key; to apply for one, see <a href="../prepare/token/">Token &amp; Certificate</a>.</p>
+<div class="tabbed-set tabbed-alternate" data-tabs="1:2"><input checked="checked" id="__tabbed_1_1" name="__tabbed_1" type="radio" /><input id="__tabbed_1_2" name="__tabbed_1" type="radio" /><div class="tabbed-labels"><label for="__tabbed_1_1">Python</label><label for="__tabbed_1_2">Other</label></div>
 <div class="tabbed-content">
 <div class="tabbed-block">
 <div class="admonition info">
@@ -2222,7 +2100,8 @@
 <span class="n">api</span> <span class="o">=</span> <span class="n">sj</span><span class="o">.</span><span class="n">Shioaji</span><span class="p">(</span><span class="n">simulation</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>  <span class="c1"># whether to enter simulation mode</span>
 <span class="n">api</span><span class="o">.</span><span class="n">login</span><span class="p">(</span>
     <span class="n">api_key</span><span class="o">=</span><span class="s2">&quot;YOUR_API_KEY&quot;</span><span class="p">,</span>
-    <span class="n">secret_key</span><span class="o">=</span><span class="s2">&quot;YOUR_SECRET_KEY&quot;</span>
+    <span class="n">secret_key</span><span class="o">=</span><span class="s2">&quot;YOUR_SECRET_KEY&quot;</span><span class="p">,</span>
+    <span class="n">subscribe_trade</span><span class="o">=</span><span class="kc">True</span>
 <span class="p">)</span>
 </code></pre></div>
 </div>
@@ -2309,348 +2188,7 @@ SJ_PRODUCTION<span class="w">   </span>whether<span class="w"> </span>to<span cl
 </div>
 </div>
 </div>
-<h3 id="subscribe-trade">Subscribe Trade<a class="headerlink" href="#subscribe-trade" title="Permanent link">&para;</a></h3>
-<div class="tabbed-set tabbed-alternate" data-tabs="2:3"><input checked="checked" id="__tabbed_2_1" name="__tabbed_2" type="radio" /><input id="__tabbed_2_2" name="__tabbed_2" type="radio" /><input id="__tabbed_2_3" name="__tabbed_2" type="radio" /><div class="tabbed-labels"><label for="__tabbed_2_1">Python</label><label for="__tabbed_2_2">CLI</label><label for="__tabbed_2_3">HTTP</label></div>
-<div class="tabbed-content">
-<div class="tabbed-block">
-<p>There are 2 options to adjust trade subscription (Order/Deal Event Callback). The first is the <code>subscribe_trade</code> argument of <code>login</code>. Its default value is <code>True</code>, which auto-subscribes trade events from all accounts.</p>
-<div class="admonition info">
-<p class="admonition-title">In</p>
-<div class="highlight"><pre><span></span><code><span class="kn">import</span><span class="w"> </span><span class="nn">shioaji</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">sj</span>
-<span class="n">api</span> <span class="o">=</span> <span class="n">sj</span><span class="o">.</span><span class="n">Shioaji</span><span class="p">()</span>
-<span class="n">api</span><span class="o">.</span><span class="n">login</span><span class="p">(</span>
-<span class="hll">    <span class="n">api_key</span><span class="o">=</span><span class="s2">&quot;YOUR_API_KEY&quot;</span><span class="p">,</span>
-</span><span class="hll">    <span class="n">secret_key</span><span class="o">=</span><span class="s2">&quot;YOUR_SECRET_KEY&quot;</span><span class="p">,</span>
-</span><span class="hll">    <span class="n">subscribe_trade</span><span class="o">=</span><span class="kc">True</span>
-</span><span class="p">)</span>
-</code></pre></div>
-</div>
-<p>The second option is to call <code>subscribe_trade</code> / <code>unsubscribe_trade</code> on a specific account to subscribe or unsubscribe.</p>
-<div class="admonition info">
-<p class="admonition-title">subscribe trade</p>
-<div class="highlight"><pre><span></span><code><span class="n">api</span><span class="o">.</span><span class="n">subscribe_trade</span><span class="p">(</span><span class="n">account</span><span class="p">)</span>
-</code></pre></div>
-</div>
-<div class="admonition info">
-<p class="admonition-title">unsubscribe trade</p>
-<div class="highlight"><pre><span></span><code><span class="n">api</span><span class="o">.</span><span class="n">unsubscribe_trade</span><span class="p">(</span><span class="n">account</span><span class="p">)</span>
-</code></pre></div>
-</div>
-</div>
-<div class="tabbed-block">
-<p>The server doesn't auto-subscribe on startup; subscribe per account.</p>
-<div class="admonition info">
-<p class="admonition-title">subscribe trade</p>
-<div class="highlight"><pre><span></span><code>shioaji<span class="w"> </span>auth<span class="w"> </span>subscribe-trade<span class="w"> </span>--account-type<span class="w"> </span>F
-</code></pre></div>
-</div>
-<div class="admonition info">
-<p class="admonition-title">unsubscribe trade</p>
-<div class="highlight"><pre><span></span><code>shioaji<span class="w"> </span>auth<span class="w"> </span>unsubscribe-trade<span class="w"> </span>--account-type<span class="w"> </span>F
-</code></pre></div>
-</div>
-<div class="admonition done">
-<p class="admonition-title">Parameters</p>
-<div class="highlight"><pre><span></span><code>--account-type: optional, S (stock / default) or F (futures and options)
---account:      optional, BROKER_ID-ACCOUNT_ID format; defaults to the default account of that type
-</code></pre></div>
-</div>
-<div class="admonition done">
-<p class="admonition-title">Out</p>
-<div class="highlight"><pre><span></span><code>account:
-  account_type: F
-  person_id: YOUR_PERSON_ID
-  broker_id: F002000
-  account_id: &quot;YOUR_ACCOUNT_ID&quot;
-  signed: true
-  username: &quot;&quot;
-subscribe_trade: true
-ts: 20260612021106
-</code></pre></div>
-</div>
-<div class="admonition warning">
-<p class="admonition-title">Note</p>
-<p><code>subscribe-trade</code> only registers the subscription with the server and exits immediately. To actually receive order/deal events, use <code>shioaji order events</code> (SSE stream, Ctrl+C to stop); see <a href="../callback/orderdeal_event/">Order Event</a>.</p>
-</div>
-</div>
-<div class="tabbed-block">
-<p>The server doesn't auto-subscribe on startup; subscribe per account.</p>
-<div class="admonition info">
-<p class="admonition-title">subscribe trade</p>
-<div class="highlight"><pre><span></span><code>curl<span class="w"> </span>-X<span class="w"> </span>POST<span class="w"> </span>http://localhost:8080/api/v1/auth/subscribe_trade<span class="w"> </span><span class="se">\</span>
-<span class="w">  </span>-H<span class="w"> </span><span class="s2">&quot;Content-Type: application/json&quot;</span><span class="w"> </span><span class="se">\</span>
-<span class="hll"><span class="w">  </span>-d<span class="w"> </span><span class="s1">&#39;{&quot;broker_id&quot;: &quot;YOUR_BROKER_ID&quot;, &quot;account_id&quot;: &quot;YOUR_ACCOUNT_ID&quot;}&#39;</span>
-</span></code></pre></div>
-</div>
-<div class="admonition info">
-<p class="admonition-title">unsubscribe trade</p>
-<div class="highlight"><pre><span></span><code>curl<span class="w"> </span>-X<span class="w"> </span>POST<span class="w"> </span>http://localhost:8080/api/v1/auth/unsubscribe_trade<span class="w"> </span><span class="se">\</span>
-<span class="w">  </span>-H<span class="w"> </span><span class="s2">&quot;Content-Type: application/json&quot;</span><span class="w"> </span><span class="se">\</span>
-<span class="hll"><span class="w">  </span>-d<span class="w"> </span><span class="s1">&#39;{&quot;broker_id&quot;: &quot;YOUR_BROKER_ID&quot;, &quot;account_id&quot;: &quot;YOUR_ACCOUNT_ID&quot;}&#39;</span>
-</span></code></pre></div>
-</div>
-</div>
-</div>
-</div>
-<!--
-=== "JavaScript"
-    The server doesn't auto-subscribe on startup; subscribe per account.
-
-    !!! info "subscribe trade"
-        <div class="highlight"><pre><span></span><code><span class="kd">const</span><span class="w"> </span><span class="nx">res</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="k">await</span><span class="w"> </span><span class="nx">fetch</span><span class="p">(</span><span class="s1">&#39;http://localhost:8080/api/v1/auth/subscribe_trade&#39;</span><span class="p">,</span><span class="w"> </span><span class="p">{</span>
-<span class="w">    </span><span class="nx">method</span><span class="o">:</span><span class="w"> </span><span class="s1">&#39;POST&#39;</span><span class="p">,</span>
-<span class="w">    </span><span class="nx">headers</span><span class="o">:</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="s1">&#39;Content-Type&#39;</span><span class="o">:</span><span class="w"> </span><span class="s1">&#39;application/json&#39;</span><span class="w"> </span><span class="p">},</span>
-<span class="hll"><span class="w">    </span><span class="nx">body</span><span class="o">:</span><span class="w"> </span><span class="nb">JSON</span><span class="p">.</span><span class="nx">stringify</span><span class="p">({</span><span class="w"> </span><span class="nx">broker_id</span><span class="o">:</span><span class="w"> </span><span class="s1">&#39;YOUR_BROKER_ID&#39;</span><span class="p">,</span><span class="w"> </span><span class="nx">account_id</span><span class="o">:</span><span class="w"> </span><span class="s1">&#39;YOUR_ACCOUNT_ID&#39;</span><span class="w"> </span><span class="p">}),</span>
-</span><span class="p">});</span>
-<span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="k">await</span><span class="w"> </span><span class="nx">res</span><span class="p">.</span><span class="nx">json</span><span class="p">());</span>
-</code></pre></div>
-
-    !!! info "unsubscribe trade"
-        <div class="highlight"><pre><span></span><code><span class="kd">const</span><span class="w"> </span><span class="nx">res</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="k">await</span><span class="w"> </span><span class="nx">fetch</span><span class="p">(</span><span class="s1">&#39;http://localhost:8080/api/v1/auth/unsubscribe_trade&#39;</span><span class="p">,</span><span class="w"> </span><span class="p">{</span>
-<span class="w">    </span><span class="nx">method</span><span class="o">:</span><span class="w"> </span><span class="s1">&#39;POST&#39;</span><span class="p">,</span>
-<span class="w">    </span><span class="nx">headers</span><span class="o">:</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="s1">&#39;Content-Type&#39;</span><span class="o">:</span><span class="w"> </span><span class="s1">&#39;application/json&#39;</span><span class="w"> </span><span class="p">},</span>
-<span class="hll"><span class="w">    </span><span class="nx">body</span><span class="o">:</span><span class="w"> </span><span class="nb">JSON</span><span class="p">.</span><span class="nx">stringify</span><span class="p">({</span><span class="w"> </span><span class="nx">broker_id</span><span class="o">:</span><span class="w"> </span><span class="s1">&#39;YOUR_BROKER_ID&#39;</span><span class="p">,</span><span class="w"> </span><span class="nx">account_id</span><span class="o">:</span><span class="w"> </span><span class="s1">&#39;YOUR_ACCOUNT_ID&#39;</span><span class="w"> </span><span class="p">}),</span>
-</span><span class="p">});</span>
-<span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="k">await</span><span class="w"> </span><span class="nx">res</span><span class="p">.</span><span class="nx">json</span><span class="p">());</span>
-</code></pre></div>
-
-=== "Go"
-    The server doesn't auto-subscribe on startup; subscribe per account.
-
-    !!! info "subscribe trade"
-        <div class="highlight"><pre><span></span><code><span class="kn">package</span><span class="w"> </span><span class="nx">main</span>
-
-<span class="kn">import</span><span class="w"> </span><span class="p">(</span>
-<span class="w">    </span><span class="s">&quot;bytes&quot;</span>
-<span class="w">    </span><span class="s">&quot;encoding/json&quot;</span>
-<span class="w">    </span><span class="s">&quot;fmt&quot;</span>
-<span class="w">    </span><span class="s">&quot;net/http&quot;</span>
-<span class="p">)</span>
-
-<span class="kd">func</span><span class="w"> </span><span class="nx">main</span><span class="p">()</span><span class="w"> </span><span class="p">{</span>
-<span class="w">    </span><span class="nx">body</span><span class="p">,</span><span class="w"> </span><span class="nx">_</span><span class="w"> </span><span class="o">:=</span><span class="w"> </span><span class="nx">json</span><span class="p">.</span><span class="nx">Marshal</span><span class="p">(</span><span class="kd">map</span><span class="p">[</span><span class="kt">string</span><span class="p">]</span><span class="kt">string</span><span class="p">{</span>
-<span class="hll"><span class="w">        </span><span class="s">&quot;broker_id&quot;</span><span class="p">:</span><span class="w">  </span><span class="s">&quot;YOUR_BROKER_ID&quot;</span><span class="p">,</span>
-</span><span class="hll"><span class="w">        </span><span class="s">&quot;account_id&quot;</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;YOUR_ACCOUNT_ID&quot;</span><span class="p">,</span>
-</span><span class="w">    </span><span class="p">})</span>
-<span class="w">    </span><span class="nx">res</span><span class="p">,</span><span class="w"> </span><span class="nx">_</span><span class="w"> </span><span class="o">:=</span><span class="w"> </span><span class="nx">http</span><span class="p">.</span><span class="nx">Post</span><span class="p">(</span>
-<span class="w">        </span><span class="s">&quot;http://localhost:8080/api/v1/auth/subscribe_trade&quot;</span><span class="p">,</span>
-<span class="w">        </span><span class="s">&quot;application/json&quot;</span><span class="p">,</span>
-<span class="w">        </span><span class="nx">bytes</span><span class="p">.</span><span class="nx">NewReader</span><span class="p">(</span><span class="nx">body</span><span class="p">),</span>
-<span class="w">    </span><span class="p">)</span>
-<span class="w">    </span><span class="k">defer</span><span class="w"> </span><span class="nx">res</span><span class="p">.</span><span class="nx">Body</span><span class="p">.</span><span class="nx">Close</span><span class="p">()</span>
-
-<span class="w">    </span><span class="kd">var</span><span class="w"> </span><span class="nx">out</span><span class="w"> </span><span class="kd">map</span><span class="p">[</span><span class="kt">string</span><span class="p">]</span><span class="kt">any</span>
-<span class="w">    </span><span class="nx">json</span><span class="p">.</span><span class="nx">NewDecoder</span><span class="p">(</span><span class="nx">res</span><span class="p">.</span><span class="nx">Body</span><span class="p">).</span><span class="nx">Decode</span><span class="p">(</span><span class="o">&amp;</span><span class="nx">out</span><span class="p">)</span>
-<span class="w">    </span><span class="nx">fmt</span><span class="p">.</span><span class="nx">Println</span><span class="p">(</span><span class="nx">out</span><span class="p">)</span>
-<span class="p">}</span>
-</code></pre></div>
-
-    !!! info "unsubscribe trade"
-        <div class="highlight"><pre><span></span><code><span class="kn">package</span><span class="w"> </span><span class="nx">main</span>
-
-<span class="kn">import</span><span class="w"> </span><span class="p">(</span>
-<span class="w">    </span><span class="s">&quot;bytes&quot;</span>
-<span class="w">    </span><span class="s">&quot;encoding/json&quot;</span>
-<span class="w">    </span><span class="s">&quot;fmt&quot;</span>
-<span class="w">    </span><span class="s">&quot;net/http&quot;</span>
-<span class="p">)</span>
-
-<span class="kd">func</span><span class="w"> </span><span class="nx">main</span><span class="p">()</span><span class="w"> </span><span class="p">{</span>
-<span class="w">    </span><span class="nx">body</span><span class="p">,</span><span class="w"> </span><span class="nx">_</span><span class="w"> </span><span class="o">:=</span><span class="w"> </span><span class="nx">json</span><span class="p">.</span><span class="nx">Marshal</span><span class="p">(</span><span class="kd">map</span><span class="p">[</span><span class="kt">string</span><span class="p">]</span><span class="kt">string</span><span class="p">{</span>
-<span class="hll"><span class="w">        </span><span class="s">&quot;broker_id&quot;</span><span class="p">:</span><span class="w">  </span><span class="s">&quot;YOUR_BROKER_ID&quot;</span><span class="p">,</span>
-</span><span class="hll"><span class="w">        </span><span class="s">&quot;account_id&quot;</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;YOUR_ACCOUNT_ID&quot;</span><span class="p">,</span>
-</span><span class="w">    </span><span class="p">})</span>
-<span class="w">    </span><span class="nx">res</span><span class="p">,</span><span class="w"> </span><span class="nx">_</span><span class="w"> </span><span class="o">:=</span><span class="w"> </span><span class="nx">http</span><span class="p">.</span><span class="nx">Post</span><span class="p">(</span>
-<span class="w">        </span><span class="s">&quot;http://localhost:8080/api/v1/auth/unsubscribe_trade&quot;</span><span class="p">,</span>
-<span class="w">        </span><span class="s">&quot;application/json&quot;</span><span class="p">,</span>
-<span class="w">        </span><span class="nx">bytes</span><span class="p">.</span><span class="nx">NewReader</span><span class="p">(</span><span class="nx">body</span><span class="p">),</span>
-<span class="w">    </span><span class="p">)</span>
-<span class="w">    </span><span class="k">defer</span><span class="w"> </span><span class="nx">res</span><span class="p">.</span><span class="nx">Body</span><span class="p">.</span><span class="nx">Close</span><span class="p">()</span>
-
-<span class="w">    </span><span class="kd">var</span><span class="w"> </span><span class="nx">out</span><span class="w"> </span><span class="kd">map</span><span class="p">[</span><span class="kt">string</span><span class="p">]</span><span class="kt">any</span>
-<span class="w">    </span><span class="nx">json</span><span class="p">.</span><span class="nx">NewDecoder</span><span class="p">(</span><span class="nx">res</span><span class="p">.</span><span class="nx">Body</span><span class="p">).</span><span class="nx">Decode</span><span class="p">(</span><span class="o">&amp;</span><span class="nx">out</span><span class="p">)</span>
-<span class="w">    </span><span class="nx">fmt</span><span class="p">.</span><span class="nx">Println</span><span class="p">(</span><span class="nx">out</span><span class="p">)</span>
-<span class="p">}</span>
-</code></pre></div>
-
-=== "C++"
-    The server doesn't auto-subscribe on startup; subscribe per account.
-
-    !!! info "subscribe trade"
-        <div class="highlight"><pre><span></span><code><span class="cp">#include</span><span class="w"> </span><span class="cpf">&lt;curl/curl.h&gt;</span>
-<span class="cp">#include</span><span class="w"> </span><span class="cpf">&lt;iostream&gt;</span>
-<span class="cp">#include</span><span class="w"> </span><span class="cpf">&lt;string&gt;</span>
-
-<span class="k">static</span><span class="w"> </span><span class="kt">size_t</span><span class="w"> </span><span class="nf">write_cb</span><span class="p">(</span><span class="kt">void</span><span class="o">*</span><span class="w"> </span><span class="n">contents</span><span class="p">,</span><span class="w"> </span><span class="kt">size_t</span><span class="w"> </span><span class="n">size</span><span class="p">,</span><span class="w"> </span><span class="kt">size_t</span><span class="w"> </span><span class="n">nmemb</span><span class="p">,</span><span class="w"> </span><span class="n">std</span><span class="o">::</span><span class="n">string</span><span class="o">*</span><span class="w"> </span><span class="n">s</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
-<span class="w">    </span><span class="n">s</span><span class="o">-&gt;</span><span class="n">append</span><span class="p">(</span><span class="k">static_cast</span><span class="o">&lt;</span><span class="kt">char</span><span class="o">*&gt;</span><span class="p">(</span><span class="n">contents</span><span class="p">),</span><span class="w"> </span><span class="n">size</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="n">nmemb</span><span class="p">);</span>
-<span class="w">    </span><span class="k">return</span><span class="w"> </span><span class="n">size</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="n">nmemb</span><span class="p">;</span>
-<span class="p">}</span>
-
-<span class="kt">int</span><span class="w"> </span><span class="nf">main</span><span class="p">()</span><span class="w"> </span><span class="p">{</span>
-<span class="w">    </span><span class="n">CURL</span><span class="o">*</span><span class="w"> </span><span class="n">curl</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">curl_easy_init</span><span class="p">();</span>
-<span class="w">    </span><span class="n">std</span><span class="o">::</span><span class="n">string</span><span class="w"> </span><span class="n">resp</span><span class="p">;</span>
-<span class="hll"><span class="w">    </span><span class="n">std</span><span class="o">::</span><span class="n">string</span><span class="w"> </span><span class="n">body</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="sa">R</span><span class="s">&quot;</span><span class="dl">(</span><span class="s">{&quot;broker_id&quot;: &quot;YOUR_BROKER_ID&quot;, &quot;account_id&quot;: &quot;YOUR_ACCOUNT_ID&quot;}</span><span class="dl">)</span><span class="s">&quot;</span><span class="p">;</span>
-</span><span class="w">    </span><span class="k">struct</span><span class="w"> </span><span class="nc">curl_slist</span><span class="o">*</span><span class="w"> </span><span class="n">headers</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">curl_slist_append</span><span class="p">(</span><span class="k">nullptr</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;Content-Type: application/json&quot;</span><span class="p">);</span>
-
-<span class="w">    </span><span class="n">curl_easy_setopt</span><span class="p">(</span><span class="n">curl</span><span class="p">,</span><span class="w"> </span><span class="n">CURLOPT_URL</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;http://localhost:8080/api/v1/auth/subscribe_trade&quot;</span><span class="p">);</span>
-<span class="w">    </span><span class="n">curl_easy_setopt</span><span class="p">(</span><span class="n">curl</span><span class="p">,</span><span class="w"> </span><span class="n">CURLOPT_HTTPHEADER</span><span class="p">,</span><span class="w"> </span><span class="n">headers</span><span class="p">);</span>
-<span class="w">    </span><span class="n">curl_easy_setopt</span><span class="p">(</span><span class="n">curl</span><span class="p">,</span><span class="w"> </span><span class="n">CURLOPT_POSTFIELDS</span><span class="p">,</span><span class="w"> </span><span class="n">body</span><span class="p">.</span><span class="n">c_str</span><span class="p">());</span>
-<span class="w">    </span><span class="n">curl_easy_setopt</span><span class="p">(</span><span class="n">curl</span><span class="p">,</span><span class="w"> </span><span class="n">CURLOPT_WRITEFUNCTION</span><span class="p">,</span><span class="w"> </span><span class="n">write_cb</span><span class="p">);</span>
-<span class="w">    </span><span class="n">curl_easy_setopt</span><span class="p">(</span><span class="n">curl</span><span class="p">,</span><span class="w"> </span><span class="n">CURLOPT_WRITEDATA</span><span class="p">,</span><span class="w"> </span><span class="o">&amp;</span><span class="n">resp</span><span class="p">);</span>
-<span class="w">    </span><span class="n">curl_easy_perform</span><span class="p">(</span><span class="n">curl</span><span class="p">);</span>
-<span class="w">    </span><span class="n">curl_slist_free_all</span><span class="p">(</span><span class="n">headers</span><span class="p">);</span>
-<span class="w">    </span><span class="n">curl_easy_cleanup</span><span class="p">(</span><span class="n">curl</span><span class="p">);</span>
-
-<span class="w">    </span><span class="n">std</span><span class="o">::</span><span class="n">cout</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="n">resp</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="n">std</span><span class="o">::</span><span class="n">endl</span><span class="p">;</span>
-<span class="w">    </span><span class="k">return</span><span class="w"> </span><span class="mi">0</span><span class="p">;</span>
-<span class="p">}</span>
-</code></pre></div>
-
-    !!! info "unsubscribe trade"
-        <div class="highlight"><pre><span></span><code><span class="cp">#include</span><span class="w"> </span><span class="cpf">&lt;curl/curl.h&gt;</span>
-<span class="cp">#include</span><span class="w"> </span><span class="cpf">&lt;iostream&gt;</span>
-<span class="cp">#include</span><span class="w"> </span><span class="cpf">&lt;string&gt;</span>
-
-<span class="k">static</span><span class="w"> </span><span class="kt">size_t</span><span class="w"> </span><span class="nf">write_cb</span><span class="p">(</span><span class="kt">void</span><span class="o">*</span><span class="w"> </span><span class="n">contents</span><span class="p">,</span><span class="w"> </span><span class="kt">size_t</span><span class="w"> </span><span class="n">size</span><span class="p">,</span><span class="w"> </span><span class="kt">size_t</span><span class="w"> </span><span class="n">nmemb</span><span class="p">,</span><span class="w"> </span><span class="n">std</span><span class="o">::</span><span class="n">string</span><span class="o">*</span><span class="w"> </span><span class="n">s</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
-<span class="w">    </span><span class="n">s</span><span class="o">-&gt;</span><span class="n">append</span><span class="p">(</span><span class="k">static_cast</span><span class="o">&lt;</span><span class="kt">char</span><span class="o">*&gt;</span><span class="p">(</span><span class="n">contents</span><span class="p">),</span><span class="w"> </span><span class="n">size</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="n">nmemb</span><span class="p">);</span>
-<span class="w">    </span><span class="k">return</span><span class="w"> </span><span class="n">size</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="n">nmemb</span><span class="p">;</span>
-<span class="p">}</span>
-
-<span class="kt">int</span><span class="w"> </span><span class="nf">main</span><span class="p">()</span><span class="w"> </span><span class="p">{</span>
-<span class="w">    </span><span class="n">CURL</span><span class="o">*</span><span class="w"> </span><span class="n">curl</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">curl_easy_init</span><span class="p">();</span>
-<span class="w">    </span><span class="n">std</span><span class="o">::</span><span class="n">string</span><span class="w"> </span><span class="n">resp</span><span class="p">;</span>
-<span class="hll"><span class="w">    </span><span class="n">std</span><span class="o">::</span><span class="n">string</span><span class="w"> </span><span class="n">body</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="sa">R</span><span class="s">&quot;</span><span class="dl">(</span><span class="s">{&quot;broker_id&quot;: &quot;YOUR_BROKER_ID&quot;, &quot;account_id&quot;: &quot;YOUR_ACCOUNT_ID&quot;}</span><span class="dl">)</span><span class="s">&quot;</span><span class="p">;</span>
-</span><span class="w">    </span><span class="k">struct</span><span class="w"> </span><span class="nc">curl_slist</span><span class="o">*</span><span class="w"> </span><span class="n">headers</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">curl_slist_append</span><span class="p">(</span><span class="k">nullptr</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;Content-Type: application/json&quot;</span><span class="p">);</span>
-
-<span class="w">    </span><span class="n">curl_easy_setopt</span><span class="p">(</span><span class="n">curl</span><span class="p">,</span><span class="w"> </span><span class="n">CURLOPT_URL</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;http://localhost:8080/api/v1/auth/unsubscribe_trade&quot;</span><span class="p">);</span>
-<span class="w">    </span><span class="n">curl_easy_setopt</span><span class="p">(</span><span class="n">curl</span><span class="p">,</span><span class="w"> </span><span class="n">CURLOPT_HTTPHEADER</span><span class="p">,</span><span class="w"> </span><span class="n">headers</span><span class="p">);</span>
-<span class="w">    </span><span class="n">curl_easy_setopt</span><span class="p">(</span><span class="n">curl</span><span class="p">,</span><span class="w"> </span><span class="n">CURLOPT_POSTFIELDS</span><span class="p">,</span><span class="w"> </span><span class="n">body</span><span class="p">.</span><span class="n">c_str</span><span class="p">());</span>
-<span class="w">    </span><span class="n">curl_easy_setopt</span><span class="p">(</span><span class="n">curl</span><span class="p">,</span><span class="w"> </span><span class="n">CURLOPT_WRITEFUNCTION</span><span class="p">,</span><span class="w"> </span><span class="n">write_cb</span><span class="p">);</span>
-<span class="w">    </span><span class="n">curl_easy_setopt</span><span class="p">(</span><span class="n">curl</span><span class="p">,</span><span class="w"> </span><span class="n">CURLOPT_WRITEDATA</span><span class="p">,</span><span class="w"> </span><span class="o">&amp;</span><span class="n">resp</span><span class="p">);</span>
-<span class="w">    </span><span class="n">curl_easy_perform</span><span class="p">(</span><span class="n">curl</span><span class="p">);</span>
-<span class="w">    </span><span class="n">curl_slist_free_all</span><span class="p">(</span><span class="n">headers</span><span class="p">);</span>
-<span class="w">    </span><span class="n">curl_easy_cleanup</span><span class="p">(</span><span class="n">curl</span><span class="p">);</span>
-
-<span class="w">    </span><span class="n">std</span><span class="o">::</span><span class="n">cout</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="n">resp</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="n">std</span><span class="o">::</span><span class="n">endl</span><span class="p">;</span>
-<span class="w">    </span><span class="k">return</span><span class="w"> </span><span class="mi">0</span><span class="p">;</span>
-<span class="p">}</span>
-</code></pre></div>
-
-=== "C#"
-    The server doesn't auto-subscribe on startup; subscribe per account.
-
-    !!! info "subscribe trade"
-        <div class="highlight"><pre><span></span><code><span class="k">using</span><span class="w"> </span><span class="nn">System.Net.Http</span><span class="p">;</span>
-<span class="k">using</span><span class="w"> </span><span class="nn">System.Text</span><span class="p">;</span>
-
-<span class="k">using</span><span class="w"> </span><span class="nn">var</span><span class="w"> </span><span class="n">http</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="k">new</span><span class="w"> </span><span class="n">HttpClient</span><span class="p">();</span>
-<span class="hll"><span class="kt">var</span><span class="w"> </span><span class="n">body</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">&quot;&quot;&quot;{&quot;</span><span class="n">broker_id</span><span class="s">&quot;: &quot;</span><span class="n">YOUR_BROKER_ID</span><span class="s">&quot;, &quot;</span><span class="n">account_id</span><span class="s">&quot;: &quot;</span><span class="n">YOUR_ACCOUNT_ID</span><span class="s">&quot;}&quot;&quot;&quot;</span><span class="p">;</span>
-</span><span class="kt">var</span><span class="w"> </span><span class="n">res</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="k">await</span><span class="w"> </span><span class="n">http</span><span class="p">.</span><span class="n">PostAsync</span><span class="p">(</span>
-<span class="w">    </span><span class="s">&quot;http://localhost:8080/api/v1/auth/subscribe_trade&quot;</span><span class="p">,</span>
-<span class="w">    </span><span class="k">new</span><span class="w"> </span><span class="nf">StringContent</span><span class="p">(</span><span class="n">body</span><span class="p">,</span><span class="w"> </span><span class="n">Encoding</span><span class="p">.</span><span class="n">UTF8</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;application/json&quot;</span><span class="p">));</span>
-<span class="n">Console</span><span class="p">.</span><span class="n">WriteLine</span><span class="p">(</span><span class="k">await</span><span class="w"> </span><span class="n">res</span><span class="p">.</span><span class="n">Content</span><span class="p">.</span><span class="n">ReadAsStringAsync</span><span class="p">());</span>
-</code></pre></div>
-
-    !!! info "unsubscribe trade"
-        <div class="highlight"><pre><span></span><code><span class="k">using</span><span class="w"> </span><span class="nn">System.Net.Http</span><span class="p">;</span>
-<span class="k">using</span><span class="w"> </span><span class="nn">System.Text</span><span class="p">;</span>
-
-<span class="k">using</span><span class="w"> </span><span class="nn">var</span><span class="w"> </span><span class="n">http</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="k">new</span><span class="w"> </span><span class="n">HttpClient</span><span class="p">();</span>
-<span class="hll"><span class="kt">var</span><span class="w"> </span><span class="n">body</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">&quot;&quot;&quot;{&quot;</span><span class="n">broker_id</span><span class="s">&quot;: &quot;</span><span class="n">YOUR_BROKER_ID</span><span class="s">&quot;, &quot;</span><span class="n">account_id</span><span class="s">&quot;: &quot;</span><span class="n">YOUR_ACCOUNT_ID</span><span class="s">&quot;}&quot;&quot;&quot;</span><span class="p">;</span>
-</span><span class="kt">var</span><span class="w"> </span><span class="n">res</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="k">await</span><span class="w"> </span><span class="n">http</span><span class="p">.</span><span class="n">PostAsync</span><span class="p">(</span>
-<span class="w">    </span><span class="s">&quot;http://localhost:8080/api/v1/auth/unsubscribe_trade&quot;</span><span class="p">,</span>
-<span class="w">    </span><span class="k">new</span><span class="w"> </span><span class="nf">StringContent</span><span class="p">(</span><span class="n">body</span><span class="p">,</span><span class="w"> </span><span class="n">Encoding</span><span class="p">.</span><span class="n">UTF8</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;application/json&quot;</span><span class="p">));</span>
-<span class="n">Console</span><span class="p">.</span><span class="n">WriteLine</span><span class="p">(</span><span class="k">await</span><span class="w"> </span><span class="n">res</span><span class="p">.</span><span class="n">Content</span><span class="p">.</span><span class="n">ReadAsStringAsync</span><span class="p">());</span>
-</code></pre></div>
-
-=== "Rust"
-    The server doesn't auto-subscribe on startup; subscribe per account.
-
-    !!! info "subscribe trade"
-        <div class="highlight"><pre><span></span><code><span class="k">use</span><span class="w"> </span><span class="n">serde_json</span><span class="p">::</span><span class="n">json</span><span class="p">;</span>
-
-<span class="cp">#[tokio::main]</span>
-<span class="k">async</span><span class="w"> </span><span class="k">fn</span><span class="w"> </span><span class="nf">main</span><span class="p">()</span><span class="w"> </span><span class="p">-&gt;</span><span class="w"> </span><span class="nb">Result</span><span class="o">&lt;</span><span class="p">(),</span><span class="w"> </span><span class="n">reqwest</span><span class="p">::</span><span class="n">Error</span><span class="o">&gt;</span><span class="w"> </span><span class="p">{</span>
-<span class="hll"><span class="w">    </span><span class="kd">let</span><span class="w"> </span><span class="n">body</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">json</span><span class="o">!</span><span class="p">({</span><span class="s">&quot;broker_id&quot;</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;YOUR_BROKER_ID&quot;</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;account_id&quot;</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;YOUR_ACCOUNT_ID&quot;</span><span class="p">});</span>
-</span><span class="w">    </span><span class="kd">let</span><span class="w"> </span><span class="n">res</span><span class="p">:</span><span class="w"> </span><span class="nc">serde_json</span><span class="p">::</span><span class="n">Value</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">reqwest</span><span class="p">::</span><span class="n">Client</span><span class="p">::</span><span class="n">new</span><span class="p">()</span>
-<span class="w">        </span><span class="p">.</span><span class="n">post</span><span class="p">(</span><span class="s">&quot;http://localhost:8080/api/v1/auth/subscribe_trade&quot;</span><span class="p">)</span>
-<span class="w">        </span><span class="p">.</span><span class="n">json</span><span class="p">(</span><span class="o">&amp;</span><span class="n">body</span><span class="p">)</span>
-<span class="w">        </span><span class="p">.</span><span class="n">send</span><span class="p">()</span>
-<span class="w">        </span><span class="p">.</span><span class="k">await</span><span class="o">?</span>
-<span class="w">        </span><span class="p">.</span><span class="n">json</span><span class="p">()</span>
-<span class="w">        </span><span class="p">.</span><span class="k">await</span><span class="o">?</span><span class="p">;</span>
-<span class="w">    </span><span class="fm">println!</span><span class="p">(</span><span class="s">&quot;{:#}&quot;</span><span class="p">,</span><span class="w"> </span><span class="n">res</span><span class="p">);</span>
-<span class="w">    </span><span class="nb">Ok</span><span class="p">(())</span>
-<span class="p">}</span>
-</code></pre></div>
-
-    !!! info "unsubscribe trade"
-        <div class="highlight"><pre><span></span><code><span class="k">use</span><span class="w"> </span><span class="n">serde_json</span><span class="p">::</span><span class="n">json</span><span class="p">;</span>
-
-<span class="cp">#[tokio::main]</span>
-<span class="k">async</span><span class="w"> </span><span class="k">fn</span><span class="w"> </span><span class="nf">main</span><span class="p">()</span><span class="w"> </span><span class="p">-&gt;</span><span class="w"> </span><span class="nb">Result</span><span class="o">&lt;</span><span class="p">(),</span><span class="w"> </span><span class="n">reqwest</span><span class="p">::</span><span class="n">Error</span><span class="o">&gt;</span><span class="w"> </span><span class="p">{</span>
-<span class="hll"><span class="w">    </span><span class="kd">let</span><span class="w"> </span><span class="n">body</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">json</span><span class="o">!</span><span class="p">({</span><span class="s">&quot;broker_id&quot;</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;YOUR_BROKER_ID&quot;</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;account_id&quot;</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;YOUR_ACCOUNT_ID&quot;</span><span class="p">});</span>
-</span><span class="w">    </span><span class="kd">let</span><span class="w"> </span><span class="n">res</span><span class="p">:</span><span class="w"> </span><span class="nc">serde_json</span><span class="p">::</span><span class="n">Value</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">reqwest</span><span class="p">::</span><span class="n">Client</span><span class="p">::</span><span class="n">new</span><span class="p">()</span>
-<span class="w">        </span><span class="p">.</span><span class="n">post</span><span class="p">(</span><span class="s">&quot;http://localhost:8080/api/v1/auth/unsubscribe_trade&quot;</span><span class="p">)</span>
-<span class="w">        </span><span class="p">.</span><span class="n">json</span><span class="p">(</span><span class="o">&amp;</span><span class="n">body</span><span class="p">)</span>
-<span class="w">        </span><span class="p">.</span><span class="n">send</span><span class="p">()</span>
-<span class="w">        </span><span class="p">.</span><span class="k">await</span><span class="o">?</span>
-<span class="w">        </span><span class="p">.</span><span class="n">json</span><span class="p">()</span>
-<span class="w">        </span><span class="p">.</span><span class="k">await</span><span class="o">?</span><span class="p">;</span>
-<span class="w">    </span><span class="fm">println!</span><span class="p">(</span><span class="s">&quot;{:#}&quot;</span><span class="p">,</span><span class="w"> </span><span class="n">res</span><span class="p">);</span>
-<span class="w">    </span><span class="nb">Ok</span><span class="p">(())</span>
-<span class="p">}</span>
-</code></pre></div>
-
-=== "Java"
-    The server doesn't auto-subscribe on startup; subscribe per account.
-
-    !!! info "subscribe trade"
-        <div class="highlight"><pre><span></span><code><span class="kn">import</span><span class="w"> </span><span class="nn">java.net.URI</span><span class="p">;</span>
-<span class="kn">import</span><span class="w"> </span><span class="nn">java.net.http.HttpClient</span><span class="p">;</span>
-<span class="kn">import</span><span class="w"> </span><span class="nn">java.net.http.HttpRequest</span><span class="p">;</span>
-<span class="kn">import</span><span class="w"> </span><span class="nn">java.net.http.HttpResponse</span><span class="p">;</span>
-
-<span class="kd">public</span><span class="w"> </span><span class="kd">class</span> <span class="nc">Test</span><span class="w"> </span><span class="p">{</span>
-<span class="w">    </span><span class="kd">public</span><span class="w"> </span><span class="kd">static</span><span class="w"> </span><span class="kt">void</span><span class="w"> </span><span class="nf">main</span><span class="p">(</span><span class="n">String</span><span class="o">[]</span><span class="w"> </span><span class="n">args</span><span class="p">)</span><span class="w"> </span><span class="kd">throws</span><span class="w"> </span><span class="n">Exception</span><span class="w"> </span><span class="p">{</span>
-<span class="w">        </span><span class="n">String</span><span class="w"> </span><span class="n">body</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">&quot;&quot;&quot;</span>
-<span class="s">            {&quot;broker_id&quot;: &quot;YOUR_BROKER_ID&quot;, &quot;account_id&quot;: &quot;YOUR_ACCOUNT_ID&quot;}</span>
-<span class="hll"><span class="s">            &quot;&quot;&quot;</span><span class="p">;</span>
-</span><span class="w">        </span><span class="n">HttpClient</span><span class="w"> </span><span class="n">client</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">HttpClient</span><span class="p">.</span><span class="na">newHttpClient</span><span class="p">();</span>
-<span class="w">        </span><span class="n">HttpRequest</span><span class="w"> </span><span class="n">req</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">HttpRequest</span><span class="p">.</span><span class="na">newBuilder</span><span class="p">()</span>
-<span class="w">            </span><span class="p">.</span><span class="na">uri</span><span class="p">(</span><span class="n">URI</span><span class="p">.</span><span class="na">create</span><span class="p">(</span><span class="s">&quot;http://localhost:8080/api/v1/auth/subscribe_trade&quot;</span><span class="p">))</span>
-<span class="w">            </span><span class="p">.</span><span class="na">header</span><span class="p">(</span><span class="s">&quot;Content-Type&quot;</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;application/json&quot;</span><span class="p">)</span>
-<span class="w">            </span><span class="p">.</span><span class="na">POST</span><span class="p">(</span><span class="n">HttpRequest</span><span class="p">.</span><span class="na">BodyPublishers</span><span class="p">.</span><span class="na">ofString</span><span class="p">(</span><span class="n">body</span><span class="p">))</span>
-<span class="w">            </span><span class="p">.</span><span class="na">build</span><span class="p">();</span>
-<span class="w">        </span><span class="n">System</span><span class="p">.</span><span class="na">out</span><span class="p">.</span><span class="na">println</span><span class="p">(</span><span class="n">client</span><span class="p">.</span><span class="na">send</span><span class="p">(</span><span class="n">req</span><span class="p">,</span><span class="w"> </span><span class="n">HttpResponse</span><span class="p">.</span><span class="na">BodyHandlers</span><span class="p">.</span><span class="na">ofString</span><span class="p">()).</span><span class="na">body</span><span class="p">());</span>
-<span class="w">    </span><span class="p">}</span>
-<span class="p">}</span>
-</code></pre></div>
-
-    !!! info "unsubscribe trade"
-        <div class="highlight"><pre><span></span><code><span class="kn">import</span><span class="w"> </span><span class="nn">java.net.URI</span><span class="p">;</span>
-<span class="kn">import</span><span class="w"> </span><span class="nn">java.net.http.HttpClient</span><span class="p">;</span>
-<span class="kn">import</span><span class="w"> </span><span class="nn">java.net.http.HttpRequest</span><span class="p">;</span>
-<span class="kn">import</span><span class="w"> </span><span class="nn">java.net.http.HttpResponse</span><span class="p">;</span>
-
-<span class="kd">public</span><span class="w"> </span><span class="kd">class</span> <span class="nc">Test</span><span class="w"> </span><span class="p">{</span>
-<span class="w">    </span><span class="kd">public</span><span class="w"> </span><span class="kd">static</span><span class="w"> </span><span class="kt">void</span><span class="w"> </span><span class="nf">main</span><span class="p">(</span><span class="n">String</span><span class="o">[]</span><span class="w"> </span><span class="n">args</span><span class="p">)</span><span class="w"> </span><span class="kd">throws</span><span class="w"> </span><span class="n">Exception</span><span class="w"> </span><span class="p">{</span>
-<span class="w">        </span><span class="n">String</span><span class="w"> </span><span class="n">body</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">&quot;&quot;&quot;</span>
-<span class="s">            {&quot;broker_id&quot;: &quot;YOUR_BROKER_ID&quot;, &quot;account_id&quot;: &quot;YOUR_ACCOUNT_ID&quot;}</span>
-<span class="hll"><span class="s">            &quot;&quot;&quot;</span><span class="p">;</span>
-</span><span class="w">        </span><span class="n">HttpClient</span><span class="w"> </span><span class="n">client</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">HttpClient</span><span class="p">.</span><span class="na">newHttpClient</span><span class="p">();</span>
-<span class="w">        </span><span class="n">HttpRequest</span><span class="w"> </span><span class="n">req</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">HttpRequest</span><span class="p">.</span><span class="na">newBuilder</span><span class="p">()</span>
-<span class="w">            </span><span class="p">.</span><span class="na">uri</span><span class="p">(</span><span class="n">URI</span><span class="p">.</span><span class="na">create</span><span class="p">(</span><span class="s">&quot;http://localhost:8080/api/v1/auth/unsubscribe_trade&quot;</span><span class="p">))</span>
-<span class="w">            </span><span class="p">.</span><span class="na">header</span><span class="p">(</span><span class="s">&quot;Content-Type&quot;</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;application/json&quot;</span><span class="p">)</span>
-<span class="w">            </span><span class="p">.</span><span class="na">POST</span><span class="p">(</span><span class="n">HttpRequest</span><span class="p">.</span><span class="na">BodyPublishers</span><span class="p">.</span><span class="na">ofString</span><span class="p">(</span><span class="n">body</span><span class="p">))</span>
-<span class="w">            </span><span class="p">.</span><span class="na">build</span><span class="p">();</span>
-<span class="w">        </span><span class="n">System</span><span class="p">.</span><span class="na">out</span><span class="p">.</span><span class="na">println</span><span class="p">(</span><span class="n">client</span><span class="p">.</span><span class="na">send</span><span class="p">(</span><span class="n">req</span><span class="p">,</span><span class="w"> </span><span class="n">HttpResponse</span><span class="p">.</span><span class="na">BodyHandlers</span><span class="p">.</span><span class="na">ofString</span><span class="p">()).</span><span class="na">body</span><span class="p">());</span>
-<span class="w">    </span><span class="p">}</span>
-<span class="p">}</span>
-</code></pre></div>
-
-
--->
+<p>--&gt;</p>
 <h2 id="account">Account<a class="headerlink" href="#account" title="Permanent link">&para;</a></h2>
 <p>Accounts are classified by <code>account_type</code>:</p>
 <ul>
@@ -2658,7 +2196,7 @@ ts: 20260612021106
 <li><code>F</code>: Futures account (<code>FutureAccount</code>)</li>
 <li><code>H</code>: International (sub-brokerage) account — not yet supported for API trading in shioaji.</li>
 </ul>
-<div class="tabbed-set tabbed-alternate" data-tabs="3:3"><input checked="checked" id="__tabbed_3_1" name="__tabbed_3" type="radio" /><input id="__tabbed_3_2" name="__tabbed_3" type="radio" /><input id="__tabbed_3_3" name="__tabbed_3" type="radio" /><div class="tabbed-labels"><label for="__tabbed_3_1">Python</label><label for="__tabbed_3_2">CLI</label><label for="__tabbed_3_3">HTTP</label></div>
+<div class="tabbed-set tabbed-alternate" data-tabs="2:3"><input checked="checked" id="__tabbed_2_1" name="__tabbed_2" type="radio" /><input id="__tabbed_2_2" name="__tabbed_2" type="radio" /><input id="__tabbed_2_3" name="__tabbed_2" type="radio" /><div class="tabbed-labels"><label for="__tabbed_2_1">Python</label><label for="__tabbed_2_2">CLI</label><label for="__tabbed_2_3">HTTP</label></div>
 <div class="tabbed-content">
 <div class="tabbed-block">
 <h4 id="list-accounts">List Accounts<a class="headerlink" href="#list-accounts" title="Permanent link">&para;</a></h4>
@@ -2952,10 +2490,11 @@ In the Order object you must specify the account to place the order with. For mo
 </code></pre></div>
 
 
+
 -->
 <h2 id="logout">Logout<a class="headerlink" href="#logout" title="Permanent link">&para;</a></h2>
 <p>Logout closes the connection between the client and the server. To provide quality service, we <a href="../limit/">limit the number of connections</a> since 2021/08/06. It is good practice to terminate the program when not in use.</p>
-<div class="tabbed-set tabbed-alternate" data-tabs="4:2"><input checked="checked" id="__tabbed_4_1" name="__tabbed_4" type="radio" /><input id="__tabbed_4_2" name="__tabbed_4" type="radio" /><div class="tabbed-labels"><label for="__tabbed_4_1">Python</label><label for="__tabbed_4_2">Other Languages</label></div>
+<div class="tabbed-set tabbed-alternate" data-tabs="3:2"><input checked="checked" id="__tabbed_3_1" name="__tabbed_3" type="radio" /><input id="__tabbed_3_2" name="__tabbed_3" type="radio" /><div class="tabbed-labels"><label for="__tabbed_3_1">Python</label><label for="__tabbed_3_2">Other Languages</label></div>
 <div class="tabbed-content">
 <div class="tabbed-block">
 <div class="admonition info">

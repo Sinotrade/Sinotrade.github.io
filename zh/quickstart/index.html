@@ -420,6 +420,15 @@
 </li>
       
         <li class="md-nav__item">
+  <a href="#訂閱委託成交回報" class="md-nav__link">
+    <span class="md-ellipsis">
+      訂閱委託/成交回報
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
   <a href="#_3" class="md-nav__link">
     <span class="md-ellipsis">
       訂閱行情
@@ -1317,20 +1326,9 @@
   
   
   
-    
-    
-    
-    
-    
-    <li class="md-nav__item md-nav__item--nested">
-      
+    <li class="md-nav__item">
+      <a href="../tutor/order/OrderEvent/" class="md-nav__link">
         
-        
-        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_5_5_7" >
-        
-          
-          <label class="md-nav__link" for="__nav_5_5_7" id="__nav_5_5_7_label" tabindex="0">
-            
   
   
   <span class="md-ellipsis">
@@ -1339,65 +1337,7 @@
   </span>
   
 
-            <span class="md-nav__icon md-icon"></span>
-          </label>
-        
-        <nav class="md-nav" data-md-level="3" aria-labelledby="__nav_5_5_7_label" aria-expanded="false">
-          <label class="md-nav__title" for="__nav_5_5_7">
-            <span class="md-nav__icon md-icon"></span>
-            主動回報
-          </label>
-          <ul class="md-nav__list" data-md-scrollfix>
-            
-              
-                
-  
-  
-  
-  
-    <li class="md-nav__item">
-      <a href="../tutor/order/order_deal_event/stocks/" class="md-nav__link">
-        
-  
-  
-  <span class="md-ellipsis">
-    證券
-    
-  </span>
-  
-
       </a>
-    </li>
-  
-
-              
-            
-              
-                
-  
-  
-  
-  
-    <li class="md-nav__item">
-      <a href="../tutor/order/order_deal_event/futures/" class="md-nav__link">
-        
-  
-  
-  <span class="md-ellipsis">
-    期貨
-    
-  </span>
-  
-
-      </a>
-    </li>
-  
-
-              
-            
-          </ul>
-        </nav>
-      
     </li>
   
 
@@ -2101,6 +2041,15 @@
 </li>
       
         <li class="md-nav__item">
+  <a href="#訂閱委託成交回報" class="md-nav__link">
+    <span class="md-ellipsis">
+      訂閱委託/成交回報
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
   <a href="#_3" class="md-nav__link">
     <span class="md-ellipsis">
       訂閱行情
@@ -2156,7 +2105,11 @@
 <span class="n">api</span> <span class="o">=</span> <span class="n">sj</span><span class="o">.</span><span class="n">Shioaji</span><span class="p">()</span>
 
 <span class="c1"># 登入</span>
-<span class="n">accounts</span> <span class="o">=</span> <span class="n">api</span><span class="o">.</span><span class="n">login</span><span class="p">(</span><span class="n">api_key</span><span class="o">=</span><span class="s2">&quot;YOUR_API_KEY&quot;</span><span class="p">,</span> <span class="n">secret_key</span><span class="o">=</span><span class="s2">&quot;YOUR_SECRET_KEY&quot;</span><span class="p">)</span>
+<span class="n">accounts</span> <span class="o">=</span> <span class="n">api</span><span class="o">.</span><span class="n">login</span><span class="p">(</span>
+    <span class="n">api_key</span><span class="o">=</span><span class="s2">&quot;YOUR_API_KEY&quot;</span><span class="p">,</span> 
+    <span class="n">secret_key</span><span class="o">=</span><span class="s2">&quot;YOUR_SECRET_KEY&quot;</span><span class="p">,</span> 
+    <span class="n">subscribe_trade</span><span class="o">=</span><span class="kc">True</span>
+<span class="p">)</span>
 
 <span class="c1"># 啟用憑證（正式環境下單前必須）</span>
 <span class="n">api</span><span class="o">.</span><span class="n">activate_ca</span><span class="p">(</span>
@@ -2357,9 +2310,80 @@ curl<span class="w"> </span>http://localhost:8080/api/v1/auth/accounts
 </div>
 </div>
 </div>
+<h3 id="訂閱委託成交回報">訂閱委託/成交回報<a class="headerlink" href="#訂閱委託成交回報" title="Permanent link">&para;</a></h3>
+<div class="tabbed-set tabbed-alternate" data-tabs="3:3"><input checked="checked" id="__tabbed_3_1" name="__tabbed_3" type="radio" /><input id="__tabbed_3_2" name="__tabbed_3" type="radio" /><input id="__tabbed_3_3" name="__tabbed_3" type="radio" /><div class="tabbed-labels"><label for="__tabbed_3_1">Python</label><label for="__tabbed_3_2">CLI</label><label for="__tabbed_3_3">HTTP</label></div>
+<div class="tabbed-content">
+<div class="tabbed-block">
+<p>我們提供 2 個方式讓您可以調整訂閱委託/成交回報。首先是於 <code>login</code> 的參數 <code>subscribe_trade</code>，預設值為 <code>True</code>，會自動為您訂閱所有帳號的委託/成交回報。另一個方式是，對特定帳號使用 API <code>subscribe_trade</code> 及 <code>unsubscribe_trade</code>，即可訂閱或取消訂閱委託/成交回報。</p>
+<div class="admonition info">
+<p class="admonition-title">subscribe trade</p>
+<div class="highlight"><pre><span></span><code><span class="n">api</span><span class="o">.</span><span class="n">subscribe_trade</span><span class="p">(</span><span class="n">account</span><span class="p">)</span>
+</code></pre></div>
+</div>
+<div class="admonition info">
+<p class="admonition-title">unsubscribe trade</p>
+<div class="highlight"><pre><span></span><code><span class="n">api</span><span class="o">.</span><span class="n">unsubscribe_trade</span><span class="p">(</span><span class="n">account</span><span class="p">)</span>
+</code></pre></div>
+</div>
+</div>
+<div class="tabbed-block">
+<p>server 啟動時不自動訂閱，需逐帳號動態訂閱。</p>
+<div class="admonition info">
+<p class="admonition-title">subscribe trade</p>
+<div class="highlight"><pre><span></span><code>shioaji<span class="w"> </span>auth<span class="w"> </span>subscribe-trade<span class="w"> </span>--account-type<span class="w"> </span>F
+</code></pre></div>
+</div>
+<div class="admonition info">
+<p class="admonition-title">unsubscribe trade</p>
+<div class="highlight"><pre><span></span><code>shioaji<span class="w"> </span>auth<span class="w"> </span>unsubscribe-trade<span class="w"> </span>--account-type<span class="w"> </span>F
+</code></pre></div>
+</div>
+<div class="admonition done">
+<p class="admonition-title">Parameters</p>
+<div class="highlight"><pre><span></span><code>--account-type: 選填，S（證券，預設）或 F（期貨/選擇權）
+--account:      選填，BROKER_ID-ACCOUNT_ID 格式；未填時使用該類型的預設帳號
+</code></pre></div>
+</div>
+<div class="admonition done">
+<p class="admonition-title">Out</p>
+<div class="highlight"><pre><span></span><code>account:
+  account_type: F
+  person_id: YOUR_PERSON_ID
+  broker_id: F002000
+  account_id: &quot;YOUR_ACCOUNT_ID&quot;
+  signed: true
+  username: &quot;&quot;
+subscribe_trade: true
+ts: 20260612021106
+</code></pre></div>
+</div>
+<div class="admonition warning">
+<p class="admonition-title">注意</p>
+<p><code>subscribe-trade</code> 只負責向 server 登記訂閱，執行完即結束。實際接收委託/成交回報請使用 <code>shioaji order events</code>（SSE 串流，Ctrl+C 停止），詳見<a href="./callback/orderdeal_event.md">委託回報</a>。</p>
+</div>
+</div>
+<div class="tabbed-block">
+<p>server 啟動時不自動訂閱，需逐帳號動態訂閱。</p>
+<div class="admonition info">
+<p class="admonition-title">subscribe trade</p>
+<div class="highlight"><pre><span></span><code>curl<span class="w"> </span>-X<span class="w"> </span>POST<span class="w"> </span>http://localhost:8080/api/v1/auth/subscribe_trade<span class="w"> </span><span class="se">\</span>
+<span class="w">  </span>-H<span class="w"> </span><span class="s2">&quot;Content-Type: application/json&quot;</span><span class="w"> </span><span class="se">\</span>
+<span class="hll"><span class="w">  </span>-d<span class="w"> </span><span class="s1">&#39;{&quot;broker_id&quot;: &quot;YOUR_BROKER_ID&quot;, &quot;account_id&quot;: &quot;YOUR_ACCOUNT_ID&quot;}&#39;</span>
+</span></code></pre></div>
+</div>
+<div class="admonition info">
+<p class="admonition-title">unsubscribe trade</p>
+<div class="highlight"><pre><span></span><code>curl<span class="w"> </span>-X<span class="w"> </span>POST<span class="w"> </span>http://localhost:8080/api/v1/auth/unsubscribe_trade<span class="w"> </span><span class="se">\</span>
+<span class="w">  </span>-H<span class="w"> </span><span class="s2">&quot;Content-Type: application/json&quot;</span><span class="w"> </span><span class="se">\</span>
+<span class="hll"><span class="w">  </span>-d<span class="w"> </span><span class="s1">&#39;{&quot;broker_id&quot;: &quot;YOUR_BROKER_ID&quot;, &quot;account_id&quot;: &quot;YOUR_ACCOUNT_ID&quot;}&#39;</span>
+</span></code></pre></div>
+</div>
+</div>
+</div>
+</div>
 <h3 id="_3">訂閱行情<a class="headerlink" href="#_3" title="Permanent link">&para;</a></h3>
 <p>訂閱行情需將合約帶入 <code>subscribe</code> 功能，並指定行情類型，就可以接收資料。目前支援 tick / bid_ask / quote 三種行情類型。</p>
-<div class="tabbed-set tabbed-alternate" data-tabs="3:3"><input checked="checked" id="__tabbed_3_1" name="__tabbed_3" type="radio" /><input id="__tabbed_3_2" name="__tabbed_3" type="radio" /><input id="__tabbed_3_3" name="__tabbed_3" type="radio" /><div class="tabbed-labels"><label for="__tabbed_3_1">Python</label><label for="__tabbed_3_2">CLI</label><label for="__tabbed_3_3">HTTP</label></div>
+<div class="tabbed-set tabbed-alternate" data-tabs="4:3"><input checked="checked" id="__tabbed_4_1" name="__tabbed_4" type="radio" /><input id="__tabbed_4_2" name="__tabbed_4" type="radio" /><input id="__tabbed_4_3" name="__tabbed_4" type="radio" /><div class="tabbed-labels"><label for="__tabbed_4_1">Python</label><label for="__tabbed_4_2">CLI</label><label for="__tabbed_4_3">HTTP</label></div>
 <div class="tabbed-content">
 <div class="tabbed-block">
 <div class="highlight"><pre><span></span><code><span class="n">contract</span> <span class="o">=</span> <span class="n">api</span><span class="o">.</span><span class="n">contracts</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s2">&quot;2330&quot;</span><span class="p">)</span>
@@ -2553,7 +2577,7 @@ security_type / exchange / code 等欄位，可呼叫
 </div>
 <h3 id="_4">下單<a class="headerlink" href="#_4" title="Permanent link">&para;</a></h3>
 <p>下單需指定合約與委託內容（買賣方向、價格、數量等），送出後會回傳該筆交易的狀態。</p>
-<div class="tabbed-set tabbed-alternate" data-tabs="4:3"><input checked="checked" id="__tabbed_4_1" name="__tabbed_4" type="radio" /><input id="__tabbed_4_2" name="__tabbed_4" type="radio" /><input id="__tabbed_4_3" name="__tabbed_4" type="radio" /><div class="tabbed-labels"><label for="__tabbed_4_1">Python</label><label for="__tabbed_4_2">CLI</label><label for="__tabbed_4_3">HTTP</label></div>
+<div class="tabbed-set tabbed-alternate" data-tabs="5:3"><input checked="checked" id="__tabbed_5_1" name="__tabbed_5" type="radio" /><input id="__tabbed_5_2" name="__tabbed_5" type="radio" /><input id="__tabbed_5_3" name="__tabbed_5" type="radio" /><div class="tabbed-labels"><label for="__tabbed_5_1">Python</label><label for="__tabbed_5_2">CLI</label><label for="__tabbed_5_3">HTTP</label></div>
 <div class="tabbed-content">
 <div class="tabbed-block">
 <div class="highlight"><pre><span></span><code><span class="n">contract</span> <span class="o">=</span> <span class="n">api</span><span class="o">.</span><span class="n">contracts</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s2">&quot;2890&quot;</span><span class="p">)</span>
