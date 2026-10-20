@@ -104,11 +104,11 @@ If you receive **Sign data is timeout**, login exceeded the effective execution 
 
 ## Account
 
-Accounts are classified by `account_type`:
+We support three types of accounts:
 
 - `S`: Stock account (`StockAccount`)
 - `F`: Futures account (`FutureAccount`)
-- `H`: International (sub-brokerage) account — not yet supported for API trading in shioaji.
+- `H`: International (sub-brokerage) account (note: not yet supported for API trading in shioaji)
 
 #### List Accounts
 
@@ -131,9 +131,44 @@ Out
 
 ```
 
-- If `signed` does not appear in the account list (e.g. `ACCOUNT_ID_2`), the account has not been signed or has not completed the test report in simulation mode. Please refer to [API Signing and Test](../prepare/terms/).
+In
 
-#### Default Account
+```
+shioaji auth accounts
+
+```
+
+Out
+
+```
+[3]{account_type,person_id,broker_id,account_id,signed,username}:
+  F,PERSON_ID_1,BROKER_ID_1,"ACCOUNT_ID_1",true,USERNAME_1
+  H,PERSON_ID_1,BROKER_ID_2,"ACCOUNT_ID_2",false,USERNAME_1
+  S,PERSON_ID_1,BROKER_ID_2,"ACCOUNT_ID_3",true,USERNAME_1
+
+```
+
+In
+
+```
+curl http://localhost:8080/api/v1/auth/accounts
+
+```
+
+Out
+
+```
+[{"account_type":"F","person_id":"PERSON_ID_1","broker_id":"BROKER_ID_1","account_id":"ACCOUNT_ID_1","signed":true,"username":"USERNAME_1"},{"account_type":"H","person_id":"PERSON_ID_1","broker_id":"BROKER_ID_2","account_id":"ACCOUNT_ID_2","signed":false,"username":"USERNAME_1"},{"account_type":"S","person_id":"PERSON_ID_1","broker_id":"BROKER_ID_2","account_id":"ACCOUNT_ID_3","signed":true,"username":"USERNAME_1"}]
+
+```
+
+Note
+
+- If `signed` does not appear in the account list, the account has not been signed or has not completed the test report in simulation mode. Please refer to [API Signing and Test](../prepare/terms/).
+
+-->
+
+#### Default & Set Default Account
 
 In
 
@@ -169,52 +204,11 @@ FutureAccount(person_id='PERSON_ID_2', broker_id='BROKER_ID_2', account_id='ACCO
 
 ```
 
-**List Accounts**
-
-In
-
-```
-shioaji auth accounts
-
-```
-
-Out
-
-```
-[3]{account_type,person_id,broker_id,account_id,signed,username}:
-  F,PERSON_ID_1,BROKER_ID_1,"ACCOUNT_ID_1",true,USERNAME_1
-  H,PERSON_ID_1,BROKER_ID_2,"ACCOUNT_ID_2",false,USERNAME_1
-  S,PERSON_ID_1,BROKER_ID_2,"ACCOUNT_ID_3",true,USERNAME_1
-
-```
-
-- If `signed` does not appear in the account list, the account has not been signed or has not completed the test report in simulation mode. Please refer to [API Signing and Test](../prepare/terms/).
-
-**Default Account**
-
 The server picks the first stock / futures account as the default on startup. If `--account` is not given on order placement, the default is used; to use a specific account, pass `--account BROKER-ACCOUNT`.
 
-**List Accounts**
-
-In
-
-```
-curl http://localhost:8080/api/v1/auth/accounts
-
-```
-
-Out
-
-```
-[{"account_type":"F","person_id":"PERSON_ID_1","broker_id":"BROKER_ID_1","account_id":"ACCOUNT_ID_1","signed":true,"username":"USERNAME_1"},{"account_type":"H","person_id":"PERSON_ID_1","broker_id":"BROKER_ID_2","account_id":"ACCOUNT_ID_2","signed":false,"username":"USERNAME_1"},{"account_type":"S","person_id":"PERSON_ID_1","broker_id":"BROKER_ID_2","account_id":"ACCOUNT_ID_3","signed":true,"username":"USERNAME_1"}]
-
-```
-
-- If `signed` does not appear in the account list, the account has not been signed or has not completed the test report in simulation mode. Please refer to [API Signing and Test](../prepare/terms/).
-
-**Default Account**
-
 The server picks the first stock / futures account as the default on startup. If the order request `account` omits `broker_id` / `account_id`, the default is used; to use a specific account, include `broker_id` + `account_id`.
+
+-->
 
 ## Logout
 

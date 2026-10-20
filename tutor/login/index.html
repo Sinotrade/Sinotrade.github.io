@@ -712,9 +712,9 @@
 </li>
         
           <li class="md-nav__item">
-  <a href="#default-account" class="md-nav__link">
+  <a href="#default-set-default-account" class="md-nav__link">
     <span class="md-ellipsis">
-      Default Account
+      Default &amp; Set Default Account
     </span>
   </a>
   
@@ -2041,9 +2041,9 @@
 </li>
         
           <li class="md-nav__item">
-  <a href="#default-account" class="md-nav__link">
+  <a href="#default-set-default-account" class="md-nav__link">
     <span class="md-ellipsis">
-      Default Account
+      Default &amp; Set Default Account
     </span>
   </a>
   
@@ -2190,16 +2190,16 @@ SJ_PRODUCTION<span class="w">   </span>whether<span class="w"> </span>to<span cl
 </div>
 <p>--&gt;</p>
 <h2 id="account">Account<a class="headerlink" href="#account" title="Permanent link">&para;</a></h2>
-<p>Accounts are classified by <code>account_type</code>:</p>
+<p>We support three types of accounts:</p>
 <ul>
 <li><code>S</code>: Stock account (<code>StockAccount</code>)</li>
 <li><code>F</code>: Futures account (<code>FutureAccount</code>)</li>
-<li><code>H</code>: International (sub-brokerage) account — not yet supported for API trading in shioaji.</li>
+<li><code>H</code>: International (sub-brokerage) account (note: not yet supported for API trading in shioaji)</li>
 </ul>
+<h4 id="list-accounts">List Accounts<a class="headerlink" href="#list-accounts" title="Permanent link">&para;</a></h4>
 <div class="tabbed-set tabbed-alternate" data-tabs="2:3"><input checked="checked" id="__tabbed_2_1" name="__tabbed_2" type="radio" /><input id="__tabbed_2_2" name="__tabbed_2" type="radio" /><input id="__tabbed_2_3" name="__tabbed_2" type="radio" /><div class="tabbed-labels"><label for="__tabbed_2_1">Python</label><label for="__tabbed_2_2">CLI</label><label for="__tabbed_2_3">HTTP</label></div>
 <div class="tabbed-content">
 <div class="tabbed-block">
-<h4 id="list-accounts">List Accounts<a class="headerlink" href="#list-accounts" title="Permanent link">&para;</a></h4>
 <div class="admonition info">
 <p class="admonition-title">In</p>
 <div class="highlight"><pre><span></span><code><span class="n">accounts</span> <span class="o">=</span> <span class="n">api</span><span class="o">.</span><span class="n">list_accounts</span><span class="p">()</span>
@@ -2215,38 +2215,8 @@ SJ_PRODUCTION<span class="w">   </span>whether<span class="w"> </span>to<span cl
 <span class="p">]</span>
 </code></pre></div>
 </div>
-<ul>
-<li>If <code>signed</code> does not appear in the account list (e.g. <code>ACCOUNT_ID_2</code>), the account has not been signed or has not completed the test report in simulation mode. Please refer to <a href="../prepare/terms/">API Signing and Test</a>.</li>
-</ul>
-<h4 id="default-account">Default Account<a class="headerlink" href="#default-account" title="Permanent link">&para;</a></h4>
-<div class="admonition info">
-<p class="admonition-title">In</p>
-<div class="highlight"><pre><span></span><code><span class="nb">print</span><span class="p">(</span><span class="n">api</span><span class="o">.</span><span class="n">stock_account</span><span class="p">)</span>
-<span class="nb">print</span><span class="p">(</span><span class="n">api</span><span class="o">.</span><span class="n">futopt_account</span><span class="p">)</span>
-</code></pre></div>
-</div>
-<div class="admonition done">
-<p class="admonition-title">Out</p>
-<div class="highlight"><pre><span></span><code><span class="n">StockAccount</span><span class="p">(</span><span class="n">person_id</span><span class="o">=</span><span class="s1">&#39;PERSON_ID_1&#39;</span><span class="p">,</span> <span class="n">broker_id</span><span class="o">=</span><span class="s1">&#39;BROKER_ID_2&#39;</span><span class="p">,</span> <span class="n">account_id</span><span class="o">=</span><span class="s1">&#39;ACCOUNT_ID_3&#39;</span><span class="p">,</span> <span class="n">signed</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">username</span><span class="o">=</span><span class="s1">&#39;USERNAME_1&#39;</span><span class="p">)</span>
-<span class="n">FutureAccount</span><span class="p">(</span><span class="n">person_id</span><span class="o">=</span><span class="s1">&#39;PERSON_ID_1&#39;</span><span class="p">,</span> <span class="n">broker_id</span><span class="o">=</span><span class="s1">&#39;BROKER_ID_1&#39;</span><span class="p">,</span> <span class="n">account_id</span><span class="o">=</span><span class="s1">&#39;ACCOUNT_ID_1&#39;</span><span class="p">,</span> <span class="n">signed</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">username</span><span class="o">=</span><span class="s1">&#39;USERNAME_1&#39;</span><span class="p">)</span>
-</code></pre></div>
-</div>
-<h4 id="set-default-account">Set Default Account<a class="headerlink" href="#set-default-account" title="Permanent link">&para;</a></h4>
-<div class="admonition info">
-<p class="admonition-title">In</p>
-<div class="highlight"><pre><span></span><code><span class="c1"># Switch the default futures account from ACCOUNT_ID_1 to ACCOUNT_ID_2</span>
-<span class="hll"><span class="n">api</span><span class="o">.</span><span class="n">set_default_account</span><span class="p">(</span><span class="n">accounts</span><span class="p">[</span><span class="mi">1</span><span class="p">])</span>
-</span><span class="nb">print</span><span class="p">(</span><span class="n">api</span><span class="o">.</span><span class="n">futopt_account</span><span class="p">)</span>
-</code></pre></div>
-</div>
-<div class="admonition done">
-<p class="admonition-title">Out</p>
-<div class="highlight"><pre><span></span><code><span class="n">FutureAccount</span><span class="p">(</span><span class="n">person_id</span><span class="o">=</span><span class="s1">&#39;PERSON_ID_2&#39;</span><span class="p">,</span> <span class="n">broker_id</span><span class="o">=</span><span class="s1">&#39;BROKER_ID_2&#39;</span><span class="p">,</span> <span class="n">account_id</span><span class="o">=</span><span class="s1">&#39;ACCOUNT_ID_2&#39;</span><span class="p">,</span> <span class="n">username</span><span class="o">=</span><span class="s1">&#39;USERNAME_2&#39;</span><span class="p">)</span>
-</code></pre></div>
-</div>
 </div>
 <div class="tabbed-block">
-<p><strong>List Accounts</strong></p>
 <div class="admonition info">
 <p class="admonition-title">In</p>
 <div class="highlight"><pre><span></span><code>shioaji<span class="w"> </span>auth<span class="w"> </span>accounts
@@ -2260,14 +2230,8 @@ SJ_PRODUCTION<span class="w">   </span>whether<span class="w"> </span>to<span cl
 <span class="w">  </span><span class="l l-Scalar l-Scalar-Plain">S,PERSON_ID_1,BROKER_ID_2,&quot;ACCOUNT_ID_3&quot;,true,USERNAME_1</span>
 </code></pre></div>
 </div>
-<ul>
-<li>If <code>signed</code> does not appear in the account list, the account has not been signed or has not completed the test report in simulation mode. Please refer to <a href="../prepare/terms/">API Signing and Test</a>.</li>
-</ul>
-<p><strong>Default Account</strong></p>
-<p>The server picks the first stock / futures account as the default on startup. If <code>--account</code> is not given on order placement, the default is used; to use a specific account, pass <code>--account BROKER-ACCOUNT</code>.</p>
 </div>
 <div class="tabbed-block">
-<p><strong>List Accounts</strong></p>
 <div class="admonition info">
 <p class="admonition-title">In</p>
 <div class="highlight"><pre><span></span><code>curl<span class="w"> </span>http://localhost:8080/api/v1/auth/accounts
@@ -2278,17 +2242,11 @@ SJ_PRODUCTION<span class="w">   </span>whether<span class="w"> </span>to<span cl
 <div class="highlight"><pre><span></span><code><span class="p">[{</span><span class="nt">&quot;account_type&quot;</span><span class="p">:</span><span class="s2">&quot;F&quot;</span><span class="p">,</span><span class="nt">&quot;person_id&quot;</span><span class="p">:</span><span class="s2">&quot;PERSON_ID_1&quot;</span><span class="p">,</span><span class="nt">&quot;broker_id&quot;</span><span class="p">:</span><span class="s2">&quot;BROKER_ID_1&quot;</span><span class="p">,</span><span class="nt">&quot;account_id&quot;</span><span class="p">:</span><span class="s2">&quot;ACCOUNT_ID_1&quot;</span><span class="p">,</span><span class="nt">&quot;signed&quot;</span><span class="p">:</span><span class="kc">true</span><span class="p">,</span><span class="nt">&quot;username&quot;</span><span class="p">:</span><span class="s2">&quot;USERNAME_1&quot;</span><span class="p">},{</span><span class="nt">&quot;account_type&quot;</span><span class="p">:</span><span class="s2">&quot;H&quot;</span><span class="p">,</span><span class="nt">&quot;person_id&quot;</span><span class="p">:</span><span class="s2">&quot;PERSON_ID_1&quot;</span><span class="p">,</span><span class="nt">&quot;broker_id&quot;</span><span class="p">:</span><span class="s2">&quot;BROKER_ID_2&quot;</span><span class="p">,</span><span class="nt">&quot;account_id&quot;</span><span class="p">:</span><span class="s2">&quot;ACCOUNT_ID_2&quot;</span><span class="p">,</span><span class="nt">&quot;signed&quot;</span><span class="p">:</span><span class="kc">false</span><span class="p">,</span><span class="nt">&quot;username&quot;</span><span class="p">:</span><span class="s2">&quot;USERNAME_1&quot;</span><span class="p">},{</span><span class="nt">&quot;account_type&quot;</span><span class="p">:</span><span class="s2">&quot;S&quot;</span><span class="p">,</span><span class="nt">&quot;person_id&quot;</span><span class="p">:</span><span class="s2">&quot;PERSON_ID_1&quot;</span><span class="p">,</span><span class="nt">&quot;broker_id&quot;</span><span class="p">:</span><span class="s2">&quot;BROKER_ID_2&quot;</span><span class="p">,</span><span class="nt">&quot;account_id&quot;</span><span class="p">:</span><span class="s2">&quot;ACCOUNT_ID_3&quot;</span><span class="p">,</span><span class="nt">&quot;signed&quot;</span><span class="p">:</span><span class="kc">true</span><span class="p">,</span><span class="nt">&quot;username&quot;</span><span class="p">:</span><span class="s2">&quot;USERNAME_1&quot;</span><span class="p">}]</span>
 </code></pre></div>
 </div>
-<ul>
-<li>If <code>signed</code> does not appear in the account list, the account has not been signed or has not completed the test report in simulation mode. Please refer to <a href="../prepare/terms/">API Signing and Test</a>.</li>
-</ul>
-<p><strong>Default Account</strong></p>
-<p>The server picks the first stock / futures account as the default on startup. If the order request <code>account</code> omits <code>broker_id</code> / <code>account_id</code>, the default is used; to use a specific account, include <code>broker_id</code> + <code>account_id</code>.</p>
 </div>
 </div>
 </div>
 <!--
 === "JavaScript"
-    **List Accounts**
 
     !!! info "In"
         <div class="highlight"><pre><span></span><code><span class="kd">const</span><span class="w"> </span><span class="nx">res</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="k">await</span><span class="w"> </span><span class="nx">fetch</span><span class="p">(</span><span class="s1">&#39;http://localhost:8080/api/v1/auth/accounts&#39;</span><span class="p">);</span>
@@ -2492,9 +2450,55 @@ In the Order object you must specify the account to place the order with. For mo
 
 
 -->
+<div class="admonition attention">
+<p class="admonition-title">Note</p>
+</div>
+<ul>
+<li>If <code>signed</code> does not appear in the account list, the account has not been signed or has not completed the test report in simulation mode. Please refer to <a href="../prepare/terms/">API Signing and Test</a>.</li>
+</ul>
+<p>--&gt;</p>
+<h4 id="default-set-default-account">Default &amp; Set Default Account<a class="headerlink" href="#default-set-default-account" title="Permanent link">&para;</a></h4>
+<div class="tabbed-set tabbed-alternate" data-tabs="3:3"><input checked="checked" id="__tabbed_3_1" name="__tabbed_3" type="radio" /><input id="__tabbed_3_2" name="__tabbed_3" type="radio" /><input id="__tabbed_3_3" name="__tabbed_3" type="radio" /><div class="tabbed-labels"><label for="__tabbed_3_1">Python</label><label for="__tabbed_3_2">CLI</label><label for="__tabbed_3_3">HTTP</label></div>
+<div class="tabbed-content">
+<div class="tabbed-block">
+<div class="admonition info">
+<p class="admonition-title">In</p>
+<div class="highlight"><pre><span></span><code><span class="nb">print</span><span class="p">(</span><span class="n">api</span><span class="o">.</span><span class="n">stock_account</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">api</span><span class="o">.</span><span class="n">futopt_account</span><span class="p">)</span>
+</code></pre></div>
+</div>
+<div class="admonition done">
+<p class="admonition-title">Out</p>
+<div class="highlight"><pre><span></span><code><span class="n">StockAccount</span><span class="p">(</span><span class="n">person_id</span><span class="o">=</span><span class="s1">&#39;PERSON_ID_1&#39;</span><span class="p">,</span> <span class="n">broker_id</span><span class="o">=</span><span class="s1">&#39;BROKER_ID_2&#39;</span><span class="p">,</span> <span class="n">account_id</span><span class="o">=</span><span class="s1">&#39;ACCOUNT_ID_3&#39;</span><span class="p">,</span> <span class="n">signed</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">username</span><span class="o">=</span><span class="s1">&#39;USERNAME_1&#39;</span><span class="p">)</span>
+<span class="n">FutureAccount</span><span class="p">(</span><span class="n">person_id</span><span class="o">=</span><span class="s1">&#39;PERSON_ID_1&#39;</span><span class="p">,</span> <span class="n">broker_id</span><span class="o">=</span><span class="s1">&#39;BROKER_ID_1&#39;</span><span class="p">,</span> <span class="n">account_id</span><span class="o">=</span><span class="s1">&#39;ACCOUNT_ID_1&#39;</span><span class="p">,</span> <span class="n">signed</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">username</span><span class="o">=</span><span class="s1">&#39;USERNAME_1&#39;</span><span class="p">)</span>
+</code></pre></div>
+</div>
+<h4 id="set-default-account">Set Default Account<a class="headerlink" href="#set-default-account" title="Permanent link">&para;</a></h4>
+<div class="admonition info">
+<p class="admonition-title">In</p>
+<div class="highlight"><pre><span></span><code><span class="c1"># Switch the default futures account from ACCOUNT_ID_1 to ACCOUNT_ID_2</span>
+<span class="hll"><span class="n">api</span><span class="o">.</span><span class="n">set_default_account</span><span class="p">(</span><span class="n">accounts</span><span class="p">[</span><span class="mi">1</span><span class="p">])</span>
+</span><span class="nb">print</span><span class="p">(</span><span class="n">api</span><span class="o">.</span><span class="n">futopt_account</span><span class="p">)</span>
+</code></pre></div>
+</div>
+<div class="admonition done">
+<p class="admonition-title">Out</p>
+<div class="highlight"><pre><span></span><code><span class="n">FutureAccount</span><span class="p">(</span><span class="n">person_id</span><span class="o">=</span><span class="s1">&#39;PERSON_ID_2&#39;</span><span class="p">,</span> <span class="n">broker_id</span><span class="o">=</span><span class="s1">&#39;BROKER_ID_2&#39;</span><span class="p">,</span> <span class="n">account_id</span><span class="o">=</span><span class="s1">&#39;ACCOUNT_ID_2&#39;</span><span class="p">,</span> <span class="n">username</span><span class="o">=</span><span class="s1">&#39;USERNAME_2&#39;</span><span class="p">)</span>
+</code></pre></div>
+</div>
+</div>
+<div class="tabbed-block">
+<p>The server picks the first stock / futures account as the default on startup. If <code>--account</code> is not given on order placement, the default is used; to use a specific account, pass <code>--account BROKER-ACCOUNT</code>.</p>
+</div>
+<div class="tabbed-block">
+<p>The server picks the first stock / futures account as the default on startup. If the order request <code>account</code> omits <code>broker_id</code> / <code>account_id</code>, the default is used; to use a specific account, include <code>broker_id</code> + <code>account_id</code>.</p>
+</div>
+</div>
+</div>
+<p>--&gt;</p>
 <h2 id="logout">Logout<a class="headerlink" href="#logout" title="Permanent link">&para;</a></h2>
 <p>Logout closes the connection between the client and the server. To provide quality service, we <a href="../limit/">limit the number of connections</a> since 2021/08/06. It is good practice to terminate the program when not in use.</p>
-<div class="tabbed-set tabbed-alternate" data-tabs="3:2"><input checked="checked" id="__tabbed_3_1" name="__tabbed_3" type="radio" /><input id="__tabbed_3_2" name="__tabbed_3" type="radio" /><div class="tabbed-labels"><label for="__tabbed_3_1">Python</label><label for="__tabbed_3_2">Other Languages</label></div>
+<div class="tabbed-set tabbed-alternate" data-tabs="4:2"><input checked="checked" id="__tabbed_4_1" name="__tabbed_4" type="radio" /><input id="__tabbed_4_2" name="__tabbed_4" type="radio" /><div class="tabbed-labels"><label for="__tabbed_4_1">Python</label><label for="__tabbed_4_2">Other</label></div>
 <div class="tabbed-content">
 <div class="tabbed-block">
 <div class="admonition info">

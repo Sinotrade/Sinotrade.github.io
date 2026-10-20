@@ -714,7 +714,7 @@
           <li class="md-nav__item">
   <a href="#_3" class="md-nav__link">
     <span class="md-ellipsis">
-      預設帳號
+      預設&amp;設定帳號
     </span>
   </a>
   
@@ -2043,7 +2043,7 @@
           <li class="md-nav__item">
   <a href="#_3" class="md-nav__link">
     <span class="md-ellipsis">
-      預設帳號
+      預設&amp;設定帳號
     </span>
   </a>
   
@@ -2190,16 +2190,16 @@ SJ_PRODUCTION<span class="w">   </span>是否進入正式模式<span class="w"> 
 </div>
 <p>--&gt;</p>
 <h2 id="_1">帳號<a class="headerlink" href="#_1" title="Permanent link">&para;</a></h2>
-<p>依 <code>account_type</code> 區分為三種：</p>
+<p>我們支援三種類型的帳號：</p>
 <ul>
 <li><code>S</code>：證券帳號（<code>StockAccount</code>）</li>
 <li><code>F</code>：期貨帳號（<code>FutureAccount</code>）</li>
 <li><code>H</code>：複委託帳號（註：shioaji 尚未支援 API 下單）</li>
 </ul>
+<h4 id="_2">帳號列表<a class="headerlink" href="#_2" title="Permanent link">&para;</a></h4>
 <div class="tabbed-set tabbed-alternate" data-tabs="2:3"><input checked="checked" id="__tabbed_2_1" name="__tabbed_2" type="radio" /><input id="__tabbed_2_2" name="__tabbed_2" type="radio" /><input id="__tabbed_2_3" name="__tabbed_2" type="radio" /><div class="tabbed-labels"><label for="__tabbed_2_1">Python</label><label for="__tabbed_2_2">CLI</label><label for="__tabbed_2_3">HTTP</label></div>
 <div class="tabbed-content">
 <div class="tabbed-block">
-<h4 id="_2">帳號列表<a class="headerlink" href="#_2" title="Permanent link">&para;</a></h4>
 <div class="admonition info">
 <p class="admonition-title">In</p>
 <div class="highlight"><pre><span></span><code><span class="n">accounts</span> <span class="o">=</span> <span class="n">api</span><span class="o">.</span><span class="n">list_accounts</span><span class="p">()</span>
@@ -2215,38 +2215,8 @@ SJ_PRODUCTION<span class="w">   </span>是否進入正式模式<span class="w"> 
 <span class="p">]</span>
 </code></pre></div>
 </div>
-<ul>
-<li>若 <code>signed</code> 在帳號列表中未出現，如同 <code>ACCOUNT_ID_2</code>，代表該帳號尚未簽署或尚未完成在測試模式中的測試報告。可參見 <a href="../prepare/terms/">API 簽署</a>。</li>
-</ul>
-<h4 id="_3">預設帳號<a class="headerlink" href="#_3" title="Permanent link">&para;</a></h4>
-<div class="admonition info">
-<p class="admonition-title">In</p>
-<div class="highlight"><pre><span></span><code><span class="nb">print</span><span class="p">(</span><span class="n">api</span><span class="o">.</span><span class="n">stock_account</span><span class="p">)</span>
-<span class="nb">print</span><span class="p">(</span><span class="n">api</span><span class="o">.</span><span class="n">futopt_account</span><span class="p">)</span>
-</code></pre></div>
-</div>
-<div class="admonition done">
-<p class="admonition-title">Out</p>
-<div class="highlight"><pre><span></span><code><span class="n">StockAccount</span><span class="p">(</span><span class="n">person_id</span><span class="o">=</span><span class="s1">&#39;PERSON_ID_1&#39;</span><span class="p">,</span> <span class="n">broker_id</span><span class="o">=</span><span class="s1">&#39;BROKER_ID_2&#39;</span><span class="p">,</span> <span class="n">account_id</span><span class="o">=</span><span class="s1">&#39;ACCOUNT_ID_3&#39;</span><span class="p">,</span> <span class="n">signed</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">username</span><span class="o">=</span><span class="s1">&#39;USERNAME_1&#39;</span><span class="p">)</span>
-<span class="n">FutureAccount</span><span class="p">(</span><span class="n">person_id</span><span class="o">=</span><span class="s1">&#39;PERSON_ID_1&#39;</span><span class="p">,</span> <span class="n">broker_id</span><span class="o">=</span><span class="s1">&#39;BROKER_ID_1&#39;</span><span class="p">,</span> <span class="n">account_id</span><span class="o">=</span><span class="s1">&#39;ACCOUNT_ID_1&#39;</span><span class="p">,</span> <span class="n">signed</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">username</span><span class="o">=</span><span class="s1">&#39;USERNAME_1&#39;</span><span class="p">)</span>
-</code></pre></div>
-</div>
-<h4 id="_4">設定預設帳號<a class="headerlink" href="#_4" title="Permanent link">&para;</a></h4>
-<div class="admonition info">
-<p class="admonition-title">In</p>
-<div class="highlight"><pre><span></span><code><span class="c1"># 預設的期貨帳號從 ACCOUNT_ID_1 轉換成 ACCOUNT_ID_2</span>
-<span class="hll"><span class="n">api</span><span class="o">.</span><span class="n">set_default_account</span><span class="p">(</span><span class="n">accounts</span><span class="p">[</span><span class="mi">1</span><span class="p">])</span>
-</span><span class="nb">print</span><span class="p">(</span><span class="n">api</span><span class="o">.</span><span class="n">futopt_account</span><span class="p">)</span>
-</code></pre></div>
-</div>
-<div class="admonition done">
-<p class="admonition-title">Out</p>
-<div class="highlight"><pre><span></span><code><span class="n">FutureAccount</span><span class="p">(</span><span class="n">person_id</span><span class="o">=</span><span class="s1">&#39;PERSON_ID_2&#39;</span><span class="p">,</span> <span class="n">broker_id</span><span class="o">=</span><span class="s1">&#39;BROKER_ID_2&#39;</span><span class="p">,</span> <span class="n">account_id</span><span class="o">=</span><span class="s1">&#39;ACCOUNT_ID_2&#39;</span><span class="p">,</span> <span class="n">username</span><span class="o">=</span><span class="s1">&#39;USERNAME_2&#39;</span><span class="p">)</span>
-</code></pre></div>
-</div>
 </div>
 <div class="tabbed-block">
-<p><strong>帳號列表</strong></p>
 <div class="admonition info">
 <p class="admonition-title">In</p>
 <div class="highlight"><pre><span></span><code>shioaji<span class="w"> </span>auth<span class="w"> </span>accounts
@@ -2260,14 +2230,8 @@ SJ_PRODUCTION<span class="w">   </span>是否進入正式模式<span class="w"> 
 <span class="w">  </span><span class="l l-Scalar l-Scalar-Plain">S,PERSON_ID_1,BROKER_ID_2,&quot;ACCOUNT_ID_3&quot;,true,USERNAME_1</span>
 </code></pre></div>
 </div>
-<ul>
-<li>若 <code>signed</code> 在帳號列表中未出現，代表該帳號尚未簽署或尚未完成在測試模式中的測試報告。可參見 <a href="../prepare/terms/">API 簽署</a>。</li>
-</ul>
-<p><strong>預設帳號</strong></p>
-<p>server 啟動時自動挑列表中第一個證券 / 期貨帳號作為預設帳號；下單時 <code>--account</code> 不指定即使用預設；若要指定帳號，請帶 <code>--account BROKER-ACCOUNT</code>。</p>
 </div>
 <div class="tabbed-block">
-<p><strong>帳號列表</strong></p>
 <div class="admonition info">
 <p class="admonition-title">In</p>
 <div class="highlight"><pre><span></span><code>curl<span class="w"> </span>http://localhost:8080/api/v1/auth/accounts
@@ -2278,17 +2242,11 @@ SJ_PRODUCTION<span class="w">   </span>是否進入正式模式<span class="w"> 
 <div class="highlight"><pre><span></span><code><span class="p">[{</span><span class="nt">&quot;account_type&quot;</span><span class="p">:</span><span class="s2">&quot;F&quot;</span><span class="p">,</span><span class="nt">&quot;person_id&quot;</span><span class="p">:</span><span class="s2">&quot;PERSON_ID_1&quot;</span><span class="p">,</span><span class="nt">&quot;broker_id&quot;</span><span class="p">:</span><span class="s2">&quot;BROKER_ID_1&quot;</span><span class="p">,</span><span class="nt">&quot;account_id&quot;</span><span class="p">:</span><span class="s2">&quot;ACCOUNT_ID_1&quot;</span><span class="p">,</span><span class="nt">&quot;signed&quot;</span><span class="p">:</span><span class="kc">true</span><span class="p">,</span><span class="nt">&quot;username&quot;</span><span class="p">:</span><span class="s2">&quot;USERNAME_1&quot;</span><span class="p">},{</span><span class="nt">&quot;account_type&quot;</span><span class="p">:</span><span class="s2">&quot;H&quot;</span><span class="p">,</span><span class="nt">&quot;person_id&quot;</span><span class="p">:</span><span class="s2">&quot;PERSON_ID_1&quot;</span><span class="p">,</span><span class="nt">&quot;broker_id&quot;</span><span class="p">:</span><span class="s2">&quot;BROKER_ID_2&quot;</span><span class="p">,</span><span class="nt">&quot;account_id&quot;</span><span class="p">:</span><span class="s2">&quot;ACCOUNT_ID_2&quot;</span><span class="p">,</span><span class="nt">&quot;signed&quot;</span><span class="p">:</span><span class="kc">false</span><span class="p">,</span><span class="nt">&quot;username&quot;</span><span class="p">:</span><span class="s2">&quot;USERNAME_1&quot;</span><span class="p">},{</span><span class="nt">&quot;account_type&quot;</span><span class="p">:</span><span class="s2">&quot;S&quot;</span><span class="p">,</span><span class="nt">&quot;person_id&quot;</span><span class="p">:</span><span class="s2">&quot;PERSON_ID_1&quot;</span><span class="p">,</span><span class="nt">&quot;broker_id&quot;</span><span class="p">:</span><span class="s2">&quot;BROKER_ID_2&quot;</span><span class="p">,</span><span class="nt">&quot;account_id&quot;</span><span class="p">:</span><span class="s2">&quot;ACCOUNT_ID_3&quot;</span><span class="p">,</span><span class="nt">&quot;signed&quot;</span><span class="p">:</span><span class="kc">true</span><span class="p">,</span><span class="nt">&quot;username&quot;</span><span class="p">:</span><span class="s2">&quot;USERNAME_1&quot;</span><span class="p">}]</span>
 </code></pre></div>
 </div>
-<ul>
-<li>若 <code>signed</code> 在帳號列表中未出現，代表該帳號尚未簽署或尚未完成在測試模式中的測試報告。可參見 <a href="../prepare/terms/">API 簽署</a>。</li>
-</ul>
-<p><strong>預設帳號</strong></p>
-<p>server 啟動時自動挑列表中第一個證券 / 期貨帳號作為預設帳號；下單 request 中 <code>account</code> 不帶 <code>broker_id</code> / <code>account_id</code> 即使用預設；若要指定帳號，請帶 <code>broker_id</code> + <code>account_id</code>。</p>
 </div>
 </div>
 </div>
 <!--
 === "JavaScript"
-    **帳號列表**
 
     !!! info "In"
         <div class="highlight"><pre><span></span><code><span class="kd">const</span><span class="w"> </span><span class="nx">res</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="k">await</span><span class="w"> </span><span class="nx">fetch</span><span class="p">(</span><span class="s1">&#39;http://localhost:8080/api/v1/auth/accounts&#39;</span><span class="p">);</span>
@@ -2490,11 +2448,56 @@ SJ_PRODUCTION<span class="w">   </span>是否進入正式模式<span class="w"> 
 </code></pre></div>
 
 
-
 -->
+<div class="admonition attention">
+<p class="admonition-title">注意</p>
+</div>
+<ul>
+<li>若 <code>signed</code> 在帳號列表中未出現，代表該帳號尚未簽署或尚未完成在測試模式中的測試報告。可參見 <a href="../prepare/terms/">API 簽署</a>。</li>
+</ul>
+<p>--&gt;</p>
+<h4 id="_3">預設&amp;設定帳號<a class="headerlink" href="#_3" title="Permanent link">&para;</a></h4>
+<div class="tabbed-set tabbed-alternate" data-tabs="3:3"><input checked="checked" id="__tabbed_3_1" name="__tabbed_3" type="radio" /><input id="__tabbed_3_2" name="__tabbed_3" type="radio" /><input id="__tabbed_3_3" name="__tabbed_3" type="radio" /><div class="tabbed-labels"><label for="__tabbed_3_1">Python</label><label for="__tabbed_3_2">CLI</label><label for="__tabbed_3_3">HTTP</label></div>
+<div class="tabbed-content">
+<div class="tabbed-block">
+<div class="admonition info">
+<p class="admonition-title">In</p>
+<div class="highlight"><pre><span></span><code><span class="nb">print</span><span class="p">(</span><span class="n">api</span><span class="o">.</span><span class="n">stock_account</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">api</span><span class="o">.</span><span class="n">futopt_account</span><span class="p">)</span>
+</code></pre></div>
+</div>
+<div class="admonition done">
+<p class="admonition-title">Out</p>
+<div class="highlight"><pre><span></span><code><span class="n">StockAccount</span><span class="p">(</span><span class="n">person_id</span><span class="o">=</span><span class="s1">&#39;PERSON_ID_1&#39;</span><span class="p">,</span> <span class="n">broker_id</span><span class="o">=</span><span class="s1">&#39;BROKER_ID_2&#39;</span><span class="p">,</span> <span class="n">account_id</span><span class="o">=</span><span class="s1">&#39;ACCOUNT_ID_3&#39;</span><span class="p">,</span> <span class="n">signed</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">username</span><span class="o">=</span><span class="s1">&#39;USERNAME_1&#39;</span><span class="p">)</span>
+<span class="n">FutureAccount</span><span class="p">(</span><span class="n">person_id</span><span class="o">=</span><span class="s1">&#39;PERSON_ID_1&#39;</span><span class="p">,</span> <span class="n">broker_id</span><span class="o">=</span><span class="s1">&#39;BROKER_ID_1&#39;</span><span class="p">,</span> <span class="n">account_id</span><span class="o">=</span><span class="s1">&#39;ACCOUNT_ID_1&#39;</span><span class="p">,</span> <span class="n">signed</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">username</span><span class="o">=</span><span class="s1">&#39;USERNAME_1&#39;</span><span class="p">)</span>
+</code></pre></div>
+</div>
+<h4 id="_4">設定預設帳號<a class="headerlink" href="#_4" title="Permanent link">&para;</a></h4>
+<div class="admonition info">
+<p class="admonition-title">In</p>
+<div class="highlight"><pre><span></span><code><span class="c1"># 預設的期貨帳號從 ACCOUNT_ID_1 轉換成 ACCOUNT_ID_2</span>
+<span class="hll"><span class="n">api</span><span class="o">.</span><span class="n">set_default_account</span><span class="p">(</span><span class="n">accounts</span><span class="p">[</span><span class="mi">1</span><span class="p">])</span>
+</span><span class="nb">print</span><span class="p">(</span><span class="n">api</span><span class="o">.</span><span class="n">futopt_account</span><span class="p">)</span>
+</code></pre></div>
+</div>
+<div class="admonition done">
+<p class="admonition-title">Out</p>
+<div class="highlight"><pre><span></span><code><span class="n">FutureAccount</span><span class="p">(</span><span class="n">person_id</span><span class="o">=</span><span class="s1">&#39;PERSON_ID_2&#39;</span><span class="p">,</span> <span class="n">broker_id</span><span class="o">=</span><span class="s1">&#39;BROKER_ID_2&#39;</span><span class="p">,</span> <span class="n">account_id</span><span class="o">=</span><span class="s1">&#39;ACCOUNT_ID_2&#39;</span><span class="p">,</span> <span class="n">username</span><span class="o">=</span><span class="s1">&#39;USERNAME_2&#39;</span><span class="p">)</span>
+</code></pre></div>
+</div>
+</div>
+<div class="tabbed-block">
+<p>server 啟動時自動挑列表中第一個證券 / 期貨帳號作為預設帳號；下單時 <code>--account</code> 不指定即使用預設；若要指定帳號，請帶 <code>--account BROKER-ACCOUNT</code>。</p>
+</div>
+<div class="tabbed-block">
+<p>server 啟動時自動挑列表中第一個證券 / 期貨帳號作為預設帳號；下單 request 中 <code>account</code> 不帶 <code>broker_id</code> / <code>account_id</code> 即使用預設；若要指定帳號，請帶 <code>broker_id</code> + <code>account_id</code>。</p>
+</div>
+</div>
+</div>
+<p>--&gt;</p>
 <h2 id="_5">登出<a class="headerlink" href="#_5" title="Permanent link">&para;</a></h2>
 <p>登出功能將關閉客戶端及服務端之間的連接。為了提供優質的服務，我們從 2021/08/06 開始<a href="../limit/">限制</a>連線數。在不使用的時候終止程式是一個良好的習慣。</p>
-<div class="tabbed-set tabbed-alternate" data-tabs="3:2"><input checked="checked" id="__tabbed_3_1" name="__tabbed_3" type="radio" /><input id="__tabbed_3_2" name="__tabbed_3" type="radio" /><div class="tabbed-labels"><label for="__tabbed_3_1">Python</label><label for="__tabbed_3_2">其他語言</label></div>
+<div class="tabbed-set tabbed-alternate" data-tabs="4:2"><input checked="checked" id="__tabbed_4_1" name="__tabbed_4" type="radio" /><input id="__tabbed_4_2" name="__tabbed_4" type="radio" /><div class="tabbed-labels"><label for="__tabbed_4_1">Python</label><label for="__tabbed_4_2">其他</label></div>
 <div class="tabbed-content">
 <div class="tabbed-block">
 <div class="admonition info">

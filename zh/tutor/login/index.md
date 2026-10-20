@@ -104,7 +104,7 @@ SJ_PRODUCTION   是否進入正式模式 (預設值: false)
 
 ## 帳號
 
-依 `account_type` 區分為三種：
+我們支援三種類型的帳號：
 
 - `S`：證券帳號（`StockAccount`）
 - `F`：期貨帳號（`FutureAccount`）
@@ -131,9 +131,44 @@ Out
 
 ```
 
-- 若 `signed` 在帳號列表中未出現，如同 `ACCOUNT_ID_2`，代表該帳號尚未簽署或尚未完成在測試模式中的測試報告。可參見 [API 簽署](../prepare/terms/)。
+In
 
-#### 預設帳號
+```
+shioaji auth accounts
+
+```
+
+Out
+
+```
+[3]{account_type,person_id,broker_id,account_id,signed,username}:
+  F,PERSON_ID_1,BROKER_ID_1,"ACCOUNT_ID_1",true,USERNAME_1
+  H,PERSON_ID_1,BROKER_ID_2,"ACCOUNT_ID_2",false,USERNAME_1
+  S,PERSON_ID_1,BROKER_ID_2,"ACCOUNT_ID_3",true,USERNAME_1
+
+```
+
+In
+
+```
+curl http://localhost:8080/api/v1/auth/accounts
+
+```
+
+Out
+
+```
+[{"account_type":"F","person_id":"PERSON_ID_1","broker_id":"BROKER_ID_1","account_id":"ACCOUNT_ID_1","signed":true,"username":"USERNAME_1"},{"account_type":"H","person_id":"PERSON_ID_1","broker_id":"BROKER_ID_2","account_id":"ACCOUNT_ID_2","signed":false,"username":"USERNAME_1"},{"account_type":"S","person_id":"PERSON_ID_1","broker_id":"BROKER_ID_2","account_id":"ACCOUNT_ID_3","signed":true,"username":"USERNAME_1"}]
+
+```
+
+注意
+
+- 若 `signed` 在帳號列表中未出現，代表該帳號尚未簽署或尚未完成在測試模式中的測試報告。可參見 [API 簽署](../prepare/terms/)。
+
+-->
+
+#### 預設&設定帳號
 
 In
 
@@ -169,52 +204,11 @@ FutureAccount(person_id='PERSON_ID_2', broker_id='BROKER_ID_2', account_id='ACCO
 
 ```
 
-**帳號列表**
-
-In
-
-```
-shioaji auth accounts
-
-```
-
-Out
-
-```
-[3]{account_type,person_id,broker_id,account_id,signed,username}:
-  F,PERSON_ID_1,BROKER_ID_1,"ACCOUNT_ID_1",true,USERNAME_1
-  H,PERSON_ID_1,BROKER_ID_2,"ACCOUNT_ID_2",false,USERNAME_1
-  S,PERSON_ID_1,BROKER_ID_2,"ACCOUNT_ID_3",true,USERNAME_1
-
-```
-
-- 若 `signed` 在帳號列表中未出現，代表該帳號尚未簽署或尚未完成在測試模式中的測試報告。可參見 [API 簽署](../prepare/terms/)。
-
-**預設帳號**
-
 server 啟動時自動挑列表中第一個證券 / 期貨帳號作為預設帳號；下單時 `--account` 不指定即使用預設；若要指定帳號，請帶 `--account BROKER-ACCOUNT`。
 
-**帳號列表**
-
-In
-
-```
-curl http://localhost:8080/api/v1/auth/accounts
-
-```
-
-Out
-
-```
-[{"account_type":"F","person_id":"PERSON_ID_1","broker_id":"BROKER_ID_1","account_id":"ACCOUNT_ID_1","signed":true,"username":"USERNAME_1"},{"account_type":"H","person_id":"PERSON_ID_1","broker_id":"BROKER_ID_2","account_id":"ACCOUNT_ID_2","signed":false,"username":"USERNAME_1"},{"account_type":"S","person_id":"PERSON_ID_1","broker_id":"BROKER_ID_2","account_id":"ACCOUNT_ID_3","signed":true,"username":"USERNAME_1"}]
-
-```
-
-- 若 `signed` 在帳號列表中未出現，代表該帳號尚未簽署或尚未完成在測試模式中的測試報告。可參見 [API 簽署](../prepare/terms/)。
-
-**預設帳號**
-
 server 啟動時自動挑列表中第一個證券 / 期貨帳號作為預設帳號；下單 request 中 `account` 不帶 `broker_id` / `account_id` 即使用預設；若要指定帳號，請帶 `broker_id` + `account_id`。
+
+-->
 
 ## 登出
 
