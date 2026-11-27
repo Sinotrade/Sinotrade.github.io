@@ -5,7 +5,7 @@ Contracts are updated daily at the following times:
 Contract update schedule
 
 - 07:50 Futures contract update
-- 08:00 Full-market contract update
+- 08:00 Taiwan Stock market contract update
 - 14:45 Futures night-session contract update
 - 17:15 Futures night-session contract update
 
