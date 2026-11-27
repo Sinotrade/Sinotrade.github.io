@@ -38,6 +38,7 @@ In
 api.contracts.get("2330")     # 股票
 api.contracts.get("TXFR1")    # 期貨
 api.contracts.get("IX0001")   # 指數
+api.contracts.get("AAPL", region="US")  # 美股
 api.contracts.get("XXXX")     # 不存在的代碼
 
 ```
@@ -48,6 +49,7 @@ Out
 Contract(security_type='STK', region='TW', exchange='TSE', code='2330')
 Contract(security_type='FUT', region='TW', exchange='TAIFEX', code='TXFR1', target_code='TXFG6')
 Contract(security_type='IND', region='TW', exchange='TSE', code='IX0001')
+Contract(security_type='STK', region='US', exchange='NASDAQ', code='AAPL')
 None
 
 ```

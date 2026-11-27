@@ -36,6 +36,7 @@ In
 api.contracts.get("2330")     # stock
 api.contracts.get("TXFR1")    # futures
 api.contracts.get("IX0001")   # index
+api.contracts.get("AAPL", region="US") # U.S. stock
 api.contracts.get("XXXX")     # non-existent code
 
 ```
@@ -46,6 +47,7 @@ Out
 Contract(security_type='STK', region='TW', exchange='TSE', code='2330')
 Contract(security_type='FUT', region='TW', exchange='TAIFEX', code='TXFR1', target_code='TXFG6')
 Contract(security_type='IND', region='TW', exchange='TSE', code='IX0001')
+Contract(security_type='STK', region='US', exchange='NASDAQ', code='AAPL')
 None
 
 ```
